@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Course_ARPG",
+			"Path": "..\\Source\\Course_ARPG.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "Course_ARPGEditor",
+			"Path": "..\\Source\\Course_ARPGEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

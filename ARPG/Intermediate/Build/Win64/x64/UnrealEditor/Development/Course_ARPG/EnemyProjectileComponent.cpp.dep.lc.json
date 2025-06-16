@@ -1,0 +1,20 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\private\\combat\\enemyprojectilecomponent.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
+        "Includes": [
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\public\\combat\\enemyprojectilecomponent.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectilecomponent.generated.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\public\\combat\\projectile_base.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\projectile_base.generated.h",
+            "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetmathlibrary.h",
+            "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\kismetmathlibrary.generated.h",
+            "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\kismet\\kismetmathlibrary.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

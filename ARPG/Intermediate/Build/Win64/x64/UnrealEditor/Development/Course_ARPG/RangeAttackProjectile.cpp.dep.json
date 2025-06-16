@@ -1,0 +1,17 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\private\\combat\\rangeattackprojectile.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
+        "Includes": [
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\public\\combat\\rangeattackprojectile.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\public\\combat\\projectile_base.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\projectile_base.generated.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\rangeattackprojectile.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

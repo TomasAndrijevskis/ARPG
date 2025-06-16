@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Course_ARPG.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Course_ARPG.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\Course_ARPGEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\.vsconfig" />
+    <None Include="..\..\Course_ARPG.sln.DotSettings.user" />
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Course_ARPG">
+      <UniqueIdentifier>{4823D5F3-7FBD-3714-87B6-DB79C6128A99}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Course_ARPG\Course_ARPG.Build.cs">
+      <Filter>Source\Course_ARPG</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Course_ARPG\Course_ARPG.cpp">
+      <Filter>Source\Course_ARPG</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Course_ARPG\Course_ARPG.h">
+      <Filter>Source\Course_ARPG</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Private">
+      <UniqueIdentifier>{0BC5C546-910B-3CF9-B7E7-474ED12AF754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Course_ARPG\Private\Animations">
+      <UniqueIdentifier>{FA8BE011-257E-3EDE-A17D-E5FE71EE4ACB}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance.cpp">
+      <Filter>Source\Course_ARPG\Private\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\LookAtPlayerAnimNotifyState.cpp">
+      <Filter>Source\Course_ARPG\Private\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\PlayerAnimInstance.cpp">
+      <Filter>Source\Course_ARPG\Private\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\ToggleTraceNotifyState.cpp">
+      <Filter>Source\Course_ARPG\Private\Animations</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Characters">
+      <UniqueIdentifier>{16C9E4D1-5F11-3571-9A43-5DAB15A0BEB2}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\ARPG_PlayerController.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\BossCharacter.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EEnemyStates.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EStats.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\LevelingComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\LookAtPlayerComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\PlayerActionsComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\StatsComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\WarriorCharacter.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Characters\AI">
+      <UniqueIdentifier>{E27D0B4E-70A9-339F-A652-D676D0A0B857}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTS_PlayerDistance.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_ChargeAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Characters\Data">
+      <UniqueIdentifier>{96B0E68D-9D28-3C7D-9403-D93840F16D29}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Data\XPLevels.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\Data</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Combat">
+      <UniqueIdentifier>{EC468FB0-F6D7-3303-9098-FBB7F56CE297}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\BlockComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\EnemyProjectile.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\EnemyProjectileComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\FTraceSockets.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectile_Base.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\RangeAttackProjectile.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\TraceComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Combat\Abilities">
+      <UniqueIdentifier>{76E63894-074E-3581-9C69-240032C88938}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_Base.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_DamageIncrease.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_GetArmor.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_LifeStealAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Interfaces">
+      <UniqueIdentifier>{9FEC335C-4096-3A30-9F42-AAB19DEF9122}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Interfaces\Enemy.cpp">
+      <Filter>Source\Course_ARPG\Private\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Interfaces\Fighter.cpp">
+      <Filter>Source\Course_ARPG\Private\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Interfaces\MainPlayer.cpp">
+      <Filter>Source\Course_ARPG\Private\Interfaces</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\SaveGame">
+      <UniqueIdentifier>{85D57ACF-8291-3608-9118-5578C8DB5EB4}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_GameInstance.cpp">
+      <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
+      <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\UI">
+      <UniqueIdentifier>{A1E3A523-FE26-3931-80C8-F6E11BC948A3}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\SaveSlotWidget.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\StatsScreenWidget.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Public">
+      <UniqueIdentifier>{C473C03E-DFBF-33CD-8F3C-4AA4D2DC3B54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Course_ARPG\Public\Animations">
+      <UniqueIdentifier>{728D16E0-7CC8-369F-8E3E-610F2954DAC9}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance.h">
+      <Filter>Source\Course_ARPG\Public\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\LookAtPlayerAnimNotifyState.h">
+      <Filter>Source\Course_ARPG\Public\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\PlayerAnimInstance.h">
+      <Filter>Source\Course_ARPG\Public\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\ToggleTraceNotifyState.h">
+      <Filter>Source\Course_ARPG\Public\Animations</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Characters">
+      <UniqueIdentifier>{5FD646C5-260D-3F15-89FD-E711790F0843}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\BossCharacter.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EEnemyStates.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LookAtPlayerComponent.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\StatsComponent.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\WarriorCharacter.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Characters\AI">
+      <UniqueIdentifier>{514DCD5F-E156-3199-AD45-70C75C0C0C2C}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTS_PlayerDistance.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_ChargeAttack.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Characters\Data">
+      <UniqueIdentifier>{C3E27980-9D43-34FA-9FA7-9AD579F314F1}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h">
+      <Filter>Source\Course_ARPG\Public\Characters\Data</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Combat">
+      <UniqueIdentifier>{E23D9A81-4FE8-3932-BF30-F25E4243AE8C}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\BlockComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectile.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectileComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\FTraceSockets.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectile_Base.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\RangeAttackProjectile.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Combat\Abilities">
+      <UniqueIdentifier>{9635779B-00C3-3FBE-AAB4-6642DCC86F42}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Base.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_DamageIncrease.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_GetArmor.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_LifeStealAttack.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Interfaces">
+      <UniqueIdentifier>{769374B1-C35B-3A58-BDEC-C9A64B38B725}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\Enemy.h">
+      <Filter>Source\Course_ARPG\Public\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\Fighter.h">
+      <Filter>Source\Course_ARPG\Public\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h">
+      <Filter>Source\Course_ARPG\Public\Interfaces</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\SaveGame">
+      <UniqueIdentifier>{A2159DDA-70B3-3DBF-9C35-2A3585398F78}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h">
+      <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h">
+      <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\UI">
+      <UniqueIdentifier>{B52EBCAF-D84D-317C-8CA2-92E68E50855D}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveSlotWidget.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\StatsScreenWidget.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\private\\interfaces\\enemy.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
+        "Includes": [
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\source\\course_arpg\\public\\interfaces\\enemy.h",
+            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemy.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
