@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"D:\\projects\\Course_ARPG_5_4 - Copy\\Source\\Course_ARPG\\Course_ARPG.Build.cs",
-		"D:\\projects\\Course_ARPG_5_4 - Copy\\Source\\Course_ARPG.Target.cs",
-		"D:\\projects\\Course_ARPG_5_4 - Copy\\Source\\Course_ARPGEditor.Target.cs"
+		"D:\\projects\\GIT HUB\\ARPG\\ARPG\\Source\\Course_ARPG\\Course_ARPG.Build.cs",
+		"D:\\projects\\GIT HUB\\ARPG\\ARPG\\Source\\Course_ARPG.Target.cs",
+		"D:\\projects\\GIT HUB\\ARPG\\ARPG\\Source\\Course_ARPGEditor.Target.cs"
 	],
 	"EngineVersion": "5.4.4"
 }

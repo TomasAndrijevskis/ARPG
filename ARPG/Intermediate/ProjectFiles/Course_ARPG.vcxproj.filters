@@ -91,9 +91,6 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\StatsComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\WarriorCharacter.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters</Filter>
-    </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Characters\AI">
       <UniqueIdentifier>{E27D0B4E-70A9-339F-A652-D676D0A0B857}</UniqueIdentifier>
     </Filter>
@@ -239,9 +236,6 @@
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\StatsComponent.h">
-      <Filter>Source\Course_ARPG\Public\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\WarriorCharacter.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\Characters\AI">
