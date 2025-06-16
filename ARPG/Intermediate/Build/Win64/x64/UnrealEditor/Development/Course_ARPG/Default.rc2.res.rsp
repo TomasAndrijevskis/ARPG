@@ -80,5 +80,5 @@
 /DBUILD_ICON_FILE_NAME="\"..\\Build\\Windows\\Resources\\Default.ico\""
 /DPROJECT_PRODUCT_NAME="Third Person BP Game Template"
 /DPROJECT_PRODUCT_IDENTIFIER=Course_ARPG
-/fo "D:\projects\Course_ARPG_5_4 - Copy\Intermediate\Build\Win64\x64\UnrealEditor\Development\Course_ARPG\Default.rc2.res"
+/fo "D:\projects\GIT HUB\ARPG\ARPG\Intermediate\Build\Win64\x64\UnrealEditor\Development\Course_ARPG\Default.rc2.res"
 "..\Build\Windows\Resources\Default.rc2"

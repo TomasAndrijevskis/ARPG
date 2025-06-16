@@ -1,11 +1,11 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.cpp",
+        "Source": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.cpp",
         "ProvidedModule": "",
         "Includes": [
-            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h",
-            "d:\\projects\\course_arpg_5_4 - copy\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\shareddefinitions.unrealed.project.valapi.cpp20.inclorderoldest.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\shareddefinitions.unrealed.project.valapi.cpp20.inclorderoldest.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\editor\\unrealed\\public\\unrealedsharedpch.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\public\\enginesharedpch.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\slate\\public\\slatesharedpch.h",

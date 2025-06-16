@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_ARPG_GameInstance_generated_h
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execbCheckSlot); \
 	DECLARE_FUNCTION(execInitializeGameInstance); \
 	DECLARE_FUNCTION(execLoadGame); \
@@ -23,7 +23,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	DECLARE_FUNCTION(execSetSlotName);
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUARPG_GameInstance(); \
 	friend struct Z_Construct_UClass_UARPG_GameInstance_Statics; \
@@ -32,7 +32,7 @@ public: \
 	DECLARE_SERIALIZER(UARPG_GameInstance)
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UARPG_GameInstance(UARPG_GameInstance&&); \
@@ -44,13 +44,13 @@ public: \
 	NO_API virtual ~UARPG_GameInstance();
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_8_PROLOG
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_8_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_INCLASS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -58,7 +58,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COURSE_ARPG_API UClass* StaticClass<class UARPG_GameInstance>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

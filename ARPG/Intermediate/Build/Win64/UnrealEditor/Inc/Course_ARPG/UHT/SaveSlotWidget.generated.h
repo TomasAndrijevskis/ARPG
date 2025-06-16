@@ -14,11 +14,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_SaveSlotWidget_generated_h
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execSetSlotName);
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUSaveSlotWidget(); \
 	friend struct Z_Construct_UClass_USaveSlotWidget_Statics; \
@@ -27,7 +27,7 @@ public: \
 	DECLARE_SERIALIZER(USaveSlotWidget)
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API USaveSlotWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -41,13 +41,13 @@ public: \
 	NO_API virtual ~USaveSlotWidget();
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_8_PROLOG
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_8_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_INCLASS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h_11_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -55,7 +55,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COURSE_ARPG_API UClass* StaticClass<class USaveSlotWidget>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_UI_SaveSlotWidget_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_SaveSlotWidget_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

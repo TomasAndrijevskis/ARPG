@@ -1,4 +1,4 @@
-"D:\projects\Course_ARPG_5_4 - Copy\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.cpp"
+"D:\projects\GIT HUB\ARPG\ARPG\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.cpp"
 /I "."
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\UnrealEd\UHT"
 /I "Programs\UnrealLightmass\Public"
@@ -290,10 +290,10 @@
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt"
-/Yc"D:\projects\Course_ARPG_5_4 - Copy\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h"
-/Fp"D:\projects\Course_ARPG_5_4 - Copy\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.pch"
-/Fo"D:\projects\Course_ARPG_5_4 - Copy\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.obj"
-/sourceDependencies "D:\projects\Course_ARPG_5_4 - Copy\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.dep.json"
+/Yc"D:\projects\GIT HUB\ARPG\ARPG\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h"
+/Fp"D:\projects\GIT HUB\ARPG\ARPG\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.pch"
+/Fo"D:\projects\GIT HUB\ARPG\ARPG\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.obj"
+/sourceDependencies "D:\projects\GIT HUB\ARPG\ARPG\Intermediate\Build\Win64\x64\Course_ARPGEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.dep.json"
 /Zc:inline
 /nologo
 /Oi

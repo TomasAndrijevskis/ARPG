@@ -16,7 +16,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COURSE_ARPG_EStats_generated_h
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_EStats_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h
 
 
 #define FOREACH_ENUM_ESTATS(op) \

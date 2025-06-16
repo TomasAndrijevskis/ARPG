@@ -65,14 +65,8 @@ struct Z_Construct_UClass_UAbilityComponent_GetArmor_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "BlueprintSpawnableComponent", "" },
 		{ "ClassGroupNames", "Custom" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FOnGetArmorSignature, UAbilityComponent_GetArmor, OnGetArmorDelegate);\n" },
-#endif
 		{ "IncludePath", "Combat/Abilities/AbilityComponent_GetArmor.h" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_GetArmor.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FOnGetArmorSignature, UAbilityComponent_GetArmor, OnGetArmorDelegate);" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Armor_MetaData[] = {
 		{ "Category", "AbilityComponent_GetArmor" },
@@ -152,14 +146,14 @@ UAbilityComponent_GetArmor::~UAbilityComponent_GetArmor() {}
 // End Class UAbilityComponent_GetArmor
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics
+struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 1734885266U) },
+		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 3872227169U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_1578015977(TEXT("/Script/Course_ARPG"),
-	Z_CompiledInDeferFile_FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_4282939398(TEXT("/Script/Course_ARPG"),
+	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

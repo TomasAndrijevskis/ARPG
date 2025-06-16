@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_BTS_PlayerDistance_generated_h
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUBTS_PlayerDistance(); \
 	friend struct Z_Construct_UClass_UBTS_PlayerDistance_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(UBTS_PlayerDistance)
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UBTS_PlayerDistance(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,12 +37,12 @@ public: \
 	NO_API virtual ~UBTS_PlayerDistance();
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_9_PROLOG
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_9_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_INCLASS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -50,7 +50,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COURSE_ARPG_API UClass* StaticClass<class UBTS_PlayerDistance>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTS_PlayerDistance_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

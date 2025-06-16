@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_LookAtPlayerComponent_generated_h
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesULookAtPlayerComponent(); \
 	friend struct Z_Construct_UClass_ULookAtPlayerComponent_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(ULookAtPlayerComponent)
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ULookAtPlayerComponent(ULookAtPlayerComponent&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~ULookAtPlayerComponent();
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_10_PROLOG
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_10_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_INCLASS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COURSE_ARPG_API UClass* StaticClass<class ULookAtPlayerComponent>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LookAtPlayerComponent_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

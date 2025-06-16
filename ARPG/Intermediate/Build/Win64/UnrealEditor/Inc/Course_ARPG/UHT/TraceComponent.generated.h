@@ -14,15 +14,15 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_TraceComponent_generated_h
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_10_DELEGATE \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_10_DELEGATE \
 COURSE_ARPG_API void FOnHitSignature_DelegateWrapper(const FMulticastScriptDelegate& OnHitSignature);
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execHandleResetAttack);
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUTraceComponent(); \
 	friend struct Z_Construct_UClass_UTraceComponent_Statics; \
@@ -31,7 +31,7 @@ public: \
 	DECLARE_SERIALIZER(UTraceComponent)
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UTraceComponent(UTraceComponent&&); \
@@ -43,13 +43,13 @@ public: \
 	NO_API virtual ~UTraceComponent();
 
 
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_11_PROLOG
-#define FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_11_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_INCLASS_NO_PURE_DECLS \
-	FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h_14_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -57,7 +57,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COURSE_ARPG_API UClass* StaticClass<class UTraceComponent>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_Course_ARPG_5_4___Copy_Source_Course_ARPG_Public_Combat_TraceComponent_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_TraceComponent_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
