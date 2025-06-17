@@ -9,14 +9,14 @@
 UAbilityComponent_RangeAttack::UAbilityComponent_RangeAttack()
 {
 	PrimaryComponentTick.bCanEverTick = true;
-	SetDiscription(FString::Printf(TEXT("Throw an electric ball in your enemies"
+	SetDescription(FString::Printf(TEXT("Throw an electric ball in your enemies"
 	"\nDamage: %.2f\nCooldown: %.2f s"), ProjectileDamage, CooldownDuration));
 }
 
 
 void UAbilityComponent_RangeAttack::StartAbilityAttack()
 {
-	if (!CanPlayMontage()) return;
+	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
 	
 	HandlePlayerActions(false);
 	

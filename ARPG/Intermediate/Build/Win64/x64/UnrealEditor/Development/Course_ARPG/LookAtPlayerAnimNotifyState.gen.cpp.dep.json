@@ -1,0 +1,17 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\lookatplayeranimnotifystate.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
+        "Includes": [
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\animations\\lookatplayeranimnotifystate.h",
+            "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\animation\\animnotifies\\animnotifystate.h",
+            "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\animnotifystate.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\lookatplayeranimnotifystate.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

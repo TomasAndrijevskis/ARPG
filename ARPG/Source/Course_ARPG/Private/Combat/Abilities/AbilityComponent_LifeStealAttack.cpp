@@ -11,7 +11,7 @@ UAbilityComponent_LifeStealAttack::UAbilityComponent_LifeStealAttack()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 
-	SetDiscription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies"
+	SetDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies"
 	"\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"), StolenHealthPercent*100, CooldownDuration, AbilityDuration));
 }
 
@@ -37,7 +37,7 @@ float UAbilityComponent_LifeStealAttack::GetStolenHealthAmount()
 
 void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 {
-	if (!CanPlayMontage()) return;
+	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
 	
 	if (!bIsActivated && !bIsOnCooldown)
 	{

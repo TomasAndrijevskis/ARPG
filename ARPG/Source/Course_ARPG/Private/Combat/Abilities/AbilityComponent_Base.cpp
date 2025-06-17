@@ -92,13 +92,32 @@ int UAbilityComponent_Base::GetAbilityLevel()
 }
 
 
-FString UAbilityComponent_Base::GetDiscription()
+FString UAbilityComponent_Base::GetDescription()
 {
 	return Discription;
 }
 
 
-void UAbilityComponent_Base::SetDiscription(FString NewDiscription)
+void UAbilityComponent_Base::SetDescription(FString NewDescription)
 {
-	Discription = NewDiscription;
+	Discription = NewDescription;
+}
+
+
+bool UAbilityComponent_Base::GetAbilityAvailability()
+{
+	return bIsAbilityAvailable;
+}
+
+
+void UAbilityComponent_Base::SetAbilityAvailability(bool NewAvailability)
+{
+	bIsAbilityAvailable = NewAvailability;
+	UE_LOG(LogTemp, Warning, TEXT("Ability: %s | Available: %s"), *GetName(), bIsAbilityAvailable ? TEXT("True") : TEXT("False"));
+}
+
+
+UTexture2D* UAbilityComponent_Base::GetIcon()
+{
+	return Icon;
 }

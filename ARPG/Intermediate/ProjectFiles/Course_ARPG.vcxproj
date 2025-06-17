@@ -67,7 +67,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D18D603A-2DA8-36AD-9B29-99D58F62224C}</ProjectGuid>
+    <ProjectGuid>{8AF2B989-A424-3C5D-8985-B73A22623049}</ProjectGuid>
     <RootNamespace>Course_ARPG</RootNamespace>
   </PropertyGroup>
   <Import Project="UECommon.props" />
@@ -375,6 +375,12 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityDescription.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\SaveSlotWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -418,6 +424,8 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityDescription.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveSlotWidget.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\StatsScreenWidget.h"/>
   </ItemGroup>

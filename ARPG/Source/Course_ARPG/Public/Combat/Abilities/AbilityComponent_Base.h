@@ -34,9 +34,17 @@ public:
 	int GetAbilityLevel();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	FString GetDiscription();
+	FString GetDescription();
 
-	void SetDiscription(FString NewDiscription);
+	void SetDescription(FString NewDescription);
+
+	UFUNCTION(BlueprintCallable)
+	bool GetAbilityAvailability();
+
+	UFUNCTION(BlueprintCallable)
+	void SetAbilityAvailability(bool NewAvailability);
+
+	UTexture2D* GetIcon();
 	
 protected:
 
@@ -73,10 +81,11 @@ protected:
 
 	class AMainCharacter* CharacterRef;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	bool bIsOnCooldown = false;
 
-	//bool bIsAbilityAvailable = false;
+	UPROPERTY(VisibleAnywhere)
+	bool bIsAbilityAvailable = false;
 
 	USkeletalMeshComponent* SkeletalMeshComp;
 

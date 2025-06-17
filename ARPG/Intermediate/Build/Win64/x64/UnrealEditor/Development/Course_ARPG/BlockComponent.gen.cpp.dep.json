@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\blockcomponent.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
+        "Includes": [
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\blockcomponent.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\blockcomponent.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

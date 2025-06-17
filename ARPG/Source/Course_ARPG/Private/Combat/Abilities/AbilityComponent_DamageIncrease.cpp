@@ -9,7 +9,7 @@ UAbilityComponent_DamageIncrease::UAbilityComponent_DamageIncrease()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 	
-	SetDiscription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
+	SetDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
 	"\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), DamageMultiplier, CooldownDuration, AbilityDuration));
 	
 }
@@ -17,7 +17,10 @@ UAbilityComponent_DamageIncrease::UAbilityComponent_DamageIncrease()
 
 void UAbilityComponent_DamageIncrease::IncreaseDamage()
 {
-	if (!CanPlayMontage()) return;
+	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
+
+	//UE_LOG(LogTemp, Error, TEXT("Can play montage: %s"), CanPlayMontage() ? TEXT("True") : TEXT("False"));
+	//UE_LOG(LogTemp, Error, TEXT("Ability available: %s"), GetAbilityAvailability() ? TEXT("True") : TEXT("False"));
 	
 	if (!bIsDamageIncreased && !bIsOnCooldown)
 	{

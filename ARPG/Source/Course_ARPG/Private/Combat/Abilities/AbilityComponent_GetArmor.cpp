@@ -8,14 +8,14 @@ UAbilityComponent_GetArmor::UAbilityComponent_GetArmor()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 
-	SetDiscription(FString::Printf(TEXT("Give yourself protection "
+	SetDescription(FString::Printf(TEXT("Give yourself protection "
 	"\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"), Armor, DamageReductionPercent*100, CooldownDuration));
 }
 
 
 void UAbilityComponent_GetArmor::GiveArmor()
 {
-	if (!CanPlayMontage()) return;
+	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
 	
 	if (!bIsOnCooldown && !bIsCasting)
 	{
