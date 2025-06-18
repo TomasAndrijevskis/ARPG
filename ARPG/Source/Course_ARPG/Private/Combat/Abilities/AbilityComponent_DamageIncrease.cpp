@@ -5,13 +5,15 @@
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
-UAbilityComponent_DamageIncrease::UAbilityComponent_DamageIncrease()
+
+void UAbilityComponent_DamageIncrease::BeginPlay()
 {
-	PrimaryComponentTick.bCanEverTick = true;
-	
+	Super::BeginPlay();
+
 	SetDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
-	"\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), DamageMultiplier, CooldownDuration, AbilityDuration));
-	
+	"\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), GetManaCost(), DamageMultiplier, CooldownDuration, AbilityDuration));
+
+	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
 

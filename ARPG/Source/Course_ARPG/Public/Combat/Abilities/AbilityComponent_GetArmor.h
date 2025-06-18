@@ -13,13 +13,17 @@ class COURSE_ARPG_API UAbilityComponent_GetArmor : public UAbilityComponent_Base
 
 public:	
 
-	UAbilityComponent_GetArmor();
+	UAbilityComponent_GetArmor(){};
 
 	UFUNCTION(BlueprintCallable)
 	void GiveArmor();
 
 	float GetDamageReduction();
+
+protected:
 	
+	virtual void BeginPlay() override;
+
 private:
 
 	void CompleteAbility();

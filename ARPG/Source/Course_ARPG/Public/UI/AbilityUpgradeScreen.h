@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilityDescription.h"
+#include "DescriptionWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
 #include "Components/HorizontalBox.h"
@@ -18,21 +18,18 @@ public:
 	
 
 	UFUNCTION(BlueprintCallable)
-	void RemoveDescriptionWidget();
+	void RemoveUpgradeDescriptionWidget();
 
 	UFUNCTION(BlueprintCallable)
-	void SetAbility(class UAbilityComponent_Base* AbilityComp);
+	void RemoveAbilityDescriptionWidget();
+
+	UFUNCTION(BlueprintCallable)
+	void InitializeAbility(class UAbilityComponent_Base* AbilityComp);
 	
 	
 protected:
 
 	virtual void NativeConstruct() override;
-	
-	UPROPERTY(BlueprintReadWrite)
-	FString AbilityDescription;
-
-	UPROPERTY(meta = (BindWidget), BlueprintReadWrite)
-	UButton* Button_AbilityIcon;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UAbilityComponent_Base* AbilityComp_REF;
@@ -40,27 +37,51 @@ protected:
 private:
 
 	UFUNCTION()
-	void CreateDescriptionWidget();
+	void RemoveDescriptionWidget(UHorizontalBox* Box);
+	
+	UFUNCTION()
+	void CreateDescriptionWidget(UHorizontalBox* Box, TSubclassOf<UDescriptionWidget> Class, FString Description);
 
 	UFUNCTION()
-	void SetAbilityIconAvailability();
+	void CreateUpgradeDescriptionWidget();
+
+	UFUNCTION()
+	void CreateAbilityDescriptionWidget();
+	
+	UFUNCTION()
+	void SetAbilityIconEnable();
 	
 	UFUNCTION()
 	void SetIconStyle(UTexture2D* Icon);
 
 	UFUNCTION()
 	void UnlockAbility();
-	
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_ImproveStat;
+
+	UFUNCTION()
+	void SetButtonText();
 
 	UPROPERTY(meta = (BindWidget))
-	UHorizontalBox* HorizontalBox_Description;
+	UButton* Button_AbilityIcon;
+	
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_UpgradeAbility;
+
+	UPROPERTY(meta = (BindWidget))
+	UHorizontalBox* HorizontalBox_AbilityDescription;
+
+	UPROPERTY(meta = (BindWidget))
+	UHorizontalBox* HorizontalBox_UpgradeDescription;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_Upgrade;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAbilityDescription> AbilityDescriptionClass;
-	
+	TSubclassOf<UDescriptionWidget> AbilityDescriptionClass;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UDescriptionWidget> UpgradeDescriptionClass;
 	
-	
+	FString AbilityDescription;
+
+	FString UpgradeDescription;
 };

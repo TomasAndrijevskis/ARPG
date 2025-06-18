@@ -115,6 +115,16 @@ FString UAbilityComponent_Base::GetDescription()
 }
 
 
+FString UAbilityComponent_Base::GetUpgradeRequirements()
+{
+	return UpgradeRequirements;
+}
+
+void UAbilityComponent_Base::SetUpgradeRequirements(FString NewRequirements)
+{
+	UpgradeRequirements = NewRequirements;
+}
+
 void UAbilityComponent_Base::SetDescription(FString NewDescription)
 {
 	Description = NewDescription;

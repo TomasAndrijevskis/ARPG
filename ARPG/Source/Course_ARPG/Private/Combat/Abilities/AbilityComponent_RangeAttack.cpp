@@ -7,11 +7,15 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
 
-UAbilityComponent_RangeAttack::UAbilityComponent_RangeAttack()
+
+void UAbilityComponent_RangeAttack::BeginPlay()
 {
-	PrimaryComponentTick.bCanEverTick = true;
-	SetDescription(FString::Printf(TEXT("Throw an electric ball in your enemies"
-	"\nDamage: %.2f\nCooldown: %.2f s"), ProjectileDamage, CooldownDuration));
+	Super::BeginPlay();
+
+	SetDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
+	"\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),GetManaCost(), ProjectileDamage, CooldownDuration));
+
+	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
 

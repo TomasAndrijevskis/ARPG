@@ -196,6 +196,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\StatsScreenWidget.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\UpgradeDescription.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
     <Filter Include="Source\Course_ARPG\Public">
       <UniqueIdentifier>{C473C03E-DFBF-33CD-8F3C-4AA4D2DC3B54}</UniqueIdentifier>
     </Filter>
@@ -347,6 +350,9 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\StatsScreenWidget.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\UpgradeDescription.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
   </ItemGroup>

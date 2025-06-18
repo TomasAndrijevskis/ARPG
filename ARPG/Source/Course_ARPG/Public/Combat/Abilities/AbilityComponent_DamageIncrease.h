@@ -14,7 +14,7 @@ class COURSE_ARPG_API UAbilityComponent_DamageIncrease : public UAbilityComponen
 
 public:	
 
-	UAbilityComponent_DamageIncrease();
+	UAbilityComponent_DamageIncrease(){};
 	
 	UFUNCTION(BlueprintCallable)
 	void IncreaseDamage();
@@ -25,6 +25,8 @@ public:
 	bool bIsDamageIncreased = false;
 	
 protected:
+
+	virtual void BeginPlay() override;
 	
 	virtual void StartAbilityTimer() override;
 

@@ -3,13 +3,14 @@
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
 
-
-UAbilityComponent_GetArmor::UAbilityComponent_GetArmor()
+void UAbilityComponent_GetArmor::BeginPlay()
 {
-	PrimaryComponentTick.bCanEverTick = true;
+	Super::BeginPlay();
 
-	SetDescription(FString::Printf(TEXT("Give yourself protection "
-	"\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"), Armor, DamageReductionPercent*100, CooldownDuration));
+	SetDescription(FString::Printf(TEXT("Give yourself protection."
+	"\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"),GetManaCost(), Armor, DamageReductionPercent*100, CooldownDuration));
+
+	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
 
@@ -44,4 +45,6 @@ float UAbilityComponent_GetArmor::GetDamageReduction()
 {
 	return DamageReductionPercent;
 }
+
+
 

@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -14,7 +13,7 @@ class COURSE_ARPG_API UAbilityComponent_LifeStealAttack : public UAbilityCompone
 
 public:	
 
-	UAbilityComponent_LifeStealAttack();
+	UAbilityComponent_LifeStealAttack(){};
 	
 	UFUNCTION(BlueprintCallable)
 	float GetStolenHealthAmount();

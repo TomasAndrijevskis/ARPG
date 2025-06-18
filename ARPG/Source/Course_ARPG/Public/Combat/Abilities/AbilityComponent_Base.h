@@ -32,12 +32,15 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	int GetAbilityLevel();
-
-	UFUNCTION(BlueprintCallable, BlueprintPure)
+	
 	FString GetDescription();
 
 	void SetDescription(FString NewDescription);
 
+	FString GetUpgradeRequirements();
+
+	void SetUpgradeRequirements(FString NewRequirements);
+	
 	UFUNCTION(BlueprintCallable)
 	bool GetAbilityAvailability();
 
@@ -102,6 +105,8 @@ private:
 	float ManaCost;
 
 	FString Description;
+
+	FString UpgradeRequirements;
 	
 	int CurrentLevel;
 

@@ -10,6 +10,8 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class UAbilityComponent_Base;
+class UDescriptionWidget;
+class UHorizontalBox;
 class UTexture2D;
 #ifdef COURSE_ARPG_AbilityUpgradeScreen_generated_h
 #error "AbilityUpgradeScreen.generated.h already included, missing '#pragma once' in AbilityUpgradeScreen.h"
@@ -17,12 +19,17 @@ class UTexture2D;
 #define COURSE_ARPG_AbilityUpgradeScreen_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execSetButtonText); \
 	DECLARE_FUNCTION(execUnlockAbility); \
 	DECLARE_FUNCTION(execSetIconStyle); \
-	DECLARE_FUNCTION(execSetAbilityIconAvailability); \
+	DECLARE_FUNCTION(execSetAbilityIconEnable); \
+	DECLARE_FUNCTION(execCreateAbilityDescriptionWidget); \
+	DECLARE_FUNCTION(execCreateUpgradeDescriptionWidget); \
 	DECLARE_FUNCTION(execCreateDescriptionWidget); \
-	DECLARE_FUNCTION(execSetAbility); \
-	DECLARE_FUNCTION(execRemoveDescriptionWidget);
+	DECLARE_FUNCTION(execRemoveDescriptionWidget); \
+	DECLARE_FUNCTION(execInitializeAbility); \
+	DECLARE_FUNCTION(execRemoveAbilityDescriptionWidget); \
+	DECLARE_FUNCTION(execRemoveUpgradeDescriptionWidget);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_15_INCLASS_NO_PURE_DECLS \

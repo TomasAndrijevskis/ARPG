@@ -15,13 +15,15 @@ class COURSE_ARPG_API UAbilityComponent_RangeAttack : public UAbilityComponent_B
 
 public:	
 
-	UAbilityComponent_RangeAttack();
+	UAbilityComponent_RangeAttack(){};
 	
 	UPROPERTY(BlueprintAssignable)
 	FOnAttackPerformedignature OnAttackPerformedDelegate;
 	
 protected:
 
+	virtual void BeginPlay() override;
+	
 	UFUNCTION(BlueprintCallable)
 	void SpawnProjectile();
 

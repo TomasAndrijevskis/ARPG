@@ -375,7 +375,7 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityDescription.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\DescriptionWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
@@ -424,7 +424,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityDescription.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\DescriptionWidget.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveSlotWidget.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\StatsScreenWidget.h"/>

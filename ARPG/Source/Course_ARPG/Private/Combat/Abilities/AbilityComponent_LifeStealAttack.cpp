@@ -1,6 +1,4 @@
 
-
-
 #include "Combat/Abilities/AbilityComponent_LifeStealAttack.h"
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
@@ -8,20 +6,17 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
 
-UAbilityComponent_LifeStealAttack::UAbilityComponent_LifeStealAttack()
-{
-	PrimaryComponentTick.bCanEverTick = true;
-
-	SetDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies"
-	"\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"), StolenHealthPercent*100, CooldownDuration, AbilityDuration));
-}
-
 
 void UAbilityComponent_LifeStealAttack::BeginPlay()
 {
 	Super::BeginPlay();
 
 	FighterRef = Cast<IFighter>(GetOwner());
+
+	SetDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
+	"\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),GetManaCost(), StolenHealthPercent*100, CooldownDuration, AbilityDuration));
+	
+	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
 
