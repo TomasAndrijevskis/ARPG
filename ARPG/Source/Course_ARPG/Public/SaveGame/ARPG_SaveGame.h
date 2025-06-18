@@ -5,6 +5,8 @@
 #include "GameFramework/SaveGame.h"
 #include "ARPG_SaveGame.generated.h"
 
+class UAbilityComponent_Base;
+
 UCLASS()
 class COURSE_ARPG_API UARPG_SaveGame : public USaveGame
 {
@@ -21,6 +23,12 @@ public:
 	float MaxHealth;
 
 	UPROPERTY(EditAnywhere)
+	float CurrentMana;
+
+	UPROPERTY(EditAnywhere)
+	float MaxMana;
+
+	UPROPERTY(EditAnywhere)
 	float Strength;
 
 	UPROPERTY(EditAnywhere)
@@ -34,5 +42,8 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	int CurrentPoints;
-	
+
+	UPROPERTY(EditAnywhere)
+	TArray<bool> UnlockedAbilities;
+
 };

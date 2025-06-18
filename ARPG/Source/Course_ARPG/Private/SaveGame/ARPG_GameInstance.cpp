@@ -3,6 +3,7 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
+#include "Combat/Abilities/AbilityComponent_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -22,7 +23,7 @@ FString UARPG_GameInstance::GetSlotName()
 
 void UARPG_GameInstance::SaveGame()
 {
-	UE_LOG(LogTemp, Error, TEXT("SaveGame: SlotName: %s"), *SlotName);
+	//UE_LOG(LogTemp, Error, TEXT("SaveGame: SlotName: %s"), *SlotName);
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	
 	if (!CharacterRef || !SaveGameInstance)
@@ -31,27 +32,31 @@ void UARPG_GameInstance::SaveGame()
 		return;
 	}
 	
-	//set the save game instance location equal to the player current location
 	SaveGameInstance->CurrentHealth = CharacterRef->StatsComp->GetStatValue(EStats::Health);
 	SaveGameInstance->MaxHealth = CharacterRef->StatsComp->GetStatValue(EStats::MaxHealth);
+	SaveGameInstance->CurrentMana = CharacterRef->StatsComp->GetStatValue(EStats::Mana);
+	SaveGameInstance->MaxMana = CharacterRef->StatsComp->GetStatValue(EStats::MaxMana);
 	SaveGameInstance->MaxStamina = CharacterRef->StatsComp->GetStatValue(EStats::MaxStamina);
 	SaveGameInstance->Strength = CharacterRef->StatsComp->GetStatValue(EStats::Strength);
 	SaveGameInstance->CurrentLevel = CharacterRef->LevelComp->GetCurrentLevel();
 	SaveGameInstance->CurrentXP = CharacterRef->LevelComp->GetCurrentExperience();
 	SaveGameInstance->CurrentPoints = CharacterRef->LevelComp->GetCurrentPointsAmount();
 	
-	//save the savegameinstance
+	for (auto Ability: CharacterRef->Abilities)
+	{
+		SaveGameInstance->UnlockedAbilities.Add(Ability->GetAbilityAvailability());
+		UE_LOG(LogTemp, Error, TEXT("Added %s, %s"), *Ability->GetName(), Ability->GetAbilityAvailability() ? TEXT("true") : TEXT("false"));
+	}
+	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 	
-	//log message
-	UE_LOG(LogTemp, Warning, TEXT("Saved: %s"), *SlotName);
+	//UE_LOG(LogTemp, Warning, TEXT("Saved: %s"), *SlotName);
 }
 
 
 void UARPG_GameInstance::LoadGame()
 {
-	//create an instance of savegame class
-	UE_LOG(LogTemp, Error, TEXT("SaveGame: SlotName: %s"), *SlotName);
+	//UE_LOG(LogTemp, Error, TEXT("SaveGame: SlotName: %s"), *SlotName);
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	
 	if (!CharacterRef || !SaveGameInstance)
@@ -59,21 +64,27 @@ void UARPG_GameInstance::LoadGame()
 		UE_LOG(LogTemp, Error, TEXT("Game instance is null"));
 		return;
 	}
-
-	//load the saved game into a savegameinstance variable
+	
 	SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-
-	//set the player location from the saved game file
+	
 	CharacterRef->StatsComp->SetStatValue(EStats::Health, SaveGameInstance->CurrentHealth);
 	CharacterRef->StatsComp->SetStatValue(EStats::MaxHealth, SaveGameInstance->MaxHealth);
+	CharacterRef->StatsComp->SetStatValue(EStats::Mana, SaveGameInstance->CurrentMana);
+	CharacterRef->StatsComp->SetStatValue(EStats::MaxMana, SaveGameInstance->MaxMana);
 	CharacterRef->StatsComp->SetStatValue(EStats::Strength, SaveGameInstance->Strength);
 	CharacterRef->StatsComp->SetStatValue(EStats::MaxStamina, SaveGameInstance->MaxStamina);
 	CharacterRef->LevelComp->SetLevel(SaveGameInstance->CurrentLevel);
 	CharacterRef->LevelComp->SetExperience(SaveGameInstance->CurrentXP);
 	CharacterRef->LevelComp->SetPoints(SaveGameInstance->CurrentPoints);
 	
-	//log message
-	UE_LOG(LogTemp, Warning, TEXT("Loaded %s"), *SlotName);
+
+	for (int32 i = 0; i < SaveGameInstance->UnlockedAbilities.Num(); i++)
+	{
+		//UE_LOG(LogTemp, Error, TEXT("Is available: %s"), SaveGameInstance->UnlockedAbilities[i] ? TEXT("true") : TEXT("false"));
+		CharacterRef->Abilities[i]->SetAbilityAvailability(SaveGameInstance->UnlockedAbilities[i]);
+	}
+	
+	//UE_LOG(LogTemp, Warning, TEXT("Loaded %s"), *SlotName);
 }
 
 

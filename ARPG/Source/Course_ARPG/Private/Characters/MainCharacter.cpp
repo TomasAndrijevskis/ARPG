@@ -30,7 +30,11 @@ AMainCharacter::AMainCharacter()
 	AbilityComp_RangeAttack = CreateDefaultSubobject<UAbilityComponent_RangeAttack>(TEXT("Range Attack"));
 	AbilityComp_LifeStealAttack = CreateDefaultSubobject<UAbilityComponent_LifeStealAttack>(TEXT("Life Steal Attack"));
 	AbilityComp_GetArmor = CreateDefaultSubobject<UAbilityComponent_GetArmor>(TEXT("Get Armor"));
-	
+
+	Abilities.Add(AbilityComp_DamageIncrease);
+	Abilities.Add(AbilityComp_RangeAttack);
+	Abilities.Add(AbilityComp_LifeStealAttack);
+	Abilities.Add(AbilityComp_GetArmor);
 }
 
 
@@ -39,11 +43,7 @@ void AMainCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	PlayerAnim = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
-
-	Abilities.Add(AbilityComp_DamageIncrease);
-	Abilities.Add(AbilityComp_RangeAttack);
-	Abilities.Add(AbilityComp_LifeStealAttack);
-	Abilities.Add(AbilityComp_GetArmor);
+	
 }
 
 

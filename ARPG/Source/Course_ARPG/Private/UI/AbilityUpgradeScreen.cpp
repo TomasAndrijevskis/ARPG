@@ -52,8 +52,7 @@ void UAbilityUpgradeScreen::CreateDescriptionWidget()
 		UE_LOG(LogTemp, Error, TEXT("Failed to create"));
 		return;
 	}
-
-	UE_LOG(LogTemp, Error, TEXT("Created description widget"));
+	
 	HorizontalBox_Description->AddChild(DescriptionWidget);
 	DescriptionWidget->SetDescription(AbilityDescription);	
 }

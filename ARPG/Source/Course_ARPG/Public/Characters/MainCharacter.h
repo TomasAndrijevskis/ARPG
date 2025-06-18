@@ -72,6 +72,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class ULevelingComponent* LevelComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<UAbilityComponent_Base*> Abilities;
 	
 protected:
 
@@ -82,8 +85,6 @@ protected:
 	
 	class USkeletalMeshComponent* SkeletalComp;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<UAbilityComponent_Base*> Abilities;
 
 private:
 	
