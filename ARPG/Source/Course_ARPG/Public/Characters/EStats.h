@@ -16,4 +16,6 @@ enum EStats
 	MeleeRange UMETA(DisplayName = "MeleeRange"),
 	Armor UMETA(DisplayName = "Armor"),
 	MaxArmor UMETA(DisplayName = "Maximum Armor"),
+	Mana UMETA(DisplayName = "Mana"),
+	MaxMana UMETA(DisplayName = "Maximum Mana")
 };

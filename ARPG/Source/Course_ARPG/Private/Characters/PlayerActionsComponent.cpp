@@ -20,7 +20,7 @@ UPlayerActionsComponent::UPlayerActionsComponent()
 void UPlayerActionsComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
+	
 	CharacterRef = GetOwner<AMainCharacter>();
 	MovementComp = CharacterRef->GetCharacterMovement();
 

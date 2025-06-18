@@ -61,6 +61,57 @@ DEFINE_FUNCTION(AMainCharacter::execHandleDeath)
 }
 // End Class AMainCharacter Function HandleDeath
 
+// Begin Class AMainCharacter Function HasEnoughMana
+struct Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics
+{
+	struct MainCharacter_eventHasEnoughMana_Parms
+	{
+		float Mana;
+		bool ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Mana;
+	static void NewProp_ReturnValue_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::NewProp_Mana = { "Mana", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainCharacter_eventHasEnoughMana_Parms, Mana), METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+{
+	((MainCharacter_eventHasEnoughMana_Parms*)Obj)->ReturnValue = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(MainCharacter_eventHasEnoughMana_Parms), &Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::NewProp_Mana,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter, nullptr, "HasEnoughMana", nullptr, nullptr, Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::MainCharacter_eventHasEnoughMana_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::MainCharacter_eventHasEnoughMana_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AMainCharacter_HasEnoughMana()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainCharacter_HasEnoughMana_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMainCharacter::execHasEnoughMana)
+{
+	P_GET_PROPERTY(FFloatProperty,Z_Param_Mana);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)Z_Param__Result=P_THIS->HasEnoughMana(Z_Param_Mana);
+	P_NATIVE_END;
+}
+// End Class AMainCharacter Function HasEnoughMana
+
 // Begin Class AMainCharacter Function HasEnoughStamina
 struct Z_Construct_UFunction_AMainCharacter_HasEnoughStamina_Statics
 {
@@ -147,6 +198,7 @@ void AMainCharacter::StaticRegisterNativesAMainCharacter()
 	UClass* Class = AMainCharacter::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "HandleDeath", &AMainCharacter::execHandleDeath },
+		{ "HasEnoughMana", &AMainCharacter::execHasEnoughMana },
 		{ "HasEnoughStamina", &AMainCharacter::execHasEnoughStamina },
 		{ "PlayHurtAnimation", &AMainCharacter::execPlayHurtAnimation },
 	};
@@ -258,6 +310,7 @@ struct Z_Construct_UClass_AMainCharacter_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AMainCharacter_HandleDeath, "HandleDeath" }, // 3533656867
+		{ &Z_Construct_UFunction_AMainCharacter_HasEnoughMana, "HasEnoughMana" }, // 3177761298
 		{ &Z_Construct_UFunction_AMainCharacter_HasEnoughStamina, "HasEnoughStamina" }, // 3312965271
 		{ &Z_Construct_UFunction_AMainCharacter_PlayHurtAnimation, "PlayHurtAnimation" }, // 3622258415
 	};
@@ -347,10 +400,10 @@ AMainCharacter::~AMainCharacter() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter, AMainCharacter::StaticClass, TEXT("AMainCharacter"), &Z_Registration_Info_UClass_AMainCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter), 2556718354U) },
+		{ Z_Construct_UClass_AMainCharacter, AMainCharacter::StaticClass, TEXT("AMainCharacter"), &Z_Registration_Info_UClass_AMainCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter), 2435130506U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_h_2640872372(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_h_540499069(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

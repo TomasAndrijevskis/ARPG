@@ -17,6 +17,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execPlayHurtAnimation); \
 	DECLARE_FUNCTION(execHandleDeath); \
+	DECLARE_FUNCTION(execHasEnoughMana); \
 	DECLARE_FUNCTION(execHasEnoughStamina);
 
 

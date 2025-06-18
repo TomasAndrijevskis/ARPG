@@ -3,6 +3,7 @@
 
 #include "Combat/Abilities/AbilityComponent_LifeStealAttack.h"
 #include "Characters/MainCharacter.h"
+#include "Characters/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -39,7 +40,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 {
 	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
 	
-	if (!bIsActivated && !bIsOnCooldown)
+	if (!bIsActivated && !bIsOnCooldown && CheckMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
@@ -52,6 +53,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 				FVector3d(.5f, .5f, .5f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 
 		TimerDuration = AbilityDuration;
+		CharacterRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::StartAbilityTimer, (AnimDuration + TempDuration), true);
 	}
 }

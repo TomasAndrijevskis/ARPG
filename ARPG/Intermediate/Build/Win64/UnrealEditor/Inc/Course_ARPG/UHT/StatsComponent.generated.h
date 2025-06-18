@@ -15,12 +15,16 @@ class AActor;
 #endif
 #define COURSE_ARPG_StatsComponent_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_10_DELEGATE \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_9_DELEGATE \
 COURSE_ARPG_API void FOnHealthPercentUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnHealthPercentUpdateSignature, float Percentage);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_11_DELEGATE \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_10_DELEGATE \
 COURSE_ARPG_API void FOnStaminaPercentUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnStaminaPercentUpdateSignature, float Percentage);
+
+
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_11_DELEGATE \
+COURSE_ARPG_API void FOnManaPercentUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnManaPercentUpdateSignature, float Percentage);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_12_DELEGATE \
@@ -40,15 +44,18 @@ COURSE_ARPG_API void FOnStatUpdateSignature_DelegateWrapper(const FMulticastScri
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execEnableStaminaRegen); \
+	DECLARE_FUNCTION(execEnableManaRegen); \
 	DECLARE_FUNCTION(execAddHealth); \
 	DECLARE_FUNCTION(execSetStatValue); \
 	DECLARE_FUNCTION(execGetStatName); \
 	DECLARE_FUNCTION(execGetStatValue); \
 	DECLARE_FUNCTION(execGetStatPercentage); \
-	DECLARE_FUNCTION(execEnableRegeneration); \
+	DECLARE_FUNCTION(execRegenMana); \
 	DECLARE_FUNCTION(execRegenStamina); \
+	DECLARE_FUNCTION(execReduceMana); \
 	DECLARE_FUNCTION(execReduceStamina); \
-	DECLARE_FUNCTION(execReduceArmor); \
+	DECLARE_FUNCTION(execGetReducedDamage); \
 	DECLARE_FUNCTION(execReduceHealth);
 
 

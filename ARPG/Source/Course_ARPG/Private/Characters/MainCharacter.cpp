@@ -65,6 +65,12 @@ bool AMainCharacter::HasEnoughStamina(float Stamina)
 }
 
 
+bool AMainCharacter::HasEnoughMana(float Mana)
+{
+	return StatsComp->Stats[EStats::Mana] >= Mana;
+}
+
+
 void AMainCharacter::HandleDeath()
 {
 	if (!DeathAnimMontage)

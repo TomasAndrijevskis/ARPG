@@ -4,14 +4,12 @@
 
 void UAbilityDescription::SetDescription(FString Description)
 {
-	if (Text_AbilityDescription)
+	if (!Text_AbilityDescription)
 	{
-		Text_AbilityDescription->SetText(FText::FromString(Description));
+		UE_LOG(LogTemp, Error, TEXT("SetDescription - Null"));
+		return;
 	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("Null"));
-	}
+	Text_AbilityDescription->SetText(FText::FromString(Description));
 }
 
 

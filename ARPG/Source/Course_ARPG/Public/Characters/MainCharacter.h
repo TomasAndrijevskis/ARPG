@@ -27,6 +27,9 @@ public:
 	UFUNCTION()
 	virtual bool HasEnoughStamina(float Stamina) override;
 
+	UFUNCTION()
+	virtual bool HasEnoughMana(float Mana) override;
+
 	UFUNCTION(BlueprintCallable)
 	void HandleDeath();
 

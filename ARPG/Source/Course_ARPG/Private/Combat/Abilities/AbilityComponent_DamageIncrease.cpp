@@ -22,7 +22,7 @@ void UAbilityComponent_DamageIncrease::IncreaseDamage()
 	//UE_LOG(LogTemp, Error, TEXT("Can play montage: %s"), CanPlayMontage() ? TEXT("True") : TEXT("False"));
 	//UE_LOG(LogTemp, Error, TEXT("Ability available: %s"), GetAbilityAvailability() ? TEXT("True") : TEXT("False"));
 	
-	if (!bIsDamageIncreased && !bIsOnCooldown)
+	if (!bIsDamageIncreased && !bIsOnCooldown && CheckMana())
 	{
 		//DefaultDamage = CharacterRef->StatsComp->GetStatValue(EStats::Strength);
 		
@@ -40,6 +40,8 @@ void UAbilityComponent_DamageIncrease::IncreaseDamage()
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );//спавн эффекта
 
 		bIsDamageIncreased = true;
+
+		CharacterRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::StartAbilityTimer, (AnimDuration+tempDuration), true);
 	}
 }

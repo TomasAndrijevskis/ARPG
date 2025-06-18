@@ -23,6 +23,8 @@ public:
 
 	virtual bool HasEnoughStamina(float Stamina) {return true;};
 
+	virtual bool HasEnoughMana(float Mana) {return true;} ;
+
 	virtual void EndLockonWithActor(AActor* ActorRef) = 0;
 	
 };

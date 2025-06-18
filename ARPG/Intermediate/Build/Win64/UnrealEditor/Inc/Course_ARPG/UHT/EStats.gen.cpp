@@ -37,10 +37,14 @@ struct Z_Construct_UEnum_Course_ARPG_EStats_Statics
 		{ "BlueprintType", "true" },
 		{ "Health.DisplayName", "Health" },
 		{ "Health.Name", "Health" },
+		{ "Mana.DisplayName", "Mana" },
+		{ "Mana.Name", "Mana" },
 		{ "MaxArmor.DisplayName", "Maximum Armor" },
 		{ "MaxArmor.Name", "MaxArmor" },
 		{ "MaxHealth.DisplayName", "Maximum Health" },
 		{ "MaxHealth.Name", "MaxHealth" },
+		{ "MaxMana.DisplayName", "Maximum Mana" },
+		{ "MaxMana.Name", "MaxMana" },
 		{ "MaxStamina.DisplayName", "Maximum Stamina" },
 		{ "MaxStamina.Name", "MaxStamina" },
 		{ "MeleeRange.DisplayName", "MeleeRange" },
@@ -64,6 +68,8 @@ struct Z_Construct_UEnum_Course_ARPG_EStats_Statics
 		{ "MeleeRange", (int64)MeleeRange },
 		{ "Armor", (int64)Armor },
 		{ "MaxArmor", (int64)MaxArmor },
+		{ "Mana", (int64)Mana },
+		{ "MaxMana", (int64)MaxMana },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -93,10 +99,10 @@ UEnum* Z_Construct_UEnum_Course_ARPG_EStats()
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EStats_StaticEnum, TEXT("EStats"), &Z_Registration_Info_UEnum_EStats, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2765038443U) },
+		{ EStats_StaticEnum, TEXT("EStats"), &Z_Registration_Info_UEnum_EStats, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1779151500U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_1293461527(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_531276289(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_Statics::EnumInfo));

@@ -17,7 +17,7 @@ void UAbilityComponent_GetArmor::GiveArmor()
 {
 	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
 	
-	if (!bIsOnCooldown && !bIsCasting)
+	if (!bIsOnCooldown && !bIsCasting && CheckMana())
 	{
 		bIsCasting = true;
 		HandlePlayerActions(false);
@@ -25,6 +25,7 @@ void UAbilityComponent_GetArmor::GiveArmor()
 		CharacterRef->StatsComp->SetStatValue(EStats::MaxArmor, Armor);
 		CharacterRef->StatsComp->SetStatValue(EStats::Armor, Armor);
 		OnAbilityStartedDelegate.Broadcast();
+		CharacterRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::CompleteAbility, AnimDuration, false);
 	}
 }

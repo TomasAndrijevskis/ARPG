@@ -1,6 +1,7 @@
 
 #include "Combat/Abilities/AbilityComponent_RangeAttack.h"
 #include "Characters/MainCharacter.h"
+#include "Characters/StatsComponent.h"
 #include "Combat/RangeAttackProjectile.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -16,7 +17,7 @@ UAbilityComponent_RangeAttack::UAbilityComponent_RangeAttack()
 
 void UAbilityComponent_RangeAttack::StartAbilityAttack()
 {
-	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
+	if (!CanPlayMontage() || !GetAbilityAvailability() && CheckMana()) return;
 	
 	HandlePlayerActions(false);
 	
@@ -28,6 +29,7 @@ void UAbilityComponent_RangeAttack::StartAbilityAttack()
 		FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 		ParticleComponent = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
+		CharacterRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(ParticleTimerHandle, this, &UAbilityComponent_RangeAttack::CompleteAbilityAttack, AnimDuration/2, false);
 	}
 }

@@ -28,5 +28,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	op(MaxStamina) \
 	op(MeleeRange) \
 	op(Armor) \
-	op(MaxArmor) 
+	op(MaxArmor) \
+	op(Mana) \
+	op(MaxMana) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

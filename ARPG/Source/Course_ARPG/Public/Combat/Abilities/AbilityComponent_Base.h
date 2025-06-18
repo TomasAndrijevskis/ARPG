@@ -44,6 +44,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetAbilityAvailability(bool NewAvailability);
 
+	float GetManaCost();
+	
 	UTexture2D* GetIcon();
 	
 protected:
@@ -59,6 +61,8 @@ protected:
 	bool CanPlayMontage() const;
 
 	void HandlePlayerActions(bool bCanDo);
+
+	bool CheckMana();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float AbilityDuration = 10.0f;
@@ -74,6 +78,12 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	int RequiredPointsToUpgrade;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bIsOnCooldown = false;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bIsAbilityAvailable = false;
 	
 	float TimerDuration;
 
@@ -81,25 +91,21 @@ protected:
 
 	class AMainCharacter* CharacterRef;
 
-	UPROPERTY(VisibleAnywhere)
-	bool bIsOnCooldown = false;
-
-	UPROPERTY(VisibleAnywhere)
-	bool bIsAbilityAvailable = false;
-
 	USkeletalMeshComponent* SkeletalMeshComp;
 
 
-
-
-	
 private:
-
-	FString Discription;
 	
 	void StartCooldownTimer();
 
+	UPROPERTY(EditAnywhere)
+	float ManaCost;
+
+	FString Description;
+	
 	int CurrentLevel;
 
 	int MaxLevel;
+	
 };
+

@@ -77,28 +77,25 @@ void UAbilityUpgradeScreen::SetIconStyle(UTexture2D* Icon)
 
 	// Normal Brush (Image)
 	FSlateBrush NormalBrush;
-	NormalBrush.SetResourceObject(Icon); // UTexture2D*
+	NormalBrush.SetResourceObject(Icon);
 	NormalBrush.DrawAs = ESlateBrushDrawType::Image;
 	NormalBrush.Tiling = ESlateBrushTileType::NoTile;
-	NormalBrush.ImageSize = FVector2D(64, 64); // Set your actual size
-
+	NormalBrush.ImageSize = FVector2D(64, 64);
 	
-	// Hovered Brush (Rounded Box + Outline)
+	// Hovered Brush
 	FSlateBrush HoveredBrush;
-	HoveredBrush.SetResourceObject(Icon); // UTexture2D*
+	HoveredBrush.SetResourceObject(Icon);
 	HoveredBrush.DrawAs = ESlateBrushDrawType::RoundedBox;
 	HoveredBrush.Tiling = ESlateBrushTileType::NoTile;
 	HoveredBrush.ImageSize = FVector2D(64, 64);
 	
-	
 	// Disabled Brush
 	FSlateBrush DisabledBrush;
-	DisabledBrush.SetResourceObject(Icon); // UTexture2D*
+	DisabledBrush.SetResourceObject(Icon);
 	DisabledBrush.DrawAs = ESlateBrushDrawType::Image;
 	DisabledBrush.Tiling = ESlateBrushTileType::NoTile;
 	DisabledBrush.ImageSize = FVector2D(64, 64);
 	DisabledBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.3f)); 
-
 	
 	// Apply Brushes
 	CustomStyle.SetNormal(NormalBrush);

@@ -1,6 +1,4 @@
 
-
-
 #include "Characters/StatsComponent.h"
 
 #include "Characters/MainCharacter.h"
@@ -45,7 +43,7 @@ void UStatsComponent::ReduceHealth(float Damage, AActor* Opponent)
 	}
 }
 
-float UStatsComponent::ReduceArmor(float Damage, AActor* Opponent)
+float UStatsComponent::GetReducedDamage(float Damage, AActor* Opponent)
 {
 	if (Stats[EStats::Armor] <= 0)
 	{
@@ -95,9 +93,9 @@ void UStatsComponent::ReduceStamina(float Stamina)
 	Stats[EStats::Stamina] -= Stamina;
 	Stats[EStats::Stamina] = UKismetMathLibrary::FClamp(Stats[EStats::Stamina], 0, Stats[EStats::MaxStamina]);
 
-	bCanRegen = false;
+	bCanRegenStamina = false;
 
-	FLatentActionInfo FunctionInfo{0, 100/*id любое не занятое число*/, TEXT("EnableRegeneration"), this };
+	FLatentActionInfo FunctionInfo{0, 100/*id любое не занятое число*/, TEXT("EnableStaminaRegen"), this };
 	UKismetSystemLibrary::RetriggerableDelay(GetWorld(), StaminaDelayDuration,FunctionInfo );
 	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
 }
@@ -105,7 +103,7 @@ void UStatsComponent::ReduceStamina(float Stamina)
 
 void UStatsComponent::RegenStamina()
 {
-	if (!bCanRegen)
+	if (!bCanRegenStamina)
 	{
 		return;
 	}
@@ -114,9 +112,39 @@ void UStatsComponent::RegenStamina()
 }
 
 
-void UStatsComponent::EnableRegeneration()
+void UStatsComponent::EnableStaminaRegen()
 {
-	bCanRegen = true;
+	bCanRegenStamina = true;
+}
+
+
+void UStatsComponent::ReduceMana(float Mana)
+{
+	Stats[EStats::Mana] -= Mana;
+	Stats[EStats::Mana] = UKismetMathLibrary::FClamp(Stats[EStats::Mana], 0, Stats[EStats::MaxMana]);
+
+	bCanRegenMana = false;
+
+	FLatentActionInfo FunctionInfo{0, 101/*id любое не занятое число*/, TEXT("EnableManaRegen"), this };
+	UKismetSystemLibrary::RetriggerableDelay(GetWorld(), ManaDelayDuration,FunctionInfo );
+	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
+}
+
+
+void UStatsComponent::RegenMana()
+{
+	if (!bCanRegenMana)
+	{
+		return;
+	}
+	Stats[EStats::Mana] = UKismetMathLibrary::FInterpTo_Constant(Stats[EStats::Mana], Stats[EStats::MaxMana], GetWorld()->DeltaTimeSeconds, ManaRegenRate);
+	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
+}
+
+
+void UStatsComponent::EnableManaRegen()
+{
+	bCanRegenMana = true;
 }
 
 

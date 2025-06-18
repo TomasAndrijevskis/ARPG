@@ -77,6 +77,23 @@ void UAbilityComponent_Base::HandlePlayerActions(bool bCanDo)
 }
 
 
+bool UAbilityComponent_Base::CheckMana()
+{
+	if (!CharacterRef || !CharacterRef -> Implements<UMainPlayer>())
+	{
+		return false;
+	}
+
+	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);
+	if (!IPlayerRef)
+	{
+		return false;
+	}
+	
+	return IPlayerRef->HasEnoughMana(ManaCost);
+}
+
+
 void UAbilityComponent_Base::SetAbilityLevel(int NewLevel)
 {
 	if (CurrentLevel != MaxLevel && NewLevel <= MaxLevel)
@@ -94,13 +111,13 @@ int UAbilityComponent_Base::GetAbilityLevel()
 
 FString UAbilityComponent_Base::GetDescription()
 {
-	return Discription;
+	return Description;
 }
 
 
 void UAbilityComponent_Base::SetDescription(FString NewDescription)
 {
-	Discription = NewDescription;
+	Description = NewDescription;
 }
 
 
@@ -120,4 +137,10 @@ void UAbilityComponent_Base::SetAbilityAvailability(bool NewAvailability)
 UTexture2D* UAbilityComponent_Base::GetIcon()
 {
 	return Icon;
+}
+
+
+float UAbilityComponent_Base::GetManaCost()
+{
+	return ManaCost;
 }
