@@ -3,7 +3,9 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Components/Button.h"
 #include "Characters/EStats.h"
+#include "Components/TextBlock.h"
 #include "StatsScreenWidget.generated.h"
 
 
@@ -17,8 +19,7 @@ protected:
 	
 	virtual void NativeConstruct() override;
 
-	UFUNCTION(BlueprintCallable)
-	float ImproveStat(float CurrentValue);
+
 
 	UFUNCTION(BlueprintCallable)
 	void SetStatsVariables(EStats StatToImprove);
@@ -35,7 +36,23 @@ protected:
 	
 private:
 
+	UFUNCTION()
+	void OnClickedImproveStat();
+	
+	UFUNCTION()
+	float ImproveStat(float CurrentValue);
+	
+	UFUNCTION()
+	void UpdateText(FString Name, float Value);
+	
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_StatValue;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_StatName;
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_ImproveStat;
+	
 	class AMainCharacter* PlayerRef;
-	
-	
 };

@@ -5,6 +5,8 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
+#include "Components/Button.h"
+#include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -13,7 +15,18 @@ void UStatsScreenWidget::NativeConstruct()
 	Super::NativeConstruct();
 
 	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-	
+
+	if (Button_ImproveStat)
+	{
+		Button_ImproveStat->OnClicked.AddDynamic(this, &UStatsScreenWidget::OnClickedImproveStat);
+	}
+}
+
+
+void UStatsScreenWidget::OnClickedImproveStat()
+{
+	ImproveStat(StatValue);
+	UpdateText(StatName, StatValue);
 }
 
 
@@ -22,14 +35,12 @@ float UStatsScreenWidget::ImproveStat(float CurrentValue)
 	StatValue = CurrentValue;
 	if (!PlayerRef)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("Player Pointer is NULL"));
 		return StatValue;
 	}
 	
 	int Points = PlayerRef->LevelComp->GetCurrentPointsAmount();
 	if (Points <= 0)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("Points is 0"));
 		return StatValue;
 	}
 
@@ -54,4 +65,13 @@ void UStatsScreenWidget::SetStatsVariables(EStats StatToImprove)
 
 	StatName = PlayerRef->StatsComp->GetStatName(Stat);
 	StatValue = PlayerRef->StatsComp->GetStatValue(Stat);
+
+	UpdateText(StatName, StatValue);
+}
+
+
+void UStatsScreenWidget::UpdateText(FString Name, float Value)
+{
+	Text_StatName->SetText(FText::FromString(Name));
+	Text_StatValue->SetText(FText::AsNumber(Value));
 }
