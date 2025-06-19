@@ -27,6 +27,7 @@ COURSE_ARPG_API void FOnAbilityFinishedSignature_DelegateWrapper(const FMulticas
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execGetAbilityDuration); \
 	DECLARE_FUNCTION(execSetAbilityAvailability); \
 	DECLARE_FUNCTION(execGetAbilityAvailability); \
 	DECLARE_FUNCTION(execGetAbilityLevel); \

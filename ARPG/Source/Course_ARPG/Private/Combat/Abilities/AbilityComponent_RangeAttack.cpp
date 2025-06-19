@@ -13,7 +13,7 @@ void UAbilityComponent_RangeAttack::BeginPlay()
 	Super::BeginPlay();
 
 	SetDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
-	"\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),GetManaCost(), ProjectileDamage, CooldownDuration));
+	"\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
 
 	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
@@ -75,9 +75,22 @@ void UAbilityComponent_RangeAttack::SpawnProjectile()
 
 	if (Projectile)
 	{
-		Projectile->SetStats(ProjectileDamage, AliveTime);
+		Projectile->SetStats(GetProjectileDamage(), AliveTime);
 		Projectile->StartAliveTimer();
 	}
 }
+
+
+float UAbilityComponent_RangeAttack::GetProjectileDamage()
+{
+	return ProjectileDamage;
+}
+
+
+void UAbilityComponent_RangeAttack::SetProjectileDamage(float NewProjectileDamage)
+{
+	ProjectileDamage = NewProjectileDamage;
+}
+
 
 

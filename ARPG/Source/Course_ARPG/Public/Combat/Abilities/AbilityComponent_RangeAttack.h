@@ -27,6 +27,10 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void SpawnProjectile();
 
+	float GetProjectileDamage();
+
+	void SetProjectileDamage(float NewProjectileDamage);
+
 
 private:
 	

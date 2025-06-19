@@ -18,8 +18,14 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GiveArmor();
 
-	float GetDamageReduction();
+	float GetArmor();
 
+	void SetArmor(float NewArmor);
+
+	float GetDamageReductionPercent();
+
+	void SetDamageReductionPercent(float NewDamageReductionPercent);
+	
 protected:
 	
 	virtual void BeginPlay() override;

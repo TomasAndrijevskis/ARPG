@@ -58,7 +58,7 @@ float UStatsComponent::GetReducedDamage(float Damage, AActor* Opponent)
 	}
 
 	//на всякий случай вдруг % блокированного урона измениться
-	float ClampedReduction = FMath::Clamp(CharacterRef->AbilityComp_GetArmor->GetDamageReduction(), 0.f, 1.f);
+	float ClampedReduction = FMath::Clamp(CharacterRef->AbilityComp_GetArmor->GetDamageReductionPercent(), 0.f, 1.f);
 	float BlockedDamage = Damage * ClampedReduction;
 
 	// гарантирует что блокированый урон не будет больше чем есть брони у игрока

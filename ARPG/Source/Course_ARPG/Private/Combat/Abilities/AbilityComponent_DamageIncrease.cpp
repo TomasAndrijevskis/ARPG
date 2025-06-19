@@ -11,7 +11,7 @@ void UAbilityComponent_DamageIncrease::BeginPlay()
 	Super::BeginPlay();
 
 	SetDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
-	"\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), GetManaCost(), DamageMultiplier, CooldownDuration, AbilityDuration));
+	"\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), GetManaCost(), DamageMultiplier, GetCooldownDuration(), GetAbilityDuration()));
 
 	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
@@ -31,7 +31,7 @@ void UAbilityComponent_DamageIncrease::IncreaseDamage()
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		
 		OnAbilityStartedDelegate.Broadcast();
-		TimerDuration = AbilityDuration;
+		TimerDuration = GetAbilityDuration();
 		
 		float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
 		float tempDuration = 1.0f - AnimDuration;//анимация не длится 1 секунду, а переделать ее я не могу. это чтобы таймер срабатывал каждую секунду
@@ -68,4 +68,14 @@ void UAbilityComponent_DamageIncrease::StartAbilityTimer()
 }
 
 
+float UAbilityComponent_DamageIncrease::GetDamageMultiplier()
+{
+	return DamageMultiplier;
+}
+
+
+void UAbilityComponent_DamageIncrease::SetDamageMultiplier(float NewDamageMultiplier)
+{
+	DamageMultiplier = NewDamageMultiplier;
+}
 

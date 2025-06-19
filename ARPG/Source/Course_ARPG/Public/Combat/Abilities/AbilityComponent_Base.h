@@ -41,13 +41,24 @@ public:
 
 	void SetUpgradeRequirements(FString NewRequirements);
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintPure)
 	bool GetAbilityAvailability();
 
 	UFUNCTION(BlueprintCallable)
 	void SetAbilityAvailability(bool NewAvailability);
 
 	float GetManaCost();
+
+	void SetManaCost(float NewManaCost);
+
+	float GetCooldownDuration();
+
+	void SetCooldownDuration(float NewCooldownDuration);
+
+	UFUNCTION(BlueprintPure)
+	float GetAbilityDuration();
+
+	void SetAbilityDuration(float NewAbilityDuration);
 	
 	UTexture2D* GetIcon();
 	
@@ -66,12 +77,6 @@ protected:
 	void HandlePlayerActions(bool bCanDo);
 
 	bool CheckMana();
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	float AbilityDuration = 10.0f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	float CooldownDuration = 10.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture2D* Icon;
@@ -104,6 +109,12 @@ private:
 	UPROPERTY(EditAnywhere)
 	float ManaCost;
 
+	UPROPERTY(EditAnywhere)
+	float AbilityDuration = 10.0f;
+
+	UPROPERTY(EditAnywhere)
+	float CooldownDuration = 10.0f;
+	
 	FString Description;
 
 	FString UpgradeRequirements;

@@ -69,10 +69,6 @@ struct Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics
 		{ "IncludePath", "Combat/Abilities/AbilityComponent_DamageIncrease.h" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_DamageIncrease.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DamageMultiplier_MetaData[] = {
-		{ "Category", "AbilityComponent_DamageIncrease" },
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_DamageIncrease.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ParticleSpawnSocketName_MetaData[] = {
 		{ "Category", "AbilityComponent_DamageIncrease" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_DamageIncrease.h" },
@@ -87,10 +83,14 @@ struct Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics
 		{ "ToolTip", "FX_Sword_Bottom" },
 #endif
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DamageMultiplier_MetaData[] = {
+		{ "Category", "AbilityComponent_DamageIncrease" },
+		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_DamageIncrease.h" },
+	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_DamageMultiplier;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_ParticleSpawnSocketName;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Particle;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_DamageMultiplier;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -102,13 +102,13 @@ struct Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_DamageMultiplier = { "DamageMultiplier", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_DamageIncrease, DamageMultiplier), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamageMultiplier_MetaData), NewProp_DamageMultiplier_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_ParticleSpawnSocketName = { "ParticleSpawnSocketName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_DamageIncrease, ParticleSpawnSocketName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleSpawnSocketName_MetaData), NewProp_ParticleSpawnSocketName_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_Particle = { "Particle", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_DamageIncrease, Particle), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Particle_MetaData), NewProp_Particle_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_DamageMultiplier = { "DamageMultiplier", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_DamageIncrease, DamageMultiplier), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamageMultiplier_MetaData), NewProp_DamageMultiplier_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_DamageMultiplier,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_ParticleSpawnSocketName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_Particle,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::NewProp_DamageMultiplier,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::DependentSingletons[])() = {
@@ -151,10 +151,10 @@ UAbilityComponent_DamageIncrease::~UAbilityComponent_DamageIncrease() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_DamageIncrease, UAbilityComponent_DamageIncrease::StaticClass, TEXT("UAbilityComponent_DamageIncrease"), &Z_Registration_Info_UClass_UAbilityComponent_DamageIncrease, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_DamageIncrease), 4034615669U) },
+		{ Z_Construct_UClass_UAbilityComponent_DamageIncrease, UAbilityComponent_DamageIncrease::StaticClass, TEXT("UAbilityComponent_DamageIncrease"), &Z_Registration_Info_UClass_UAbilityComponent_DamageIncrease, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_DamageIncrease), 779385596U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_2115505118(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_2817253874(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

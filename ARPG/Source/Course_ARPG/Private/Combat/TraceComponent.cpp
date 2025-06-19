@@ -83,7 +83,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		CharacterDamage = FighterRef->GetCurrentDamage();
 		if (CharacterRef && (CharacterRef->AbilityComp_DamageIncrease->bIsDamageIncreased))
 		{
-			CharacterDamage = CharacterDamage * (CharacterRef->AbilityComp_DamageIncrease->DamageMultiplier);
+			CharacterDamage = CharacterDamage * (CharacterRef->AbilityComp_DamageIncrease->GetDamageMultiplier());
 		}
 		UE_LOG(LogTemp, Error, TEXT("Damage: %f"), CharacterDamage);
 	}

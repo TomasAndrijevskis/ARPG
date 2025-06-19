@@ -20,6 +20,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void OnAbilityActivated();
+
+	float GetStolenHealthPercent();
+
+	void SetStolenHealthPercent(float NewStolenHealthPercent);
 	
 protected:
 
@@ -40,7 +44,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	FName ParticleSpawnSocketName;
-
 	
 	class IFighter* FighterRef;
 	

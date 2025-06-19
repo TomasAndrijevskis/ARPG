@@ -14,7 +14,7 @@ void UAbilityComponent_LifeStealAttack::BeginPlay()
 	FighterRef = Cast<IFighter>(GetOwner());
 
 	SetDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
-	"\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),GetManaCost(), StolenHealthPercent*100, CooldownDuration, AbilityDuration));
+	"\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),GetManaCost(), GetStolenHealthPercent()*100, GetCooldownDuration(), GetAbilityDuration()));
 	
 	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
@@ -47,7 +47,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
 				FVector3d(.5f, .5f, .5f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 
-		TimerDuration = AbilityDuration;
+		TimerDuration = GetAbilityDuration();
 		CharacterRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::StartAbilityTimer, (AnimDuration + TempDuration), true);
 	}
@@ -66,3 +66,13 @@ void UAbilityComponent_LifeStealAttack::OnAbilityTimerFinished()
 }
 
 
+float UAbilityComponent_LifeStealAttack::GetStolenHealthPercent()
+{
+	return StolenHealthPercent;
+}
+
+
+void UAbilityComponent_LifeStealAttack::SetStolenHealthPercent(float NewStolenHealthPercent)
+{
+	StolenHealthPercent = NewStolenHealthPercent;
+}

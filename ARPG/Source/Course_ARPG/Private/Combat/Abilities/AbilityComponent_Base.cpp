@@ -154,3 +154,33 @@ float UAbilityComponent_Base::GetManaCost()
 {
 	return ManaCost;
 }
+
+
+void UAbilityComponent_Base::SetManaCost(float NewManaCost)
+{
+	ManaCost = NewManaCost;
+}
+
+
+float UAbilityComponent_Base::GetCooldownDuration()
+{
+	return CooldownDuration;
+}
+
+
+void UAbilityComponent_Base::SetCooldownDuration(float NewCooldownDuration)
+{
+	CooldownDuration = NewCooldownDuration;
+}
+
+
+float UAbilityComponent_Base::GetAbilityDuration()
+{
+	return AbilityDuration;
+}
+
+
+void UAbilityComponent_Base::SetAbilityDuration(float NewAbilityDuration)
+{
+	AbilityDuration = NewAbilityDuration;
+}
