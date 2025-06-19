@@ -2,7 +2,12 @@
 	"RemapUnityFiles": 
 	{
 		"Module.Course_ARPG.cpp.obj": [
-			"AbilityUpgradeScreen.gen.cpp.obj",
+			"AbilityComponent_Base.gen.cpp.obj",
+			"AbilityComponent_DamageIncrease.gen.cpp.obj",
+			"AbilityComponent_GetArmor.gen.cpp.obj",
+			"AbilityComponent_LifeStealAttack.gen.cpp.obj",
+			"AbilityComponent_RangeAttack.gen.cpp.obj",
+			"AbilityUpgradeRequiredPoints.gen.cpp.obj",
 			"ARPG_GameInstance.gen.cpp.obj",
 			"ARPG_PlayerController.gen.cpp.obj",
 			"ARPG_SaveGame.gen.cpp.obj",
@@ -49,7 +54,6 @@
 			"BTT_RangeAttack.cpp.obj",
 			"ARPG_PlayerController.cpp.obj",
 			"BossCharacter.cpp.obj",
-			"XPLevels.cpp.obj",
 			"EEnemyStates.cpp.obj",
 			"EStats.cpp.obj",
 			"LevelingComponent.cpp.obj",
@@ -57,6 +61,9 @@
 			"MainCharacter.cpp.obj",
 			"PlayerActionsComponent.cpp.obj",
 			"StatsComponent.cpp.obj",
+			"AbilityComponent_GetArmor.cpp.obj",
+			"AbilityComponent_LifeStealAttack.cpp.obj",
+			"AbilityComponent_RangeAttack.cpp.obj",
 			"BlockComponent.cpp.obj",
 			"CombatComponent.cpp.obj",
 			"EnemyProjectile.cpp.obj",
@@ -71,21 +78,15 @@
 			"MainPlayer.cpp.obj",
 			"ARPG_GameInstance.cpp.obj",
 			"ARPG_SaveGame.cpp.obj",
-			"AbilityUpgradeScreen.cpp.obj",
 			"DescriptionWidget.cpp.obj",
 			"SaveSlotWidget.cpp.obj",
 			"StatsScreenWidget.cpp.obj",
-			"AbilityComponent_Base.gen.cpp.obj",
-			"AbilityComponent_DamageIncrease.gen.cpp.obj",
-			"AbilityComponent_GetArmor.gen.cpp.obj",
-			"AbilityComponent_LifeStealAttack.gen.cpp.obj",
-			"AbilityComponent_RangeAttack.gen.cpp.obj",
+			"AbilityUpgradeScreen.gen.cpp.obj",
 			"Course_ARPG.init.gen.cpp.obj",
+			"XPLevels.cpp.obj",
 			"AbilityComponent_Base.cpp.obj",
 			"AbilityComponent_DamageIncrease.cpp.obj",
-			"AbilityComponent_GetArmor.cpp.obj",
-			"AbilityComponent_LifeStealAttack.cpp.obj",
-			"AbilityComponent_RangeAttack.cpp.obj"
+			"AbilityUpgradeScreen.cpp.obj"
 		]
 	}
 }

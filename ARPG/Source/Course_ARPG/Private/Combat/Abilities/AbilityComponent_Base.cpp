@@ -94,11 +94,18 @@ bool UAbilityComponent_Base::CheckMana()
 }
 
 
+void UAbilityComponent_Base::OnAbilityUpgraded()
+{
+	SetCooldownDuration(GetCooldownDuration()-1);
+}
+
+
 void UAbilityComponent_Base::SetAbilityLevel(int NewLevel)
 {
 	if (CurrentLevel != MaxLevel && NewLevel <= MaxLevel)
 	{
 		CurrentLevel = NewLevel;
+		OnAbilityUpgraded();
 	}
 }
 

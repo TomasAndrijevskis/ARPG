@@ -4,13 +4,24 @@
 #include "UI/DescriptionWidget.h"
 
 
-void UAbilityUpgradeScreen::NativeConstruct()
+void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityComp)
 {
-	Super::NativeConstruct();
+	AbilityComp_REF = AbilityComp;
+	SetIconStyle(AbilityComp_REF->GetIcon());
+	AbilityDescription = AbilityComp_REF->GetDescription();
+	UpgradeDescription = AbilityComp_REF->GetUpgradeRequirements();
+	SetButtonText();
+	SetAbilityIconEnable();
+	SetupButtonCallbacks();
+}
 
+
+void UAbilityUpgradeScreen::SetupButtonCallbacks()
+{
 	if (Button_UpgradeAbility)
 	{
-		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UnlockAbility);
+		BindUpgradeButtonAction(AbilityComp_REF->GetAbilityAvailability());
+		
 		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget);
 		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveUpgradeDescriptionWidget);
 	}
@@ -23,15 +34,30 @@ void UAbilityUpgradeScreen::NativeConstruct()
 }
 
 
-void UAbilityUpgradeScreen::CreateDescriptionWidget(UHorizontalBox* Box, TSubclassOf<UDescriptionWidget> Class, FString Description)
+void UAbilityUpgradeScreen::BindUpgradeButtonAction(bool bIsAbilityActive)
 {
-	if (!Class)
+	if (bIsAbilityActive)
+	{
+		Button_UpgradeAbility->OnClicked.Clear();
+		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::Test);
+	}
+	else
+	{
+		Button_UpgradeAbility->OnClicked.Clear();
+		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UnlockAbility);	
+	}
+}
+
+
+void UAbilityUpgradeScreen::CreateDescriptionWidget(UHorizontalBox* HorizontalBox, TSubclassOf<UDescriptionWidget> WidgetClass, FString Description)
+{
+	if (!WidgetClass)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Null!"));
 		return;
 	}
 	
-	UDescriptionWidget* DescriptionWidget = CreateWidget<UDescriptionWidget>(GetWorld(), Class);
+	UDescriptionWidget* DescriptionWidget = CreateWidget<UDescriptionWidget>(GetWorld(), WidgetClass);
 	
 	if (!DescriptionWidget)
 	{
@@ -39,25 +65,14 @@ void UAbilityUpgradeScreen::CreateDescriptionWidget(UHorizontalBox* Box, TSubcla
 		return;
 	}
 	
-	Box->AddChild(DescriptionWidget);
+	HorizontalBox->AddChild(DescriptionWidget);
 	DescriptionWidget->SetDescription(Description);	
 }
 
 
-void UAbilityUpgradeScreen::RemoveDescriptionWidget(UHorizontalBox* Box)
+void UAbilityUpgradeScreen::RemoveDescriptionWidget(UHorizontalBox* HorizontalBox)
 {
-	Box->ClearChildren();
-}
-
-
-void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityComp)
-{
-	AbilityComp_REF = AbilityComp;
-	SetIconStyle(AbilityComp_REF->GetIcon());
-	AbilityDescription = AbilityComp_REF->GetDescription();
-	UpgradeDescription = AbilityComp_REF->GetUpgradeRequirements();
-	SetButtonText();
-	SetAbilityIconEnable();
+	HorizontalBox->ClearChildren();
 }
 
 
@@ -66,6 +81,7 @@ void UAbilityUpgradeScreen::UnlockAbility()
 	AbilityComp_REF->SetAbilityAvailability(true);
 	SetButtonText();
 	SetAbilityIconEnable();
+	BindUpgradeButtonAction(AbilityComp_REF->GetAbilityAvailability());
 }
 
 
@@ -79,6 +95,12 @@ void UAbilityUpgradeScreen::SetButtonText()
 	{
 		Text_Upgrade->SetText(FText::FromString("Unlock"));
 	}
+}
+
+
+void UAbilityUpgradeScreen::Test()
+{
+	UE_LOG(LogTemp, Error, TEXT("Testing Upgrade Description"));
 }
 
 
@@ -118,7 +140,7 @@ void UAbilityUpgradeScreen::SetIconStyle(UTexture2D* Icon)
 	CustomStyle.SetNormal(NormalBrush);
 	CustomStyle.SetHovered(HoveredBrush);
 	CustomStyle.SetDisabled(DisabledBrush);
-	CustomStyle.SetPressed(NormalBrush);
+	CustomStyle.SetPressed(HoveredBrush);
 	
 	Button_AbilityIcon->SetStyle(CustomStyle);
 }

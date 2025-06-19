@@ -70,6 +70,8 @@ protected:
 
 	virtual void OnAbilityTimerFinished(){};
 
+	virtual void OnAbilityUpgraded();
+
 	void StartCooldown();
 
 	bool CanPlayMontage() const;
@@ -121,7 +123,7 @@ private:
 	
 	int CurrentLevel;
 
-	int MaxLevel;
+	int MaxLevel = 5;
 	
 };
 

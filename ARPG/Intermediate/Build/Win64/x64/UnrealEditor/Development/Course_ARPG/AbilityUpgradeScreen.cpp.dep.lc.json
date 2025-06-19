@@ -7,7 +7,7 @@
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\abilityupgradescreen.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\abilitydescription.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\descriptionwidget.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\umg\\public\\blueprint\\userwidget.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\umg\\public\\blueprint\\widgetchild.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\widgetchild.generated.h",
@@ -40,7 +40,7 @@
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\umg\\public\\components\\textwidgettypes.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\textwidgettypes.generated.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\umg\\uht\\textblock.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitydescription.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\descriptionwidget.generated.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\umg\\public\\components\\button.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\umg\\public\\components\\contentwidget.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\umg\\public\\components\\panelwidget.h",

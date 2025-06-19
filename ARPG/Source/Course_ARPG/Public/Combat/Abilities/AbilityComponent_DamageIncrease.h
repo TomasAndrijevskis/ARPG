@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-//#include "Components/ActorComponent.h"
 #include "AbilityComponent_Base.h"
 #include "AbilityComponent_DamageIncrease.generated.h"
 
@@ -32,6 +31,8 @@ protected:
 	virtual void StartAbilityTimer() override;
 
 	virtual void OnAbilityTimerFinished() override;
+
+	//virtual void OnAbilityUpgraded() override;
 	
 private:
 

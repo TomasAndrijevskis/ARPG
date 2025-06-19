@@ -393,6 +393,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\ToggleTraceNotifyState.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\BossCharacter.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequiredPoints.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EEnemyStates.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>

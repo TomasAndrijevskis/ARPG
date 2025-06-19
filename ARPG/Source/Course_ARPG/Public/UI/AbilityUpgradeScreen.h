@@ -29,18 +29,22 @@ public:
 	
 protected:
 
-	virtual void NativeConstruct() override;
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UAbilityComponent_Base* AbilityComp_REF;
 	
 private:
 
 	UFUNCTION()
-	void RemoveDescriptionWidget(UHorizontalBox* Box);
+	void SetupButtonCallbacks();
+
+	UFUNCTION()
+	void BindUpgradeButtonAction(bool bIsAbilityActive);
 	
 	UFUNCTION()
-	void CreateDescriptionWidget(UHorizontalBox* Box, TSubclassOf<UDescriptionWidget> Class, FString Description);
+	void CreateDescriptionWidget(UHorizontalBox* HorizontalBox, TSubclassOf<UDescriptionWidget> WidgetClass, FString Description);
+
+	UFUNCTION()
+	void RemoveDescriptionWidget(UHorizontalBox* Box);
 
 	UFUNCTION()
 	void CreateUpgradeDescriptionWidget();
@@ -59,6 +63,9 @@ private:
 
 	UFUNCTION()
 	void SetButtonText();
+	
+	UFUNCTION()
+	void Test();
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilityIcon;
