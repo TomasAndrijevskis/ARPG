@@ -460,35 +460,6 @@ DEFINE_FUNCTION(UAbilityUpgradeScreen::execSetupButtonCallbacks)
 }
 // End Class UAbilityUpgradeScreen Function SetupButtonCallbacks
 
-// Begin Class UAbilityUpgradeScreen Function Test
-struct Z_Construct_UFunction_UAbilityUpgradeScreen_Test_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/UI/AbilityUpgradeScreen.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityUpgradeScreen_Test_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityUpgradeScreen, nullptr, "Test", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityUpgradeScreen_Test_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityUpgradeScreen_Test_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UAbilityUpgradeScreen_Test()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityUpgradeScreen_Test_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UAbilityUpgradeScreen::execTest)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->Test();
-	P_NATIVE_END;
-}
-// End Class UAbilityUpgradeScreen Function Test
-
 // Begin Class UAbilityUpgradeScreen Function UnlockAbility
 struct Z_Construct_UFunction_UAbilityUpgradeScreen_UnlockAbility_Statics
 {
@@ -518,6 +489,35 @@ DEFINE_FUNCTION(UAbilityUpgradeScreen::execUnlockAbility)
 }
 // End Class UAbilityUpgradeScreen Function UnlockAbility
 
+// Begin Class UAbilityUpgradeScreen Function UpgradeAbility
+struct Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/UI/AbilityUpgradeScreen.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityUpgradeScreen, nullptr, "UpgradeAbility", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UAbilityUpgradeScreen::execUpgradeAbility)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->UpgradeAbility();
+	P_NATIVE_END;
+}
+// End Class UAbilityUpgradeScreen Function UpgradeAbility
+
 // Begin Class UAbilityUpgradeScreen
 void UAbilityUpgradeScreen::StaticRegisterNativesUAbilityUpgradeScreen()
 {
@@ -535,8 +535,8 @@ void UAbilityUpgradeScreen::StaticRegisterNativesUAbilityUpgradeScreen()
 		{ "SetButtonText", &UAbilityUpgradeScreen::execSetButtonText },
 		{ "SetIconStyle", &UAbilityUpgradeScreen::execSetIconStyle },
 		{ "SetupButtonCallbacks", &UAbilityUpgradeScreen::execSetupButtonCallbacks },
-		{ "Test", &UAbilityUpgradeScreen::execTest },
 		{ "UnlockAbility", &UAbilityUpgradeScreen::execUnlockAbility },
+		{ "UpgradeAbility", &UAbilityUpgradeScreen::execUpgradeAbility },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -614,8 +614,8 @@ struct Z_Construct_UClass_UAbilityUpgradeScreen_Statics
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText, "SetButtonText" }, // 2049788075
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetIconStyle, "SetIconStyle" }, // 2883721318
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetupButtonCallbacks, "SetupButtonCallbacks" }, // 4287559347
-		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_Test, "Test" }, // 1155201001
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_UnlockAbility, "UnlockAbility" }, // 4104439692
+		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility, "UpgradeAbility" }, // 1795808895
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -683,10 +683,10 @@ UAbilityUpgradeScreen::~UAbilityUpgradeScreen() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityUpgradeScreen, UAbilityUpgradeScreen::StaticClass, TEXT("UAbilityUpgradeScreen"), &Z_Registration_Info_UClass_UAbilityUpgradeScreen, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityUpgradeScreen), 2100131155U) },
+		{ Z_Construct_UClass_UAbilityUpgradeScreen, UAbilityUpgradeScreen::StaticClass, TEXT("UAbilityUpgradeScreen"), &Z_Registration_Info_UClass_UAbilityUpgradeScreen, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityUpgradeScreen), 1940183578U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_1582648229(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_1007313756(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

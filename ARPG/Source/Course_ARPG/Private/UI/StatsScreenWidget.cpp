@@ -38,7 +38,7 @@ float UStatsScreenWidget::ImproveStat(float CurrentValue)
 		return StatValue;
 	}
 	
-	int Points = PlayerRef->LevelComp->GetCurrentPointsAmount();
+	int Points = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
 	if (Points <= 0)
 	{
 		return StatValue;
@@ -47,8 +47,8 @@ float UStatsScreenWidget::ImproveStat(float CurrentValue)
 	StatValue++;
 	PlayerRef->StatsComp->SetStatValue(Stat, StatValue);
 	Points--;
-	PlayerRef->LevelComp->SetPoints(Points);
-	PlayerRef->LevelComp->OnPointsUpdateDelegate.Broadcast(Points);
+	PlayerRef->LevelComp->SetStatPoints(Points);
+	PlayerRef->LevelComp->OnStatPointsUpdateDelegate.Broadcast(Points);
 	
 	return StatValue;
 }

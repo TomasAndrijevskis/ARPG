@@ -23,9 +23,15 @@ int ULevelingComponent::GetCurrentLevel()
 }
 
 
-int ULevelingComponent::GetCurrentPointsAmount()
+int ULevelingComponent::GetCurrentStatPointsAmount()
 {
-	return CurrentPoints;
+	return AvailableStatPoints;
+}
+
+
+int ULevelingComponent::GetCurrentAbilityPointsAmount()
+{
+	return AvailableAbilityPoints;
 }
 
 
@@ -41,9 +47,15 @@ void ULevelingComponent::SetLevel(int NewLevel)
 }
 
 
-void ULevelingComponent::SetPoints(int NewPointsAmount)
+void ULevelingComponent::SetStatPoints(int NewStatPointsAmount)
 {
-	CurrentPoints = NewPointsAmount;
+	AvailableStatPoints = NewStatPointsAmount;
+}
+
+
+void ULevelingComponent::SetAbilityPoints(int NewAbilityPointsAmount)
+{
+	AvailableAbilityPoints = NewAbilityPointsAmount;
 }
 
 
@@ -73,7 +85,7 @@ void ULevelingComponent::TryLevelUp()
 		OnNewLevelDelegate.Broadcast(CurrentLevel);
 		OnXpUpdateDelegate.Broadcast(CurrentXP);
 
-		SetPoints(CurrentPoints+5);
+		SetStatPoints(AvailableStatPoints + PointsAmountForLevel);
 		
 		UE_LOG(LogTemp, Warning, TEXT("Level up"));
 	}

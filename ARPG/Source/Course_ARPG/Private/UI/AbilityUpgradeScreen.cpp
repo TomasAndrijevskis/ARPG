@@ -1,7 +1,12 @@
 
 #include "UI/AbilityUpgradeScreen.h"
+
+#include "Characters/LevelingComponent.h"
+#include "Characters/MainCharacter.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Kismet/GameplayStatics.h"
 #include "UI/DescriptionWidget.h"
+
 
 
 void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityComp)
@@ -13,6 +18,13 @@ void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityCom
 	SetButtonText();
 	SetAbilityIconEnable();
 	SetupButtonCallbacks();
+}
+
+void UAbilityUpgradeScreen::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 }
 
 
@@ -39,7 +51,7 @@ void UAbilityUpgradeScreen::BindUpgradeButtonAction(bool bIsAbilityActive)
 	if (bIsAbilityActive)
 	{
 		Button_UpgradeAbility->OnClicked.Clear();
-		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::Test);
+		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UpgradeAbility);
 	}
 	else
 	{
@@ -98,9 +110,23 @@ void UAbilityUpgradeScreen::SetButtonText()
 }
 
 
-void UAbilityUpgradeScreen::Test()
+void UAbilityUpgradeScreen::UpgradeAbility()
 {
-	UE_LOG(LogTemp, Error, TEXT("Testing Upgrade Description"));
+	if (!PlayerRef)
+	{
+		return;
+	}
+
+	int Points = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
+
+	if (Points <= 0)
+	{
+		return;
+	}
+	Points--;
+	
+	PlayerRef->LevelComp->SetAbilityPoints(Points);
+	PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(Points);
 }
 
 

@@ -29,6 +29,8 @@ public:
 	
 protected:
 
+	virtual void NativeConstruct() override;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UAbilityComponent_Base* AbilityComp_REF;
 	
@@ -65,7 +67,7 @@ private:
 	void SetButtonText();
 	
 	UFUNCTION()
-	void Test();
+	void UpgradeAbility();
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilityIcon;
@@ -91,4 +93,6 @@ private:
 	FString AbilityDescription;
 
 	FString UpgradeDescription;
+
+	class AMainCharacter* PlayerRef;
 };

@@ -8,7 +8,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnNewLevelSignature, ULevelingComponent, OnNewLevelDelegate,int, Level);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnXpUpdateSignature, ULevelingComponent, OnXpUpdateDelegate,float, XP);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnPointsUpdateSignature, ULevelingComponent, OnPointsUpdateDelegate,int, Points);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStatPointsUpdateSignature, ULevelingComponent, OnStatPointsUpdateDelegate,int, Points);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnAbilityPointsUpdateSignature, ULevelingComponent, OnAbilityPointsUpdateDelegate,int, Points);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API ULevelingComponent : public UActorComponent
 {
@@ -28,7 +29,10 @@ public:
 	FOnXpUpdateSignature OnXpUpdateDelegate;
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
-	FOnPointsUpdateSignature OnPointsUpdateDelegate;
+	FOnStatPointsUpdateSignature OnStatPointsUpdateDelegate;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnAbilityPointsUpdateSignature OnAbilityPointsUpdateDelegate;
 	
 	UFUNCTION(BlueprintPure)
 	float GetCurrentExperience();
@@ -37,7 +41,10 @@ public:
 	int GetCurrentLevel();
 
 	UFUNCTION(BlueprintPure)
-	int GetCurrentPointsAmount();
+	int GetCurrentStatPointsAmount();
+	
+	UFUNCTION(BlueprintPure)
+	int GetCurrentAbilityPointsAmount();
 
 	UFUNCTION()
 	void SetExperience(float NewXP);
@@ -46,7 +53,10 @@ public:
 	void SetLevel(int NewLevel);
 
 	UFUNCTION(BlueprintCallable)
-	void SetPoints(int NewPointsAmount);
+	void SetStatPoints(int NewStatPointsAmount);
+
+	UFUNCTION(BlueprintCallable)
+	void SetAbilityPoints(int NewAbilityPointsAmount);
 	
 protected:
 	
@@ -64,6 +74,11 @@ private:
 	float CurrentXP = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	int CurrentPoints = 0;
+	int AvailableStatPoints = 0;
+
+	UPROPERTY(VisibleAnywhere)
+	int AvailableAbilityPoints = 0;
+
+	int PointsAmountForLevel = 5;
 	
 };

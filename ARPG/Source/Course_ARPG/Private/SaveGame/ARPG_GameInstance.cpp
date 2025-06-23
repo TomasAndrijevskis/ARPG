@@ -11,7 +11,7 @@
 void UARPG_GameInstance::SetSlotName(FString NewSlotName)
 {
 	SlotName = NewSlotName;
-	UE_LOG(LogTemp, Error, TEXT("SlotName: %s"), *NewSlotName);
+	//UE_LOG(LogTemp, Error, TEXT("SlotName: %s"), *NewSlotName);
 }
 
 
@@ -40,7 +40,8 @@ void UARPG_GameInstance::SaveGame()
 	SaveGameInstance->Strength = CharacterRef->StatsComp->GetStatValue(EStats::Strength);
 	SaveGameInstance->CurrentLevel = CharacterRef->LevelComp->GetCurrentLevel();
 	SaveGameInstance->CurrentXP = CharacterRef->LevelComp->GetCurrentExperience();
-	SaveGameInstance->CurrentPoints = CharacterRef->LevelComp->GetCurrentPointsAmount();
+	SaveGameInstance->CurrentStatPoints = CharacterRef->LevelComp->GetCurrentStatPointsAmount();
+	SaveGameInstance->CurrentAbilityPoints = CharacterRef->LevelComp->GetCurrentAbilityPointsAmount();
 	
 	for (auto Ability: CharacterRef->Abilities)
 	{
@@ -75,7 +76,8 @@ void UARPG_GameInstance::LoadGame()
 	CharacterRef->StatsComp->SetStatValue(EStats::MaxStamina, SaveGameInstance->MaxStamina);
 	CharacterRef->LevelComp->SetLevel(SaveGameInstance->CurrentLevel);
 	CharacterRef->LevelComp->SetExperience(SaveGameInstance->CurrentXP);
-	CharacterRef->LevelComp->SetPoints(SaveGameInstance->CurrentPoints);
+	CharacterRef->LevelComp->SetStatPoints(SaveGameInstance->CurrentStatPoints);
+	CharacterRef->LevelComp->SetAbilityPoints(SaveGameInstance->CurrentAbilityPoints);
 	
 
 	for (int32 i = 0; i < SaveGameInstance->UnlockedAbilities.Num(); i++)

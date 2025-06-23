@@ -41,7 +41,10 @@ public:
 	int CurrentLevel;
 
 	UPROPERTY(EditAnywhere)
-	int CurrentPoints;
+	int CurrentStatPoints;
+
+	UPROPERTY(EditAnywhere)
+	int CurrentAbilityPoints;
 
 	UPROPERTY(EditAnywhere)
 	TArray<bool> UnlockedAbilities;

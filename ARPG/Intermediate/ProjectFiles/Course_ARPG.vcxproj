@@ -375,10 +375,10 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\DescriptionWidget.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\DescriptionWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\SaveSlotWidget.cpp">
@@ -393,7 +393,6 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\ToggleTraceNotifyState.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\BossCharacter.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequiredPoints.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EEnemyStates.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>
@@ -405,6 +404,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_ChargeAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequiredPoints.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\BlockComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent.h"/>
@@ -425,8 +425,8 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\DescriptionWidget.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\DescriptionWidget.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveSlotWidget.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\StatsScreenWidget.h"/>
   </ItemGroup>
