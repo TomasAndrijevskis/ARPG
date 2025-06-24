@@ -25,7 +25,11 @@ public:
 
 	void SetStolenHealthPercent(float NewStolenHealthPercent);
 
-	virtual void UpdateDescription() override;
+	virtual void UpdateAbilityDescription() override;
+
+	virtual void UpdateUpgradeDescription() override;
+
+	virtual void UpdateAbilityStats() override;
 	
 protected:
 

@@ -21,7 +21,8 @@ void UAbilityComponent_Base::BeginPlay()
 	PlayerRef = Cast<AMainCharacter>(GetOwner());
 	SkeletalMeshComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
 
-	UpdateDescription();
+	UpdateAbilityDescription();
+	UpdateUpgradeDescription();
 }
 
 
@@ -99,26 +100,31 @@ bool UAbilityComponent_Base::CheckMana()
 }
 
 
-void UAbilityComponent_Base::OnAbilityUpgraded()
-{
-	//SetCooldownDuration(GetCooldownDuration()-1);
-	UpdateDescription();
-	UE_LOG(LogTemp, Error, TEXT("Ability Upgraded"));
-}
-
-
-void UAbilityComponent_Base::UpgradeAbility(int Points)
+void UAbilityComponent_Base::UpgradeAbility(int AvailablePoints)
 {
 	int PointsRequired = GetRequiredUpgradePoints();
 
-	if (Points >= PointsRequired)
+	if (AvailablePoints >= PointsRequired && PointsRequired > 0)
 	{
 		CurrentLevel++;
-		Points -= PointsRequired;
-		PlayerRef->LevelComp->SetAbilityPoints(Points);
-		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(Points);
-		OnAbilityUpgraded();
+		AvailablePoints -= PointsRequired;
+		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
+		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
+		if (GetAbilityAvailability())
+		{
+			UpdateAbilityStats();
+		}
+		UpdateAbilityDescription();
+		UpdateUpgradeDescription();
 	}
+}
+
+
+void UAbilityComponent_Base::UpdateAbilityStats()
+{
+	SetCooldownDuration(CooldownDuration -= (CooldownDuration * 0.1f));
+	SetManaCost(ManaCost -= (ManaCost * 0.1f));
+	SetAbilityDuration(AbilityDuration += (AbilityDuration * 0.1f));
 }
 
 
@@ -127,7 +133,7 @@ int UAbilityComponent_Base::GetRequiredUpgradePoints()
 	if (!RequirementsDataTable)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Cant load levels data table"));
-		return 0;
+		return -1;
 	}
 
 	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
@@ -135,15 +141,11 @@ int UAbilityComponent_Base::GetRequiredUpgradePoints()
 	if (!RequirementsRow)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("No level row found for %s"), *RowName.ToString());
-		return 0;
+		return -1;
 	}
 	return RequirementsRow->RequiredPoints;
 }
 
-
-void UAbilityComponent_Base::UpdateDescription()
-{
-}
 
 int UAbilityComponent_Base::GetCurrentAbilityLevel()
 {
@@ -157,25 +159,37 @@ void UAbilityComponent_Base::SetCurrentAbilityLevel(int NewLevel)
 }
 
 
-FString UAbilityComponent_Base::GetDescription()
+bool UAbilityComponent_Base::IsAbilityMaxLevel()
 {
-	return Description;
+	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
+	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
+	if (RequirementsRow)
+	{
+		return false;
+	}
+	return true;
 }
 
 
-FString UAbilityComponent_Base::GetUpgradeRequirements()
+FString UAbilityComponent_Base::GetAbilityDescription()
 {
-	return UpgradeRequirements;
+	return AbilityDescription;
 }
 
-void UAbilityComponent_Base::SetUpgradeRequirements(FString NewRequirements)
+
+FString UAbilityComponent_Base::GetUpgradeDescription()
 {
-	UpgradeRequirements = NewRequirements;
+	return UpgradeDescription;
 }
 
-void UAbilityComponent_Base::SetDescription(FString NewDescription)
+void UAbilityComponent_Base::SetUpgradeDescription(FString NewDescription)
 {
-	Description = NewDescription;
+	UpgradeDescription = NewDescription;
+}
+
+void UAbilityComponent_Base::SetAbilityDescription(FString NewDescription)
+{
+	AbilityDescription = NewDescription;
 }
 
 

@@ -136,6 +136,35 @@ DEFINE_FUNCTION(UAbilityUpgradeScreen::execCreateUpgradeDescriptionWidget)
 }
 // End Class UAbilityUpgradeScreen Function CreateUpgradeDescriptionWidget
 
+// Begin Class UAbilityUpgradeScreen Function HandleUpgradeButtonActions
+struct Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/UI/AbilityUpgradeScreen.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityUpgradeScreen, nullptr, "HandleUpgradeButtonActions", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UAbilityUpgradeScreen::execHandleUpgradeButtonActions)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HandleUpgradeButtonActions();
+	P_NATIVE_END;
+}
+// End Class UAbilityUpgradeScreen Function HandleUpgradeButtonActions
+
 // Begin Class UAbilityUpgradeScreen Function InitializeAbility
 struct Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility_Statics
 {
@@ -316,14 +345,31 @@ DEFINE_FUNCTION(UAbilityUpgradeScreen::execSetAbilityIconEnable)
 // Begin Class UAbilityUpgradeScreen Function SetButtonText
 struct Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics
 {
+	struct AbilityUpgradeScreen_eventSetButtonText_Parms
+	{
+		bool bIsLevelMaxed;
+	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/UI/AbilityUpgradeScreen.h" },
 	};
 #endif // WITH_METADATA
+	static void NewProp_bIsLevelMaxed_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsLevelMaxed;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityUpgradeScreen, nullptr, "SetButtonText", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::Function_MetaDataParams) };
+void Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::NewProp_bIsLevelMaxed_SetBit(void* Obj)
+{
+	((AbilityUpgradeScreen_eventSetButtonText_Parms*)Obj)->bIsLevelMaxed = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::NewProp_bIsLevelMaxed = { "bIsLevelMaxed", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AbilityUpgradeScreen_eventSetButtonText_Parms), &Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::NewProp_bIsLevelMaxed_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::NewProp_bIsLevelMaxed,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityUpgradeScreen, nullptr, "SetButtonText", nullptr, nullptr, Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::PropPointers), sizeof(Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::AbilityUpgradeScreen_eventSetButtonText_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText_Statics::AbilityUpgradeScreen_eventSetButtonText_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -335,9 +381,10 @@ UFunction* Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText()
 }
 DEFINE_FUNCTION(UAbilityUpgradeScreen::execSetButtonText)
 {
+	P_GET_UBOOL(Z_Param_bIsLevelMaxed);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->SetButtonText();
+	P_THIS->SetButtonText(Z_Param_bIsLevelMaxed);
 	P_NATIVE_END;
 }
 // End Class UAbilityUpgradeScreen Function SetButtonText
@@ -450,6 +497,7 @@ void UAbilityUpgradeScreen::StaticRegisterNativesUAbilityUpgradeScreen()
 		{ "CreateAbilityDescriptionWidget", &UAbilityUpgradeScreen::execCreateAbilityDescriptionWidget },
 		{ "CreateDescriptionWidget", &UAbilityUpgradeScreen::execCreateDescriptionWidget },
 		{ "CreateUpgradeDescriptionWidget", &UAbilityUpgradeScreen::execCreateUpgradeDescriptionWidget },
+		{ "HandleUpgradeButtonActions", &UAbilityUpgradeScreen::execHandleUpgradeButtonActions },
 		{ "InitializeAbility", &UAbilityUpgradeScreen::execInitializeAbility },
 		{ "RemoveAbilityDescriptionWidget", &UAbilityUpgradeScreen::execRemoveAbilityDescriptionWidget },
 		{ "RemoveDescriptionWidget", &UAbilityUpgradeScreen::execRemoveDescriptionWidget },
@@ -527,12 +575,13 @@ struct Z_Construct_UClass_UAbilityUpgradeScreen_Statics
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_CreateAbilityDescriptionWidget, "CreateAbilityDescriptionWidget" }, // 4220160096
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_CreateDescriptionWidget, "CreateDescriptionWidget" }, // 246165812
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_CreateUpgradeDescriptionWidget, "CreateUpgradeDescriptionWidget" }, // 2939335390
+		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions, "HandleUpgradeButtonActions" }, // 2974474059
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility, "InitializeAbility" }, // 2690938116
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_RemoveAbilityDescriptionWidget, "RemoveAbilityDescriptionWidget" }, // 3583004453
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_RemoveDescriptionWidget, "RemoveDescriptionWidget" }, // 3453854116
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_RemoveUpgradeDescriptionWidget, "RemoveUpgradeDescriptionWidget" }, // 3478661906
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetAbilityIconEnable, "SetAbilityIconEnable" }, // 962247242
-		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText, "SetButtonText" }, // 2049788075
+		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetButtonText, "SetButtonText" }, // 72803539
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetIconStyle, "SetIconStyle" }, // 2883721318
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_SetupButtonCallbacks, "SetupButtonCallbacks" }, // 4287559347
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_UpgradeAbility, "UpgradeAbility" }, // 1795808895
@@ -603,10 +652,10 @@ UAbilityUpgradeScreen::~UAbilityUpgradeScreen() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityUpgradeScreen, UAbilityUpgradeScreen::StaticClass, TEXT("UAbilityUpgradeScreen"), &Z_Registration_Info_UClass_UAbilityUpgradeScreen, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityUpgradeScreen), 2827996421U) },
+		{ Z_Construct_UClass_UAbilityUpgradeScreen, UAbilityUpgradeScreen::StaticClass, TEXT("UAbilityUpgradeScreen"), &Z_Registration_Info_UClass_UAbilityUpgradeScreen, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityUpgradeScreen), 920466248U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_3351005229(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_2233960432(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

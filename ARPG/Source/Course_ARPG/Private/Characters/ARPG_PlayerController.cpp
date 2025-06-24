@@ -1,6 +1,4 @@
 
-
-
 #include "Characters/ARPG_PlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
@@ -36,11 +34,12 @@ void AARPG_PlayerController::HandleGameLoad()
 	
 	if (GameInstance->bCheckSlot(SlotName))
 	{
-		GameInstance->LoadGame();
+		GameInstance->LoadStats();
+		GameInstance->LoadAbilities();
 	}
 	else
 	{
-		GameInstance->SaveGame();
+		GameInstance->SaveStats();
 	}
 }
 

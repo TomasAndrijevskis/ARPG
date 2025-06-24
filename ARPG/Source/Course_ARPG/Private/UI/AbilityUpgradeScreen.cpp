@@ -8,15 +8,15 @@
 #include "UI/DescriptionWidget.h"
 
 
-
 void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityComp)
 {
 	AbilityComp_REF = AbilityComp;
 	SetIconStyle(AbilityComp_REF->GetIcon());
-	SetButtonText();
+	SetButtonText(AbilityComp_REF->IsAbilityMaxLevel());
 	SetAbilityIconEnable();
 	SetupButtonCallbacks();
 }
+
 
 void UAbilityUpgradeScreen::NativeConstruct()
 {
@@ -31,14 +31,41 @@ void UAbilityUpgradeScreen::SetupButtonCallbacks()
 	if (Button_UpgradeAbility)
 	{
 		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UpgradeAbility);
-		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget);
-		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveUpgradeDescriptionWidget);
+		HandleUpgradeButtonActions();
+		if (AbilityComp_REF->IsAbilityMaxLevel())
+		{
+			Button_UpgradeAbility->SetIsEnabled(false);
+		}
 	}
 
 	if (Button_AbilityIcon)
 	{
 		Button_AbilityIcon->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateAbilityDescriptionWidget);
 		Button_AbilityIcon->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget);
+	}
+}
+
+
+
+void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
+{
+	RemoveAbilityDescriptionWidget();
+	RemoveUpgradeDescriptionWidget();
+	if (AbilityComp_REF->GetAbilityAvailability())
+	{
+		Button_UpgradeAbility->OnHovered.Clear();
+		Button_UpgradeAbility->OnUnhovered.Clear();
+			
+		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget);
+		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveUpgradeDescriptionWidget);
+	}
+	else
+	{
+		Button_UpgradeAbility->OnHovered.Clear();
+		Button_UpgradeAbility->OnUnhovered.Clear();
+			
+		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateAbilityDescriptionWidget);
+		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget);
 	}
 }
 
@@ -70,9 +97,13 @@ void UAbilityUpgradeScreen::RemoveDescriptionWidget(UHorizontalBox* HorizontalBo
 }
 
 
-void UAbilityUpgradeScreen::SetButtonText()
+void UAbilityUpgradeScreen::SetButtonText(bool bIsLevelMaxed)
 {
-	if (AbilityComp_REF->GetAbilityAvailability())
+	if (AbilityComp_REF->GetAbilityAvailability() && bIsLevelMaxed)
+	{
+		Text_Upgrade->SetText(FText::FromString("Maxed"));
+	}
+	else if (AbilityComp_REF->GetAbilityAvailability() && !bIsLevelMaxed)
 	{
 		Text_Upgrade->SetText(FText::FromString("Upgrade"));
 	}
@@ -90,21 +121,28 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 		return;
 	}
 
-	int Points = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
+	int AvailablePoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
 
-	if (Points <= 0)
+	if (AvailablePoints <= 0)
 	{
 		return;
 	}
 	
-	AbilityComp_REF->UpgradeAbility(Points);
+	AbilityComp_REF->UpgradeAbility(AvailablePoints);
 	
 	if (!AbilityComp_REF->GetAbilityAvailability())
 	{
 		AbilityComp_REF->SetAbilityAvailability(true);
-		SetButtonText();
+		SetButtonText(AbilityComp_REF->IsAbilityMaxLevel());
 		SetAbilityIconEnable();
 	}
+	
+	if (AbilityComp_REF->IsAbilityMaxLevel())
+	{
+		Button_UpgradeAbility->SetIsEnabled(false);
+		SetButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+	}
+	HandleUpgradeButtonActions();
 }
 
 
@@ -152,14 +190,14 @@ void UAbilityUpgradeScreen::SetIconStyle(UTexture2D* Icon)
 
 void UAbilityUpgradeScreen::CreateAbilityDescriptionWidget()
 {
-	AbilityDescription = AbilityComp_REF->GetDescription();
+	AbilityDescription = AbilityComp_REF->GetAbilityDescription();
 	CreateDescriptionWidget(HorizontalBox_AbilityDescription, AbilityDescriptionClass, AbilityDescription);
 }
 
 
 void UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget()
 {
-	UpgradeDescription = AbilityComp_REF->GetUpgradeRequirements();
+	UpgradeDescription = AbilityComp_REF->GetUpgradeDescription();
 	CreateDescriptionWidget(HorizontalBox_UpgradeDescription, UpgradeDescriptionClass, UpgradeDescription);
 }
 

@@ -6,8 +6,7 @@
 void UAbilityComponent_GetArmor::BeginPlay()
 {
 	Super::BeginPlay();
-
-	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
+	
 }
 
 
@@ -62,9 +61,33 @@ void UAbilityComponent_GetArmor::SetDamageReductionPercent(float NewDamageReduct
 }
 
 
-void UAbilityComponent_GetArmor::UpdateDescription()
+void UAbilityComponent_GetArmor::UpdateAbilityDescription()
 {
-	SetDescription(FString::Printf(TEXT("Give yourself protection."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"), GetCurrentAbilityLevel(), GetManaCost(), GetArmor(), GetDamageReductionPercent()*100, GetCooldownDuration()));
+	SetAbilityDescription(FString::Printf(TEXT("Give yourself protection."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetArmor(), GetDamageReductionPercent()*100, GetCooldownDuration()));
+}
+
+
+void UAbilityComponent_GetArmor::UpdateUpgradeDescription()
+{
+	
+	float NextMana = GetManaCost() - (GetManaCost() * .1f);
+	float NextCooldown = GetCooldownDuration() - (GetCooldownDuration() * .1f);
+	float NextArmor = GetArmor() + (GetArmor() * .1f);
+	float NextDamageReduction = GetDamageReductionPercent() + (GetDamageReductionPercent() * .1f);
+	
+
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nDamage reduction: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, GetArmor(), NextArmor,  GetDamageReductionPercent() * 100, NextDamageReduction * 100, GetCooldownDuration(), NextCooldown));
+}
+
+
+void UAbilityComponent_GetArmor::UpdateAbilityStats()
+{
+	Super::UpdateAbilityStats();
+
+	SetArmor(Armor += (Armor * 0.1f));
+	SetDamageReductionPercent(DamageReductionPercent += (DamageReductionPercent* 0.1f));
 }
 

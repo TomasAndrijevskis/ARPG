@@ -11,8 +11,7 @@
 void UAbilityComponent_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
-
-	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
+	
 }
 
 
@@ -90,9 +89,30 @@ void UAbilityComponent_RangeAttack::SetProjectileDamage(float NewProjectileDamag
 }
 
 
-void UAbilityComponent_RangeAttack::UpdateDescription()
+void UAbilityComponent_RangeAttack::UpdateAbilityDescription()
 {
-	SetDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"), GetCurrentAbilityLevel(), GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
+	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
+}
+
+
+void UAbilityComponent_RangeAttack::UpdateUpgradeDescription()
+{
+	float NextMana = GetManaCost() - (GetManaCost() * .1f);
+	float NextCooldown = GetCooldownDuration() - (GetCooldownDuration() * .1f);
+	float NextDamage = GetProjectileDamage() + (GetProjectileDamage() * .1f);
+	
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, GetProjectileDamage(), NextDamage, GetCooldownDuration(), NextCooldown));
+	
+}
+
+
+void UAbilityComponent_RangeAttack::UpdateAbilityStats()
+{
+	Super::UpdateAbilityStats();
+
+	SetProjectileDamage(ProjectileDamage += (ProjectileDamage * 0.1f));
 }
 

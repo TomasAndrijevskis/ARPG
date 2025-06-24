@@ -28,22 +28,26 @@ public:
 	FOnAbilityFinishedSignature OnAbilityFinishedDelegate;
 
 	UFUNCTION(BlueprintCallable)
-	void UpgradeAbility(int Points);
+	void UpgradeAbility(int AvailablePoints);
 
 	UFUNCTION(BlueprintCallable)
 	int GetCurrentAbilityLevel();
 	
 	void SetCurrentAbilityLevel(int32 NewLevel);
+
+	bool IsAbilityMaxLevel();
 	
-	FString GetDescription();
+	FString GetAbilityDescription();
 
-	void SetDescription(FString NewDescription);
+	void SetAbilityDescription(FString NewDescription);
 
-	virtual void UpdateDescription();
+	virtual void UpdateAbilityDescription() {};
 
-	FString GetUpgradeRequirements();
+	FString GetUpgradeDescription();
 
-	void SetUpgradeRequirements(FString NewRequirements);
+	void SetUpgradeDescription(FString NewDescription);
+
+	virtual void UpdateUpgradeDescription() {};
 	
 	UFUNCTION(BlueprintPure)
 	bool GetAbilityAvailability();
@@ -68,6 +72,8 @@ public:
 
 	int GetRequiredUpgradePoints();
 
+	virtual void UpdateAbilityStats();
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -75,8 +81,6 @@ protected:
 	virtual void StartAbilityTimer();
 
 	virtual void OnAbilityTimerFinished(){};
-
-	virtual void OnAbilityUpgraded();
 
 	void StartCooldown();
 
@@ -91,9 +95,6 @@ protected:
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* AnimMontage;
-
-	UPROPERTY(EditAnywhere)
-	int RequiredPointsToUpgrade;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsOnCooldown = false;
@@ -129,9 +130,9 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	int CurrentLevel = 0;
 	
-	FString Description;
+	FString AbilityDescription;
 
-	FString UpgradeRequirements;
+	FString UpgradeDescription;
 
 	
 	

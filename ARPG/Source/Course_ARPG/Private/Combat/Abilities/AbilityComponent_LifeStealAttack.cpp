@@ -12,7 +12,6 @@ void UAbilityComponent_LifeStealAttack::BeginPlay()
 
 	FighterRef = Cast<IFighter>(GetOwner());
 	
-	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
 
@@ -74,8 +73,30 @@ void UAbilityComponent_LifeStealAttack::SetStolenHealthPercent(float NewStolenHe
 }
 
 
-void UAbilityComponent_LifeStealAttack::UpdateDescription()
+void UAbilityComponent_LifeStealAttack::UpdateAbilityDescription()
 {
-	SetDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"), GetCurrentAbilityLevel(), GetManaCost(), GetStolenHealthPercent()*100, GetCooldownDuration(), GetAbilityDuration()));
+	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetStolenHealthPercent()*100, GetCooldownDuration(), GetAbilityDuration()));
+}
+
+
+void UAbilityComponent_LifeStealAttack::UpdateUpgradeDescription()
+{
+	float NextMana = GetManaCost() - (GetManaCost() * .1f);
+	float NextCooldown = GetCooldownDuration() - (GetCooldownDuration() * .1f);
+	float NextStolenHealth = GetStolenHealthPercent() + (GetStolenHealthPercent() * .1f);
+	float NextDuration = GetAbilityDuration() + (GetAbilityDuration() * .1f);
+	
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nStolen health: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, GetStolenHealthPercent() * 100, NextStolenHealth * 100, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextDuration));
+	
+}
+
+
+void UAbilityComponent_LifeStealAttack::UpdateAbilityStats()
+{
+	Super::UpdateAbilityStats();
+
+	SetStolenHealthPercent(StolenHealthPercent += (StolenHealthPercent * 0.1f));
 }

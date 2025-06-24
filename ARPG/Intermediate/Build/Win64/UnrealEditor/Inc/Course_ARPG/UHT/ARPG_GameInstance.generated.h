@@ -17,8 +17,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execbCheckSlot); \
 	DECLARE_FUNCTION(execInitializeGameInstance); \
-	DECLARE_FUNCTION(execLoadGame); \
-	DECLARE_FUNCTION(execSaveGame); \
+	DECLARE_FUNCTION(execSaveAll); \
+	DECLARE_FUNCTION(execLoadAbilities); \
+	DECLARE_FUNCTION(execSaveAbilities); \
+	DECLARE_FUNCTION(execLoadStats); \
+	DECLARE_FUNCTION(execSaveStats); \
 	DECLARE_FUNCTION(execGetSlotName); \
 	DECLARE_FUNCTION(execSetSlotName);
 

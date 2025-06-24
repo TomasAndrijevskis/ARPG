@@ -76,13 +76,7 @@ struct Z_Construct_UClass_UARPG_SaveGame_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_UnlockedAbilities_MetaData[] = {
 		{ "Category", "ARPG_SaveGame" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//UPROPERTY(EditAnywhere)\n//TArray<bool> UnlockedAbilities;\n" },
-#endif
 		{ "ModuleRelativePath", "Public/SaveGame/ARPG_SaveGame.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "UPROPERTY(EditAnywhere)\nTArray<bool> UnlockedAbilities;" },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth;
@@ -115,9 +109,9 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UARPG_SaveGame_
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_CurrentLevel = { "CurrentLevel", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, CurrentLevel), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentLevel_MetaData), NewProp_CurrentLevel_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_CurrentStatPoints = { "CurrentStatPoints", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, CurrentStatPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentStatPoints_MetaData), NewProp_CurrentStatPoints_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_CurrentAbilityPoints = { "CurrentAbilityPoints", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, CurrentAbilityPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentAbilityPoints_MetaData), NewProp_CurrentAbilityPoints_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedAbilities_ValueProp = { "UnlockedAbilities", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FAbilityData, METADATA_PARAMS(0, nullptr) }; // 781552909
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedAbilities_ValueProp = { "UnlockedAbilities", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FAbilityData, METADATA_PARAMS(0, nullptr) }; // 2201649189
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedAbilities_Key_KeyProp = { "UnlockedAbilities_Key", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedAbilities = { "UnlockedAbilities", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, UnlockedAbilities), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnlockedAbilities_MetaData), NewProp_UnlockedAbilities_MetaData) }; // 781552909
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedAbilities = { "UnlockedAbilities", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, UnlockedAbilities), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnlockedAbilities_MetaData), NewProp_UnlockedAbilities_MetaData) }; // 2201649189
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UARPG_SaveGame_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_CurrentHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_MaxHealth,
@@ -174,10 +168,10 @@ UARPG_SaveGame::~UARPG_SaveGame() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UARPG_SaveGame, UARPG_SaveGame::StaticClass, TEXT("UARPG_SaveGame"), &Z_Registration_Info_UClass_UARPG_SaveGame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_SaveGame), 84217260U) },
+		{ Z_Construct_UClass_UARPG_SaveGame, UARPG_SaveGame::StaticClass, TEXT("UARPG_SaveGame"), &Z_Registration_Info_UClass_UARPG_SaveGame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_SaveGame), 1954254633U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_2608257764(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_2445173164(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

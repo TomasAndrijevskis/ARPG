@@ -24,7 +24,11 @@ public:
 
 	void SetDamageMultiplier(float NewDamageMultiplier);
 
-	virtual void UpdateDescription() override;
+	virtual void UpdateAbilityDescription() override;
+
+	virtual void UpdateUpgradeDescription() override;
+
+	virtual void UpdateAbilityStats() override;
 	
 protected:
 

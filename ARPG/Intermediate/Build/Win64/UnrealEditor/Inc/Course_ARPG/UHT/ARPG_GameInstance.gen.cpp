@@ -137,8 +137,8 @@ DEFINE_FUNCTION(UARPG_GameInstance::execInitializeGameInstance)
 }
 // End Class UARPG_GameInstance Function InitializeGameInstance
 
-// Begin Class UARPG_GameInstance Function LoadGame
-struct Z_Construct_UFunction_UARPG_GameInstance_LoadGame_Statics
+// Begin Class UARPG_GameInstance Function LoadAbilities
+struct Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -147,27 +147,27 @@ struct Z_Construct_UFunction_UARPG_GameInstance_LoadGame_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_LoadGame_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "LoadGame", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_LoadGame_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_LoadGame_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UARPG_GameInstance_LoadGame()
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "LoadAbilities", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_LoadGame_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UARPG_GameInstance::execLoadGame)
+DEFINE_FUNCTION(UARPG_GameInstance::execLoadAbilities)
 {
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->LoadGame();
+	P_THIS->LoadAbilities();
 	P_NATIVE_END;
 }
-// End Class UARPG_GameInstance Function LoadGame
+// End Class UARPG_GameInstance Function LoadAbilities
 
-// Begin Class UARPG_GameInstance Function SaveGame
-struct Z_Construct_UFunction_UARPG_GameInstance_SaveGame_Statics
+// Begin Class UARPG_GameInstance Function LoadStats
+struct Z_Construct_UFunction_UARPG_GameInstance_LoadStats_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -176,24 +176,111 @@ struct Z_Construct_UFunction_UARPG_GameInstance_SaveGame_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SaveGame_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SaveGame", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SaveGame_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SaveGame_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UARPG_GameInstance_SaveGame()
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_LoadStats_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "LoadStats", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_LoadStats_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_LoadStats_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_LoadStats()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SaveGame_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_LoadStats_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UARPG_GameInstance::execSaveGame)
+DEFINE_FUNCTION(UARPG_GameInstance::execLoadStats)
 {
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->SaveGame();
+	P_THIS->LoadStats();
 	P_NATIVE_END;
 }
-// End Class UARPG_GameInstance Function SaveGame
+// End Class UARPG_GameInstance Function LoadStats
+
+// Begin Class UARPG_GameInstance Function SaveAbilities
+struct Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SaveAbilities", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UARPG_GameInstance::execSaveAbilities)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SaveAbilities();
+	P_NATIVE_END;
+}
+// End Class UARPG_GameInstance Function SaveAbilities
+
+// Begin Class UARPG_GameInstance Function SaveAll
+struct Z_Construct_UFunction_UARPG_GameInstance_SaveAll_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SaveAll_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SaveAll", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SaveAll_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SaveAll_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_SaveAll()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SaveAll_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UARPG_GameInstance::execSaveAll)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SaveAll();
+	P_NATIVE_END;
+}
+// End Class UARPG_GameInstance Function SaveAll
+
+// Begin Class UARPG_GameInstance Function SaveStats
+struct Z_Construct_UFunction_UARPG_GameInstance_SaveStats_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SaveStats_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SaveStats", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SaveStats_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SaveStats_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_SaveStats()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SaveStats_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UARPG_GameInstance::execSaveStats)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SaveStats();
+	P_NATIVE_END;
+}
+// End Class UARPG_GameInstance Function SaveStats
 
 // Begin Class UARPG_GameInstance Function SetSlotName
 struct Z_Construct_UFunction_UARPG_GameInstance_SetSlotName_Statics
@@ -245,8 +332,11 @@ void UARPG_GameInstance::StaticRegisterNativesUARPG_GameInstance()
 		{ "bCheckSlot", &UARPG_GameInstance::execbCheckSlot },
 		{ "GetSlotName", &UARPG_GameInstance::execGetSlotName },
 		{ "InitializeGameInstance", &UARPG_GameInstance::execInitializeGameInstance },
-		{ "LoadGame", &UARPG_GameInstance::execLoadGame },
-		{ "SaveGame", &UARPG_GameInstance::execSaveGame },
+		{ "LoadAbilities", &UARPG_GameInstance::execLoadAbilities },
+		{ "LoadStats", &UARPG_GameInstance::execLoadStats },
+		{ "SaveAbilities", &UARPG_GameInstance::execSaveAbilities },
+		{ "SaveAll", &UARPG_GameInstance::execSaveAll },
+		{ "SaveStats", &UARPG_GameInstance::execSaveStats },
 		{ "SetSlotName", &UARPG_GameInstance::execSetSlotName },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -269,8 +359,11 @@ struct Z_Construct_UClass_UARPG_GameInstance_Statics
 		{ &Z_Construct_UFunction_UARPG_GameInstance_bCheckSlot, "bCheckSlot" }, // 1149728424
 		{ &Z_Construct_UFunction_UARPG_GameInstance_GetSlotName, "GetSlotName" }, // 1502944115
 		{ &Z_Construct_UFunction_UARPG_GameInstance_InitializeGameInstance, "InitializeGameInstance" }, // 3406541929
-		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadGame, "LoadGame" }, // 4224578456
-		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveGame, "SaveGame" }, // 4090984110
+		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities, "LoadAbilities" }, // 2298138032
+		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadStats, "LoadStats" }, // 388496173
+		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities, "SaveAbilities" }, // 1098041752
+		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAll, "SaveAll" }, // 2578912318
+		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveStats, "SaveStats" }, // 2831133602
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SetSlotName, "SetSlotName" }, // 1842137151
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -319,10 +412,10 @@ UARPG_GameInstance::~UARPG_GameInstance() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 1039967890U) },
+		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 1329768982U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_4116064621(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_924101230(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -47,9 +47,6 @@ public:
 	UPROPERTY(EditAnywhere)
 	int CurrentAbilityPoints;
 
-	//UPROPERTY(EditAnywhere)
-	//TArray<bool> UnlockedAbilities;
-
 	UPROPERTY(EditAnywhere)
 	TMap<FString, FAbilityData> UnlockedAbilities;
 };

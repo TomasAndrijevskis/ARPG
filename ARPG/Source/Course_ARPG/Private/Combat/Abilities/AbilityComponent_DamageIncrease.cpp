@@ -9,8 +9,6 @@
 void UAbilityComponent_DamageIncrease::BeginPlay()
 {
 	Super::BeginPlay();
-
-	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
 
@@ -77,8 +75,30 @@ void UAbilityComponent_DamageIncrease::SetDamageMultiplier(float NewDamageMultip
 }
 
 
-void UAbilityComponent_DamageIncrease::UpdateDescription()
+void UAbilityComponent_DamageIncrease::UpdateAbilityDescription()
 {
-	SetDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), GetCurrentAbilityLevel(), GetManaCost(), DamageMultiplier, GetCooldownDuration(), GetAbilityDuration()));
+	SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"),
+	GetCurrentAbilityLevel(), GetManaCost(), DamageMultiplier, GetCooldownDuration(), GetAbilityDuration()));
+}
+
+
+void UAbilityComponent_DamageIncrease::UpdateUpgradeDescription()
+{
+	float NextMana = GetManaCost() - (GetManaCost() * .1f);
+	float NextCooldown = GetCooldownDuration() - (GetCooldownDuration() * .1f);
+	float NextMultiplier = GetDamageMultiplier() + (GetDamageMultiplier() * .1f);
+	float NextDuration = GetAbilityDuration() + (GetAbilityDuration() * .1f);
+	
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage multiplier: x %.2f -> x %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, DamageMultiplier, NextMultiplier, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextDuration));
+}
+
+
+void UAbilityComponent_DamageIncrease::UpdateAbilityStats()
+{
+	Super::UpdateAbilityStats();
+
+	SetDamageMultiplier(DamageMultiplier += DamageMultiplier * 0.1f);
+	
 }

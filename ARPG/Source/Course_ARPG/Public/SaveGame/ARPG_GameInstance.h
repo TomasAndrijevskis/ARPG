@@ -22,11 +22,20 @@ public:
 	FString GetSlotName();
 	
 	UFUNCTION(BlueprintCallable)
-	void SaveGame();
+	void SaveStats();
 
 	UFUNCTION(BlueprintCallable)
-	void LoadGame();
+	void LoadStats();
 
+	UFUNCTION(BlueprintCallable)
+	void SaveAbilities();
+
+	UFUNCTION(BlueprintCallable)
+	void LoadAbilities();
+
+	UFUNCTION(BlueprintCallable)
+	void SaveAll();
+	
 	UFUNCTION(BlueprintCallable)
 	void InitializeGameInstance();
 

@@ -58,11 +58,13 @@ private:
 	void SetIconStyle(UTexture2D* Icon);
 
 	UFUNCTION()
-	void SetButtonText();
+	void SetButtonText(bool bIsLevelMaxed);
 	
 	UFUNCTION()
 	void UpgradeAbility();
-	
+
+	UFUNCTION()
+	void HandleUpgradeButtonActions();
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilityIcon;

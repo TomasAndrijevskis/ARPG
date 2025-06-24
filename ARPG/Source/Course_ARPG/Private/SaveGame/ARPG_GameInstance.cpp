@@ -20,14 +20,18 @@ FString UARPG_GameInstance::GetSlotName()
 }
 
 
-void UARPG_GameInstance::SaveGame()
+void UARPG_GameInstance::SaveStats()
 {
-	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
-	
-	if (!PlayerRef || !SaveGameInstance)
+	if (!PlayerRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Game instance is null"));
+		UE_LOG(LogTemp, Error, TEXT("player is null"));
 		return;
+	}
+	
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
 	
 	SaveGameInstance->CurrentHealth = PlayerRef->StatsComp->GetStatValue(EStats::Health);
@@ -40,22 +44,12 @@ void UARPG_GameInstance::SaveGame()
 	SaveGameInstance->CurrentXP = PlayerRef->LevelComp->GetCurrentExperience();
 	SaveGameInstance->CurrentStatPoints = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
 	SaveGameInstance->CurrentAbilityPoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
-
-	for (auto Ability: PlayerRef->Abilities)
-	{
-		FAbilityData Data;
-		Data.bIsUnlocked = Ability->GetAbilityAvailability();
-		Data.CurrentLevel = Ability->GetCurrentAbilityLevel();
-		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
-		UE_LOG(LogTemp, Error, TEXT("Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
-	}
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
-	
 }
 
 
-void UARPG_GameInstance::LoadGame()
+void UARPG_GameInstance::LoadStats()
 {
 	if (!PlayerRef)
 	{
@@ -81,6 +75,55 @@ void UARPG_GameInstance::LoadGame()
 	PlayerRef->LevelComp->SetExperience(SaveGameInstance->CurrentXP);
 	PlayerRef->LevelComp->SetStatPoints(SaveGameInstance->CurrentStatPoints);
 	PlayerRef->LevelComp->SetAbilityPoints(SaveGameInstance->CurrentAbilityPoints);
+	UE_LOG(LogTemp, Warning, TEXT("Loaded stats:"));
+}
+
+
+void UARPG_GameInstance::SaveAbilities()
+{
+	if (!PlayerRef)
+	{
+		UE_LOG(LogTemp, Error, TEXT("player is null"));
+		return;
+	}
+	
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
+	}
+
+	for (auto Ability: PlayerRef->Abilities)
+	{
+		FAbilityData Data;
+		Data.bIsUnlocked = Ability->GetAbilityAvailability();
+		Data.CurrentLevel = Ability->GetCurrentAbilityLevel();
+		Data.AbilityDuration = Ability->GetAbilityDuration();
+		Data.CooldownDuration = Ability->GetCooldownDuration();
+		Data.ManaCost = Ability->GetManaCost();
+		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
+		UE_LOG(LogTemp, Error, TEXT("Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
+	}
+	
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadAbilities()
+{
+	if (!PlayerRef)
+	{
+		UE_LOG(LogTemp, Error, TEXT("player is null"));
+		return;
+	}
+	
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	
+	if (!SaveGameInstance)
+	{
+		UE_LOG(LogTemp, Error, TEXT("cant load"));
+		return;
+	}
 
 	UE_LOG(LogTemp, Warning, TEXT("Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
 	for (auto Ability: PlayerRef->Abilities)
@@ -91,9 +134,19 @@ void UARPG_GameInstance::LoadGame()
 			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
 			Ability->SetCurrentAbilityLevel(SavedData.CurrentLevel);
 			Ability->SetAbilityAvailability(SavedData.bIsUnlocked);
+			Ability->SetCooldownDuration(SavedData.CooldownDuration);
+			Ability->SetManaCost(SavedData.ManaCost);
+			Ability->SetAbilityDuration(SavedData.AbilityDuration);
 			UE_LOG(LogTemp, Error, TEXT("Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
 		}
 	}
+}
+
+
+void UARPG_GameInstance::SaveAll()
+{
+	SaveStats();
+	SaveAbilities();	
 }
 
 
