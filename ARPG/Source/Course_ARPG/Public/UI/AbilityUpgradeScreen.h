@@ -38,9 +38,6 @@ private:
 
 	UFUNCTION()
 	void SetupButtonCallbacks();
-
-	UFUNCTION()
-	void BindUpgradeButtonAction(bool bIsAbilityActive);
 	
 	UFUNCTION()
 	void CreateDescriptionWidget(UHorizontalBox* HorizontalBox, TSubclassOf<UDescriptionWidget> WidgetClass, FString Description);
@@ -61,13 +58,11 @@ private:
 	void SetIconStyle(UTexture2D* Icon);
 
 	UFUNCTION()
-	void UnlockAbility();
-
-	UFUNCTION()
 	void SetButtonText();
 	
 	UFUNCTION()
 	void UpgradeAbility();
+	
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilityIcon;

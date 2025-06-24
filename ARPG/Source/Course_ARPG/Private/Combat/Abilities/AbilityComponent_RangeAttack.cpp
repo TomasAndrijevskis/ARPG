@@ -12,9 +12,6 @@ void UAbilityComponent_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
-	"\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
-
 	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
@@ -28,12 +25,12 @@ void UAbilityComponent_RangeAttack::StartAbilityAttack()
 	if (!bIsOnCooldown && !bIsCasting)
 	{
 		bIsCasting = true;
-		float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
+		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		
 		FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 		ParticleComponent = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
-		CharacterRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(ParticleTimerHandle, this, &UAbilityComponent_RangeAttack::CompleteAbilityAttack, AnimDuration/2, false);
 	}
 }
@@ -93,4 +90,9 @@ void UAbilityComponent_RangeAttack::SetProjectileDamage(float NewProjectileDamag
 }
 
 
+void UAbilityComponent_RangeAttack::UpdateDescription()
+{
+	SetDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"), GetCurrentAbilityLevel(), GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
+}
 

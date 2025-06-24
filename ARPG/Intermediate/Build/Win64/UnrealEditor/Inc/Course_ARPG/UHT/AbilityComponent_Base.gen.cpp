@@ -17,6 +17,7 @@ COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilitySt
 COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityTimerChangedSignature__DelegateSignature();
 ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UDataTable_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
@@ -204,10 +205,10 @@ DEFINE_FUNCTION(UAbilityComponent_Base::execGetAbilityDuration)
 }
 // End Class UAbilityComponent_Base Function GetAbilityDuration
 
-// Begin Class UAbilityComponent_Base Function GetAbilityLevel
-struct Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics
+// Begin Class UAbilityComponent_Base Function GetCurrentAbilityLevel
+struct Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics
 {
-	struct AbilityComponent_Base_eventGetAbilityLevel_Parms
+	struct AbilityComponent_Base_eventGetCurrentAbilityLevel_Parms
 	{
 		int32 ReturnValue;
 	};
@@ -220,30 +221,30 @@ struct Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityComponent_Base_eventGetAbilityLevel_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::NewProp_ReturnValue,
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityComponent_Base_eventGetCurrentAbilityLevel_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::NewProp_ReturnValue,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_Base, nullptr, "GetAbilityLevel", nullptr, nullptr, Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::PropPointers), sizeof(Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::AbilityComponent_Base_eventGetAbilityLevel_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::AbilityComponent_Base_eventGetAbilityLevel_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel()
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_Base, nullptr, "GetCurrentAbilityLevel", nullptr, nullptr, Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::PropPointers), sizeof(Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::AbilityComponent_Base_eventGetCurrentAbilityLevel_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::AbilityComponent_Base_eventGetCurrentAbilityLevel_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UAbilityComponent_Base::execGetAbilityLevel)
+DEFINE_FUNCTION(UAbilityComponent_Base::execGetCurrentAbilityLevel)
 {
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	*(int32*)Z_Param__Result=P_THIS->GetAbilityLevel();
+	*(int32*)Z_Param__Result=P_THIS->GetCurrentAbilityLevel();
 	P_NATIVE_END;
 }
-// End Class UAbilityComponent_Base Function GetAbilityLevel
+// End Class UAbilityComponent_Base Function GetCurrentAbilityLevel
 
 // Begin Class UAbilityComponent_Base Function SetAbilityAvailability
 struct Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityAvailability_Statics
@@ -292,47 +293,47 @@ DEFINE_FUNCTION(UAbilityComponent_Base::execSetAbilityAvailability)
 }
 // End Class UAbilityComponent_Base Function SetAbilityAvailability
 
-// Begin Class UAbilityComponent_Base Function SetAbilityLevel
-struct Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics
+// Begin Class UAbilityComponent_Base Function UpgradeAbility
+struct Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics
 {
-	struct AbilityComponent_Base_eventSetAbilityLevel_Parms
+	struct AbilityComponent_Base_eventUpgradeAbility_Parms
 	{
-		int32 NewLevel;
+		int32 Points;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FIntPropertyParams NewProp_NewLevel;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_Points;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::NewProp_NewLevel = { "NewLevel", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityComponent_Base_eventSetAbilityLevel_Parms, NewLevel), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::NewProp_NewLevel,
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::NewProp_Points = { "Points", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityComponent_Base_eventUpgradeAbility_Parms, Points), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::NewProp_Points,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_Base, nullptr, "SetAbilityLevel", nullptr, nullptr, Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::PropPointers), sizeof(Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::AbilityComponent_Base_eventSetAbilityLevel_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::AbilityComponent_Base_eventSetAbilityLevel_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel()
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_Base, nullptr, "UpgradeAbility", nullptr, nullptr, Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::PropPointers), sizeof(Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::AbilityComponent_Base_eventUpgradeAbility_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::AbilityComponent_Base_eventUpgradeAbility_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UAbilityComponent_Base::execSetAbilityLevel)
+DEFINE_FUNCTION(UAbilityComponent_Base::execUpgradeAbility)
 {
-	P_GET_PROPERTY(FIntProperty,Z_Param_NewLevel);
+	P_GET_PROPERTY(FIntProperty,Z_Param_Points);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->SetAbilityLevel(Z_Param_NewLevel);
+	P_THIS->UpgradeAbility(Z_Param_Points);
 	P_NATIVE_END;
 }
-// End Class UAbilityComponent_Base Function SetAbilityLevel
+// End Class UAbilityComponent_Base Function UpgradeAbility
 
 // Begin Class UAbilityComponent_Base
 void UAbilityComponent_Base::StaticRegisterNativesUAbilityComponent_Base()
@@ -341,9 +342,9 @@ void UAbilityComponent_Base::StaticRegisterNativesUAbilityComponent_Base()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "GetAbilityAvailability", &UAbilityComponent_Base::execGetAbilityAvailability },
 		{ "GetAbilityDuration", &UAbilityComponent_Base::execGetAbilityDuration },
-		{ "GetAbilityLevel", &UAbilityComponent_Base::execGetAbilityLevel },
+		{ "GetCurrentAbilityLevel", &UAbilityComponent_Base::execGetCurrentAbilityLevel },
 		{ "SetAbilityAvailability", &UAbilityComponent_Base::execSetAbilityAvailability },
-		{ "SetAbilityLevel", &UAbilityComponent_Base::execSetAbilityLevel },
+		{ "UpgradeAbility", &UAbilityComponent_Base::execUpgradeAbility },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -390,6 +391,10 @@ struct Z_Construct_UClass_UAbilityComponent_Base_Statics
 		{ "Category", "AbilityComponent_Base" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RequirementsDataTable_MetaData[] = {
+		{ "Category", "AbilityComponent_Base" },
+		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ManaCost_MetaData[] = {
 		{ "Category", "AbilityComponent_Base" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
@@ -399,6 +404,10 @@ struct Z_Construct_UClass_UAbilityComponent_Base_Statics
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CooldownDuration_MetaData[] = {
+		{ "Category", "AbilityComponent_Base" },
+		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CurrentLevel_MetaData[] = {
 		{ "Category", "AbilityComponent_Base" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
 	};
@@ -413,17 +422,19 @@ struct Z_Construct_UClass_UAbilityComponent_Base_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsOnCooldown;
 	static void NewProp_bIsAbilityAvailable_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsAbilityAvailable;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_RequirementsDataTable;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ManaCost;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AbilityDuration;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CooldownDuration;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentLevel;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityAvailability, "GetAbilityAvailability" }, // 3930874560
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityDuration, "GetAbilityDuration" }, // 2247876657
-		{ &Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityLevel, "GetAbilityLevel" }, // 3031551643
+		{ &Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel, "GetCurrentAbilityLevel" }, // 2311290974
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityAvailability, "SetAbilityAvailability" }, // 3175708875
-		{ &Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityLevel, "SetAbilityLevel" }, // 775473023
+		{ &Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility, "UpgradeAbility" }, // 3011484336
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -447,9 +458,11 @@ void Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_bIsAbilityAvaila
 	((UAbilityComponent_Base*)Obj)->bIsAbilityAvailable = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_bIsAbilityAvailable = { "bIsAbilityAvailable", nullptr, (EPropertyFlags)0x0020080000020001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UAbilityComponent_Base), &Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_bIsAbilityAvailable_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsAbilityAvailable_MetaData), NewProp_bIsAbilityAvailable_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_RequirementsDataTable = { "RequirementsDataTable", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_Base, RequirementsDataTable), Z_Construct_UClass_UDataTable_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RequirementsDataTable_MetaData), NewProp_RequirementsDataTable_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_ManaCost = { "ManaCost", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_Base, ManaCost), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ManaCost_MetaData), NewProp_ManaCost_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_AbilityDuration = { "AbilityDuration", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_Base, AbilityDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityDuration_MetaData), NewProp_AbilityDuration_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_CooldownDuration = { "CooldownDuration", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_Base, CooldownDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CooldownDuration_MetaData), NewProp_CooldownDuration_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_CurrentLevel = { "CurrentLevel", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_Base, CurrentLevel), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentLevel_MetaData), NewProp_CurrentLevel_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityComponent_Base_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_OnTimerChangedDelegate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_OnAbilityStartedDelegate,
@@ -459,9 +472,11 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_RequiredPointsToUpgrade,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_bIsOnCooldown,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_bIsAbilityAvailable,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_RequirementsDataTable,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_ManaCost,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_AbilityDuration,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_CooldownDuration,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_Base_Statics::NewProp_CurrentLevel,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_Base_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_Base_Statics::DependentSingletons[])() = {
@@ -504,10 +519,10 @@ UAbilityComponent_Base::~UAbilityComponent_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_Base, UAbilityComponent_Base::StaticClass, TEXT("UAbilityComponent_Base"), &Z_Registration_Info_UClass_UAbilityComponent_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_Base), 153537039U) },
+		{ Z_Construct_UClass_UAbilityComponent_Base, UAbilityComponent_Base::StaticClass, TEXT("UAbilityComponent_Base"), &Z_Registration_Info_UClass_UAbilityComponent_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_Base), 237634452U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_2759101924(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_4021596050(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

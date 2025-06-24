@@ -79,6 +79,8 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	int AvailableAbilityPoints = 0;
 
-	int PointsAmountForLevel = 5;
+	int StatPointsAmountForLevel = 5;
+
+	int AbilityUpgradePointsAmountForLevel = 2;
 	
 };

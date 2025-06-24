@@ -1,7 +1,10 @@
 
 #include "Combat/Abilities/AbilityComponent_Base.h"
+
+#include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter.h"
 #include "Characters/PlayerActionsComponent.h"
+#include "Characters/Data/AbilityUpgradeRequirements.h"
 #include "Combat/CombatComponent.h"
 
 
@@ -15,8 +18,10 @@ void UAbilityComponent_Base::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	CharacterRef = Cast<AMainCharacter>(GetOwner());
+	PlayerRef = Cast<AMainCharacter>(GetOwner());
 	SkeletalMeshComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
+
+	UpdateDescription();
 }
 
 
@@ -66,25 +71,25 @@ void UAbilityComponent_Base::StartCooldownTimer()
 
 bool UAbilityComponent_Base::CanPlayMontage() const
 {
-	return AnimMontage && CharacterRef && !CharacterRef->GetCurrentMontage();
+	return AnimMontage && PlayerRef && !PlayerRef->GetCurrentMontage();
 }
 
 
 void UAbilityComponent_Base::HandlePlayerActions(bool bCanDo)
 {
-	CharacterRef->CombatComp->bCanAttack = bCanDo;
-	CharacterRef->PlayerActionsComp->bCanRoll = bCanDo;
+	PlayerRef->CombatComp->bCanAttack = bCanDo;
+	PlayerRef->PlayerActionsComp->bCanRoll = bCanDo;
 }
 
 
 bool UAbilityComponent_Base::CheckMana()
 {
-	if (!CharacterRef || !CharacterRef -> Implements<UMainPlayer>())
+	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>())
 	{
 		return false;
 	}
 
-	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);
+	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(PlayerRef);
 	if (!IPlayerRef)
 	{
 		return false;
@@ -96,21 +101,51 @@ bool UAbilityComponent_Base::CheckMana()
 
 void UAbilityComponent_Base::OnAbilityUpgraded()
 {
-	SetCooldownDuration(GetCooldownDuration()-1);
+	//SetCooldownDuration(GetCooldownDuration()-1);
+	UpdateDescription();
+	UE_LOG(LogTemp, Error, TEXT("Ability Upgraded"));
 }
 
 
-void UAbilityComponent_Base::SetAbilityLevel(int NewLevel)
+void UAbilityComponent_Base::UpgradeAbility(int Points)
 {
-	if (CurrentLevel != MaxLevel && NewLevel <= MaxLevel)
+	int PointsRequired = GetRequiredUpgradePoints();
+
+	if (Points >= PointsRequired)
 	{
-		CurrentLevel = NewLevel;
+		CurrentLevel++;
+		Points -= PointsRequired;
+		PlayerRef->LevelComp->SetAbilityPoints(Points);
+		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(Points);
 		OnAbilityUpgraded();
 	}
 }
 
 
-int UAbilityComponent_Base::GetAbilityLevel()
+int UAbilityComponent_Base::GetRequiredUpgradePoints()
+{
+	if (!RequirementsDataTable)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Cant load levels data table"));
+		return 0;
+	}
+
+	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
+	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
+	if (!RequirementsRow)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("No level row found for %s"), *RowName.ToString());
+		return 0;
+	}
+	return RequirementsRow->RequiredPoints;
+}
+
+
+void UAbilityComponent_Base::UpdateDescription()
+{
+}
+
+int UAbilityComponent_Base::GetCurrentAbilityLevel()
 {
 	return CurrentLevel;
 }
@@ -147,12 +182,15 @@ bool UAbilityComponent_Base::GetAbilityAvailability()
 void UAbilityComponent_Base::SetAbilityAvailability(bool NewAvailability)
 {
 	bIsAbilityAvailable = NewAvailability;
-	UE_LOG(LogTemp, Warning, TEXT("Ability: %s | Available: %s"), *GetName(), bIsAbilityAvailable ? TEXT("True") : TEXT("False"));
 }
 
 
 UTexture2D* UAbilityComponent_Base::GetIcon()
 {
+	if (!Icon)
+	{
+		return nullptr;
+	}
 	return Icon;
 }
 

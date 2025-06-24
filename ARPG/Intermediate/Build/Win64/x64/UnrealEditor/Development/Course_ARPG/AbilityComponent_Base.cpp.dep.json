@@ -8,6 +8,8 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\abilitycomponent_base.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_base.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\levelingcomponent.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\levelingcomponent.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\maincharacter.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
@@ -24,6 +26,8 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\maincharacter.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\playeractionscomponent.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\playeractionscomponent.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\data\\abilityupgraderequirements.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilityupgraderequirements.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\combatcomponent.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent.generated.h"
         ],

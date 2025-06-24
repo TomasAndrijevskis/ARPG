@@ -19,6 +19,8 @@ public:
 	
 	UPROPERTY(BlueprintAssignable)
 	FOnAttackPerformedignature OnAttackPerformedDelegate;
+
+	virtual void UpdateDescription() override;
 	
 protected:
 

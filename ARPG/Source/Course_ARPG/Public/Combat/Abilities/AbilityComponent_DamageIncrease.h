@@ -23,6 +23,8 @@ public:
 	float GetDamageMultiplier();
 
 	void SetDamageMultiplier(float NewDamageMultiplier);
+
+	virtual void UpdateDescription() override;
 	
 protected:
 
@@ -32,7 +34,6 @@ protected:
 
 	virtual void OnAbilityTimerFinished() override;
 
-	//virtual void OnAbilityUpgraded() override;
 	
 private:
 

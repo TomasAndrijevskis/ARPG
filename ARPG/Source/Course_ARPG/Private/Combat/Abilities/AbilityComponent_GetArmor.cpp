@@ -7,9 +7,6 @@ void UAbilityComponent_GetArmor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetDescription(FString::Printf(TEXT("Give yourself protection."
-	"\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"),GetManaCost(), GetArmor(), GetDamageReductionPercent()*100, GetCooldownDuration()));
-
 	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
@@ -22,11 +19,11 @@ void UAbilityComponent_GetArmor::GiveArmor()
 	{
 		bIsCasting = true;
 		HandlePlayerActions(false);
-		float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
-		CharacterRef->StatsComp->SetStatValue(EStats::MaxArmor, Armor);
-		CharacterRef->StatsComp->SetStatValue(EStats::Armor, Armor);
+		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
+		PlayerRef->StatsComp->SetStatValue(EStats::MaxArmor, Armor);
+		PlayerRef->StatsComp->SetStatValue(EStats::Armor, Armor);
 		OnAbilityStartedDelegate.Broadcast();
-		CharacterRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::CompleteAbility, AnimDuration, false);
 	}
 }
@@ -65,4 +62,9 @@ void UAbilityComponent_GetArmor::SetDamageReductionPercent(float NewDamageReduct
 }
 
 
+void UAbilityComponent_GetArmor::UpdateDescription()
+{
+	SetDescription(FString::Printf(TEXT("Give yourself protection."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"), GetCurrentAbilityLevel(), GetManaCost(), GetArmor(), GetDamageReductionPercent()*100, GetCooldownDuration()));
+}
 

@@ -13,8 +13,6 @@ void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityCom
 {
 	AbilityComp_REF = AbilityComp;
 	SetIconStyle(AbilityComp_REF->GetIcon());
-	AbilityDescription = AbilityComp_REF->GetDescription();
-	UpgradeDescription = AbilityComp_REF->GetUpgradeRequirements();
 	SetButtonText();
 	SetAbilityIconEnable();
 	SetupButtonCallbacks();
@@ -32,8 +30,7 @@ void UAbilityUpgradeScreen::SetupButtonCallbacks()
 {
 	if (Button_UpgradeAbility)
 	{
-		BindUpgradeButtonAction(AbilityComp_REF->GetAbilityAvailability());
-		
+		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UpgradeAbility);
 		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget);
 		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveUpgradeDescriptionWidget);
 	}
@@ -42,21 +39,6 @@ void UAbilityUpgradeScreen::SetupButtonCallbacks()
 	{
 		Button_AbilityIcon->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateAbilityDescriptionWidget);
 		Button_AbilityIcon->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget);
-	}
-}
-
-
-void UAbilityUpgradeScreen::BindUpgradeButtonAction(bool bIsAbilityActive)
-{
-	if (bIsAbilityActive)
-	{
-		Button_UpgradeAbility->OnClicked.Clear();
-		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UpgradeAbility);
-	}
-	else
-	{
-		Button_UpgradeAbility->OnClicked.Clear();
-		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UnlockAbility);	
 	}
 }
 
@@ -88,15 +70,6 @@ void UAbilityUpgradeScreen::RemoveDescriptionWidget(UHorizontalBox* HorizontalBo
 }
 
 
-void UAbilityUpgradeScreen::UnlockAbility()
-{
-	AbilityComp_REF->SetAbilityAvailability(true);
-	SetButtonText();
-	SetAbilityIconEnable();
-	BindUpgradeButtonAction(AbilityComp_REF->GetAbilityAvailability());
-}
-
-
 void UAbilityUpgradeScreen::SetButtonText()
 {
 	if (AbilityComp_REF->GetAbilityAvailability())
@@ -123,10 +96,15 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 	{
 		return;
 	}
-	Points--;
 	
-	PlayerRef->LevelComp->SetAbilityPoints(Points);
-	PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(Points);
+	AbilityComp_REF->UpgradeAbility(Points);
+	
+	if (!AbilityComp_REF->GetAbilityAvailability())
+	{
+		AbilityComp_REF->SetAbilityAvailability(true);
+		SetButtonText();
+		SetAbilityIconEnable();
+	}
 }
 
 
@@ -174,12 +152,14 @@ void UAbilityUpgradeScreen::SetIconStyle(UTexture2D* Icon)
 
 void UAbilityUpgradeScreen::CreateAbilityDescriptionWidget()
 {
+	AbilityDescription = AbilityComp_REF->GetDescription();
 	CreateDescriptionWidget(HorizontalBox_AbilityDescription, AbilityDescriptionClass, AbilityDescription);
 }
 
 
 void UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget()
 {
+	UpgradeDescription = AbilityComp_REF->GetUpgradeRequirements();
 	CreateDescriptionWidget(HorizontalBox_UpgradeDescription, UpgradeDescriptionClass, UpgradeDescription);
 }
 

@@ -25,6 +25,8 @@ public:
 	float GetDamageReductionPercent();
 
 	void SetDamageReductionPercent(float NewDamageReductionPercent);
+
+	virtual void UpdateDescription() override;
 	
 protected:
 	

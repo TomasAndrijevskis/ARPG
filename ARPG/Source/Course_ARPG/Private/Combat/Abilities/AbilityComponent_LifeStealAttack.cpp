@@ -3,7 +3,6 @@
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
@@ -12,9 +11,6 @@ void UAbilityComponent_LifeStealAttack::BeginPlay()
 	Super::BeginPlay();
 
 	FighterRef = Cast<IFighter>(GetOwner());
-
-	SetDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
-	"\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),GetManaCost(), GetStolenHealthPercent()*100, GetCooldownDuration(), GetAbilityDuration()));
 	
 	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
@@ -38,7 +34,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 	if (!bIsActivated && !bIsOnCooldown && CheckMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
-		float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
+		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		float TempDuration = 1-AnimDuration;
 		
 		bIsActivated = true;
@@ -48,7 +44,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 				FVector3d(.5f, .5f, .5f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 
 		TimerDuration = GetAbilityDuration();
-		CharacterRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::StartAbilityTimer, (AnimDuration + TempDuration), true);
 	}
 }
@@ -75,4 +71,11 @@ float UAbilityComponent_LifeStealAttack::GetStolenHealthPercent()
 void UAbilityComponent_LifeStealAttack::SetStolenHealthPercent(float NewStolenHealthPercent)
 {
 	StolenHealthPercent = NewStolenHealthPercent;
+}
+
+
+void UAbilityComponent_LifeStealAttack::UpdateDescription()
+{
+	SetDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"), GetCurrentAbilityLevel(), GetManaCost(), GetStolenHealthPercent()*100, GetCooldownDuration(), GetAbilityDuration()));
 }

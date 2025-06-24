@@ -10,9 +10,6 @@ void UAbilityComponent_DamageIncrease::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
-	"\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), GetManaCost(), DamageMultiplier, GetCooldownDuration(), GetAbilityDuration()));
-
 	SetUpgradeRequirements(FString::Printf(TEXT("Test")));
 }
 
@@ -33,7 +30,7 @@ void UAbilityComponent_DamageIncrease::IncreaseDamage()
 		OnAbilityStartedDelegate.Broadcast();
 		TimerDuration = GetAbilityDuration();
 		
-		float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
+		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		float tempDuration = 1.0f - AnimDuration;//анимация не длится 1 секунду, а переделать ее я не могу. это чтобы таймер срабатывал каждую секунду
 
 		//CharacterRef->StatsComp->SetStatValue(EStats::Strength, DefaultDamage*DamageMultiplier);
@@ -43,7 +40,7 @@ void UAbilityComponent_DamageIncrease::IncreaseDamage()
 
 		bIsDamageIncreased = true;
 
-		CharacterRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::StartAbilityTimer, (AnimDuration+tempDuration), true);
 	}
 }
@@ -79,3 +76,9 @@ void UAbilityComponent_DamageIncrease::SetDamageMultiplier(float NewDamageMultip
 	DamageMultiplier = NewDamageMultiplier;
 }
 
+
+void UAbilityComponent_DamageIncrease::UpdateDescription()
+{
+	SetDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"), GetCurrentAbilityLevel(), GetManaCost(), DamageMultiplier, GetCooldownDuration(), GetAbilityDuration()));
+}

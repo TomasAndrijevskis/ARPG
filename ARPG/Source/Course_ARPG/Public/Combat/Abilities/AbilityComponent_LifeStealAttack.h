@@ -24,6 +24,8 @@ public:
 	float GetStolenHealthPercent();
 
 	void SetStolenHealthPercent(float NewStolenHealthPercent);
+
+	virtual void UpdateDescription() override;
 	
 protected:
 

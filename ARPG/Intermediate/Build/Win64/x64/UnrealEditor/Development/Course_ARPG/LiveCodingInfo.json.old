@@ -2,15 +2,10 @@
 	"RemapUnityFiles": 
 	{
 		"Module.Course_ARPG.cpp.obj": [
-			"AbilityComponent_Base.gen.cpp.obj",
-			"AbilityComponent_DamageIncrease.gen.cpp.obj",
-			"AbilityComponent_GetArmor.gen.cpp.obj",
-			"AbilityComponent_LifeStealAttack.gen.cpp.obj",
-			"AbilityComponent_RangeAttack.gen.cpp.obj",
-			"AbilityUpgradeRequiredPoints.gen.cpp.obj",
 			"AbilityUpgradeScreen.gen.cpp.obj",
 			"ARPG_GameInstance.gen.cpp.obj",
 			"ARPG_PlayerController.gen.cpp.obj",
+			"ARPG_SaveGame.gen.cpp.obj",
 			"BlockComponent.gen.cpp.obj",
 			"BossAnimInstance.gen.cpp.obj",
 			"BossCharacter.gen.cpp.obj",
@@ -27,6 +22,7 @@
 			"EStats.gen.cpp.obj",
 			"Fighter.gen.cpp.obj",
 			"FTraceSockets.gen.cpp.obj",
+			"LevelingComponent.gen.cpp.obj",
 			"LockonComponent.gen.cpp.obj",
 			"LookAtPlayerAnimNotifyState.gen.cpp.obj",
 			"LookAtPlayerComponent.gen.cpp.obj",
@@ -60,7 +56,6 @@
 			"MainCharacter.cpp.obj",
 			"PlayerActionsComponent.cpp.obj",
 			"StatsComponent.cpp.obj",
-			"AbilityComponent_Base.cpp.obj",
 			"AbilityComponent_DamageIncrease.cpp.obj",
 			"AbilityComponent_GetArmor.cpp.obj",
 			"AbilityComponent_LifeStealAttack.cpp.obj",
@@ -77,16 +72,21 @@
 			"Enemy.cpp.obj",
 			"Fighter.cpp.obj",
 			"MainPlayer.cpp.obj",
-			"DescriptionWidget.cpp.obj",
-			"SaveSlotWidget.cpp.obj",
-			"ARPG_SaveGame.gen.cpp.obj",
-			"Course_ARPG.init.gen.cpp.obj",
-			"LevelingComponent.gen.cpp.obj",
-			"LevelingComponent.cpp.obj",
 			"ARPG_GameInstance.cpp.obj",
 			"ARPG_SaveGame.cpp.obj",
-			"AbilityUpgradeScreen.cpp.obj",
-			"StatsScreenWidget.cpp.obj"
+			"DescriptionWidget.cpp.obj",
+			"SaveSlotWidget.cpp.obj",
+			"StatsScreenWidget.cpp.obj",
+			"AbilityComponent_Base.gen.cpp.obj",
+			"AbilityComponent_DamageIncrease.gen.cpp.obj",
+			"AbilityComponent_GetArmor.gen.cpp.obj",
+			"AbilityComponent_LifeStealAttack.gen.cpp.obj",
+			"AbilityComponent_RangeAttack.gen.cpp.obj",
+			"AbilityUpgradeRequirements.gen.cpp.obj",
+			"Course_ARPG.init.gen.cpp.obj",
+			"LevelingComponent.cpp.obj",
+			"AbilityComponent_Base.cpp.obj",
+			"AbilityUpgradeScreen.cpp.obj"
 		]
 	}
 }

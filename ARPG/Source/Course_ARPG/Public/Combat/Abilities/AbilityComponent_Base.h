@@ -28,14 +28,16 @@ public:
 	FOnAbilityFinishedSignature OnAbilityFinishedDelegate;
 
 	UFUNCTION(BlueprintCallable)
-	void SetAbilityLevel(int NewLevel);
+	void UpgradeAbility(int Points);
 
 	UFUNCTION(BlueprintCallable)
-	int GetAbilityLevel();
+	int GetCurrentAbilityLevel();
 	
 	FString GetDescription();
 
 	void SetDescription(FString NewDescription);
+
+	virtual void UpdateDescription();
 
 	FString GetUpgradeRequirements();
 
@@ -61,7 +63,9 @@ public:
 	void SetAbilityDuration(float NewAbilityDuration);
 	
 	UTexture2D* GetIcon();
-	
+
+	int GetRequiredUpgradePoints();
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -95,11 +99,14 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	bool bIsAbilityAvailable = false;
 	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UDataTable* RequirementsDataTable;
+	
 	float TimerDuration;
 
 	FTimerHandle TimerHandle;
 
-	class AMainCharacter* CharacterRef;
+	class AMainCharacter* PlayerRef;
 
 	USkeletalMeshComponent* SkeletalMeshComp;
 
@@ -116,14 +123,15 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float CooldownDuration = 10.0f;
+
+	UPROPERTY(VisibleAnywhere)
+	int CurrentLevel = 0;
 	
 	FString Description;
 
 	FString UpgradeRequirements;
-	
-	int CurrentLevel;
 
-	int MaxLevel = 5;
+	
 	
 };
 

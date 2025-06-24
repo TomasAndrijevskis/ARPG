@@ -404,7 +404,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_ChargeAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequiredPoints.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequirements.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\BlockComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent.h"/>
