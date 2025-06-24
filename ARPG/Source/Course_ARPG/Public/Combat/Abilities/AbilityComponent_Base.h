@@ -33,6 +33,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	int GetCurrentAbilityLevel();
 	
+	void SetCurrentAbilityLevel(int32 NewLevel);
+	
 	FString GetDescription();
 
 	void SetDescription(FString NewDescription);

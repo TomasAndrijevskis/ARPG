@@ -37,6 +37,6 @@ private:
 
 	FString SlotName = FString("Slot1");
 
-	class AMainCharacter* CharacterRef;
+	class AMainCharacter* PlayerRef;
 	
 };

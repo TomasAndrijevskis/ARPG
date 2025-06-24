@@ -11,7 +11,6 @@
 void UARPG_GameInstance::SetSlotName(FString NewSlotName)
 {
 	SlotName = NewSlotName;
-	//UE_LOG(LogTemp, Error, TEXT("SlotName: %s"), *NewSlotName);
 }
 
 
@@ -23,76 +22,84 @@ FString UARPG_GameInstance::GetSlotName()
 
 void UARPG_GameInstance::SaveGame()
 {
-	//UE_LOG(LogTemp, Error, TEXT("SaveGame: SlotName: %s"), *SlotName);
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	
-	if (!CharacterRef || !SaveGameInstance)
+	if (!PlayerRef || !SaveGameInstance)
 	{
 		UE_LOG(LogTemp, Error, TEXT("Game instance is null"));
 		return;
 	}
 	
-	SaveGameInstance->CurrentHealth = CharacterRef->StatsComp->GetStatValue(EStats::Health);
-	SaveGameInstance->MaxHealth = CharacterRef->StatsComp->GetStatValue(EStats::MaxHealth);
-	SaveGameInstance->CurrentMana = CharacterRef->StatsComp->GetStatValue(EStats::Mana);
-	SaveGameInstance->MaxMana = CharacterRef->StatsComp->GetStatValue(EStats::MaxMana);
-	SaveGameInstance->MaxStamina = CharacterRef->StatsComp->GetStatValue(EStats::MaxStamina);
-	SaveGameInstance->Strength = CharacterRef->StatsComp->GetStatValue(EStats::Strength);
-	SaveGameInstance->CurrentLevel = CharacterRef->LevelComp->GetCurrentLevel();
-	SaveGameInstance->CurrentXP = CharacterRef->LevelComp->GetCurrentExperience();
-	SaveGameInstance->CurrentStatPoints = CharacterRef->LevelComp->GetCurrentStatPointsAmount();
-	SaveGameInstance->CurrentAbilityPoints = CharacterRef->LevelComp->GetCurrentAbilityPointsAmount();
-	
-	for (auto Ability: CharacterRef->Abilities)
+	SaveGameInstance->CurrentHealth = PlayerRef->StatsComp->GetStatValue(EStats::Health);
+	SaveGameInstance->MaxHealth = PlayerRef->StatsComp->GetStatValue(EStats::MaxHealth);
+	SaveGameInstance->CurrentMana = PlayerRef->StatsComp->GetStatValue(EStats::Mana);
+	SaveGameInstance->MaxMana = PlayerRef->StatsComp->GetStatValue(EStats::MaxMana);
+	SaveGameInstance->MaxStamina = PlayerRef->StatsComp->GetStatValue(EStats::MaxStamina);
+	SaveGameInstance->Strength = PlayerRef->StatsComp->GetStatValue(EStats::Strength);
+	SaveGameInstance->CurrentLevel = PlayerRef->LevelComp->GetCurrentLevel();
+	SaveGameInstance->CurrentXP = PlayerRef->LevelComp->GetCurrentExperience();
+	SaveGameInstance->CurrentStatPoints = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
+	SaveGameInstance->CurrentAbilityPoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
+
+	for (auto Ability: PlayerRef->Abilities)
 	{
-		SaveGameInstance->UnlockedAbilities.Add(Ability->GetAbilityAvailability());
-		UE_LOG(LogTemp, Error, TEXT("Added %s, %s"), *Ability->GetName(), Ability->GetAbilityAvailability() ? TEXT("true") : TEXT("false"));
+		FAbilityData Data;
+		Data.bIsUnlocked = Ability->GetAbilityAvailability();
+		Data.CurrentLevel = Ability->GetCurrentAbilityLevel();
+		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
+		UE_LOG(LogTemp, Error, TEXT("Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
 	}
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 	
-	//UE_LOG(LogTemp, Warning, TEXT("Saved: %s"), *SlotName);
 }
 
 
 void UARPG_GameInstance::LoadGame()
 {
-	//UE_LOG(LogTemp, Error, TEXT("SaveGame: SlotName: %s"), *SlotName);
-	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
-	
-	if (!CharacterRef || !SaveGameInstance)
+	if (!PlayerRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Game instance is null"));
+		UE_LOG(LogTemp, Error, TEXT("player is null"));
 		return;
 	}
 	
-	SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 	
-	CharacterRef->StatsComp->SetStatValue(EStats::Health, SaveGameInstance->CurrentHealth);
-	CharacterRef->StatsComp->SetStatValue(EStats::MaxHealth, SaveGameInstance->MaxHealth);
-	CharacterRef->StatsComp->SetStatValue(EStats::Mana, SaveGameInstance->CurrentMana);
-	CharacterRef->StatsComp->SetStatValue(EStats::MaxMana, SaveGameInstance->MaxMana);
-	CharacterRef->StatsComp->SetStatValue(EStats::Strength, SaveGameInstance->Strength);
-	CharacterRef->StatsComp->SetStatValue(EStats::MaxStamina, SaveGameInstance->MaxStamina);
-	CharacterRef->LevelComp->SetLevel(SaveGameInstance->CurrentLevel);
-	CharacterRef->LevelComp->SetExperience(SaveGameInstance->CurrentXP);
-	CharacterRef->LevelComp->SetStatPoints(SaveGameInstance->CurrentStatPoints);
-	CharacterRef->LevelComp->SetAbilityPoints(SaveGameInstance->CurrentAbilityPoints);
-	
-
-	for (int32 i = 0; i < SaveGameInstance->UnlockedAbilities.Num(); i++)
+	if (!SaveGameInstance)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("Is available: %s"), SaveGameInstance->UnlockedAbilities[i] ? TEXT("true") : TEXT("false"));
-		CharacterRef->Abilities[i]->SetAbilityAvailability(SaveGameInstance->UnlockedAbilities[i]);
+		UE_LOG(LogTemp, Error, TEXT("cant load"));
+		return;
 	}
 	
-	//UE_LOG(LogTemp, Warning, TEXT("Loaded %s"), *SlotName);
+	PlayerRef->StatsComp->SetStatValue(EStats::Health, SaveGameInstance->CurrentHealth);
+	PlayerRef->StatsComp->SetStatValue(EStats::MaxHealth, SaveGameInstance->MaxHealth);
+	PlayerRef->StatsComp->SetStatValue(EStats::Mana, SaveGameInstance->CurrentMana);
+	PlayerRef->StatsComp->SetStatValue(EStats::MaxMana, SaveGameInstance->MaxMana);
+	PlayerRef->StatsComp->SetStatValue(EStats::Strength, SaveGameInstance->Strength);
+	PlayerRef->StatsComp->SetStatValue(EStats::MaxStamina, SaveGameInstance->MaxStamina);
+	PlayerRef->LevelComp->SetLevel(SaveGameInstance->CurrentLevel);
+	PlayerRef->LevelComp->SetExperience(SaveGameInstance->CurrentXP);
+	PlayerRef->LevelComp->SetStatPoints(SaveGameInstance->CurrentStatPoints);
+	PlayerRef->LevelComp->SetAbilityPoints(SaveGameInstance->CurrentAbilityPoints);
+
+	UE_LOG(LogTemp, Warning, TEXT("Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
+	for (auto Ability: PlayerRef->Abilities)
+	{
+		FString AbilityName = Ability->GetName();
+		if (SaveGameInstance->UnlockedAbilities.Contains(AbilityName))
+		{
+			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
+			Ability->SetCurrentAbilityLevel(SavedData.CurrentLevel);
+			Ability->SetAbilityAvailability(SavedData.bIsUnlocked);
+			UE_LOG(LogTemp, Error, TEXT("Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
+		}
+	}
 }
 
 
 void UARPG_GameInstance::InitializeGameInstance()
 {
-	CharacterRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 }
 
 

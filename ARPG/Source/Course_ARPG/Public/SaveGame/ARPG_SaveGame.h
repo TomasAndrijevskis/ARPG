@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AbilityData.h"
 #include "GameFramework/SaveGame.h"
 #include "ARPG_SaveGame.generated.h"
 
@@ -46,7 +47,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	int CurrentAbilityPoints;
 
-	UPROPERTY(EditAnywhere)
-	TArray<bool> UnlockedAbilities;
+	//UPROPERTY(EditAnywhere)
+	//TArray<bool> UnlockedAbilities;
 
+	UPROPERTY(EditAnywhere)
+	TMap<FString, FAbilityData> UnlockedAbilities;
 };

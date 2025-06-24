@@ -151,6 +151,12 @@ int UAbilityComponent_Base::GetCurrentAbilityLevel()
 }
 
 
+void UAbilityComponent_Base::SetCurrentAbilityLevel(int NewLevel)
+{
+	CurrentLevel = NewLevel;
+}
+
+
 FString UAbilityComponent_Base::GetDescription()
 {
 	return Description;
