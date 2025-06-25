@@ -29,11 +29,6 @@ void UCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void UCombatComponent::ComboAttack()
 {
-	/*UAnimMontage* CurrentMontage = CharacterRef->GetCurrentMontage();
-	if (CurrentMontage != nullptr && !bCanAttack)
-	{
-		return;
-	}*/
 	if (CharacterRef->Implements<UMainPlayer>()) //проверяет есть ли интерфейс
 	{
 		IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);

@@ -57,7 +57,7 @@ struct Z_Construct_UScriptStruct_FAbilityData_Statics
 	static void NewProp_bIsUnlocked_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsUnlocked;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_CurrentLevel;
-	static const UECodeGen_Private::FIntPropertyParams NewProp_ManaCost;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ManaCost;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AbilityDuration;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CooldownDuration;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CustomProperties_ValueProp;
@@ -76,7 +76,7 @@ void Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_bIsUnlocked_SetBit(
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_bIsUnlocked = { "bIsUnlocked", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(FAbilityData), &Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_bIsUnlocked_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsUnlocked_MetaData), NewProp_bIsUnlocked_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_CurrentLevel = { "CurrentLevel", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FAbilityData, CurrentLevel), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentLevel_MetaData), NewProp_CurrentLevel_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_ManaCost = { "ManaCost", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FAbilityData, ManaCost), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ManaCost_MetaData), NewProp_ManaCost_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_ManaCost = { "ManaCost", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FAbilityData, ManaCost), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ManaCost_MetaData), NewProp_ManaCost_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_AbilityDuration = { "AbilityDuration", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FAbilityData, AbilityDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityDuration_MetaData), NewProp_AbilityDuration_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_CooldownDuration = { "CooldownDuration", nullptr, (EPropertyFlags)0x0010000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FAbilityData, CooldownDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CooldownDuration_MetaData), NewProp_CooldownDuration_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UScriptStruct_FAbilityData_Statics::NewProp_CustomProperties_ValueProp = { "CustomProperties", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, METADATA_PARAMS(0, nullptr) };
@@ -120,10 +120,10 @@ UScriptStruct* Z_Construct_UScriptStruct_FAbilityData()
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_AbilityData_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FAbilityData::StaticStruct, Z_Construct_UScriptStruct_FAbilityData_Statics::NewStructOps, TEXT("AbilityData"), &Z_Registration_Info_UScriptStruct_AbilityData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAbilityData), 2201649189U) },
+		{ FAbilityData::StaticStruct, Z_Construct_UScriptStruct_FAbilityData_Statics::NewStructOps, TEXT("AbilityData"), &Z_Registration_Info_UScriptStruct_AbilityData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FAbilityData), 2470938448U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_AbilityData_h_3164552719(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_AbilityData_h_1278367092(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_AbilityData_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_AbilityData_h_Statics::ScriptStructInfo),
 	nullptr, 0);

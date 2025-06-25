@@ -21,7 +21,8 @@ class UTexture2D;
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execHandleUpgradeButtonActions); \
 	DECLARE_FUNCTION(execUpgradeAbility); \
-	DECLARE_FUNCTION(execSetButtonText); \
+	DECLARE_FUNCTION(execSetRequiredPointsText); \
+	DECLARE_FUNCTION(execSetUpgradeButtonText); \
 	DECLARE_FUNCTION(execSetIconStyle); \
 	DECLARE_FUNCTION(execSetAbilityIconEnable); \
 	DECLARE_FUNCTION(execCreateAbilityDescriptionWidget); \

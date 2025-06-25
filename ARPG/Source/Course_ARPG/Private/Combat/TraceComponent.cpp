@@ -81,7 +81,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	if (FighterRef)
 	{
 		CharacterDamage = FighterRef->GetCurrentDamage();
-		if (CharacterRef && (CharacterRef->AbilityComp_DamageIncrease->bIsDamageIncreased))
+		if (CharacterRef && (CharacterRef->AbilityComp_DamageIncrease->GetIsDamageIncreased()))
 		{
 			CharacterDamage = CharacterDamage * (CharacterRef->AbilityComp_DamageIncrease->GetDamageMultiplier());
 		}

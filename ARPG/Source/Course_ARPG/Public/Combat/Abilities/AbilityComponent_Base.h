@@ -5,6 +5,8 @@
 #include "Components/ActorComponent.h"
 #include "AbilityComponent_Base.generated.h"
 
+struct FAbilityData;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityTimerChangedSignature, float, TimeLeft);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityStartedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityFinishedSignature);
@@ -72,8 +74,12 @@ public:
 
 	int GetRequiredUpgradePoints();
 
-	virtual void UpdateAbilityStats();
+	virtual void UpdateAbilityProperties();
 
+	virtual void SaveCustomProperties(FAbilityData& Data);
+
+	virtual void LoadCustomProperties(FAbilityData& SavedData);
+	
 protected:
 
 	virtual void BeginPlay() override;

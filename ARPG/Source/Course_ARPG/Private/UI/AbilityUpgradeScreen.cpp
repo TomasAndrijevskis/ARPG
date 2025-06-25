@@ -1,6 +1,5 @@
 
 #include "UI/AbilityUpgradeScreen.h"
-
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
@@ -12,9 +11,10 @@ void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityCom
 {
 	AbilityComp_REF = AbilityComp;
 	SetIconStyle(AbilityComp_REF->GetIcon());
-	SetButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+	SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
 	SetAbilityIconEnable();
 	SetupButtonCallbacks();
+	SetRequiredPointsText();
 }
 
 
@@ -44,7 +44,6 @@ void UAbilityUpgradeScreen::SetupButtonCallbacks()
 		Button_AbilityIcon->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget);
 	}
 }
-
 
 
 void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
@@ -97,7 +96,7 @@ void UAbilityUpgradeScreen::RemoveDescriptionWidget(UHorizontalBox* HorizontalBo
 }
 
 
-void UAbilityUpgradeScreen::SetButtonText(bool bIsLevelMaxed)
+void UAbilityUpgradeScreen::SetUpgradeButtonText(bool bIsLevelMaxed)
 {
 	if (AbilityComp_REF->GetAbilityAvailability() && bIsLevelMaxed)
 	{
@@ -111,6 +110,22 @@ void UAbilityUpgradeScreen::SetButtonText(bool bIsLevelMaxed)
 	{
 		Text_Upgrade->SetText(FText::FromString("Unlock"));
 	}
+}
+
+
+void UAbilityUpgradeScreen::SetRequiredPointsText()
+{
+	int RequiredPoints = AbilityComp_REF->GetRequiredUpgradePoints();
+	if (RequiredPoints == -1)
+	{
+		Text_RequiredPoints->SetText(FText::FromString(""));
+	}
+	else
+	{
+		FString Text = FString::Printf(TEXT("Required points: %d"), RequiredPoints);
+		Text_RequiredPoints->SetText(FText::FromString(Text));
+	}
+	
 }
 
 
@@ -133,16 +148,17 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 	if (!AbilityComp_REF->GetAbilityAvailability())
 	{
 		AbilityComp_REF->SetAbilityAvailability(true);
-		SetButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+		SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
 		SetAbilityIconEnable();
 	}
 	
 	if (AbilityComp_REF->IsAbilityMaxLevel())
 	{
 		Button_UpgradeAbility->SetIsEnabled(false);
-		SetButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+		SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
 	}
 	HandleUpgradeButtonActions();
+	SetRequiredPointsText();
 }
 
 

@@ -2,6 +2,7 @@
 #include "Combat/Abilities/AbilityComponent_GetArmor.h"
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
+#include "SaveGame/AbilityData.h"
 
 void UAbilityComponent_GetArmor::BeginPlay()
 {
@@ -37,6 +38,59 @@ void UAbilityComponent_GetArmor::CompleteAbility()
 }
 
 
+void UAbilityComponent_GetArmor::UpdateAbilityDescription()
+{
+	SetAbilityDescription(FString::Printf(TEXT("Give yourself protection."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetArmor(), GetDamageReductionPercent()*100, GetCooldownDuration()));
+}
+
+
+void UAbilityComponent_GetArmor::UpdateUpgradeDescription()
+{
+	
+	float NextMana = GetManaCost() - (GetManaCost() * .2f);
+	float NextCooldown = GetCooldownDuration() - 1;
+
+	float NextArmor = GetArmor() + (GetArmor() * .2f);
+	float NextDamageReduction = GetDamageReductionPercent() + (GetDamageReductionPercent() * .2f);
+	
+
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nDamage reduction: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, GetArmor(), NextArmor,  GetDamageReductionPercent() * 100, NextDamageReduction * 100, GetCooldownDuration(), NextCooldown));
+}
+
+
+void UAbilityComponent_GetArmor::UpdateAbilityProperties()
+{
+	Super::UpdateAbilityProperties();
+	
+	float NewArmor = GetArmor() + (GetArmor() * .2f);
+	float NewReductionPercent = GetDamageReductionPercent() + (GetDamageReductionPercent() * .2f);
+	//round -> 0.22
+	// *1000 -> 0.333 ...
+	SetArmor(FMath::RoundToFloat(NewArmor * 100.0f) / 100.0f);
+	SetDamageReductionPercent(FMath::RoundToFloat(NewReductionPercent * 100.0f) / 100.0f);
+}
+
+
+void UAbilityComponent_GetArmor::SaveCustomProperties(FAbilityData& Data) 
+{
+	Super::SaveCustomProperties(Data);
+	Data.CustomProperties.Add("Armor", GetArmor());
+	Data.CustomProperties.Add("DamageReductionPercent", GetDamageReductionPercent());
+}
+
+
+void UAbilityComponent_GetArmor::LoadCustomProperties(FAbilityData& Data)
+{
+	Super::LoadCustomProperties(Data);
+	SetArmor(Data.CustomProperties.FindRef("Armor"));
+	SetDamageReductionPercent(Data.CustomProperties.FindRef("DamageReductionPercent"));
+}
+
+
+
 float UAbilityComponent_GetArmor::GetArmor()
 {
 	return Armor;
@@ -60,34 +114,4 @@ void UAbilityComponent_GetArmor::SetDamageReductionPercent(float NewDamageReduct
 	DamageReductionPercent = NewDamageReductionPercent;
 }
 
-
-void UAbilityComponent_GetArmor::UpdateAbilityDescription()
-{
-	SetAbilityDescription(FString::Printf(TEXT("Give yourself protection."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetArmor(), GetDamageReductionPercent()*100, GetCooldownDuration()));
-}
-
-
-void UAbilityComponent_GetArmor::UpdateUpgradeDescription()
-{
-	
-	float NextMana = GetManaCost() - (GetManaCost() * .1f);
-	float NextCooldown = GetCooldownDuration() - (GetCooldownDuration() * .1f);
-	float NextArmor = GetArmor() + (GetArmor() * .1f);
-	float NextDamageReduction = GetDamageReductionPercent() + (GetDamageReductionPercent() * .1f);
-	
-
-	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nDamage reduction: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s"),
-		GetManaCost(), NextMana, GetArmor(), NextArmor,  GetDamageReductionPercent() * 100, NextDamageReduction * 100, GetCooldownDuration(), NextCooldown));
-}
-
-
-void UAbilityComponent_GetArmor::UpdateAbilityStats()
-{
-	Super::UpdateAbilityStats();
-
-	SetArmor(Armor += (Armor * 0.1f));
-	SetDamageReductionPercent(DamageReductionPercent += (DamageReductionPercent* 0.1f));
-}
 

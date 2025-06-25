@@ -15,7 +15,7 @@ struct FAbilityData
 	int32 CurrentLevel = 0;
 
 	UPROPERTY()
-	int32 ManaCost = 0;
+	float ManaCost = 0;
 
 	UPROPERTY()
 	float AbilityDuration = 0;

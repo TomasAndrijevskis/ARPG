@@ -96,13 +96,10 @@ void UARPG_GameInstance::SaveAbilities()
 	for (auto Ability: PlayerRef->Abilities)
 	{
 		FAbilityData Data;
-		Data.bIsUnlocked = Ability->GetAbilityAvailability();
-		Data.CurrentLevel = Ability->GetCurrentAbilityLevel();
-		Data.AbilityDuration = Ability->GetAbilityDuration();
-		Data.CooldownDuration = Ability->GetCooldownDuration();
-		Data.ManaCost = Ability->GetManaCost();
+		Ability->SaveCustomProperties(Data);
 		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
-		UE_LOG(LogTemp, Error, TEXT("Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
+		
+		//UE_LOG(LogTemp, Error, TEXT("Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
 	}
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
@@ -125,19 +122,16 @@ void UARPG_GameInstance::LoadAbilities()
 		return;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
+	//UE_LOG(LogTemp, Warning, TEXT("Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
 	for (auto Ability: PlayerRef->Abilities)
 	{
 		FString AbilityName = Ability->GetName();
 		if (SaveGameInstance->UnlockedAbilities.Contains(AbilityName))
 		{
 			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
-			Ability->SetCurrentAbilityLevel(SavedData.CurrentLevel);
-			Ability->SetAbilityAvailability(SavedData.bIsUnlocked);
-			Ability->SetCooldownDuration(SavedData.CooldownDuration);
-			Ability->SetManaCost(SavedData.ManaCost);
-			Ability->SetAbilityDuration(SavedData.AbilityDuration);
-			UE_LOG(LogTemp, Error, TEXT("Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
+			
+			Ability->LoadCustomProperties(SavedData);
+			//UE_LOG(LogTemp, Error, TEXT("Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
 		}
 	}
 }

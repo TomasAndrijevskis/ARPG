@@ -58,7 +58,10 @@ private:
 	void SetIconStyle(UTexture2D* Icon);
 
 	UFUNCTION()
-	void SetButtonText(bool bIsLevelMaxed);
+	void SetUpgradeButtonText(bool bIsLevelMaxed);
+
+	UFUNCTION()
+	void SetRequiredPointsText();
 	
 	UFUNCTION()
 	void UpgradeAbility();
@@ -80,6 +83,9 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_Upgrade;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_RequiredPoints;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UDescriptionWidget> AbilityDescriptionClass;

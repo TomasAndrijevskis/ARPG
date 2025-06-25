@@ -1,11 +1,11 @@
 
 #include "Combat/Abilities/AbilityComponent_Base.h"
-
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter.h"
 #include "Characters/PlayerActionsComponent.h"
 #include "Characters/Data/AbilityUpgradeRequirements.h"
 #include "Combat/CombatComponent.h"
+#include "SaveGame/AbilityData.h"
 
 
 UAbilityComponent_Base::UAbilityComponent_Base()
@@ -112,7 +112,7 @@ void UAbilityComponent_Base::UpgradeAbility(int AvailablePoints)
 		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
 		if (GetAbilityAvailability())
 		{
-			UpdateAbilityStats();
+			UpdateAbilityProperties();
 		}
 		UpdateAbilityDescription();
 		UpdateUpgradeDescription();
@@ -120,11 +120,31 @@ void UAbilityComponent_Base::UpgradeAbility(int AvailablePoints)
 }
 
 
-void UAbilityComponent_Base::UpdateAbilityStats()
+void UAbilityComponent_Base::UpdateAbilityProperties()
 {
-	SetCooldownDuration(CooldownDuration -= (CooldownDuration * 0.1f));
-	SetManaCost(ManaCost -= (ManaCost * 0.1f));
-	SetAbilityDuration(AbilityDuration += (AbilityDuration * 0.1f));
+	SetCooldownDuration(CooldownDuration - 1);
+	SetManaCost(ManaCost - (ManaCost * .2f));
+	SetAbilityDuration(AbilityDuration + 1);
+}
+
+
+void UAbilityComponent_Base::SaveCustomProperties(FAbilityData& Data)
+{
+	Data.bIsUnlocked = GetAbilityAvailability();
+	Data.CurrentLevel = GetCurrentAbilityLevel();
+	Data.AbilityDuration = GetAbilityDuration();
+	Data.CooldownDuration = GetCooldownDuration();
+	Data.ManaCost = GetManaCost();
+}
+
+
+void UAbilityComponent_Base::LoadCustomProperties(FAbilityData& SavedData)
+{
+	SetCurrentAbilityLevel(SavedData.CurrentLevel);
+	SetAbilityAvailability(SavedData.bIsUnlocked);
+	SetCooldownDuration(SavedData.CooldownDuration);
+	SetManaCost(SavedData.ManaCost);
+	SetAbilityDuration(SavedData.AbilityDuration);
 }
 
 
@@ -147,18 +167,6 @@ int UAbilityComponent_Base::GetRequiredUpgradePoints()
 }
 
 
-int UAbilityComponent_Base::GetCurrentAbilityLevel()
-{
-	return CurrentLevel;
-}
-
-
-void UAbilityComponent_Base::SetCurrentAbilityLevel(int NewLevel)
-{
-	CurrentLevel = NewLevel;
-}
-
-
 bool UAbilityComponent_Base::IsAbilityMaxLevel()
 {
 	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
@@ -168,6 +176,18 @@ bool UAbilityComponent_Base::IsAbilityMaxLevel()
 		return false;
 	}
 	return true;
+}
+
+
+int UAbilityComponent_Base::GetCurrentAbilityLevel()
+{
+	return CurrentLevel;
+}
+
+
+void UAbilityComponent_Base::SetCurrentAbilityLevel(int NewLevel)
+{
+	CurrentLevel = NewLevel;
 }
 
 

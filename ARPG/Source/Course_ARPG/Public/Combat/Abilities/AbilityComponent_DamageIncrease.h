@@ -18,7 +18,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void IncreaseDamage();
 
-	bool bIsDamageIncreased = false;
+	bool GetIsDamageIncreased();
 
 	float GetDamageMultiplier();
 
@@ -28,7 +28,11 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 
-	virtual void UpdateAbilityStats() override;
+	virtual void UpdateAbilityProperties() override;
+
+	virtual void SaveCustomProperties(FAbilityData& Data) override;
+
+	virtual void LoadCustomProperties(FAbilityData& Data) override;
 	
 protected:
 
@@ -49,6 +53,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DamageMultiplier = 1.5f;
+
+	bool bIsDamageIncreased = false;
 	
 	UParticleSystemComponent* ParticleComp;
 	

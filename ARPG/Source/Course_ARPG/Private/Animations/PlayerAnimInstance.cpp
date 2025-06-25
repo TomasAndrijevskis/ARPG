@@ -1,7 +1,7 @@
 
-
-
 #include "Animations/PlayerAnimInstance.h"
+#include "KismetAnimationLibrary.h"
+
 
 
 void UPlayerAnimInstance::HandleUpdatedTarget(AActor* NewTargetActorRef)
@@ -20,8 +20,8 @@ void UPlayerAnimInstance::UpdateDirection()
 	{
 		return;
 	}
-
-	CurrentDirection = CalculateDirection(PawnRef->GetVelocity(), PawnRef->GetActorRotation());
+	
+	CurrentDirection = UKismetAnimationLibrary::CalculateDirection(PawnRef->GetVelocity(), PawnRef->GetActorRotation());
 }
 
 void UPlayerAnimInstance::UpdateSpeed()

@@ -30,7 +30,11 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 
-	virtual void UpdateAbilityStats() override;
+	virtual void UpdateAbilityProperties() override;
+	
+	virtual void SaveCustomProperties(FAbilityData& Data) override;
+
+	virtual void LoadCustomProperties(FAbilityData& Data) override;
 	
 protected:
 	

@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "SaveGame/AbilityData.h"
 
 
 void UAbilityComponent_RangeAttack::BeginPlay()
@@ -77,6 +78,52 @@ void UAbilityComponent_RangeAttack::SpawnProjectile()
 }
 
 
+void UAbilityComponent_RangeAttack::UpdateAbilityDescription()
+{
+	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
+}
+
+
+void UAbilityComponent_RangeAttack::UpdateUpgradeDescription()
+{
+	float NextMana = GetManaCost() - (GetManaCost() * .2f);
+	float NextCooldown = GetCooldownDuration() - 1 ;
+	
+	float NextDamage = GetProjectileDamage() + (GetProjectileDamage() * .2f);
+	
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, GetProjectileDamage(), NextDamage, GetCooldownDuration(), NextCooldown));
+	
+}
+
+
+void UAbilityComponent_RangeAttack::UpdateAbilityProperties()
+{
+	Super::UpdateAbilityProperties();
+
+	float NewDamage = ProjectileDamage + (ProjectileDamage * 0.2f);
+
+	SetProjectileDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
+}
+
+
+void UAbilityComponent_RangeAttack::SaveCustomProperties(FAbilityData& Data) 
+{
+	Super::SaveCustomProperties(Data);
+	Data.CustomProperties.Add("ProjectileDamage", GetProjectileDamage());
+}
+
+
+void UAbilityComponent_RangeAttack::LoadCustomProperties(FAbilityData& Data)
+{
+	Super::LoadCustomProperties(Data);
+	SetProjectileDamage(Data.CustomProperties.FindRef("ProjectileDamage"));
+}
+
+
+
 float UAbilityComponent_RangeAttack::GetProjectileDamage()
 {
 	return ProjectileDamage;
@@ -88,31 +135,4 @@ void UAbilityComponent_RangeAttack::SetProjectileDamage(float NewProjectileDamag
 	ProjectileDamage = NewProjectileDamage;
 }
 
-
-void UAbilityComponent_RangeAttack::UpdateAbilityDescription()
-{
-	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
-}
-
-
-void UAbilityComponent_RangeAttack::UpdateUpgradeDescription()
-{
-	float NextMana = GetManaCost() - (GetManaCost() * .1f);
-	float NextCooldown = GetCooldownDuration() - (GetCooldownDuration() * .1f);
-	float NextDamage = GetProjectileDamage() + (GetProjectileDamage() * .1f);
-	
-	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
-		GetManaCost(), NextMana, GetProjectileDamage(), NextDamage, GetCooldownDuration(), NextCooldown));
-	
-}
-
-
-void UAbilityComponent_RangeAttack::UpdateAbilityStats()
-{
-	Super::UpdateAbilityStats();
-
-	SetProjectileDamage(ProjectileDamage += (ProjectileDamage * 0.1f));
-}
 

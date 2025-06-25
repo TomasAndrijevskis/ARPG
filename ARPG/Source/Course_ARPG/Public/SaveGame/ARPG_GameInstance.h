@@ -32,7 +32,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void LoadAbilities();
-
+	
 	UFUNCTION(BlueprintCallable)
 	void SaveAll();
 	

@@ -1,6 +1,5 @@
 
 #include "UI/StatsScreenWidget.h"
-
 #include "Characters/EStats.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter.h"
@@ -72,6 +71,11 @@ void UStatsScreenWidget::SetStatsVariables(EStats StatToImprove)
 
 void UStatsScreenWidget::UpdateText(FString Name, float Value)
 {
+	FString Prefix = TEXT("Max");
+	if (Name.StartsWith(Prefix))
+	{
+		Name = Name.RightChop(Prefix.Len());
+	}
 	Text_StatName->SetText(FText::FromString(Name));
 	Text_StatValue->SetText(FText::AsNumber(Value));
 }

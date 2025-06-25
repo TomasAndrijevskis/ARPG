@@ -4,6 +4,7 @@
 #include "Characters/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "SaveGame/AbilityData.h"
 
 
 void UAbilityComponent_LifeStealAttack::BeginPlay()
@@ -61,6 +62,51 @@ void UAbilityComponent_LifeStealAttack::OnAbilityTimerFinished()
 }
 
 
+void UAbilityComponent_LifeStealAttack::UpdateAbilityDescription()
+{
+	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetStolenHealthPercent() * 100, GetCooldownDuration(), GetAbilityDuration()));
+}
+
+
+void UAbilityComponent_LifeStealAttack::UpdateUpgradeDescription()
+{
+	float NextMana = GetManaCost() - (GetManaCost() * .2f);
+	float NextCooldown = GetCooldownDuration() - 1 ;
+	float NextDuration = GetAbilityDuration() + 1;
+	
+	float NextStolenHealth = GetStolenHealthPercent() + (GetStolenHealthPercent() * .2f);
+	
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nStolen health: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, GetStolenHealthPercent() * 100, NextStolenHealth * 100, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextDuration));
+}
+
+
+void UAbilityComponent_LifeStealAttack::UpdateAbilityProperties()
+{
+	Super::UpdateAbilityProperties();
+	
+	float NewStolenHealthPercent = GetStolenHealthPercent() + (GetStolenHealthPercent() * .2f);
+	
+	SetStolenHealthPercent(FMath::RoundToFloat(NewStolenHealthPercent * 100.0f) / 100.0f);
+}
+
+
+void UAbilityComponent_LifeStealAttack::SaveCustomProperties(FAbilityData& Data) 
+{
+	Super::SaveCustomProperties(Data);
+	Data.CustomProperties.Add("SetStolenHealthPercent", GetStolenHealthPercent());
+}
+
+void UAbilityComponent_LifeStealAttack::LoadCustomProperties(FAbilityData& Data)
+{
+	Super::LoadCustomProperties(Data);
+	SetStolenHealthPercent(Data.CustomProperties.FindRef("SetStolenHealthPercent"));
+}
+
+
+
 float UAbilityComponent_LifeStealAttack::GetStolenHealthPercent()
 {
 	return StolenHealthPercent;
@@ -70,33 +116,4 @@ float UAbilityComponent_LifeStealAttack::GetStolenHealthPercent()
 void UAbilityComponent_LifeStealAttack::SetStolenHealthPercent(float NewStolenHealthPercent)
 {
 	StolenHealthPercent = NewStolenHealthPercent;
-}
-
-
-void UAbilityComponent_LifeStealAttack::UpdateAbilityDescription()
-{
-	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetStolenHealthPercent()*100, GetCooldownDuration(), GetAbilityDuration()));
-}
-
-
-void UAbilityComponent_LifeStealAttack::UpdateUpgradeDescription()
-{
-	float NextMana = GetManaCost() - (GetManaCost() * .1f);
-	float NextCooldown = GetCooldownDuration() - (GetCooldownDuration() * .1f);
-	float NextStolenHealth = GetStolenHealthPercent() + (GetStolenHealthPercent() * .1f);
-	float NextDuration = GetAbilityDuration() + (GetAbilityDuration() * .1f);
-	
-	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nStolen health: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
-		GetManaCost(), NextMana, GetStolenHealthPercent() * 100, NextStolenHealth * 100, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextDuration));
-	
-}
-
-
-void UAbilityComponent_LifeStealAttack::UpdateAbilityStats()
-{
-	Super::UpdateAbilityStats();
-
-	SetStolenHealthPercent(StolenHealthPercent += (StolenHealthPercent * 0.1f));
 }
