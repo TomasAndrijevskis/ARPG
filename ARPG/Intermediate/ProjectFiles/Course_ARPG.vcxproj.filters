@@ -175,6 +175,9 @@
     <Filter Include="Source\Course_ARPG\Private\SaveGame">
       <UniqueIdentifier>{85D57ACF-8291-3608-9118-5578C8DB5EB4}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\AbilityData.cpp">
+      <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_GameInstance.cpp">
       <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
     </ClCompile>
@@ -184,13 +187,13 @@
     <Filter Include="Source\Course_ARPG\Private\UI">
       <UniqueIdentifier>{A1E3A523-FE26-3931-80C8-F6E11BC948A3}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilitiesFooter.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\DescriptionWidget.cpp">
-      <Filter>Source\Course_ARPG\Private\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\InfoHeader.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\SaveSlotWidget.cpp">
@@ -265,7 +268,7 @@
     <Filter Include="Source\Course_ARPG\Public\Characters\Data">
       <UniqueIdentifier>{C3E27980-9D43-34FA-9FA7-9AD579F314F1}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequiredPoints.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequirements.h">
       <Filter>Source\Course_ARPG\Public\Characters\Data</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h">
@@ -334,6 +337,9 @@
     <Filter Include="Source\Course_ARPG\Public\SaveGame">
       <UniqueIdentifier>{A2159DDA-70B3-3DBF-9C35-2A3585398F78}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\AbilityData.h">
+      <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h">
       <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
     </ClInclude>
@@ -343,13 +349,13 @@
     <Filter Include="Source\Course_ARPG\Public\UI">
       <UniqueIdentifier>{B52EBCAF-D84D-317C-8CA2-92E68E50855D}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilitiesFooter.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\DescriptionWidget.h">
-      <Filter>Source\Course_ARPG\Public\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoHeader.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveSlotWidget.h">

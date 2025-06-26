@@ -144,13 +144,10 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 	}
 	
 	AbilityComp_REF->UpgradeAbility(AvailablePoints);
+
+	SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+	SetAbilityIconEnable();
 	
-	if (!AbilityComp_REF->GetAbilityAvailability())
-	{
-		AbilityComp_REF->SetAbilityAvailability(true);
-		SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
-		SetAbilityIconEnable();
-	}
 	
 	if (AbilityComp_REF->IsAbilityMaxLevel())
 	{

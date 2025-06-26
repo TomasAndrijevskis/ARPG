@@ -26,12 +26,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void InitializeAbility(class UAbilityComponent_Base* AbilityComp);
 	
-	
 protected:
 
 	virtual void NativeConstruct() override;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere)
 	UAbilityComponent_Base* AbilityComp_REF;
 	
 private:

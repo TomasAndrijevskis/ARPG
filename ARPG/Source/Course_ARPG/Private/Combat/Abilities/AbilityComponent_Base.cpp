@@ -70,12 +70,6 @@ void UAbilityComponent_Base::StartCooldownTimer()
 }
 
 
-bool UAbilityComponent_Base::CanPlayMontage() const
-{
-	return AnimMontage && PlayerRef && !PlayerRef->GetCurrentMontage();
-}
-
-
 void UAbilityComponent_Base::HandlePlayerActions(bool bCanDo)
 {
 	PlayerRef->CombatComp->bCanAttack = bCanDo;
@@ -114,6 +108,12 @@ void UAbilityComponent_Base::UpgradeAbility(int AvailablePoints)
 		{
 			UpdateAbilityProperties();
 		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Ability unlocked"));
+			SetAbilityAvailability(true);
+			OnAbilityUnlockedDelegate.Broadcast();
+		}
 		UpdateAbilityDescription();
 		UpdateUpgradeDescription();
 	}
@@ -125,26 +125,6 @@ void UAbilityComponent_Base::UpdateAbilityProperties()
 	SetCooldownDuration(CooldownDuration - 1);
 	SetManaCost(ManaCost - (ManaCost * .2f));
 	SetAbilityDuration(AbilityDuration + 1);
-}
-
-
-void UAbilityComponent_Base::SaveCustomProperties(FAbilityData& Data)
-{
-	Data.bIsUnlocked = GetAbilityAvailability();
-	Data.CurrentLevel = GetCurrentAbilityLevel();
-	Data.AbilityDuration = GetAbilityDuration();
-	Data.CooldownDuration = GetCooldownDuration();
-	Data.ManaCost = GetManaCost();
-}
-
-
-void UAbilityComponent_Base::LoadCustomProperties(FAbilityData& SavedData)
-{
-	SetCurrentAbilityLevel(SavedData.CurrentLevel);
-	SetAbilityAvailability(SavedData.bIsUnlocked);
-	SetCooldownDuration(SavedData.CooldownDuration);
-	SetManaCost(SavedData.ManaCost);
-	SetAbilityDuration(SavedData.AbilityDuration);
 }
 
 
@@ -176,6 +156,33 @@ bool UAbilityComponent_Base::IsAbilityMaxLevel()
 		return false;
 	}
 	return true;
+}
+
+
+void UAbilityComponent_Base::SaveCustomProperties(FAbilityData& Data)
+{
+	Data.bIsUnlocked = GetAbilityAvailability();
+	Data.CurrentLevel = GetCurrentAbilityLevel();
+	Data.AbilityDuration = GetAbilityDuration();
+	Data.CooldownDuration = GetCooldownDuration();
+	Data.ManaCost = GetManaCost();
+}
+
+
+void UAbilityComponent_Base::LoadCustomProperties(FAbilityData& SavedData)
+{
+	SetCurrentAbilityLevel(SavedData.CurrentLevel);
+	SetAbilityAvailability(SavedData.bIsUnlocked);
+	SetCooldownDuration(SavedData.CooldownDuration);
+	SetManaCost(SavedData.ManaCost);
+	SetAbilityDuration(SavedData.AbilityDuration);
+}
+
+
+
+bool UAbilityComponent_Base::CanPlayMontage() const
+{
+	return AnimMontage && PlayerRef && !PlayerRef->GetCurrentMontage();
 }
 
 
@@ -268,4 +275,10 @@ float UAbilityComponent_Base::GetAbilityDuration()
 void UAbilityComponent_Base::SetAbilityDuration(float NewAbilityDuration)
 {
 	AbilityDuration = NewAbilityDuration;
+}
+
+
+FString UAbilityComponent_Base::GetActionKey()
+{
+	return ActionKey;
 }

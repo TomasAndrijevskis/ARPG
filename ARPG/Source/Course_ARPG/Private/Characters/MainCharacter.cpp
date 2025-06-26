@@ -59,18 +59,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 }
 
 
-bool AMainCharacter::HasEnoughStamina(float Stamina)
-{
-	return StatsComp->Stats[EStats::Stamina] >= Stamina;
-}
-
-
-bool AMainCharacter::HasEnoughMana(float Mana)
-{
-	return StatsComp->Stats[EStats::Mana] >= Mana;
-}
-
-
 void AMainCharacter::HandleDeath()
 {
 	if (!DeathAnimMontage)
@@ -126,3 +114,13 @@ float AMainCharacter::GetCurrentDamage()
 }
 
 
+bool AMainCharacter::HasEnoughStamina(float Stamina)
+{
+	return StatsComp->Stats[EStats::Stamina] >= Stamina;
+}
+
+
+bool AMainCharacter::HasEnoughMana(float Mana)
+{
+	return StatsComp->Stats[EStats::Mana] >= Mana;
+}

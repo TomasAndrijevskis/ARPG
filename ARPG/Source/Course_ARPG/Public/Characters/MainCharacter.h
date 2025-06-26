@@ -39,7 +39,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void PlayHurtAnimation();
-
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UStatsComponent* StatsComp;
 
@@ -75,6 +75,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<UAbilityComponent_Base*> Abilities;
+
 	
 protected:
 

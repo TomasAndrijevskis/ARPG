@@ -10,6 +10,7 @@ struct FAbilityData;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityTimerChangedSignature, float, TimeLeft);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityStartedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityFinishedSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityUnlockedSignature);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbilityComponent_Base : public UActorComponent
@@ -29,6 +30,9 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnAbilityFinishedSignature OnAbilityFinishedDelegate;
 
+	UPROPERTY(BlueprintAssignable)
+	FOnAbilityUnlockedSignature OnAbilityUnlockedDelegate;
+	
 	UFUNCTION(BlueprintCallable)
 	void UpgradeAbility(int AvailablePoints);
 
@@ -74,6 +78,9 @@ public:
 
 	int GetRequiredUpgradePoints();
 
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	FString GetActionKey();
+	
 	virtual void UpdateAbilityProperties();
 
 	virtual void SaveCustomProperties(FAbilityData& Data);
@@ -140,6 +147,8 @@ private:
 
 	FString UpgradeDescription;
 
+	UPROPERTY(EditDefaultsOnly)
+	FString ActionKey;
 	
 	
 };
