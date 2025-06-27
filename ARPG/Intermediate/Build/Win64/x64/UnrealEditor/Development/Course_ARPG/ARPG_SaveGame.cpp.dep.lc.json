@@ -7,6 +7,8 @@
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\savegame\\arpg_savegame.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\savegame\\abilitydata.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitydata.generated.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\savegame.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\savegame.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\arpg_savegame.generated.h"

@@ -187,13 +187,19 @@
     <Filter Include="Source\Course_ARPG\Private\UI">
       <UniqueIdentifier>{A1E3A523-FE26-3931-80C8-F6E11BC948A3}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilitiesFooter.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityFooter.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\CharacterSelection.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\DescriptionWidget.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\SaveMenu.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\SaveSlotWidget.cpp">
@@ -349,13 +355,19 @@
     <Filter Include="Source\Course_ARPG\Public\UI">
       <UniqueIdentifier>{B52EBCAF-D84D-317C-8CA2-92E68E50855D}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilitiesFooter.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityFooter.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\CharacterSelection.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\DescriptionWidget.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveMenu.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveSlotWidget.h">

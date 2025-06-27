@@ -5,6 +5,8 @@
 #include "Engine/GameInstance.h"
 #include "ARPG_GameInstance.generated.h"
 
+class AMainCharacter;
+
 UCLASS()
 class COURSE_ARPG_API UARPG_GameInstance : public UGameInstance
 {
@@ -15,6 +17,8 @@ public:
 
 	UARPG_GameInstance(){};
 
+	virtual void Init() override;
+	
 	UFUNCTION(BlueprintCallable)
 	void SetSlotName(FString NewSlotName);
 
@@ -41,11 +45,21 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool bCheckSlot(FString SlotNameToCheck);
+
+	UFUNCTION(BlueprintCallable)
+	void SavePawnClass();
+
+	UFUNCTION(BlueprintCallable)
+	void LoadPawnClass();
+
+	UFUNCTION()
+	void SetPawnClass(TSubclassOf<APawn> PlayerClass);
 	
 private:
 
 	FString SlotName = FString("Slot1");
 
 	class AMainCharacter* PlayerRef;
-	
+
+	AGameModeBase* ARPGGameMode;
 };

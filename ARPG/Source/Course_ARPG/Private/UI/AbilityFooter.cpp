@@ -39,12 +39,10 @@ void UAbilityFooter::SetImageAvailability()
 	if (AbilityComp_REF->IsOnCooldown() || AbilityComp_REF->IsAbilityActive())
 	{
 		Image_AbilityIcon->SetColorAndOpacity(FLinearColor(1,1,1,.3));
-		UE_LOG(LogTemp, Error, TEXT("Hello"));
 	}
 	else
 	{
 		Image_AbilityIcon->SetColorAndOpacity(FLinearColor(1,1,1,1));
-		UE_LOG(LogTemp, Error, TEXT("Not Hello"));
 	}
 }
 

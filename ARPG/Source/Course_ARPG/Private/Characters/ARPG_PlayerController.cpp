@@ -21,6 +21,7 @@ void AARPG_PlayerController::HandleGamePause(bool bIsGamePaused)
 	}
 }
 
+
 void AARPG_PlayerController::HandleGameLoad()
 {
 	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());

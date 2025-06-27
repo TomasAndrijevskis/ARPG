@@ -4,8 +4,65 @@
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
+#include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
+
+
+void UARPG_GameInstance::Init()
+{
+	Super::Init();
+	
+}
+
+
+void UARPG_GameInstance::InitializeGameInstance()
+{
+	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	
+}
+
+
+void UARPG_GameInstance::SavePawnClass()
+{
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
+	}
+	
+	SaveGameInstance->PlayerCharacter = PlayerRef;
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadPawnClass()
+{
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	
+	if (!SaveGameInstance)
+	{
+		UE_LOG(LogTemp, Error, TEXT("cant load"));
+		return;
+	}
+	if (SaveGameInstance->PlayerCharacter)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Load: PawnClass: %s"), *SaveGameInstance->PlayerCharacter->GetName());
+	}
+}
+
+
+void UARPG_GameInstance::SetPawnClass(TSubclassOf<APawn> PlayerClass)
+{
+	ARPGGameMode =  UGameplayStatics::GetGameMode(GetWorld());
+	if (ARPGGameMode)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Pawn class: %s"), *ARPGGameMode->DefaultPawnClass->GetName());
+	}
+	ARPGGameMode->DefaultPawnClass = PlayerClass;
+	UE_LOG(LogTemp, Error, TEXT("Pawn Class: %s"), *PlayerClass->GetName());
+	UE_LOG(LogTemp, Error, TEXT("Default Class: %s"), *ARPGGameMode->DefaultPawnClass->GetName());
+}
 
 
 void UARPG_GameInstance::SetSlotName(FString NewSlotName)
@@ -75,7 +132,6 @@ void UARPG_GameInstance::LoadStats()
 	PlayerRef->LevelComp->SetExperience(SaveGameInstance->CurrentXP);
 	PlayerRef->LevelComp->SetStatPoints(SaveGameInstance->CurrentStatPoints);
 	PlayerRef->LevelComp->SetAbilityPoints(SaveGameInstance->CurrentAbilityPoints);
-	UE_LOG(LogTemp, Warning, TEXT("Loaded stats:"));
 }
 
 
@@ -141,12 +197,6 @@ void UARPG_GameInstance::SaveAll()
 {
 	SaveStats();
 	SaveAbilities();	
-}
-
-
-void UARPG_GameInstance::InitializeGameInstance()
-{
-	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 }
 
 
