@@ -31,8 +31,8 @@ void UAbilityComponent_Base::StartAbilityTimer()
 	if (TimerDuration > 0)
 	{
 		TimerDuration--;
-		OnTimerChangedDelegate.Broadcast(TimerDuration);
-		UE_LOG(LogTemp, Warning,TEXT("Ability time left: %f"), TimerDuration);
+		OnAbilityTimerChangedDelegate.Broadcast(TimerDuration);
+		//UE_LOG(LogTemp, Warning,TEXT("Ability time left: %f"), TimerDuration);
 	}
 	else
 	{
@@ -59,12 +59,14 @@ void UAbilityComponent_Base::StartCooldownTimer()
 {
 	if (TimerDuration > 0)
 	{
+		OnAbilityCooldownChangedDelegate.Broadcast(TimerDuration);
 		TimerDuration--;
-		UE_LOG(LogTemp, Warning,TEXT("Cooldown time left: %f"), TimerDuration);
+		//UE_LOG(LogTemp, Warning,TEXT("Cooldown time left: %f"), TimerDuration);
 	}
 	else
 	{
 		bIsOnCooldown = false;
+		OnAbilityCooldownFinishedDelegate.Broadcast();
 		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	}
 }
@@ -104,13 +106,13 @@ void UAbilityComponent_Base::UpgradeAbility(int AvailablePoints)
 		AvailablePoints -= PointsRequired;
 		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
 		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
-		if (GetAbilityAvailability())
+		if (IsAbilityAvailable())
 		{
 			UpdateAbilityProperties();
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Ability unlocked"));
+			//UE_LOG(LogTemp, Warning, TEXT("Ability unlocked"));
 			SetAbilityAvailability(true);
 			OnAbilityUnlockedDelegate.Broadcast();
 		}
@@ -132,7 +134,7 @@ int UAbilityComponent_Base::GetRequiredUpgradePoints()
 {
 	if (!RequirementsDataTable)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Cant load levels data table"));
+		//UE_LOG(LogTemp, Error, TEXT("Cant load levels data table"));
 		return -1;
 	}
 
@@ -140,7 +142,7 @@ int UAbilityComponent_Base::GetRequiredUpgradePoints()
 	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
 	if (!RequirementsRow)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("No level row found for %s"), *RowName.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("No level row found for %s"), *RowName.ToString());
 		return -1;
 	}
 	return RequirementsRow->RequiredPoints;
@@ -161,7 +163,7 @@ bool UAbilityComponent_Base::IsAbilityMaxLevel()
 
 void UAbilityComponent_Base::SaveCustomProperties(FAbilityData& Data)
 {
-	Data.bIsUnlocked = GetAbilityAvailability();
+	Data.bIsUnlocked = IsAbilityAvailable();
 	Data.CurrentLevel = GetCurrentAbilityLevel();
 	Data.AbilityDuration = GetAbilityDuration();
 	Data.CooldownDuration = GetCooldownDuration();
@@ -220,7 +222,7 @@ void UAbilityComponent_Base::SetAbilityDescription(FString NewDescription)
 }
 
 
-bool UAbilityComponent_Base::GetAbilityAvailability()
+bool UAbilityComponent_Base::IsAbilityAvailable()
 {
 	return bIsAbilityAvailable;
 }
@@ -281,4 +283,22 @@ void UAbilityComponent_Base::SetAbilityDuration(float NewAbilityDuration)
 FString UAbilityComponent_Base::GetActionKey()
 {
 	return ActionKey;
+}
+
+
+bool UAbilityComponent_Base::IsOnCooldown()
+{
+	return bIsOnCooldown;
+}
+
+
+bool UAbilityComponent_Base::IsAbilityActive()
+{
+	return bIsAbilityActive;
+}
+
+
+void UAbilityComponent_Base::SetAbilityActive(bool NewIsActive)
+{
+	bIsAbilityActive = NewIsActive;
 }

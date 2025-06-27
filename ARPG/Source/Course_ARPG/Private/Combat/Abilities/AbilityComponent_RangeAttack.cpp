@@ -18,13 +18,15 @@ void UAbilityComponent_RangeAttack::BeginPlay()
 
 void UAbilityComponent_RangeAttack::StartAbilityAttack()
 {
-	if (!CanPlayMontage() || !GetAbilityAvailability() && CheckMana()) return;
+	if (!CanPlayMontage() || !IsAbilityAvailable() && CheckMana()) return;
 	
 	HandlePlayerActions(false);
 	
-	if (!bIsOnCooldown && !bIsCasting)
+	if (!IsOnCooldown() && !IsAbilityActive())
 	{
-		bIsCasting = true;
+		SetAbilityActive(true);
+		OnAbilityStartedDelegate.Broadcast();
+		
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		
 		FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
@@ -39,11 +41,10 @@ void UAbilityComponent_RangeAttack::StartAbilityAttack()
 void UAbilityComponent_RangeAttack::CompleteAbilityAttack()
 {
 	HandlePlayerActions(true);
-	bIsCasting = false;
+	SetAbilityActive(false);
 	
 	GetWorld()->GetTimerManager().ClearTimer(ParticleTimerHandle);
 	StartCooldown();
-	OnAttackPerformedDelegate.Broadcast();
 	if (ParticleComponent)
 	{
 		ParticleComponent->DestroyComponent();

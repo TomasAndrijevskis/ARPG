@@ -111,10 +111,6 @@ struct Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics
 		{ "IncludePath", "Combat/Abilities/AbilityComponent_LifeStealAttack.h" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_LifeStealAttack.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsActivated_MetaData[] = {
-		{ "Category", "AbilityComponent_LifeStealAttack" },
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_LifeStealAttack.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StolenHealthPercent_MetaData[] = {
 		{ "Category", "AbilityComponent_LifeStealAttack" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_LifeStealAttack.h" },
@@ -128,8 +124,6 @@ struct Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_LifeStealAttack.h" },
 	};
 #endif // WITH_METADATA
-	static void NewProp_bIsActivated_SetBit(void* Obj);
-	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsActivated;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_StolenHealthPercent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Particle;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_ParticleSpawnSocketName;
@@ -145,16 +139,10 @@ struct Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-void Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_bIsActivated_SetBit(void* Obj)
-{
-	((UAbilityComponent_LifeStealAttack*)Obj)->bIsActivated = 1;
-}
-const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_bIsActivated = { "bIsActivated", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UAbilityComponent_LifeStealAttack), &Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_bIsActivated_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsActivated_MetaData), NewProp_bIsActivated_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_StolenHealthPercent = { "StolenHealthPercent", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_LifeStealAttack, StolenHealthPercent), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StolenHealthPercent_MetaData), NewProp_StolenHealthPercent_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_Particle = { "Particle", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_LifeStealAttack, Particle), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Particle_MetaData), NewProp_Particle_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_ParticleSpawnSocketName = { "ParticleSpawnSocketName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_LifeStealAttack, ParticleSpawnSocketName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleSpawnSocketName_MetaData), NewProp_ParticleSpawnSocketName_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_bIsActivated,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_StolenHealthPercent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_Particle,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::NewProp_ParticleSpawnSocketName,
@@ -200,10 +188,10 @@ UAbilityComponent_LifeStealAttack::~UAbilityComponent_LifeStealAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_LifeStealAttack, UAbilityComponent_LifeStealAttack::StaticClass, TEXT("UAbilityComponent_LifeStealAttack"), &Z_Registration_Info_UClass_UAbilityComponent_LifeStealAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_LifeStealAttack), 193173225U) },
+		{ Z_Construct_UClass_UAbilityComponent_LifeStealAttack, UAbilityComponent_LifeStealAttack::StaticClass, TEXT("UAbilityComponent_LifeStealAttack"), &Z_Registration_Info_UClass_UAbilityComponent_LifeStealAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_LifeStealAttack), 1950928374U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_3480044009(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_3860106046(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

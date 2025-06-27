@@ -50,7 +50,7 @@ void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
 {
 	RemoveAbilityDescriptionWidget();
 	RemoveUpgradeDescriptionWidget();
-	if (AbilityComp_REF->GetAbilityAvailability())
+	if (AbilityComp_REF->IsAbilityAvailable())
 	{
 		Button_UpgradeAbility->OnHovered.Clear();
 		Button_UpgradeAbility->OnUnhovered.Clear();
@@ -98,11 +98,11 @@ void UAbilityUpgradeScreen::RemoveDescriptionWidget(UHorizontalBox* HorizontalBo
 
 void UAbilityUpgradeScreen::SetUpgradeButtonText(bool bIsLevelMaxed)
 {
-	if (AbilityComp_REF->GetAbilityAvailability() && bIsLevelMaxed)
+	if (AbilityComp_REF->IsAbilityAvailable() && bIsLevelMaxed)
 	{
 		Text_Upgrade->SetText(FText::FromString("Maxed"));
 	}
-	else if (AbilityComp_REF->GetAbilityAvailability() && !bIsLevelMaxed)
+	else if (AbilityComp_REF->IsAbilityAvailable() && !bIsLevelMaxed)
 	{
 		Text_Upgrade->SetText(FText::FromString("Upgrade"));
 	}
@@ -161,7 +161,7 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 
 void UAbilityUpgradeScreen::SetAbilityIconEnable()
 {
-	Button_AbilityIcon->SetIsEnabled(AbilityComp_REF->GetAbilityAvailability());
+	Button_AbilityIcon->SetIsEnabled(AbilityComp_REF->IsAbilityAvailable());
 }
 
 

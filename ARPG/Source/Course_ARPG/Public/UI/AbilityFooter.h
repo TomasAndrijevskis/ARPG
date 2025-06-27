@@ -27,7 +27,16 @@ protected:
 	
 private:
 
-	void SetImageStyle(UTexture2D* Image);
+	void SetImageStyle();
+
+	UFUNCTION()
+	void SetImageAvailability();
+
+	UFUNCTION()
+	void SetCooldownText(float TimeLeft);
+
+	UFUNCTION()
+	void RemoveCooldownText();
 	
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_CooldownValue;
@@ -37,5 +46,8 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UImage* Image_AbilityIcon;
+
+	UPROPERTY(VisibleAnywhere)
+	UTexture2D* AbilityImage;
 	
 };

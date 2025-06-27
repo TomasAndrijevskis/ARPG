@@ -29,7 +29,9 @@
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\data\\abilityupgraderequirements.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilityupgraderequirements.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\combatcomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\savegame\\abilitydata.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitydata.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

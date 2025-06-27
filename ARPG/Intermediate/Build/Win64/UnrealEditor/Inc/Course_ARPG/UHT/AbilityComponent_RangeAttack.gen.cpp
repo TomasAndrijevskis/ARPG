@@ -14,37 +14,10 @@ COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_RangeAttack();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_RangeAttack_NoRegister();
-COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
-
-// Begin Delegate FOnAttackPerformedignature
-struct Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnAttackPerformedignature__DelegateSignature", "AbilityComponent_RangeAttack", "OnAttackPerformedDelegate", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-void FOnAttackPerformedignature_DelegateWrapper(const FMulticastScriptDelegate& OnAttackPerformedignature)
-{
-	OnAttackPerformedignature.ProcessMulticastDelegate<UObject>(NULL);
-}
-// End Delegate FOnAttackPerformedignature
 
 // Begin Class UAbilityComponent_RangeAttack Function SpawnProjectile
 struct Z_Construct_UFunction_UAbilityComponent_RangeAttack_SpawnProjectile_Statics
@@ -128,9 +101,6 @@ struct Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics
 		{ "IncludePath", "Combat/Abilities/AbilityComponent_RangeAttack.h" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OnAttackPerformedDelegate_MetaData[] = {
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Particle_MetaData[] = {
 		{ "Category", "AbilityComponent_RangeAttack" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
@@ -168,7 +138,6 @@ struct Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnAttackPerformedDelegate;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Particle;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_SocketName;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
@@ -187,7 +156,6 @@ struct Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_OnAttackPerformedDelegate = { "OnAttackPerformedDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, OnAttackPerformedDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnAttackPerformedDelegate_MetaData), NewProp_OnAttackPerformedDelegate_MetaData) }; // 544936806
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_Particle = { "Particle", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, Particle), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Particle_MetaData), NewProp_Particle_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_SocketName = { "SocketName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, SocketName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SocketName_MetaData), NewProp_SocketName_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ProjectileClass = { "ProjectileClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, ProjectileClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileClass_MetaData), NewProp_ProjectileClass_MetaData) };
@@ -195,7 +163,6 @@ const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UAbilityComponen
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ProjectileDamage = { "ProjectileDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, ProjectileDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileDamage_MetaData), NewProp_ProjectileDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_AliveTime = { "AliveTime", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, AliveTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AliveTime_MetaData), NewProp_AliveTime_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_OnAttackPerformedDelegate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_Particle,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_SocketName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ProjectileClass,
@@ -244,10 +211,10 @@ UAbilityComponent_RangeAttack::~UAbilityComponent_RangeAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_RangeAttack, UAbilityComponent_RangeAttack::StaticClass, TEXT("UAbilityComponent_RangeAttack"), &Z_Registration_Info_UClass_UAbilityComponent_RangeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_RangeAttack), 1373508308U) },
+		{ Z_Construct_UClass_UAbilityComponent_RangeAttack, UAbilityComponent_RangeAttack::StaticClass, TEXT("UAbilityComponent_RangeAttack"), &Z_Registration_Info_UClass_UAbilityComponent_RangeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_RangeAttack), 2929828149U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_3136311245(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_43343714(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

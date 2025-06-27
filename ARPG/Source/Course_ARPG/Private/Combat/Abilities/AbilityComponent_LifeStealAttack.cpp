@@ -29,15 +29,15 @@ float UAbilityComponent_LifeStealAttack::GetStolenHealthAmount()
 
 void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 {
-	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
+	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	
-	if (!bIsActivated && !bIsOnCooldown && CheckMana())
+	if (!IsAbilityActive() && !IsOnCooldown() && CheckMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		float TempDuration = 1-AnimDuration;
-		
-		bIsActivated = true;
+
+		SetAbilityActive(true);
 		OnAbilityStartedDelegate.Broadcast();
 		
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
@@ -54,7 +54,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityTimerFinished()
 {
 	Super::OnAbilityTimerFinished();
 
-	bIsActivated = false;
+	SetAbilityActive(false);
 	if (ParticleComp)
 	{
 		ParticleComp->DestroyComponent();

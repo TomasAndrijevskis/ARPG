@@ -17,6 +17,9 @@ class UTexture2D;
 #define COURSE_ARPG_AbilityFooter_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityFooter_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execRemoveCooldownText); \
+	DECLARE_FUNCTION(execSetCooldownText); \
+	DECLARE_FUNCTION(execSetImageAvailability); \
 	DECLARE_FUNCTION(execSetAbility);
 
 

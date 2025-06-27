@@ -58,6 +58,7 @@ void AProjectile_Base::SetStats(float NewDamage, float NewAliveTime)
 	AliveTime = NewAliveTime;
 }
 
+
 void AProjectile_Base::StartAliveTimer()
 {
 	GetWorld()->GetTimerManager().SetTimer(AliveTimerHandle, this, &AProjectile_Base::HandleDestruction, AliveTime, false);

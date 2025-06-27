@@ -21,23 +21,24 @@ void UAbilityComponent_DamageIncrease::StartAbilityTimer()
 
 void UAbilityComponent_DamageIncrease::IncreaseDamage()
 {
-	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
+	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 
-	if (!bIsDamageIncreased && !bIsOnCooldown && CheckMana())
+	if (!IsAbilityActive() && !IsOnCooldown() && CheckMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		
+		SetAbilityActive(true);
 		OnAbilityStartedDelegate.Broadcast();
-		TimerDuration = GetAbilityDuration();
 		
+		TimerDuration = GetAbilityDuration();
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		float tempDuration = 1.0f - AnimDuration;//анимация не длится 1 секунду, а переделать ее я не могу. это чтобы таймер срабатывал каждую секунду
 		
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );//спавн эффекта
 
-		bIsDamageIncreased = true;
 
+		
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::StartAbilityTimer, (AnimDuration+tempDuration), true);
 	}
@@ -48,7 +49,7 @@ void UAbilityComponent_DamageIncrease::OnAbilityTimerFinished()
 {
 	Super::OnAbilityTimerFinished();
 	
-	bIsDamageIncreased = false;
+	SetAbilityActive(false);
 	if (ParticleComp)
 	{
 		ParticleComp->DestroyComponent();
@@ -70,7 +71,7 @@ void UAbilityComponent_DamageIncrease::UpdateUpgradeDescription()
 	float NextCooldown = GetCooldownDuration() - 1;
 	float NextDuration = GetAbilityDuration() + 1;
 	
-	float NextMultiplier = GetDamageMultiplier() + (GetDamageMultiplier() * .2f);
+	float NextMultiplier = GetDamageMultiplier() + (GetDamageMultiplier() * .25f);
 	
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage multiplier: x %.2f -> x %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
 		GetManaCost(), NextMana, GetDamageMultiplier(), NextMultiplier, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextDuration));
@@ -81,16 +82,18 @@ void UAbilityComponent_DamageIncrease::UpdateAbilityProperties()
 {
 	Super::UpdateAbilityProperties();
 	
-	float NewDamageMultiplier = GetDamageMultiplier() + GetDamageMultiplier() * .2f;
+	float NewDamageMultiplier = GetDamageMultiplier() + GetDamageMultiplier() * .25f;
 	
 	SetDamageMultiplier(FMath::RoundToFloat(NewDamageMultiplier * 100.0f) / 100.0f);
 }
+
 
 void UAbilityComponent_DamageIncrease::SaveCustomProperties(FAbilityData& Data) 
 {
 	Super::SaveCustomProperties(Data);
 	Data.CustomProperties.Add("DamageMultiplier", GetDamageMultiplier());
 }
+
 
 void UAbilityComponent_DamageIncrease::LoadCustomProperties(FAbilityData& Data)
 {
@@ -111,10 +114,5 @@ void UAbilityComponent_DamageIncrease::SetDamageMultiplier(float NewDamageMultip
 	DamageMultiplier = NewDamageMultiplier;
 }
 
-
-bool UAbilityComponent_DamageIncrease::GetIsDamageIncreased()
-{
-	return bIsDamageIncreased;
-}
 
 

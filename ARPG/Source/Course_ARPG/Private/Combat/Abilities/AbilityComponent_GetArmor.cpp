@@ -13,11 +13,12 @@ void UAbilityComponent_GetArmor::BeginPlay()
 
 void UAbilityComponent_GetArmor::GiveArmor()
 {
-	if (!CanPlayMontage() || !GetAbilityAvailability()) return;
+	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	
-	if (!bIsOnCooldown && !bIsCasting && CheckMana())
+	if (!IsOnCooldown() && !IsAbilityActive() && CheckMana())
 	{
-		bIsCasting = true;
+		SetAbilityActive(true);
+		
 		HandlePlayerActions(false);
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->StatsComp->SetStatValue(EStats::MaxArmor, Armor);
@@ -31,7 +32,8 @@ void UAbilityComponent_GetArmor::GiveArmor()
 
 void UAbilityComponent_GetArmor::CompleteAbility()
 {
-	bIsCasting = false;
+	SetAbilityActive(false);
+	
 	HandlePlayerActions(true);
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	StartCooldown();

@@ -39,9 +39,6 @@ protected:
 
 	virtual void BeginPlay() override;
 
-	UPROPERTY(BlueprintReadOnly)
-	bool bIsActivated = false;
-
 	virtual void OnAbilityTimerFinished() override;
 	
 private:

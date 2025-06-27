@@ -7,7 +7,6 @@
 #include "Components/ActorComponent.h"
 #include "AbilityComponent_RangeAttack.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FOnAttackPerformedignature, UAbilityComponent_RangeAttack, OnAttackPerformedDelegate);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbilityComponent_RangeAttack : public UAbilityComponent_Base
 {
@@ -16,9 +15,6 @@ class COURSE_ARPG_API UAbilityComponent_RangeAttack : public UAbilityComponent_B
 public:	
 
 	UAbilityComponent_RangeAttack(){};
-	
-	UPROPERTY(BlueprintAssignable)
-	FOnAttackPerformedignature OnAttackPerformedDelegate;
 
 	virtual void UpdateAbilityDescription() override;
 
@@ -69,9 +65,7 @@ private:
 	float AliveTime = 10.0f;
 
 	FTimerHandle ParticleTimerHandle;
-
-	bool bIsCasting = false;
-
+	
 	UParticleSystemComponent* ParticleComponent;
 	
 };

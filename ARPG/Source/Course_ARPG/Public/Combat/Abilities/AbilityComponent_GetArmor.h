@@ -49,7 +49,5 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DamageReductionPercent = 0.3f;
-
-	UPROPERTY(EditAnywhere)
-	bool bIsCasting = false;
+	
 };

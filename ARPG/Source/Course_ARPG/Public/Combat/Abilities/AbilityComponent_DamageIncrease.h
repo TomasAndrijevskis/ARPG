@@ -18,8 +18,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void IncreaseDamage();
 
-	bool GetIsDamageIncreased();
-
 	float GetDamageMultiplier();
 
 	void SetDamageMultiplier(float NewDamageMultiplier);
@@ -53,8 +51,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DamageMultiplier = 1.5f;
-
-	bool bIsDamageIncreased = false;
 	
 	UParticleSystemComponent* ParticleComp;
 	

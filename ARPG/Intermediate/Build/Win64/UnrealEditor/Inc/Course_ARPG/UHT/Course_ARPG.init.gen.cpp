@@ -7,13 +7,14 @@
 #include "UObject/GeneratedCppIncludes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
+	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityCooldownChangedSignature__DelegateSignature();
+	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityCooldownFinishedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityFinishedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityStartedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityTimerChangedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityUnlockedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnAbilityPointsUpdateSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnArmorUpdateSignature__DelegateSignature();
-	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnBlockSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnHealthPercentUpdateSignature__DelegateSignature();
@@ -35,13 +36,14 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 		if (!Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton)
 		{
 			static UObject* (*const SingletonFuncArray[])() = {
+				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityCooldownChangedSignature__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityCooldownFinishedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityFinishedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityStartedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityTimerChangedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityUnlockedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnAbilityPointsUpdateSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnArmorUpdateSignature__DelegateSignature,
-				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnBlockSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnHealthPercentUpdateSignature__DelegateSignature,
@@ -63,13 +65,13 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xDF796124,
-				0xCF641D9D,
+				0xA0FF7BD6,
+				0x257E2BDA,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xDF796124, 0xCF641D9D));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xA0FF7BD6, 0x257E2BDA));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

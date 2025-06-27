@@ -12,6 +12,9 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityStartedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityFinishedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityUnlockedSignature);
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityCooldownFinishedSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityCooldownChangedSignature, float, TimeLeft);
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbilityComponent_Base : public UActorComponent
 {
@@ -22,7 +25,7 @@ public:
 	UAbilityComponent_Base();
 	
 	UPROPERTY(BlueprintAssignable)
-	FOnAbilityTimerChangedSignature OnTimerChangedDelegate;
+	FOnAbilityTimerChangedSignature OnAbilityTimerChangedDelegate;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAbilityStartedSignature OnAbilityStartedDelegate;
@@ -32,6 +35,12 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAbilityUnlockedSignature OnAbilityUnlockedDelegate;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAbilityCooldownChangedSignature OnAbilityCooldownChangedDelegate;
+	
+	UPROPERTY(BlueprintAssignable)
+	FOnAbilityCooldownFinishedSignature OnAbilityCooldownFinishedDelegate;
 	
 	UFUNCTION(BlueprintCallable)
 	void UpgradeAbility(int AvailablePoints);
@@ -56,7 +65,7 @@ public:
 	virtual void UpdateUpgradeDescription() {};
 	
 	UFUNCTION(BlueprintPure)
-	bool GetAbilityAvailability();
+	bool IsAbilityAvailable();
 
 	UFUNCTION(BlueprintCallable)
 	void SetAbilityAvailability(bool NewAvailability);
@@ -80,13 +89,20 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	FString GetActionKey();
+
+	bool IsOnCooldown();
+
+	UFUNCTION(BlueprintPure)
+	bool IsAbilityActive();
+
+	void SetAbilityActive(bool NewIsActive);
 	
 	virtual void UpdateAbilityProperties();
 
 	virtual void SaveCustomProperties(FAbilityData& Data);
 
 	virtual void LoadCustomProperties(FAbilityData& SavedData);
-	
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -108,9 +124,6 @@ protected:
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* AnimMontage;
-
-	UPROPERTY(VisibleAnywhere)
-	bool bIsOnCooldown = false;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsAbilityAvailable = false;
@@ -142,14 +155,17 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	int CurrentLevel = 0;
-	
-	FString AbilityDescription;
 
-	FString UpgradeDescription;
+	UPROPERTY(VisibleAnywhere)
+	bool bIsOnCooldown = false;
 
 	UPROPERTY(EditDefaultsOnly)
 	FString ActionKey;
 	
+	FString AbilityDescription;
+
+	FString UpgradeDescription;
 	
+	bool bIsAbilityActive = false;
 };
 
