@@ -1,14 +1,11 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "ARPG_PlayerController.generated.h"
 
-/**
- * 
- */
+
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
@@ -25,4 +22,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void HandleGameLoad();
+	
+	UFUNCTION(BlueprintCallable)
+	void SetPlayerControllerSettings();
+	
+	
 };

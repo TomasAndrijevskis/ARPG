@@ -8,6 +8,7 @@
 #include "CharacterSelection.generated.h"
 
 
+class AARPG_GameMode;
 class AMainCharacter;
 class UARPG_GameInstance;
 
@@ -42,9 +43,12 @@ private:
 
 	UARPG_GameInstance* GameInstance;
 
+	AARPG_GameMode* GameMode;
+
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter> CharacterClass1;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter> CharacterClass2;
+
 };

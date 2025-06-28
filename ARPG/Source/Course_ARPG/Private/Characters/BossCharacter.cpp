@@ -1,6 +1,4 @@
 
-
-
 #include "Characters/BossCharacter.h"
 #include "Characters/StatsComponent.h"
 #include "AIController.h"
@@ -47,6 +45,7 @@ void ABossCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 }
 
+
 void ABossCharacter::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
 {
 	EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
@@ -58,30 +57,36 @@ void ABossCharacter::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
 	BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
 }
 
+
 float ABossCharacter::GetCurrentDamage()
 {
 	return StatsComp->Stats[EStats::Strength];
 }
+
 
 void ABossCharacter::Attack()
 {
 	CombatComp->RandomAttack();
 }
 
+
 float ABossCharacter::GetAnimDuration()
 {
 	return CombatComp->AnimDuration;
 }
+
 
 float ABossCharacter::GetMeleeRange()
 {
 	return StatsComp->Stats[EStats::MeleeRange];
 }
 
+
 void ABossCharacter::HandlePlayerDeath()
 {
 	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GameOver);
 }
+
 
 void ABossCharacter::HandleDeath()
 {
@@ -104,10 +109,12 @@ void ABossCharacter::HandleDeath()
 	GiveRewardXP();
 }
 
+
 void ABossCharacter::FinishedDeathAnim()
 {
 	Destroy();
 }
+
 
 void ABossCharacter::GiveRewardXP()
 {

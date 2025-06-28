@@ -52,5 +52,5 @@ public:
 	TMap<FString, FAbilityData> UnlockedAbilities;
 
 	UPROPERTY(EditAnywhere)
-	AMainCharacter* PlayerCharacter;
+	TSubclassOf<AMainCharacter> PlayerCharacter;
 };

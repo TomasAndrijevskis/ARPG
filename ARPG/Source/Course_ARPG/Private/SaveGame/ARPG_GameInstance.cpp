@@ -4,76 +4,77 @@
 #include "Characters/MainCharacter.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
-#include "GameFramework/GameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
 
 void UARPG_GameInstance::Init()
 {
-	Super::Init();
-	
+	LoadPlayerClass();
 }
 
 
 void UARPG_GameInstance::InitializeGameInstance()
 {
 	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-	
+
+	if (PlayerRef)
+	{
+		UE_LOG(LogTemp, Error, TEXT("Player: %s"), *PlayerRef->GetName());
+	}
 }
 
 
-void UARPG_GameInstance::SavePawnClass()
+void UARPG_GameInstance::SetPlayerClass(TSubclassOf<AMainCharacter> PlayerClass, bool bFirstLoad)
+{
+	bIsFirstLoad = bFirstLoad;
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
+	}
+
+	//PlayerCharacterClass = PlayerClass;
+	SaveGameInstance->PlayerCharacter = PlayerClass;
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::SaveAll()
+{
+	SaveStats();
+	SaveAbilities();
+	bIsFirstLoad = false;
+}
+
+
+void UARPG_GameInstance::SavePlayerClass()
 {
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 	if (!SaveGameInstance)
 	{
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
-	
-	SaveGameInstance->PlayerCharacter = PlayerRef;
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+
+	SaveGameInstance->PlayerCharacter = PlayerCharacterClass;
+	PlayerCharacterClass = nullptr;
+	//UE_LOG(LogTemp,Error, TEXT("Saved Player class%s"), *PlayerCharacterClass->GetName());
 }
 
 
-void UARPG_GameInstance::LoadPawnClass()
+void UARPG_GameInstance::LoadPlayerClass()
 {
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-	
 	if (!SaveGameInstance)
 	{
-		UE_LOG(LogTemp, Error, TEXT("cant load"));
-		return;
+		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
+
 	if (SaveGameInstance->PlayerCharacter)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Load: PawnClass: %s"), *SaveGameInstance->PlayerCharacter->GetName());
+		PlayerCharacterClass = SaveGameInstance->PlayerCharacter;
+		UE_LOG(LogTemp,Error, TEXT("Loaded Player class%s"), *PlayerCharacterClass->GetName());
 	}
-}
-
-
-void UARPG_GameInstance::SetPawnClass(TSubclassOf<APawn> PlayerClass)
-{
-	ARPGGameMode =  UGameplayStatics::GetGameMode(GetWorld());
-	if (ARPGGameMode)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Pawn class: %s"), *ARPGGameMode->DefaultPawnClass->GetName());
-	}
-	ARPGGameMode->DefaultPawnClass = PlayerClass;
-	UE_LOG(LogTemp, Error, TEXT("Pawn Class: %s"), *PlayerClass->GetName());
-	UE_LOG(LogTemp, Error, TEXT("Default Class: %s"), *ARPGGameMode->DefaultPawnClass->GetName());
-}
-
-
-void UARPG_GameInstance::SetSlotName(FString NewSlotName)
-{
-	SlotName = NewSlotName;
-}
-
-
-FString UARPG_GameInstance::GetSlotName()
-{
-	return SlotName;
 }
 
 
@@ -101,7 +102,7 @@ void UARPG_GameInstance::SaveStats()
 	SaveGameInstance->CurrentXP = PlayerRef->LevelComp->GetCurrentExperience();
 	SaveGameInstance->CurrentStatPoints = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
 	SaveGameInstance->CurrentAbilityPoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
-	
+
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -193,14 +194,19 @@ void UARPG_GameInstance::LoadAbilities()
 }
 
 
-void UARPG_GameInstance::SaveAll()
-{
-	SaveStats();
-	SaveAbilities();	
-}
-
-
 bool UARPG_GameInstance::bCheckSlot(FString SlotNameToCheck)
 {
 	return UGameplayStatics::DoesSaveGameExist(SlotNameToCheck,0);
+}
+
+
+void UARPG_GameInstance::SetSlotName(FString NewSlotName)
+{
+	SlotName = NewSlotName;
+}
+
+
+FString UARPG_GameInstance::GetSlotName()
+{
+	return SlotName;
 }

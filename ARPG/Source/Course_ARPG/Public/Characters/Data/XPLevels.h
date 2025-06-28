@@ -15,5 +15,5 @@ struct COURSE_ARPG_API FXPLevels: public FTableRowBase
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	float Experience;
 
-	//добваляя поинтеры на объекты лучше это делать через soft references -> TSoftClassPts<...>...
+	//добваляя поинтеры на объекты лучше это делать через soft references -> TSoftClassPtr<...>...
 };

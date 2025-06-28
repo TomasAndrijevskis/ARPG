@@ -160,6 +160,12 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Gamemode">
+      <UniqueIdentifier>{81C15DDC-C0C6-3F70-9EAA-0387822FD00E}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Gamemode\ARPG_GameMode.cpp">
+      <Filter>Source\Course_ARPG\Private\Gamemode</Filter>
+    </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Interfaces">
       <UniqueIdentifier>{9FEC335C-4096-3A30-9F42-AAB19DEF9122}</UniqueIdentifier>
     </Filter>
@@ -327,6 +333,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Gamemode">
+      <UniqueIdentifier>{D27D677F-834F-3E85-A483-020A0D7A2DC8}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Gamemode\ARPG_GameMode.h">
+      <Filter>Source\Course_ARPG\Public\Gamemode</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\Interfaces">
       <UniqueIdentifier>{769374B1-C35B-3A58-BDEC-C9A64B38B725}</UniqueIdentifier>

@@ -9,7 +9,7 @@
 
 class UAbilityComponent_Base;
 
-UCLASS()
+UCLASS(Blueprintable)
 class COURSE_ARPG_API AMainCharacter : public ACharacter, public IMainPlayer, public IFighter
 {
 	GENERATED_BODY()

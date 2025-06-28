@@ -12,10 +12,7 @@ class COURSE_ARPG_API UARPG_GameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 
-
 public:
-
-	UARPG_GameInstance(){};
 
 	virtual void Init() override;
 	
@@ -45,15 +42,20 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool bCheckSlot(FString SlotNameToCheck);
+	
+	UFUNCTION(BlueprintCallable)
+	void SavePlayerClass();
 
 	UFUNCTION(BlueprintCallable)
-	void SavePawnClass();
-
-	UFUNCTION(BlueprintCallable)
-	void LoadPawnClass();
-
+	void LoadPlayerClass();
+	
 	UFUNCTION()
-	void SetPawnClass(TSubclassOf<APawn> PlayerClass);
+	void SetPlayerClass(TSubclassOf<AMainCharacter> PlayerClass, bool bFirstLoad);
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AMainCharacter> PlayerCharacterClass;
+
+	bool bIsFirstLoad;
 	
 private:
 
@@ -62,4 +64,6 @@ private:
 	class AMainCharacter* PlayerRef;
 
 	AGameModeBase* ARPGGameMode;
+
+	
 };

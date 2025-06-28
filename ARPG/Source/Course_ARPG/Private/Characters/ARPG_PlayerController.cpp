@@ -4,6 +4,14 @@
 #include "SaveGame/ARPG_GameInstance.h"
 
 
+void AARPG_PlayerController::SetPlayerControllerSettings()
+{
+	this->SetShowMouseCursor(false);
+	FInputModeGameOnly InputMode;
+	this->SetInputMode(InputMode);
+}
+
+
 void AARPG_PlayerController::HandleGamePause(bool bIsGamePaused)
 {
 	SetShowMouseCursor(bIsGamePaused);
@@ -33,14 +41,17 @@ void AARPG_PlayerController::HandleGameLoad()
 	GameInstance->InitializeGameInstance();
 	FString SlotName = GameInstance->GetSlotName();
 	
-	if (GameInstance->bCheckSlot(SlotName))
+	if (GameInstance->bCheckSlot(SlotName) && !GameInstance->bIsFirstLoad)
 	{
 		GameInstance->LoadStats();
 		GameInstance->LoadAbilities();
+		UE_LOG(LogTemp,Error, TEXT("%s"), *SlotName);
 	}
 	else
 	{
-		GameInstance->SaveStats();
+		GameInstance->SaveAll();
 	}
 }
+
+
 

@@ -11,9 +11,9 @@ void EmptyLinkFunctionForGeneratedCodeARPG_GameInstance() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UARPG_GameInstance();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UARPG_GameInstance_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_APawn_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UGameInstance();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
@@ -168,8 +168,8 @@ DEFINE_FUNCTION(UARPG_GameInstance::execLoadAbilities)
 }
 // End Class UARPG_GameInstance Function LoadAbilities
 
-// Begin Class UARPG_GameInstance Function LoadPawnClass
-struct Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass_Statics
+// Begin Class UARPG_GameInstance Function LoadPlayerClass
+struct Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -178,24 +178,24 @@ struct Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "LoadPawnClass", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass()
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "LoadPlayerClass", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UARPG_GameInstance::execLoadPawnClass)
+DEFINE_FUNCTION(UARPG_GameInstance::execLoadPlayerClass)
 {
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->LoadPawnClass();
+	P_THIS->LoadPlayerClass();
 	P_NATIVE_END;
 }
-// End Class UARPG_GameInstance Function LoadPawnClass
+// End Class UARPG_GameInstance Function LoadPlayerClass
 
 // Begin Class UARPG_GameInstance Function LoadStats
 struct Z_Construct_UFunction_UARPG_GameInstance_LoadStats_Statics
@@ -284,8 +284,8 @@ DEFINE_FUNCTION(UARPG_GameInstance::execSaveAll)
 }
 // End Class UARPG_GameInstance Function SaveAll
 
-// Begin Class UARPG_GameInstance Function SavePawnClass
-struct Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass_Statics
+// Begin Class UARPG_GameInstance Function SavePlayerClass
+struct Z_Construct_UFunction_UARPG_GameInstance_SavePlayerClass_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -294,24 +294,24 @@ struct Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SavePawnClass", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass()
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SavePlayerClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SavePlayerClass", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SavePlayerClass_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SavePlayerClass_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_SavePlayerClass()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SavePlayerClass_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UARPG_GameInstance::execSavePawnClass)
+DEFINE_FUNCTION(UARPG_GameInstance::execSavePlayerClass)
 {
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->SavePawnClass();
+	P_THIS->SavePlayerClass();
 	P_NATIVE_END;
 }
-// End Class UARPG_GameInstance Function SavePawnClass
+// End Class UARPG_GameInstance Function SavePlayerClass
 
 // Begin Class UARPG_GameInstance Function SaveStats
 struct Z_Construct_UFunction_UARPG_GameInstance_SaveStats_Statics
@@ -342,12 +342,13 @@ DEFINE_FUNCTION(UARPG_GameInstance::execSaveStats)
 }
 // End Class UARPG_GameInstance Function SaveStats
 
-// Begin Class UARPG_GameInstance Function SetPawnClass
-struct Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics
+// Begin Class UARPG_GameInstance Function SetPlayerClass
+struct Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics
 {
-	struct ARPG_GameInstance_eventSetPawnClass_Parms
+	struct ARPG_GameInstance_eventSetPlayerClass_Parms
 	{
-		TSubclassOf<APawn> PlayerClass;
+		TSubclassOf<AMainCharacter> PlayerClass;
+		bool bFirstLoad;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -355,34 +356,43 @@ struct Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PlayerClass;
+	static void NewProp_bFirstLoad_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bFirstLoad;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::NewProp_PlayerClass = { "PlayerClass", nullptr, (EPropertyFlags)0x0014000000000080, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARPG_GameInstance_eventSetPawnClass_Parms, PlayerClass), Z_Construct_UClass_UClass, Z_Construct_UClass_APawn_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::NewProp_PlayerClass,
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::NewProp_PlayerClass = { "PlayerClass", nullptr, (EPropertyFlags)0x0014000000000080, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARPG_GameInstance_eventSetPlayerClass_Parms, PlayerClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AMainCharacter_NoRegister, METADATA_PARAMS(0, nullptr) };
+void Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::NewProp_bFirstLoad_SetBit(void* Obj)
+{
+	((ARPG_GameInstance_eventSetPlayerClass_Parms*)Obj)->bFirstLoad = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::NewProp_bFirstLoad = { "bFirstLoad", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ARPG_GameInstance_eventSetPlayerClass_Parms), &Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::NewProp_bFirstLoad_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::NewProp_PlayerClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::NewProp_bFirstLoad,
 };
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SetPawnClass", nullptr, nullptr, Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::PropPointers), sizeof(Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::ARPG_GameInstance_eventSetPawnClass_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::ARPG_GameInstance_eventSetPawnClass_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass()
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SetPlayerClass", nullptr, nullptr, Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::PropPointers), sizeof(Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::ARPG_GameInstance_eventSetPlayerClass_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::ARPG_GameInstance_eventSetPlayerClass_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-DEFINE_FUNCTION(UARPG_GameInstance::execSetPawnClass)
+DEFINE_FUNCTION(UARPG_GameInstance::execSetPlayerClass)
 {
 	P_GET_OBJECT(UClass,Z_Param_PlayerClass);
+	P_GET_UBOOL(Z_Param_bFirstLoad);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->SetPawnClass(Z_Param_PlayerClass);
+	P_THIS->SetPlayerClass(Z_Param_PlayerClass,Z_Param_bFirstLoad);
 	P_NATIVE_END;
 }
-// End Class UARPG_GameInstance Function SetPawnClass
+// End Class UARPG_GameInstance Function SetPlayerClass
 
 // Begin Class UARPG_GameInstance Function SetSlotName
 struct Z_Construct_UFunction_UARPG_GameInstance_SetSlotName_Statics
@@ -435,13 +445,13 @@ void UARPG_GameInstance::StaticRegisterNativesUARPG_GameInstance()
 		{ "GetSlotName", &UARPG_GameInstance::execGetSlotName },
 		{ "InitializeGameInstance", &UARPG_GameInstance::execInitializeGameInstance },
 		{ "LoadAbilities", &UARPG_GameInstance::execLoadAbilities },
-		{ "LoadPawnClass", &UARPG_GameInstance::execLoadPawnClass },
+		{ "LoadPlayerClass", &UARPG_GameInstance::execLoadPlayerClass },
 		{ "LoadStats", &UARPG_GameInstance::execLoadStats },
 		{ "SaveAbilities", &UARPG_GameInstance::execSaveAbilities },
 		{ "SaveAll", &UARPG_GameInstance::execSaveAll },
-		{ "SavePawnClass", &UARPG_GameInstance::execSavePawnClass },
+		{ "SavePlayerClass", &UARPG_GameInstance::execSavePlayerClass },
 		{ "SaveStats", &UARPG_GameInstance::execSaveStats },
-		{ "SetPawnClass", &UARPG_GameInstance::execSetPawnClass },
+		{ "SetPlayerClass", &UARPG_GameInstance::execSetPlayerClass },
 		{ "SetSlotName", &UARPG_GameInstance::execSetSlotName },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -458,20 +468,26 @@ struct Z_Construct_UClass_UARPG_GameInstance_Statics
 		{ "IncludePath", "SaveGame/ARPG_GameInstance.h" },
 		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerCharacterClass_MetaData[] = {
+		{ "Category", "ARPG_GameInstance" },
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
+	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FClassPropertyParams NewProp_PlayerCharacterClass;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UARPG_GameInstance_bCheckSlot, "bCheckSlot" }, // 1149728424
 		{ &Z_Construct_UFunction_UARPG_GameInstance_GetSlotName, "GetSlotName" }, // 1502944115
 		{ &Z_Construct_UFunction_UARPG_GameInstance_InitializeGameInstance, "InitializeGameInstance" }, // 3406541929
 		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities, "LoadAbilities" }, // 2298138032
-		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadPawnClass, "LoadPawnClass" }, // 1932217312
+		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass, "LoadPlayerClass" }, // 2407429810
 		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadStats, "LoadStats" }, // 388496173
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities, "SaveAbilities" }, // 1098041752
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAll, "SaveAll" }, // 2578912318
-		{ &Z_Construct_UFunction_UARPG_GameInstance_SavePawnClass, "SavePawnClass" }, // 1183801626
+		{ &Z_Construct_UFunction_UARPG_GameInstance_SavePlayerClass, "SavePlayerClass" }, // 1935589068
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveStats, "SaveStats" }, // 2831133602
-		{ &Z_Construct_UFunction_UARPG_GameInstance_SetPawnClass, "SetPawnClass" }, // 2419975251
+		{ &Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass, "SetPlayerClass" }, // 3100361608
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SetSlotName, "SetSlotName" }, // 1842137151
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -480,6 +496,11 @@ struct Z_Construct_UClass_UARPG_GameInstance_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UARPG_GameInstance_Statics::NewProp_PlayerCharacterClass = { "PlayerCharacterClass", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_GameInstance, PlayerCharacterClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AMainCharacter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerCharacterClass_MetaData), NewProp_PlayerCharacterClass_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UARPG_GameInstance_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_GameInstance_Statics::NewProp_PlayerCharacterClass,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UARPG_GameInstance_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UARPG_GameInstance_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_UGameInstance,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
@@ -491,11 +512,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UARPG_GameInstance_Stat
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	FuncInfo,
-	nullptr,
+	Z_Construct_UClass_UARPG_GameInstance_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
 	UE_ARRAY_COUNT(FuncInfo),
-	0,
+	UE_ARRAY_COUNT(Z_Construct_UClass_UARPG_GameInstance_Statics::PropPointers),
 	0,
 	0x009000A8u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_UARPG_GameInstance_Statics::Class_MetaDataParams), Z_Construct_UClass_UARPG_GameInstance_Statics::Class_MetaDataParams)
@@ -512,6 +533,7 @@ template<> COURSE_ARPG_API UClass* StaticClass<UARPG_GameInstance>()
 {
 	return UARPG_GameInstance::StaticClass();
 }
+UARPG_GameInstance::UARPG_GameInstance(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 DEFINE_VTABLE_PTR_HELPER_CTOR(UARPG_GameInstance);
 UARPG_GameInstance::~UARPG_GameInstance() {}
 // End Class UARPG_GameInstance
@@ -520,10 +542,10 @@ UARPG_GameInstance::~UARPG_GameInstance() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 1938760151U) },
+		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 2972071659U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_3699702884(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_1053875501(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

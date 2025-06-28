@@ -9,16 +9,16 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class APawn;
+class AMainCharacter;
 #ifdef COURSE_ARPG_ARPG_GameInstance_generated_h
 #error "ARPG_GameInstance.generated.h already included, missing '#pragma once' in ARPG_GameInstance.h"
 #endif
 #define COURSE_ARPG_ARPG_GameInstance_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execSetPawnClass); \
-	DECLARE_FUNCTION(execLoadPawnClass); \
-	DECLARE_FUNCTION(execSavePawnClass); \
+	DECLARE_FUNCTION(execSetPlayerClass); \
+	DECLARE_FUNCTION(execLoadPlayerClass); \
+	DECLARE_FUNCTION(execSavePlayerClass); \
 	DECLARE_FUNCTION(execbCheckSlot); \
 	DECLARE_FUNCTION(execInitializeGameInstance); \
 	DECLARE_FUNCTION(execSaveAll); \
@@ -40,6 +40,8 @@ public: \
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_13_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UARPG_GameInstance(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UARPG_GameInstance(UARPG_GameInstance&&); \
@@ -47,7 +49,7 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UARPG_GameInstance); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UARPG_GameInstance); \
-	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UARPG_GameInstance) \
+	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UARPG_GameInstance) \
 	NO_API virtual ~UARPG_GameInstance();
 
 
