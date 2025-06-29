@@ -22,17 +22,18 @@
 			"BTT_ChargeAttack.gen.cpp.obj",
 			"BTT_MeleeAttack.gen.cpp.obj",
 			"BTT_RangeAttack.gen.cpp.obj",
-			"CharacterSelection.gen.cpp.obj",
-			"CharacterSelectionStruct.gen.cpp.obj",
 			"CombatComponent.gen.cpp.obj",
-			"Course_ARPG.init.gen.cpp.obj",
 			"DescriptionWidget.gen.cpp.obj",
 			"EEnemyStates.gen.cpp.obj",
 			"Enemy.gen.cpp.obj",
 			"EnemyProjectile.gen.cpp.obj",
-			"EnemyProjectileComponent.gen.cpp.obj"
+			"CharacterSelect.gen.cpp.obj",
+			"CharacterSelection.gen.cpp.obj",
+			"CharacterSelectionStruct.gen.cpp.obj",
+			"Course_ARPG.init.gen.cpp.obj"
 		],
 		"Module.Course_ARPG.2.cpp.obj": [
+			"EnemyProjectileComponent.gen.cpp.obj",
 			"EStats.gen.cpp.obj",
 			"Fighter.gen.cpp.obj",
 			"FTraceSockets.gen.cpp.obj",
@@ -73,12 +74,12 @@
 			"StatsComponent.cpp.obj",
 			"AbilityComponent_Base.cpp.obj",
 			"AbilityComponent_DamageIncrease.cpp.obj",
-			"AbilityComponent_GetArmor.cpp.obj",
-			"AbilityComponent_LifeStealAttack.cpp.obj",
-			"AbilityComponent_RangeAttack.cpp.obj",
-			"BlockComponent.cpp.obj"
+			"AbilityComponent_GetArmor.cpp.obj"
 		],
 		"Module.Course_ARPG.3.cpp.obj": [
+			"AbilityComponent_LifeStealAttack.cpp.obj",
+			"AbilityComponent_RangeAttack.cpp.obj",
+			"BlockComponent.cpp.obj",
 			"CombatComponent.cpp.obj",
 			"EnemyProjectile.cpp.obj",
 			"EnemyProjectileComponent.cpp.obj",
@@ -87,6 +88,7 @@
 			"Projectile_Base.cpp.obj",
 			"RangeAttackProjectile.cpp.obj",
 			"TraceComponent.cpp.obj",
+			"ARPG_GameMode.cpp.obj",
 			"Enemy.cpp.obj",
 			"Fighter.cpp.obj",
 			"MainPlayer.cpp.obj",
@@ -95,12 +97,12 @@
 			"ARPG_SaveGame.cpp.obj",
 			"AbilityFooter.cpp.obj",
 			"AbilityUpgradeScreen.cpp.obj",
-			"CharacterSelection.cpp.obj",
 			"DescriptionWidget.cpp.obj",
 			"SaveMenu.cpp.obj",
 			"SaveSlotWidget.cpp.obj",
 			"StatsScreenWidget.cpp.obj",
-			"ARPG_GameMode.cpp.obj"
+			"CharacterSelect.cpp.obj",
+			"CharacterSelection.cpp.obj"
 		]
 	}
 }

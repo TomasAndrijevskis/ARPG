@@ -106,12 +106,6 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
-    <Filter Include="Source\Course_ARPG\Private\Characters\Data">
-      <UniqueIdentifier>{96B0E68D-9D28-3C7D-9403-D93840F16D29}</UniqueIdentifier>
-    </Filter>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Data\XPLevels.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters\Data</Filter>
-    </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Combat">
       <UniqueIdentifier>{EC468FB0-F6D7-3303-9098-FBB7F56CE297}</UniqueIdentifier>
     </Filter>
@@ -199,6 +193,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\CharacterSelect.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\CharacterSelection.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
@@ -281,6 +278,9 @@
       <UniqueIdentifier>{C3E27980-9D43-34FA-9FA7-9AD579F314F1}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequirements.h">
+      <Filter>Source\Course_ARPG\Public\Characters\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\CharacterSelectionStruct.h">
       <Filter>Source\Course_ARPG\Public\Characters\Data</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h">
@@ -371,6 +371,9 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\CharacterSelect.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\CharacterSelection.h">

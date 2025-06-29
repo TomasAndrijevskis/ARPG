@@ -6,6 +6,9 @@
         "PCH": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectilecomponent.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\enemyprojectilecomponent.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectilecomponent.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\estats.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\estats.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\fighter.gen.cpp",
@@ -277,10 +280,7 @@
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\particles\\emitter.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\emitter.generated.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\particlesystemcomponent.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\private\\combat\\abilities\\abilitycomponent_getarmor.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\private\\combat\\abilities\\abilitycomponent_lifestealattack.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\private\\combat\\abilities\\abilitycomponent_rangeattack.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\private\\combat\\blockcomponent.cpp"
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\private\\combat\\abilities\\abilitycomponent_getarmor.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

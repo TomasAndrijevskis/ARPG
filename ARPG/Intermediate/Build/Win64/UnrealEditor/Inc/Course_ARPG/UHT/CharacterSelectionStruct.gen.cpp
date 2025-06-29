@@ -10,8 +10,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCharacterSelectionStruct() {}
 
 // Begin Cross Module References
+COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_NoRegister();
 COURSE_ARPG_API UScriptStruct* Z_Construct_UScriptStruct_FCharacterSelectionStruct();
-ENGINE_API UClass* Z_Construct_UClass_APawn_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTableRowBase();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
@@ -52,7 +53,7 @@ struct Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics
 		{ "ModuleRelativePath", "Public/Characters/Data/CharacterSelectionStruct.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FSoftClassPropertyParams NewProp_SelectedCharacterClass;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_SelectedCharacterClass;
 	static const UECodeGen_Private::FTextPropertyParams NewProp_Description;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Image;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -62,7 +63,7 @@ struct Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics
 	}
 	static const UECodeGen_Private::FStructParams StructParams;
 };
-const UECodeGen_Private::FSoftClassPropertyParams Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics::NewProp_SelectedCharacterClass = { "SelectedCharacterClass", nullptr, (EPropertyFlags)0x0014000000010015, UECodeGen_Private::EPropertyGenFlags::SoftClass, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FCharacterSelectionStruct, SelectedCharacterClass), Z_Construct_UClass_APawn_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectedCharacterClass_MetaData), NewProp_SelectedCharacterClass_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics::NewProp_SelectedCharacterClass = { "SelectedCharacterClass", nullptr, (EPropertyFlags)0x0014000000010015, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FCharacterSelectionStruct, SelectedCharacterClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AMainCharacter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SelectedCharacterClass_MetaData), NewProp_SelectedCharacterClass_MetaData) };
 const UECodeGen_Private::FTextPropertyParams Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics::NewProp_Description = { "Description", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Text, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FCharacterSelectionStruct, Description), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Description_MetaData), NewProp_Description_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics::NewProp_Image = { "Image", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(FCharacterSelectionStruct, Image), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Image_MetaData), NewProp_Image_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics::PropPointers[] = {
@@ -98,10 +99,10 @@ UScriptStruct* Z_Construct_UScriptStruct_FCharacterSelectionStruct()
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Data_CharacterSelectionStruct_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
-		{ FCharacterSelectionStruct::StaticStruct, Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics::NewStructOps, TEXT("CharacterSelectionStruct"), &Z_Registration_Info_UScriptStruct_CharacterSelectionStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCharacterSelectionStruct), 598714439U) },
+		{ FCharacterSelectionStruct::StaticStruct, Z_Construct_UScriptStruct_FCharacterSelectionStruct_Statics::NewStructOps, TEXT("CharacterSelectionStruct"), &Z_Registration_Info_UScriptStruct_CharacterSelectionStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FCharacterSelectionStruct), 3487458004U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Data_CharacterSelectionStruct_h_2175704787(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Data_CharacterSelectionStruct_h_2036474273(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Data_CharacterSelectionStruct_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Data_CharacterSelectionStruct_h_Statics::ScriptStructInfo),
 	nullptr, 0);

@@ -14,11 +14,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_CharacterSelection_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_CharacterSelection_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execSetCharacterClass2); \
-	DECLARE_FUNCTION(execSetCharacterClass1);
-
-
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_CharacterSelection_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUCharacterSelection(); \
@@ -46,7 +41,6 @@ public: \
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_CharacterSelection_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_CharacterSelection_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_CharacterSelection_h_18_INCLASS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_CharacterSelection_h_18_ENHANCED_CONSTRUCTORS \
 private: \
