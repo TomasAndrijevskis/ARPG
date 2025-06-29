@@ -39,4 +39,3 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/Abilities/AbilityComponent_LifeStealAttack.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/Abilities/AbilityComponent_RangeAttack.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/BlockComponent.cpp"
-#include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/CombatComponent.cpp"
