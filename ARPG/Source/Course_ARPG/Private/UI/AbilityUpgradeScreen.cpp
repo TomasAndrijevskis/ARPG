@@ -1,7 +1,7 @@
 
 #include "UI/AbilityUpgradeScreen.h"
 #include "Characters/LevelingComponent.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/DescriptionWidget.h"
@@ -9,7 +9,15 @@
 
 void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityComp)
 {
+	if (!AbilityComp)
+	{
+		return;
+	}
 	AbilityComp_REF = AbilityComp;
+	if (!AbilityComp_REF)
+	{
+		return;
+	}
 	SetIconStyle(AbilityComp_REF->GetIcon());
 	SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
 	SetAbilityIconEnable();
@@ -22,7 +30,7 @@ void UAbilityUpgradeScreen::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 }
 
 
@@ -167,6 +175,10 @@ void UAbilityUpgradeScreen::SetAbilityIconEnable()
 
 void UAbilityUpgradeScreen::SetIconStyle(UTexture2D* Icon)
 {
+	if (!Icon)
+	{
+		return;
+	}
 	FButtonStyle CustomStyle;
 
 	// Normal Brush (Image)

@@ -7,7 +7,7 @@
 #include "ARPG_SaveGame.generated.h"
 
 class UAbilityComponent_Base;
-class AMainCharacter;
+class AMainCharacter_Base;
 
 UCLASS()
 class COURSE_ARPG_API UARPG_SaveGame : public USaveGame
@@ -52,5 +52,5 @@ public:
 	TMap<FString, FAbilityData> UnlockedAbilities;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<AMainCharacter> PlayerCharacter;
+	TSubclassOf<AMainCharacter_Base> PlayerCharacter;
 };

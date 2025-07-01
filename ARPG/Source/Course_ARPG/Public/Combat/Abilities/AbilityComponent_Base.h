@@ -6,6 +6,7 @@
 #include "AbilityComponent_Base.generated.h"
 
 struct FAbilityData;
+class AMainCharacter_Base;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityTimerChangedSignature, float, TimeLeft);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityStartedSignature);
@@ -130,14 +131,16 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UDataTable* RequirementsDataTable;
+
+	UPROPERTY()
+	AMainCharacter_Base* PlayerRef;
+
+	UPROPERTY()
+	USkeletalMeshComponent* SkeletalMeshComp;
 	
 	float TimerDuration;
 
 	FTimerHandle TimerHandle;
-
-	class AMainCharacter* PlayerRef;
-
-	USkeletalMeshComponent* SkeletalMeshComp;
 
 
 private:

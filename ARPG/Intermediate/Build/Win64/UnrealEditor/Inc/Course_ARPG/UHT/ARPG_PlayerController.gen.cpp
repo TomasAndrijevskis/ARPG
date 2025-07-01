@@ -12,9 +12,69 @@ void EmptyLinkFunctionForGeneratedCodeARPG_PlayerController() {}
 // Begin Cross Module References
 COURSE_ARPG_API UClass* Z_Construct_UClass_AARPG_PlayerController();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AARPG_PlayerController_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UARPG_GameInstance_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_APlayerController();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
+
+// Begin Class AARPG_PlayerController Function CreateAbilityUpgradeScreen
+struct Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreateAbilityUpgradeScreen", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AARPG_PlayerController::execCreateAbilityUpgradeScreen)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreateAbilityUpgradeScreen();
+	P_NATIVE_END;
+}
+// End Class AARPG_PlayerController Function CreateAbilityUpgradeScreen
+
+// Begin Class AARPG_PlayerController Function CreateStatsScreen
+struct Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreateStatsScreen", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AARPG_PlayerController::execCreateStatsScreen)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreateStatsScreen();
+	P_NATIVE_END;
+}
+// End Class AARPG_PlayerController Function CreateStatsScreen
 
 // Begin Class AARPG_PlayerController Function HandleGameLoad
 struct Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics
@@ -126,6 +186,8 @@ void AARPG_PlayerController::StaticRegisterNativesAARPG_PlayerController()
 {
 	UClass* Class = AARPG_PlayerController::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "CreateAbilityUpgradeScreen", &AARPG_PlayerController::execCreateAbilityUpgradeScreen },
+		{ "CreateStatsScreen", &AARPG_PlayerController::execCreateStatsScreen },
 		{ "HandleGameLoad", &AARPG_PlayerController::execHandleGameLoad },
 		{ "HandleGamePause", &AARPG_PlayerController::execHandleGamePause },
 		{ "SetPlayerControllerSettings", &AARPG_PlayerController::execSetPlayerControllerSettings },
@@ -145,9 +207,20 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 		{ "IncludePath", "Characters/ARPG_PlayerController.h" },
 		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerRef_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameInstanceRef_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerRef;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameInstanceRef;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 2040075222
+		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen, "CreateStatsScreen" }, // 1472688990
 		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad, "HandleGameLoad" }, // 1609483863
 		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause, "HandleGamePause" }, // 1363827133
 		{ &Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings, "SetPlayerControllerSettings" }, // 88454122
@@ -158,6 +231,13 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_PlayerRef = { "PlayerRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, PlayerRef), Z_Construct_UClass_AMainCharacter_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerRef_MetaData), NewProp_PlayerRef_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_GameInstanceRef = { "GameInstanceRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, GameInstanceRef), Z_Construct_UClass_UARPG_GameInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameInstanceRef_MetaData), NewProp_GameInstanceRef_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_PlayerRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_GameInstanceRef,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AARPG_PlayerController_Statics::DependentSingletons[])() = {
 	(UObject* (*)())Z_Construct_UClass_APlayerController,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
@@ -169,11 +249,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_AARPG_PlayerController_
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
 	FuncInfo,
-	nullptr,
+	Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
 	UE_ARRAY_COUNT(FuncInfo),
-	0,
+	UE_ARRAY_COUNT(Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers),
 	0,
 	0x009002A4u,
 	METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UClass_AARPG_PlayerController_Statics::Class_MetaDataParams), Z_Construct_UClass_AARPG_PlayerController_Statics::Class_MetaDataParams)
@@ -190,6 +270,7 @@ template<> COURSE_ARPG_API UClass* StaticClass<AARPG_PlayerController>()
 {
 	return AARPG_PlayerController::StaticClass();
 }
+AARPG_PlayerController::AARPG_PlayerController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
 DEFINE_VTABLE_PTR_HELPER_CTOR(AARPG_PlayerController);
 AARPG_PlayerController::~AARPG_PlayerController() {}
 // End Class AARPG_PlayerController
@@ -198,10 +279,10 @@ AARPG_PlayerController::~AARPG_PlayerController() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 1833022368U) },
+		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 1318504814U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_549780844(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_3372403473(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

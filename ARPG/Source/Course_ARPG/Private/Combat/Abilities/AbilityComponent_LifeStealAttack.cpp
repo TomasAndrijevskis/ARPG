@@ -1,6 +1,6 @@
 
 #include "Combat/Abilities/AbilityComponent_LifeStealAttack.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"

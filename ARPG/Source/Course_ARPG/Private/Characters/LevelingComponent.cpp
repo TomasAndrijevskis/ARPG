@@ -44,7 +44,7 @@ void ULevelingComponent::TryLevelUp()
 }
 
 
-float ULevelingComponent::GetCurrentExperience()
+float ULevelingComponent::GetCurrentXP()
 {
 	return CurrentXP;
 }

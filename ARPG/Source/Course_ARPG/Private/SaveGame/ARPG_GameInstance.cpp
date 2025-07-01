@@ -1,7 +1,7 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Characters/LevelingComponent.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
 #include "Kismet/GameplayStatics.h"
@@ -16,16 +16,17 @@ void UARPG_GameInstance::Init()
 
 void UARPG_GameInstance::InitializeGameInstance()
 {
-	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
-	if (PlayerRef)
+	if (!PlayerRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Player: %s"), *PlayerRef->GetName());
+		return;
 	}
+	UE_LOG(LogTemp, Error, TEXT("GameInstance|Init|PlayerClass: %s"), *PlayerRef->GetName());
 }
 
 
-void UARPG_GameInstance::SetPlayerClass(TSubclassOf<AMainCharacter> PlayerClass, bool bFirstLoad)
+void UARPG_GameInstance::SetPlayerClass(TSubclassOf<AMainCharacter_Base> PlayerClass, bool bFirstLoad)
 {
 	bIsFirstLoad = bFirstLoad;
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
@@ -33,8 +34,7 @@ void UARPG_GameInstance::SetPlayerClass(TSubclassOf<AMainCharacter> PlayerClass,
 	{
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
-
-	//PlayerCharacterClass = PlayerClass;
+	
 	SaveGameInstance->PlayerCharacter = PlayerClass;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
@@ -48,7 +48,7 @@ void UARPG_GameInstance::SaveAll()
 }
 
 
-void UARPG_GameInstance::SavePlayerClass()
+/*void UARPG_GameInstance::SavePlayerClass()
 {
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 	if (!SaveGameInstance)
@@ -58,8 +58,8 @@ void UARPG_GameInstance::SavePlayerClass()
 
 	SaveGameInstance->PlayerCharacter = PlayerCharacterClass;
 	PlayerCharacterClass = nullptr;
-	//UE_LOG(LogTemp,Error, TEXT("Saved Player class%s"), *PlayerCharacterClass->GetName());
-}
+	UE_LOG(LogTemp,Error, TEXT("GameInstance|Saved Player Class: %s"), *PlayerCharacterClass->GetName());
+}*/
 
 
 void UARPG_GameInstance::LoadPlayerClass()
@@ -73,7 +73,7 @@ void UARPG_GameInstance::LoadPlayerClass()
 	if (SaveGameInstance->PlayerCharacter)
 	{
 		PlayerCharacterClass = SaveGameInstance->PlayerCharacter;
-		UE_LOG(LogTemp,Error, TEXT("Loaded Player class%s"), *PlayerCharacterClass->GetName());
+		UE_LOG(LogTemp,Error, TEXT("GameInstance|Loaded Player Class: %s"), *PlayerCharacterClass->GetName());
 	}
 }
 
@@ -82,7 +82,6 @@ void UARPG_GameInstance::SaveStats()
 {
 	if (!PlayerRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("player is null"));
 		return;
 	}
 	
@@ -99,10 +98,11 @@ void UARPG_GameInstance::SaveStats()
 	SaveGameInstance->MaxStamina = PlayerRef->StatsComp->GetStatValue(EStats::MaxStamina);
 	SaveGameInstance->Strength = PlayerRef->StatsComp->GetStatValue(EStats::Strength);
 	SaveGameInstance->CurrentLevel = PlayerRef->LevelComp->GetCurrentLevel();
-	SaveGameInstance->CurrentXP = PlayerRef->LevelComp->GetCurrentExperience();
+	SaveGameInstance->CurrentXP = PlayerRef->LevelComp->GetCurrentXP();
 	SaveGameInstance->CurrentStatPoints = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
 	SaveGameInstance->CurrentAbilityPoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
 
+	UE_LOG(LogTemp,Error, TEXT("GameInstance|Stats Saved"));
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -111,7 +111,6 @@ void UARPG_GameInstance::LoadStats()
 {
 	if (!PlayerRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("player is null"));
 		return;
 	}
 	
@@ -119,7 +118,7 @@ void UARPG_GameInstance::LoadStats()
 	
 	if (!SaveGameInstance)
 	{
-		UE_LOG(LogTemp, Error, TEXT("cant load"));
+		UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant Load Stats"));
 		return;
 	}
 	
@@ -140,7 +139,6 @@ void UARPG_GameInstance::SaveAbilities()
 {
 	if (!PlayerRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("player is null"));
 		return;
 	}
 	
@@ -149,14 +147,18 @@ void UARPG_GameInstance::SaveAbilities()
 	{
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
-
-	for (auto Ability: PlayerRef->Abilities)
+	
+	for (UAbilityComponent_Base* Ability: PlayerRef->ArrAbilities)
 	{
+		if (!IsValid(Ability))
+		{
+			continue;
+		}
 		FAbilityData Data;
 		Ability->SaveCustomProperties(Data);
 		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
 		
-		//UE_LOG(LogTemp, Error, TEXT("Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
+		UE_LOG(LogTemp, Error, TEXT("GameInstance|Ability Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
 	}
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
@@ -167,7 +169,6 @@ void UARPG_GameInstance::LoadAbilities()
 {
 	if (!PlayerRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("player is null"));
 		return;
 	}
 	
@@ -175,20 +176,26 @@ void UARPG_GameInstance::LoadAbilities()
 	
 	if (!SaveGameInstance)
 	{
-		UE_LOG(LogTemp, Error, TEXT("cant load"));
+		UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant Load ArrAbilities"));
 		return;
 	}
 
-	//UE_LOG(LogTemp, Warning, TEXT("Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
-	for (auto Ability: PlayerRef->Abilities)
+	UE_LOG(LogTemp, Warning, TEXT("GameInstance|Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
+	
+	
+	for (UAbilityComponent_Base* Ability: PlayerRef->ArrAbilities)
 	{
+		if (!IsValid(Ability))
+		{
+			continue;
+		}
 		FString AbilityName = Ability->GetName();
 		if (SaveGameInstance->UnlockedAbilities.Contains(AbilityName))
 		{
 			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
 			
 			Ability->LoadCustomProperties(SavedData);
-			//UE_LOG(LogTemp, Error, TEXT("Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
+			UE_LOG(LogTemp, Error, TEXT("GameInstance|Ability Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
 		}
 	}
 }

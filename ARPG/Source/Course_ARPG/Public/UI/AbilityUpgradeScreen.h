@@ -96,5 +96,5 @@ private:
 
 	FString UpgradeDescription;
 
-	class AMainCharacter* PlayerRef;
+	class AMainCharacter_Base* PlayerRef;
 };

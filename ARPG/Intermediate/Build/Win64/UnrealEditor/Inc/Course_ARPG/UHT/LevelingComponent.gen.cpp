@@ -280,47 +280,6 @@ DEFINE_FUNCTION(ULevelingComponent::execGetCurrentAbilityPointsAmount)
 }
 // End Class ULevelingComponent Function GetCurrentAbilityPointsAmount
 
-// Begin Class ULevelingComponent Function GetCurrentExperience
-struct Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics
-{
-	struct LevelingComponent_eventGetCurrentExperience_Parms
-	{
-		float ReturnValue;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Characters/LevelingComponent.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(LevelingComponent_eventGetCurrentExperience_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::NewProp_ReturnValue,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ULevelingComponent, nullptr, "GetCurrentExperience", nullptr, nullptr, Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::PropPointers), sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::LevelingComponent_eventGetCurrentExperience_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::Function_MetaDataParams), Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::LevelingComponent_eventGetCurrentExperience_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(ULevelingComponent::execGetCurrentExperience)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	*(float*)Z_Param__Result=P_THIS->GetCurrentExperience();
-	P_NATIVE_END;
-}
-// End Class ULevelingComponent Function GetCurrentExperience
-
 // Begin Class ULevelingComponent Function GetCurrentLevel
 struct Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics
 {
@@ -402,6 +361,47 @@ DEFINE_FUNCTION(ULevelingComponent::execGetCurrentStatPointsAmount)
 	P_NATIVE_END;
 }
 // End Class ULevelingComponent Function GetCurrentStatPointsAmount
+
+// Begin Class ULevelingComponent Function GetCurrentXP
+struct Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics
+{
+	struct LevelingComponent_eventGetCurrentXP_Parms
+	{
+		float ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/LevelingComponent.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(LevelingComponent_eventGetCurrentXP_Parms, ReturnValue), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ULevelingComponent, nullptr, "GetCurrentXP", nullptr, nullptr, Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers), sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::LevelingComponent_eventGetCurrentXP_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::Function_MetaDataParams), Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::LevelingComponent_eventGetCurrentXP_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_ULevelingComponent_GetCurrentXP()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ULevelingComponent::execGetCurrentXP)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(float*)Z_Param__Result=P_THIS->GetCurrentXP();
+	P_NATIVE_END;
+}
+// End Class ULevelingComponent Function GetCurrentXP
 
 // Begin Class ULevelingComponent Function SetAbilityPoints
 struct Z_Construct_UFunction_ULevelingComponent_SetAbilityPoints_Statics
@@ -578,9 +578,9 @@ void ULevelingComponent::StaticRegisterNativesULevelingComponent()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "AddExperience", &ULevelingComponent::execAddExperience },
 		{ "GetCurrentAbilityPointsAmount", &ULevelingComponent::execGetCurrentAbilityPointsAmount },
-		{ "GetCurrentExperience", &ULevelingComponent::execGetCurrentExperience },
 		{ "GetCurrentLevel", &ULevelingComponent::execGetCurrentLevel },
 		{ "GetCurrentStatPointsAmount", &ULevelingComponent::execGetCurrentStatPointsAmount },
+		{ "GetCurrentXP", &ULevelingComponent::execGetCurrentXP },
 		{ "SetAbilityPoints", &ULevelingComponent::execSetAbilityPoints },
 		{ "SetExperience", &ULevelingComponent::execSetExperience },
 		{ "SetLevel", &ULevelingComponent::execSetLevel },
@@ -649,9 +649,9 @@ struct Z_Construct_UClass_ULevelingComponent_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_ULevelingComponent_AddExperience, "AddExperience" }, // 156666592
 		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentAbilityPointsAmount, "GetCurrentAbilityPointsAmount" }, // 2181021594
-		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentExperience, "GetCurrentExperience" }, // 3866498568
 		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel, "GetCurrentLevel" }, // 804138474
 		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentStatPointsAmount, "GetCurrentStatPointsAmount" }, // 3021460794
+		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentXP, "GetCurrentXP" }, // 518075801
 		{ &Z_Construct_UFunction_ULevelingComponent_SetAbilityPoints, "SetAbilityPoints" }, // 2813704275
 		{ &Z_Construct_UFunction_ULevelingComponent_SetExperience, "SetExperience" }, // 1754477239
 		{ &Z_Construct_UFunction_ULevelingComponent_SetLevel, "SetLevel" }, // 2487968515
@@ -724,10 +724,10 @@ ULevelingComponent::~ULevelingComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ULevelingComponent, ULevelingComponent::StaticClass, TEXT("ULevelingComponent"), &Z_Registration_Info_UClass_ULevelingComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ULevelingComponent), 609675705U) },
+		{ Z_Construct_UClass_ULevelingComponent, ULevelingComponent::StaticClass, TEXT("ULevelingComponent"), &Z_Registration_Info_UClass_ULevelingComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ULevelingComponent), 2964838335U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_3512494977(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_2518095665(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

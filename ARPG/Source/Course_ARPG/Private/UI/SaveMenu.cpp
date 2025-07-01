@@ -12,6 +12,8 @@ void USaveMenu::NativeConstruct()
 	SlotNames.Add(FString("Slot1"));
 	SlotNames.Add(FString("Slot2"));
 	SlotNames.Add(FString("Slot3"));
+	SlotNames.Add(FString("Slot4"));
+	SlotNames.Add(FString("Slot5"));
 	
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	if (!GameInstance)

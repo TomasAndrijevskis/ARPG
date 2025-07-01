@@ -35,7 +35,7 @@ public:
 	FOnAbilityPointsUpdateSignature OnAbilityPointsUpdateDelegate;
 	
 	UFUNCTION(BlueprintPure)
-	float GetCurrentExperience();
+	float GetCurrentXP();
 
 	UFUNCTION(BlueprintPure)
 	int GetCurrentLevel();

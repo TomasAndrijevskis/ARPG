@@ -2,7 +2,7 @@
 #include "UI/StatsScreenWidget.h"
 #include "Characters/EStats.h"
 #include "Characters/LevelingComponent.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
@@ -13,7 +13,7 @@ void UStatsScreenWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	PlayerRef = Cast<AMainCharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
 	if (Button_ImproveStat)
 	{

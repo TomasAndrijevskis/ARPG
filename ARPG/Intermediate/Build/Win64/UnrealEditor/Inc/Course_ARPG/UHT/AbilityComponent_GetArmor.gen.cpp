@@ -68,6 +68,10 @@ struct Z_Construct_UClass_UAbilityComponent_GetArmor_Statics
 		{ "IncludePath", "Combat/Abilities/AbilityComponent_GetArmor.h" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_GetArmor.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Keyword_MetaData[] = {
+		{ "Category", "AbilityComponent_GetArmor" },
+		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_GetArmor.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Armor_MetaData[] = {
 		{ "Category", "AbilityComponent_GetArmor" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_GetArmor.h" },
@@ -77,6 +81,7 @@ struct Z_Construct_UClass_UAbilityComponent_GetArmor_Statics
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_GetArmor.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FStrPropertyParams NewProp_Keyword;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Armor;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DamageReductionPercent;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -90,9 +95,11 @@ struct Z_Construct_UClass_UAbilityComponent_GetArmor_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::NewProp_Keyword = { "Keyword", nullptr, (EPropertyFlags)0x0020080000000015, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_GetArmor, Keyword), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Keyword_MetaData), NewProp_Keyword_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::NewProp_Armor = { "Armor", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_GetArmor, Armor), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Armor_MetaData), NewProp_Armor_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::NewProp_DamageReductionPercent = { "DamageReductionPercent", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_GetArmor, DamageReductionPercent), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamageReductionPercent_MetaData), NewProp_DamageReductionPercent_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::NewProp_Keyword,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::NewProp_Armor,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::NewProp_DamageReductionPercent,
 };
@@ -137,10 +144,10 @@ UAbilityComponent_GetArmor::~UAbilityComponent_GetArmor() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 2619770886U) },
+		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 3800837692U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_3132643138(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_2813909038(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

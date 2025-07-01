@@ -6,7 +6,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/LevelingComponent.h"
 #include "Combat/CombatComponent.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 
@@ -30,7 +30,7 @@ void ABossCharacter::BeginPlay()
 	BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), InitialState);
 
 	//из-за этой строки функция HandlePlayerDeath сработает когда у игрок умрет(OnZeroHealthDelegate) - таким образом можно триггерить функции через не связанные между собой классы
-	GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter>()->StatsComp->OnZeroHealthDelegate.AddDynamic(this, &ABossCharacter::HandlePlayerDeath);
+	GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>()->StatsComp->OnZeroHealthDelegate.AddDynamic(this, &ABossCharacter::HandlePlayerDeath);
 }
 
 
@@ -118,7 +118,7 @@ void ABossCharacter::FinishedDeathAnim()
 
 void ABossCharacter::GiveRewardXP()
 {
-	AMainCharacter* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter>();
+	AMainCharacter_Base* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>();
 	if (!PlayerRef)
 	{
 		return;

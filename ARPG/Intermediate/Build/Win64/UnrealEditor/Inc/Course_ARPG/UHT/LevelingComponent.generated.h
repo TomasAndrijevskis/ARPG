@@ -38,7 +38,7 @@ COURSE_ARPG_API void FOnAbilityPointsUpdateSignature_DelegateWrapper(const FMult
 	DECLARE_FUNCTION(execGetCurrentAbilityPointsAmount); \
 	DECLARE_FUNCTION(execGetCurrentStatPointsAmount); \
 	DECLARE_FUNCTION(execGetCurrentLevel); \
-	DECLARE_FUNCTION(execGetCurrentExperience); \
+	DECLARE_FUNCTION(execGetCurrentXP); \
 	DECLARE_FUNCTION(execAddExperience);
 
 

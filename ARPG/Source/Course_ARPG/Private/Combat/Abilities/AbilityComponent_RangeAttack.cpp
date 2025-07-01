@@ -1,6 +1,6 @@
 
 #include "Combat/Abilities/AbilityComponent_RangeAttack.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/RangeAttackProjectile.h"
 #include "Kismet/GameplayStatics.h"
@@ -92,7 +92,7 @@ void UAbilityComponent_RangeAttack::UpdateUpgradeDescription()
 	float NextMana = GetManaCost() - (GetManaCost() * .2f);
 	float NextCooldown = GetCooldownDuration() - 1 ;
 	
-	float NextDamage = GetProjectileDamage() + (GetProjectileDamage() * .2f);
+	float NextDamage = GetProjectileDamage() + (GetProjectileDamage() * .3f);
 	
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
 		GetManaCost(), NextMana, GetProjectileDamage(), NextDamage, GetCooldownDuration(), NextCooldown));
@@ -104,7 +104,7 @@ void UAbilityComponent_RangeAttack::UpdateAbilityProperties()
 {
 	Super::UpdateAbilityProperties();
 
-	float NewDamage = ProjectileDamage + (ProjectileDamage * 0.2f);
+	float NewDamage = ProjectileDamage + (ProjectileDamage * 0.3f);
 
 	SetProjectileDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
 }

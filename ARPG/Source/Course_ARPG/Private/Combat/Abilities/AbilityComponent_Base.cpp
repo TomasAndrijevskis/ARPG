@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/AbilityComponent_Base.h"
 #include "Characters/LevelingComponent.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Characters/PlayerActionsComponent.h"
 #include "Characters/Data/AbilityUpgradeRequirements.h"
 #include "Combat/CombatComponent.h"
@@ -18,7 +18,7 @@ void UAbilityComponent_Base::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	PlayerRef = Cast<AMainCharacter>(GetOwner());
+	PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
 	SkeletalMeshComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
 
 	UpdateAbilityDescription();

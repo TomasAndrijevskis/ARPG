@@ -27,7 +27,7 @@ EBTNodeResult::Type UBTT_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 
 	AAIController* AIRef = OwnerComp.GetAIOwner();
-	if (Distance>AttackRadius)
+	if (Distance > AttackRadius)
 	{
 		APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
 		FAIMoveRequest MoveRequest = PlayerRef;

@@ -9,7 +9,7 @@
 
 
 class AARPG_GameMode;
-class AMainCharacter;
+class AMainCharacter_Base;
 class UARPG_GameInstance;
 
 UCLASS()

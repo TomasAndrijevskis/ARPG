@@ -1,7 +1,7 @@
 
 #include "Combat/TraceComponent.h"
 
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/AbilityComponent_DamageIncrease.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -11,14 +11,9 @@
 
 UTraceComponent::UTraceComponent()
 {
-
 	PrimaryComponentTick.bCanEverTick = true;
-	
-	/*StartSocket = FName("sword_bottom");
-	EndSocket = FName("FX_Sword_Top");;
-	SocketRotation = FName("sword_bottom");*/
-
 }
+
 
 void UTraceComponent::BeginPlay()
 {
@@ -54,7 +49,8 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 		FCollisionQueryParams IgnoreParams { FName{TEXT("Ignore Params")}, false, GetOwner()};
 		bool bHasFoundTargets = GetWorld()->SweepMultiByChannel(OutResults, StartSocketLocation, EndSocketLocation,ShapeRotation,ECollisionChannel::ECC_GameTraceChannel1, Box, IgnoreParams);
-
+		
+		
 		for (FHitResult Hit: OutResults)
 		{
 			AllResults.Add(Hit);
@@ -68,7 +64,6 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 			}
 			FVector CenterPoint = UKismetMathLibrary::VLerp(StartSocketLocation, EndSocketLocation, 0.5f);
 			UKismetSystemLibrary::DrawDebugBox(GetWorld(),CenterPoint ,Box.GetExtent(), DebugColor, ShapeRotation.Rotator(), 1.0f, 2.0f );
-			//bHasFoundTargets ? FLinearColor::Green : FLinearColor::Red;
 		}
 	}
 	if (AllResults.Num() == 0)
@@ -77,13 +72,18 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	}
 	float CharacterDamage = 0.0f;
 	IFighter* FighterRef = Cast<IFighter>(GetOwner());
-	AMainCharacter* CharacterRef = Cast<AMainCharacter>(GetOwner());
+	
 	if (FighterRef)
 	{
+		
 		CharacterDamage = FighterRef->GetCurrentDamage();
-		if (CharacterRef && (CharacterRef->AbilityComp_DamageIncrease->IsAbilityActive()))
+		
+		AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
+		UAbilityComponent_DamageIncrease* AbilityRef = GetOwner()->FindComponentByClass<UAbilityComponent_DamageIncrease>();
+
+		if (PlayerRef && (AbilityRef->IsAbilityActive()))
 		{
-			CharacterDamage = CharacterDamage * (CharacterRef->AbilityComp_DamageIncrease->GetDamageMultiplier());
+			CharacterDamage = CharacterDamage * (AbilityRef->GetDamageMultiplier());
 		}
 		UE_LOG(LogTemp, Error, TEXT("Damage: %f"), CharacterDamage);
 	}

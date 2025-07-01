@@ -14,16 +14,16 @@ class COURSE_ARPG_API UStatsScreenWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
+public:
 
-protected:
 	
-	virtual void NativeConstruct() override;
-
-
-
 	UFUNCTION(BlueprintCallable)
 	void SetStatsVariables(EStats StatToImprove);
 
+	
+protected:
+	
+	virtual void NativeConstruct() override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float StatValue;
@@ -54,5 +54,5 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_ImproveStat;
 	
-	class AMainCharacter* PlayerRef;
+	class AMainCharacter_Base* PlayerRef;
 };

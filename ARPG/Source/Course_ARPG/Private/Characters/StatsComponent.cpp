@@ -1,7 +1,7 @@
 
 #include "Characters/StatsComponent.h"
 
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/AbilityComponent_GetArmor.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -43,6 +43,7 @@ void UStatsComponent::ReduceHealth(float Damage, AActor* Opponent)
 	}
 }
 
+
 float UStatsComponent::GetReducedDamage(float Damage, AActor* Opponent)
 {
 	if (Stats[EStats::Armor] <= 0)
@@ -50,15 +51,20 @@ float UStatsComponent::GetReducedDamage(float Damage, AActor* Opponent)
 		return Damage;
 	}
 	IFighter* FighterRef = GetOwner<IFighter>();
-
-	AMainCharacter* CharacterRef = GetOwner<AMainCharacter>();
+	
 	if (!FighterRef->CanTakeDamage(Opponent))
 	{
 		return 0;
 	}
+	
+	UAbilityComponent_GetArmor* AbilityRef = GetOwner()->FindComponentByClass<UAbilityComponent_GetArmor>();
 
+	if (!AbilityRef)
+	{
+		return Damage;
+	}
 	//на всякий случай вдруг % блокированного урона измениться
-	float ClampedReduction = FMath::Clamp(CharacterRef->AbilityComp_GetArmor->GetDamageReductionPercent(), 0.f, 1.f);
+	float ClampedReduction = FMath::Clamp(AbilityRef->GetDamageReductionPercent(), 0.f, 1.f);
 	float BlockedDamage = Damage * ClampedReduction;
 
 	// гарантирует что блокированый урон не будет больше чем есть брони у игрока

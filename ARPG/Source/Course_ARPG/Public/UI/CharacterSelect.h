@@ -9,7 +9,7 @@
 #include "Components/TextBlock.h"
 #include "CharacterSelect.generated.h"
 
-class AMainCharacter;
+class AMainCharacter_Base;
 
 UCLASS()
 class COURSE_ARPG_API UCharacterSelect : public UUserWidget
@@ -44,5 +44,5 @@ private:
 	UPROPERTY(EditAnywhere)
 	FDataTableRowHandle CharacterData;
 
-	TSubclassOf<AMainCharacter> CharacterClass;
+	TSubclassOf<AMainCharacter_Base> CharacterClass;
 };

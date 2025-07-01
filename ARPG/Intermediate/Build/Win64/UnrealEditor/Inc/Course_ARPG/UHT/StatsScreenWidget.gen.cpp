@@ -115,7 +115,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStats
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::NewProp_StatToImprove,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsScreenWidget, nullptr, "SetStatsVariables", nullptr, nullptr, Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::StatsScreenWidget_eventSetStatsVariables_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsScreenWidget, nullptr, "SetStatsVariables", nullptr, nullptr, Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::StatsScreenWidget_eventSetStatsVariables_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::StatsScreenWidget_eventSetStatsVariables_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables()
 {
@@ -246,7 +246,7 @@ struct Z_Construct_UClass_UStatsScreenWidget_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UStatsScreenWidget_ImproveStat, "ImproveStat" }, // 3335996652
 		{ &Z_Construct_UFunction_UStatsScreenWidget_OnClickedImproveStat, "OnClickedImproveStat" }, // 425721780
-		{ &Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables, "SetStatsVariables" }, // 1953452503
+		{ &Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables, "SetStatsVariables" }, // 2997399129
 		{ &Z_Construct_UFunction_UStatsScreenWidget_UpdateText, "UpdateText" }, // 3794125817
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -311,10 +311,10 @@ UStatsScreenWidget::~UStatsScreenWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatsScreenWidget, UStatsScreenWidget::StaticClass, TEXT("UStatsScreenWidget"), &Z_Registration_Info_UClass_UStatsScreenWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsScreenWidget), 507084806U) },
+		{ Z_Construct_UClass_UStatsScreenWidget, UStatsScreenWidget::StaticClass, TEXT("UStatsScreenWidget"), &Z_Registration_Info_UClass_UStatsScreenWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsScreenWidget), 3597348847U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_2932326765(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_980382095(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

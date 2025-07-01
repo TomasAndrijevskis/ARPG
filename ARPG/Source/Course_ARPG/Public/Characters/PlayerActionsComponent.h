@@ -51,7 +51,7 @@ protected:
 	
 private:
 
-	class AMainCharacter* CharacterRef;
+	class AMainCharacter_Base* CharacterRef;
 	
 	class IMainPlayer* IPlayerRef;
 	

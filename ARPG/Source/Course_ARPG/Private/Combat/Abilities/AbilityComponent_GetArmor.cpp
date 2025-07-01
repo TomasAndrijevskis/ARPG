@@ -1,6 +1,6 @@
 
 #include "Combat/Abilities/AbilityComponent_GetArmor.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
 #include "SaveGame/AbilityData.h"
 
@@ -54,7 +54,7 @@ void UAbilityComponent_GetArmor::UpdateUpgradeDescription()
 	float NextMana = GetManaCost() - (GetManaCost() * .2f);
 	float NextCooldown = GetCooldownDuration() - 1;
 
-	float NextArmor = GetArmor() + (GetArmor() * .2f);
+	float NextArmor = GetArmor() + (GetArmor() * .4f);
 	float NextDamageReduction = GetDamageReductionPercent() + (GetDamageReductionPercent() * .2f);
 	
 
@@ -67,7 +67,7 @@ void UAbilityComponent_GetArmor::UpdateAbilityProperties()
 {
 	Super::UpdateAbilityProperties();
 	
-	float NewArmor = GetArmor() + (GetArmor() * .2f);
+	float NewArmor = GetArmor() + (GetArmor() * .4f);
 	float NewReductionPercent = GetDamageReductionPercent() + (GetDamageReductionPercent() * .2f);
 	//round -> 0.22
 	// *1000 -> 0.333 ...

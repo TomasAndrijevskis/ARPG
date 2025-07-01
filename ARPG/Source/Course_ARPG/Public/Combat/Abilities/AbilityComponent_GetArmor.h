@@ -40,6 +40,9 @@ protected:
 	
 	virtual void BeginPlay() override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString Keyword = "Armor";
+	
 private:
 
 	void CompleteAbility();
@@ -49,5 +52,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DamageReductionPercent = 0.3f;
+
 	
 };

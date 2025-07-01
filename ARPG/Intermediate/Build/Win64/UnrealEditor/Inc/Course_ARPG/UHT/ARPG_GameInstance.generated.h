@@ -9,7 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class AMainCharacter;
+class AMainCharacter_Base;
 #ifdef COURSE_ARPG_ARPG_GameInstance_generated_h
 #error "ARPG_GameInstance.generated.h already included, missing '#pragma once' in ARPG_GameInstance.h"
 #endif
@@ -18,7 +18,6 @@ class AMainCharacter;
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execSetPlayerClass); \
 	DECLARE_FUNCTION(execLoadPlayerClass); \
-	DECLARE_FUNCTION(execSavePlayerClass); \
 	DECLARE_FUNCTION(execbCheckSlot); \
 	DECLARE_FUNCTION(execInitializeGameInstance); \
 	DECLARE_FUNCTION(execSaveAll); \

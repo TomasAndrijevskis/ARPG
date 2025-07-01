@@ -5,7 +5,7 @@
 #include "Engine/GameInstance.h"
 #include "ARPG_GameInstance.generated.h"
 
-class AMainCharacter;
+class AMainCharacter_Base;
 
 UCLASS()
 class COURSE_ARPG_API UARPG_GameInstance : public UGameInstance
@@ -43,17 +43,17 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool bCheckSlot(FString SlotNameToCheck);
 	
-	UFUNCTION(BlueprintCallable)
-	void SavePlayerClass();
+	//UFUNCTION(BlueprintCallable)
+	//void SavePlayerClass();
 
 	UFUNCTION(BlueprintCallable)
 	void LoadPlayerClass();
 	
 	UFUNCTION()
-	void SetPlayerClass(TSubclassOf<AMainCharacter> PlayerClass, bool bFirstLoad);
+	void SetPlayerClass(TSubclassOf<AMainCharacter_Base> PlayerClass, bool bFirstLoad);
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<AMainCharacter> PlayerCharacterClass;
+	TSubclassOf<AMainCharacter_Base> PlayerCharacterClass;
 
 	bool bIsFirstLoad;
 	
@@ -61,8 +61,10 @@ private:
 
 	FString SlotName = FString("Slot1");
 
-	class AMainCharacter* PlayerRef;
+	UPROPERTY()
+	AMainCharacter_Base* PlayerRef;
 
+	UPROPERTY()
 	AGameModeBase* ARPGGameMode;
 
 	

@@ -45,7 +45,7 @@ private:
 	double BoxCollisionLength = 30.0f;
 
 	UPROPERTY(EditAnywhere)
-	bool bDebugMode = false;
+	bool bDebugMode = true;
 
 	TArray<AActor*> TargetsToIgnore;
 

@@ -1,7 +1,7 @@
 
 #include "Gamemode/ARPG_GameMode.h"
 #include "SaveGame/ARPG_GameInstance.h"
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -29,7 +29,7 @@ UClass* AARPG_GameMode::GetDefaultPawnClassForController_Implementation(AControl
 		
 	if (SaveGameInstance && SaveGameInstance->PlayerCharacter)
 	{
-		UE_LOG(LogTemp,Error,TEXT("GM, Loaded class: %s"), *SaveGameInstance->PlayerCharacter->GetName());
+		UE_LOG(LogTemp,Error,TEXT("GameMode|Loaded class: %s"), *SaveGameInstance->PlayerCharacter->GetName());
 		return SaveGameInstance->PlayerCharacter;
 	}
 	return Super::GetDefaultPawnClassForController_Implementation(InController);

@@ -3,7 +3,7 @@
 
 #include "Characters/PlayerActionsComponent.h"
 
-#include "Characters/MainCharacter.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Combat/CombatComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -21,7 +21,7 @@ void UPlayerActionsComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	CharacterRef = GetOwner<AMainCharacter>();
+	CharacterRef = GetOwner<AMainCharacter_Base>();
 	MovementComp = CharacterRef->GetCharacterMovement();
 
 	if (!CharacterRef -> Implements<UMainPlayer>())
