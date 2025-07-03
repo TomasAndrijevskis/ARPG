@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -13,12 +12,11 @@ class UMainPlayer : public UInterface
 	GENERATED_BODY()
 };
 
-
 class COURSE_ARPG_API IMainPlayer
 {
 	GENERATED_BODY()
 
-	
+
 public:
 
 	virtual bool HasEnoughStamina(float Stamina) {return true;};

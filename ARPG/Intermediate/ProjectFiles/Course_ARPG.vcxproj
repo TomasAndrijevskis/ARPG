@@ -285,6 +285,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EEnemyStates.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EStats.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -399,7 +402,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\DescriptionWidget.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\EnemyHealthBar.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\InfoHeader.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerDeath.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerWidget.cpp">
@@ -427,6 +436,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\BossCharacter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EEnemyStates.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LookAtPlayerComponent.h"/>
@@ -468,7 +478,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\CharacterSelect.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\CharacterSelection.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\DescriptionWidget.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\EnemyHealthBar.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoHeader.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerDeath.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerWidget.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveMenu.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveSlotWidget.h"/>

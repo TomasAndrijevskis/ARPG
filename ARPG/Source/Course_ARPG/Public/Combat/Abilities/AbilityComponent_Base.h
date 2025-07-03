@@ -104,6 +104,9 @@ public:
 
 	virtual void LoadCustomProperties(FAbilityData& SavedData);
 
+	UFUNCTION()
+	virtual void CreateIcon();
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -140,8 +143,8 @@ protected:
 	
 	float TimerDuration;
 
+	UPROPERTY()
 	FTimerHandle TimerHandle;
-
 
 private:
 	

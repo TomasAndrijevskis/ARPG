@@ -43,6 +43,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Keyword = "Armor";
 	
+	virtual void CreateIcon() override;
+	
 private:
 
 	void CompleteAbility();

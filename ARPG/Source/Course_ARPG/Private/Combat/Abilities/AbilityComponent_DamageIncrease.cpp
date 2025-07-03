@@ -10,6 +10,7 @@
 void UAbilityComponent_DamageIncrease::BeginPlay()
 {
 	Super::BeginPlay();
+	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
 }
 
 

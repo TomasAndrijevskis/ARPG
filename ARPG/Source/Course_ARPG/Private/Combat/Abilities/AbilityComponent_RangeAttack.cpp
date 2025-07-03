@@ -12,7 +12,8 @@
 void UAbilityComponent_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	OnAbilityFinishedDelegate.AddDynamic(this,&UAbilityComponent_RangeAttack::SpawnProjectile);
 }
 
 

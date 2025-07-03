@@ -39,6 +39,7 @@ COURSE_ARPG_API void FOnAbilityCooldownChangedSignature_DelegateWrapper(const FM
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_22_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execCreateIcon); \
 	DECLARE_FUNCTION(execIsAbilityActive); \
 	DECLARE_FUNCTION(execGetActionKey); \
 	DECLARE_FUNCTION(execGetAbilityDuration); \

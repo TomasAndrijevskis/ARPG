@@ -3,11 +3,11 @@
 #include "KismetAnimationLibrary.h"
 
 
-
 void UPlayerAnimInstance::HandleUpdatedTarget(AActor* NewTargetActorRef)
 {
 	bIsInCombat = IsValid(NewTargetActorRef);
 }
+
 
 void UPlayerAnimInstance::UpdateDirection()
 {
@@ -23,6 +23,7 @@ void UPlayerAnimInstance::UpdateDirection()
 	
 	CurrentDirection = UKismetAnimationLibrary::CalculateDirection(PawnRef->GetVelocity(), PawnRef->GetActorRotation());
 }
+
 
 void UPlayerAnimInstance::UpdateSpeed()
 {

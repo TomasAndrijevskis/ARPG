@@ -13,18 +13,13 @@ class COURSE_ARPG_API UBlockComponent : public UActorComponent
 
 public:	
 
-	UBlockComponent();
-
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	UBlockComponent(){};
 	
-	bool Check(AActor* Opponent);
+	bool CanBlock(AActor* Opponent);
 
 	UPROPERTY(BlueprintAssignable)
 	FOnBlockSignature OnBlockDelegate;
 
-protected:
-
-	virtual void BeginPlay() override;
 
 private:
 

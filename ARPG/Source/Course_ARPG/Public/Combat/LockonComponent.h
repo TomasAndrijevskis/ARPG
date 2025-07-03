@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -44,8 +43,11 @@ protected:
 private:
 
 	ACharacter* OwnerRef;
+	
 	APlayerController* Controller;
+	
 	class UCharacterMovementComponent* MovementComponent;
+	
 	class USpringArmComponent* SpringArmComponent;
 		
 };

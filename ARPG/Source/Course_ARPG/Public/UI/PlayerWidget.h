@@ -11,6 +11,7 @@
 #include "PlayerWidget.generated.h"
 
 
+class UPlayerDeath;
 class UStatsComponent;
 class UStatusIconWithAmount;
 class UStatusIconWithTimer;
@@ -41,17 +42,13 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SetXP(float CurrentXP);
-
-	//void CreateStatusIconWithTimer(TSubclassOf<UUserWidget> WidgetClass, float Duration, UTexture2D* Icon, UAbilityComponent_Base* AbilityRef);
-
+	
 	UFUNCTION(BlueprintCallable)
 	void CreateStatsScreen(EStats Stat);
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveStatsScreen();
-
-	//void CreateUpgradeInfoHeader(int Value);
-
+	
 	UFUNCTION(BlueprintCallable)
 	void CreateAbilityUpgradeScreen(UAbilityComponent_Base* AbilityCompRef);
 
@@ -72,6 +69,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void CreateStatusIconWithAmount(float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, FString Keyword);
+
+	UFUNCTION()
+	void CreateDeathWidget();
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
@@ -140,5 +140,11 @@ private:
 
 	UPROPERTY()
 	UStatusIconWithAmount* StatusIconWithAmountWidgetRef;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UPlayerDeath> PlayerDeathWidget;
+
+	UPROPERTY()
+	UPlayerDeath* PlayerDeathWidgetRef;
 	
 };

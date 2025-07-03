@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -27,7 +26,9 @@ public:
 private:
 
 	AAIController* ControllerRef;
+	
 	ACharacter* CharacterRef;
+	
 	class UBossAnimInstance* BossAnimInstance;
 	
 	UPROPERTY(EditAnywhere)

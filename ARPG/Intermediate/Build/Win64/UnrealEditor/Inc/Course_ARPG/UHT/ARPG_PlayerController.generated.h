@@ -15,11 +15,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COURSE_ARPG_ARPG_PlayerController_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execSetPlayerControllerSettings); \
 	DECLARE_FUNCTION(execHandleGameLoad); \
+	DECLARE_FUNCTION(execSetPlayerControllerSettings); \
+	DECLARE_FUNCTION(execHandleGamePause); \
 	DECLARE_FUNCTION(execCreateAbilityUpgradeScreen); \
-	DECLARE_FUNCTION(execCreateStatsScreen); \
-	DECLARE_FUNCTION(execHandleGamePause);
+	DECLARE_FUNCTION(execCreateStatsScreen);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_15_INCLASS_NO_PURE_DECLS \

@@ -85,7 +85,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		{
 			CharacterDamage = CharacterDamage * (AbilityRef->GetDamageMultiplier());
 		}
-		UE_LOG(LogTemp, Error, TEXT("Damage: %f"), CharacterDamage);
+		//UE_LOG(LogTemp, Error, TEXT("Damage: %f"), CharacterDamage);
 	}
 
 	FDamageEvent TargetAttackedEvent{ };

@@ -1,8 +1,5 @@
 
-
-
 #include "Characters/PlayerActionsComponent.h"
-
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/CombatComponent.h"
 #include "GameFramework/Character.h"
@@ -10,36 +7,23 @@
 #include "Interfaces/MainPlayer.h"
 #include "Kismet/KismetMathLibrary.h"
 
-UPlayerActionsComponent::UPlayerActionsComponent()
-{
-	PrimaryComponentTick.bCanEverTick = true;
-	
-}
-
 
 void UPlayerActionsComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	CharacterRef = GetOwner<AMainCharacter_Base>();
-	MovementComp = CharacterRef->GetCharacterMovement();
+	PlayerRef = GetOwner<AMainCharacter_Base>();
+	MovementComp = PlayerRef->GetCharacterMovement();
 
-	if (!CharacterRef -> Implements<UMainPlayer>())
+	if (!PlayerRef -> Implements<UMainPlayer>())
 	{
 		return;
 	}
 
-	IPlayerRef = Cast<IMainPlayer>(CharacterRef);
+	IPlayerRef = Cast<IMainPlayer>(PlayerRef);
 	
 }
 
-
-void UPlayerActionsComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-
-}
 
 void UPlayerActionsComponent::Sprint()
 {
@@ -68,23 +52,41 @@ void UPlayerActionsComponent::Roll()
 	{
 		return;
 	}
-	CharacterRef->CombatComp->bCanAttack = false;
+	PlayerRef->CombatComp->bCanAttack = false;
 	bIsRollActive = true;
 	OnRollDelegate.Broadcast(RollCost);
 
-	FVector Direction = CharacterRef->GetCharacterMovement()->Velocity.Length()<1 ? CharacterRef->GetActorForwardVector() : CharacterRef->GetLastMovementInputVector();
+	FVector Direction = PlayerRef->GetCharacterMovement()->Velocity.Length()<1 ? PlayerRef->GetActorForwardVector() : PlayerRef->GetLastMovementInputVector();
 	FRotator NewRotation = UKismetMathLibrary::MakeRotFromX(Direction);
 
-	CharacterRef->SetActorRotation(NewRotation);
-	float AnimDuration = CharacterRef->PlayAnimMontage(RollAnimMontage);
+	PlayerRef->SetActorRotation(NewRotation);
+	float AnimDuration = PlayerRef->PlayAnimMontage(RollAnimMontage);
 
 	FTimerHandle RollTimerHandle;
-	CharacterRef->GetWorldTimerManager().SetTimer(RollTimerHandle, this, &UPlayerActionsComponent::FinishRollAnim, AnimDuration, false);
+	PlayerRef->GetWorldTimerManager().SetTimer(RollTimerHandle, this, &UPlayerActionsComponent::FinishRollAnim, AnimDuration, false);
 }
+
 
 void UPlayerActionsComponent::FinishRollAnim()
 {
-	CharacterRef->CombatComp->bCanAttack = true;
+	PlayerRef->CombatComp->bCanAttack = true;
 	bIsRollActive = false;
 }
 
+
+
+bool UPlayerActionsComponent::GetCanRoll()
+{
+	return bCanRoll;
+}
+
+void UPlayerActionsComponent::SetCanRoll(bool CanRoll)
+{
+	bCanRoll = CanRoll;
+}
+
+
+bool UPlayerActionsComponent::IsRollActive()
+{
+	return bIsRollActive;
+}

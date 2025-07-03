@@ -2,6 +2,7 @@
 #include "Combat/Abilities/AbilityComponent_LifeStealAttack.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
+#include "Combat/TraceComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "SaveGame/AbilityData.h"
@@ -10,20 +11,20 @@
 void UAbilityComponent_LifeStealAttack::BeginPlay()
 {
 	Super::BeginPlay();
-
 	FighterRef = Cast<IFighter>(GetOwner());
-	
+	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
+	PlayerRef->TraceComp->OnHitDelegate.AddDynamic(this, &UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit);
 }
 
 
 float UAbilityComponent_LifeStealAttack::GetStolenHealthAmount()
 {
-	if (FighterRef)
+	if (!FighterRef)
 	{
-		float CurrentDamage = FighterRef->GetCurrentDamage();
-		return CurrentDamage * StolenHealthPercent;
+		return 0;	
 	}
-	return 0;
+	float CurrentDamage = FighterRef->GetCurrentDamage();
+	return CurrentDamage * StolenHealthPercent;
 }
 
 
@@ -59,6 +60,16 @@ void UAbilityComponent_LifeStealAttack::OnAbilityTimerFinished()
 	{
 		ParticleComp->DestroyComponent();
 	}
+}
+
+
+void UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit()
+{
+	if (!IsAbilityActive())
+	{
+		return;
+	}
+	PlayerRef->StatsComp->AddHealth(GetStolenHealthAmount());
 }
 
 

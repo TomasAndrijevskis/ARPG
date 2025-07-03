@@ -86,7 +86,7 @@ struct Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "HandleGameLoad", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "HandleGameLoad", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -131,7 +131,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AARPG_
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::NewProp_bIsGamePaused,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "HandleGamePause", nullptr, nullptr, Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::PropPointers), sizeof(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::ARPG_PlayerController_eventHandleGamePause_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "HandleGamePause", nullptr, nullptr, Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::PropPointers), sizeof(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::ARPG_PlayerController_eventHandleGamePause_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause_Statics::ARPG_PlayerController_eventHandleGamePause_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause()
 {
@@ -162,7 +162,7 @@ struct Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings_
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "SetPlayerControllerSettings", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "SetPlayerControllerSettings", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -221,9 +221,9 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 2040075222
 		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen, "CreateStatsScreen" }, // 1472688990
-		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad, "HandleGameLoad" }, // 1609483863
-		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause, "HandleGamePause" }, // 1363827133
-		{ &Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings, "SetPlayerControllerSettings" }, // 88454122
+		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad, "HandleGameLoad" }, // 897463061
+		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause, "HandleGamePause" }, // 1776799696
+		{ &Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings, "SetPlayerControllerSettings" }, // 839502095
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -279,10 +279,10 @@ AARPG_PlayerController::~AARPG_PlayerController() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 1318504814U) },
+		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 2403652558U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_3372403473(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_3808104170(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

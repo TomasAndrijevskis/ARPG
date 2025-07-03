@@ -148,7 +148,7 @@ void UARPG_GameInstance::SaveAbilities()
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
 	
-	for (UAbilityComponent_Base* Ability: PlayerRef->ArrAbilities)
+	for (UAbilityComponent_Base* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability))
 		{
@@ -183,7 +183,7 @@ void UARPG_GameInstance::LoadAbilities()
 	UE_LOG(LogTemp, Warning, TEXT("GameInstance|Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
 	
 	
-	for (UAbilityComponent_Base* Ability: PlayerRef->ArrAbilities)
+	for (UAbilityComponent_Base* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability))
 		{

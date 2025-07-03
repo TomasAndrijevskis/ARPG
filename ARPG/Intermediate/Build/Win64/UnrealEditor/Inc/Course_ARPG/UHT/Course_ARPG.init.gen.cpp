@@ -13,6 +13,9 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityStartedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityTimerChangedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityUnlockedSignature__DelegateSignature();
+	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature();
+	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature();
+	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnAbilityPointsUpdateSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnArmorUpdateSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedSignature__DelegateSignature();
@@ -25,11 +28,8 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnSprintSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnStaminaPercentUpdateSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatPointsUpdateSignature__DelegateSignature();
-	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnUpdatedTargetSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnXpUpdateSignature__DelegateSignature();
-	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature();
-	COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature();
 	static FPackageRegistrationInfo Z_Registration_Info_UPackage__Script_Course_ARPG;
 	FORCENOINLINE UPackage* Z_Construct_UPackage__Script_Course_ARPG()
 	{
@@ -42,6 +42,9 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityStartedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityTimerChangedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityUnlockedSignature__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnAbilityPointsUpdateSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnArmorUpdateSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnAttackPerformedSignature__DelegateSignature,
@@ -54,24 +57,21 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnSprintSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnStaminaPercentUpdateSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatPointsUpdateSignature__DelegateSignature,
-				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnUpdatedTargetSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnXpUpdateSignature__DelegateSignature,
-				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature,
-				(UObject* (*)())Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature,
 			};
 			static const UECodeGen_Private::FPackageParams PackageParams = {
 				"/Script/Course_ARPG",
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xB1243983,
-				0x30419CCA,
+				0x29374A74,
+				0xBDE5E2A6,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xB1243983, 0x30419CCA));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x29374A74, 0xBDE5E2A6));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

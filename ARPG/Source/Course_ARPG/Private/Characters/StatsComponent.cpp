@@ -7,17 +7,6 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Interfaces/Fighter.h"
 
-UStatsComponent::UStatsComponent()
-{
-	PrimaryComponentTick.bCanEverTick = true;
-
-	/*Stats.Add(EStats::Health, 100);
-	Stats.Add(EStats::MaxHealth, 100);
-	Stats.Add(EStats::Stamina, 80);
-	Stats.Add(EStats::MaxStamina, 80);
-	Stats.Add(EStats::Strength, 20);*/
-}
-
 
 void UStatsComponent::ReduceHealth(float Damage, AActor* Opponent)
 {
@@ -91,6 +80,14 @@ void UStatsComponent::AddHealth(float HealthToAdd)
 	Stats[EStats::Health] = NewHealth;
 	
 	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
+}
+
+
+void UStatsComponent::OnStatsUpdated()
+{
+	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
+	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
+	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
 }
 
 

@@ -1,6 +1,4 @@
 
-
-
 #include "Characters/AI/BTT_MeleeAttack.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "AIController.h"
@@ -9,6 +7,7 @@
 #include "Interfaces/Fighter.h"
 #include "GameFramework/Character.h"
 
+
 UBTT_MeleeAttack::UBTT_MeleeAttack()
 {
 	MoveDelegate.BindUFunction(this,"FinishAttackTask");
@@ -16,10 +15,12 @@ UBTT_MeleeAttack::UBTT_MeleeAttack()
 	bCreateNodeInstance = true;
 }
 
+
 void UBTT_MeleeAttack::FinishAttackTask()
 {
 	bIsFinished = true;
 }
+
 
 EBTNodeResult::Type UBTT_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
@@ -50,6 +51,7 @@ EBTNodeResult::Type UBTT_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	return EBTNodeResult::InProgress;
 }
 
+
 void UBTT_MeleeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
@@ -71,7 +73,6 @@ void UBTT_MeleeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 		return;
 	}
 	
-
 	OwnerComp.GetAIOwner()->ReceiveMoveCompleted.Remove(MoveDelegate);
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 }

@@ -11,6 +11,7 @@ enum EStats : int;
 class UARPG_GameInstance;
 class UPlayerWidget;
 class UAbilityComponent_Base;
+class USkeletalMeshComponent;
 
 UCLASS(Blueprintable)
 class COURSE_ARPG_API AMainCharacter_Base : public ACharacter, public IMainPlayer, public IFighter
@@ -27,23 +28,27 @@ public:
 
 	virtual float GetCurrentDamage() override;
 
+	virtual void EndLockonWithActor(AActor* ActorRef) override;
+
+	virtual bool CanTakeDamage(AActor* Opponent) override;
+	
 	UFUNCTION()
 	virtual bool HasEnoughStamina(float Stamina) override;
 
 	UFUNCTION()
 	virtual bool HasEnoughMana(float Mana) override;
+	
+	UFUNCTION()
+	UPlayerWidget* GetPlayerWidget();
+
+	UFUNCTION()
+	TArray<UAbilityComponent_Base*> GetAbilitiesArray();
 
 	UFUNCTION(BlueprintCallable)
-	void HandleDeath();
+	UARPG_GameInstance* GetGameInstanceRef();
 
-	virtual void EndLockonWithActor(AActor* ActorRef) override;
-
-	virtual bool CanTakeDamage(AActor* Opponent) override;
-
-	UFUNCTION(BlueprintCallable)
-	void PlayHurtAnimation();
-
-	void CreateUI();
+	UFUNCTION()
+	void CreateAbilitiesFooter();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UStatsComponent* StatsComp;
@@ -65,34 +70,38 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class ULevelingComponent* LevelComp;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<UAbilityComponent_Base*> ArrAbilities;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TEnumAsByte<EStats>> ArrStats;
-	
-	UPROPERTY(BlueprintReadOnly)
-	UPlayerWidget* PlayerWidgetRef;
 
-	UPROPERTY(BlueprintReadOnly)
-	UARPG_GameInstance* GameInstance;
 	
 protected:
 
 	virtual void BeginPlay() override;
-
-	UFUNCTION(BlueprintCallable)
-	void CreateAbilitiesFooter();
-	
 	
 	UPROPERTY(BlueprintReadOnly)
 	class UPlayerAnimInstance* PlayerAnim;
-	
-	class USkeletalMeshComponent* SkeletalComp;
+
+	UPROPERTY()
+	USkeletalMeshComponent* SkeletalComp;
 
 
 private:
+
+	UFUNCTION()
+	void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	
+	UFUNCTION()
+	void HandleDeath();
+
+	UFUNCTION()
+	void PlayHurtAnimation();
+	
+	UFUNCTION()
+	void CreateUI();
+	
+	UPROPERTY()
+	UPlayerWidget* PlayerWidgetRef;
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* DeathAnimMontage;
@@ -103,4 +112,10 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPlayerWidget> PlayerWidget;
 
+	UPROPERTY()
+	TArray<UAbilityComponent_Base*> ArrAbilities;
+	
+	UPROPERTY()
+	UARPG_GameInstance* GameInstance;
+	
 };

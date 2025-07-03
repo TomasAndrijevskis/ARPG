@@ -4,6 +4,7 @@
 #include "UI/StatsScreenWidget.h"
 #include "UI/AbilityUpgradeScreen.h"
 #include "UI/InfoHeader.h"
+#include "UI/PlayerDeath.h"
 #include "UI/StatusIconWithAmount.h"
 #include "UI/StatusIconWithTimer.h"
 
@@ -134,6 +135,18 @@ void UPlayerWidget::CreateStatusIconWithAmount(float Amount, UTexture2D* Image,U
 		ActiveStatusWidget.Add(Keyword, StatusIconWithAmountWidgetRef);
 		HorizontalBox_StatusEffects->AddChild(StatusIconWithAmountWidgetRef);
 	}
+}
+
+
+void UPlayerWidget::CreateDeathWidget()
+{
+	if (!PlayerDeathWidget)
+	{
+		return;
+	}
+
+	PlayerDeathWidgetRef = Cast<UPlayerDeath>(CreateWidget(this, PlayerDeathWidget));
+	PlayerDeathWidgetRef->AddToViewport(5);
 }
 
 

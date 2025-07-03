@@ -9,20 +9,27 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class AController;
 class APawn;
+class UBossHealthBar;
+class UDamageType;
 #ifdef COURSE_ARPG_BossCharacter_generated_h
 #error "BossCharacter.generated.h already included, missing '#pragma once' in BossCharacter.h"
 #endif
 #define COURSE_ARPG_BossCharacter_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execReceiveDamage); \
 	DECLARE_FUNCTION(execFinishedDeathAnim); \
 	DECLARE_FUNCTION(execHandleDeath); \
 	DECLARE_FUNCTION(execHandlePlayerDeath); \
-	DECLARE_FUNCTION(execDetectPawn);
+	DECLARE_FUNCTION(execCreateBossWidget); \
+	DECLARE_FUNCTION(execDetectPawn); \
+	DECLARE_FUNCTION(execGetBossHealthBarWidget);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesABossCharacter(); \
 	friend struct Z_Construct_UClass_ABossCharacter_Statics; \
@@ -32,7 +39,7 @@ public: \
 	virtual UObject* _getUObject() const override { return const_cast<ABossCharacter*>(this); }
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ABossCharacter(ABossCharacter&&); \
@@ -44,13 +51,13 @@ public: \
 	NO_API virtual ~ABossCharacter();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_12_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_15_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_14_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_15_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_15_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_17_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_BossCharacter_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

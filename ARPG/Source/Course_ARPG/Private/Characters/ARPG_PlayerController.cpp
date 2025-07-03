@@ -40,7 +40,7 @@ void AARPG_PlayerController::CreateStatsScreen()
 	if (UGameplayStatics::IsGamePaused(this))
 	{
 		HandleGamePause(false);
-		PlayerRef->PlayerWidgetRef->RemoveStatsScreen();
+		PlayerRef->GetPlayerWidget()->RemoveStatsScreen();
 		PlayerRef->StatsComp->OnStatUpdateDelegate.Broadcast();
 		GameInstanceRef->SaveStats();
 		bIsStatsScreenOpened = false;
@@ -48,10 +48,10 @@ void AARPG_PlayerController::CreateStatsScreen()
 	else
 	{
 		HandleGamePause(true);
-		PlayerRef->PlayerWidgetRef->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentStatPointsAmount());
+		PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentStatPointsAmount());
 		for (auto Stat : PlayerRef->ArrStats)
 		{
-			PlayerRef->PlayerWidgetRef->CreateStatsScreen(Stat);
+			PlayerRef->GetPlayerWidget()->CreateStatsScreen(Stat);
 		}
 		bIsStatsScreenOpened = true;
 	}
@@ -68,17 +68,17 @@ void AARPG_PlayerController::CreateAbilityUpgradeScreen()
 	if (UGameplayStatics::IsGamePaused(this))
 	{
 		HandleGamePause(false);
-		PlayerRef->PlayerWidgetRef->RemoveAbilityUpgradeScreen();
+		PlayerRef->GetPlayerWidget()->RemoveAbilityUpgradeScreen();
 		GameInstanceRef->SaveAbilities();
 		bIsAbilityScreenOpened = false;
 	}
 	else
 	{
 		HandleGamePause(true);
-		PlayerRef->PlayerWidgetRef->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentAbilityPointsAmount());
-		for (auto Ability : PlayerRef->ArrAbilities)
+		PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentAbilityPointsAmount());
+		for (auto Ability : PlayerRef->GetAbilitiesArray())
 		{
-			PlayerRef->PlayerWidgetRef->CreateAbilityUpgradeScreen(Ability);
+			PlayerRef->GetPlayerWidget()->CreateAbilityUpgradeScreen(Ability);
 		}
 		bIsAbilityScreenOpened = true;
 	}

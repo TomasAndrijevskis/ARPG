@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -11,16 +10,12 @@ UINTERFACE(MinimalAPI)
 class UEnemy : public UInterface
 {
 	GENERATED_BODY()
-
-	
 };
-
 
 class COURSE_ARPG_API IEnemy
 {
 	GENERATED_BODY()
 
-	
 public:
 
 	UFUNCTION(BlueprintImplementableEvent)

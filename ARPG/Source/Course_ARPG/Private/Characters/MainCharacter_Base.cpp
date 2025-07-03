@@ -42,6 +42,22 @@ void AMainCharacter_Base::BeginPlay()
 	
 	CreateUI();
 	CreateAbilitiesFooter();
+
+	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnim, &UPlayerAnimInstance::HandleUpdatedTarget);
+	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
+	PlayerActionsComp->OnRollDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
+	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
+	BlockComp->OnBlockDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
+	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetHealth);
+	StatsComp->OnManaPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetMana);
+	StatsComp->OnStaminaPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetStamina);
+	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AMainCharacter_Base::HandleDeath);
+	StatsComp->OnStatUpdateDelegate.AddDynamic(StatsComp, &UStatsComponent::OnStatsUpdated);
+	StatsComp->OnStatUpdateDelegate.AddDynamic(GameInstance, &UARPG_GameInstance::SaveStats);
+	LevelComp->OnXpUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
+	LevelComp->OnNewLevelDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
+
+	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
 }
 
 
@@ -49,6 +65,9 @@ void AMainCharacter_Base::BeginPlay()
 void AMainCharacter_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	StatsComp->RegenStamina();
+	StatsComp->RegenMana();
 }
 
 
@@ -72,7 +91,14 @@ void AMainCharacter_Base::CreateUI()
 	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
 	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
 	PlayerWidgetRef->SetXP(LevelComp->GetCurrentXP());
-	
+}
+
+
+void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+{
+	//UE_LOG(LogTemp, Error, TEXT("MainCharacter|Received Damage: %f"), Damage);
+	StatsComp->ReduceHealth(StatsComp->GetReducedDamage(Damage, DamageCauser), DamageCauser);
+	PlayHurtAnimation();
 }
 
 
@@ -98,9 +124,10 @@ void AMainCharacter_Base::HandleDeath()
 	{
 		return;
 	}
+
+	PlayerWidgetRef->CreateDeathWidget();
 	
 	PlayAnimMontage(DeathAnimMontage);
-	UE_LOG(LogTemp, Error, TEXT("Player Death"));
 	DisableInput(GetController<APlayerController>());
 }
 
@@ -117,13 +144,13 @@ void AMainCharacter_Base::EndLockonWithActor(AActor* ActorRef)
 
 bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent)
 {
-	if (PlayerActionsComp->bIsRollActive)
+	if (PlayerActionsComp->IsRollActive())
 	{
 		return false;
 	}
 	if (PlayerAnim->bIsBlocking)
 	{
-		return BlockComp->Check(Opponent);
+		return !BlockComp->CanBlock(Opponent);
 	}
 	return true;
 }
@@ -143,17 +170,35 @@ void AMainCharacter_Base::PlayHurtAnimation()
 
 float AMainCharacter_Base::GetCurrentDamage()
 {
-	return StatsComp->Stats[EStats::Strength];
+	return StatsComp->GetStatValue(EStats::Strength);
 }
 
 
 bool AMainCharacter_Base::HasEnoughStamina(float Stamina)
 {
-	return StatsComp->Stats[EStats::Stamina] >= Stamina;
+	return StatsComp->GetStatValue(EStats::Stamina) >= Stamina;
 }
 
 
 bool AMainCharacter_Base::HasEnoughMana(float Mana)
 {
-	return StatsComp->Stats[EStats::Mana] >= Mana;
+	return StatsComp->GetStatValue(EStats::Mana) >= Mana;
+}
+
+
+UPlayerWidget* AMainCharacter_Base::GetPlayerWidget()
+{
+	return PlayerWidgetRef;
+}
+
+
+TArray<UAbilityComponent_Base*> AMainCharacter_Base::GetAbilitiesArray()
+{
+	return ArrAbilities;
+}
+
+
+UARPG_GameInstance* AMainCharacter_Base::GetGameInstanceRef()
+{
+	return GameInstance;
 }

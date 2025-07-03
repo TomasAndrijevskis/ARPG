@@ -42,6 +42,9 @@ protected:
 	virtual void OnAbilityTimerFinished() override;
 	
 private:
+
+	UFUNCTION()
+	void HandleLifeStealOnHit();
 	
 	UPROPERTY(EditAnywhere)
 	float StolenHealthPercent = 0.2f;

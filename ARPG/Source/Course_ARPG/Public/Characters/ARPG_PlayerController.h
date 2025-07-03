@@ -15,9 +15,6 @@ class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
-	
-	UFUNCTION(BlueprintCallable)
-	void HandleGamePause(bool bIsGamePaused);
 
 	UFUNCTION(BlueprintCallable)
 	void CreateStatsScreen();
@@ -27,16 +24,19 @@ public:
 	
 protected:
 	
-	UFUNCTION(BlueprintCallable)
-	void HandleGameLoad();
-	
-	UFUNCTION(BlueprintCallable)
-	void SetPlayerControllerSettings();
-
 	virtual void BeginPlay() override;
 
 private:
 
+	UFUNCTION()
+	void HandleGamePause(bool bIsGamePaused);
+
+	UFUNCTION()
+	void SetPlayerControllerSettings();
+
+	UFUNCTION()
+	void HandleGameLoad();
+	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
 	

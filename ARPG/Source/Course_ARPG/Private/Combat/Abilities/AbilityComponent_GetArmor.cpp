@@ -3,11 +3,12 @@
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
 #include "SaveGame/AbilityData.h"
+#include "UI/PlayerWidget.h"
 
 void UAbilityComponent_GetArmor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
 }
 
 
@@ -27,6 +28,12 @@ void UAbilityComponent_GetArmor::GiveArmor()
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::CompleteAbility, AnimDuration, false);
 	}
+}
+
+
+void UAbilityComponent_GetArmor::CreateIcon()
+{
+	PlayerRef->GetPlayerWidget()->CreateStatusIconWithAmount(GetArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
 }
 
 

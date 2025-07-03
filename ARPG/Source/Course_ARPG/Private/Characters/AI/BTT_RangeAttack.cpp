@@ -1,6 +1,4 @@
 
-
-
 #include "Characters/AI/BTT_RangeAttack.h"
 #include "AIController.h"
 #include "GameFramework/Character.h"
@@ -9,10 +7,12 @@
 #include "Characters/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
 
+
 UBTT_RangeAttack::UBTT_RangeAttack()
 {
 	bCreateNodeInstance = true;
 }
+
 
 EBTNodeResult::Type UBTT_RangeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {

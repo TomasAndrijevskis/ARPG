@@ -1,6 +1,9 @@
 
 #include "Characters/LevelingComponent.h"
+
+#include "Characters/MainCharacter_Base.h"
 #include "Characters/Data/XPLevels.h"
+#include "SaveGame/ARPG_GameInstance.h"
 
 
 void ULevelingComponent::AddExperience(float XP)
@@ -8,6 +11,7 @@ void ULevelingComponent::AddExperience(float XP)
 	CurrentXP += XP;
 	OnXpUpdateDelegate.Broadcast(CurrentXP);
 	TryLevelUp();
+	Cast<AMainCharacter_Base>(GetOwner())->GetGameInstanceRef()->SaveStats();
 }
 
 
@@ -42,6 +46,7 @@ void ULevelingComponent::TryLevelUp()
 		UE_LOG(LogTemp, Warning, TEXT("Level up"));
 	}
 }
+
 
 
 float ULevelingComponent::GetCurrentXP()

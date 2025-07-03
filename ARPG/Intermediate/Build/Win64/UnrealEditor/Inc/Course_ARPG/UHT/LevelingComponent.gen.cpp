@@ -301,7 +301,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ULevel
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::NewProp_ReturnValue,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ULevelingComponent, nullptr, "GetCurrentLevel", nullptr, nullptr, Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::PropPointers), sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::LevelingComponent_eventGetCurrentLevel_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::Function_MetaDataParams), Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ULevelingComponent, nullptr, "GetCurrentLevel", nullptr, nullptr, Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::PropPointers), sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::LevelingComponent_eventGetCurrentLevel_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::Function_MetaDataParams), Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel_Statics::LevelingComponent_eventGetCurrentLevel_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel()
 {
@@ -330,7 +330,13 @@ struct Z_Construct_UFunction_ULevelingComponent_GetCurrentStatPointsAmount_Stati
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//\xd0\x92 \xd0\xba\xd0\xbe\xd0\xbd\xd1\x86\xd0\xb5 \xd1\x83\xd0\xb1\xd1\x80\xd0\xb0\xd1\x82\xd1\x8c BlueprintPure - \xd0\xbd\xd1\x83\xd0\xb6\xd0\xbd\xd0\xbe \xd1\x82\xd0\xbe\xd0\xbb\xd1\x8c\xd0\xba\xd0\xbe \xd0\xb4\xd0\xbb\xd1\x8f Debug\n" },
+#endif
 		{ "ModuleRelativePath", "Public/Characters/LevelingComponent.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "\xd0\x92 \xd0\xba\xd0\xbe\xd0\xbd\xd1\x86\xd0\xb5 \xd1\x83\xd0\xb1\xd1\x80\xd0\xb0\xd1\x82\xd1\x8c BlueprintPure - \xd0\xbd\xd1\x83\xd0\xb6\xd0\xbd\xd0\xbe \xd1\x82\xd0\xbe\xd0\xbb\xd1\x8c\xd0\xba\xd0\xbe \xd0\xb4\xd0\xbb\xd1\x8f Debug" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FIntPropertyParams NewProp_ReturnValue;
@@ -383,7 +389,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ULevel
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::NewProp_ReturnValue,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ULevelingComponent, nullptr, "GetCurrentXP", nullptr, nullptr, Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers), sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::LevelingComponent_eventGetCurrentXP_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::Function_MetaDataParams), Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ULevelingComponent, nullptr, "GetCurrentXP", nullptr, nullptr, Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::PropPointers), sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::LevelingComponent_eventGetCurrentXP_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::Function_MetaDataParams), Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_ULevelingComponent_GetCurrentXP_Statics::LevelingComponent_eventGetCurrentXP_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_ULevelingComponent_GetCurrentXP()
 {
@@ -538,7 +544,13 @@ struct Z_Construct_UFunction_ULevelingComponent_SetStatPoints_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//\xd0\x92 \xd0\xba\xd0\xbe\xd0\xbd\xd1\x86\xd0\xb5 \xd1\x83\xd0\xb1\xd1\x80\xd0\xb0\xd1\x82\xd1\x8c BlueprintCallable - \xd0\xbd\xd1\x83\xd0\xb6\xd0\xbd\xd0\xbe \xd1\x82\xd0\xbe\xd0\xbb\xd1\x8c\xd0\xba\xd0\xbe \xd0\xb4\xd0\xbb\xd1\x8f Debug\n" },
+#endif
 		{ "ModuleRelativePath", "Public/Characters/LevelingComponent.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "\xd0\x92 \xd0\xba\xd0\xbe\xd0\xbd\xd1\x86\xd0\xb5 \xd1\x83\xd0\xb1\xd1\x80\xd0\xb0\xd1\x82\xd1\x8c BlueprintCallable - \xd0\xbd\xd1\x83\xd0\xb6\xd0\xbd\xd0\xbe \xd1\x82\xd0\xbe\xd0\xbb\xd1\x8c\xd0\xba\xd0\xbe \xd0\xb4\xd0\xbb\xd1\x8f Debug" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FIntPropertyParams NewProp_NewStatPointsAmount;
@@ -649,13 +661,13 @@ struct Z_Construct_UClass_ULevelingComponent_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_ULevelingComponent_AddExperience, "AddExperience" }, // 156666592
 		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentAbilityPointsAmount, "GetCurrentAbilityPointsAmount" }, // 2181021594
-		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel, "GetCurrentLevel" }, // 804138474
-		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentStatPointsAmount, "GetCurrentStatPointsAmount" }, // 3021460794
-		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentXP, "GetCurrentXP" }, // 518075801
+		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentLevel, "GetCurrentLevel" }, // 1785394158
+		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentStatPointsAmount, "GetCurrentStatPointsAmount" }, // 4068929248
+		{ &Z_Construct_UFunction_ULevelingComponent_GetCurrentXP, "GetCurrentXP" }, // 4262318022
 		{ &Z_Construct_UFunction_ULevelingComponent_SetAbilityPoints, "SetAbilityPoints" }, // 2813704275
 		{ &Z_Construct_UFunction_ULevelingComponent_SetExperience, "SetExperience" }, // 1754477239
 		{ &Z_Construct_UFunction_ULevelingComponent_SetLevel, "SetLevel" }, // 2487968515
-		{ &Z_Construct_UFunction_ULevelingComponent_SetStatPoints, "SetStatPoints" }, // 2323740191
+		{ &Z_Construct_UFunction_ULevelingComponent_SetStatPoints, "SetStatPoints" }, // 2957276724
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -667,7 +679,7 @@ const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ULe
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_OnXpUpdateDelegate = { "OnXpUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, OnXpUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnXpUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnXpUpdateDelegate_MetaData), NewProp_OnXpUpdateDelegate_MetaData) }; // 3366072691
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_OnStatPointsUpdateDelegate = { "OnStatPointsUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, OnStatPointsUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatPointsUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnStatPointsUpdateDelegate_MetaData), NewProp_OnStatPointsUpdateDelegate_MetaData) }; // 3074335849
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_OnAbilityPointsUpdateDelegate = { "OnAbilityPointsUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, OnAbilityPointsUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnAbilityPointsUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnAbilityPointsUpdateDelegate_MetaData), NewProp_OnAbilityPointsUpdateDelegate_MetaData) }; // 598694163
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_LevelDataTable = { "LevelDataTable", nullptr, (EPropertyFlags)0x0020080000010015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, LevelDataTable), Z_Construct_UClass_UDataTable_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LevelDataTable_MetaData), NewProp_LevelDataTable_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_LevelDataTable = { "LevelDataTable", nullptr, (EPropertyFlags)0x0040000000010001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, LevelDataTable), Z_Construct_UClass_UDataTable_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LevelDataTable_MetaData), NewProp_LevelDataTable_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_CurrentLevel = { "CurrentLevel", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, CurrentLevel), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentLevel_MetaData), NewProp_CurrentLevel_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_CurrentXP = { "CurrentXP", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, CurrentXP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentXP_MetaData), NewProp_CurrentXP_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_AvailableStatPoints = { "AvailableStatPoints", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, AvailableStatPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AvailableStatPoints_MetaData), NewProp_AvailableStatPoints_MetaData) };
@@ -724,10 +736,10 @@ ULevelingComponent::~ULevelingComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ULevelingComponent, ULevelingComponent::StaticClass, TEXT("ULevelingComponent"), &Z_Registration_Info_UClass_ULevelingComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ULevelingComponent), 2964838335U) },
+		{ Z_Construct_UClass_ULevelingComponent, ULevelingComponent::StaticClass, TEXT("ULevelingComponent"), &Z_Registration_Info_UClass_ULevelingComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ULevelingComponent), 14934537U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_2518095665(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_1888108839(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

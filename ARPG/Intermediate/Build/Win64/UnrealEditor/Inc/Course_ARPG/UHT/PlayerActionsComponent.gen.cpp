@@ -10,12 +10,14 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodePlayerActionsComponent() {}
 
 // Begin Cross Module References
+COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerActionsComponent();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerActionsComponent_NoRegister();
 COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnRollSignature__DelegateSignature();
 COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnSprintSignature__DelegateSignature();
 ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_UCharacterMovementComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
@@ -117,7 +119,7 @@ struct Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPlayerActionsComponent, nullptr, "FinishRollAnim", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPlayerActionsComponent, nullptr, "FinishRollAnim", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -259,6 +261,13 @@ struct Z_Construct_UClass_UPlayerActionsComponent_Statics
 		{ "Category", "PlayerActionsComponent" },
 		{ "ModuleRelativePath", "Public/Characters/PlayerActionsComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerRef_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Characters/PlayerActionsComponent.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MovementComp_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Characters/PlayerActionsComponent.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SprintCost_MetaData[] = {
 		{ "Category", "PlayerActionsComponent" },
 		{ "ModuleRelativePath", "Public/Characters/PlayerActionsComponent.h" },
@@ -279,6 +288,8 @@ struct Z_Construct_UClass_UPlayerActionsComponent_Statics
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnSprintDelegate;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnRollDelegate;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_RollAnimMontage;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerRef;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_MovementComp;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SprintCost;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_SprintSpeed;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_WalkSpeed;
@@ -286,7 +297,7 @@ struct Z_Construct_UClass_UPlayerActionsComponent_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim, "FinishRollAnim" }, // 702889704
+		{ &Z_Construct_UFunction_UPlayerActionsComponent_FinishRollAnim, "FinishRollAnim" }, // 1589285926
 		{ &Z_Construct_UFunction_UPlayerActionsComponent_Roll, "Roll" }, // 3472726326
 		{ &Z_Construct_UFunction_UPlayerActionsComponent_Sprint, "Sprint" }, // 1744059307
 		{ &Z_Construct_UFunction_UPlayerActionsComponent_Walk, "Walk" }, // 3952828670
@@ -300,6 +311,8 @@ struct Z_Construct_UClass_UPlayerActionsComponent_Statics
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_OnSprintDelegate = { "OnSprintDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, OnSprintDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnSprintSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnSprintDelegate_MetaData), NewProp_OnSprintDelegate_MetaData) }; // 399577437
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_OnRollDelegate = { "OnRollDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, OnRollDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnRollSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnRollDelegate_MetaData), NewProp_OnRollDelegate_MetaData) }; // 1472776317
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_RollAnimMontage = { "RollAnimMontage", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, RollAnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RollAnimMontage_MetaData), NewProp_RollAnimMontage_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_PlayerRef = { "PlayerRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, PlayerRef), Z_Construct_UClass_AMainCharacter_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerRef_MetaData), NewProp_PlayerRef_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_MovementComp = { "MovementComp", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, MovementComp), Z_Construct_UClass_UCharacterMovementComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MovementComp_MetaData), NewProp_MovementComp_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_SprintCost = { "SprintCost", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, SprintCost), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SprintCost_MetaData), NewProp_SprintCost_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_SprintSpeed = { "SprintSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, SprintSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SprintSpeed_MetaData), NewProp_SprintSpeed_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_WalkSpeed = { "WalkSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerActionsComponent, WalkSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_WalkSpeed_MetaData), NewProp_WalkSpeed_MetaData) };
@@ -308,6 +321,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerAc
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_OnSprintDelegate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_OnRollDelegate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_RollAnimMontage,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_PlayerRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_MovementComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_SprintCost,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_SprintSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerActionsComponent_Statics::NewProp_WalkSpeed,
@@ -354,10 +369,10 @@ UPlayerActionsComponent::~UPlayerActionsComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_PlayerActionsComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPlayerActionsComponent, UPlayerActionsComponent::StaticClass, TEXT("UPlayerActionsComponent"), &Z_Registration_Info_UClass_UPlayerActionsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerActionsComponent), 2005101645U) },
+		{ Z_Construct_UClass_UPlayerActionsComponent, UPlayerActionsComponent::StaticClass, TEXT("UPlayerActionsComponent"), &Z_Registration_Info_UClass_UPlayerActionsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerActionsComponent), 3440592821U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_PlayerActionsComponent_h_1731549325(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_PlayerActionsComponent_h_3071976041(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_PlayerActionsComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_PlayerActionsComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

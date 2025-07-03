@@ -1,20 +1,10 @@
 
-
-
 #include "Characters/LookAtPlayerComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
 ULookAtPlayerComponent::ULookAtPlayerComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
-	
-}
-
-
-void ULookAtPlayerComponent::BeginPlay()
-{
-	Super::BeginPlay();
-	
 	
 }
 

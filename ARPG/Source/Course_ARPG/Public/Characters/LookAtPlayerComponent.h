@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -20,10 +19,6 @@ public:
 
 	UPROPERTY(VisibleAnywhere)
 	bool bCanRotate = false;
-	
-protected:
-
-	virtual void BeginPlay() override;
 	
 private:
 

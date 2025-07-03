@@ -6,7 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "LevelingComponent.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnNewLevelSignature, ULevelingComponent, OnNewLevelDelegate,int, Level);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnNewLevelSignature, ULevelingComponent, OnNewLevelDelegate, int, Level);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnXpUpdateSignature, ULevelingComponent, OnXpUpdateDelegate,float, XP);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStatPointsUpdateSignature, ULevelingComponent, OnStatPointsUpdateDelegate,int, Points);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnAbilityPointsUpdateSignature, ULevelingComponent, OnAbilityPointsUpdateDelegate,int, Points);
@@ -34,12 +34,13 @@ public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnAbilityPointsUpdateSignature OnAbilityPointsUpdateDelegate;
 	
-	UFUNCTION(BlueprintPure)
+	UFUNCTION()
 	float GetCurrentXP();
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION()
 	int GetCurrentLevel();
 
+	//В конце убрать BlueprintPure - нужно только для Debug
 	UFUNCTION(BlueprintPure)
 	int GetCurrentStatPointsAmount();
 	
@@ -52,20 +53,20 @@ public:
 	UFUNCTION()
 	void SetLevel(int NewLevel);
 
+	//В конце убрать BlueprintCallable - нужно только для Debug
 	UFUNCTION(BlueprintCallable)
 	void SetStatPoints(int NewStatPointsAmount);
 
 	UFUNCTION(BlueprintCallable)
 	void SetAbilityPoints(int NewAbilityPointsAmount);
-	
-protected:
-	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	UDataTable* LevelDataTable;
+
 
 private:
 	
 	void TryLevelUp();
+
+	UPROPERTY(EditDefaultsOnly)
+	UDataTable* LevelDataTable;
 	
 	UPROPERTY(VisibleAnywhere)
 	int CurrentLevel = 1;

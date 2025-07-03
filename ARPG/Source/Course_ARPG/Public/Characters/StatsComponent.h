@@ -10,9 +10,9 @@ DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnHealthPercentUpdateSignatu
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStaminaPercentUpdateSignature, UStatsComponent, OnStaminaPercentUpdateDelegate,float, Percentage);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnManaPercentUpdateSignature, UStatsComponent, OnManaPercentUpdateDelegate,float, Percentage);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnArmorUpdateSignature, UStatsComponent, OnArmorUpdateDelegate,float, Amount);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FOnZeroHealthSignature, UStatsComponent, OnZeroHealthDelegate);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FOnZeroArmorSignature, UStatsComponent, OnZeroArmorDelegate);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE(FOnStatUpdateSignature, UStatsComponent, OnStatUpdateDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStatUpdateSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnZeroArmorSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnZeroHealthSignature);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatsComponent : public UActorComponent
@@ -21,43 +21,46 @@ class COURSE_ARPG_API UStatsComponent : public UActorComponent
 
 public:	
 	
-	UStatsComponent();
-	
+	UStatsComponent(){};
+
+	//Debug
 	UFUNCTION(BlueprintCallable)
 	void ReduceHealth(float Damage, AActor* Opponent);
 
+	//Debug
 	UFUNCTION(BlueprintCallable)
 	float GetReducedDamage(float Damage, AActor* Opponent);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void ReduceStamina(float Stamina);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void ReduceMana(float Mana);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void RegenStamina();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void RegenMana();
 
+	//Debug
 	UFUNCTION(BlueprintPure)
 	float GetStatPercentage(EStats Current, EStats Max);
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION()
 	float GetStatValue(EStats Stat);
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION()
 	FString GetStatName(EStats Stat);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void SetStatValue(EStats Stat, float NewValue);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void AddHealth(float HealthToAdd);
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<TEnumAsByte<EStats>, float> Stats;
+	UFUNCTION()
+	void OnStatsUpdated();
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
@@ -107,5 +110,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float ManaDelayDuration = 2.0f;
-		
+
+	UPROPERTY(EditAnywhere)
+	TMap<TEnumAsByte<EStats>, float> Stats;
 };

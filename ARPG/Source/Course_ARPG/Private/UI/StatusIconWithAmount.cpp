@@ -44,7 +44,7 @@ void UStatusIconWithAmount::RemoveWidget()
 	{
 		return;
 	}
-	PlayerRef->PlayerWidgetRef->ActiveStatusWidget.Remove(Keyword);
+	PlayerRef->GetPlayerWidget()->ActiveStatusWidget.Remove(Keyword);
 	
 	StatsCompRef->OnArmorUpdateDelegate.Clear();
 

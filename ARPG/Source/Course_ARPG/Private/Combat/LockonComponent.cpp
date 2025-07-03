@@ -1,6 +1,4 @@
 
-
-
 #include "Combat/LockonComponent.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -13,7 +11,6 @@ ULockonComponent::ULockonComponent()
 	PrimaryComponentTick.bCanEverTick = true;
 	
 }
-
 
 
 void ULockonComponent::BeginPlay()
@@ -53,9 +50,8 @@ void ULockonComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 	FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(CurrentLocation, TargetLocation);
 
 	Controller->SetControlRotation(NewRotation);
-
-	
 }
+
 
 void ULockonComponent::StartLockon(float Radius)
 {
@@ -87,6 +83,7 @@ void ULockonComponent::StartLockon(float Radius)
 	//UE_LOG(LogTemp, Warning, TEXT("Lockon: %s"), *OutResult.GetActor()->GetName());
 }
 
+
 void ULockonComponent::EndLockon()
 {
 	IEnemy::Execute_OnDeselect(CurrentTargetActor);
@@ -100,14 +97,17 @@ void ULockonComponent::EndLockon()
 	OnUpdatedTargetDelegate.Broadcast(CurrentTargetActor);
 }
 
+
 void ULockonComponent::ToggleLockon(float Radius)
 {
 	if (IsValid(CurrentTargetActor))
 	{
+		UE_LOG(LogTemp, Error, TEXT("Lockon|Valid actor: %s"), *CurrentTargetActor->GetName());
 		EndLockon();
 	}
 	else
 	{
+		UE_LOG(LogTemp, Error, TEXT("Lockon|NotValid "));
 		StartLockon(Radius);
 	}
 }

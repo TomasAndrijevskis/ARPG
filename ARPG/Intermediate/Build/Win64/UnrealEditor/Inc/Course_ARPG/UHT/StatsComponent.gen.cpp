@@ -13,13 +13,13 @@ void EmptyLinkFunctionForGeneratedCodeStatsComponent() {}
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsComponent();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsComponent_NoRegister();
 COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EStats();
+COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature();
+COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature();
+COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature();
 COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnArmorUpdateSignature__DelegateSignature();
 COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnHealthPercentUpdateSignature__DelegateSignature();
 COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnManaPercentUpdateSignature__DelegateSignature();
 COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnStaminaPercentUpdateSignature__DelegateSignature();
-COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature();
-COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature();
-COURSE_ARPG_API UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
@@ -201,8 +201,8 @@ void FOnArmorUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnA
 }
 // End Delegate FOnArmorUpdateSignature
 
-// Begin Delegate FOnZeroHealthSignature
-struct Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics
+// Begin Delegate FOnStatUpdateSignature
+struct Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -211,24 +211,24 @@ struct Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__De
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnZeroHealthSignature__DelegateSignature", "StatsComponent", "OnZeroHealthDelegate", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature()
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnStatUpdateSignature__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-void FOnZeroHealthSignature_DelegateWrapper(const FMulticastScriptDelegate& OnZeroHealthSignature)
+void FOnStatUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnStatUpdateSignature)
 {
-	OnZeroHealthSignature.ProcessMulticastDelegate<UObject>(NULL);
+	OnStatUpdateSignature.ProcessMulticastDelegate<UObject>(NULL);
 }
-// End Delegate FOnZeroHealthSignature
+// End Delegate FOnStatUpdateSignature
 
 // Begin Delegate FOnZeroArmorSignature
-struct Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics
+struct Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -237,13 +237,13 @@ struct Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__Del
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnZeroArmorSignature__DelegateSignature", "StatsComponent", "OnZeroArmorDelegate", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature()
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnZeroArmorSignature__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
@@ -253,8 +253,8 @@ void FOnZeroArmorSignature_DelegateWrapper(const FMulticastScriptDelegate& OnZer
 }
 // End Delegate FOnZeroArmorSignature
 
-// Begin Delegate FOnStatUpdateSignature
-struct Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics
+// Begin Delegate FOnZeroHealthSignature
+struct Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -263,21 +263,21 @@ struct Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__De
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnStatUpdateSignature__DelegateSignature", "StatsComponent", "OnStatUpdateDelegate", nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature()
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnZeroHealthSignature__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature()
 {
 	static UFunction* ReturnFunction = nullptr;
 	if (!ReturnFunction)
 	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature_Statics::FuncParams);
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature_Statics::FuncParams);
 	}
 	return ReturnFunction;
 }
-void FOnStatUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnStatUpdateSignature)
+void FOnZeroHealthSignature_DelegateWrapper(const FMulticastScriptDelegate& OnZeroHealthSignature)
 {
-	OnStatUpdateSignature.ProcessMulticastDelegate<UObject>(NULL);
+	OnZeroHealthSignature.ProcessMulticastDelegate<UObject>(NULL);
 }
-// End Delegate FOnStatUpdateSignature
+// End Delegate FOnZeroHealthSignature
 
 // Begin Class UStatsComponent Function AddHealth
 struct Z_Construct_UFunction_UStatsComponent_AddHealth_Statics
@@ -300,7 +300,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStats
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::NewProp_HealthToAdd,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "AddHealth", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::StatsComponent_eventAddHealth_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "AddHealth", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::StatsComponent_eventAddHealth_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UStatsComponent_AddHealth_Statics::StatsComponent_eventAddHealth_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UStatsComponent_AddHealth()
 {
@@ -390,7 +390,13 @@ struct Z_Construct_UFunction_UStatsComponent_GetReducedDamage_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Debug\n" },
+#endif
 		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Debug" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Damage;
@@ -455,7 +461,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStats
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::NewProp_ReturnValue,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "GetStatName", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::StatsComponent_eventGetStatName_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "GetStatName", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::StatsComponent_eventGetStatName_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UStatsComponent_GetStatName_Statics::StatsComponent_eventGetStatName_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UStatsComponent_GetStatName()
 {
@@ -487,7 +493,13 @@ struct Z_Construct_UFunction_UStatsComponent_GetStatPercentage_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Debug\n" },
+#endif
 		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Debug" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FBytePropertyParams NewProp_Current;
@@ -552,7 +564,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStats
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::NewProp_ReturnValue,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "GetStatValue", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::StatsComponent_eventGetStatValue_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "GetStatValue", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::StatsComponent_eventGetStatValue_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UStatsComponent_GetStatValue_Statics::StatsComponent_eventGetStatValue_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UStatsComponent_GetStatValue()
 {
@@ -573,6 +585,35 @@ DEFINE_FUNCTION(UStatsComponent::execGetStatValue)
 }
 // End Class UStatsComponent Function GetStatValue
 
+// Begin Class UStatsComponent Function OnStatsUpdated
+struct Z_Construct_UFunction_UStatsComponent_OnStatsUpdated_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_OnStatsUpdated_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "OnStatsUpdated", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_OnStatsUpdated_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_OnStatsUpdated_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UStatsComponent_OnStatsUpdated()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UStatsComponent_OnStatsUpdated_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UStatsComponent::execOnStatsUpdated)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->OnStatsUpdated();
+	P_NATIVE_END;
+}
+// End Class UStatsComponent Function OnStatsUpdated
+
 // Begin Class UStatsComponent Function ReduceHealth
 struct Z_Construct_UFunction_UStatsComponent_ReduceHealth_Statics
 {
@@ -583,7 +624,13 @@ struct Z_Construct_UFunction_UStatsComponent_ReduceHealth_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//Debug\n" },
+#endif
 		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "Debug" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_Damage;
@@ -641,7 +688,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStats
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::NewProp_Mana,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "ReduceMana", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::StatsComponent_eventReduceMana_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "ReduceMana", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::StatsComponent_eventReduceMana_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UStatsComponent_ReduceMana_Statics::StatsComponent_eventReduceMana_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UStatsComponent_ReduceMana()
 {
@@ -683,7 +730,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStats
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::NewProp_Stamina,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "ReduceStamina", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::StatsComponent_eventReduceStamina_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "ReduceStamina", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::StatsComponent_eventReduceStamina_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UStatsComponent_ReduceStamina_Statics::StatsComponent_eventReduceStamina_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UStatsComponent_ReduceStamina()
 {
@@ -714,7 +761,7 @@ struct Z_Construct_UFunction_UStatsComponent_RegenMana_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_RegenMana_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "RegenMana", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_RegenMana_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_RegenMana_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_RegenMana_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "RegenMana", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_RegenMana_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_RegenMana_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_UStatsComponent_RegenMana()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -743,7 +790,7 @@ struct Z_Construct_UFunction_UStatsComponent_RegenStamina_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_RegenStamina_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "RegenStamina", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_RegenStamina_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_RegenStamina_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_RegenStamina_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "RegenStamina", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_RegenStamina_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_RegenStamina_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_UStatsComponent_RegenStamina()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -787,7 +834,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStats
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::NewProp_NewValue,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "SetStatValue", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::StatsComponent_eventSetStatValue_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "SetStatValue", nullptr, nullptr, Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::StatsComponent_eventSetStatValue_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics::StatsComponent_eventSetStatValue_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UStatsComponent_SetStatValue()
 {
@@ -821,6 +868,7 @@ void UStatsComponent::StaticRegisterNativesUStatsComponent()
 		{ "GetStatName", &UStatsComponent::execGetStatName },
 		{ "GetStatPercentage", &UStatsComponent::execGetStatPercentage },
 		{ "GetStatValue", &UStatsComponent::execGetStatValue },
+		{ "OnStatsUpdated", &UStatsComponent::execOnStatsUpdated },
 		{ "ReduceHealth", &UStatsComponent::execReduceHealth },
 		{ "ReduceMana", &UStatsComponent::execReduceMana },
 		{ "ReduceStamina", &UStatsComponent::execReduceStamina },
@@ -842,10 +890,6 @@ struct Z_Construct_UClass_UStatsComponent_Statics
 		{ "BlueprintSpawnableComponent", "" },
 		{ "ClassGroupNames", "Custom" },
 		{ "IncludePath", "Characters/StatsComponent.h" },
-		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Stats_MetaData[] = {
-		{ "Category", "StatsComponent" },
 		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OnHealthPercentUpdateDelegate_MetaData[] = {
@@ -893,10 +937,11 @@ struct Z_Construct_UClass_UStatsComponent_Statics
 		{ "Category", "StatsComponent" },
 		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Stats_MetaData[] = {
+		{ "Category", "StatsComponent" },
+		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
+	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_Stats_ValueProp;
-	static const UECodeGen_Private::FBytePropertyParams NewProp_Stats_Key_KeyProp;
-	static const UECodeGen_Private::FMapPropertyParams NewProp_Stats;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnHealthPercentUpdateDelegate;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnStaminaPercentUpdateDelegate;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnManaPercentUpdateDelegate;
@@ -912,22 +957,26 @@ struct Z_Construct_UClass_UStatsComponent_Statics
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bCanRegenStamina;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_StaminaDelayDuration;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ManaDelayDuration;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_Stats_ValueProp;
+	static const UECodeGen_Private::FBytePropertyParams NewProp_Stats_Key_KeyProp;
+	static const UECodeGen_Private::FMapPropertyParams NewProp_Stats;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UStatsComponent_AddHealth, "AddHealth" }, // 3736643277
+		{ &Z_Construct_UFunction_UStatsComponent_AddHealth, "AddHealth" }, // 2530207561
 		{ &Z_Construct_UFunction_UStatsComponent_EnableManaRegen, "EnableManaRegen" }, // 1231423935
 		{ &Z_Construct_UFunction_UStatsComponent_EnableStaminaRegen, "EnableStaminaRegen" }, // 865388667
-		{ &Z_Construct_UFunction_UStatsComponent_GetReducedDamage, "GetReducedDamage" }, // 1383336224
-		{ &Z_Construct_UFunction_UStatsComponent_GetStatName, "GetStatName" }, // 2656739494
-		{ &Z_Construct_UFunction_UStatsComponent_GetStatPercentage, "GetStatPercentage" }, // 4203604041
-		{ &Z_Construct_UFunction_UStatsComponent_GetStatValue, "GetStatValue" }, // 4199699697
-		{ &Z_Construct_UFunction_UStatsComponent_ReduceHealth, "ReduceHealth" }, // 3610010968
-		{ &Z_Construct_UFunction_UStatsComponent_ReduceMana, "ReduceMana" }, // 4186630096
-		{ &Z_Construct_UFunction_UStatsComponent_ReduceStamina, "ReduceStamina" }, // 756766150
-		{ &Z_Construct_UFunction_UStatsComponent_RegenMana, "RegenMana" }, // 3787413283
-		{ &Z_Construct_UFunction_UStatsComponent_RegenStamina, "RegenStamina" }, // 1133475283
-		{ &Z_Construct_UFunction_UStatsComponent_SetStatValue, "SetStatValue" }, // 627835916
+		{ &Z_Construct_UFunction_UStatsComponent_GetReducedDamage, "GetReducedDamage" }, // 1416473637
+		{ &Z_Construct_UFunction_UStatsComponent_GetStatName, "GetStatName" }, // 2012776272
+		{ &Z_Construct_UFunction_UStatsComponent_GetStatPercentage, "GetStatPercentage" }, // 4158655962
+		{ &Z_Construct_UFunction_UStatsComponent_GetStatValue, "GetStatValue" }, // 1646771464
+		{ &Z_Construct_UFunction_UStatsComponent_OnStatsUpdated, "OnStatsUpdated" }, // 2635404311
+		{ &Z_Construct_UFunction_UStatsComponent_ReduceHealth, "ReduceHealth" }, // 231467916
+		{ &Z_Construct_UFunction_UStatsComponent_ReduceMana, "ReduceMana" }, // 2410128414
+		{ &Z_Construct_UFunction_UStatsComponent_ReduceStamina, "ReduceStamina" }, // 877380551
+		{ &Z_Construct_UFunction_UStatsComponent_RegenMana, "RegenMana" }, // 2331136345
+		{ &Z_Construct_UFunction_UStatsComponent_RegenStamina, "RegenStamina" }, // 3544300034
+		{ &Z_Construct_UFunction_UStatsComponent_SetStatValue, "SetStatValue" }, // 1932000417
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -935,16 +984,13 @@ struct Z_Construct_UClass_UStatsComponent_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_ValueProp = { "Stats", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_Key_KeyProp = { "Stats_Key", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
-const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats = { "Stats", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, Stats), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Stats_MetaData), NewProp_Stats_MetaData) }; // 1779151500
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnHealthPercentUpdateDelegate = { "OnHealthPercentUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnHealthPercentUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnHealthPercentUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnHealthPercentUpdateDelegate_MetaData), NewProp_OnHealthPercentUpdateDelegate_MetaData) }; // 308023176
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnStaminaPercentUpdateDelegate = { "OnStaminaPercentUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnStaminaPercentUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnStaminaPercentUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnStaminaPercentUpdateDelegate_MetaData), NewProp_OnStaminaPercentUpdateDelegate_MetaData) }; // 23037996
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnManaPercentUpdateDelegate = { "OnManaPercentUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnManaPercentUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnManaPercentUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnManaPercentUpdateDelegate_MetaData), NewProp_OnManaPercentUpdateDelegate_MetaData) }; // 2612675167
-const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnZeroHealthDelegate = { "OnZeroHealthDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnZeroHealthDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnZeroHealthDelegate_MetaData), NewProp_OnZeroHealthDelegate_MetaData) }; // 2166416669
-const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnZeroArmorDelegate = { "OnZeroArmorDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnZeroArmorDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnZeroArmorDelegate_MetaData), NewProp_OnZeroArmorDelegate_MetaData) }; // 1383031119
+const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnZeroHealthDelegate = { "OnZeroHealthDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnZeroHealthDelegate), Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnZeroHealthDelegate_MetaData), NewProp_OnZeroHealthDelegate_MetaData) }; // 3766297381
+const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnZeroArmorDelegate = { "OnZeroArmorDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnZeroArmorDelegate), Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnZeroArmorDelegate_MetaData), NewProp_OnZeroArmorDelegate_MetaData) }; // 158607738
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnArmorUpdateDelegate = { "OnArmorUpdateDelegate", nullptr, (EPropertyFlags)0x0010000010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnArmorUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnArmorUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnArmorUpdateDelegate_MetaData), NewProp_OnArmorUpdateDelegate_MetaData) }; // 1424501189
-const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnStatUpdateDelegate = { "OnStatUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::SparseMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnStatUpdateDelegate), Z_Construct_USparseDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnStatUpdateDelegate_MetaData), NewProp_OnStatUpdateDelegate_MetaData) }; // 4086281228
+const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnStatUpdateDelegate = { "OnStatUpdateDelegate", nullptr, (EPropertyFlags)0x0010100010080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, OnStatUpdateDelegate), Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OnStatUpdateDelegate_MetaData), NewProp_OnStatUpdateDelegate_MetaData) }; // 1428107886
 const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_StaminaRegenRate = { "StaminaRegenRate", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, StaminaRegenRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaminaRegenRate_MetaData), NewProp_StaminaRegenRate_MetaData) };
 const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_ManaRegenRate = { "ManaRegenRate", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, ManaRegenRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ManaRegenRate_MetaData), NewProp_ManaRegenRate_MetaData) };
 void Z_Construct_UClass_UStatsComponent_Statics::NewProp_bCanRegenMana_SetBit(void* Obj)
@@ -959,10 +1005,10 @@ void Z_Construct_UClass_UStatsComponent_Statics::NewProp_bCanRegenStamina_SetBit
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_bCanRegenStamina = { "bCanRegenStamina", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UStatsComponent), &Z_Construct_UClass_UStatsComponent_Statics::NewProp_bCanRegenStamina_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bCanRegenStamina_MetaData), NewProp_bCanRegenStamina_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_StaminaDelayDuration = { "StaminaDelayDuration", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, StaminaDelayDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StaminaDelayDuration_MetaData), NewProp_StaminaDelayDuration_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_ManaDelayDuration = { "ManaDelayDuration", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, ManaDelayDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ManaDelayDuration_MetaData), NewProp_ManaDelayDuration_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_ValueProp = { "Stats", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_Key_KeyProp = { "Stats_Key", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats = { "Stats", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsComponent, Stats), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Stats_MetaData), NewProp_Stats_MetaData) }; // 1779151500
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatsComponent_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_ValueProp,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_Key_KeyProp,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnHealthPercentUpdateDelegate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnStaminaPercentUpdateDelegate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_OnManaPercentUpdateDelegate,
@@ -976,6 +1022,9 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatsCom
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_bCanRegenStamina,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_StaminaDelayDuration,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_ManaDelayDuration,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_ValueProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats_Key_KeyProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatsComponent_Statics::NewProp_Stats,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UStatsComponent_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UStatsComponent_Statics::DependentSingletons[])() = {
@@ -1018,10 +1067,10 @@ UStatsComponent::~UStatsComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatsComponent, UStatsComponent::StaticClass, TEXT("UStatsComponent"), &Z_Registration_Info_UClass_UStatsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsComponent), 94481237U) },
+		{ Z_Construct_UClass_UStatsComponent, UStatsComponent::StaticClass, TEXT("UStatsComponent"), &Z_Registration_Info_UClass_UStatsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsComponent), 1839103082U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_3775196497(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_3137255295(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -62,7 +62,7 @@ private:
 	float ProjectileDamage = 10.0f;
 
 	UPROPERTY(EditAnywhere)
-	float AliveTime = 10.0f;
+	float AliveTime = 4.0f;
 
 	FTimerHandle ParticleTimerHandle;
 	

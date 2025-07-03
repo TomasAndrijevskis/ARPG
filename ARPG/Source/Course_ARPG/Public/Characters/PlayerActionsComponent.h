@@ -1,10 +1,13 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "PlayerActionsComponent.generated.h"
+
+class IMainPlayer;
+class AMainCharacter_Base;
+class UCharacterMovementComponent;
 
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam( FOnSprintSignature, UPlayerActionsComponent, OnSprintDelegate, float, SprintStaminaCost);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnRollSignature, UPlayerActionsComponent, OnRollDelegate, float, RollStaminaCost);
@@ -16,10 +19,8 @@ class COURSE_ARPG_API UPlayerActionsComponent : public UActorComponent
 
 public:	
 	
-	UPlayerActionsComponent();
-
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
+	UPlayerActionsComponent(){};
+	
 	UFUNCTION(BlueprintCallable)
 	void Sprint();
 
@@ -28,34 +29,36 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void Roll();
-
-	UFUNCTION()
-	void FinishRollAnim();
-
+	
 	UPROPERTY(BlueprintAssignable)
 	FOnSprintSignature OnSprintDelegate;
 
 	UPROPERTY(BlueprintAssignable)
 	FOnRollSignature OnRollDelegate;
 
-	bool bIsRollActive = false;
-
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* RollAnimMontage;
 
-	bool bCanRoll = true;
+	bool GetCanRoll();
+
+	void SetCanRoll(bool CanRoll);
+
+	bool IsRollActive();
 	
 protected:
 
 	virtual void BeginPlay() override;
 	
 private:
+	
+	UFUNCTION()
+	void FinishRollAnim();
 
-	class AMainCharacter_Base* CharacterRef;
-	
-	class IMainPlayer* IPlayerRef;
-	
-	class UCharacterMovementComponent* MovementComp;
+	UPROPERTY()
+	AMainCharacter_Base* PlayerRef;
+
+	UPROPERTY()
+	UCharacterMovementComponent* MovementComp;
 
 	UPROPERTY(EditAnywhere)
 	float SprintCost = 0.1f;
@@ -68,5 +71,10 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	float RollCost = 5.0f;
+
+	IMainPlayer* IPlayerRef;
 	
+	bool bCanRoll = true;
+	
+	bool bIsRollActive = false;
 };

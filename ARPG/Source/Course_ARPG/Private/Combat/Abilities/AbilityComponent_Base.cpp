@@ -6,6 +6,7 @@
 #include "Characters/Data/AbilityUpgradeRequirements.h"
 #include "Combat/CombatComponent.h"
 #include "SaveGame/AbilityData.h"
+#include "UI/PlayerWidget.h"
 
 
 UAbilityComponent_Base::UAbilityComponent_Base()
@@ -55,6 +56,12 @@ void UAbilityComponent_Base::StartCooldown()
 }
 
 
+void UAbilityComponent_Base::CreateIcon()
+{
+	PlayerRef->GetPlayerWidget()->CreateStatusIconWithTimer(GetAbilityDuration(), GetIcon(), this);
+}
+
+
 void UAbilityComponent_Base::StartCooldownTimer()
 {
 	if (TimerDuration > 0)
@@ -75,7 +82,7 @@ void UAbilityComponent_Base::StartCooldownTimer()
 void UAbilityComponent_Base::HandlePlayerActions(bool bCanDo)
 {
 	PlayerRef->CombatComp->bCanAttack = bCanDo;
-	PlayerRef->PlayerActionsComp->bCanRoll = bCanDo;
+	PlayerRef->PlayerActionsComp->SetCanRoll(bCanDo);
 }
 
 

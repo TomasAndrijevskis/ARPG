@@ -32,7 +32,7 @@ COURSE_ARPG_API void FOnArmorUpdateSignature_DelegateWrapper(const FMulticastScr
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_13_DELEGATE \
-COURSE_ARPG_API void FOnZeroHealthSignature_DelegateWrapper(const FMulticastScriptDelegate& OnZeroHealthSignature);
+COURSE_ARPG_API void FOnStatUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnStatUpdateSignature);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_14_DELEGATE \
@@ -40,12 +40,13 @@ COURSE_ARPG_API void FOnZeroArmorSignature_DelegateWrapper(const FMulticastScrip
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_15_DELEGATE \
-COURSE_ARPG_API void FOnStatUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnStatUpdateSignature);
+COURSE_ARPG_API void FOnZeroHealthSignature_DelegateWrapper(const FMulticastScriptDelegate& OnZeroHealthSignature);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execEnableStaminaRegen); \
 	DECLARE_FUNCTION(execEnableManaRegen); \
+	DECLARE_FUNCTION(execOnStatsUpdated); \
 	DECLARE_FUNCTION(execAddHealth); \
 	DECLARE_FUNCTION(execSetStatValue); \
 	DECLARE_FUNCTION(execGetStatName); \
