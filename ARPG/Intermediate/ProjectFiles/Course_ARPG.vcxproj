@@ -303,6 +303,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Warrior.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Mage.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\PlayerActionsComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -442,6 +445,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LookAtPlayerComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Warrior.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Mage.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\StatsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTS_PlayerDistance.h"/>

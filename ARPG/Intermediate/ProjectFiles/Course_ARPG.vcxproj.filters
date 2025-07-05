@@ -91,6 +91,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Warrior.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MyMainCharacter_Mage.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\PlayerActionsComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
@@ -284,6 +287,9 @@
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Warrior.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MyMainCharacter_Mage.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h">

@@ -1,29 +1,14 @@
 
-
-
 #include "Combat/CombatComponent.h"
 #include "GameFramework/Character.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Interfaces/MainPlayer.h"
 
-UCombatComponent::UCombatComponent()
-{
-	PrimaryComponentTick.bCanEverTick = true;
-	
-}
-
 
 void UCombatComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
 	CharacterRef = GetOwner<ACharacter>();
-}
-
-
-void UCombatComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
 
 
@@ -31,16 +16,20 @@ void UCombatComponent::ComboAttack()
 {
 	if (CharacterRef->Implements<UMainPlayer>()) //проверяет есть ли интерфейс
 	{
+		UE_LOG(LogTemp, Error, TEXT("CombatComp|Implements"));
 		IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);
 		if (IPlayerRef && !IPlayerRef->HasEnoughStamina(AttackStaminaCost))
 		{
+			UE_LOG(LogTemp, Error, TEXT("CombatComp|Has stamina"));
 			return;
 		}
 	}
 	if (!bCanAttack)
 	{
+		UE_LOG(LogTemp, Error, TEXT("CombatComp|Cant Attack"));
 		return;
 	}
+	UE_LOG(LogTemp, Error, TEXT("CombatComp|Can Attack"));
 	bCanAttack = false;
 	
 	
@@ -54,10 +43,13 @@ void UCombatComponent::ComboAttack()
 	OnAttackPerformedDelegate.Broadcast(AttackStaminaCost);
 }
 
+
 void UCombatComponent::HandleResetAttack()
 {
+	UE_LOG(LogTemp, Error, TEXT("CombatComp|Attack reset"));
 	bCanAttack = true;
 }
+
 
 void UCombatComponent::RandomAttack()
 {

@@ -41,7 +41,7 @@ void AMainCharacter_Base::BeginPlay()
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	
 	CreateUI();
-	CreateAbilitiesFooter();
+	//CreateAbilitiesFooter();
 
 	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnim, &UPlayerAnimInstance::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);

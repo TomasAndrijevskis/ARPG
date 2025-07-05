@@ -44,6 +44,8 @@
 			"LockonComponent.gen.cpp.obj",
 			"LookAtPlayerAnimNotifyState.gen.cpp.obj",
 			"LookAtPlayerComponent.gen.cpp.obj",
+			"MainCharacter_Base.gen.cpp.obj",
+			"MainCharacter_Warrior.gen.cpp.obj",
 			"MainPlayer.gen.cpp.obj",
 			"PlayerActionsComponent.gen.cpp.obj",
 			"PlayerAnimInstance.gen.cpp.obj",
@@ -51,8 +53,7 @@
 			"PlayerWidget.gen.cpp.obj",
 			"Projectile_Base.gen.cpp.obj",
 			"Course_ARPG.init.gen.cpp.obj",
-			"MainCharacter_Base.gen.cpp.obj",
-			"MainCharacter_Warrior.gen.cpp.obj"
+			"MainCharacter_Mage.gen.cpp.obj"
 		],
 		"Module.Course_ARPG.3.cpp.obj": [
 			"RangeAttackProjectile.gen.cpp.obj",
@@ -68,7 +69,6 @@
 			"Course_ARPG.cpp.obj",
 			"BossAnimInstance.cpp.obj",
 			"LookAtPlayerAnimNotifyState.cpp.obj",
-			"PlayerAnimInstance.cpp.obj",
 			"ToggleTraceNotifyState.cpp.obj",
 			"BTS_PlayerDistance.cpp.obj",
 			"BTT_ChargeAttack.cpp.obj",
@@ -81,18 +81,18 @@
 			"EStats.cpp.obj",
 			"LevelingComponent.cpp.obj",
 			"LookAtPlayerComponent.cpp.obj",
+			"MainCharacter_Warrior.cpp.obj",
 			"PlayerActionsComponent.cpp.obj",
 			"StatsComponent.cpp.obj",
 			"AbilityComponent_Base.cpp.obj",
 			"AbilityComponent_DamageIncrease.cpp.obj",
 			"AbilityComponent_GetArmor.cpp.obj",
+			"AbilityComponent_LifeStealAttack.cpp.obj",
 			"AbilityComponent_RangeAttack.cpp.obj",
 			"BlockComponent.cpp.obj",
-			"CombatComponent.cpp.obj",
 			"EnemyProjectile.cpp.obj",
 			"EnemyProjectileComponent.cpp.obj",
 			"FTraceSockets.cpp.obj",
-			"LockonComponent.cpp.obj",
 			"Projectile_Base.cpp.obj",
 			"RangeAttackProjectile.cpp.obj",
 			"TraceComponent.cpp.obj",
@@ -118,9 +118,11 @@
 			"StatsScreenWidget.cpp.obj",
 			"StatusIconWithAmount.cpp.obj",
 			"StatusIconWithTimer.cpp.obj",
+			"PlayerAnimInstance.cpp.obj",
 			"MainCharacter_Base.cpp.obj",
-			"MainCharacter_Warrior.cpp.obj",
-			"AbilityComponent_LifeStealAttack.cpp.obj"
+			"MainCharacter_Mage.cpp.obj",
+			"CombatComponent.cpp.obj",
+			"LockonComponent.cpp.obj"
 		]
 	}
 }

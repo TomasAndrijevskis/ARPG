@@ -102,12 +102,12 @@ void ULockonComponent::ToggleLockon(float Radius)
 {
 	if (IsValid(CurrentTargetActor))
 	{
-		UE_LOG(LogTemp, Error, TEXT("Lockon|Valid actor: %s"), *CurrentTargetActor->GetName());
+		//UE_LOG(LogTemp, Error, TEXT("Lockon|Valid actor: %s"), *CurrentTargetActor->GetName());
 		EndLockon();
 	}
 	else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Lockon|NotValid "));
+		//UE_LOG(LogTemp, Error, TEXT("Lockon|NotValid "));
 		StartLockon(Radius);
 	}
 }

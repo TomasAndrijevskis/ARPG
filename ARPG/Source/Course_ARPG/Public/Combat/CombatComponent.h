@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -15,10 +14,8 @@ class COURSE_ARPG_API UCombatComponent : public UActorComponent
 	
 public:	
 	
-	UCombatComponent();
-
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
+	UCombatComponent(){};
+	
 	UFUNCTION(BlueprintCallable)
 	void ComboAttack();
 
@@ -27,13 +24,13 @@ public:
 
 	void RandomAttack();
 
-	float AnimDuration;
-
 	UPROPERTY(BlueprintAssignable)
 	FOnAttackPerformedSignature OnAttackPerformedDelegate;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bCanAttack = true;
+
+	float AnimDuration;
 	
 protected:
 	
@@ -48,8 +45,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	int ComboCounter = 0;
-	
 
 	UPROPERTY(EditAnywhere)
 	float AttackStaminaCost = 5.0f;
+	
 };

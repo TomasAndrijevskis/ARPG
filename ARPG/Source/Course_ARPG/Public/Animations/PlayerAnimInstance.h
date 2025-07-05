@@ -36,4 +36,5 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float CurrentDirection = 0.0f;
 
+
 };

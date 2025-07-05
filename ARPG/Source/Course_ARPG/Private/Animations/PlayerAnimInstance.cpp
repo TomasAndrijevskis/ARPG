@@ -11,8 +11,8 @@ void UPlayerAnimInstance::HandleUpdatedTarget(AActor* NewTargetActorRef)
 
 void UPlayerAnimInstance::UpdateDirection()
 {
-	APawn* PawnRef = TryGetPawnOwner();
-	if (!IsValid(PawnRef))
+	APawn* PlayerRef = TryGetPawnOwner();
+	if (!IsValid(PlayerRef))
 	{
 		return;
 	}
@@ -21,18 +21,18 @@ void UPlayerAnimInstance::UpdateDirection()
 		return;
 	}
 	
-	CurrentDirection = UKismetAnimationLibrary::CalculateDirection(PawnRef->GetVelocity(), PawnRef->GetActorRotation());
+	CurrentDirection = UKismetAnimationLibrary::CalculateDirection(PlayerRef->GetVelocity(), PlayerRef->GetActorRotation());
 }
 
 
 void UPlayerAnimInstance::UpdateSpeed()
 {
-	APawn* PawnRef {TryGetPawnOwner()};
-	if (!IsValid(PawnRef))
+	APawn* PlayerRef = TryGetPawnOwner();
+	if (!IsValid(PlayerRef))
 	{
 		return;
 	}
-	FVector Velocity { TryGetPawnOwner()->GetVelocity()};
+	FVector Velocity = PlayerRef->GetVelocity();
 	CurrentSpeed = static_cast<float>(Velocity.Length()); // double->float
 
 }
