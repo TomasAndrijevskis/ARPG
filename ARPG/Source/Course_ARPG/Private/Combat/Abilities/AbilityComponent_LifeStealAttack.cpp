@@ -1,6 +1,7 @@
 
 #include "Combat/Abilities/AbilityComponent_LifeStealAttack.h"
 #include "Characters/MainCharacter_Base.h"
+#include "Characters/MainCharacter_Warrior.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/TraceComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -13,7 +14,8 @@ void UAbilityComponent_LifeStealAttack::BeginPlay()
 	Super::BeginPlay();
 	FighterRef = Cast<IFighter>(GetOwner());
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	PlayerRef->TraceComp->OnHitDelegate.AddDynamic(this, &UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit);
+	AMainCharacter_Warrior* PlayerWarriorRef = Cast<AMainCharacter_Warrior>(PlayerRef);
+	PlayerWarriorRef->TraceComp->OnHitDelegate.AddDynamic(this, &UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit);
 }
 
 

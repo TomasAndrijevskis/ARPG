@@ -22,7 +22,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 	BlockComp = CreateDefaultSubobject<UBlockComponent>(TEXT("Block Component"));
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
-	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
+	//TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 

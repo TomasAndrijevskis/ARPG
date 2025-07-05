@@ -1,13 +1,15 @@
 
 #include "Characters/MainCharacter_Warrior.h"
+#include "Combat/TraceComponent.h"
 #include "Combat/Abilities/AbilityComponent_DamageIncrease.h"
 #include "Combat/Abilities/AbilityComponent_GetArmor.h"
 #include "Combat/Abilities/AbilityComponent_LifeStealAttack.h"
 #include "Combat/Abilities/AbilityComponent_RangeAttack.h"
-#include "UI/PlayerWidget.h"
 
 AMainCharacter_Warrior::AMainCharacter_Warrior()
 {
+	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
+	
 	AbilityComp_DamageIncrease = CreateDefaultSubobject<UAbilityComponent_DamageIncrease>(TEXT("Damage Increase"));
 	AbilityComp_RangeAttack = CreateDefaultSubobject<UAbilityComponent_RangeAttack>(TEXT("Range Attack"));
 	AbilityComp_LifeStealAttack = CreateDefaultSubobject<UAbilityComponent_LifeStealAttack>(TEXT("Life Steal Attack"));
@@ -23,7 +25,6 @@ AMainCharacter_Warrior::AMainCharacter_Warrior()
 void AMainCharacter_Warrior::BeginPlay()
 {
 	Super::BeginPlay();
-	
 
 	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
 	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);

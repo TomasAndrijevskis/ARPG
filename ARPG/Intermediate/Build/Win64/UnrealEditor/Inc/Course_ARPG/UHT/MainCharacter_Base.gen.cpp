@@ -25,7 +25,6 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerActionsComponent_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerAnimInstance_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerWidget_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsComponent_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UTraceComponent_NoRegister();
 COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EStats();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
@@ -504,15 +503,16 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TraceComp_MetaData[] = {
-		{ "Category", "MainCharacter_Base" },
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CombatComp_MetaData[] = {
 		{ "Category", "MainCharacter_Base" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "/*UPROPERTY(BlueprintReadWrite, EditAnywhere)\n\x09""class UTraceComponent* TraceComp;*/" },
+#endif
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "UPROPERTY(BlueprintReadWrite, EditAnywhere)\n       class UTraceComponent* TraceComp;" },
+#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LevelComp_MetaData[] = {
 		{ "Category", "MainCharacter_Base" },
@@ -559,7 +559,6 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_LockonComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BlockComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerActionsComp;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_TraceComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CombatComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_LevelComp;
 	static const UECodeGen_Private::FBytePropertyParams NewProp_ArrStats_Inner;
@@ -598,7 +597,6 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LockonComp = { "LockonComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, LockonComp), Z_Construct_UClass_ULockonComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LockonComp_MetaData), NewProp_LockonComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_BlockComp = { "BlockComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, BlockComp), Z_Construct_UClass_UBlockComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BlockComp_MetaData), NewProp_BlockComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerActionsComp = { "PlayerActionsComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerActionsComp), Z_Construct_UClass_UPlayerActionsComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerActionsComp_MetaData), NewProp_PlayerActionsComp_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_TraceComp = { "TraceComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, TraceComp), Z_Construct_UClass_UTraceComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TraceComp_MetaData), NewProp_TraceComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_CombatComp = { "CombatComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, CombatComp), Z_Construct_UClass_UCombatComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CombatComp_MetaData), NewProp_CombatComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LevelComp = { "LevelComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, LevelComp), Z_Construct_UClass_ULevelingComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LevelComp_MetaData), NewProp_LevelComp_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats_Inner = { "ArrStats", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
@@ -617,7 +615,6 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainChar
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LockonComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_BlockComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerActionsComp,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_TraceComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_CombatComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LevelComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats_Inner,
@@ -677,10 +674,10 @@ AMainCharacter_Base::~AMainCharacter_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 634903858U) },
+		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 698386444U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_2688704991(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_3633066766(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

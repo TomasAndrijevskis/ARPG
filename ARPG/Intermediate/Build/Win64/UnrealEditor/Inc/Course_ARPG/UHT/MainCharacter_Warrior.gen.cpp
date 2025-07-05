@@ -17,6 +17,7 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_DamageIncrease_NoRe
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_GetArmor_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_LifeStealAttack_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_RangeAttack_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UTraceComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
@@ -57,11 +58,17 @@ struct Z_Construct_UClass_AMainCharacter_Warrior_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Warrior.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TraceComp_MetaData[] = {
+		{ "Category", "MainCharacter_Warrior" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Warrior.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityComp_DamageIncrease;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityComp_LifeStealAttack;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityComp_RangeAttack;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityComp_GetArmor;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_TraceComp;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -73,11 +80,13 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_AbilityComp_LifeStealAttack = { "AbilityComp_LifeStealAttack", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Warrior, AbilityComp_LifeStealAttack), Z_Construct_UClass_UAbilityComponent_LifeStealAttack_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_LifeStealAttack_MetaData), NewProp_AbilityComp_LifeStealAttack_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_AbilityComp_RangeAttack = { "AbilityComp_RangeAttack", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Warrior, AbilityComp_RangeAttack), Z_Construct_UClass_UAbilityComponent_RangeAttack_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_RangeAttack_MetaData), NewProp_AbilityComp_RangeAttack_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_AbilityComp_GetArmor = { "AbilityComp_GetArmor", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Warrior, AbilityComp_GetArmor), Z_Construct_UClass_UAbilityComponent_GetArmor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_GetArmor_MetaData), NewProp_AbilityComp_GetArmor_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_TraceComp = { "TraceComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Warrior, TraceComp), Z_Construct_UClass_UTraceComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TraceComp_MetaData), NewProp_TraceComp_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainCharacter_Warrior_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_AbilityComp_DamageIncrease,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_AbilityComp_LifeStealAttack,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_AbilityComp_RangeAttack,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_AbilityComp_GetArmor,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Warrior_Statics::NewProp_TraceComp,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Warrior_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMainCharacter_Warrior_Statics::DependentSingletons[])() = {
@@ -120,10 +129,10 @@ AMainCharacter_Warrior::~AMainCharacter_Warrior() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Warrior_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Warrior, AMainCharacter_Warrior::StaticClass, TEXT("AMainCharacter_Warrior"), &Z_Registration_Info_UClass_AMainCharacter_Warrior, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Warrior), 2798401409U) },
+		{ Z_Construct_UClass_AMainCharacter_Warrior, AMainCharacter_Warrior::StaticClass, TEXT("AMainCharacter_Warrior"), &Z_Registration_Info_UClass_AMainCharacter_Warrior, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Warrior), 2992774887U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Warrior_h_922509645(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Warrior_h_2733676071(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Warrior_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Warrior_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

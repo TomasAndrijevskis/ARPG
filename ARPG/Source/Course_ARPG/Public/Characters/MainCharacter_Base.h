@@ -62,8 +62,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UPlayerActionsComponent* PlayerActionsComp;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UTraceComponent* TraceComp;
+	/*UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	class UTraceComponent* TraceComp;*/
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UCombatComponent* CombatComp;

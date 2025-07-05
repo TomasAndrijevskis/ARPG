@@ -27,6 +27,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UAbilityComponent_GetArmor* AbilityComp_GetArmor;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	class UTraceComponent* TraceComp;
 	
 protected:
 
