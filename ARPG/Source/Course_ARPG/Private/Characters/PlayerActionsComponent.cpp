@@ -1,7 +1,7 @@
 
 #include "Characters/PlayerActionsComponent.h"
 #include "Characters/MainCharacter_Base.h"
-#include "Combat/CombatComponent.h"
+#include "Combat/CombatComponent_Base.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Interfaces/MainPlayer.h"

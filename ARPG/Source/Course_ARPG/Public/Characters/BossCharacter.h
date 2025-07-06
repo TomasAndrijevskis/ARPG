@@ -43,7 +43,7 @@ public:
 	class UStatsComponent* StatsComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UCombatComponent* CombatComp;
+	class UCombatComponent_Enemy* CombatComp;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UTraceComponent* TraceComp;

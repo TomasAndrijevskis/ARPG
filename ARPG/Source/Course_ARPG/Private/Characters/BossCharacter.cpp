@@ -5,8 +5,9 @@
 #include "BrainComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/LevelingComponent.h"
-#include "Combat/CombatComponent.h"
+#include "Combat/CombatComponent_Base.h"
 #include "Characters/MainCharacter_Base.h"
+#include "Combat/CombatComponent_Enemy.h"
 #include "Combat/EnemyProjectileComponent.h"
 #include "Combat/TraceComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -20,7 +21,7 @@ ABossCharacter::ABossCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
-	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
+	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
 	ProjectileComp = CreateDefaultSubobject<UEnemyProjectileComponent>(TEXT("Projectile Component"));
 	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 }

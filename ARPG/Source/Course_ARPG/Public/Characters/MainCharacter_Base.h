@@ -66,7 +66,7 @@ public:
 	class UTraceComponent* TraceComp;*/
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UCombatComponent* CombatComp;
+	class UCombatComponent_Base* CombatComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class ULevelingComponent* LevelComp;

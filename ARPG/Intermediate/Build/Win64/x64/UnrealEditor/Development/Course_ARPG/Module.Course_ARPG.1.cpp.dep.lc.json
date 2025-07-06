@@ -6,6 +6,21 @@
         "PCH": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_base.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\abilitycomponent_base.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_base.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_damageincrease.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\abilitycomponent_damageincrease.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_damageincrease.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_getarmor.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\abilitycomponent_getarmor.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_getarmor.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_lifestealattack.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\abilitycomponent_lifestealattack.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_lifestealattack.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_rangeattack.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\abilitycomponent_rangeattack.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_rangeattack.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitydata.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\savegame\\abilitydata.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitydata.generated.h",
@@ -144,10 +159,7 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselection.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\characterselection.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselection.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselectionstruct.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\combatcomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselectionstruct.gen.cpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

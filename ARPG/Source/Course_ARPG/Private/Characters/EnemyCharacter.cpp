@@ -5,8 +5,9 @@
 #include "BrainComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/LevelingComponent.h"
-#include "Combat/CombatComponent.h"
+#include "Combat/CombatComponent_Base.h"
 #include "Characters/MainCharacter_Base.h"
+#include "Combat/CombatComponent_Enemy.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "UI/EnemyHealthBar.h"
@@ -17,7 +18,7 @@ AEnemyCharacter::AEnemyCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
-	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
+	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
 }
 
 

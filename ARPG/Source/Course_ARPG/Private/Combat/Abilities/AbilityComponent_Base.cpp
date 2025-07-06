@@ -4,7 +4,7 @@
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/PlayerActionsComponent.h"
 #include "Characters/Data/AbilityUpgradeRequirements.h"
-#include "Combat/CombatComponent.h"
+#include "Combat/CombatComponent_Base.h"
 #include "SaveGame/AbilityData.h"
 #include "UI/PlayerWidget.h"
 

@@ -16,7 +16,7 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UARPG_GameInstance_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UBlockComponent_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UCombatComponent_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UCombatComponent_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UFighter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ULevelingComponent_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ULockonComponent_NoRegister();
@@ -597,7 +597,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LockonComp = { "LockonComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, LockonComp), Z_Construct_UClass_ULockonComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LockonComp_MetaData), NewProp_LockonComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_BlockComp = { "BlockComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, BlockComp), Z_Construct_UClass_UBlockComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BlockComp_MetaData), NewProp_BlockComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerActionsComp = { "PlayerActionsComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerActionsComp), Z_Construct_UClass_UPlayerActionsComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerActionsComp_MetaData), NewProp_PlayerActionsComp_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_CombatComp = { "CombatComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, CombatComp), Z_Construct_UClass_UCombatComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CombatComp_MetaData), NewProp_CombatComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_CombatComp = { "CombatComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, CombatComp), Z_Construct_UClass_UCombatComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CombatComp_MetaData), NewProp_CombatComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LevelComp = { "LevelComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, LevelComp), Z_Construct_UClass_ULevelingComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LevelComp_MetaData), NewProp_LevelComp_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats_Inner = { "ArrStats", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats = { "ArrStats", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, ArrStats), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ArrStats_MetaData), NewProp_ArrStats_MetaData) }; // 1779151500
@@ -674,10 +674,10 @@ AMainCharacter_Base::~AMainCharacter_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 698386444U) },
+		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 2949947644U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_3633066766(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_1655271706(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

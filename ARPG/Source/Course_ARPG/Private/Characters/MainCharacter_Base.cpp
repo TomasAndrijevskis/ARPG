@@ -6,7 +6,7 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/PlayerActionsComponent.h"
 #include "Combat/BlockComponent.h"
-#include "Combat/CombatComponent.h"
+#include "Combat/CombatComponent_Base.h"
 #include "Combat/LockonComponent.h"
 #include "Combat/TraceComponent.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
@@ -23,7 +23,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 	BlockComp = CreateDefaultSubobject<UBlockComponent>(TEXT("Block Component"));
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	//TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
-	CombatComp = CreateDefaultSubobject<UCombatComponent>(TEXT("Combat Component"));
+	//CombatComp = CreateDefaultSubobject<UCombatComponent_Base>(TEXT("Combat Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 
 	ArrStats.Add(EStats::MaxHealth);
@@ -46,7 +46,6 @@ void AMainCharacter_Base::BeginPlay()
 	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnim, &UPlayerAnimInstance::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
-	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	BlockComp->OnBlockDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetHealth);
 	StatsComp->OnManaPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetMana);

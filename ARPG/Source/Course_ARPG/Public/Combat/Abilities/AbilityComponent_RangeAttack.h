@@ -44,7 +44,6 @@ private:
 	void StartAbilityAttack();
 	
 	void CompleteAbilityAttack();
-	
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* Particle;
@@ -64,8 +63,10 @@ private:
 	UPROPERTY(EditAnywhere)
 	float AliveTime = 4.0f;
 
+	UPROPERTY()
 	FTimerHandle ParticleTimerHandle;
-	
+
+	UPROPERTY()
 	UParticleSystemComponent* ParticleComponent;
 	
 };

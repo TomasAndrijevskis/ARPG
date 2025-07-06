@@ -300,10 +300,10 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Base.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Warrior.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Mage.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Mage.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Warrior.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\PlayerActionsComponent.cpp">
@@ -327,7 +327,10 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\BlockComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Base.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Enemy.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\EnemyProjectile.cpp">
@@ -340,6 +343,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Mage.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectile_Base.cpp">
@@ -444,8 +450,8 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LookAtPlayerComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Base.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Mage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Warrior.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Mage.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\StatsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTS_PlayerDistance.h"/>
@@ -456,11 +462,13 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\CharacterSelectionStruct.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\BlockComponent.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Base.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Enemy.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectile.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectileComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\FTraceSockets.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Mage.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectile_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\RangeAttackProjectile.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h"/>

@@ -88,10 +88,10 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Base.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Warrior.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Mage.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MyMainCharacter_Mage.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\MainCharacter_Warrior.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\PlayerActionsComponent.cpp">
@@ -121,7 +121,10 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\BlockComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Base.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Enemy.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\EnemyProjectile.cpp">
@@ -134,6 +137,9 @@
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\MyCombatComponent_Mage.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectile_Base.cpp">
@@ -286,10 +292,10 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Base.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Warrior.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Mage.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MyMainCharacter_Mage.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Warrior.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h">
@@ -331,7 +337,10 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\BlockComponent.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Base.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Enemy.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectile.h">
@@ -344,6 +353,9 @@
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\MyCombatComponent_Mage.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectile_Base.h">

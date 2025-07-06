@@ -53,7 +53,7 @@ public:
 	class UStatsComponent* StatsComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UCombatComponent* CombatComp;
+	class UCombatComponent_Enemy* CombatComp;
 
 	UPROPERTY(BlueprintReadOnly)
 	UEnemyHealthBar* EnemyHealthBarWidgetRef;
