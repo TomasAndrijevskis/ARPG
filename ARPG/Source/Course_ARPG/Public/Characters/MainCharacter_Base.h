@@ -62,9 +62,6 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UPlayerActionsComponent* PlayerActionsComp;
 
-	/*UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UTraceComponent* TraceComp;*/
-
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UCombatComponent_Base* CombatComp;
 
@@ -78,21 +75,17 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	virtual void HandleDeath();
 	
 	UPROPERTY(BlueprintReadOnly)
 	class UPlayerAnimInstance* PlayerAnim;
-
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalComp;
-
 
 private:
 
 	UFUNCTION()
 	void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
-	
-	UFUNCTION()
-	void HandleDeath();
 
 	UFUNCTION()
 	void PlayHurtAnimation();

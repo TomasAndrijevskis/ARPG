@@ -19,9 +19,6 @@ public:
 
 	AEnemyCharacter();
 
-	virtual void Tick(float DeltaTime) override;
-
-
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UFUNCTION(BlueprintCallable)
@@ -34,17 +31,6 @@ public:
 	virtual float GetAnimDuration();
 
 	virtual float GetMeleeRange() override;
-
-	UFUNCTION()
-	void HandlePlayerDeath();
-
-	UFUNCTION(BlueprintCallable)
-	void HandleDeath();
-
-	UFUNCTION()
-	void FinishedDeathAnim();
-
-	void GiveRewardXP();
 	
 	UFUNCTION(BlueprintCallable)
 	void CreateHealthWidget();
@@ -55,11 +41,14 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UCombatComponent_Enemy* CombatComp;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	class UTraceComponent* TraceComp;
+	
 	UPROPERTY(BlueprintReadOnly)
 	UEnemyHealthBar* EnemyHealthBarWidgetRef;
-	
-	UFUNCTION()
-	void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+
+	UFUNCTION(BlueprintCallable)
+	void HandleDeath();
 	
 protected:
 
@@ -67,10 +56,20 @@ protected:
 
 private:
 
+	UFUNCTION()
+	void HandlePlayerDeath();
+	
+	
+	UFUNCTION()
+	void FinishedDeathAnim();
+	
+	void GiveRewardXP();
+
+	UFUNCTION()
+	void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<EEnemyStates> InitialState;
-
-	class UBlackboardComponent* BlackboardComp;
 
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* DeathAnim;
@@ -78,10 +77,14 @@ private:
 	UPROPERTY(EditAnywhere)
 	float RewardXP;
 
-	class AAIController* ControllerRef;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UEnemyHealthBar> EnemyHealthBarWidget;
+
+	UPROPERTY()
+	class AAIController* ControllerRef;
+
+	UPROPERTY()
+	class UBlackboardComponent* BlackboardComp;
 
 	
 };

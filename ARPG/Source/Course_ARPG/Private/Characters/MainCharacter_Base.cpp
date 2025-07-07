@@ -39,7 +39,7 @@ void AMainCharacter_Base::BeginPlay()
 
 	PlayerAnim = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	
+
 	CreateUI();
 	//CreateAbilitiesFooter();
 

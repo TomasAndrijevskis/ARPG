@@ -31,7 +31,6 @@ ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
@@ -235,7 +234,7 @@ struct Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter_Base, nullptr, "HandleDeath", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter_Base, nullptr, "HandleDeath", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AMainCharacter_Base_HandleDeath()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -505,14 +504,8 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CombatComp_MetaData[] = {
 		{ "Category", "MainCharacter_Base" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "/*UPROPERTY(BlueprintReadWrite, EditAnywhere)\n\x09""class UTraceComponent* TraceComp;*/" },
-#endif
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "UPROPERTY(BlueprintReadWrite, EditAnywhere)\n       class UTraceComponent* TraceComp;" },
-#endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_LevelComp_MetaData[] = {
 		{ "Category", "MainCharacter_Base" },
@@ -525,10 +518,6 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerAnim_MetaData[] = {
 		{ "Category", "MainCharacter_Base" },
-		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SkeletalComp_MetaData[] = {
-		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerWidgetRef_MetaData[] = {
@@ -564,7 +553,6 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 	static const UECodeGen_Private::FBytePropertyParams NewProp_ArrStats_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_ArrStats;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerAnim;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_SkeletalComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerWidgetRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DeathAnimMontage;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HurtAnimMontage;
@@ -580,7 +568,7 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray, "GetAbilitiesArray" }, // 1754653749
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetGameInstanceRef, "GetGameInstanceRef" }, // 794600634
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetPlayerWidget, "GetPlayerWidget" }, // 4038718488
-		{ &Z_Construct_UFunction_AMainCharacter_Base_HandleDeath, "HandleDeath" }, // 1455801117
+		{ &Z_Construct_UFunction_AMainCharacter_Base_HandleDeath, "HandleDeath" }, // 308850039
 		{ &Z_Construct_UFunction_AMainCharacter_Base_HasEnoughMana, "HasEnoughMana" }, // 149876525
 		{ &Z_Construct_UFunction_AMainCharacter_Base_HasEnoughStamina, "HasEnoughStamina" }, // 2079301730
 		{ &Z_Construct_UFunction_AMainCharacter_Base_PlayHurtAnimation, "PlayHurtAnimation" }, // 1661204864
@@ -602,7 +590,6 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats_Inner = { "ArrStats", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats = { "ArrStats", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, ArrStats), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ArrStats_MetaData), NewProp_ArrStats_MetaData) }; // 1779151500
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerAnim = { "PlayerAnim", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerAnim), Z_Construct_UClass_UPlayerAnimInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerAnim_MetaData), NewProp_PlayerAnim_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_SkeletalComp = { "SkeletalComp", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, SkeletalComp), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SkeletalComp_MetaData), NewProp_SkeletalComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerWidgetRef = { "PlayerWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerWidgetRef), Z_Construct_UClass_UPlayerWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerWidgetRef_MetaData), NewProp_PlayerWidgetRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_DeathAnimMontage = { "DeathAnimMontage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, DeathAnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DeathAnimMontage_MetaData), NewProp_DeathAnimMontage_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_HurtAnimMontage = { "HurtAnimMontage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, HurtAnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HurtAnimMontage_MetaData), NewProp_HurtAnimMontage_MetaData) };
@@ -620,7 +607,6 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainChar
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerAnim,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_SkeletalComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerWidgetRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_DeathAnimMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_HurtAnimMontage,
@@ -674,10 +660,10 @@ AMainCharacter_Base::~AMainCharacter_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 2949947644U) },
+		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 1390096824U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_1655271706(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_2467848506(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -73,7 +73,7 @@ struct Z_Construct_UClass_UCombatComponent_Mage_Statics
 		{ "Category", "CombatComponent_Mage" },
 		{ "ModuleRelativePath", "Public/Combat/CombatComponent_Mage.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileClasses_MetaData[] = {
 		{ "Category", "CombatComponent_Mage" },
 		{ "ModuleRelativePath", "Public/Combat/CombatComponent_Mage.h" },
 	};
@@ -97,7 +97,8 @@ struct Z_Construct_UClass_UCombatComponent_Mage_Statics
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AttackManaCost;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_ProjectileClasses_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_ProjectileClasses;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_ComponentName;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AliveTime;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_SkeletalMeshComp;
@@ -113,13 +114,15 @@ struct Z_Construct_UClass_UCombatComponent_Mage_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_AttackManaCost = { "AttackManaCost", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UCombatComponent_Mage, AttackManaCost), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AttackManaCost_MetaData), NewProp_AttackManaCost_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ProjectileClass = { "ProjectileClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UCombatComponent_Mage, ProjectileClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileClass_MetaData), NewProp_ProjectileClass_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ProjectileClasses_Inner = { "ProjectileClasses", nullptr, (EPropertyFlags)0x0004000000000000, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UClass, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ProjectileClasses = { "ProjectileClasses", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UCombatComponent_Mage, ProjectileClasses), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileClasses_MetaData), NewProp_ProjectileClasses_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ComponentName = { "ComponentName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UCombatComponent_Mage, ComponentName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ComponentName_MetaData), NewProp_ComponentName_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_AliveTime = { "AliveTime", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UCombatComponent_Mage, AliveTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AliveTime_MetaData), NewProp_AliveTime_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_SkeletalMeshComp = { "SkeletalMeshComp", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UCombatComponent_Mage, SkeletalMeshComp), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SkeletalMeshComp_MetaData), NewProp_SkeletalMeshComp_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UCombatComponent_Mage_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_AttackManaCost,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ProjectileClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ProjectileClasses_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ProjectileClasses,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_ComponentName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_AliveTime,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UCombatComponent_Mage_Statics::NewProp_SkeletalMeshComp,
@@ -166,10 +169,10 @@ UCombatComponent_Mage::~UCombatComponent_Mage() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_CombatComponent_Mage_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UCombatComponent_Mage, UCombatComponent_Mage::StaticClass, TEXT("UCombatComponent_Mage"), &Z_Registration_Info_UClass_UCombatComponent_Mage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCombatComponent_Mage), 1891705004U) },
+		{ Z_Construct_UClass_UCombatComponent_Mage, UCombatComponent_Mage::StaticClass, TEXT("UCombatComponent_Mage"), &Z_Registration_Info_UClass_UCombatComponent_Mage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCombatComponent_Mage), 3713465325U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_CombatComponent_Mage_h_4092702939(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_CombatComponent_Mage_h_78524268(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_CombatComponent_Mage_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_CombatComponent_Mage_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

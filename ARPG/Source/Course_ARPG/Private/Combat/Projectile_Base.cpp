@@ -42,7 +42,7 @@ void AProjectile_Base::HandleDestruction()
 	FindComponentByClass<UProjectileMovementComponent>()->StopMovementImmediately();
 	FTimerHandle DeathTimerHandle;
 	GetWorldTimerManager().SetTimer(DeathTimerHandle, this, &AProjectile_Base::DestroyProjectile, 0.5f);
-	FindComponentByClass<USphereComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	FindComponentByClass<UShapeComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 

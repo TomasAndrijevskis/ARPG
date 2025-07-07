@@ -23,8 +23,8 @@ class UPlayerWidget;
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_19_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execCreateUI); \
 	DECLARE_FUNCTION(execPlayHurtAnimation); \
-	DECLARE_FUNCTION(execHandleDeath); \
 	DECLARE_FUNCTION(execReceiveDamage); \
+	DECLARE_FUNCTION(execHandleDeath); \
 	DECLARE_FUNCTION(execCreateAbilitiesFooter); \
 	DECLARE_FUNCTION(execGetGameInstanceRef); \
 	DECLARE_FUNCTION(execGetAbilitiesArray); \

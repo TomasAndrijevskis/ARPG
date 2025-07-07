@@ -10,6 +10,8 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeEnemyCharacter() {}
 
 // Begin Cross Module References
+AIMODULE_API UClass* Z_Construct_UClass_AAIController_NoRegister();
+AIMODULE_API UClass* Z_Construct_UClass_UBlackboardComponent_NoRegister();
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter_NoRegister();
@@ -18,6 +20,7 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UEnemy_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UEnemyHealthBar_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UFighter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsComponent_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UTraceComponent_NoRegister();
 COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EEnemyStates();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
@@ -114,7 +117,7 @@ struct Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemyCharacter, nullptr, "FinishedDeathAnim", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemyCharacter, nullptr, "FinishedDeathAnim", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -172,7 +175,7 @@ struct Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemyCharacter, nullptr, "HandlePlayerDeath", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemyCharacter, nullptr, "HandlePlayerDeath", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -231,7 +234,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AEnemy
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::NewProp_DamageCauser,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemyCharacter, nullptr, "ReceiveDamage", nullptr, nullptr, Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::PropPointers), sizeof(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::EnemyCharacter_eventReceiveDamage_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemyCharacter, nullptr, "ReceiveDamage", nullptr, nullptr, Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::PropPointers), sizeof(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::EnemyCharacter_eventReceiveDamage_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage_Statics::EnemyCharacter_eventReceiveDamage_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage()
 {
@@ -293,6 +296,11 @@ struct Z_Construct_UClass_AEnemyCharacter_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TraceComp_MetaData[] = {
+		{ "Category", "EnemyCharacter" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_EnemyHealthBarWidgetRef_MetaData[] = {
 		{ "Category", "EnemyCharacter" },
 		{ "EditInline", "true" },
@@ -314,23 +322,33 @@ struct Z_Construct_UClass_AEnemyCharacter_Statics
 		{ "Category", "EnemyCharacter" },
 		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ControllerRef_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BlackboardComp_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StatsComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CombatComp;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_TraceComp;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_EnemyHealthBarWidgetRef;
 	static const UECodeGen_Private::FBytePropertyParams NewProp_InitialState;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DeathAnim;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RewardXP;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_EnemyHealthBarWidget;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ControllerRef;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_BlackboardComp;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AEnemyCharacter_CreateHealthWidget, "CreateHealthWidget" }, // 447352405
 		{ &Z_Construct_UFunction_AEnemyCharacter_DetectPawn, "DetectPawn" }, // 2076872251
-		{ &Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim, "FinishedDeathAnim" }, // 2358400788
+		{ &Z_Construct_UFunction_AEnemyCharacter_FinishedDeathAnim, "FinishedDeathAnim" }, // 3027278882
 		{ &Z_Construct_UFunction_AEnemyCharacter_HandleDeath, "HandleDeath" }, // 3542657051
-		{ &Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath, "HandlePlayerDeath" }, // 3930057262
-		{ &Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage, "ReceiveDamage" }, // 1575785398
+		{ &Z_Construct_UFunction_AEnemyCharacter_HandlePlayerDeath, "HandlePlayerDeath" }, // 2767610102
+		{ &Z_Construct_UFunction_AEnemyCharacter_ReceiveDamage, "ReceiveDamage" }, // 1320409525
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
@@ -341,19 +359,25 @@ struct Z_Construct_UClass_AEnemyCharacter_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_StatsComp = { "StatsComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, StatsComp), Z_Construct_UClass_UStatsComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsComp_MetaData), NewProp_StatsComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_CombatComp = { "CombatComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, CombatComp), Z_Construct_UClass_UCombatComponent_Enemy_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CombatComp_MetaData), NewProp_CombatComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_TraceComp = { "TraceComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, TraceComp), Z_Construct_UClass_UTraceComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TraceComp_MetaData), NewProp_TraceComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_EnemyHealthBarWidgetRef = { "EnemyHealthBarWidgetRef", nullptr, (EPropertyFlags)0x001000000008001c, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, EnemyHealthBarWidgetRef), Z_Construct_UClass_UEnemyHealthBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EnemyHealthBarWidgetRef_MetaData), NewProp_EnemyHealthBarWidgetRef_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_InitialState = { "InitialState", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, InitialState), Z_Construct_UEnum_Course_ARPG_EEnemyStates, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InitialState_MetaData), NewProp_InitialState_MetaData) }; // 2644618420
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_DeathAnim = { "DeathAnim", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, DeathAnim), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DeathAnim_MetaData), NewProp_DeathAnim_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_RewardXP = { "RewardXP", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, RewardXP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RewardXP_MetaData), NewProp_RewardXP_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_EnemyHealthBarWidget = { "EnemyHealthBarWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, EnemyHealthBarWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UEnemyHealthBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EnemyHealthBarWidget_MetaData), NewProp_EnemyHealthBarWidget_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_ControllerRef = { "ControllerRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, ControllerRef), Z_Construct_UClass_AAIController_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ControllerRef_MetaData), NewProp_ControllerRef_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_BlackboardComp = { "BlackboardComp", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter, BlackboardComp), Z_Construct_UClass_UBlackboardComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BlackboardComp_MetaData), NewProp_BlackboardComp_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AEnemyCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_StatsComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_CombatComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_TraceComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_EnemyHealthBarWidgetRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_InitialState,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_DeathAnim,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_RewardXP,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_EnemyHealthBarWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_ControllerRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Statics::NewProp_BlackboardComp,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AEnemyCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AEnemyCharacter_Statics::DependentSingletons[])() = {
@@ -400,10 +424,10 @@ AEnemyCharacter::~AEnemyCharacter() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemyCharacter, AEnemyCharacter::StaticClass, TEXT("AEnemyCharacter"), &Z_Registration_Info_UClass_AEnemyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyCharacter), 1872411036U) },
+		{ Z_Construct_UClass_AEnemyCharacter, AEnemyCharacter::StaticClass, TEXT("AEnemyCharacter"), &Z_Registration_Info_UClass_AEnemyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyCharacter), 3749155875U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_h_4091146012(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_h_1276004483(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -5,9 +5,9 @@
 #include "BrainComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/LevelingComponent.h"
-#include "Combat/CombatComponent_Base.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/CombatComponent_Enemy.h"
+#include "Combat/TraceComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "UI/EnemyHealthBar.h"
@@ -19,6 +19,7 @@ AEnemyCharacter::AEnemyCharacter()
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
+	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 }
 
 
@@ -37,13 +38,6 @@ void AEnemyCharacter::BeginPlay()
 	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter::ReceiveDamage);
 }
-
-
-void AEnemyCharacter::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 
 void AEnemyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

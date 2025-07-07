@@ -24,7 +24,7 @@ private:
 	float AttackManaCost = 5.0f;
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<AActor> ProjectileClass;
+	TArray<TSubclassOf<AActor>> ProjectileClasses;
 
 	UPROPERTY(EditAnywhere)
 	FName ComponentName; //ProjectileSpawnLocation
@@ -36,4 +36,6 @@ private:
 
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
+
+	int ProjectileCounter = 0;
 };

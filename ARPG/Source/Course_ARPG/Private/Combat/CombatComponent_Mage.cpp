@@ -11,11 +11,11 @@ void UCombatComponent_Mage::ComboAttack()
 {
 	if (CharacterRef->Implements<UMainPlayer>()) //проверяет есть ли интерфейс
 	{
-		UE_LOG(LogTemp, Error, TEXT("CombatComp|Implements"));
+		//UE_LOG(LogTemp, Error, TEXT("CombatComp|Implements"));
 		IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);
 		if (IPlayerRef && !IPlayerRef->HasEnoughMana(AttackManaCost))
 		{
-			UE_LOG(LogTemp, Error, TEXT("CombatComp|Has mana"));
+			//UE_LOG(LogTemp, Error, TEXT("CombatComp|Has mana"));
 			return;
 		}
 	}
@@ -38,8 +38,9 @@ void UCombatComponent_Mage::ComboAttack()
 
 void UCombatComponent_Mage::SpawnProjectile()
 {
-	if (!ProjectileClass || !GetOwner())
+	if (!GetOwner())
 	{
+		UE_LOG(LogTemp, Error, TEXT("Error"));
 		return;
 	}
 	
@@ -59,8 +60,11 @@ void UCombatComponent_Mage::SpawnProjectile()
 
 	FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	
-	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
-
+	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClasses[ProjectileCounter], SpawnLocation, SpawnRotation);
+	ProjectileCounter++;
+	int MaxCombo = ProjectileClasses.Num();
+	ProjectileCounter = UKismetMathLibrary::Wrap(ProjectileCounter, -1, (MaxCombo-1));
+	
 	if (Projectile)
 	{
 		AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);

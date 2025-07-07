@@ -5,7 +5,6 @@
 #include "BrainComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/LevelingComponent.h"
-#include "Combat/CombatComponent_Base.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/CombatComponent_Enemy.h"
 #include "Combat/EnemyProjectileComponent.h"
@@ -13,8 +12,6 @@
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "UI/BossHealthBar.h"
-#include "UI/EnemyHealthBar.h"
-
 
 ABossCharacter::ABossCharacter()
 {
