@@ -44,11 +44,20 @@ public:
 	UFUNCTION()
 	TArray<UAbilityComponent_Base*> GetAbilitiesArray();
 
+	UFUNCTION()
+	void AddToAbilitiesArray(UAbilityComponent_Base* NewAbility);
+
 	UFUNCTION(BlueprintCallable)
 	UARPG_GameInstance* GetGameInstanceRef();
 
 	UFUNCTION()
 	void CreateAbilitiesFooter();
+
+	UFUNCTION()
+	USkeletalMeshComponent* GetSkeletalMeshComponent();
+
+	UFUNCTION()
+	void SetSkeletalMeshComponent();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UStatsComponent* StatsComp;
@@ -71,6 +80,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TEnumAsByte<EStats>> ArrStats;
 
+	UPROPERTY(BlueprintReadOnly)
+	class UPlayerAnimInstance* PlayerAnim;
 	
 protected:
 
@@ -78,9 +89,6 @@ protected:
 
 	UFUNCTION()
 	virtual void HandleDeath();
-	
-	UPROPERTY(BlueprintReadOnly)
-	class UPlayerAnimInstance* PlayerAnim;
 
 private:
 
@@ -104,11 +112,13 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPlayerWidget> PlayerWidget;
-
-	UPROPERTY()
-	TArray<UAbilityComponent_Base*> ArrAbilities;
 	
 	UPROPERTY()
 	UARPG_GameInstance* GameInstance;
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<UAbilityComponent_Base*> ArrAbilities;
+
+	USkeletalMeshComponent* SkeletalMeshComp;
 	
 };

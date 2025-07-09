@@ -17,6 +17,9 @@ public:
 	
 	AMainCharacter_Mage();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UAbilityComponent_MagicShield* AbilityComp_MagicShield;
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -37,21 +40,13 @@ private:
 	UPROPERTY()
 	UParticleSystemComponent* ParticleComponentFire;
 
-	//UPROPERTY()
-	//UParticleSystemComponent* ParticleComponentIce;
-
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* ParticleFire;
 
-	//UPROPERTY(EditAnywhere)
-	//UParticleSystem* ParticleIce;
+	UPROPERTY()
+	UParticleSystemComponent* ParticleComponentIce;
 
 	UPROPERTY(EditAnywhere)
-	UNiagaraSystem* NiagaraIceFX;
-
-	UPROPERTY()
-	UNiagaraComponent* NiagaraComponent;
+	UParticleSystem* ParticleIce;
 	
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComp;
 };

@@ -6,9 +6,7 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/PlayerActionsComponent.h"
 #include "Combat/BlockComponent.h"
-#include "Combat/CombatComponent_Base.h"
 #include "Combat/LockonComponent.h"
-#include "Combat/TraceComponent.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
@@ -20,10 +18,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
-	BlockComp = CreateDefaultSubobject<UBlockComponent>(TEXT("Block Component"));
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
-	//TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
-	//CombatComp = CreateDefaultSubobject<UCombatComponent_Base>(TEXT("Combat Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 
 	ArrStats.Add(EStats::MaxHealth);
@@ -40,13 +35,14 @@ void AMainCharacter_Base::BeginPlay()
 	PlayerAnim = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 
+	SetSkeletalMeshComponent();
+	
 	CreateUI();
-	//CreateAbilitiesFooter();
+	CreateAbilitiesFooter();
 
 	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnim, &UPlayerAnimInstance::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
-	BlockComp->OnBlockDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetHealth);
 	StatsComp->OnManaPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetMana);
 	StatsComp->OnStaminaPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetStamina);
@@ -55,8 +51,10 @@ void AMainCharacter_Base::BeginPlay()
 	StatsComp->OnStatUpdateDelegate.AddDynamic(GameInstance, &UARPG_GameInstance::SaveStats);
 	LevelComp->OnXpUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnNewLevelDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
-
+	
+	
 	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
+	
 }
 
 
@@ -149,7 +147,8 @@ bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent)
 	}
 	if (PlayerAnim->bIsBlocking)
 	{
-		return !BlockComp->CanBlock(Opponent);
+		//return !BlockComp->CanBlock(Opponent);
+		return false;
 	}
 	return true;
 }
@@ -197,7 +196,33 @@ TArray<UAbilityComponent_Base*> AMainCharacter_Base::GetAbilitiesArray()
 }
 
 
+void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Base* NewAbility)
+{
+	ArrAbilities.Add(NewAbility);
+}
+
+
 UARPG_GameInstance* AMainCharacter_Base::GetGameInstanceRef()
 {
 	return GameInstance;
+}
+
+
+USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent()
+{
+	return SkeletalMeshComp;
+}
+
+
+void AMainCharacter_Base::SetSkeletalMeshComponent()
+{
+	APlayerController* PC = Cast<APlayerController>(GetOwner());
+	if (PC)
+	{
+		APawn* Pawn = PC->GetPawn();
+		if (ACharacter* Character = Cast<ACharacter>(Pawn))
+		{
+			SkeletalMeshComp = Character->GetMesh();
+		}
+	}
 }

@@ -31,8 +31,54 @@ ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UAnimMontage_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
+ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
+
+// Begin Class AMainCharacter_Base Function AddToAbilitiesArray
+struct Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics
+{
+	struct MainCharacter_Base_eventAddToAbilitiesArray_Parms
+	{
+		UAbilityComponent_Base* NewAbility;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NewAbility_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_NewAbility;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::NewProp_NewAbility = { "NewAbility", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainCharacter_Base_eventAddToAbilitiesArray_Parms, NewAbility), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NewAbility_MetaData), NewProp_NewAbility_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::NewProp_NewAbility,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter_Base, nullptr, "AddToAbilitiesArray", nullptr, nullptr, Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::MainCharacter_Base_eventAddToAbilitiesArray_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::MainCharacter_Base_eventAddToAbilitiesArray_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMainCharacter_Base::execAddToAbilitiesArray)
+{
+	P_GET_OBJECT(UAbilityComponent_Base,Z_Param_NewAbility);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->AddToAbilitiesArray(Z_Param_NewAbility);
+	P_NATIVE_END;
+}
+// End Class AMainCharacter_Base Function AddToAbilitiesArray
 
 // Begin Class AMainCharacter_Base Function CreateAbilitiesFooter
 struct Z_Construct_UFunction_AMainCharacter_Base_CreateAbilitiesFooter_Statics
@@ -223,6 +269,50 @@ DEFINE_FUNCTION(AMainCharacter_Base::execGetPlayerWidget)
 	P_NATIVE_END;
 }
 // End Class AMainCharacter_Base Function GetPlayerWidget
+
+// Begin Class AMainCharacter_Base Function GetSkeletalMeshComponent
+struct Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics
+{
+	struct MainCharacter_Base_eventGetSkeletalMeshComponent_Parms
+	{
+		USkeletalMeshComponent* ReturnValue;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ReturnValue_MetaData[] = {
+		{ "EditInline", "true" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ReturnValue;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000080588, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainCharacter_Base_eventGetSkeletalMeshComponent_Parms, ReturnValue), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReturnValue_MetaData), NewProp_ReturnValue_MetaData) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::NewProp_ReturnValue,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter_Base, nullptr, "GetSkeletalMeshComponent", nullptr, nullptr, Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::PropPointers), sizeof(Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::MainCharacter_Base_eventGetSkeletalMeshComponent_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::MainCharacter_Base_eventGetSkeletalMeshComponent_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMainCharacter_Base::execGetSkeletalMeshComponent)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(USkeletalMeshComponent**)Z_Param__Result=P_THIS->GetSkeletalMeshComponent();
+	P_NATIVE_END;
+}
+// End Class AMainCharacter_Base Function GetSkeletalMeshComponent
 
 // Begin Class AMainCharacter_Base Function HandleDeath
 struct Z_Construct_UFunction_AMainCharacter_Base_HandleDeath_Statics
@@ -449,21 +539,53 @@ DEFINE_FUNCTION(AMainCharacter_Base::execReceiveDamage)
 }
 // End Class AMainCharacter_Base Function ReceiveDamage
 
+// Begin Class AMainCharacter_Base Function SetSkeletalMeshComponent
+struct Z_Construct_UFunction_AMainCharacter_Base_SetSkeletalMeshComponent_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMainCharacter_Base_SetSkeletalMeshComponent_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMainCharacter_Base, nullptr, "SetSkeletalMeshComponent", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMainCharacter_Base_SetSkeletalMeshComponent_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMainCharacter_Base_SetSkeletalMeshComponent_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AMainCharacter_Base_SetSkeletalMeshComponent()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMainCharacter_Base_SetSkeletalMeshComponent_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AMainCharacter_Base::execSetSkeletalMeshComponent)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SetSkeletalMeshComponent();
+	P_NATIVE_END;
+}
+// End Class AMainCharacter_Base Function SetSkeletalMeshComponent
+
 // Begin Class AMainCharacter_Base
 void AMainCharacter_Base::StaticRegisterNativesAMainCharacter_Base()
 {
 	UClass* Class = AMainCharacter_Base::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "AddToAbilitiesArray", &AMainCharacter_Base::execAddToAbilitiesArray },
 		{ "CreateAbilitiesFooter", &AMainCharacter_Base::execCreateAbilitiesFooter },
 		{ "CreateUI", &AMainCharacter_Base::execCreateUI },
 		{ "GetAbilitiesArray", &AMainCharacter_Base::execGetAbilitiesArray },
 		{ "GetGameInstanceRef", &AMainCharacter_Base::execGetGameInstanceRef },
 		{ "GetPlayerWidget", &AMainCharacter_Base::execGetPlayerWidget },
+		{ "GetSkeletalMeshComponent", &AMainCharacter_Base::execGetSkeletalMeshComponent },
 		{ "HandleDeath", &AMainCharacter_Base::execHandleDeath },
 		{ "HasEnoughMana", &AMainCharacter_Base::execHasEnoughMana },
 		{ "HasEnoughStamina", &AMainCharacter_Base::execHasEnoughStamina },
 		{ "PlayHurtAnimation", &AMainCharacter_Base::execPlayHurtAnimation },
 		{ "ReceiveDamage", &AMainCharacter_Base::execReceiveDamage },
+		{ "SetSkeletalMeshComponent", &AMainCharacter_Base::execSetSkeletalMeshComponent },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -536,11 +658,12 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 		{ "Category", "MainCharacter_Base" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ArrAbilities_MetaData[] = {
-		{ "EditInline", "true" },
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameInstance_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameInstance_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ArrAbilities_MetaData[] = {
+		{ "Category", "MainCharacter_Base" },
+		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
 	};
 #endif // WITH_METADATA
@@ -557,22 +680,25 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DeathAnimMontage;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HurtAnimMontage;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PlayerWidget;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameInstance;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ArrAbilities_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_ArrAbilities;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameInstance;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
+		{ &Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray, "AddToAbilitiesArray" }, // 3525569098
 		{ &Z_Construct_UFunction_AMainCharacter_Base_CreateAbilitiesFooter, "CreateAbilitiesFooter" }, // 45677682
 		{ &Z_Construct_UFunction_AMainCharacter_Base_CreateUI, "CreateUI" }, // 3191333181
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray, "GetAbilitiesArray" }, // 1754653749
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetGameInstanceRef, "GetGameInstanceRef" }, // 794600634
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetPlayerWidget, "GetPlayerWidget" }, // 4038718488
+		{ &Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent, "GetSkeletalMeshComponent" }, // 1673224966
 		{ &Z_Construct_UFunction_AMainCharacter_Base_HandleDeath, "HandleDeath" }, // 308850039
 		{ &Z_Construct_UFunction_AMainCharacter_Base_HasEnoughMana, "HasEnoughMana" }, // 149876525
 		{ &Z_Construct_UFunction_AMainCharacter_Base_HasEnoughStamina, "HasEnoughStamina" }, // 2079301730
 		{ &Z_Construct_UFunction_AMainCharacter_Base_PlayHurtAnimation, "PlayHurtAnimation" }, // 1661204864
 		{ &Z_Construct_UFunction_AMainCharacter_Base_ReceiveDamage, "ReceiveDamage" }, // 1362881840
+		{ &Z_Construct_UFunction_AMainCharacter_Base_SetSkeletalMeshComponent, "SetSkeletalMeshComponent" }, // 1815242729
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
@@ -589,14 +715,14 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LevelComp = { "LevelComp", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, LevelComp), Z_Construct_UClass_ULevelingComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LevelComp_MetaData), NewProp_LevelComp_MetaData) };
 const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats_Inner = { "ArrStats", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrStats = { "ArrStats", nullptr, (EPropertyFlags)0x0010000000000015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, ArrStats), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ArrStats_MetaData), NewProp_ArrStats_MetaData) }; // 1779151500
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerAnim = { "PlayerAnim", nullptr, (EPropertyFlags)0x0020080000000014, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerAnim), Z_Construct_UClass_UPlayerAnimInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerAnim_MetaData), NewProp_PlayerAnim_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerAnim = { "PlayerAnim", nullptr, (EPropertyFlags)0x0010000000000014, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerAnim), Z_Construct_UClass_UPlayerAnimInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerAnim_MetaData), NewProp_PlayerAnim_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerWidgetRef = { "PlayerWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerWidgetRef), Z_Construct_UClass_UPlayerWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerWidgetRef_MetaData), NewProp_PlayerWidgetRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_DeathAnimMontage = { "DeathAnimMontage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, DeathAnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DeathAnimMontage_MetaData), NewProp_DeathAnimMontage_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_HurtAnimMontage = { "HurtAnimMontage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, HurtAnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HurtAnimMontage_MetaData), NewProp_HurtAnimMontage_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerWidget = { "PlayerWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, PlayerWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UPlayerWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerWidget_MetaData), NewProp_PlayerWidget_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrAbilities_Inner = { "ArrAbilities", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrAbilities = { "ArrAbilities", nullptr, (EPropertyFlags)0x0040008000000008, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, ArrAbilities), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ArrAbilities_MetaData), NewProp_ArrAbilities_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_GameInstance = { "GameInstance", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, GameInstance), Z_Construct_UClass_UARPG_GameInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameInstance_MetaData), NewProp_GameInstance_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrAbilities_Inner = { "ArrAbilities", nullptr, (EPropertyFlags)0x00000000000a0008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrAbilities = { "ArrAbilities", nullptr, (EPropertyFlags)0x0040008000020009, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Base, ArrAbilities), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ArrAbilities_MetaData), NewProp_ArrAbilities_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainCharacter_Base_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_StatsComp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_LockonComp,
@@ -611,9 +737,9 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainChar
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_DeathAnimMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_HurtAnimMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_PlayerWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_GameInstance,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrAbilities_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_ArrAbilities,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Base_Statics::NewProp_GameInstance,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Base_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMainCharacter_Base_Statics::DependentSingletons[])() = {
@@ -660,10 +786,10 @@ AMainCharacter_Base::~AMainCharacter_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 1390096824U) },
+		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 736363562U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_2467848506(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_3094134436(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -15,6 +15,7 @@ class UAbilityComponent_Base;
 class UARPG_GameInstance;
 class UDamageType;
 class UPlayerWidget;
+class USkeletalMeshComponent;
 #ifdef COURSE_ARPG_MainCharacter_Base_generated_h
 #error "MainCharacter_Base.generated.h already included, missing '#pragma once' in MainCharacter_Base.h"
 #endif
@@ -25,8 +26,11 @@ class UPlayerWidget;
 	DECLARE_FUNCTION(execPlayHurtAnimation); \
 	DECLARE_FUNCTION(execReceiveDamage); \
 	DECLARE_FUNCTION(execHandleDeath); \
+	DECLARE_FUNCTION(execSetSkeletalMeshComponent); \
+	DECLARE_FUNCTION(execGetSkeletalMeshComponent); \
 	DECLARE_FUNCTION(execCreateAbilitiesFooter); \
 	DECLARE_FUNCTION(execGetGameInstanceRef); \
+	DECLARE_FUNCTION(execAddToAbilitiesArray); \
 	DECLARE_FUNCTION(execGetAbilitiesArray); \
 	DECLARE_FUNCTION(execGetPlayerWidget); \
 	DECLARE_FUNCTION(execHasEnoughMana); \

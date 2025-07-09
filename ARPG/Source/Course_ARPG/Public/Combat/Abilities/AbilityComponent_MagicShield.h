@@ -1,0 +1,53 @@
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Characters/MainCharacter_Mage.h"
+#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "AbilityComponent_MagicShield.generated.h"
+
+class AMagicShield;
+class USphereComponent;
+class UNiagaraSystem;
+
+
+UCLASS()
+class COURSE_ARPG_API UAbilityComponent_MagicShield : public UAbilityComponent_Base
+{
+	GENERATED_BODY()
+
+public:
+
+	UFUNCTION(BlueprintCallable)
+	void StartAbility();
+	
+	virtual void UpdateAbilityDescription() override;
+
+	virtual void UpdateUpgradeDescription() override;
+
+	virtual void UpdateAbilityProperties() override;
+
+	virtual void SaveCustomProperties(FAbilityData& Data) override;
+
+	virtual void LoadCustomProperties(FAbilityData& Data) override;
+	
+protected:
+
+	virtual void BeginPlay() override;
+
+	virtual void StartAbilityTimer() override;
+
+	virtual void OnAbilityTimerFinished() override;
+
+	
+private:
+
+	UFUNCTION()
+	void SpawnShield();
+
+	UPROPERTY()
+	AMagicShield* ShieldActor;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<AActor> ShieldClass;
+};

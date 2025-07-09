@@ -22,5 +22,3 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/BTT_RangeAttack.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/CharacterSelect.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/CharacterSelection.gen.cpp"
-#include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/CharacterSelectionStruct.gen.cpp"
-#include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/CombatComponent_Base.gen.cpp"

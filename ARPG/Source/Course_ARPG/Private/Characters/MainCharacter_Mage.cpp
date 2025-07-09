@@ -5,12 +5,17 @@
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "NiagaraSystem.h"
-#include "NiagaraComponent.h"
-#include "NiagaraFunctionLibrary.h"
+#include "Combat/Abilities/AbilityComponent_MagicShield.h"
+
 
 AMainCharacter_Mage::AMainCharacter_Mage()
 {
 	CombatComp = CreateDefaultSubobject<UCombatComponent_Mage>(TEXT("Combat Component"));
+
+	AbilityComp_MagicShield = CreateDefaultSubobject<UAbilityComponent_MagicShield>(TEXT("Magic Shield"));
+	
+	AddToAbilitiesArray(AbilityComp_MagicShield);
+	
 }
 
 
@@ -18,18 +23,12 @@ void AMainCharacter_Mage::BeginPlay()
 {
 	Super::BeginPlay();
 
+	
+	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
+	
 	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceMana);
-	APlayerController* PC = Cast<APlayerController>(GetOwner());
-	if (PC)
-	{
-		APawn* Pawn = PC->GetPawn();
-		if (ACharacter* Character = Cast<ACharacter>(Pawn))
-		{
-			SkeletalMeshComp = Character->GetMesh();
-		}
-	}
-
-	if (SkeletalMeshComp)
+	
+	if (GetSkeletalMeshComponent())
 	{
 		SpawnParticles();
 	}
@@ -38,20 +37,21 @@ void AMainCharacter_Mage::BeginPlay()
 
 void AMainCharacter_Mage::SpawnParticles()
 {
-	FVector RightHandSocketLocation = SkeletalMeshComp->GetSocketLocation(RightHandSocketName);
-	FVector LeftHandSocketLocation = SkeletalMeshComp->GetSocketLocation(LeftHandSocketName);
+	FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(RightHandSocketName);
+	FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(LeftHandSocketName);
 	
 	if (ParticleFire)
 	{
-		ParticleComponentFire = UGameplayStatics::SpawnEmitterAttached(ParticleFire, SkeletalMeshComp, RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
-			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
+		UE_LOG(LogTemp, Error, TEXT("SpawnParticles: Fire"));
+		ParticleComponentFire = UGameplayStatics::SpawnEmitterAttached(ParticleFire, GetSkeletalMeshComponent(), RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
+			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 	}
 	
-	if (NiagaraIceFX)
+	if (ParticleIce)
 	{
-		NiagaraComponent = UNiagaraFunctionLibrary::SpawnSystemAttached(NiagaraIceFX, SkeletalMeshComp, LeftHandSocketName,LeftHandSocketLocation,
-			FRotator::ZeroRotator, FVector(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,
-			false, ENCPoolMethod::None,true,true);
+		UE_LOG(LogTemp, Error, TEXT("SpawnParticles: Ice"));
+		ParticleComponentIce = UGameplayStatics::SpawnEmitterAttached(ParticleIce, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
+			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 	}
 }
 
@@ -63,10 +63,12 @@ void AMainCharacter_Mage::HandleDeath()
 	if (ParticleComponentFire)
 	{
 		ParticleComponentFire->DestroyComponent();
+		ParticleComponentFire = nullptr;
 	}
 	
-	if (NiagaraComponent)
+	if (ParticleComponentIce)
 	{
-		NiagaraComponent->DestroyComponent();
+		ParticleComponentIce->DestroyComponent();
+		ParticleComponentIce = nullptr;
 	}
 }

@@ -16,7 +16,6 @@ void UPlayerWidget::CreateStatsScreen(EStats Stat)
 		return;
 	}
 	StatsScreenRef = Cast<UStatsScreenWidget>(CreateWidget(this, StatsWidget));
-
 	VerticalBox_UpgradeInfo->AddChild(StatsScreenRef);
 	StatsScreenRef->SetStatsVariables(Stat);
 	
@@ -30,7 +29,6 @@ void UPlayerWidget::RemoveStatsScreen()
 		StatsScreenRef->RemoveFromParent();
 		StatsScreenRef = nullptr; 
 	}
-
 	VerticalBox_UpgradeInfo->ClearChildren();
 }
 
@@ -42,9 +40,7 @@ void UPlayerWidget::CreateAbilityUpgradeScreen(UAbilityComponent_Base* AbilityCo
 		return;
 	}
 	AbilityUpgradeScreenWidgetRef = Cast<UAbilityUpgradeScreen>(CreateWidget(this, AbilityUpgradeScreenWidget));
-
 	VerticalBox_UpgradeInfo->AddChild(AbilityUpgradeScreenWidgetRef);
-
 	AbilityUpgradeScreenWidgetRef->InitializeAbility(AbilityCompRef);
 }
 

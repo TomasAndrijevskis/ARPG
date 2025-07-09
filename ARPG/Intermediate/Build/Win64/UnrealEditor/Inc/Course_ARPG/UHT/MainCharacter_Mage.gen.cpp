@@ -13,11 +13,9 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter_Mage() {}
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Mage();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Mage_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_MagicShield_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystemComponent_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
-NIAGARA_API UClass* Z_Construct_UClass_UNiagaraComponent_NoRegister();
-NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
@@ -72,6 +70,11 @@ struct Z_Construct_UClass_AMainCharacter_Mage_Statics
 		{ "IncludePath", "Characters/MainCharacter_Mage.h" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AbilityComp_MagicShield_MetaData[] = {
+		{ "Category", "MainCharacter_Mage" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_RightHandSocketName_MetaData[] = {
 		{ "Category", "MainCharacter_Mage" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
@@ -86,40 +89,24 @@ struct Z_Construct_UClass_AMainCharacter_Mage_Statics
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ParticleFire_MetaData[] = {
 		{ "Category", "MainCharacter_Mage" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//UPROPERTY()\n//UParticleSystemComponent* ParticleComponentIce;\n" },
-#endif
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "UPROPERTY()\nUParticleSystemComponent* ParticleComponentIce;" },
-#endif
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NiagaraIceFX_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ParticleComponentIce_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ParticleIce_MetaData[] = {
 		{ "Category", "MainCharacter_Mage" },
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//UPROPERTY(EditAnywhere)\n//UParticleSystem* ParticleIce;\n" },
-#endif
-		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "UPROPERTY(EditAnywhere)\nUParticleSystem* ParticleIce;" },
-#endif
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NiagaraComponent_MetaData[] = {
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SkeletalMeshComp_MetaData[] = {
-		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Mage.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityComp_MagicShield;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_RightHandSocketName;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_LeftHandSocketName;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ParticleComponentFire;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ParticleFire;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_NiagaraIceFX;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_NiagaraComponent;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_SkeletalMeshComp;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ParticleComponentIce;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ParticleIce;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -131,21 +118,21 @@ struct Z_Construct_UClass_AMainCharacter_Mage_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_AbilityComp_MagicShield = { "AbilityComp_MagicShield", nullptr, (EPropertyFlags)0x001000000008000d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, AbilityComp_MagicShield), Z_Construct_UClass_UAbilityComponent_MagicShield_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_MagicShield_MetaData), NewProp_AbilityComp_MagicShield_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_RightHandSocketName = { "RightHandSocketName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, RightHandSocketName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RightHandSocketName_MetaData), NewProp_RightHandSocketName_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_LeftHandSocketName = { "LeftHandSocketName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, LeftHandSocketName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_LeftHandSocketName_MetaData), NewProp_LeftHandSocketName_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleComponentFire = { "ParticleComponentFire", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, ParticleComponentFire), Z_Construct_UClass_UParticleSystemComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleComponentFire_MetaData), NewProp_ParticleComponentFire_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleFire = { "ParticleFire", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, ParticleFire), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleFire_MetaData), NewProp_ParticleFire_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_NiagaraIceFX = { "NiagaraIceFX", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, NiagaraIceFX), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NiagaraIceFX_MetaData), NewProp_NiagaraIceFX_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_NiagaraComponent = { "NiagaraComponent", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, NiagaraComponent), Z_Construct_UClass_UNiagaraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NiagaraComponent_MetaData), NewProp_NiagaraComponent_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_SkeletalMeshComp = { "SkeletalMeshComp", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, SkeletalMeshComp), Z_Construct_UClass_USkeletalMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SkeletalMeshComp_MetaData), NewProp_SkeletalMeshComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleComponentIce = { "ParticleComponentIce", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, ParticleComponentIce), Z_Construct_UClass_UParticleSystemComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleComponentIce_MetaData), NewProp_ParticleComponentIce_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleIce = { "ParticleIce", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMainCharacter_Mage, ParticleIce), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleIce_MetaData), NewProp_ParticleIce_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMainCharacter_Mage_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_AbilityComp_MagicShield,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_RightHandSocketName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_LeftHandSocketName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleComponentFire,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleFire,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_NiagaraIceFX,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_NiagaraComponent,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_SkeletalMeshComp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleComponentIce,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMainCharacter_Mage_Statics::NewProp_ParticleIce,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMainCharacter_Mage_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMainCharacter_Mage_Statics::DependentSingletons[])() = {
@@ -188,10 +175,10 @@ AMainCharacter_Mage::~AMainCharacter_Mage() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Mage, AMainCharacter_Mage::StaticClass, TEXT("AMainCharacter_Mage"), &Z_Registration_Info_UClass_AMainCharacter_Mage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Mage), 1736434089U) },
+		{ Z_Construct_UClass_AMainCharacter_Mage, AMainCharacter_Mage::StaticClass, TEXT("AMainCharacter_Mage"), &Z_Registration_Info_UClass_AMainCharacter_Mage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Mage), 1834207183U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_3860389000(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_1411882068(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

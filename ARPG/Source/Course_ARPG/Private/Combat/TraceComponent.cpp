@@ -3,6 +3,7 @@
 
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/AbilityComponent_DamageIncrease.h"
+#include "Combat/Abilities/MagicShield.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Interfaces/Fighter.h"
@@ -93,6 +94,10 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	{
 		AActor* TargetActor = Hit.GetActor();
 
+		if (TargetActor == Cast<AMagicShield>(Hit.GetActor()))
+		{
+			break;
+		}
 		if (TargetsToIgnore.Contains(TargetActor))
 		{
 			continue; //skip iteration (return would stop loop completely)
@@ -103,6 +108,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticleTemplate, Hit.ImpactPoint);
 	}
 }
+
 
 void UTraceComponent::HandleResetAttack()
 {

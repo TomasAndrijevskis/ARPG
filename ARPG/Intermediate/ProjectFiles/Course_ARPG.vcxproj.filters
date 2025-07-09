@@ -127,6 +127,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Enemy.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Mage.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\EnemyProjectile.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
@@ -137,9 +140,6 @@
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\MyCombatComponent_Mage.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectile_Base.cpp">
@@ -166,7 +166,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_LifeStealAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_MagicShield.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\MagicShield.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Gamemode">
@@ -343,6 +349,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Enemy.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Mage.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectile.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
@@ -353,9 +362,6 @@
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h">
-      <Filter>Source\Course_ARPG\Public\Combat</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\MyCombatComponent_Mage.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectile_Base.h">
@@ -382,7 +388,13 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_LifeStealAttack.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_MagicShield.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\MagicShield.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\Gamemode">

@@ -54,6 +54,7 @@ void UAbilityComponent_DamageIncrease::OnAbilityTimerFinished()
 	if (ParticleComp)
 	{
 		ParticleComp->DestroyComponent();
+		ParticleComp = nullptr;
 	}
 }
 

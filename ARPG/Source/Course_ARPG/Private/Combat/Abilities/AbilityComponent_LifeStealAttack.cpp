@@ -61,6 +61,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityTimerFinished()
 	if (ParticleComp)
 	{
 		ParticleComp->DestroyComponent();
+		ParticleComp = nullptr;
 	}
 }
 

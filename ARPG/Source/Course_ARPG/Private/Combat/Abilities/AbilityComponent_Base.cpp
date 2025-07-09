@@ -33,7 +33,7 @@ void UAbilityComponent_Base::StartAbilityTimer()
 	{
 		TimerDuration--;
 		OnAbilityTimerChangedDelegate.Broadcast(TimerDuration);
-		//UE_LOG(LogTemp, Warning,TEXT("Ability time left: %f"), TimerDuration);
+		UE_LOG(LogTemp, Warning,TEXT("Ability time left: %f"), TimerDuration);
 	}
 	else
 	{
@@ -68,7 +68,7 @@ void UAbilityComponent_Base::StartCooldownTimer()
 	{
 		OnAbilityCooldownChangedDelegate.Broadcast(TimerDuration);
 		TimerDuration--;
-		//UE_LOG(LogTemp, Warning,TEXT("Cooldown time left: %f"), TimerDuration);
+		UE_LOG(LogTemp, Warning,TEXT("Cooldown time left: %f"), TimerDuration);
 	}
 	else
 	{
