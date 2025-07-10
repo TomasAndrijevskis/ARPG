@@ -17,6 +17,8 @@ public:
 	
 	AFrostBlastRange();
 
+	void SetParams(float NewDamage, float NewDuration);
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -34,4 +36,7 @@ private:
 
 	FTimerHandle TimerHandle;
 
+	float Damage;
+
+	float SlowDuration;
 };

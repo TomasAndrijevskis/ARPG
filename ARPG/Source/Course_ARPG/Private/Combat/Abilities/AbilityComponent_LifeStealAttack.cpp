@@ -104,6 +104,7 @@ void UAbilityComponent_LifeStealAttack::UpdateAbilityProperties()
 	float NewStolenHealthPercent = GetStolenHealthPercent() + (GetStolenHealthPercent() * .2f);
 	
 	SetStolenHealthPercent(FMath::RoundToFloat(NewStolenHealthPercent * 100.0f) / 100.0f);
+	SetAbilityDuration(GetAbilityDuration() + 1);
 }
 
 

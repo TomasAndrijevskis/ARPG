@@ -4,6 +4,7 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
+#include "Combat/Abilities/AbilityComponent_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
@@ -78,6 +79,7 @@ void AARPG_PlayerController::CreateAbilityUpgradeScreen()
 		PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentAbilityPointsAmount());
 		for (auto Ability : PlayerRef->GetAbilitiesArray())
 		{
+			UE_LOG(LogTemp, Error, TEXT("PC|Ability: %s"), *Ability->GetName());
 			PlayerRef->GetPlayerWidget()->CreateAbilityUpgradeScreen(Ability);
 		}
 		bIsAbilityScreenOpened = true;

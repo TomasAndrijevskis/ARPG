@@ -24,6 +24,7 @@ class UDamageType;
 	DECLARE_FUNCTION(execHandlePlayerDeath); \
 	DECLARE_FUNCTION(execHandleDeath); \
 	DECLARE_FUNCTION(execCreateHealthWidget); \
+	DECLARE_FUNCTION(execReturnSpeed); \
 	DECLARE_FUNCTION(execDetectPawn);
 
 

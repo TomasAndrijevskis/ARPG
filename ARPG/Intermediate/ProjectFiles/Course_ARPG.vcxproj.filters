@@ -67,9 +67,6 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\ARPG_PlayerController.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\BossCharacter.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EEnemyStates.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
@@ -287,9 +284,6 @@
       <UniqueIdentifier>{5FD646C5-260D-3F15-89FD-E711790F0843}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h">
-      <Filter>Source\Course_ARPG\Public\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\BossCharacter.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EEnemyStates.h">

@@ -48,20 +48,6 @@ void UARPG_GameInstance::SaveAll()
 }
 
 
-/*void UARPG_GameInstance::SavePlayerClass()
-{
-	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-	if (!SaveGameInstance)
-	{
-		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
-	}
-
-	SaveGameInstance->PlayerCharacter = PlayerCharacterClass;
-	PlayerCharacterClass = nullptr;
-	UE_LOG(LogTemp,Error, TEXT("GameInstance|Saved Player Class: %s"), *PlayerCharacterClass->GetName());
-}*/
-
-
 void UARPG_GameInstance::LoadPlayerClass()
 {
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));

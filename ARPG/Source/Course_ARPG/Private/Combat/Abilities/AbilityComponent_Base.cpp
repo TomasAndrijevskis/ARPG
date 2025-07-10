@@ -133,7 +133,6 @@ void UAbilityComponent_Base::UpdateAbilityProperties()
 {
 	SetCooldownDuration(CooldownDuration - 1);
 	SetManaCost(ManaCost - (ManaCost * .2f));
-	SetAbilityDuration(AbilityDuration + 1);
 }
 
 

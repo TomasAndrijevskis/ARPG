@@ -9,6 +9,7 @@
 #include "Combat/CombatComponent_Enemy.h"
 #include "Combat/TraceComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "Interfaces/MainPlayer.h"
 
 
@@ -37,6 +38,8 @@ void AEnemyCharacter_Base::BeginPlay()
 	
 	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter_Base::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter_Base::ReceiveDamage);
+
+	OriginalSpeed = GetCharacterMovement()->MaxWalkSpeed;
 }
 
 void AEnemyCharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -109,6 +112,18 @@ void AEnemyCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, con
 	StatsComp->ReduceHealth(Damage, nullptr);
 }
 
+
+void AEnemyCharacter_Base::SlowDownEnemy(float SlowDuration)
+{
+	GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter_Base::ReturnSpeed, SlowDuration, false);
+}
+
+
+void AEnemyCharacter_Base::ReturnSpeed()
+{
+	GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed;
+}
 
 
 float AEnemyCharacter_Base::GetCurrentDamage()

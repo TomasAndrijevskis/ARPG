@@ -32,6 +32,11 @@ public:
 
 	virtual float GetMeleeRange() override;
 	
+	void SlowDownEnemy(float SlowDuration);
+
+	UFUNCTION()
+	void ReturnSpeed();
+	
 	UFUNCTION(BlueprintCallable)
 	virtual void CreateHealthWidget(){};
 	
@@ -80,5 +85,8 @@ private:
 	UPROPERTY()
 	class UBlackboardComponent* BlackboardComp;
 
+	float OriginalSpeed;
+
+	FTimerHandle TimerHandle;
 	
 };

@@ -19,6 +19,20 @@ public:
 	void SetDamage(float NewDamage);
 
 	float GetDamage() const;
+
+	void SetSlowDuration(float NewSlowDuration);
+
+	float GetSlowDuration() const;
+
+	virtual void UpdateAbilityDescription() override;
+
+	virtual void UpdateUpgradeDescription() override;
+	
+	virtual void UpdateAbilityProperties();
+
+	virtual void SaveCustomProperties(FAbilityData& Data);
+
+	virtual void LoadCustomProperties(FAbilityData& SavedData);
 	
 protected:
 
@@ -49,6 +63,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float Damage;
+
+	UPROPERTY(EditAnywhere)
+	float SlowDuration;
 	
 	FVector SocketLocation;
 		

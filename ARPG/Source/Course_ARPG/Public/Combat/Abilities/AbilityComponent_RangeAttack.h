@@ -24,7 +24,7 @@ public:
 
 	virtual void SaveCustomProperties(FAbilityData& Data) override;
 
-	virtual void LoadCustomProperties(FAbilityData& Data) override;
+	virtual void LoadCustomProperties(FAbilityData& SavedData) override;
 	
 protected:
 

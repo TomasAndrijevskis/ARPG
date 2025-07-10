@@ -91,6 +91,8 @@ void UAbilityComponent_MagicShield::UpdateUpgradeDescription()
 void UAbilityComponent_MagicShield::UpdateAbilityProperties()
 {
 	Super::UpdateAbilityProperties();
+	
+	SetAbilityDuration(GetAbilityDuration() + 1);
 }
 
 

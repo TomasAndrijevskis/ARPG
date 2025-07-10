@@ -257,6 +257,35 @@ DEFINE_FUNCTION(AEnemyCharacter_Base::execReceiveDamage)
 }
 // End Class AEnemyCharacter_Base Function ReceiveDamage
 
+// Begin Class AEnemyCharacter_Base Function ReturnSpeed
+struct Z_Construct_UFunction_AEnemyCharacter_Base_ReturnSpeed_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter_Base.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AEnemyCharacter_Base_ReturnSpeed_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AEnemyCharacter_Base, nullptr, "ReturnSpeed", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AEnemyCharacter_Base_ReturnSpeed_Statics::Function_MetaDataParams), Z_Construct_UFunction_AEnemyCharacter_Base_ReturnSpeed_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AEnemyCharacter_Base_ReturnSpeed()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AEnemyCharacter_Base_ReturnSpeed_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AEnemyCharacter_Base::execReturnSpeed)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ReturnSpeed();
+	P_NATIVE_END;
+}
+// End Class AEnemyCharacter_Base Function ReturnSpeed
+
 // Begin Class AEnemyCharacter_Base
 void AEnemyCharacter_Base::StaticRegisterNativesAEnemyCharacter_Base()
 {
@@ -268,6 +297,7 @@ void AEnemyCharacter_Base::StaticRegisterNativesAEnemyCharacter_Base()
 		{ "HandleDeath", &AEnemyCharacter_Base::execHandleDeath },
 		{ "HandlePlayerDeath", &AEnemyCharacter_Base::execHandlePlayerDeath },
 		{ "ReceiveDamage", &AEnemyCharacter_Base::execReceiveDamage },
+		{ "ReturnSpeed", &AEnemyCharacter_Base::execReturnSpeed },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -336,6 +366,7 @@ struct Z_Construct_UClass_AEnemyCharacter_Base_Statics
 		{ &Z_Construct_UFunction_AEnemyCharacter_Base_HandleDeath, "HandleDeath" }, // 3563767845
 		{ &Z_Construct_UFunction_AEnemyCharacter_Base_HandlePlayerDeath, "HandlePlayerDeath" }, // 3131908296
 		{ &Z_Construct_UFunction_AEnemyCharacter_Base_ReceiveDamage, "ReceiveDamage" }, // 1792416476
+		{ &Z_Construct_UFunction_AEnemyCharacter_Base_ReturnSpeed, "ReturnSpeed" }, // 2852927360
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static const UECodeGen_Private::FImplementedInterfaceParams InterfaceParams[];
@@ -407,10 +438,10 @@ AEnemyCharacter_Base::~AEnemyCharacter_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemyCharacter_Base, AEnemyCharacter_Base::StaticClass, TEXT("AEnemyCharacter_Base"), &Z_Registration_Info_UClass_AEnemyCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyCharacter_Base), 3279130510U) },
+		{ Z_Construct_UClass_AEnemyCharacter_Base, AEnemyCharacter_Base::StaticClass, TEXT("AEnemyCharacter_Base"), &Z_Registration_Info_UClass_AEnemyCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyCharacter_Base), 3214718766U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_209440832(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_2742674260(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

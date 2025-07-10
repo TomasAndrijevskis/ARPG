@@ -42,7 +42,7 @@ public:
 	UPlayerWidget* GetPlayerWidget();
 
 	UFUNCTION()
-	TArray<UAbilityComponent_Base*> GetAbilitiesArray();
+	TArray<UAbilityComponent_Base*>& GetAbilitiesArray();
 
 	UFUNCTION()
 	void AddToAbilitiesArray(UAbilityComponent_Base* NewAbility);
@@ -116,9 +116,10 @@ private:
 	UPROPERTY()
 	UARPG_GameInstance* GameInstance;
 
-	UPROPERTY(VisibleAnywhere)
+	//UPROPERTY(EditAnywhere)
 	TArray<UAbilityComponent_Base*> ArrAbilities;
 
+	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
 	
 };

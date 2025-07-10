@@ -3,6 +3,7 @@
 #include "NiagaraComponent.h"
 #include "Characters/EnemyCharacter_Base.h"
 #include "Components/SphereComponent.h"
+#include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -17,7 +18,6 @@ AFrostBlastRange::AFrostBlastRange()
 
 }
 
-
 void AFrostBlastRange::BeginPlay()
 {
 	Super::BeginPlay();
@@ -28,19 +28,35 @@ void AFrostBlastRange::BeginPlay()
 
 void AFrostBlastRange::CheckEnemiesInRange()
 {
+	
 	TArray<AActor*> FoundEnemies;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemyCharacter_Base::StaticClass(), FoundEnemies);
 
-	for (auto FoundEnemy : FoundEnemies)
+	float Radius = Collision->GetScaledSphereRadius();
+	FVector Center = GetActorLocation();
+	
+	FDamageEvent TargetAttackedEvent{ };
+	
+	for (AActor* FoundEnemy : FoundEnemies)
 	{
-		if (FoundEnemy)
+		if (!FoundEnemy)
 		{
-			UE_LOG(LogTemp, Error, TEXT("Enemy in range: %s"), *FoundEnemy->GetName());
+			continue;
+		}
+
+		float DistBtwEnemyAndCenter = FVector::DistSquared(FoundEnemy->GetActorLocation(), Center);
+		if (DistBtwEnemyAndCenter < Radius * Radius)
+		{
+			FoundEnemy->TakeDamage(Damage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
+			Cast<AEnemyCharacter_Base>(FoundEnemy)->SlowDownEnemy(SlowDuration);
 		}
 	}
-
 	this->Destroy();
 }
 
 
-
+void AFrostBlastRange::SetParams(float NewDamage, float NewDuration)
+{
+	Damage = NewDamage;
+	SlowDuration = NewDuration;
+}

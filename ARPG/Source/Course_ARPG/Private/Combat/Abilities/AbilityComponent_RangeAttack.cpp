@@ -117,10 +117,10 @@ void UAbilityComponent_RangeAttack::SaveCustomProperties(FAbilityData& Data)
 }
 
 
-void UAbilityComponent_RangeAttack::LoadCustomProperties(FAbilityData& Data)
+void UAbilityComponent_RangeAttack::LoadCustomProperties(FAbilityData& SavedData)
 {
-	Super::LoadCustomProperties(Data);
-	SetProjectileDamage(Data.CustomProperties.FindRef("ProjectileDamage"));
+	Super::LoadCustomProperties(SavedData);
+	SetProjectileDamage(SavedData.CustomProperties.FindRef("ProjectileDamage"));
 }
 
 

@@ -15,7 +15,7 @@
 AMainCharacter_Base::AMainCharacter_Base()
 {
  	PrimaryActorTick.bCanEverTick = true;
-
+	
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
@@ -36,10 +36,9 @@ void AMainCharacter_Base::BeginPlay()
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 
 	SetSkeletalMeshComponent();
-	
-	CreateUI();
-	CreateAbilitiesFooter();
 
+	CreateUI();
+	
 	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnim, &UPlayerAnimInstance::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
@@ -52,11 +51,9 @@ void AMainCharacter_Base::BeginPlay()
 	LevelComp->OnXpUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnNewLevelDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	
-	
 	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
 	
 }
-
 
 
 void AMainCharacter_Base::Tick(float DeltaTime)
@@ -88,6 +85,8 @@ void AMainCharacter_Base::CreateUI()
 	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
 	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
 	PlayerWidgetRef->SetXP(LevelComp->GetCurrentXP());
+	
+	CreateAbilitiesFooter();
 }
 
 
@@ -190,7 +189,7 @@ UPlayerWidget* AMainCharacter_Base::GetPlayerWidget()
 }
 
 
-TArray<UAbilityComponent_Base*> AMainCharacter_Base::GetAbilitiesArray()
+TArray<UAbilityComponent_Base*>& AMainCharacter_Base::GetAbilitiesArray()
 {
 	return ArrAbilities;
 }
@@ -198,6 +197,7 @@ TArray<UAbilityComponent_Base*> AMainCharacter_Base::GetAbilitiesArray()
 
 void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Base* NewAbility)
 {
+	UE_LOG(LogTemp, Error, TEXT("AMainCharacter_Base|Ability: %s"), *NewAbility->GetName());
 	ArrAbilities.Add(NewAbility);
 }
 

@@ -87,6 +87,7 @@ void UAbilityComponent_DamageIncrease::UpdateAbilityProperties()
 	float NewDamageMultiplier = GetDamageMultiplier() + GetDamageMultiplier() * .25f;
 	
 	SetDamageMultiplier(FMath::RoundToFloat(NewDamageMultiplier * 100.0f) / 100.0f);
+	SetAbilityDuration(GetAbilityDuration() + 1);
 }
 
 

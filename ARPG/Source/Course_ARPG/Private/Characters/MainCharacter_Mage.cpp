@@ -18,7 +18,6 @@ AMainCharacter_Mage::AMainCharacter_Mage()
 	
 	AddToAbilitiesArray(AbilityComp_MagicShield);
 	AddToAbilitiesArray(AbilityComp_FrostBlast);
-	
 }
 
 
@@ -29,7 +28,7 @@ void AMainCharacter_Mage::BeginPlay()
 	
 	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
 	AbilityComp_FrostBlast->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
-	
+
 	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceMana);
 	
 	if (GetSkeletalMeshComponent())
