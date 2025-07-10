@@ -6,7 +6,6 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "Course_ARPG/Public/Combat/Abilities/AbilityComponent_RangeAttack.h"
-#include "Runtime/Engine/Classes/Engine/TimerHandle.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAbilityComponent_RangeAttack() {}
 
@@ -18,7 +17,6 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_RangeAttack_NoRegis
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystemComponent_NoRegister();
-ENGINE_API UScriptStruct* Z_Construct_UScriptStruct_FTimerHandle();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
@@ -140,12 +138,15 @@ struct Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics
 		{ "Category", "AbilityComponent_RangeAttack" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ParticleTimerHandle_MetaData[] = {
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ParticleComponent_MetaData[] = {
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "//UPROPERTY()\n//FTimerHandle ParticleTimerHandle;\n" },
+#endif
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_RangeAttack.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "UPROPERTY()\nFTimerHandle ParticleTimerHandle;" },
+#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Particle;
@@ -154,7 +155,6 @@ struct Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics
 	static const UECodeGen_Private::FNamePropertyParams NewProp_ComponentName;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ProjectileDamage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AliveTime;
-	static const UECodeGen_Private::FStructPropertyParams NewProp_ParticleTimerHandle;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ParticleComponent;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -174,7 +174,6 @@ const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UAbilityCompone
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ComponentName = { "ComponentName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, ComponentName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ComponentName_MetaData), NewProp_ComponentName_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ProjectileDamage = { "ProjectileDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, ProjectileDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProjectileDamage_MetaData), NewProp_ProjectileDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_AliveTime = { "AliveTime", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, AliveTime), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AliveTime_MetaData), NewProp_AliveTime_MetaData) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ParticleTimerHandle = { "ParticleTimerHandle", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, ParticleTimerHandle), Z_Construct_UScriptStruct_FTimerHandle, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleTimerHandle_MetaData), NewProp_ParticleTimerHandle_MetaData) }; // 756291145
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ParticleComponent = { "ParticleComponent", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityComponent_RangeAttack, ParticleComponent), Z_Construct_UClass_UParticleSystemComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleComponent_MetaData), NewProp_ParticleComponent_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_Particle,
@@ -183,7 +182,6 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ComponentName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ProjectileDamage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_AliveTime,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ParticleTimerHandle,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::NewProp_ParticleComponent,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::PropPointers) < 2048);
@@ -227,10 +225,10 @@ UAbilityComponent_RangeAttack::~UAbilityComponent_RangeAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_RangeAttack, UAbilityComponent_RangeAttack::StaticClass, TEXT("UAbilityComponent_RangeAttack"), &Z_Registration_Info_UClass_UAbilityComponent_RangeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_RangeAttack), 3616364987U) },
+		{ Z_Construct_UClass_UAbilityComponent_RangeAttack, UAbilityComponent_RangeAttack::StaticClass, TEXT("UAbilityComponent_RangeAttack"), &Z_Registration_Info_UClass_UAbilityComponent_RangeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_RangeAttack), 482424757U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_1827281773(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_1753906627(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

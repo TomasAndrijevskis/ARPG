@@ -19,6 +19,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UAbilityComponent_MagicShield* AbilityComp_MagicShield;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UAbilityComponent_FrostBlast* AbilityComp_FrostBlast;
 
 protected:
 

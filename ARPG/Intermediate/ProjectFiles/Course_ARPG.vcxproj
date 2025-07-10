@@ -279,13 +279,16 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\ARPG_PlayerController.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\BossCharacter.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EEnemyStates.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Base.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Boss.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Mob.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EStats.cpp">
@@ -363,6 +366,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_DamageIncrease.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_FrostBlast.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_GetArmor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -373,6 +379,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\FrostBlastRange.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\MagicShield.cpp">
@@ -449,9 +458,10 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\PlayerAnimInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\ToggleTraceNotifyState.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\BossCharacter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EEnemyStates.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Base.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Boss.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Mob.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LookAtPlayerComponent.h"/>
@@ -480,10 +490,12 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_DamageIncrease.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FrostBlast.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_GetArmor.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_LifeStealAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_MagicShield.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\FrostBlastRange.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\MagicShield.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Gamemode\ARPG_GameMode.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\Enemy.h"/>

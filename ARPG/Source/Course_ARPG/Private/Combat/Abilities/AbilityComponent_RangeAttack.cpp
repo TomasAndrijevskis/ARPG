@@ -19,12 +19,11 @@ void UAbilityComponent_RangeAttack::BeginPlay()
 
 void UAbilityComponent_RangeAttack::StartAbilityAttack()
 {
-	if (!CanPlayMontage() || !IsAbilityAvailable() && CheckMana()) return;
+	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	
-	HandlePlayerActions(false);
-	
-	if (!IsOnCooldown() && !IsAbilityActive())
+	if (!IsOnCooldown() && !IsAbilityActive() && CheckMana())
 	{
+		HandlePlayerActions(false);
 		SetAbilityActive(true);
 		OnAbilityStartedDelegate.Broadcast();
 		
@@ -34,7 +33,7 @@ void UAbilityComponent_RangeAttack::StartAbilityAttack()
 		ParticleComponent = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(ParticleTimerHandle, this, &UAbilityComponent_RangeAttack::CompleteAbilityAttack, AnimDuration/2, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::CompleteAbilityAttack, AnimDuration/2, false);
 	}
 }
 
@@ -44,7 +43,7 @@ void UAbilityComponent_RangeAttack::CompleteAbilityAttack()
 	HandlePlayerActions(true);
 	SetAbilityActive(false);
 	
-	GetWorld()->GetTimerManager().ClearTimer(ParticleTimerHandle);
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	StartCooldown();
 	if (ParticleComponent)
 	{

@@ -63,8 +63,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	float AliveTime = 4.0f;
 
-	UPROPERTY()
-	FTimerHandle ParticleTimerHandle;
+	//UPROPERTY()
+	//FTimerHandle ParticleTimerHandle;
 
 	UPROPERTY()
 	UParticleSystemComponent* ParticleComponent;

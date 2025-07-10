@@ -71,21 +71,26 @@ void UAbilityComponent_MagicShield::OnAbilityTimerFinished()
 
 void UAbilityComponent_MagicShield::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Test")));
+	SetAbilityDescription(FString::Printf(TEXT("Get yourself fully covered\nwith magic shield"
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration()));
 }
 
 
 void UAbilityComponent_MagicShield::UpdateUpgradeDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Test")));
+	float NextMana = GetManaCost() - (GetManaCost() * .2f);
+	float NextCooldown = GetCooldownDuration() - 1;
+	float NextDuration = GetAbilityDuration() + 1;
+
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
+		GetManaCost(), NextMana, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextDuration));
 }
 
 
 void UAbilityComponent_MagicShield::UpdateAbilityProperties()
 {
 	Super::UpdateAbilityProperties();
-
-	UE_LOG(LogTemp, Error, TEXT("MagicShield|Works"));
 }
 
 

@@ -140,11 +140,11 @@ protected:
 
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
-	
-	float TimerDuration;
 
 	UPROPERTY()
 	FTimerHandle TimerHandle;
+
+	float TimerDuration;
 
 private:
 	
