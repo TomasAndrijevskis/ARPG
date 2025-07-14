@@ -11,7 +11,8 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Interfaces/MainPlayer.h"
-
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 
 AEnemyCharacter_Base::AEnemyCharacter_Base()
 {
@@ -40,6 +41,8 @@ void AEnemyCharacter_Base::BeginPlay()
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter_Base::ReceiveDamage);
 
 	OriginalSpeed = GetCharacterMovement()->MaxWalkSpeed;
+
+	SkeletalMeshComp = this->GetMesh();
 }
 
 void AEnemyCharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -113,16 +116,27 @@ void AEnemyCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, con
 }
 
 
-void AEnemyCharacter_Base::SlowDownEnemy(float SlowDuration)
+void AEnemyCharacter_Base::SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect)
 {
 	GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter_Base::ReturnSpeed, SlowDuration, false);
+
+	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
+	
+	FrozenEffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
+	FrozenEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,FVector(1.f, 1.f, 1.f),
+	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 }
 
 
 void AEnemyCharacter_Base::ReturnSpeed()
 {
 	GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed;
+	if (FrozenEffectRef)
+	{
+		FrozenEffectRef->DestroyComponent();
+		FrozenEffectRef = nullptr;	
+	}
 }
 
 

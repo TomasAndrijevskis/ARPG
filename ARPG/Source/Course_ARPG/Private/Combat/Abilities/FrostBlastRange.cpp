@@ -48,7 +48,10 @@ void AFrostBlastRange::CheckEnemiesInRange()
 		if (DistBtwEnemyAndCenter < Radius * Radius)
 		{
 			FoundEnemy->TakeDamage(Damage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
-			Cast<AEnemyCharacter_Base>(FoundEnemy)->SlowDownEnemy(SlowDuration);
+			if (FrozenEffectClass)
+			{
+				Cast<AEnemyCharacter_Base>(FoundEnemy)->SlowDownEnemy(SlowDuration, FrozenEffectClass);
+			}
 		}
 	}
 	this->Destroy();

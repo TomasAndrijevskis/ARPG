@@ -1,0 +1,20 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/ThirdPerson/Blueprints/BP_Mage.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/MegaMagicVFXBundle/VFX/MagicAuraVFX/VFX/RingOfFlames/Systems/N_RingOfFlames.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/FXVarietyPack/Particles/P_ky_SnowBall.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/MegaMagicVFXBundle/VFX/MagicAuraVFX/VFX/RingOfFlames/Systems/N_RingOfIce.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/1/I2/H5VPBD8EMF0MAXV469O177.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/ThirdPerson/BP_FrostBlastRange.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/Characters/BP_Boss.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/Characters/BP_TestMob.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/9/Z7/XO1W6MP8B2LTIOYR6EYLB1.uasset"
+			]
+		}
+	]
+}

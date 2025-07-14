@@ -7,6 +7,7 @@
 
 class UNiagaraComponent;
 class USphereComponent;
+class UNiagaraSystem;
 
 UCLASS()
 class COURSE_ARPG_API AFrostBlastRange : public AActor
@@ -33,6 +34,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	UNiagaraComponent* RangeEffect;
+
+	UPROPERTY(EditDefaultsOnly)
+	UNiagaraSystem* FrozenEffectClass;
 
 	FTimerHandle TimerHandle;
 

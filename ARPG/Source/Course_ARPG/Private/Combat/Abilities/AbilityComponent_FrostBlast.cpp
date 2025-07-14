@@ -71,7 +71,7 @@ void UAbilityComponent_FrostBlast::UpdateAbilityProperties()
 {
 	Super::UpdateAbilityProperties();
 	
-	float NewDamage = Damage + (Damage * 0.5f);
+	float NewDamage = Damage + (Damage * 0.4f);
 
 	SetAbilityDuration(GetAbilityDuration() + 1);
 	SetDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
@@ -105,7 +105,7 @@ void UAbilityComponent_FrostBlast::UpdateUpgradeDescription()
 	float NextMana = GetManaCost() - (GetManaCost() * .2f);
 	float NextCooldown = GetCooldownDuration() - 1 ;
 	
-	float NextDamage = GetDamage() + (GetDamage() * .5f);
+	float NextDamage = GetDamage() + (GetDamage() * .4f);
 	float NextSlowDuration = GetSlowDuration() + 1;
 	
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nDamage: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nSlow duration: %.2f -> %.2f s"),

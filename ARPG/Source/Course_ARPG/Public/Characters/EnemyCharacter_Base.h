@@ -9,6 +9,8 @@
 #include "EnemyCharacter_Base.generated.h"
 
 class UEnemyHealthBar;
+class UNiagaraComponent;
+class UNiagaraSystem;
 
 UCLASS()
 class COURSE_ARPG_API AEnemyCharacter_Base : public ACharacter, public IEnemy, public IFighter
@@ -32,7 +34,7 @@ public:
 
 	virtual float GetMeleeRange() override;
 	
-	void SlowDownEnemy(float SlowDuration);
+	void SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect);
 
 	UFUNCTION()
 	void ReturnSpeed();
@@ -85,6 +87,15 @@ private:
 	UPROPERTY()
 	class UBlackboardComponent* BlackboardComp;
 
+	UPROPERTY()
+	UNiagaraComponent* FrozenEffectRef;
+
+	UPROPERTY()
+	USkeletalMeshComponent* SkeletalMeshComp;
+
+	UPROPERTY(EditAnywhere)
+	FName SocketName = "pelvis";
+	
 	float OriginalSpeed;
 
 	FTimerHandle TimerHandle;
