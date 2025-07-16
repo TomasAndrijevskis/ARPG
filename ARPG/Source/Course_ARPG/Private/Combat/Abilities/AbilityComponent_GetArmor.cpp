@@ -16,7 +16,7 @@ void UAbilityComponent_GetArmor::GiveArmor()
 {
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	
-	if (!IsOnCooldown() && !IsAbilityActive() && CheckMana())
+	if (!IsOnCooldown() && !IsAbilityActive() && IsEnoughMana())
 	{
 		SetAbilityActive(true);
 		

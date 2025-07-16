@@ -357,6 +357,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\RangeAttackProjectile.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\StatusEffectsComponent.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\TraceComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -364,6 +367,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_DamageIncrease.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_FireStorm.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_FrostBlast.cpp">
@@ -379,6 +385,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\FireStorm.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\FrostBlastRange.cpp">
@@ -487,14 +496,17 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectile_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\RangeAttackProjectile.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\StatusEffectsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_DamageIncrease.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FireStorm.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FrostBlast.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_GetArmor.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_LifeStealAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_MagicShield.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\FireStorm.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\FrostBlastRange.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\MagicShield.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Gamemode\ARPG_GameMode.h"/>

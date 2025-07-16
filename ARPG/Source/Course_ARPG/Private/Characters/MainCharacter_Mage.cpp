@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "NiagaraSystem.h"
+#include "Combat/Abilities/AbilityComponent_FireStorm.h"
 #include "Combat/Abilities/AbilityComponent_FrostBlast.h"
 #include "Combat/Abilities/AbilityComponent_MagicShield.h"
 
@@ -15,9 +16,11 @@ AMainCharacter_Mage::AMainCharacter_Mage()
 
 	AbilityComp_MagicShield = CreateDefaultSubobject<UAbilityComponent_MagicShield>(TEXT("Magic Shield"));
 	AbilityComp_FrostBlast = CreateDefaultSubobject<UAbilityComponent_FrostBlast>(TEXT("Frost Blast"));
+	AbilityComp_FireStorm = CreateDefaultSubobject<UAbilityComponent_FireStorm>(TEXT("Fire Storm"));
 	
 	AddToAbilitiesArray(AbilityComp_MagicShield);
 	AddToAbilitiesArray(AbilityComp_FrostBlast);
+	AddToAbilitiesArray(AbilityComp_FireStorm);
 }
 
 
@@ -28,6 +31,7 @@ void AMainCharacter_Mage::BeginPlay()
 	
 	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
 	AbilityComp_FrostBlast->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
+	AbilityComp_FireStorm->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
 
 	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceMana);
 	

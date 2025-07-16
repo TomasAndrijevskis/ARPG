@@ -24,7 +24,7 @@ void UAbilityComponent_DamageIncrease::IncreaseDamage()
 {
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 
-	if (!IsAbilityActive() && !IsOnCooldown() && CheckMana())
+	if (!IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		

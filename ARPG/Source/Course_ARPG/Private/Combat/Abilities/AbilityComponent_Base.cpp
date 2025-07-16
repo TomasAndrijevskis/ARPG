@@ -37,7 +37,7 @@ void UAbilityComponent_Base::StartAbilityTimer()
 	}
 	else
 	{
-		OnAbilityFinishedDelegate.Broadcast();
+		//OnAbilityFinishedDelegate.Broadcast();
 		TimerDuration = CooldownDuration;
 		OnAbilityTimerFinished();
 		StartCooldown();
@@ -53,12 +53,6 @@ void UAbilityComponent_Base::StartCooldown()
 	
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_Base::StartCooldownTimer, 1, true);
-}
-
-
-void UAbilityComponent_Base::CreateIcon()
-{
-	PlayerRef->GetPlayerWidget()->CreateStatusIconWithTimer(GetAbilityDuration(), GetIcon(), this);
 }
 
 
@@ -79,6 +73,12 @@ void UAbilityComponent_Base::StartCooldownTimer()
 }
 
 
+void UAbilityComponent_Base::CreateIcon()
+{
+	PlayerRef->GetPlayerWidget()->CreateStatusIconWithTimer(GetAbilityDuration(), GetIcon(), this);
+}
+
+
 void UAbilityComponent_Base::HandlePlayerActions(bool bCanDo)
 {
 	PlayerRef->CombatComp->bCanAttack = bCanDo;
@@ -86,7 +86,7 @@ void UAbilityComponent_Base::HandlePlayerActions(bool bCanDo)
 }
 
 
-bool UAbilityComponent_Base::CheckMana()
+bool UAbilityComponent_Base::IsEnoughMana()
 {
 	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>())
 	{

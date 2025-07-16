@@ -2,6 +2,7 @@
 #include "Combat/Abilities/FrostBlastRange.h"
 #include "NiagaraComponent.h"
 #include "Characters/EnemyCharacter_Base.h"
+#include "Combat/StatusEffectsComponent.h"
 #include "Components/SphereComponent.h"
 #include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
@@ -28,7 +29,6 @@ void AFrostBlastRange::BeginPlay()
 
 void AFrostBlastRange::CheckEnemiesInRange()
 {
-	
 	TArray<AActor*> FoundEnemies;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemyCharacter_Base::StaticClass(), FoundEnemies);
 
@@ -50,7 +50,7 @@ void AFrostBlastRange::CheckEnemiesInRange()
 			FoundEnemy->TakeDamage(Damage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 			if (FrozenEffectClass)
 			{
-				Cast<AEnemyCharacter_Base>(FoundEnemy)->SlowDownEnemy(SlowDuration, FrozenEffectClass);
+				Cast<AEnemyCharacter_Base>(FoundEnemy)->StatusEffectsComp->SlowDownEnemy(SlowDuration, FrozenEffectClass);
 			}
 		}
 	}

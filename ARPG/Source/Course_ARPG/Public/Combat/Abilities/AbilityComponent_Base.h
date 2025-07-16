@@ -79,7 +79,7 @@ public:
 
 	void SetCooldownDuration(float NewCooldownDuration);
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION()
 	float GetAbilityDuration();
 
 	void SetAbilityDuration(float NewAbilityDuration);
@@ -88,12 +88,12 @@ public:
 
 	int GetRequiredUpgradePoints();
 
-	UFUNCTION(BlueprintCallable, BlueprintPure)
+	UFUNCTION()
 	FString GetActionKey();
 
 	bool IsOnCooldown();
 
-	UFUNCTION(BlueprintPure)
+	UFUNCTION()
 	bool IsAbilityActive();
 
 	void SetAbilityActive(bool NewIsActive);
@@ -115,13 +115,13 @@ protected:
 
 	virtual void OnAbilityTimerFinished(){};
 
-	void StartCooldown();
+	virtual void StartCooldown();
 
 	bool CanPlayMontage() const;
 
 	void HandlePlayerActions(bool bCanDo);
 
-	bool CheckMana();
+	bool IsEnoughMana();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture2D* Icon;

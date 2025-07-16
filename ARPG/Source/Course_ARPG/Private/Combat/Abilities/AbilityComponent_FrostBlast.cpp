@@ -17,7 +17,7 @@ void UAbilityComponent_FrostBlast::StartAbility()
 {
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	
-	if (!IsOnCooldown() && !IsAbilityActive() && CheckMana())
+	if (!IsOnCooldown() && !IsAbilityActive() && IsEnoughMana())
 	{
 		HandlePlayerActions(false);
 		SetAbilityActive(true);
@@ -67,38 +67,13 @@ void UAbilityComponent_FrostBlast::CompleteAbility()
 }
 
 
-void UAbilityComponent_FrostBlast::UpdateAbilityProperties()
-{
-	Super::UpdateAbilityProperties();
-	
-	float NewDamage = Damage + (Damage * 0.4f);
-
-	SetAbilityDuration(GetAbilityDuration() + 1);
-	SetDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
-	SetSlowDuration(GetSlowDuration() + 1);
-}
-
-void UAbilityComponent_FrostBlast::SaveCustomProperties(FAbilityData& Data)
-{
-	Super::SaveCustomProperties(Data);
-	Data.CustomProperties.Add("SlowDamage", GetDamage());
-	Data.CustomProperties.Add("SlowDuration", GetSlowDuration());
-}
-
-void UAbilityComponent_FrostBlast::LoadCustomProperties(FAbilityData& SavedData)
-{
-	Super::LoadCustomProperties(SavedData);
-	SetDamage(SavedData.CustomProperties.FindRef("SlowDamage"));
-	SetSlowDuration(SavedData.CustomProperties.FindRef("SlowDuration"));
-}
-
-
 void UAbilityComponent_FrostBlast::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon blizzard which\nwill slow your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s\nSlow duration: %.2f s"),
 	GetCurrentAbilityLevel(), GetManaCost(), GetDamage(), GetCooldownDuration(), GetSlowDuration()));
 }
+
 
 void UAbilityComponent_FrostBlast::UpdateUpgradeDescription()
 {
@@ -110,6 +85,34 @@ void UAbilityComponent_FrostBlast::UpdateUpgradeDescription()
 	
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nDamage: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nSlow duration: %.2f -> %.2f s"),
 		GetManaCost(), NextMana, GetDamage(), NextDamage, GetCooldownDuration(), NextCooldown, GetSlowDuration(), NextSlowDuration));
+}
+
+
+void UAbilityComponent_FrostBlast::UpdateAbilityProperties()
+{
+	Super::UpdateAbilityProperties();
+	
+	float NewDamage = Damage + (Damage * 0.4f);
+
+	SetAbilityDuration(GetAbilityDuration() + 1);
+	SetDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
+	SetSlowDuration(GetSlowDuration() + 1);
+}
+
+
+void UAbilityComponent_FrostBlast::SaveCustomProperties(FAbilityData& Data)
+{
+	Super::SaveCustomProperties(Data);
+	Data.CustomProperties.Add("SlowDamage", GetDamage());
+	Data.CustomProperties.Add("SlowDuration", GetSlowDuration());
+}
+
+
+void UAbilityComponent_FrostBlast::LoadCustomProperties(FAbilityData& SavedData)
+{
+	Super::LoadCustomProperties(SavedData);
+	SetDamage(SavedData.CustomProperties.FindRef("SlowDamage"));
+	SetSlowDuration(SavedData.CustomProperties.FindRef("SlowDuration"));
 }
 
 

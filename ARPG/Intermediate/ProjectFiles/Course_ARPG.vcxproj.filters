@@ -151,6 +151,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\RangeAttackProjectile.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\StatusEffectsComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\TraceComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
@@ -161,6 +164,9 @@
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_DamageIncrease.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_FireStorm.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_FrostBlast.cpp">
@@ -176,6 +182,9 @@
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\FireStorm.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\FrostBlastRange.cpp">
@@ -382,6 +391,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\RangeAttackProjectile.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\StatusEffectsComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
@@ -392,6 +404,9 @@
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_DamageIncrease.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FireStorm.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FrostBlast.h">
@@ -407,6 +422,9 @@
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\FireStorm.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\FrostBlastRange.h">

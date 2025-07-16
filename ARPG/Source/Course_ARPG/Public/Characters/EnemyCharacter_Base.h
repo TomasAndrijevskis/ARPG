@@ -34,11 +34,6 @@ public:
 
 	virtual float GetMeleeRange() override;
 	
-	void SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect);
-
-	UFUNCTION()
-	void ReturnSpeed();
-	
 	UFUNCTION(BlueprintCallable)
 	virtual void CreateHealthWidget(){};
 	
@@ -51,6 +46,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class UTraceComponent* TraceComp;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	class UStatusEffectsComponent* StatusEffectsComp;
 	
 protected:
 
@@ -86,18 +83,5 @@ private:
 
 	UPROPERTY()
 	class UBlackboardComponent* BlackboardComp;
-
-	UPROPERTY()
-	UNiagaraComponent* FrozenEffectRef;
-
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComp;
-
-	UPROPERTY(EditAnywhere)
-	FName SocketName = "pelvis";
-	
-	float OriginalSpeed;
-
-	FTimerHandle TimerHandle;
 	
 };

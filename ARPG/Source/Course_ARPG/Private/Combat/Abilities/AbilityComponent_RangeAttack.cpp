@@ -21,7 +21,7 @@ void UAbilityComponent_RangeAttack::StartAbilityAttack()
 {
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	
-	if (!IsOnCooldown() && !IsAbilityActive() && CheckMana())
+	if (!IsOnCooldown() && !IsAbilityActive() && IsEnoughMana())
 	{
 		HandlePlayerActions(false);
 		SetAbilityActive(true);

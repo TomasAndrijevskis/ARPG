@@ -34,7 +34,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 {
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	
-	if (!IsAbilityActive() && !IsOnCooldown() && CheckMana())
+	if (!IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);

@@ -23,6 +23,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UAbilityComponent_FrostBlast* AbilityComp_FrostBlast;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UAbilityComponent_FireStorm* AbilityComp_FireStorm;
+
 protected:
 
 	virtual void BeginPlay() override;

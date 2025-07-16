@@ -15,7 +15,7 @@ void UAbilityComponent_MagicShield::BeginPlay()
 void UAbilityComponent_MagicShield::StartAbility()
 {
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-	if (!IsAbilityActive() && !IsOnCooldown() && CheckMana())
+	if (!IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
 	{
 		SetAbilityActive(true);
 		TimerDuration = GetAbilityDuration();
