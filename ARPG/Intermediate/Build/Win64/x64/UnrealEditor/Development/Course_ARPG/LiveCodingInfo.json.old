@@ -2,6 +2,14 @@
 	"RemapUnityFiles": 
 	{
 		"Module.Course_ARPG.1.cpp.obj": [
+			"AbilityComponent_Base.gen.cpp.obj",
+			"AbilityComponent_DamageIncrease.gen.cpp.obj",
+			"AbilityComponent_FireStorm.gen.cpp.obj",
+			"AbilityComponent_FrostBlast.gen.cpp.obj",
+			"AbilityComponent_GetArmor.gen.cpp.obj",
+			"AbilityComponent_LifeStealAttack.gen.cpp.obj",
+			"AbilityComponent_MagicShield.gen.cpp.obj",
+			"AbilityComponent_RangeAttack.gen.cpp.obj",
 			"AbilityData.gen.cpp.obj",
 			"AbilityFooter.gen.cpp.obj",
 			"AbilityUpgradeRequirements.gen.cpp.obj",
@@ -19,17 +27,10 @@
 			"BTT_RangeAttack.gen.cpp.obj",
 			"CharacterSelect.gen.cpp.obj",
 			"CharacterSelection.gen.cpp.obj",
-			"CharacterSelectionStruct.gen.cpp.obj",
-			"AbilityComponent_Base.gen.cpp.obj",
-			"AbilityComponent_DamageIncrease.gen.cpp.obj",
-			"AbilityComponent_FireStorm.gen.cpp.obj",
-			"AbilityComponent_FrostBlast.gen.cpp.obj",
-			"AbilityComponent_GetArmor.gen.cpp.obj",
-			"AbilityComponent_LifeStealAttack.gen.cpp.obj",
-			"AbilityComponent_MagicShield.gen.cpp.obj",
-			"AbilityComponent_RangeAttack.gen.cpp.obj"
+			"AbilityComponent_HealingAura.gen.cpp.obj"
 		],
 		"Module.Course_ARPG.2.cpp.obj": [
+			"CharacterSelectionStruct.gen.cpp.obj",
 			"CombatComponent_Base.gen.cpp.obj",
 			"CombatComponent_Enemy.gen.cpp.obj",
 			"CombatComponent_Mage.gen.cpp.obj",
@@ -44,6 +45,7 @@
 			"EnemyProjectileComponent.gen.cpp.obj",
 			"EStats.gen.cpp.obj",
 			"Fighter.gen.cpp.obj",
+			"FireStorm.gen.cpp.obj",
 			"FrostBlastRange.gen.cpp.obj",
 			"FTraceSockets.gen.cpp.obj",
 			"InfoHeader.gen.cpp.obj",
@@ -57,7 +59,6 @@
 			"MainPlayer.gen.cpp.obj",
 			"PlayerActionsComponent.gen.cpp.obj",
 			"Course_ARPG.init.gen.cpp.obj",
-			"FireStorm.gen.cpp.obj",
 			"MainCharacter_Mage.gen.cpp.obj"
 		],
 		"Module.Course_ARPG.3.cpp.obj": [
@@ -87,6 +88,7 @@
 			"BTT_RangeAttack.cpp.obj",
 			"ARPG_PlayerController.cpp.obj",
 			"EEnemyStates.cpp.obj",
+			"EnemyCharacter_Base.cpp.obj",
 			"EnemyCharacter_Boss.cpp.obj",
 			"EnemyCharacter_Mob.cpp.obj",
 			"EStats.cpp.obj",
@@ -96,6 +98,20 @@
 			"MainCharacter_Warrior.cpp.obj",
 			"PlayerActionsComponent.cpp.obj",
 			"StatsComponent.cpp.obj",
+			"AbilityComponent_Base.cpp.obj",
+			"AbilityComponent_FrostBlast.cpp.obj",
+			"AbilityComponent_GetArmor.cpp.obj",
+			"AbilityComponent_LifeStealAttack.cpp.obj",
+			"AbilityComponent_MagicShield.cpp.obj",
+			"AbilityComponent_RangeAttack.cpp.obj",
+			"MainCharacter_Mage.cpp.obj",
+			"AbilityComponent_DamageIncrease.cpp.obj",
+			"AbilityComponent_FireStorm.cpp.obj",
+			"AbilityComponent_HealingAura.cpp.obj"
+		],
+		"Module.Course_ARPG.4.cpp.obj": [
+			"FireStorm.cpp.obj",
+			"FrostBlastRange.cpp.obj",
 			"MagicShield.cpp.obj",
 			"BlockComponent.cpp.obj",
 			"CombatComponent_Base.cpp.obj",
@@ -103,24 +119,11 @@
 			"CombatComponent_Mage.cpp.obj",
 			"EnemyProjectile.cpp.obj",
 			"EnemyProjectileComponent.cpp.obj",
-			"EnemyCharacter_Base.cpp.obj",
-			"MainCharacter_Mage.cpp.obj",
-			"AbilityComponent_Base.cpp.obj",
-			"AbilityComponent_DamageIncrease.cpp.obj",
-			"AbilityComponent_FireStorm.cpp.obj",
-			"AbilityComponent_FrostBlast.cpp.obj",
-			"AbilityComponent_GetArmor.cpp.obj",
-			"AbilityComponent_LifeStealAttack.cpp.obj",
-			"AbilityComponent_MagicShield.cpp.obj",
-			"AbilityComponent_RangeAttack.cpp.obj",
-			"FireStorm.cpp.obj",
-			"FrostBlastRange.cpp.obj"
-		],
-		"Module.Course_ARPG.4.cpp.obj": [
 			"FTraceSockets.cpp.obj",
 			"LockonComponent.cpp.obj",
 			"Projectile_Base.cpp.obj",
 			"RangeAttackProjectile.cpp.obj",
+			"StatusEffectsComponent.cpp.obj",
 			"TraceComponent.cpp.obj",
 			"ARPG_GameMode.cpp.obj",
 			"Enemy.cpp.obj",
@@ -143,8 +146,7 @@
 			"SaveSlotWidget.cpp.obj",
 			"StatsScreenWidget.cpp.obj",
 			"StatusIconWithAmount.cpp.obj",
-			"StatusIconWithTimer.cpp.obj",
-			"StatusEffectsComponent.cpp.obj"
+			"StatusIconWithTimer.cpp.obj"
 		]
 	}
 }

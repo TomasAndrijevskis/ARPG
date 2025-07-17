@@ -28,7 +28,7 @@ void UAbilityComponent_FireStorm::SpawnFireStorm()
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	FVector PlayerLocation = GetOwner()->GetActorLocation();
 	FVector ForwardDirection = GetOwner()->GetActorForwardVector();
-	FVector TargetLocation = PlayerLocation + ForwardDirection * 500.0f;
+	FVector TargetLocation = PlayerLocation + ForwardDirection * 250.0f;
 
 	FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(PlayerLocation, TargetLocation);
 

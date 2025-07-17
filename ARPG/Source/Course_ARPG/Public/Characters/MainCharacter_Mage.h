@@ -26,6 +26,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UAbilityComponent_FireStorm* AbilityComp_FireStorm;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UAbilityComponent_HealingAura* AbilityComp_HealingAura;
+
 protected:
 
 	virtual void BeginPlay() override;

@@ -378,6 +378,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_GetArmor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_HealingAura.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_LifeStealAttack.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -503,6 +506,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FireStorm.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FrostBlast.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_GetArmor.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_HealingAura.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_LifeStealAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_MagicShield.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h"/>

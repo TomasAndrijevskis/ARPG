@@ -93,8 +93,7 @@ void UAbilityComponent_FrostBlast::UpdateAbilityProperties()
 	Super::UpdateAbilityProperties();
 	
 	float NewDamage = Damage + (Damage * 0.4f);
-
-	SetAbilityDuration(GetAbilityDuration() + 1);
+	
 	SetDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
 	SetSlowDuration(GetSlowDuration() + 1);
 }

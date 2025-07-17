@@ -14,12 +14,6 @@ void UAbilityComponent_DamageIncrease::BeginPlay()
 }
 
 
-void UAbilityComponent_DamageIncrease::StartAbilityTimer()
-{
-	Super::StartAbilityTimer();
-}
-
-
 void UAbilityComponent_DamageIncrease::IncreaseDamage()
 {
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;

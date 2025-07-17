@@ -175,6 +175,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_GetArmor.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_HealingAura.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_LifeStealAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
@@ -413,6 +416,9 @@
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_GetArmor.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_HealingAura.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_LifeStealAttack.h">
