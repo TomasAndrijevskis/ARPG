@@ -115,7 +115,7 @@ void UARPG_GameInstance::LoadStats()
 	PlayerRef->StatsComp->SetStatValue(EStats::Strength, SaveGameInstance->Strength);
 	PlayerRef->StatsComp->SetStatValue(EStats::MaxStamina, SaveGameInstance->MaxStamina);
 	PlayerRef->LevelComp->SetLevel(SaveGameInstance->CurrentLevel);
-	PlayerRef->LevelComp->SetExperience(SaveGameInstance->CurrentXP);
+	PlayerRef->LevelComp->SetXP(SaveGameInstance->CurrentXP);
 	PlayerRef->LevelComp->SetStatPoints(SaveGameInstance->CurrentStatPoints);
 	PlayerRef->LevelComp->SetAbilityPoints(SaveGameInstance->CurrentAbilityPoints);
 }

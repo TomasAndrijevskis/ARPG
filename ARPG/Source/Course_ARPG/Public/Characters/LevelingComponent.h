@@ -6,7 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "LevelingComponent.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnNewLevelSignature, ULevelingComponent, OnNewLevelDelegate, int, Level);
+struct FXPLevels;
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnNewLevelSignature, ULevelingComponent, OnNewLevelDelegate, int,
+                                                   Level);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnXpUpdateSignature, ULevelingComponent, OnXpUpdateDelegate,float, XP);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStatPointsUpdateSignature, ULevelingComponent, OnStatPointsUpdateDelegate,int, Points);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnAbilityPointsUpdateSignature, ULevelingComponent, OnAbilityPointsUpdateDelegate,int, Points);
@@ -20,7 +22,7 @@ public:
 	ULevelingComponent(){};
 
 	UFUNCTION(BlueprintCallable)
-	void AddExperience(float XP);
+	void AddXP(float XP);
 	
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnNewLevelSignature OnNewLevelDelegate;
@@ -48,7 +50,7 @@ public:
 	int GetCurrentAbilityPointsAmount();
 
 	UFUNCTION()
-	void SetExperience(float NewXP);
+	void SetXP(float NewXP);
 
 	UFUNCTION()
 	void SetLevel(int NewLevel);
@@ -60,11 +62,23 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void SetAbilityPoints(int NewAbilityPointsAmount);
 
+	UFUNCTION()
+	float GetXPPercentage();
 
+protected:
+
+	virtual void BeginPlay() override;
+	
 private:
 	
 	void TryLevelUp();
 
+	float GetRequiredXP();
+
+	bool CanAddXP();
+	
+	FXPLevels* GetNextLevelRow() const;
+	
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* LevelDataTable;
 	
@@ -83,5 +97,7 @@ private:
 	int StatPointsAmountForLevel = 10;
 
 	int AbilityUpgradePointsAmountForLevel = 5;
+
+	float RequiredXP;
 	
 };

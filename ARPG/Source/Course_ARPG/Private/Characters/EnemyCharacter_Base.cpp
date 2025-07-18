@@ -100,7 +100,7 @@ void AEnemyCharacter_Base::GiveRewardXP()
 	{
 		return;
 	}
-	PlayerRef->LevelComp->AddExperience(RewardXP);
+	PlayerRef->LevelComp->AddXP(RewardXP);
 }
 
 

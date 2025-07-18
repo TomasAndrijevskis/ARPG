@@ -4,6 +4,7 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/AbilityComponent_FireStorm.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/AbilityComponent_FrostBlast.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/AbilityComponent_GetArmor.gen.cpp"
+#include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/AbilityComponent_HealingAura.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/AbilityComponent_LifeStealAttack.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/AbilityComponent_MagicShield.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/AbilityComponent_RangeAttack.gen.cpp"

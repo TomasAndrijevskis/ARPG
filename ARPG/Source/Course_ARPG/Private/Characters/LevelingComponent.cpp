@@ -1,15 +1,27 @@
 
 #include "Characters/LevelingComponent.h"
-
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/Data/XPLevels.h"
 #include "SaveGame/ARPG_GameInstance.h"
 
 
-void ULevelingComponent::AddExperience(float XP)
+void ULevelingComponent::BeginPlay()
 {
+	Super::BeginPlay();
+	//RequiredXP = GetRequiredXP();
+}
+
+
+void ULevelingComponent::AddXP(float XP)
+{
+	if (!CanAddXP())
+	{
+		CurrentXP = 0;
+		OnXpUpdateDelegate.Broadcast(GetXPPercentage());
+		return;
+	}
 	CurrentXP += XP;
-	OnXpUpdateDelegate.Broadcast(CurrentXP);
+	OnXpUpdateDelegate.Broadcast(GetXPPercentage());
 	TryLevelUp();
 	Cast<AMainCharacter_Base>(GetOwner())->GetGameInstanceRef()->SaveStats();
 }
@@ -17,29 +29,14 @@ void ULevelingComponent::AddExperience(float XP)
 
 void ULevelingComponent::TryLevelUp()
 {
-	if (!LevelDataTable)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Cant load levels data table"));
-		return;
-	}
-
-	FName RowName = FName(*FString::FromInt(CurrentLevel + 1));
-    
-	FXPLevels* LevelRow = LevelDataTable->FindRow<FXPLevels>(RowName, TEXT("Level to look for"));
-	if (!LevelRow)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("No level row found for %s"), *RowName.ToString());
-		return;
-	}
-
-	float XPRequired = LevelRow->Experience;
+	RequiredXP = GetRequiredXP();
 	
-	if (CurrentXP >= XPRequired)
+	if (CurrentXP >= RequiredXP && RequiredXP != -1)
 	{
 		CurrentLevel++;
-		CurrentXP -= XPRequired;
+		CurrentXP -= RequiredXP;
 		OnNewLevelDelegate.Broadcast(CurrentLevel);
-		OnXpUpdateDelegate.Broadcast(CurrentXP);
+		OnXpUpdateDelegate.Broadcast(GetXPPercentage());
 
 		SetStatPoints(AvailableStatPoints + StatPointsAmountForLevel);
 		SetAbilityPoints(AvailableAbilityPoints + AbilityUpgradePointsAmountForLevel);
@@ -47,6 +44,51 @@ void ULevelingComponent::TryLevelUp()
 	}
 }
 
+
+float ULevelingComponent::GetRequiredXP()
+{
+	if (!LevelDataTable)
+	{
+		return -1;
+	}
+	if (GetNextLevelRow())
+	{
+		return GetNextLevelRow()->Experience;
+	}
+	else
+	{
+		return  0;
+	}
+}
+
+
+bool ULevelingComponent::CanAddXP()
+{
+	if (!LevelDataTable)
+	{
+		return false;
+	}
+    
+	FXPLevels* LevelRow = GetNextLevelRow();
+	if (!LevelRow)
+	{
+		return false;
+	}
+	return true;
+}
+
+
+FXPLevels* ULevelingComponent::GetNextLevelRow() const
+{
+	FName RowName = FName(*FString::FromInt(CurrentLevel + 1));
+	FXPLevels* LevelRow = LevelDataTable->FindRow<FXPLevels>(RowName, TEXT("Find Next Level Row"));
+
+	if (!LevelRow)
+	{
+		return nullptr;
+	}
+	return LevelRow;
+}
 
 
 float ULevelingComponent::GetCurrentXP()
@@ -73,7 +115,7 @@ int ULevelingComponent::GetCurrentAbilityPointsAmount()
 }
 
 
-void ULevelingComponent::SetExperience(float NewXP)
+void ULevelingComponent::SetXP(float NewXP)
 {
 	CurrentXP = NewXP;
 }
@@ -96,4 +138,9 @@ void ULevelingComponent::SetAbilityPoints(int NewAbilityPointsAmount)
 	AvailableAbilityPoints = NewAbilityPointsAmount;
 }
 
+
+float ULevelingComponent::GetXPPercentage()
+{
+	return CurrentXP / RequiredXP;
+}
 

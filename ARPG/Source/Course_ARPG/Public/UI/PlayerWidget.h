@@ -97,10 +97,10 @@ private:
 	UProgressBar* ProgressBar_Mana;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* TextBlock_Level;
-
+	UProgressBar* ProgressBar_XP;
+	
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* TextBlock_XP;
+	UTextBlock* TextBlock_Level;
 
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_AbilitiesFooter;
@@ -146,5 +146,6 @@ private:
 
 	UPROPERTY()
 	UPlayerDeath* PlayerDeathWidgetRef;
+	
 	
 };

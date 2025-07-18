@@ -14,35 +14,36 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_LevelingComponent_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_9_DELEGATE \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_11_DELEGATE \
 COURSE_ARPG_API void FOnNewLevelSignature_DelegateWrapper(const FMulticastScriptDelegate& OnNewLevelSignature, int32 Level);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_10_DELEGATE \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_12_DELEGATE \
 COURSE_ARPG_API void FOnXpUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnXpUpdateSignature, float XP);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_11_DELEGATE \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_13_DELEGATE \
 COURSE_ARPG_API void FOnStatPointsUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnStatPointsUpdateSignature, int32 Points);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_12_DELEGATE \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_14_DELEGATE \
 COURSE_ARPG_API void FOnAbilityPointsUpdateSignature_DelegateWrapper(const FMulticastScriptDelegate& OnAbilityPointsUpdateSignature, int32 Points);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execGetXPPercentage); \
 	DECLARE_FUNCTION(execSetAbilityPoints); \
 	DECLARE_FUNCTION(execSetStatPoints); \
 	DECLARE_FUNCTION(execSetLevel); \
-	DECLARE_FUNCTION(execSetExperience); \
+	DECLARE_FUNCTION(execSetXP); \
 	DECLARE_FUNCTION(execGetCurrentAbilityPointsAmount); \
 	DECLARE_FUNCTION(execGetCurrentStatPointsAmount); \
 	DECLARE_FUNCTION(execGetCurrentLevel); \
 	DECLARE_FUNCTION(execGetCurrentXP); \
-	DECLARE_FUNCTION(execAddExperience);
+	DECLARE_FUNCTION(execAddXP);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_16_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_18_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesULevelingComponent(); \
 	friend struct Z_Construct_UClass_ULevelingComponent_Statics; \
@@ -51,7 +52,7 @@ public: \
 	DECLARE_SERIALIZER(ULevelingComponent)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_16_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ULevelingComponent(ULevelingComponent&&); \
@@ -63,13 +64,13 @@ public: \
 	NO_API virtual ~ULevelingComponent();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_13_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_16_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_15_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_18_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_16_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_16_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_18_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_18_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_18_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

@@ -132,6 +132,9 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\blockcomponent.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\blockcomponent.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\blockcomponent.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\bonfire.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\savegame\\bonfire.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\bonfire.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\bossaniminstance.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\animations\\bossaniminstance.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\bossaniminstance.generated.h",
@@ -183,11 +186,7 @@
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\characterselect.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\data\\characterselectionstruct.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselectionstruct.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselect.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselection.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\characterselection.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselection.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselectionstruct.gen.cpp"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\characterselect.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

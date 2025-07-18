@@ -84,7 +84,7 @@ void AMainCharacter_Base::CreateUI()
 	PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
 	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
 	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
-	PlayerWidgetRef->SetXP(LevelComp->GetCurrentXP());
+	PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
 	
 	CreateAbilitiesFooter();
 }

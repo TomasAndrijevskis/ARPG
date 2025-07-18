@@ -226,6 +226,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
       <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\Bonfire.cpp">
+      <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
+    </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\UI">
       <UniqueIdentifier>{A1E3A523-FE26-3931-80C8-F6E11BC948A3}</UniqueIdentifier>
     </Filter>
@@ -467,6 +470,9 @@
       <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h">
+      <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\Bonfire.h">
       <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\UI">

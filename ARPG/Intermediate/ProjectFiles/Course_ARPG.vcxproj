@@ -420,6 +420,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\Bonfire.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityFooter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -520,6 +523,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\AbilityData.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\Bonfire.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityFooter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BossHealthBar.h"/>

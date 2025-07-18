@@ -170,9 +170,9 @@ void UPlayerWidget::SetLevel(int CurrentLevel)
 }
 
 
-void UPlayerWidget::SetXP(float CurrentXP)
+void UPlayerWidget::SetXP(float NewXPPercent)
 {
-	TextBlock_XP->SetText(FText::AsNumber(CurrentXP));
+	ProgressBar_XP->SetPercent(NewXPPercent);
 }
 
 

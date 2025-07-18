@@ -723,12 +723,12 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TextBlock_Level_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ProgressBar_XP_MetaData[] = {
 		{ "BindWidget", "" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TextBlock_XP_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_TextBlock_Level_MetaData[] = {
 		{ "BindWidget", "" },
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
@@ -803,8 +803,8 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ProgressBar_Health;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ProgressBar_Stamina;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ProgressBar_Mana;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_ProgressBar_XP;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_TextBlock_Level;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_TextBlock_XP;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HorizontalBox_AbilitiesFooter;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_StatsWidget;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StatsScreenRef;
@@ -853,8 +853,8 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_Health = { "ProgressBar_Health", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, ProgressBar_Health), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProgressBar_Health_MetaData), NewProp_ProgressBar_Health_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_Stamina = { "ProgressBar_Stamina", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, ProgressBar_Stamina), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProgressBar_Stamina_MetaData), NewProp_ProgressBar_Stamina_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_Mana = { "ProgressBar_Mana", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, ProgressBar_Mana), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProgressBar_Mana_MetaData), NewProp_ProgressBar_Mana_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_XP = { "ProgressBar_XP", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, ProgressBar_XP), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProgressBar_XP_MetaData), NewProp_ProgressBar_XP_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_TextBlock_Level = { "TextBlock_Level", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, TextBlock_Level), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TextBlock_Level_MetaData), NewProp_TextBlock_Level_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_TextBlock_XP = { "TextBlock_XP", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, TextBlock_XP), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TextBlock_XP_MetaData), NewProp_TextBlock_XP_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_HorizontalBox_AbilitiesFooter = { "HorizontalBox_AbilitiesFooter", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, HorizontalBox_AbilitiesFooter), Z_Construct_UClass_UHorizontalBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HorizontalBox_AbilitiesFooter_MetaData), NewProp_HorizontalBox_AbilitiesFooter_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsWidget = { "StatsWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatsWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UStatsScreenWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsWidget_MetaData), NewProp_StatsWidget_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsScreenRef = { "StatsScreenRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatsScreenRef), Z_Construct_UClass_UStatsScreenWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsScreenRef_MetaData), NewProp_StatsScreenRef_MetaData) };
@@ -879,8 +879,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerWi
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_Health,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_Stamina,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_Mana,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_XP,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_TextBlock_Level,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_TextBlock_XP,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_HorizontalBox_AbilitiesFooter,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsWidget,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsScreenRef,
@@ -939,10 +939,10 @@ UPlayerWidget::~UPlayerWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 1194481934U) },
+		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 1116096145U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_970568124(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_2637271707(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
