@@ -2,7 +2,7 @@
 #include "Combat/Abilities/AbilityComponent_RangeAttack.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
-#include "Combat/RangeAttackProjectile.h"
+#include "Combat/Projectiles/RangeAttackProjectile.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -55,13 +55,12 @@ void UAbilityComponent_RangeAttack::CompleteAbilityAttack()
 void UAbilityComponent_RangeAttack::SpawnProjectile()
 {
 	if (!GetOwner() || !ProjectileClass) return;
-
+	
 	USceneComponent* SpawnPointComp = Cast<USceneComponent>(GetOwner()->GetDefaultSubobjectByName(ComponentName));
 	if (!SpawnPointComp)
 	{
 		return;
 	}
-
 	FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
 	
 	FVector ForwardDirection = GetOwner()->GetActorForwardVector();

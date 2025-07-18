@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Course_ARPG/Public/Combat/EnemyProjectileComponent.h"
+#include "Course_ARPG/Public/Combat/Projectiles/EnemyProjectileComponent.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeEnemyProjectileComponent() {}
 
@@ -23,7 +23,7 @@ struct Z_Construct_UFunction_UEnemyProjectileComponent_SpawnProjectile_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Combat/EnemyProjectileComponent.h" },
+		{ "ModuleRelativePath", "Public/Combat/Projectiles/EnemyProjectileComponent.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
@@ -67,30 +67,30 @@ struct Z_Construct_UClass_UEnemyProjectileComponent_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
 		{ "BlueprintSpawnableComponent", "" },
 		{ "ClassGroupNames", "Custom" },
-		{ "IncludePath", "Combat/EnemyProjectileComponent.h" },
-		{ "ModuleRelativePath", "Public/Combat/EnemyProjectileComponent.h" },
+		{ "IncludePath", "Combat/Projectiles/EnemyProjectileComponent.h" },
+		{ "ModuleRelativePath", "Public/Combat/Projectiles/EnemyProjectileComponent.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileClass_MetaData[] = {
 		{ "Category", "EnemyProjectileComponent" },
-		{ "ModuleRelativePath", "Public/Combat/EnemyProjectileComponent.h" },
+		{ "ModuleRelativePath", "Public/Combat/Projectiles/EnemyProjectileComponent.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ComponentName_MetaData[] = {
 		{ "Category", "EnemyProjectileComponent" },
-		{ "ModuleRelativePath", "Public/Combat/EnemyProjectileComponent.h" },
+		{ "ModuleRelativePath", "Public/Combat/Projectiles/EnemyProjectileComponent.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ProjectileDamage_MetaData[] = {
 		{ "Category", "EnemyProjectileComponent" },
 #if !UE_BUILD_SHIPPING
 		{ "Comment", "//ProjectileSpawnLocation\n" },
 #endif
-		{ "ModuleRelativePath", "Public/Combat/EnemyProjectileComponent.h" },
+		{ "ModuleRelativePath", "Public/Combat/Projectiles/EnemyProjectileComponent.h" },
 #if !UE_BUILD_SHIPPING
 		{ "ToolTip", "ProjectileSpawnLocation" },
 #endif
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AliveTime_MetaData[] = {
 		{ "Category", "EnemyProjectileComponent" },
-		{ "ModuleRelativePath", "Public/Combat/EnemyProjectileComponent.h" },
+		{ "ModuleRelativePath", "Public/Combat/Projectiles/EnemyProjectileComponent.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FClassPropertyParams NewProp_ProjectileClass;
@@ -100,7 +100,7 @@ struct Z_Construct_UClass_UEnemyProjectileComponent_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UEnemyProjectileComponent_SpawnProjectile, "SpawnProjectile" }, // 2546538905
+		{ &Z_Construct_UFunction_UEnemyProjectileComponent_SpawnProjectile, "SpawnProjectile" }, // 3263346729
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -156,14 +156,14 @@ UEnemyProjectileComponent::~UEnemyProjectileComponent() {}
 // End Class UEnemyProjectileComponent
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_Statics
+struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UEnemyProjectileComponent, UEnemyProjectileComponent::StaticClass, TEXT("UEnemyProjectileComponent"), &Z_Registration_Info_UClass_UEnemyProjectileComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UEnemyProjectileComponent), 3159694462U) },
+		{ Z_Construct_UClass_UEnemyProjectileComponent, UEnemyProjectileComponent::StaticClass, TEXT("UEnemyProjectileComponent"), &Z_Registration_Info_UClass_UEnemyProjectileComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UEnemyProjectileComponent), 1862479453U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_2618901132(TEXT("/Script/Course_ARPG"),
-	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_799177751(TEXT("/Script/Course_ARPG"),
+	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

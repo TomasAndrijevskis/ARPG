@@ -4,7 +4,7 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-// IWYU pragma: private, include "Combat/EnemyProjectileComponent.h"
+// IWYU pragma: private, include "Combat/Projectiles/EnemyProjectileComponent.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
@@ -14,11 +14,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_EnemyProjectileComponent_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execSpawnProjectile);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUEnemyProjectileComponent(); \
 	friend struct Z_Construct_UClass_UEnemyProjectileComponent_Statics; \
@@ -27,7 +27,7 @@ public: \
 	DECLARE_SERIALIZER(UEnemyProjectileComponent)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UEnemyProjectileComponent(UEnemyProjectileComponent&&); \
@@ -39,13 +39,13 @@ public: \
 	NO_API virtual ~UEnemyProjectileComponent();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_9_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_12_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_9_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_12_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h_12_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_12_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -53,7 +53,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COURSE_ARPG_API UClass* StaticClass<class UEnemyProjectileComponent>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_EnemyProjectileComponent_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_EnemyProjectileComponent_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

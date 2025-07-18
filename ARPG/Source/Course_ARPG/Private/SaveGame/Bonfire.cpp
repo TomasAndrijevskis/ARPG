@@ -15,20 +15,19 @@ ABonfire::ABonfire()
 	BonfireCollision -> SetupAttachment(BonfireMesh);
 
 	InteractionRangeCollision = CreateDefaultSubobject<USphereComponent>(TEXT("InteractionRangeCollision"));
-	InteractionRangeCollision -> SetupAttachment(RootComponent);
+	InteractionRangeCollision -> SetupAttachment(BonfireMesh);
 }
 
 
 void ABonfire::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	InteractionRangeCollision->OnComponentBeginOverlap.AddDynamic(this, &ABonfire::OnSphereBeginOverlap);
 }
 
 
-void ABonfire::Tick(float DeltaTime)
+void ABonfire::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	Super::Tick(DeltaTime);
-
+	UE_LOG(LogTemp, Error, TEXT("Overlapped"));
 }
 

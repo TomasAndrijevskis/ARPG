@@ -2,7 +2,7 @@
 #include "Characters/EnemyCharacter_Boss.h"
 #include "Blueprint/UserWidget.h"
 #include "Characters/StatsComponent.h"
-#include "Combat/EnemyProjectileComponent.h"
+#include "Combat/Projectiles/EnemyProjectileComponent.h"
 #include "UI/BossHealthBar.h"
 
 

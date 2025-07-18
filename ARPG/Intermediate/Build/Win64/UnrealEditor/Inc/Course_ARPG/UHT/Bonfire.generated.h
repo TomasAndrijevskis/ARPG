@@ -9,10 +9,17 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class AActor;
+class UPrimitiveComponent;
+struct FHitResult;
 #ifdef COURSE_ARPG_Bonfire_generated_h
 #error "Bonfire.generated.h already included, missing '#pragma once' in Bonfire.h"
 #endif
 #define COURSE_ARPG_Bonfire_generated_h
+
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnSphereBeginOverlap);
+
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_INCLASS_NO_PURE_DECLS \
 private: \
@@ -39,6 +46,7 @@ public: \
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_INCLASS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_ENHANCED_CONSTRUCTORS \
 private: \

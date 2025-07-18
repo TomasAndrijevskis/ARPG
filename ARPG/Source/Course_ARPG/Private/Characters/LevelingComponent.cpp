@@ -8,7 +8,7 @@
 void ULevelingComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	//RequiredXP = GetRequiredXP();
+	RequiredXP = GetRequiredXP();
 }
 
 
@@ -21,7 +21,6 @@ void ULevelingComponent::AddXP(float XP)
 		return;
 	}
 	CurrentXP += XP;
-	OnXpUpdateDelegate.Broadcast(GetXPPercentage());
 	TryLevelUp();
 	Cast<AMainCharacter_Base>(GetOwner())->GetGameInstanceRef()->SaveStats();
 }
@@ -30,7 +29,7 @@ void ULevelingComponent::AddXP(float XP)
 void ULevelingComponent::TryLevelUp()
 {
 	RequiredXP = GetRequiredXP();
-	
+	OnXpUpdateDelegate.Broadcast(GetXPPercentage());
 	if (CurrentXP >= RequiredXP && RequiredXP != -1)
 	{
 		CurrentLevel++;
@@ -57,7 +56,7 @@ float ULevelingComponent::GetRequiredXP()
 	}
 	else
 	{
-		return  0;
+		return  -1;
 	}
 }
 

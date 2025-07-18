@@ -196,6 +196,12 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\MagicShield.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Combat\Projectiles">
+      <UniqueIdentifier>{86AE4974-131E-3EB6-9E93-FE69913BD9C5}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectiles\RangeAttackProjectile_Ice.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Projectiles</Filter>
+    </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Gamemode">
       <UniqueIdentifier>{81C15DDC-C0C6-3F70-9EAA-0387822FD00E}</UniqueIdentifier>
     </Filter>
@@ -441,6 +447,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\MagicShield.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Combat\Projectiles">
+      <UniqueIdentifier>{64D534D3-1F11-3BC6-9BFB-A7A5889AD2CC}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectiles\RangeAttackProjectile_Ice.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Projectiles</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\Gamemode">
       <UniqueIdentifier>{D27D677F-834F-3E85-A483-020A0D7A2DC8}</UniqueIdentifier>

@@ -2,7 +2,7 @@
 #include "Combat/CombatComponent_Mage.h"
 #include "Characters/MainCharacter_Mage.h"
 #include "Characters/StatsComponent.h"
-#include "Combat/Projectile_Base.h"
+#include "Combat/Projectiles/Projectile_Base.h"
 #include "GameFramework/Character.h"
 #include "Kismet/KismetMathLibrary.h"
 
