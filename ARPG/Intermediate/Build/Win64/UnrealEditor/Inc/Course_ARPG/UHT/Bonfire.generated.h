@@ -17,11 +17,13 @@ struct FHitResult;
 #endif
 #define COURSE_ARPG_Bonfire_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execChangeWidgetVisibility); \
+	DECLARE_FUNCTION(execOnSphereEndOverlap); \
 	DECLARE_FUNCTION(execOnSphereBeginOverlap);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesABonfire(); \
 	friend struct Z_Construct_UClass_ABonfire_Statics; \
@@ -30,7 +32,7 @@ public: \
 	DECLARE_SERIALIZER(ABonfire)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ABonfire(ABonfire&&); \
@@ -42,13 +44,13 @@ public: \
 	NO_API virtual ~ABonfire();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_11_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_14_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_17_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

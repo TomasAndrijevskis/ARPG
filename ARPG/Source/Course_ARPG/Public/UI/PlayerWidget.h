@@ -11,6 +11,9 @@
 #include "PlayerWidget.generated.h"
 
 
+class UInfoFooter;
+enum EScreens : int;
+class UBonfireMenuWidget;
 class UPlayerDeath;
 class UStatsComponent;
 class UStatusIconWithAmount;
@@ -65,6 +68,9 @@ public:
 	void CreateUpgradeInfoHeader(int Value);
 
 	UFUNCTION(BlueprintCallable)
+	void CreateUpgradeInfoFooter(EScreens ScreenType);
+
+	UFUNCTION(BlueprintCallable)
 	void CreateStatusIconWithTimer(float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
 
 	UFUNCTION(BlueprintCallable)
@@ -72,6 +78,12 @@ public:
 
 	UFUNCTION()
 	void CreateDeathWidget();
+
+	UFUNCTION()
+	void RemoveBonfireMenuWidget();
+
+	UFUNCTION()
+	void CreateBonfireMenuWidget();
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
@@ -106,46 +118,57 @@ private:
 	UHorizontalBox* HorizontalBox_AbilitiesFooter;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatsScreenWidget> StatsWidget;
+	TSubclassOf<UStatsScreenWidget> StatsWidgetClass;
 
 	UPROPERTY()
 	UStatsScreenWidget* StatsScreenRef;
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAbilityUpgradeScreen> AbilityUpgradeScreenWidget;
+	TSubclassOf<UAbilityUpgradeScreen> AbilityUpgradeScreenWidgetClass;
 
 	UPROPERTY()
 	UAbilityUpgradeScreen* AbilityUpgradeScreenWidgetRef;
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAbilityFooter> AbilityFooterWidget;
+	TSubclassOf<UAbilityFooter> AbilityFooterWidgetClass;
 
 	UPROPERTY()
 	UAbilityFooter* AbilityFooterWidgetRef;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UInfoHeader> InfoHeaderWidget;
+	TSubclassOf<UInfoHeader> InfoHeaderWidgetClass;
 
 	UPROPERTY()
 	UInfoHeader* InfoHeaderWidgetRef;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatusIconWithTimer> StatusIconWithTimerWidget;
+	TSubclassOf<UStatusIconWithTimer> StatusIconWithTimerWidgetClass;
 
 	UPROPERTY()
 	UStatusIconWithTimer* StatusIconWithTimerWidgetRef;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatusIconWithAmount> StatusIconWithAmountWidget;
+	TSubclassOf<UStatusIconWithAmount> StatusIconWithAmountWidgetClass;
 
 	UPROPERTY()
 	UStatusIconWithAmount* StatusIconWithAmountWidgetRef;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UPlayerDeath> PlayerDeathWidget;
+	TSubclassOf<UPlayerDeath> PlayerDeathWidgetClass;
 
 	UPROPERTY()
 	UPlayerDeath* PlayerDeathWidgetRef;
 	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UBonfireMenuWidget> BonfireMenuWidgetClass;
+	
+	UPROPERTY()
+	UBonfireMenuWidget* BonfireMenuWidgetRef;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UInfoFooter> InfoFooterWidgetClass;
+
+	UPROPERTY()
+	UInfoFooter* InfoFooterWidgetRef;
 	
 };

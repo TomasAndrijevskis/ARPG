@@ -18,6 +18,11 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	DECLARE_FUNCTION(execHandleGameLoad); \
 	DECLARE_FUNCTION(execSetPlayerControllerSettings); \
 	DECLARE_FUNCTION(execHandleGamePause); \
+	DECLARE_FUNCTION(execCreateBonfireMenuWidget); \
+	DECLARE_FUNCTION(execSaveAll); \
+	DECLARE_FUNCTION(execLoadToMainMenu); \
+	DECLARE_FUNCTION(execSetIsInBonfireRange); \
+	DECLARE_FUNCTION(execRemoveBonfireMenuWidget); \
 	DECLARE_FUNCTION(execCreateAbilityUpgradeScreen); \
 	DECLARE_FUNCTION(execCreateStatsScreen);
 

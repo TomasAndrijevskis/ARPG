@@ -72,7 +72,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AProje
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::NewProp_OtherActor,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AProjectile_Base, nullptr, "HandleBeginOverlap", nullptr, nullptr, Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::PropPointers), sizeof(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::Projectile_Base_eventHandleBeginOverlap_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::Function_MetaDataParams), Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AProjectile_Base, nullptr, "HandleBeginOverlap", nullptr, nullptr, Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::PropPointers), sizeof(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::Projectile_Base_eventHandleBeginOverlap_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::Function_MetaDataParams), Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap_Statics::Projectile_Base_eventHandleBeginOverlap_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap()
 {
@@ -219,7 +219,7 @@ struct Z_Construct_UClass_AProjectile_Base_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AProjectile_Base_DestroyProjectile, "DestroyProjectile" }, // 130771858
-		{ &Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap, "HandleBeginOverlap" }, // 799829987
+		{ &Z_Construct_UFunction_AProjectile_Base_HandleBeginOverlap, "HandleBeginOverlap" }, // 2368607227
 		{ &Z_Construct_UFunction_AProjectile_Base_OnComponentBeginOverlap, "OnComponentBeginOverlap" }, // 3743023249
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -277,10 +277,10 @@ AProjectile_Base::~AProjectile_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_Projectile_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AProjectile_Base, AProjectile_Base::StaticClass, TEXT("AProjectile_Base"), &Z_Registration_Info_UClass_AProjectile_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AProjectile_Base), 1003928538U) },
+		{ Z_Construct_UClass_AProjectile_Base, AProjectile_Base::StaticClass, TEXT("AProjectile_Base"), &Z_Registration_Info_UClass_AProjectile_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AProjectile_Base), 2310413639U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_Projectile_Base_h_1502834896(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_Projectile_Base_h_2193598168(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_Projectile_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_Projectile_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

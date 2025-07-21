@@ -5,6 +5,9 @@
 #include "GameFramework/Actor.h"
 #include "Bonfire.generated.h"
 
+class AARPG_PlayerController;
+class UBonfireInteractionWidget;
+class UWidgetComponent;
 class USphereComponent;
 class UBoxComponent;
 
@@ -16,16 +19,27 @@ class COURSE_ARPG_API ABonfire : public AActor
 public:	
 
 	ABonfire();
-	
+
+	virtual void Tick(float DeltaSeconds) override;
+
 protected:
 
 	virtual void BeginPlay() override;
 	
 	UFUNCTION()
 	void OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+	void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+	
+	UPROPERTY(EditAnywhere)
+	UWidgetComponent* InteractionWidgetComponent;
 	
 private:
 
+	UFUNCTION()
+	void ChangeWidgetVisibility(bool bIsVisible);
+	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* BonfireMesh;
 
@@ -34,4 +48,13 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	USphereComponent* InteractionRangeCollision;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UBonfireInteractionWidget> InteractionWidgetClass;
+
+	UPROPERTY()
+	UBonfireInteractionWidget* InteractionWidgetRef;
+
+	UPROPERTY()
+	AARPG_PlayerController* PlayerController;
 };

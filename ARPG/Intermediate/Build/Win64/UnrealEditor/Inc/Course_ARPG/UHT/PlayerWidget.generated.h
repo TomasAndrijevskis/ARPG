@@ -17,10 +17,13 @@ class UTexture2D;
 #endif
 #define COURSE_ARPG_PlayerWidget_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_30_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execCreateBonfireMenuWidget); \
+	DECLARE_FUNCTION(execRemoveBonfireMenuWidget); \
 	DECLARE_FUNCTION(execCreateDeathWidget); \
 	DECLARE_FUNCTION(execCreateStatusIconWithAmount); \
 	DECLARE_FUNCTION(execCreateStatusIconWithTimer); \
+	DECLARE_FUNCTION(execCreateUpgradeInfoFooter); \
 	DECLARE_FUNCTION(execCreateUpgradeInfoHeader); \
 	DECLARE_FUNCTION(execRemoveAbilityFooter); \
 	DECLARE_FUNCTION(execCreateAbilityFooter); \
@@ -35,7 +38,7 @@ class UTexture2D;
 	DECLARE_FUNCTION(execSetHealth);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_30_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPlayerWidget(); \
 	friend struct Z_Construct_UClass_UPlayerWidget_Statics; \
@@ -44,7 +47,7 @@ public: \
 	DECLARE_SERIALIZER(UPlayerWidget)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_30_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API UPlayerWidget(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -58,13 +61,13 @@ public: \
 	NO_API virtual ~UPlayerWidget();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_24_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_30_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_27_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_30_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_30_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_30_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

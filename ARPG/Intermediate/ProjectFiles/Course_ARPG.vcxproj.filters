@@ -133,22 +133,10 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\CombatComponent_Mage.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\EnemyProjectile.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\EnemyProjectileComponent.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\FTraceSockets.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectile_Base.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\RangeAttackProjectile.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\StatusEffectsComponent.cpp">
@@ -199,6 +187,18 @@
     <Filter Include="Source\Course_ARPG\Private\Combat\Projectiles">
       <UniqueIdentifier>{86AE4974-131E-3EB6-9E93-FE69913BD9C5}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectiles\EnemyProjectile.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectiles\EnemyProjectileComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectiles\Projectile_Base.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectiles\RangeAttackProjectile.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Projectiles</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Projectiles\RangeAttackProjectile_Ice.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Projectiles</Filter>
     </ClCompile>
@@ -244,6 +244,12 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionWidget.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireMenuWidget.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BossHealthBar.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
@@ -257,6 +263,9 @@
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\EnemyHealthBar.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\InfoFooter.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\InfoHeader.cpp">
@@ -385,22 +394,10 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Mage.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectile.h">
-      <Filter>Source\Course_ARPG\Public\Combat</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\EnemyProjectileComponent.h">
-      <Filter>Source\Course_ARPG\Public\Combat</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\FTraceSockets.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h">
-      <Filter>Source\Course_ARPG\Public\Combat</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectile_Base.h">
-      <Filter>Source\Course_ARPG\Public\Combat</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\RangeAttackProjectile.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\StatusEffectsComponent.h">
@@ -451,6 +448,18 @@
     <Filter Include="Source\Course_ARPG\Public\Combat\Projectiles">
       <UniqueIdentifier>{64D534D3-1F11-3BC6-9BFB-A7A5889AD2CC}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectiles\EnemyProjectile.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectiles\EnemyProjectileComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectiles\Projectile_Base.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectiles\RangeAttackProjectile.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Projectiles</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Projectiles\RangeAttackProjectile_Ice.h">
       <Filter>Source\Course_ARPG\Public\Combat\Projectiles</Filter>
     </ClInclude>
@@ -496,6 +505,12 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionWidget.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireMenuWidget.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BossHealthBar.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
@@ -509,6 +524,9 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\EnemyHealthBar.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoFooter.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoHeader.h">

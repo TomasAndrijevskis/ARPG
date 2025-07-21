@@ -14,9 +14,6 @@ public:
 	
 	AProjectile_Base(){};
 	
-	UFUNCTION(BlueprintCallable)
-	void HandleBeginOverlap(AActor* OtherActor);
-	
 	UFUNCTION()
 	void DestroyProjectile();
 
@@ -42,6 +39,9 @@ protected:
 	
 private:
 
+	UFUNCTION()
+	void HandleBeginOverlap(AActor* OtherActor);
+	
 	void HandleDestruction();
 	
 	UPROPERTY(EditAnywhere)

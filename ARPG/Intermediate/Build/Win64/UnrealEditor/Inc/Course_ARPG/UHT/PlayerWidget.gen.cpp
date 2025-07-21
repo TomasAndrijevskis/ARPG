@@ -14,6 +14,8 @@ COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityFooter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityUpgradeScreen_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UBonfireMenuWidget_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UInfoFooter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UInfoHeader_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerDeath_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerWidget();
@@ -22,6 +24,7 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsComponent_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsScreenWidget_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusIconWithAmount_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusIconWithTimer_NoRegister();
+COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EScreens();
 COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EStats();
 ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UHorizontalBox_NoRegister();
@@ -131,6 +134,35 @@ DEFINE_FUNCTION(UPlayerWidget::execCreateAbilityUpgradeScreen)
 	P_NATIVE_END;
 }
 // End Class UPlayerWidget Function CreateAbilityUpgradeScreen
+
+// Begin Class UPlayerWidget Function CreateBonfireMenuWidget
+struct Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPlayerWidget, nullptr, "CreateBonfireMenuWidget", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UPlayerWidget::execCreateBonfireMenuWidget)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreateBonfireMenuWidget();
+	P_NATIVE_END;
+}
+// End Class UPlayerWidget Function CreateBonfireMenuWidget
 
 // Begin Class UPlayerWidget Function CreateDeathWidget
 struct Z_Construct_UFunction_UPlayerWidget_CreateDeathWidget_Statics
@@ -318,6 +350,48 @@ DEFINE_FUNCTION(UPlayerWidget::execCreateStatusIconWithTimer)
 }
 // End Class UPlayerWidget Function CreateStatusIconWithTimer
 
+// Begin Class UPlayerWidget Function CreateUpgradeInfoFooter
+struct Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics
+{
+	struct PlayerWidget_eventCreateUpgradeInfoFooter_Parms
+	{
+		TEnumAsByte<EScreens> ScreenType;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FBytePropertyParams NewProp_ScreenType;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::NewProp_ScreenType = { "ScreenType", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateUpgradeInfoFooter_Parms, ScreenType), Z_Construct_UEnum_Course_ARPG_EScreens, METADATA_PARAMS(0, nullptr) }; // 702563385
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::NewProp_ScreenType,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPlayerWidget, nullptr, "CreateUpgradeInfoFooter", nullptr, nullptr, Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::PropPointers), sizeof(Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::PlayerWidget_eventCreateUpgradeInfoFooter_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::PlayerWidget_eventCreateUpgradeInfoFooter_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UPlayerWidget::execCreateUpgradeInfoFooter)
+{
+	P_GET_PROPERTY(FByteProperty,Z_Param_ScreenType);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreateUpgradeInfoFooter(EScreens(Z_Param_ScreenType));
+	P_NATIVE_END;
+}
+// End Class UPlayerWidget Function CreateUpgradeInfoFooter
+
 // Begin Class UPlayerWidget Function CreateUpgradeInfoHeader
 struct Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoHeader_Statics
 {
@@ -417,6 +491,35 @@ DEFINE_FUNCTION(UPlayerWidget::execRemoveAbilityUpgradeScreen)
 	P_NATIVE_END;
 }
 // End Class UPlayerWidget Function RemoveAbilityUpgradeScreen
+
+// Begin Class UPlayerWidget Function RemoveBonfireMenuWidget
+struct Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPlayerWidget, nullptr, "RemoveBonfireMenuWidget", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UPlayerWidget::execRemoveBonfireMenuWidget)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->RemoveBonfireMenuWidget();
+	P_NATIVE_END;
+}
+// End Class UPlayerWidget Function RemoveBonfireMenuWidget
 
 // Begin Class UPlayerWidget Function RemoveStatsScreen
 struct Z_Construct_UFunction_UPlayerWidget_RemoveStatsScreen_Statics
@@ -664,13 +767,16 @@ void UPlayerWidget::StaticRegisterNativesUPlayerWidget()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "CreateAbilityFooter", &UPlayerWidget::execCreateAbilityFooter },
 		{ "CreateAbilityUpgradeScreen", &UPlayerWidget::execCreateAbilityUpgradeScreen },
+		{ "CreateBonfireMenuWidget", &UPlayerWidget::execCreateBonfireMenuWidget },
 		{ "CreateDeathWidget", &UPlayerWidget::execCreateDeathWidget },
 		{ "CreateStatsScreen", &UPlayerWidget::execCreateStatsScreen },
 		{ "CreateStatusIconWithAmount", &UPlayerWidget::execCreateStatusIconWithAmount },
 		{ "CreateStatusIconWithTimer", &UPlayerWidget::execCreateStatusIconWithTimer },
+		{ "CreateUpgradeInfoFooter", &UPlayerWidget::execCreateUpgradeInfoFooter },
 		{ "CreateUpgradeInfoHeader", &UPlayerWidget::execCreateUpgradeInfoHeader },
 		{ "RemoveAbilityFooter", &UPlayerWidget::execRemoveAbilityFooter },
 		{ "RemoveAbilityUpgradeScreen", &UPlayerWidget::execRemoveAbilityUpgradeScreen },
+		{ "RemoveBonfireMenuWidget", &UPlayerWidget::execRemoveBonfireMenuWidget },
 		{ "RemoveStatsScreen", &UPlayerWidget::execRemoveStatsScreen },
 		{ "SetHealth", &UPlayerWidget::execSetHealth },
 		{ "SetLevel", &UPlayerWidget::execSetLevel },
@@ -738,7 +844,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatsWidget_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatsWidgetClass_MetaData[] = {
 		{ "Category", "PlayerWidget" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
@@ -746,7 +852,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AbilityUpgradeScreenWidget_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AbilityUpgradeScreenWidgetClass_MetaData[] = {
 		{ "Category", "PlayerWidget" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
@@ -754,7 +860,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AbilityFooterWidget_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AbilityFooterWidgetClass_MetaData[] = {
 		{ "Category", "PlayerWidget" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
@@ -762,7 +868,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InfoHeaderWidget_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InfoHeaderWidgetClass_MetaData[] = {
 		{ "Category", "PlayerWidget" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
@@ -770,7 +876,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatusIconWithTimerWidget_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatusIconWithTimerWidgetClass_MetaData[] = {
 		{ "Category", "PlayerWidget" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
@@ -778,7 +884,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatusIconWithAmountWidget_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatusIconWithAmountWidgetClass_MetaData[] = {
 		{ "Category", "PlayerWidget" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
@@ -786,11 +892,27 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerDeathWidget_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerDeathWidgetClass_MetaData[] = {
 		{ "Category", "PlayerWidget" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerDeathWidgetRef_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireMenuWidgetClass_MetaData[] = {
+		{ "Category", "PlayerWidget" },
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireMenuWidgetRef_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InfoFooterWidgetClass_MetaData[] = {
+		{ "Category", "PlayerWidget" },
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InfoFooterWidgetRef_MetaData[] = {
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
@@ -806,32 +928,39 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ProgressBar_XP;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_TextBlock_Level;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_HorizontalBox_AbilitiesFooter;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_StatsWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_StatsWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StatsScreenRef;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_AbilityUpgradeScreenWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_AbilityUpgradeScreenWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityUpgradeScreenWidgetRef;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_AbilityFooterWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_AbilityFooterWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityFooterWidgetRef;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_InfoHeaderWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_InfoHeaderWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InfoHeaderWidgetRef;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_StatusIconWithTimerWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_StatusIconWithTimerWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StatusIconWithTimerWidgetRef;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_StatusIconWithAmountWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_StatusIconWithAmountWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_StatusIconWithAmountWidgetRef;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_PlayerDeathWidget;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_PlayerDeathWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerDeathWidgetRef;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_BonfireMenuWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireMenuWidgetRef;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_InfoFooterWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_InfoFooterWidgetRef;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter, "CreateAbilityFooter" }, // 2450226120
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 2089711585
+		{ &Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget, "CreateBonfireMenuWidget" }, // 1274148549
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateDeathWidget, "CreateDeathWidget" }, // 3315036277
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen, "CreateStatsScreen" }, // 3961906875
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithAmount, "CreateStatusIconWithAmount" }, // 1220247603
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithTimer, "CreateStatusIconWithTimer" }, // 1058573187
+		{ &Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter, "CreateUpgradeInfoFooter" }, // 2830945192
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoHeader, "CreateUpgradeInfoHeader" }, // 4293353455
 		{ &Z_Construct_UFunction_UPlayerWidget_RemoveAbilityFooter, "RemoveAbilityFooter" }, // 3287209945
 		{ &Z_Construct_UFunction_UPlayerWidget_RemoveAbilityUpgradeScreen, "RemoveAbilityUpgradeScreen" }, // 1599882770
+		{ &Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget, "RemoveBonfireMenuWidget" }, // 1587070528
 		{ &Z_Construct_UFunction_UPlayerWidget_RemoveStatsScreen, "RemoveStatsScreen" }, // 2486869418
 		{ &Z_Construct_UFunction_UPlayerWidget_SetHealth, "SetHealth" }, // 3355234517
 		{ &Z_Construct_UFunction_UPlayerWidget_SetLevel, "SetLevel" }, // 1934459601
@@ -856,20 +985,24 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_XP = { "ProgressBar_XP", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, ProgressBar_XP), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProgressBar_XP_MetaData), NewProp_ProgressBar_XP_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_TextBlock_Level = { "TextBlock_Level", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, TextBlock_Level), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TextBlock_Level_MetaData), NewProp_TextBlock_Level_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_HorizontalBox_AbilitiesFooter = { "HorizontalBox_AbilitiesFooter", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, HorizontalBox_AbilitiesFooter), Z_Construct_UClass_UHorizontalBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HorizontalBox_AbilitiesFooter_MetaData), NewProp_HorizontalBox_AbilitiesFooter_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsWidget = { "StatsWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatsWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UStatsScreenWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsWidget_MetaData), NewProp_StatsWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsWidgetClass = { "StatsWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatsWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UStatsScreenWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsWidgetClass_MetaData), NewProp_StatsWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsScreenRef = { "StatsScreenRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatsScreenRef), Z_Construct_UClass_UStatsScreenWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatsScreenRef_MetaData), NewProp_StatsScreenRef_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityUpgradeScreenWidget = { "AbilityUpgradeScreenWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, AbilityUpgradeScreenWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UAbilityUpgradeScreen_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityUpgradeScreenWidget_MetaData), NewProp_AbilityUpgradeScreenWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityUpgradeScreenWidgetClass = { "AbilityUpgradeScreenWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, AbilityUpgradeScreenWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UAbilityUpgradeScreen_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityUpgradeScreenWidgetClass_MetaData), NewProp_AbilityUpgradeScreenWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityUpgradeScreenWidgetRef = { "AbilityUpgradeScreenWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, AbilityUpgradeScreenWidgetRef), Z_Construct_UClass_UAbilityUpgradeScreen_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityUpgradeScreenWidgetRef_MetaData), NewProp_AbilityUpgradeScreenWidgetRef_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityFooterWidget = { "AbilityFooterWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, AbilityFooterWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UAbilityFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityFooterWidget_MetaData), NewProp_AbilityFooterWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityFooterWidgetClass = { "AbilityFooterWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, AbilityFooterWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UAbilityFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityFooterWidgetClass_MetaData), NewProp_AbilityFooterWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityFooterWidgetRef = { "AbilityFooterWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, AbilityFooterWidgetRef), Z_Construct_UClass_UAbilityFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityFooterWidgetRef_MetaData), NewProp_AbilityFooterWidgetRef_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoHeaderWidget = { "InfoHeaderWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoHeaderWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UInfoHeader_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoHeaderWidget_MetaData), NewProp_InfoHeaderWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoHeaderWidgetClass = { "InfoHeaderWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoHeaderWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UInfoHeader_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoHeaderWidgetClass_MetaData), NewProp_InfoHeaderWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoHeaderWidgetRef = { "InfoHeaderWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoHeaderWidgetRef), Z_Construct_UClass_UInfoHeader_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoHeaderWidgetRef_MetaData), NewProp_InfoHeaderWidgetRef_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithTimerWidget = { "StatusIconWithTimerWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatusIconWithTimerWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UStatusIconWithTimer_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusIconWithTimerWidget_MetaData), NewProp_StatusIconWithTimerWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithTimerWidgetClass = { "StatusIconWithTimerWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatusIconWithTimerWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UStatusIconWithTimer_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusIconWithTimerWidgetClass_MetaData), NewProp_StatusIconWithTimerWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithTimerWidgetRef = { "StatusIconWithTimerWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatusIconWithTimerWidgetRef), Z_Construct_UClass_UStatusIconWithTimer_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusIconWithTimerWidgetRef_MetaData), NewProp_StatusIconWithTimerWidgetRef_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithAmountWidget = { "StatusIconWithAmountWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatusIconWithAmountWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UStatusIconWithAmount_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusIconWithAmountWidget_MetaData), NewProp_StatusIconWithAmountWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithAmountWidgetClass = { "StatusIconWithAmountWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatusIconWithAmountWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UStatusIconWithAmount_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusIconWithAmountWidgetClass_MetaData), NewProp_StatusIconWithAmountWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithAmountWidgetRef = { "StatusIconWithAmountWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, StatusIconWithAmountWidgetRef), Z_Construct_UClass_UStatusIconWithAmount_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusIconWithAmountWidgetRef_MetaData), NewProp_StatusIconWithAmountWidgetRef_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_PlayerDeathWidget = { "PlayerDeathWidget", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, PlayerDeathWidget), Z_Construct_UClass_UClass, Z_Construct_UClass_UPlayerDeath_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerDeathWidget_MetaData), NewProp_PlayerDeathWidget_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_PlayerDeathWidgetClass = { "PlayerDeathWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, PlayerDeathWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UPlayerDeath_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerDeathWidgetClass_MetaData), NewProp_PlayerDeathWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_PlayerDeathWidgetRef = { "PlayerDeathWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, PlayerDeathWidgetRef), Z_Construct_UClass_UPlayerDeath_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerDeathWidgetRef_MetaData), NewProp_PlayerDeathWidgetRef_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_BonfireMenuWidgetClass = { "BonfireMenuWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, BonfireMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UBonfireMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireMenuWidgetClass_MetaData), NewProp_BonfireMenuWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_BonfireMenuWidgetRef = { "BonfireMenuWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, BonfireMenuWidgetRef), Z_Construct_UClass_UBonfireMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireMenuWidgetRef_MetaData), NewProp_BonfireMenuWidgetRef_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetClass = { "InfoFooterWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoFooterWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UInfoFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoFooterWidgetClass_MetaData), NewProp_InfoFooterWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetRef = { "InfoFooterWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoFooterWidgetRef), Z_Construct_UClass_UInfoFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoFooterWidgetRef_MetaData), NewProp_InfoFooterWidgetRef_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerWidget_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ActiveStatusWidget_ValueProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ActiveStatusWidget_Key_KeyProp,
@@ -882,20 +1015,24 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerWi
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ProgressBar_XP,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_TextBlock_Level,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_HorizontalBox_AbilitiesFooter,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatsScreenRef,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityUpgradeScreenWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityUpgradeScreenWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityUpgradeScreenWidgetRef,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityFooterWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityFooterWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_AbilityFooterWidgetRef,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoHeaderWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoHeaderWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoHeaderWidgetRef,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithTimerWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithTimerWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithTimerWidgetRef,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithAmountWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithAmountWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_StatusIconWithAmountWidgetRef,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_PlayerDeathWidget,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_PlayerDeathWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_PlayerDeathWidgetRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_BonfireMenuWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_BonfireMenuWidgetRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetRef,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPlayerWidget_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPlayerWidget_Statics::DependentSingletons[])() = {
@@ -939,10 +1076,10 @@ UPlayerWidget::~UPlayerWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 1116096145U) },
+		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 930981894U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_2637271707(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_223179070(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

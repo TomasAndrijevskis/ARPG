@@ -18,9 +18,9 @@ struct FHitResult;
 #define COURSE_ARPG_Projectile_Base_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_Projectile_Base_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execHandleBeginOverlap); \
 	DECLARE_FUNCTION(execOnComponentBeginOverlap); \
-	DECLARE_FUNCTION(execDestroyProjectile); \
-	DECLARE_FUNCTION(execHandleBeginOverlap);
+	DECLARE_FUNCTION(execDestroyProjectile);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Projectiles_Projectile_Base_h_11_INCLASS_NO_PURE_DECLS \

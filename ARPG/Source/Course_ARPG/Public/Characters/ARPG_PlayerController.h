@@ -22,15 +22,30 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void CreateAbilityUpgradeScreen();
 	
+	UFUNCTION()
+	void RemoveBonfireMenuWidget();
+	
+	UFUNCTION()
+	void SetIsInBonfireRange(bool bNewIsInBonfireRange);
+
+	UFUNCTION()
+	void LoadToMainMenu();
+
+	UFUNCTION()
+	void SaveAll();
+	
 protected:
 	
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
+	void CreateBonfireMenuWidget();
+	
 private:
 
 	UFUNCTION()
 	void HandleGamePause(bool bIsGamePaused);
-
+	
 	UFUNCTION()
 	void SetPlayerControllerSettings();
 
@@ -42,9 +57,11 @@ private:
 	
 	UPROPERTY()
 	UARPG_GameInstance* GameInstanceRef;
-
+	
 	bool bIsAbilityScreenOpened = false;
 	
 	bool bIsStatsScreenOpened = false;
+
+	bool bIsInBonfireRange = false;
 	
 };

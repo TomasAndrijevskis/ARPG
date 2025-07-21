@@ -1,12 +1,11 @@
 
 #include "Characters/ARPG_PlayerController.h"
-
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
-#include "Characters/StatsComponent.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
+#include "UI/EScreens.h"
 #include "UI/PlayerWidget.h"
 
 
@@ -23,6 +22,23 @@ void AARPG_PlayerController::BeginPlay()
 }
 
 
+void AARPG_PlayerController::CreateBonfireMenuWidget()
+{
+	if (bIsInBonfireRange)
+	{
+		PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
+		HandleGamePause(true);
+	}
+}
+
+
+void AARPG_PlayerController::RemoveBonfireMenuWidget()
+{
+	PlayerRef->GetPlayerWidget()->RemoveBonfireMenuWidget();
+	HandleGamePause(false);
+}
+
+
 void AARPG_PlayerController::SetPlayerControllerSettings()
 {
 	this->SetShowMouseCursor(false);
@@ -33,57 +49,28 @@ void AARPG_PlayerController::SetPlayerControllerSettings()
 
 void AARPG_PlayerController::CreateStatsScreen()
 {
-	if (bIsAbilityScreenOpened)
+	RemoveBonfireMenuWidget();
+	HandleGamePause(true);
+	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentStatPointsAmount());
+	for (auto Stat : PlayerRef->ArrStats)
 	{
-		return;
+		PlayerRef->GetPlayerWidget()->CreateStatsScreen(Stat);
 	}
-
-	if (UGameplayStatics::IsGamePaused(this))
-	{
-		HandleGamePause(false);
-		PlayerRef->GetPlayerWidget()->RemoveStatsScreen();
-		PlayerRef->StatsComp->OnStatUpdateDelegate.Broadcast();
-		GameInstanceRef->SaveStats();
-		bIsStatsScreenOpened = false;
-	}
-	else
-	{
-		HandleGamePause(true);
-		PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentStatPointsAmount());
-		for (auto Stat : PlayerRef->ArrStats)
-		{
-			PlayerRef->GetPlayerWidget()->CreateStatsScreen(Stat);
-		}
-		bIsStatsScreenOpened = true;
-	}
+	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoFooter(EScreens::StatsScreen);
 }
 
 
 void AARPG_PlayerController::CreateAbilityUpgradeScreen()
 {
-	if (bIsStatsScreenOpened)
+	RemoveBonfireMenuWidget();
+	HandleGamePause(true);
+	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentAbilityPointsAmount());
+	for (auto Ability : PlayerRef->GetAbilitiesArray())
 	{
-		return;
+		UE_LOG(LogTemp, Error, TEXT("PC|Ability: %s"), *Ability->GetName());
+		PlayerRef->GetPlayerWidget()->CreateAbilityUpgradeScreen(Ability);
 	}
-
-	if (UGameplayStatics::IsGamePaused(this))
-	{
-		HandleGamePause(false);
-		PlayerRef->GetPlayerWidget()->RemoveAbilityUpgradeScreen();
-		GameInstanceRef->SaveAbilities();
-		bIsAbilityScreenOpened = false;
-	}
-	else
-	{
-		HandleGamePause(true);
-		PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentAbilityPointsAmount());
-		for (auto Ability : PlayerRef->GetAbilitiesArray())
-		{
-			UE_LOG(LogTemp, Error, TEXT("PC|Ability: %s"), *Ability->GetName());
-			PlayerRef->GetPlayerWidget()->CreateAbilityUpgradeScreen(Ability);
-		}
-		bIsAbilityScreenOpened = true;
-	}
+	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoFooter(EScreens::AbilitiesScreen);
 }
 
 
@@ -127,5 +114,22 @@ void AARPG_PlayerController::HandleGameLoad()
 	}
 }
 
+
+void AARPG_PlayerController::LoadToMainMenu()
+{
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MenuMap"));
+}
+
+
+void AARPG_PlayerController::SaveAll()
+{
+	GameInstanceRef->SaveAll();
+}
+
+
+void AARPG_PlayerController::SetIsInBonfireRange(bool bNewIsInBonfireRange)
+{
+	bIsInBonfireRange = bNewIsInBonfireRange;
+}
 
 

@@ -3,6 +3,9 @@
 #include "UI/AbilityFooter.h"
 #include "UI/StatsScreenWidget.h"
 #include "UI/AbilityUpgradeScreen.h"
+#include "UI/BonfireMenuWidget.h"
+#include "UI/EScreens.h"
+#include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
 #include "UI/PlayerDeath.h"
 #include "UI/StatusIconWithAmount.h"
@@ -11,14 +14,13 @@
 
 void UPlayerWidget::CreateStatsScreen(EStats Stat)
 {
-	if (!StatsWidget)
+	if (!StatsWidgetClass)
 	{
 		return;
 	}
-	StatsScreenRef = Cast<UStatsScreenWidget>(CreateWidget(this, StatsWidget));
+	StatsScreenRef = Cast<UStatsScreenWidget>(CreateWidget(this, StatsWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(StatsScreenRef);
 	StatsScreenRef->SetStatsVariables(Stat);
-	
 }
 
 
@@ -30,16 +32,17 @@ void UPlayerWidget::RemoveStatsScreen()
 		StatsScreenRef = nullptr; 
 	}
 	VerticalBox_UpgradeInfo->ClearChildren();
+	CreateBonfireMenuWidget();
 }
 
 
 void UPlayerWidget::CreateAbilityUpgradeScreen(UAbilityComponent_Base* AbilityCompRef)
 {
-	if (!AbilityUpgradeScreenWidget)
+	if (!AbilityUpgradeScreenWidgetClass)
 	{
 		return;
 	}
-	AbilityUpgradeScreenWidgetRef = Cast<UAbilityUpgradeScreen>(CreateWidget(this, AbilityUpgradeScreenWidget));
+	AbilityUpgradeScreenWidgetRef = Cast<UAbilityUpgradeScreen>(CreateWidget(this, AbilityUpgradeScreenWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(AbilityUpgradeScreenWidgetRef);
 	AbilityUpgradeScreenWidgetRef->InitializeAbility(AbilityCompRef);
 }
@@ -55,16 +58,17 @@ void UPlayerWidget::RemoveAbilityUpgradeScreen()
 		AbilityUpgradeScreenWidgetRef = nullptr;
 	}
 	VerticalBox_UpgradeInfo->ClearChildren();
+	CreateBonfireMenuWidget();
 }
 
 
 void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, FString ActionKey, UAbilityComponent_Base* AbilityCompRef)
 {
-	if (!AbilityFooterWidget)
+	if (!AbilityFooterWidgetClass)
 	{
 		return;
 	}
-	AbilityFooterWidgetRef = Cast<UAbilityFooter>(CreateWidget(this, AbilityFooterWidget));
+	AbilityFooterWidgetRef = Cast<UAbilityFooter>(CreateWidget(this, AbilityFooterWidgetClass));
 	AbilityFooterWidgetRef->SetAbility(Image, ActionKey, AbilityCompRef);
 	HorizontalBox_AbilitiesFooter->AddChild(AbilityFooterWidgetRef);
 }
@@ -83,24 +87,35 @@ void UPlayerWidget::RemoveAbilityFooter()
 
 void UPlayerWidget::CreateUpgradeInfoHeader(int Value)
 {
-	if (!InfoHeaderWidget)
+	if (!InfoHeaderWidgetClass)
 	{
 		return;
 	}
-	InfoHeaderWidgetRef = Cast<UInfoHeader>(CreateWidget(this, InfoHeaderWidget));
+	InfoHeaderWidgetRef = Cast<UInfoHeader>(CreateWidget(this, InfoHeaderWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(InfoHeaderWidgetRef);
 	InfoHeaderWidgetRef->InitializeInfoHeader(Value);
-		
+}
+
+
+void UPlayerWidget::CreateUpgradeInfoFooter(EScreens ScreenType)
+{
+	if (!InfoFooterWidgetClass)
+	{
+		return;
+	}
+	InfoFooterWidgetRef = Cast<UInfoFooter>(CreateWidget(this, InfoFooterWidgetClass));
+	VerticalBox_UpgradeInfo->AddChild(InfoFooterWidgetRef);
+	InfoFooterWidgetRef->InitializeFooter(ScreenType);
 }
 
 
 void UPlayerWidget::CreateStatusIconWithTimer(float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
 {
-	if (!StatusIconWithTimerWidget)
+	if (!StatusIconWithTimerWidgetClass)
 	{
 		return;
 	}
-	StatusIconWithTimerWidgetRef = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidget));
+	StatusIconWithTimerWidgetRef = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
 	StatusIconWithTimerWidgetRef->InitializeWidget(Duration, Image, AbilityCompRef);
 	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerWidgetRef);
 }
@@ -108,7 +123,7 @@ void UPlayerWidget::CreateStatusIconWithTimer(float Duration, UTexture2D* Image,
 
 void UPlayerWidget::CreateStatusIconWithAmount(float Amount, UTexture2D* Image,UStatsComponent* StatsCompRef, FString Keyword)
 {
-	if (!StatusIconWithAmountWidget)
+	if (!StatusIconWithAmountWidgetClass)
 	{
 		return;
 	}
@@ -126,7 +141,7 @@ void UPlayerWidget::CreateStatusIconWithAmount(float Amount, UTexture2D* Image,U
 	}
 	else
 	{
-		StatusIconWithAmountWidgetRef = Cast<UStatusIconWithAmount>(CreateWidget(this, StatusIconWithAmountWidget));
+		StatusIconWithAmountWidgetRef = Cast<UStatusIconWithAmount>(CreateWidget(this, StatusIconWithAmountWidgetClass));
 		StatusIconWithAmountWidgetRef->InitializeWidget(Amount, Image, StatsCompRef, Keyword);
 		ActiveStatusWidget.Add(Keyword, StatusIconWithAmountWidgetRef);
 		HorizontalBox_StatusEffects->AddChild(StatusIconWithAmountWidgetRef);
@@ -136,14 +151,35 @@ void UPlayerWidget::CreateStatusIconWithAmount(float Amount, UTexture2D* Image,U
 
 void UPlayerWidget::CreateDeathWidget()
 {
-	if (!PlayerDeathWidget)
+	if (!PlayerDeathWidgetClass)
 	{
 		return;
 	}
 
-	PlayerDeathWidgetRef = Cast<UPlayerDeath>(CreateWidget(this, PlayerDeathWidget));
+	PlayerDeathWidgetRef = Cast<UPlayerDeath>(CreateWidget(this, PlayerDeathWidgetClass));
 	PlayerDeathWidgetRef->AddToViewport(5);
 }
+
+
+void UPlayerWidget::CreateBonfireMenuWidget()
+{
+	if (BonfireMenuWidgetClass)
+	{
+		BonfireMenuWidgetRef = Cast<UBonfireMenuWidget>(CreateWidget(this, BonfireMenuWidgetClass));
+		BonfireMenuWidgetRef->AddToViewport(5);
+	}
+}
+
+
+void UPlayerWidget::RemoveBonfireMenuWidget()
+{
+	if (BonfireMenuWidgetRef)
+	{
+		BonfireMenuWidgetRef->RemoveFromParent();
+		BonfireMenuWidgetRef = nullptr;
+	}
+}
+
 
 
 void UPlayerWidget::SetHealth(float NewHealthPercent)
