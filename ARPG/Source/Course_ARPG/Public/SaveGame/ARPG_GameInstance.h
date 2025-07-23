@@ -36,6 +36,12 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void SaveAll();
+
+	UFUNCTION()
+	void SaveBonfires();
+
+	UFUNCTION()
+	void LoadBonfires();
 	
 	UFUNCTION(BlueprintCallable)
 	void InitializeGameInstance();

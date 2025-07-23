@@ -272,6 +272,10 @@ struct Z_Construct_UClass_ABonfire_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerController_MetaData[] = {
 		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireName_MetaData[] = {
+		{ "Category", "Bonfire" },
+		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractionWidgetComponent;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireMesh;
@@ -280,6 +284,7 @@ struct Z_Construct_UClass_ABonfire_Statics
 	static const UECodeGen_Private::FClassPropertyParams NewProp_InteractionWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractionWidgetRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerController;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_BonfireName;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -300,6 +305,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Stati
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetClass = { "InteractionWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, InteractionWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UBonfireInteractionWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InteractionWidgetClass_MetaData), NewProp_InteractionWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetRef = { "InteractionWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, InteractionWidgetRef), Z_Construct_UClass_UBonfireInteractionWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InteractionWidgetRef_MetaData), NewProp_InteractionWidgetRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_PlayerController = { "PlayerController", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, PlayerController), Z_Construct_UClass_AARPG_PlayerController_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerController_MetaData), NewProp_PlayerController_MetaData) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireName = { "BonfireName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, BonfireName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireName_MetaData), NewProp_BonfireName_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABonfire_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireMesh,
@@ -308,6 +314,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABonfire_
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_PlayerController,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireName,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ABonfire_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ABonfire_Statics::DependentSingletons[])() = {
@@ -350,10 +357,10 @@ ABonfire::~ABonfire() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ABonfire, ABonfire::StaticClass, TEXT("ABonfire"), &Z_Registration_Info_UClass_ABonfire, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABonfire), 2238833502U) },
+		{ Z_Construct_UClass_ABonfire, ABonfire::StaticClass, TEXT("ABonfire"), &Z_Registration_Info_UClass_ABonfire, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABonfire), 362410667U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_129669817(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_2362545609(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

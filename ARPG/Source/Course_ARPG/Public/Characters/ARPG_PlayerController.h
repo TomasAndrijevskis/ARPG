@@ -6,6 +6,7 @@
 #include "ARPG_PlayerController.generated.h"
 
 
+class ABonfire;
 class UARPG_GameInstance;
 class AMainCharacter_Base;
 
@@ -16,23 +17,31 @@ class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 
 public:
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void CreateStatsScreen();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void CreateAbilityUpgradeScreen();
 	
 	UFUNCTION()
 	void RemoveBonfireMenuWidget();
+
+	UFUNCTION()
+	void CreateQuickTravelMenu();
+
+	UFUNCTION()
+	void RemoveQuickTravelMenu();
 	
 	UFUNCTION()
-	void SetIsInBonfireRange(bool bNewIsInBonfireRange);
+	void SetIsInBonfireRange(bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
 
 	UFUNCTION()
 	void LoadToMainMenu();
 
 	UFUNCTION()
 	void SaveAll();
+
+	TMap<FString, FVector> UnlockedBonfires;
 	
 protected:
 	
@@ -57,6 +66,9 @@ private:
 	
 	UPROPERTY()
 	UARPG_GameInstance* GameInstanceRef;
+	
+	UPROPERTY()
+	ABonfire* BonfireRef;
 	
 	bool bIsAbilityScreenOpened = false;
 	

@@ -7,29 +7,12 @@
 
 UClass* AARPG_GameMode::GetDefaultPawnClassForController_Implementation(AController* InController)
 {
-	
-	/*UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	if (GameInstance)
-	{
-		if (!GameInstance->PlayerCharacterClass)
-		{
-			UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(GameInstance->GetSlotName(), 0));
-		
-			if (SaveGameInstance && SaveGameInstance->PlayerCharacter)
-			{
-				UE_LOG(LogTemp,Error,TEXT("GM, Loaded class: %s"), *SaveGameInstance->PlayerCharacter->GetName());
-				return SaveGameInstance->PlayerCharacter;
-			} 
-		}
-		return GameInstance->PlayerCharacterClass;
-	}*/
-
 	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(GameInstance->GetSlotName(), 0));
 		
 	if (SaveGameInstance && SaveGameInstance->PlayerCharacter)
 	{
-		UE_LOG(LogTemp,Error,TEXT("GameMode|Loaded class: %s"), *SaveGameInstance->PlayerCharacter->GetName());
+		//UE_LOG(LogTemp,Error,TEXT("GameMode|Loaded class: %s"), *SaveGameInstance->PlayerCharacter->GetName());
 		return SaveGameInstance->PlayerCharacter;
 	}
 	return Super::GetDefaultPawnClassForController_Implementation(InController);

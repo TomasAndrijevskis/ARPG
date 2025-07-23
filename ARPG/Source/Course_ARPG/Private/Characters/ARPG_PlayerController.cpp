@@ -5,6 +5,7 @@
 #include "Combat/Abilities/AbilityComponent_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
+#include "SaveGame/Bonfire.h"
 #include "UI/EScreens.h"
 #include "UI/PlayerWidget.h"
 
@@ -16,9 +17,10 @@ void AARPG_PlayerController::BeginPlay()
 	SetPlayerControllerSettings();
 	
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
-
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
+	
 	HandleGameLoad();
+	
 }
 
 
@@ -28,6 +30,11 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 	{
 		PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
 		HandleGamePause(true);
+
+		if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
+		{
+			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), BonfireRef->GetActorLocation());
+		}
 	}
 }
 
@@ -39,11 +46,18 @@ void AARPG_PlayerController::RemoveBonfireMenuWidget()
 }
 
 
-void AARPG_PlayerController::SetPlayerControllerSettings()
+void AARPG_PlayerController::CreateQuickTravelMenu()
 {
-	this->SetShowMouseCursor(false);
-	FInputModeGameOnly InputMode;
-	this->SetInputMode(InputMode);
+	RemoveBonfireMenuWidget();
+	HandleGamePause(true);
+	PlayerRef->GetPlayerWidget()->CreateQuickTravelMenuWidget(UnlockedBonfires, BonfireRef->GetBonfireName());
+}
+
+
+void AARPG_PlayerController::RemoveQuickTravelMenu()
+{
+	PlayerRef->GetPlayerWidget()->RemoveQuickTravelMenuWidget();
+	HandleGamePause(false);
 }
 
 
@@ -71,6 +85,14 @@ void AARPG_PlayerController::CreateAbilityUpgradeScreen()
 		PlayerRef->GetPlayerWidget()->CreateAbilityUpgradeScreen(Ability);
 	}
 	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoFooter(EScreens::AbilitiesScreen);
+}
+
+
+void AARPG_PlayerController::SetPlayerControllerSettings()
+{
+	this->SetShowMouseCursor(false);
+	FInputModeGameOnly InputMode;
+	this->SetInputMode(InputMode);
 }
 
 
@@ -106,6 +128,7 @@ void AARPG_PlayerController::HandleGameLoad()
 	{
 		GameInstanceRef->LoadStats();
 		GameInstanceRef->LoadAbilities();
+		GameInstanceRef->LoadBonfires();
 		UE_LOG(LogTemp, Error, TEXT("PlayerController|SlotName: %s"), *SlotName);
 	}
 	else
@@ -127,9 +150,10 @@ void AARPG_PlayerController::SaveAll()
 }
 
 
-void AARPG_PlayerController::SetIsInBonfireRange(bool bNewIsInBonfireRange)
+void AARPG_PlayerController::SetIsInBonfireRange(bool bNewIsInBonfireRange, ABonfire* BonfireInRange)
 {
 	bIsInBonfireRange = bNewIsInBonfireRange;
+	BonfireRef = BonfireInRange;
 }
 
 

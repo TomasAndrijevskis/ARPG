@@ -79,9 +79,6 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Mob.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EStats.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\LevelingComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
@@ -274,7 +271,16 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerDeath.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerTeleport.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerWidget.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\QuickTravelButton.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\QuickTravelMenu.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\SaveMenu.cpp">
@@ -526,6 +532,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\EnemyHealthBar.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\EScreens.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoFooter.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
@@ -535,7 +544,16 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerDeath.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerTeleport.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerWidget.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\QuickTravelButton.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\QuickTravelMenu.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\SaveMenu.h">

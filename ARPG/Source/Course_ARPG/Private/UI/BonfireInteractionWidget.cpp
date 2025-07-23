@@ -7,5 +7,5 @@ void UBonfireInteractionWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	
-	Text_InteractionText->SetText(FText::FromString("Interact with bonfire: E"));
+	Text_InteractionText->SetText(FText::FromString("Interact with bonfire: B"));
 }

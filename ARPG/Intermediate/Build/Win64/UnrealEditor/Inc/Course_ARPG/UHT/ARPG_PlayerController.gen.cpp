@@ -12,6 +12,7 @@ void EmptyLinkFunctionForGeneratedCodeARPG_PlayerController() {}
 // Begin Cross Module References
 COURSE_ARPG_API UClass* Z_Construct_UClass_AARPG_PlayerController();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AARPG_PlayerController_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_ABonfire_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UARPG_GameInstance_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_APlayerController();
@@ -28,7 +29,7 @@ struct Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_S
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreateAbilityUpgradeScreen", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreateAbilityUpgradeScreen", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -76,6 +77,35 @@ DEFINE_FUNCTION(AARPG_PlayerController::execCreateBonfireMenuWidget)
 }
 // End Class AARPG_PlayerController Function CreateBonfireMenuWidget
 
+// Begin Class AARPG_PlayerController Function CreateQuickTravelMenu
+struct Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreateQuickTravelMenu", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AARPG_PlayerController::execCreateQuickTravelMenu)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreateQuickTravelMenu();
+	P_NATIVE_END;
+}
+// End Class AARPG_PlayerController Function CreateQuickTravelMenu
+
 // Begin Class AARPG_PlayerController Function CreateStatsScreen
 struct Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics
 {
@@ -86,7 +116,7 @@ struct Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreateStatsScreen", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreateStatsScreen", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen_Statics::Function_MetaDataParams) };
 UFunction* Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen()
 {
 	static UFunction* ReturnFunction = nullptr;
@@ -239,6 +269,35 @@ DEFINE_FUNCTION(AARPG_PlayerController::execRemoveBonfireMenuWidget)
 }
 // End Class AARPG_PlayerController Function RemoveBonfireMenuWidget
 
+// Begin Class AARPG_PlayerController Function RemoveQuickTravelMenu
+struct Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "RemoveQuickTravelMenu", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AARPG_PlayerController::execRemoveQuickTravelMenu)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->RemoveQuickTravelMenu();
+	P_NATIVE_END;
+}
+// End Class AARPG_PlayerController Function RemoveQuickTravelMenu
+
 // Begin Class AARPG_PlayerController Function SaveAll
 struct Z_Construct_UFunction_AARPG_PlayerController_SaveAll_Statics
 {
@@ -274,6 +333,7 @@ struct Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics
 	struct ARPG_PlayerController_eventSetIsInBonfireRange_Parms
 	{
 		bool bNewIsInBonfireRange;
+		ABonfire* BonfireInRange;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -282,6 +342,7 @@ struct Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics
 #endif // WITH_METADATA
 	static void NewProp_bNewIsInBonfireRange_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bNewIsInBonfireRange;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireInRange;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
@@ -290,8 +351,10 @@ void Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::N
 	((ARPG_PlayerController_eventSetIsInBonfireRange_Parms*)Obj)->bNewIsInBonfireRange = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::NewProp_bNewIsInBonfireRange = { "bNewIsInBonfireRange", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(ARPG_PlayerController_eventSetIsInBonfireRange_Parms), &Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::NewProp_bNewIsInBonfireRange_SetBit, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::NewProp_BonfireInRange = { "BonfireInRange", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ARPG_PlayerController_eventSetIsInBonfireRange_Parms, BonfireInRange), Z_Construct_UClass_ABonfire_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::NewProp_bNewIsInBonfireRange,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::NewProp_BonfireInRange,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::PropPointers) < 2048);
 const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "SetIsInBonfireRange", nullptr, nullptr, Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::PropPointers), sizeof(Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::ARPG_PlayerController_eventSetIsInBonfireRange_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics::Function_MetaDataParams) };
@@ -308,9 +371,10 @@ UFunction* Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange()
 DEFINE_FUNCTION(AARPG_PlayerController::execSetIsInBonfireRange)
 {
 	P_GET_UBOOL(Z_Param_bNewIsInBonfireRange);
+	P_GET_OBJECT(ABonfire,Z_Param_BonfireInRange);
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	P_THIS->SetIsInBonfireRange(Z_Param_bNewIsInBonfireRange);
+	P_THIS->SetIsInBonfireRange(Z_Param_bNewIsInBonfireRange,Z_Param_BonfireInRange);
 	P_NATIVE_END;
 }
 // End Class AARPG_PlayerController Function SetIsInBonfireRange
@@ -351,11 +415,13 @@ void AARPG_PlayerController::StaticRegisterNativesAARPG_PlayerController()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "CreateAbilityUpgradeScreen", &AARPG_PlayerController::execCreateAbilityUpgradeScreen },
 		{ "CreateBonfireMenuWidget", &AARPG_PlayerController::execCreateBonfireMenuWidget },
+		{ "CreateQuickTravelMenu", &AARPG_PlayerController::execCreateQuickTravelMenu },
 		{ "CreateStatsScreen", &AARPG_PlayerController::execCreateStatsScreen },
 		{ "HandleGameLoad", &AARPG_PlayerController::execHandleGameLoad },
 		{ "HandleGamePause", &AARPG_PlayerController::execHandleGamePause },
 		{ "LoadToMainMenu", &AARPG_PlayerController::execLoadToMainMenu },
 		{ "RemoveBonfireMenuWidget", &AARPG_PlayerController::execRemoveBonfireMenuWidget },
+		{ "RemoveQuickTravelMenu", &AARPG_PlayerController::execRemoveQuickTravelMenu },
 		{ "SaveAll", &AARPG_PlayerController::execSaveAll },
 		{ "SetIsInBonfireRange", &AARPG_PlayerController::execSetIsInBonfireRange },
 		{ "SetPlayerControllerSettings", &AARPG_PlayerController::execSetPlayerControllerSettings },
@@ -381,21 +447,27 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_GameInstanceRef_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireRef_MetaData[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameInstanceRef;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireRef;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 2040075222
+		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 3242308684
 		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateBonfireMenuWidget, "CreateBonfireMenuWidget" }, // 3394972311
-		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen, "CreateStatsScreen" }, // 1472688990
+		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu, "CreateQuickTravelMenu" }, // 4103149661
+		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen, "CreateStatsScreen" }, // 1531694648
 		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad, "HandleGameLoad" }, // 897463061
 		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause, "HandleGamePause" }, // 1776799696
 		{ &Z_Construct_UFunction_AARPG_PlayerController_LoadToMainMenu, "LoadToMainMenu" }, // 601955400
 		{ &Z_Construct_UFunction_AARPG_PlayerController_RemoveBonfireMenuWidget, "RemoveBonfireMenuWidget" }, // 2003974830
+		{ &Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu, "RemoveQuickTravelMenu" }, // 2183402159
 		{ &Z_Construct_UFunction_AARPG_PlayerController_SaveAll, "SaveAll" }, // 462141983
-		{ &Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange, "SetIsInBonfireRange" }, // 3417933611
+		{ &Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange, "SetIsInBonfireRange" }, // 1123615764
 		{ &Z_Construct_UFunction_AARPG_PlayerController_SetPlayerControllerSettings, "SetPlayerControllerSettings" }, // 839502095
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -406,9 +478,11 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_PlayerRef = { "PlayerRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, PlayerRef), Z_Construct_UClass_AMainCharacter_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerRef_MetaData), NewProp_PlayerRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_GameInstanceRef = { "GameInstanceRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, GameInstanceRef), Z_Construct_UClass_UARPG_GameInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameInstanceRef_MetaData), NewProp_GameInstanceRef_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_BonfireRef = { "BonfireRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, BonfireRef), Z_Construct_UClass_ABonfire_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireRef_MetaData), NewProp_BonfireRef_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_PlayerRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_GameInstanceRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_BonfireRef,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AARPG_PlayerController_Statics::DependentSingletons[])() = {
@@ -452,10 +526,10 @@ AARPG_PlayerController::~AARPG_PlayerController() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 651827482U) },
+		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 3025500544U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_730023312(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_3718070227(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

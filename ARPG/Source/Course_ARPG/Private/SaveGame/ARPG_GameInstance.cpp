@@ -1,5 +1,6 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
+#include "Characters/ARPG_PlayerController.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
@@ -44,7 +45,63 @@ void UARPG_GameInstance::SaveAll()
 {
 	SaveStats();
 	SaveAbilities();
+	SaveBonfires();
 	bIsFirstLoad = false;
+}
+
+
+void UARPG_GameInstance::SaveBonfires()
+{
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
+	}
+	
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
+	if (!PlayerController)
+	{
+		return;
+	}
+	
+	for (TPair<FString, FVector>& Bonfire: PlayerController->UnlockedBonfires)
+	{
+		SaveGameInstance->UnlockedBonfires.Add(Bonfire.Key, Bonfire.Value);
+		UE_LOG(LogTemp, Error, TEXT("GI|Save|Bonfire name: %s"), *Bonfire.Key);
+		UE_LOG(LogTemp, Error, TEXT("GI|Save|Bonfire location:  %s"), *Bonfire.Value.ToString());
+	}
+	UE_LOG(LogTemp, Error, TEXT("GI|Bonfires saved"));
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadBonfires()
+{
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	
+	if (!SaveGameInstance)
+	{
+		UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant Load Bonfires"));
+		return;
+	}
+
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
+	if (!PlayerController)
+	{
+		return;
+	}
+
+	/*for (TPair<FString, FVector>& Bonfire: SaveGameInstance->UnlockedBonfires)
+	{
+		UE_LOG(LogTemp, Error, TEXT("GI|Load|Bonfire name: %s"), *Bonfire.Key);
+		UE_LOG(LogTemp, Error, TEXT("GI|Load|Bonfire location:  %s"), *Bonfire.Value.ToString());
+	}*/
+	
+	for (TPair<FString, FVector>& Bonfire: SaveGameInstance->UnlockedBonfires)
+	{
+		PlayerController->UnlockedBonfires.Add(Bonfire.Key, Bonfire.Value);
+	}
+	//UE_LOG(LogTemp, Error, TEXT("GI|Load|Bonfires Loaded"));
 }
 
 
@@ -144,7 +201,7 @@ void UARPG_GameInstance::SaveAbilities()
 		Ability->SaveCustomProperties(Data);
 		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
 		
-		UE_LOG(LogTemp, Error, TEXT("GameInstance|Ability Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
+		//UE_LOG(LogTemp, Error, TEXT("GameInstance|Ability Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
 	}
 	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
@@ -166,7 +223,7 @@ void UARPG_GameInstance::LoadAbilities()
 		return;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("GameInstance|Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
+	//UE_LOG(LogTemp, Warning, TEXT("GameInstance|Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
 	
 	
 	for (UAbilityComponent_Base* Ability: PlayerRef->GetAbilitiesArray())
@@ -181,7 +238,7 @@ void UARPG_GameInstance::LoadAbilities()
 			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
 			
 			Ability->LoadCustomProperties(SavedData);
-			UE_LOG(LogTemp, Error, TEXT("GameInstance|Ability Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
+			//UE_LOG(LogTemp, Error, TEXT("GameInstance|Ability Loaded: %s, %i, %s"), *AbilityName, SavedData.CurrentLevel, SavedData.bIsUnlocked ? TEXT("true") : TEXT("false"));
 		}
 	}
 }

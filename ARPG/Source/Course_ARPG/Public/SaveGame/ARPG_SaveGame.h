@@ -52,5 +52,8 @@ public:
 	TMap<FString, FAbilityData> UnlockedAbilities;
 
 	UPROPERTY(EditAnywhere)
+	TMap<FString, FVector> UnlockedBonfires;
+
+	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacter;
 };

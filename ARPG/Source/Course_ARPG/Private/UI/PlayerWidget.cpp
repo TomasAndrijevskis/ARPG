@@ -8,6 +8,7 @@
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
 #include "UI/PlayerDeath.h"
+#include "UI/QuickTravelMenu.h"
 #include "UI/StatusIconWithAmount.h"
 #include "UI/StatusIconWithTimer.h"
 
@@ -177,6 +178,27 @@ void UPlayerWidget::RemoveBonfireMenuWidget()
 	{
 		BonfireMenuWidgetRef->RemoveFromParent();
 		BonfireMenuWidgetRef = nullptr;
+	}
+}
+
+
+void UPlayerWidget::CreateQuickTravelMenuWidget(TMap<FString, FVector> UnlockedBonfires, FString CurrentBonfireName)
+{
+	if (QuickTravelMenuWidgetClass)
+	{
+		QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
+		QuickTravelMenuWidgetRef -> SetBonfires(UnlockedBonfires, CurrentBonfireName);
+		QuickTravelMenuWidgetRef -> AddToViewport(5);
+	}
+}
+
+
+void UPlayerWidget::RemoveQuickTravelMenuWidget()
+{
+	if (QuickTravelMenuWidgetRef)
+	{
+		QuickTravelMenuWidgetRef->RemoveFromParent();
+		QuickTravelMenuWidgetRef = nullptr;
 	}
 }
 

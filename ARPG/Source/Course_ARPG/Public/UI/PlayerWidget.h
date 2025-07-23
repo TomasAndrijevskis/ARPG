@@ -11,6 +11,8 @@
 #include "PlayerWidget.generated.h"
 
 
+class ABonfire;
+class UQuickTravelMenu;
 class UInfoFooter;
 enum EScreens : int;
 class UBonfireMenuWidget;
@@ -84,6 +86,12 @@ public:
 
 	UFUNCTION()
 	void CreateBonfireMenuWidget();
+
+	UFUNCTION()
+	void RemoveQuickTravelMenuWidget();
+
+	UFUNCTION()
+	void CreateQuickTravelMenuWidget(TMap<FString, FVector> UnlockedBonfires, FString CurrentBonfireName);
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
@@ -170,5 +178,10 @@ private:
 
 	UPROPERTY()
 	UInfoFooter* InfoFooterWidgetRef;
-	
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UQuickTravelMenu> QuickTravelMenuWidgetClass;
+
+	UPROPERTY()
+	UQuickTravelMenu* QuickTravelMenuWidgetRef;
 };

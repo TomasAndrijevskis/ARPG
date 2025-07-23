@@ -11,6 +11,7 @@ void EmptyLinkFunctionForGeneratedCodePlayerWidget() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityFooter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityUpgradeScreen_NoRegister();
@@ -20,6 +21,7 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UInfoHeader_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerDeath_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerWidget();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerWidget_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UQuickTravelMenu_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsComponent_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsScreenWidget_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusIconWithAmount_NoRegister();
@@ -192,6 +194,59 @@ DEFINE_FUNCTION(UPlayerWidget::execCreateDeathWidget)
 	P_NATIVE_END;
 }
 // End Class UPlayerWidget Function CreateDeathWidget
+
+// Begin Class UPlayerWidget Function CreateQuickTravelMenuWidget
+struct Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics
+{
+	struct PlayerWidget_eventCreateQuickTravelMenuWidget_Parms
+	{
+		TMap<FString,FVector> UnlockedBonfires;
+		FString CurrentBonfireName;
+	};
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FStructPropertyParams NewProp_UnlockedBonfires_ValueProp;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_UnlockedBonfires_Key_KeyProp;
+	static const UECodeGen_Private::FMapPropertyParams NewProp_UnlockedBonfires;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_CurrentBonfireName;
+	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_ValueProp = { "UnlockedBonfires", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_Key_KeyProp = { "UnlockedBonfires_Key", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires = { "UnlockedBonfires", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateQuickTravelMenuWidget_Parms, UnlockedBonfires), EMapPropertyFlags::None, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_CurrentBonfireName = { "CurrentBonfireName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateQuickTravelMenuWidget_Parms, CurrentBonfireName), METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_ValueProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_Key_KeyProp,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_CurrentBonfireName,
+};
+static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::PropPointers) < 2048);
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPlayerWidget, nullptr, "CreateQuickTravelMenuWidget", nullptr, nullptr, Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::PropPointers), sizeof(Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::PlayerWidget_eventCreateQuickTravelMenuWidget_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::Function_MetaDataParams) };
+static_assert(sizeof(Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::PlayerWidget_eventCreateQuickTravelMenuWidget_Parms) < MAX_uint16);
+UFunction* Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UPlayerWidget::execCreateQuickTravelMenuWidget)
+{
+	P_GET_TMAP(FString,FVector,Z_Param_UnlockedBonfires);
+	P_GET_PROPERTY(FStrProperty,Z_Param_CurrentBonfireName);
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreateQuickTravelMenuWidget(Z_Param_UnlockedBonfires,Z_Param_CurrentBonfireName);
+	P_NATIVE_END;
+}
+// End Class UPlayerWidget Function CreateQuickTravelMenuWidget
 
 // Begin Class UPlayerWidget Function CreateStatsScreen
 struct Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen_Statics
@@ -521,6 +576,35 @@ DEFINE_FUNCTION(UPlayerWidget::execRemoveBonfireMenuWidget)
 }
 // End Class UPlayerWidget Function RemoveBonfireMenuWidget
 
+// Begin Class UPlayerWidget Function RemoveQuickTravelMenuWidget
+struct Z_Construct_UFunction_UPlayerWidget_RemoveQuickTravelMenuWidget_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UPlayerWidget_RemoveQuickTravelMenuWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UPlayerWidget, nullptr, "RemoveQuickTravelMenuWidget", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UPlayerWidget_RemoveQuickTravelMenuWidget_Statics::Function_MetaDataParams), Z_Construct_UFunction_UPlayerWidget_RemoveQuickTravelMenuWidget_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UPlayerWidget_RemoveQuickTravelMenuWidget()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UPlayerWidget_RemoveQuickTravelMenuWidget_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UPlayerWidget::execRemoveQuickTravelMenuWidget)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->RemoveQuickTravelMenuWidget();
+	P_NATIVE_END;
+}
+// End Class UPlayerWidget Function RemoveQuickTravelMenuWidget
+
 // Begin Class UPlayerWidget Function RemoveStatsScreen
 struct Z_Construct_UFunction_UPlayerWidget_RemoveStatsScreen_Statics
 {
@@ -769,6 +853,7 @@ void UPlayerWidget::StaticRegisterNativesUPlayerWidget()
 		{ "CreateAbilityUpgradeScreen", &UPlayerWidget::execCreateAbilityUpgradeScreen },
 		{ "CreateBonfireMenuWidget", &UPlayerWidget::execCreateBonfireMenuWidget },
 		{ "CreateDeathWidget", &UPlayerWidget::execCreateDeathWidget },
+		{ "CreateQuickTravelMenuWidget", &UPlayerWidget::execCreateQuickTravelMenuWidget },
 		{ "CreateStatsScreen", &UPlayerWidget::execCreateStatsScreen },
 		{ "CreateStatusIconWithAmount", &UPlayerWidget::execCreateStatusIconWithAmount },
 		{ "CreateStatusIconWithTimer", &UPlayerWidget::execCreateStatusIconWithTimer },
@@ -777,6 +862,7 @@ void UPlayerWidget::StaticRegisterNativesUPlayerWidget()
 		{ "RemoveAbilityFooter", &UPlayerWidget::execRemoveAbilityFooter },
 		{ "RemoveAbilityUpgradeScreen", &UPlayerWidget::execRemoveAbilityUpgradeScreen },
 		{ "RemoveBonfireMenuWidget", &UPlayerWidget::execRemoveBonfireMenuWidget },
+		{ "RemoveQuickTravelMenuWidget", &UPlayerWidget::execRemoveQuickTravelMenuWidget },
 		{ "RemoveStatsScreen", &UPlayerWidget::execRemoveStatsScreen },
 		{ "SetHealth", &UPlayerWidget::execSetHealth },
 		{ "SetLevel", &UPlayerWidget::execSetLevel },
@@ -916,6 +1002,14 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_QuickTravelMenuWidgetClass_MetaData[] = {
+		{ "Category", "PlayerWidget" },
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_QuickTravelMenuWidgetRef_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ActiveStatusWidget_ValueProp;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_ActiveStatusWidget_Key_KeyProp;
@@ -946,6 +1040,8 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireMenuWidgetRef;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_InfoFooterWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InfoFooterWidgetRef;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_QuickTravelMenuWidgetClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_QuickTravelMenuWidgetRef;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -953,6 +1049,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 2089711585
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget, "CreateBonfireMenuWidget" }, // 1274148549
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateDeathWidget, "CreateDeathWidget" }, // 3315036277
+		{ &Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget, "CreateQuickTravelMenuWidget" }, // 1059395091
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen, "CreateStatsScreen" }, // 3961906875
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithAmount, "CreateStatusIconWithAmount" }, // 1220247603
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithTimer, "CreateStatusIconWithTimer" }, // 1058573187
@@ -961,6 +1058,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ &Z_Construct_UFunction_UPlayerWidget_RemoveAbilityFooter, "RemoveAbilityFooter" }, // 3287209945
 		{ &Z_Construct_UFunction_UPlayerWidget_RemoveAbilityUpgradeScreen, "RemoveAbilityUpgradeScreen" }, // 1599882770
 		{ &Z_Construct_UFunction_UPlayerWidget_RemoveBonfireMenuWidget, "RemoveBonfireMenuWidget" }, // 1587070528
+		{ &Z_Construct_UFunction_UPlayerWidget_RemoveQuickTravelMenuWidget, "RemoveQuickTravelMenuWidget" }, // 448128064
 		{ &Z_Construct_UFunction_UPlayerWidget_RemoveStatsScreen, "RemoveStatsScreen" }, // 2486869418
 		{ &Z_Construct_UFunction_UPlayerWidget_SetHealth, "SetHealth" }, // 3355234517
 		{ &Z_Construct_UFunction_UPlayerWidget_SetLevel, "SetLevel" }, // 1934459601
@@ -1003,6 +1101,8 @@ const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_S
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_BonfireMenuWidgetRef = { "BonfireMenuWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, BonfireMenuWidgetRef), Z_Construct_UClass_UBonfireMenuWidget_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireMenuWidgetRef_MetaData), NewProp_BonfireMenuWidgetRef_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetClass = { "InfoFooterWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoFooterWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UInfoFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoFooterWidgetClass_MetaData), NewProp_InfoFooterWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetRef = { "InfoFooterWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoFooterWidgetRef), Z_Construct_UClass_UInfoFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoFooterWidgetRef_MetaData), NewProp_InfoFooterWidgetRef_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetClass = { "QuickTravelMenuWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, QuickTravelMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UQuickTravelMenu_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_QuickTravelMenuWidgetClass_MetaData), NewProp_QuickTravelMenuWidgetClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetRef = { "QuickTravelMenuWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, QuickTravelMenuWidgetRef), Z_Construct_UClass_UQuickTravelMenu_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_QuickTravelMenuWidgetRef_MetaData), NewProp_QuickTravelMenuWidgetRef_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerWidget_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ActiveStatusWidget_ValueProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ActiveStatusWidget_Key_KeyProp,
@@ -1033,6 +1133,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerWi
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_BonfireMenuWidgetRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetRef,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPlayerWidget_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPlayerWidget_Statics::DependentSingletons[])() = {
@@ -1076,10 +1178,10 @@ UPlayerWidget::~UPlayerWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 930981894U) },
+		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 424537134U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_223179070(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_2658330991(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -5,8 +5,7 @@
 #include "Blueprint/UserWidget.h"
 #include "BonfireMenuWidget.generated.h"
 
-
-class AMainCharacter_Base;
+class ABonfire;
 class AARPG_PlayerController;
 class UTextBlock;
 class UButton;
@@ -28,6 +27,9 @@ private:
 	UButton* Button_SaveAll;
 
 	UPROPERTY(meta = (BindWidget))
+	UButton* Button_QuickTravelMenu;
+
+	UPROPERTY(meta = (BindWidget))
 	UButton* Button_StatsScreen;
 	
 	UPROPERTY(meta = (BindWidget))
@@ -42,6 +44,9 @@ private:
 	
 	UPROPERTY()
 	UTextBlock* Text_SaveAll;
+	
+	UPROPERTY()
+	UTextBlock* Text_QuickTravelMenu;
 
 	UPROPERTY()
 	UTextBlock* Text_StatsScreen;
@@ -57,7 +62,4 @@ private:
 
 	UPROPERTY()
 	AARPG_PlayerController* PlayerController;
-
-	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
 };

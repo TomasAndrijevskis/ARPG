@@ -66,7 +66,7 @@ void ABonfire::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor*
 	ChangeWidgetVisibility(true);
 	if (PlayerController)
 	{
-		PlayerController->SetIsInBonfireRange(true);
+		PlayerController->SetIsInBonfireRange(true, this);
 	}
 }
 
@@ -77,7 +77,7 @@ void ABonfire::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	ChangeWidgetVisibility(false);
 	if (PlayerController)
 	{
-		PlayerController->SetIsInBonfireRange(false);
+		PlayerController->SetIsInBonfireRange(false, nullptr);
 	}
 }
 
@@ -85,4 +85,23 @@ void ABonfire::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 void ABonfire::ChangeWidgetVisibility(bool bIsVisible)
 {
 	InteractionWidgetComponent->SetVisibility(bIsVisible);
+}
+
+
+
+FString ABonfire::GetBonfireName()
+{
+	return BonfireName;
+}
+
+
+bool ABonfire::GetIsFirstTimeUsed()
+{
+	return bIsFirstTimeUsed;
+}
+
+
+void ABonfire::SetIsFirstTimeUsed(bool NewIsFirstTimeUsed)
+{
+	bIsFirstTimeUsed = NewIsFirstTimeUsed;
 }

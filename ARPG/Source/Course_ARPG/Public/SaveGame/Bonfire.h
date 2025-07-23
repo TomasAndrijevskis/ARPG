@@ -22,6 +22,12 @@ public:
 
 	virtual void Tick(float DeltaSeconds) override;
 
+	FString GetBonfireName();
+
+	bool GetIsFirstTimeUsed();
+
+	void SetIsFirstTimeUsed(bool NewIsFirstTimeUsed);
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -57,4 +63,9 @@ private:
 
 	UPROPERTY()
 	AARPG_PlayerController* PlayerController;
+
+	UPROPERTY(EditAnywhere)
+	FString BonfireName;
+
+	bool bIsFirstTimeUsed = true;
 };
