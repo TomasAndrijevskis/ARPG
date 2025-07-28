@@ -8,9 +8,12 @@
 #include "Interfaces/Fighter.h"
 #include "EnemyCharacter_Base.generated.h"
 
+class UBehaviorTree;
 class UEnemyHealthBar;
 class UNiagaraComponent;
 class UNiagaraSystem;
+class AAIController;
+class UBlackboardComponent;
 
 UCLASS()
 class COURSE_ARPG_API AEnemyCharacter_Base : public ACharacter, public IEnemy, public IFighter
@@ -20,9 +23,7 @@ class COURSE_ARPG_API AEnemyCharacter_Base : public ACharacter, public IEnemy, p
 public:
 
 	AEnemyCharacter_Base();
-
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
 	UFUNCTION(BlueprintCallable)
 	void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect);
 
@@ -59,6 +60,9 @@ protected:
 private:
 
 	UFUNCTION()
+	void SetupAI();
+	
+	UFUNCTION()
 	void HandlePlayerDeath();
 	
 	UFUNCTION()
@@ -79,9 +83,12 @@ private:
 	float RewardXP;
 
 	UPROPERTY()
-	class AAIController* ControllerRef;
+	AAIController* ControllerRef;
 
 	UPROPERTY()
-	class UBlackboardComponent* BlackboardComp;
+	UBlackboardComponent* BlackboardComp;
+
+	UPROPERTY(EditAnywhere)
+	UBehaviorTree* BehaviorTree;
 	
 };

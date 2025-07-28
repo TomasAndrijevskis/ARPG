@@ -3,6 +3,7 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Gamemode/ARPG_GameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "SaveGame/Bonfire.h"
@@ -34,6 +35,12 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 		if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 		{
 			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), BonfireRef->GetActorLocation());
+		}
+
+		AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
+		if (GameMode)
+		{
+			GameMode->SpawnEnemies();
 		}
 	}
 }

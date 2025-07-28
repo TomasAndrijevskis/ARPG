@@ -324,6 +324,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\EnemySpawner.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\BlockComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -510,6 +513,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequirements.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\CharacterSelectionStruct.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Spawner\EnemySpawner.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\BlockComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Enemy.h"/>

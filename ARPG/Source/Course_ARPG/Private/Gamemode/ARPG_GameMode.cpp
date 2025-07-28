@@ -2,6 +2,7 @@
 #include "Gamemode/ARPG_GameMode.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Characters/MainCharacter_Base.h"
+#include "Characters/Spawner/EnemySpawner.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -16,5 +17,16 @@ UClass* AARPG_GameMode::GetDefaultPawnClassForController_Implementation(AControl
 		return SaveGameInstance->PlayerCharacter;
 	}
 	return Super::GetDefaultPawnClassForController_Implementation(InController);
+}
+
+
+void AARPG_GameMode::SpawnEnemies()
+{
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), EnemySpawners);
+
+	for (auto Spawner : EnemySpawners)
+	{
+		Cast<AEnemySpawner>(Spawner)->CheckEnemies();
+	}
 }
 

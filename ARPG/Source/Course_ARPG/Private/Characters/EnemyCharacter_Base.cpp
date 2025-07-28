@@ -27,11 +27,8 @@ void AEnemyCharacter_Base::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ControllerRef = GetController<AAIController>();
-	
-	BlackboardComp = ControllerRef->GetBlackboardComponent();
-	BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), InitialState);
-
+	FTimerHandle TimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter_Base::SetupAI, .1f, false);
 	//из-за этой строки функция HandlePlayerDeath сработает когда у игрок умрет(OnZeroHealthDelegate) - таким образом можно триггерить функции через не связанные между собой классы
 	GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>()->StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter_Base::HandlePlayerDeath);
 	
@@ -41,27 +38,39 @@ void AEnemyCharacter_Base::BeginPlay()
 }
 
 
-void AEnemyCharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AEnemyCharacter_Base::SetupAI()
 {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	ControllerRef = GetController<AAIController>();
+	if (ControllerRef)
+	{
+		ControllerRef->RunBehaviorTree(BehaviorTree);
+		BlackboardComp = ControllerRef->GetBlackboardComponent();
+		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), InitialState);
+	}
 }
 
 
 void AEnemyCharacter_Base::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
 {
-	EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
-	if (DetectedPawn != PawnToDetect || CurrentState!=EEnemyStates::Idle)
+	if (BlackboardComp)
 	{
-		return;
-	}
+		EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
+		if (DetectedPawn != PawnToDetect || CurrentState!=EEnemyStates::Idle)
+		{
+			return;
+		}
 
-	BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+	}
 }
 
 
 void AEnemyCharacter_Base::HandlePlayerDeath()
 {
-	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GameOver);
+	if (ControllerRef)
+	{
+		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GameOver);
+	}
 }
 
 
@@ -72,7 +81,10 @@ void AEnemyCharacter_Base::HandleDeath()
 		return;
 	}
 	float DeathAnimDuration = PlayAnimMontage(DeathAnim);
-	ControllerRef->GetBrainComponent()->StopLogic("Defeated");
+	if (ControllerRef)
+	{
+		ControllerRef->GetBrainComponent()->StopLogic("Defeated");
+	}
 	FindComponentByClass<UCapsuleComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	FTimerHandle DestroyTimerHandle;

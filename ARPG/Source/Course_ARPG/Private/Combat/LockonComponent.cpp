@@ -6,10 +6,10 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Interfaces/Enemy.h"
 
+
 ULockonComponent::ULockonComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
-	
 }
 
 
@@ -45,7 +45,7 @@ void ULockonComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 		return;
 	}
 	
-	TargetLocation.Z -=125;
+	TargetLocation.Z -= 125;
 	
 	FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(CurrentLocation, TargetLocation);
 
@@ -56,7 +56,7 @@ void ULockonComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 void ULockonComponent::StartLockon(float Radius)
 {
 	FHitResult OutResult;
-	FVector CurrentLocation = {OwnerRef->GetActorLocation()};
+	FVector CurrentLocation = OwnerRef->GetActorLocation();
 	FCollisionShape Sphere{FCollisionShape::MakeSphere(Radius)};
 	FCollisionQueryParams IgnoreParams{ FName{TEXT("Ignore Collision Params")}, false, OwnerRef};
 	
@@ -80,7 +80,6 @@ void ULockonComponent::StartLockon(float Radius)
 	IEnemy::Execute_OnSelect(CurrentTargetActor);
 
 	OnUpdatedTargetDelegate.Broadcast(CurrentTargetActor);
-	//UE_LOG(LogTemp, Warning, TEXT("Lockon: %s"), *OutResult.GetActor()->GetName());
 }
 
 
@@ -102,12 +101,10 @@ void ULockonComponent::ToggleLockon(float Radius)
 {
 	if (IsValid(CurrentTargetActor))
 	{
-		//UE_LOG(LogTemp, Error, TEXT("Lockon|Valid actor: %s"), *CurrentTargetActor->GetName());
 		EndLockon();
 	}
 	else
 	{
-		//UE_LOG(LogTemp, Error, TEXT("Lockon|NotValid "));
 		StartLockon(Radius);
 	}
 }

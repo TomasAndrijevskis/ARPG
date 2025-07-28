@@ -5,6 +5,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "ARPG_GameMode.generated.h"
 
+class AEnemySpawner;
 class AARPG_PlayerController;
 
 UCLASS()
@@ -15,5 +16,11 @@ class COURSE_ARPG_API AARPG_GameMode : public AGameModeBase
 public:
 
 	virtual UClass* GetDefaultPawnClassForController_Implementation(AController* InController);
+
+	void SpawnEnemies();
+
+private:
 	
+	UPROPERTY(VisibleAnywhere)
+	TArray<AActor*> EnemySpawners;
 };
