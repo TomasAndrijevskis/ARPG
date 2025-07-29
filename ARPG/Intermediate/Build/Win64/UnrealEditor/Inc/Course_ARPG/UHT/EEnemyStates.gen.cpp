@@ -42,6 +42,8 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "Melee.DisplayName", "Melee" },
 		{ "Melee.Name", "Melee" },
 		{ "ModuleRelativePath", "Public/Characters/EEnemyStates.h" },
+		{ "Patrol.DisplayName", "Patrol" },
+		{ "Patrol.Name", "Patrol" },
 		{ "Range.DisplayName", "Range" },
 		{ "Range.Name", "Range" },
 	};
@@ -52,6 +54,7 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "Charge", (int64)Charge },
 		{ "Melee", (int64)Melee },
 		{ "GameOver", (int64)GameOver },
+		{ "Patrol", (int64)Patrol },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -81,10 +84,10 @@ UEnum* Z_Construct_UEnum_Course_ARPG_EEnemyStates()
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2644618420U) },
+		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3699124338U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_3429040564(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_673700848(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_Statics::EnumInfo));

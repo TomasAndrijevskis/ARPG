@@ -11,5 +11,6 @@ enum EEnemyStates
 	Range UMETA(DisplayName = "Range"),
 	Charge UMETA(DisplayName = "Charge"),
 	Melee UMETA(DisplayName = "Melee"),
-	GameOver UMETA(DisplayName = "GameOver")
+	GameOver UMETA(DisplayName = "GameOver"),
+	Patrol UMETA(DisplayName = "Patrol")
 };

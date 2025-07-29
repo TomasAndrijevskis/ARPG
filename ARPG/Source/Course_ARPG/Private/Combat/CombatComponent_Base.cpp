@@ -46,7 +46,7 @@ void UCombatComponent_Base::ComboAttack()
 
 void UCombatComponent_Base::HandleResetAttack()
 {
-	UE_LOG(LogTemp, Error, TEXT("CombatComp|Attack reset"));
+	//UE_LOG(LogTemp, Error, TEXT("CombatComp|Attack reset"));
 	bCanAttack = true;
 }
 

@@ -112,6 +112,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_Patrol.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
@@ -374,6 +377,9 @@
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_Patrol.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h">

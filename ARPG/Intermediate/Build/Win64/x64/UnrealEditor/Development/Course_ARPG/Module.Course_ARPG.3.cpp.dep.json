@@ -6,8 +6,7 @@
         "PCH": "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\course_arpgeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.inclorderoldest.h.pch",
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\maincharacter_mage.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\maincharacter_mage.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\maincharacter_base.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\maincharacter_base.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
@@ -22,6 +21,8 @@
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\interfaces\\fighter.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\fighter.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\maincharacter_base.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\maincharacter_mage.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\maincharacter_mage.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\maincharacter_mage.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\maincharacter_warrior.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\maincharacter_warrior.h",
@@ -114,16 +115,7 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\saveslotwidget.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statscomponent.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\statscomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statscomponent.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statsscreenwidget.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\statsscreenwidget.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statsscreenwidget.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statuseffectscomponent.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\statuseffectscomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statuseffectscomponent.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statusiconwithamount.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\statusiconwithamount.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statusiconwithamount.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statscomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

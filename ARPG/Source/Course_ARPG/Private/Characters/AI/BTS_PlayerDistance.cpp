@@ -6,8 +6,6 @@
 
 void UBTS_PlayerDistance::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
-	//Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
-
 	FVector CurrentLocation = OwnerComp.GetAIOwner()->GetPawn()->GetActorLocation();
 
 	APawn* PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();

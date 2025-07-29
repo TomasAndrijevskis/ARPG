@@ -46,6 +46,7 @@ void AEnemyCharacter_Base::SetupAI()
 		ControllerRef->RunBehaviorTree(BehaviorTree);
 		BlackboardComp = ControllerRef->GetBlackboardComponent();
 		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), InitialState);
+		BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), true);
 	}
 }
 
@@ -55,11 +56,11 @@ void AEnemyCharacter_Base::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
 	if (BlackboardComp)
 	{
 		EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
-		if (DetectedPawn != PawnToDetect || CurrentState!=EEnemyStates::Idle)
+		if (DetectedPawn != PawnToDetect || CurrentState!=EEnemyStates::Patrol)
 		{
 			return;
 		}
-
+		BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), false);
 		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
 	}
 }

@@ -21,6 +21,7 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/EnemyHealthBar.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/EnemyProjectile.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/EnemyProjectileComponent.gen.cpp"
+#include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/EnemySpawner.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/EScreens.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/EStats.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/Fighter.gen.cpp"
@@ -34,4 +35,3 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/LookAtPlayerAnimNotifyState.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/LookAtPlayerComponent.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/MagicShield.gen.cpp"
-#include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/MainCharacter_Base.gen.cpp"

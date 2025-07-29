@@ -7,7 +7,8 @@
 ARangeAttackProjectile_Ice::ARangeAttackProjectile_Ice()
 {
 	CollisionComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-	CollisionComponent->SetupAttachment(RootComponent);
+	//CollisionComponent->SetupAttachment(RootComponent);
+	RootComponent = CollisionComponent;
 	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(CollisionComponent);

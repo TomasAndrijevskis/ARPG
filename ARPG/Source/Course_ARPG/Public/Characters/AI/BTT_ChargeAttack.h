@@ -17,9 +17,12 @@ public:
 	UBTT_ChargeAttack();
 	
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+	
 	void ChargeAtPlayer();
+	
 	UFUNCTION()
 	void HandleMoveCompleted();
+	
 	UFUNCTION()
 	void FinishAttackTask();
 	
@@ -37,6 +40,7 @@ private:
 	FScriptDelegate MoveCompletedDelegate;
 
 	float OriginalWalkSpeed;
+	
 	UPROPERTY(EditAnywhere)
 	float ChargeWalkSpeed = 2000.0f;
 

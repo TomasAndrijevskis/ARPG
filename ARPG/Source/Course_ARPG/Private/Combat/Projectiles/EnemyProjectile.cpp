@@ -9,8 +9,8 @@
 AEnemyProjectile::AEnemyProjectile()
 {
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollision"));
-	CollisionComponent->SetupAttachment(RootComponent);
-
+	//CollisionComponent->SetupAttachment(RootComponent);
+	RootComponent = CollisionComponent;
 	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
 	Particle->SetupAttachment(CollisionComponent);
 }

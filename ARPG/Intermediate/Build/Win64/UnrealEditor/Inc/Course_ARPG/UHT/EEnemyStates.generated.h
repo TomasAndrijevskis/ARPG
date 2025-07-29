@@ -24,5 +24,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	op(Range) \
 	op(Charge) \
 	op(Melee) \
-	op(GameOver) 
+	op(GameOver) \
+	op(Patrol) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
