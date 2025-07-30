@@ -25,6 +25,8 @@ protected:
 private:
 
 	void SpawnEnemies();
+
+	int GetRandomSpawnDistance();
 	
 	UPROPERTY(EditAnywhere)
 	int EnemySpawnCount;

@@ -33,10 +33,8 @@ void AEnemySpawner::SpawnEnemies()
 	for (int i = 0; i < EnemySpawnCount; i++)
 	{
 		FVector SpawnLocation = GetActorLocation();
-		int RandomX = FMath::RandRange(MinSpawnRange, MaxSpawnRange);
-		int RandomY = FMath::RandRange(MinSpawnRange, MaxSpawnRange);
-		SpawnLocation.X += RandomX * 100;
-		SpawnLocation.Y += RandomY * 100;
+		SpawnLocation.X += GetRandomSpawnDistance() * 100;
+		SpawnLocation.Y += GetRandomSpawnDistance() * 100;
 	
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
@@ -46,5 +44,12 @@ void AEnemySpawner::SpawnEnemies()
 			SpawnedEnemies.Add(SpawnedEnemy);
 		}
 	}
+}
+
+
+
+int AEnemySpawner::GetRandomSpawnDistance()
+{
+	return FMath::RandRange(MinSpawnRange, MaxSpawnRange);
 }
 

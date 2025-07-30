@@ -51,21 +51,6 @@ void AEnemyCharacter_Base::SetupAI()
 }
 
 
-void AEnemyCharacter_Base::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
-{
-	if (BlackboardComp)
-	{
-		EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
-		if (DetectedPawn != PawnToDetect || CurrentState!=EEnemyStates::Patrol)
-		{
-			return;
-		}
-		BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), false);
-		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
-	}
-}
-
-
 void AEnemyCharacter_Base::HandlePlayerDeath()
 {
 	if (ControllerRef)

@@ -15,8 +15,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COURSE_ARPG_BTT_Patrol_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_Patrol_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execHandlePatrolCompleted); \
-	DECLARE_FUNCTION(execPatrol);
+	DECLARE_FUNCTION(execDelayPatrol); \
+	DECLARE_FUNCTION(execPatrolBackward); \
+	DECLARE_FUNCTION(execPatrolForward);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_Patrol_h_12_INCLASS_NO_PURE_DECLS \

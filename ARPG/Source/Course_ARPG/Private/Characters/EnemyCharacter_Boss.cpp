@@ -1,5 +1,6 @@
 
 #include "Characters/EnemyCharacter_Boss.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/Projectiles/EnemyProjectileComponent.h"
@@ -23,6 +24,21 @@ void AEnemyCharacter_Boss::CreateHealthWidget()
 	HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
 	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UBossHealthBar::SetHealth);
 }
+
+
+void AEnemyCharacter_Boss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
+{
+	if (BlackboardComp)
+	{
+		EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
+		if (DetectedPawn != PawnToDetect || CurrentState != EEnemyStates::Idle)
+		{
+			return;
+		}
+		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+	}
+}
+
 
 void AEnemyCharacter_Boss::HandleDeath()
 {

@@ -26,6 +26,8 @@ public:
 	
 	virtual void CreateHealthWidget() override;
 
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect) override;
+	
 protected:
 
 	virtual void HandleDeath() override;

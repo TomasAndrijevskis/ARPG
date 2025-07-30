@@ -1,5 +1,6 @@
 
 #include "Characters/EnemyCharacter_Mob.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/StatsComponent.h"
 #include "Components/WidgetComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -30,6 +31,21 @@ void AEnemyCharacter_Mob::Tick(float DeltaTime)
 	
 	HealthBarWidgetComponent->SetWorldRotation(NewRotation);
 
+}
+
+
+void AEnemyCharacter_Mob::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
+{
+	if (BlackboardComp)
+	{
+		EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
+		if (DetectedPawn != PawnToDetect || CurrentState != EEnemyStates::Patrol)
+		{
+			return;
+		}
+		BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), false);
+		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+	}
 }
 
 

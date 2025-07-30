@@ -25,7 +25,7 @@ public:
 	AEnemyCharacter_Base();
 	
 	UFUNCTION(BlueprintCallable)
-	void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect);
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect){};
 
 	virtual float GetCurrentDamage() override;
 
@@ -56,6 +56,9 @@ protected:
 
 	UFUNCTION()
 	virtual void HandleDeath();
+
+	UPROPERTY()
+	UBlackboardComponent* BlackboardComp;
 	
 private:
 
@@ -84,10 +87,7 @@ private:
 
 	UPROPERTY()
 	AAIController* ControllerRef;
-
-	UPROPERTY()
-	UBlackboardComponent* BlackboardComp;
-
+	
 	UPROPERTY(EditAnywhere)
 	UBehaviorTree* BehaviorTree;
 	

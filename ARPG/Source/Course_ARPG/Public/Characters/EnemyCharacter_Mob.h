@@ -22,6 +22,8 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect) override;
+	
 protected:
 	
 	virtual void BeginPlay() override;

@@ -2,7 +2,6 @@
 #include "Characters/AI/BTT_Patrol.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/EEnemyStates.h"
 #include "GameFramework/Character.h"
 #include "Navigation/PathFollowingComponent.h"
 
@@ -11,8 +10,8 @@ UBTT_Patrol::UBTT_Patrol()
 {
 	bNotifyTick = true;
 	bCreateNodeInstance = true;
-	MoveForwardDelegate.BindUFunction(this, "HandlePatrolCompleted");
-	MoveBackwardDelegate.BindUFunction(this, "Patrol");
+	MoveForwardDelegate.BindUFunction(this, "PatrolForward");
+	MoveBackwardDelegate.BindUFunction(this, "PatrolBackward");
 }
 
 
@@ -23,30 +22,13 @@ EBTNodeResult::Type UBTT_Patrol::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 	StartLocation = CharacterRef->GetActorLocation();
 	
 	OwnerComp.GetBlackboardComponent()->SetValueAsVector(TEXT("StartLocation"), StartLocation);
-	Patrol();
+	PatrolForward();
 	return EBTNodeResult::InProgress;
 }
 
 
-void UBTT_Patrol::Patrol()
+void UBTT_Patrol::PatrolForward()
 {
-	FVector ForwardDirection = CharacterRef->GetActorForwardVector();
-	FVector TargetLocation = StartLocation + ForwardDirection * 1000.0f;;
-	FAIMoveRequest MoveRequest = TargetLocation;
-	MoveRequest.SetUsePathfinding(true);
-
-	ControllerRef->MoveTo(MoveRequest);
-
-	ControllerRef->ReceiveMoveCompleted.Remove(MoveBackwardDelegate);
-	ControllerRef->ReceiveMoveCompleted.AddUnique(MoveForwardDelegate);
-}
-
-
-void UBTT_Patrol::HandlePatrolCompleted()
-{
-	FAIMoveRequest MoveRequest = StartLocation;
-	MoveRequest.SetUsePathfinding(true);
-
 	if (!ControllerRef)
 	{
 		return;
@@ -56,15 +38,55 @@ void UBTT_Patrol::HandlePatrolCompleted()
 	{
 		return;
 	}
-	
+	FVector ForwardDirection = CharacterRef->GetActorForwardVector();
+	FVector TargetLocation = StartLocation + ForwardDirection * GetRandomPatrolDistance();
+	FTimerDelegate DelayTimerDelegate;
+	FTimerHandle DelayTimerHandle;
+	DelayTimerDelegate.BindUFunction(this, FName("DelayPatrol"), TargetLocation, true);
+	ControllerRef->GetWorld()->GetTimerManager().SetTimer(DelayTimerHandle, DelayTimerDelegate, GetRandomWaitDuration(), false);
+}
+
+
+void UBTT_Patrol::PatrolBackward()
+{
+	if (!ControllerRef)
+	{
+		return;
+	}
+	bool bIsPatrolling = ControllerRef->GetBlackboardComponent()->GetValueAsBool(TEXT("IsPatrolling"));
+	if (!bIsPatrolling)
+	{
+		return;
+	}
+	FTimerDelegate DelayTimerDelegate;
+	FTimerHandle DelayTimerHandle;
+	DelayTimerDelegate.BindUFunction(this, FName("DelayPatrol"), StartLocation, false);
+	ControllerRef->GetWorld()->GetTimerManager().SetTimer(DelayTimerHandle, DelayTimerDelegate, GetRandomWaitDuration(), false);
+}
+
+
+void UBTT_Patrol::DelayPatrol(FVector TargetLocation, bool bDirectionForward)
+{
+	FAIMoveRequest MoveRequest = TargetLocation;
+	MoveRequest.SetUsePathfinding(true);
 	ControllerRef->MoveTo(MoveRequest);
-	ControllerRef->ReceiveMoveCompleted.Remove(MoveForwardDelegate);
-	ControllerRef->ReceiveMoveCompleted.AddUnique(MoveBackwardDelegate);
+	if (bDirectionForward == true)
+	{
+		ControllerRef->ReceiveMoveCompleted.Remove(MoveForwardDelegate);
+		ControllerRef->ReceiveMoveCompleted.AddUnique(MoveBackwardDelegate);
+	}
+	else
+	{
+		ControllerRef->ReceiveMoveCompleted.Remove(MoveBackwardDelegate);
+		ControllerRef->ReceiveMoveCompleted.AddUnique(MoveForwardDelegate);
+	}
 	
 }
 
+
 EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
+	UE_LOG(LogTemp, Error, TEXT("Patrol Abort"));
 	if (IsValid(ControllerRef))
 	{
 		ControllerRef->StopMovement();
@@ -75,18 +97,15 @@ EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, ui
 }
 
 
-/*void UBTT_Patrol::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
+
+float UBTT_Patrol::GetRandomWaitDuration()
 {
-	bool bIsPatrolling = OwnerComp.GetBlackboardComponent()->GetValueAsBool(TEXT("IsPatrolling"));
-	if (!bIsPatrolling)
-	{
-		if (IsValid(ControllerRef))
-		{
-			ControllerRef->StopMovement();
-			ControllerRef->ReceiveMoveCompleted.Remove(MoveBackwardDelegate);
-			ControllerRef->ReceiveMoveCompleted.Remove(MoveForwardDelegate);
-		}
-		FinishLatentTask(OwnerComp, EBTNodeResult::Aborted);
-	}
-}*/
+	return FMath::RandRange(MinWaitDuration, MaxWaitDuration);
+}
+
+
+float UBTT_Patrol::GetRandomPatrolDistance()
+{
+	return FMath::RandRange(MinPatrolDistance, MaxPatrolDistance);
+}
 
