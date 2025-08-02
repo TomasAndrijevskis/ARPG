@@ -39,7 +39,7 @@ void ULockonComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 	
 	double TargetDistance = FVector::Distance(CurrentLocation, TargetLocation);
 
-	if (TargetDistance>=BreakDistance)
+	if (TargetDistance >= BreakDistance)
 	{
 		EndLockon();
 		return;
@@ -57,18 +57,21 @@ void ULockonComponent::StartLockon(float Radius)
 {
 	FHitResult OutResult;
 	FVector CurrentLocation = OwnerRef->GetActorLocation();
-	FCollisionShape Sphere{FCollisionShape::MakeSphere(Radius)};
+	FCollisionShape Sphere = FCollisionShape::MakeSphere(Radius);
 	FCollisionQueryParams IgnoreParams{ FName{TEXT("Ignore Collision Params")}, false, OwnerRef};
 	
 	//finds first collision that detects; multi -> all collisions detected
-	bool bHasFoundTarget {GetWorld()->SweepSingleByChannel(OutResult, CurrentLocation, CurrentLocation, FQuat::Identity,  ECollisionChannel::ECC_GameTraceChannel1, Sphere, IgnoreParams)};
+	bool bHasFoundTarget = GetWorld()->SweepSingleByChannel(OutResult, CurrentLocation, CurrentLocation, FQuat::Identity,  ECollisionChannel::ECC_GameTraceChannel1, Sphere, IgnoreParams);
 
 	if (!bHasFoundTarget)
 	{
 		return;
 	}
 
-	if (!OutResult.GetActor()->Implements<UEnemy>()){return;}
+	if (!OutResult.GetActor()->Implements<UEnemy>())
+	{
+		return;
+	}
 		
 	CurrentTargetActor = OutResult.GetActor();
 	

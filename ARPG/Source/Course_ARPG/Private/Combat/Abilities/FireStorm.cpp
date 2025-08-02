@@ -14,10 +14,29 @@ AFireStorm::AFireStorm(const FObjectInitializer& ObjectInitializer): Super(Objec
 	
 	FireStormEffect = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this,TEXT("FireStorm"));
 	FireStormEffect->SetupAttachment(CollisionBox);
+
+	if (CollisionBox)
+	{
+		CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &AFireStorm::OnComponentBeginOverlap);
+		CollisionBox->OnComponentEndOverlap.AddDynamic(this, &AFireStorm::OnComponentEndOverlap);
+	}
 }
 
 
-void AFireStorm::HandleBeginOverlap(AActor* OtherActor)
+void AFireStorm::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	HandleOverlap(OtherActor, true);
+}
+
+
+void AFireStorm::OnComponentEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	UE_LOG(LogTemp, Warning, TEXT("OnComponentEndOverlap"));
+	HandleOverlap(OtherActor, false);
+}
+
+
+void AFireStorm::HandleOverlap(AActor* OtherActor, bool bIsOverlapping)
 {
 	if (OtherActor == this || !OtherActor || Cast<AMainCharacter_Base>(OtherActor))
 	{
@@ -26,9 +45,9 @@ void AFireStorm::HandleBeginOverlap(AActor* OtherActor)
 
 	if (Cast<AEnemyCharacter_Base>(OtherActor))
 	{
-		Cast<AEnemyCharacter_Base>(OtherActor)->StatusEffectsComp->HandleBurn(BurnDuration, BurnDamage, BurnEffect);
+		OverlappedActor = Cast<AEnemyCharacter_Base>(OtherActor);
+		OverlappedActor -> StatusEffectsComp->HandleBurn(BurnDuration, BurnDamage, BurnEffect, bIsOverlapping);
 	}
-	
 }
 
 

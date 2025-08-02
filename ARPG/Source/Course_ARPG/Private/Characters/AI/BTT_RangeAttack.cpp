@@ -4,7 +4,7 @@
 #include "GameFramework/Character.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/EEnemyStates.h"
+#include "Characters/AI/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
 
 

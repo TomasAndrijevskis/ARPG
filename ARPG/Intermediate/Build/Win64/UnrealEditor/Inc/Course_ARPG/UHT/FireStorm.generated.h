@@ -10,16 +10,19 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AActor;
+class UPrimitiveComponent;
+struct FHitResult;
 #ifdef COURSE_ARPG_FireStorm_generated_h
 #error "FireStorm.generated.h already included, missing '#pragma once' in FireStorm.h"
 #endif
 #define COURSE_ARPG_FireStorm_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execHandleBeginOverlap);
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execOnComponentEndOverlap); \
+	DECLARE_FUNCTION(execOnComponentBeginOverlap);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAFireStorm(); \
 	friend struct Z_Construct_UClass_AFireStorm_Statics; \
@@ -28,7 +31,7 @@ public: \
 	DECLARE_SERIALIZER(AFireStorm)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AFireStorm(AFireStorm&&); \
@@ -40,13 +43,13 @@ public: \
 	NO_API virtual ~AFireStorm();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_11_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_14_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_12_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_14_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_14_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_15_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

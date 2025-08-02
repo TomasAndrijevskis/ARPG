@@ -66,6 +66,10 @@ struct Z_Construct_UClass_UBTT_MeleeAttack_Statics
 		{ "IncludePath", "Characters/AI/BTT_MeleeAttack.h" },
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_MeleeAttack.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bHasRangeAttack_MetaData[] = {
+		{ "Category", "BTT_MeleeAttack" },
+		{ "ModuleRelativePath", "Public/Characters/AI/BTT_MeleeAttack.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AttackRadius_MetaData[] = {
 		{ "Category", "BTT_MeleeAttack" },
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_MeleeAttack.h" },
@@ -75,6 +79,8 @@ struct Z_Construct_UClass_UBTT_MeleeAttack_Statics
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_MeleeAttack.h" },
 	};
 #endif // WITH_METADATA
+	static void NewProp_bHasRangeAttack_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bHasRangeAttack;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AttackRadius;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AcceptableRadius;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
@@ -88,9 +94,15 @@ struct Z_Construct_UClass_UBTT_MeleeAttack_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+void Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_bHasRangeAttack_SetBit(void* Obj)
+{
+	((UBTT_MeleeAttack*)Obj)->bHasRangeAttack = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_bHasRangeAttack = { "bHasRangeAttack", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UBTT_MeleeAttack), &Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_bHasRangeAttack_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bHasRangeAttack_MetaData), NewProp_bHasRangeAttack_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_AttackRadius = { "AttackRadius", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_MeleeAttack, AttackRadius), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AttackRadius_MetaData), NewProp_AttackRadius_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_AcceptableRadius = { "AcceptableRadius", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_MeleeAttack, AcceptableRadius), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AcceptableRadius_MetaData), NewProp_AcceptableRadius_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBTT_MeleeAttack_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_bHasRangeAttack,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_AttackRadius,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_MeleeAttack_Statics::NewProp_AcceptableRadius,
 };
@@ -135,10 +147,10 @@ UBTT_MeleeAttack::~UBTT_MeleeAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UBTT_MeleeAttack, UBTT_MeleeAttack::StaticClass, TEXT("UBTT_MeleeAttack"), &Z_Registration_Info_UClass_UBTT_MeleeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_MeleeAttack), 2349589557U) },
+		{ Z_Construct_UClass_UBTT_MeleeAttack, UBTT_MeleeAttack::StaticClass, TEXT("UBTT_MeleeAttack"), &Z_Registration_Info_UClass_UBTT_MeleeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_MeleeAttack), 2964924158U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_h_1403751347(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_h_4085608791(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

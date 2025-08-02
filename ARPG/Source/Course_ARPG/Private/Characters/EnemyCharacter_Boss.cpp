@@ -3,6 +3,8 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Characters/StatsComponent.h"
+#include "Combat/CombatComponent_Enemy.h"
+#include "Combat/TraceComponent.h"
 #include "Combat/Projectiles/EnemyProjectileComponent.h"
 #include "UI/BossHealthBar.h"
 
@@ -10,6 +12,8 @@
 AEnemyCharacter_Boss::AEnemyCharacter_Boss()
 {
 	ProjectileComp = CreateDefaultSubobject<UEnemyProjectileComponent>(TEXT("Projectile Component"));
+	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
+	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 }
 
 
@@ -26,7 +30,7 @@ void AEnemyCharacter_Boss::CreateHealthWidget()
 }
 
 
-void AEnemyCharacter_Boss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
+void AEnemyCharacter_Boss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState)
 {
 	if (BlackboardComp)
 	{
@@ -35,7 +39,7 @@ void AEnemyCharacter_Boss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect)
 		{
 			return;
 		}
-		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), NewEnemyState);
 	}
 }
 

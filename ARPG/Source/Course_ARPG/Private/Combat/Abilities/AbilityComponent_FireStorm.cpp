@@ -55,7 +55,7 @@ void UAbilityComponent_FireStorm::OnAbilityTimerFinished()
 	SetAbilityActive(false);
 	if (FireStormRef)
 	{
-		FireStormRef->Destroy();
+		FireStormRef -> Destroy();
 		FireStormRef = nullptr;
 	}
 }

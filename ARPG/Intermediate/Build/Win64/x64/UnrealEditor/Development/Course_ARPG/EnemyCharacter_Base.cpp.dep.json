@@ -17,7 +17,7 @@
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\interfaces\\enemy.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemy.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\eenemystates.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\ai\\eenemystates.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\interfaces\\fighter.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\fighter.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemycharacter_base.generated.h",
@@ -66,16 +66,14 @@
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\combatcomponent_base.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent_base.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent_enemy.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\tracecomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\ftracesockets.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\ftracesockets.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\tracecomponent.generated.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\capsulecomponent.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\engine\\classes\\components\\shapecomponent.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\shapecomponent.generated.h",
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\capsulecomponent.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\statuseffectscomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statuseffectscomponent.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\statuseffectscomponent.generated.h",
+            "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\aimodule\\classes\\perception\\pawnsensingcomponent.h",
+            "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\aimodule\\uht\\pawnsensingcomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "FireStorm.generated.h"
 
+class AEnemyCharacter_Base;
 class UNiagaraSystem;
 class UBoxComponent;
 
@@ -16,14 +17,19 @@ class COURSE_ARPG_API AFireStorm : public AActor
 public:	
 
 	AFireStorm(const FObjectInitializer& ObjectInitializer);
+	
+	UFUNCTION()
+	void OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const FHitResult& SweepResult);
 
-	UFUNCTION(BlueprintCallable)
-	void HandleBeginOverlap(AActor* OtherActor);
+	UFUNCTION()
+	void OnComponentEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+	
 	void SetProperties(float Duration, float Damage);
 
 private:
-	
+
+	void HandleOverlap(AActor* OtherActor, bool bIsOverlapping);
 	
 	UPROPERTY(EditAnywhere)
 	UParticleSystemComponent* FireStormEffect;
@@ -33,6 +39,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UNiagaraSystem* BurnEffect;
+
+	UPROPERTY()
+	AEnemyCharacter_Base* OverlappedActor;
 	
 	float BurnDuration;
 	

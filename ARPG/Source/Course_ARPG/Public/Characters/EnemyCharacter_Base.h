@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/Enemy.h"
-#include "Characters/EEnemyStates.h"
+#include "Characters/AI/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
 #include "EnemyCharacter_Base.generated.h"
 
@@ -25,7 +25,7 @@ public:
 	AEnemyCharacter_Base();
 	
 	UFUNCTION(BlueprintCallable)
-	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect){};
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState){};
 
 	virtual float GetCurrentDamage() override;
 
@@ -37,18 +37,22 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	virtual void CreateHealthWidget(){};
+
+	AAIController* GetAIController();
 	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(EditAnywhere)
 	class UStatsComponent* StatsComp;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(EditAnywhere)
 	class UCombatComponent_Enemy* CombatComp;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	class UTraceComponent* TraceComp;
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(EditAnywhere)
 	class UStatusEffectsComponent* StatusEffectsComp;
+
+	float GetSightRadius();
 	
 protected:
 
@@ -57,6 +61,8 @@ protected:
 	UFUNCTION()
 	virtual void HandleDeath();
 
+	void GiveRewardXP();
+	
 	UPROPERTY()
 	UBlackboardComponent* BlackboardComp;
 	
@@ -71,8 +77,6 @@ private:
 	UFUNCTION()
 	void FinishedDeathAnim();
 	
-	void GiveRewardXP();
-
 	UFUNCTION()
 	void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 	

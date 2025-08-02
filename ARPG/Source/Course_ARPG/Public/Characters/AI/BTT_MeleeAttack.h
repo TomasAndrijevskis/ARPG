@@ -28,6 +28,11 @@ protected:
 
 private:
 
+	void HandleRangeAttack(UBehaviorTreeComponent& OwnerComp);
+	
+	UPROPERTY(EditAnywhere)
+	bool bHasRangeAttack;
+	
 	UPROPERTY(EditAnywhere)
 	float AttackRadius = 200.0f;
 

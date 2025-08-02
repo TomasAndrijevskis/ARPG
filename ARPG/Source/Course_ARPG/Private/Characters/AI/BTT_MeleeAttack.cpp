@@ -2,7 +2,7 @@
 #include "Characters/AI/BTT_MeleeAttack.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "AIController.h"
-#include "Characters/EEnemyStates.h"
+#include "Characters/AI/EEnemyStates.h"
 #include "Navigation/PathFollowingComponent.h"
 #include "Interfaces/Fighter.h"
 #include "GameFramework/Character.h"
@@ -59,9 +59,9 @@ void UBTT_MeleeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 	AAIController* AIRef = OwnerComp.GetAIOwner();
 
 	IFighter* FighterRef = Cast<IFighter>(AIRef->GetCharacter());
-	if (Distance>FighterRef->GetMeleeRange())
+	if (Distance > FighterRef->GetMeleeRange())
 	{
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+		HandleRangeAttack(OwnerComp);
 		AbortTask(OwnerComp, NodeMemory);
 		FinishLatentTask(OwnerComp, EBTNodeResult::Aborted);
 		AIRef->StopMovement();
@@ -75,4 +75,18 @@ void UBTT_MeleeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 	
 	OwnerComp.GetAIOwner()->ReceiveMoveCompleted.Remove(MoveDelegate);
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+}
+
+
+void UBTT_MeleeAttack::HandleRangeAttack(UBehaviorTreeComponent& OwnerComp)
+{
+	if (bHasRangeAttack)
+	{
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+	}
+	else
+	{
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
+		//OwnerComp.GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);
+	}
 }

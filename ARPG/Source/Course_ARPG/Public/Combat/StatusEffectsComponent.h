@@ -18,7 +18,7 @@ public:
 
 	void SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect);
 
-	void HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect);
+	void HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect, bool bIsOverlapping);
 
 protected:
 
@@ -48,7 +48,7 @@ private:
 	class AEnemyCharacter_Base* EnemyCharacterRef;
 	
 	UPROPERTY(EditAnywhere)
-	FName SocketName = "pelvis";
+	FName SocketName;
 
 	float BurnDamage;
 	
@@ -57,6 +57,8 @@ private:
 	float BurnRate = .2f;
 	
 	float OriginalSpeed;
+
+	bool bIsOverlapping;
 
 	FTimerHandle FreezeTimerHandle;
 	

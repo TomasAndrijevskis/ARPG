@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Course_ARPG/Public/Characters/EEnemyStates.h"
+#include "Course_ARPG/Public/Characters/AI/EEnemyStates.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeEEnemyStates() {}
 
@@ -37,11 +37,13 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "Charge.Name", "Charge" },
 		{ "GameOver.DisplayName", "GameOver" },
 		{ "GameOver.Name", "GameOver" },
+		{ "GoingBack.DisplayName", "GoingBack" },
+		{ "GoingBack.Name", "GoingBack" },
 		{ "Idle.DisplayName", "Idle" },
 		{ "Idle.Name", "Idle" },
 		{ "Melee.DisplayName", "Melee" },
 		{ "Melee.Name", "Melee" },
-		{ "ModuleRelativePath", "Public/Characters/EEnemyStates.h" },
+		{ "ModuleRelativePath", "Public/Characters/AI/EEnemyStates.h" },
 		{ "Patrol.DisplayName", "Patrol" },
 		{ "Patrol.Name", "Patrol" },
 		{ "Range.DisplayName", "Range" },
@@ -55,6 +57,7 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "Melee", (int64)Melee },
 		{ "GameOver", (int64)GameOver },
 		{ "Patrol", (int64)Patrol },
+		{ "GoingBack", (int64)GoingBack },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -81,15 +84,15 @@ UEnum* Z_Construct_UEnum_Course_ARPG_EEnemyStates()
 // End Enum EEnemyStates
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_Statics
+struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 3699124338U) },
+		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 939599814U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_673700848(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_4205906905(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	nullptr, 0,
-	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h_Statics::EnumInfo));
+	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

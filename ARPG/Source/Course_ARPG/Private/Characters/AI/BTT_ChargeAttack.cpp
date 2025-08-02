@@ -4,7 +4,7 @@
 #include "Animations/BossAnimInstance.h"
 #include "GameFramework/Character.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/EEnemyStates.h"
+#include "Characters/AI/EEnemyStates.h"
 #include "Navigation/PathFollowingComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -33,7 +33,7 @@ void UBTT_ChargeAttack::ChargeAtPlayer()
 {
 	APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
 	FVector PlayerLocation = PlayerRef->GetActorLocation();
-
+	
 	FAIMoveRequest MoveRequest = PlayerLocation;
 	MoveRequest.SetUsePathfinding(true);
 	MoveRequest.SetAcceptanceRadius(AcceptableRadius);

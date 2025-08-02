@@ -7,18 +7,16 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/CombatComponent_Enemy.h"
-#include "Combat/TraceComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "Combat/StatusEffectsComponent.h"
+#include "Perception/PawnSensingComponent.h"
 
 AEnemyCharacter_Base::AEnemyCharacter_Base()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
-	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
-	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
 }
 
@@ -34,7 +32,7 @@ void AEnemyCharacter_Base::BeginPlay()
 	
 	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter_Base::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter_Base::ReceiveDamage);
-	
+
 }
 
 
@@ -62,7 +60,7 @@ void AEnemyCharacter_Base::HandlePlayerDeath()
 
 void AEnemyCharacter_Base::HandleDeath()
 {
-	if (DeathAnim==nullptr)
+	if (DeathAnim == nullptr)
 	{
 		return;
 	}
@@ -105,7 +103,7 @@ void AEnemyCharacter_Base::GiveRewardXP()
 void AEnemyCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType,class AController* InstigatedBy, AActor* DamageCauser)
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
-	UE_LOG(LogTemp, Error, TEXT("Boss|Received Damage: %f"), Damage);
+	UE_LOG(LogTemp, Error, TEXT("Base|Received Damage: %f"), Damage);
 	StatsComp->ReduceHealth(Damage, nullptr);
 }
 
@@ -131,4 +129,21 @@ float AEnemyCharacter_Base::GetAnimDuration()
 float AEnemyCharacter_Base::GetMeleeRange()
 {
 	return StatsComp->GetStatValue(EStats::MeleeRange);
+}
+
+
+AAIController* AEnemyCharacter_Base::GetAIController()
+{
+	return ControllerRef;
+}
+
+
+float AEnemyCharacter_Base::GetSightRadius()
+{
+	UPawnSensingComponent* SensingComp = FindComponentByClass<UPawnSensingComponent>();
+	if (SensingComp)
+	{
+		return SensingComp->SightRadius;
+	}
+	return 0;
 }

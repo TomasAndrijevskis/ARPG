@@ -4,7 +4,7 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-// IWYU pragma: private, include "Characters/EEnemyStates.h"
+// IWYU pragma: private, include "Characters/AI/EEnemyStates.h"
 #include "Templates/IsUEnumClass.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/ReflectedTypeAccessors.h"
@@ -16,7 +16,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COURSE_ARPG_EEnemyStates_generated_h
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EEnemyStates_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h
 
 
 #define FOREACH_ENUM_EENEMYSTATES(op) \
@@ -25,5 +25,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	op(Charge) \
 	op(Melee) \
 	op(GameOver) \
-	op(Patrol) 
+	op(Patrol) \
+	op(GoingBack) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

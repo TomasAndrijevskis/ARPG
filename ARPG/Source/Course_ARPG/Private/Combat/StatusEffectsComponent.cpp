@@ -25,10 +25,13 @@ void UStatusEffectsComponent::SlowDownEnemy(float SlowDuration, UNiagaraSystem* 
 	GetWorld()->GetTimerManager().SetTimer(FreezeTimerHandle, this, &UStatusEffectsComponent::ReturnSpeed, SlowDuration, false);
 
 	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	
-	FrozenEffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-	FrozenEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,FVector(1.f, 1.f, 1.f),
+
+	if (FrozenEffect)
+	{
+		FrozenEffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				FrozenEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,FVector(1.f, 1.f, 1.f),
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+	}
 }
 
 
@@ -44,22 +47,21 @@ void UStatusEffectsComponent::ReturnSpeed()
 }
 
 
-void UStatusEffectsComponent::HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect)
+void UStatusEffectsComponent::HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect, bool bNewIsOverlapping)
 {
 	BurnDamage = NewBurnDamage;
 	BurnDuration = NewBurnDuration;
-	
+	bIsOverlapping = bNewIsOverlapping;
 	UE_LOG(LogTemp, Error, TEXT("Handle Burn"));
 	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	
-	if (!BurnEffectRef)
+	if (BurnEffect && !BurnEffectRef)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("EFFECT CREATED"));
 		BurnEffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-	BurnEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,FVector(1.f, 1.f, 1.f),
+				BurnEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,FVector(1.f, 1.f, 1.f),
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 	}
-	
-
 	GetWorld()->GetTimerManager().SetTimer(BurnTimerHandle, this, &UStatusEffectsComponent::Burn, BurnRate, true);
 }
 
@@ -68,8 +70,11 @@ void UStatusEffectsComponent::Burn()
 {
 	if (BurnDuration > 0)
 	{
-		BurnDuration -= BurnRate;
-		UE_LOG(LogTemp, Error, TEXT("Burning"));
+		if (!bIsOverlapping)
+		{
+			BurnDuration -= BurnRate;
+		}
+		UE_LOG(LogTemp, Error, TEXT("Burning time left: %f"), BurnDuration);
 		FDamageEvent TargetAttackedEvent{ };
 		EnemyCharacterRef->TakeDamage(BurnDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 	}
