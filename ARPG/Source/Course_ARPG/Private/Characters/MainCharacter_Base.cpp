@@ -92,7 +92,6 @@ void AMainCharacter_Base::CreateUI()
 
 void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
-	//UE_LOG(LogTemp, Error, TEXT("MainCharacter|Received Damage: %f"), Damage);
 	StatsComp->ReduceHealth(StatsComp->GetReducedDamage(Damage, DamageCauser), DamageCauser);
 	PlayHurtAnimation();
 }

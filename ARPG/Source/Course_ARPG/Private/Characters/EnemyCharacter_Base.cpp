@@ -100,7 +100,7 @@ void AEnemyCharacter_Base::GiveRewardXP()
 }
 
 
-void AEnemyCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType,class AController* InstigatedBy, AActor* DamageCauser)
+void AEnemyCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
 	UE_LOG(LogTemp, Error, TEXT("Base|Received Damage: %f"), Damage);

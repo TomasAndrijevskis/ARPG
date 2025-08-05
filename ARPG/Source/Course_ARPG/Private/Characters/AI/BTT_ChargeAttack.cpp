@@ -42,7 +42,7 @@ void UBTT_ChargeAttack::ChargeAtPlayer()
 	ControllerRef->SetFocus(PlayerRef);
 
 	OriginalWalkSpeed = CharacterRef->GetCharacterMovement()->MaxWalkSpeed;
-	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = ChargeWalkSpeed;
+	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalWalkSpeed * ChargeSpeedMultiplier;
 
 	ControllerRef->ReceiveMoveCompleted.AddUnique(MoveCompletedDelegate);
 }
@@ -80,4 +80,11 @@ void UBTT_ChargeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Melee);
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveCompletedDelegate);
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+}
+
+
+EBTNodeResult::Type UBTT_ChargeAttack::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
+{
+	ControllerRef->StopMovement();
+	return Super::AbortTask(OwnerComp, NodeMemory);
 }

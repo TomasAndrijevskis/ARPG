@@ -100,13 +100,13 @@ struct Z_Construct_UClass_UBTT_ChargeAttack_Statics
 		{ "Category", "BTT_ChargeAttack" },
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_ChargeAttack.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ChargeWalkSpeed_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ChargeSpeedMultiplier_MetaData[] = {
 		{ "Category", "BTT_ChargeAttack" },
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_ChargeAttack.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_AcceptableRadius;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_ChargeWalkSpeed;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ChargeSpeedMultiplier;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -120,10 +120,10 @@ struct Z_Construct_UClass_UBTT_ChargeAttack_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UBTT_ChargeAttack_Statics::NewProp_AcceptableRadius = { "AcceptableRadius", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_ChargeAttack, AcceptableRadius), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AcceptableRadius_MetaData), NewProp_AcceptableRadius_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UBTT_ChargeAttack_Statics::NewProp_ChargeWalkSpeed = { "ChargeWalkSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_ChargeAttack, ChargeWalkSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ChargeWalkSpeed_MetaData), NewProp_ChargeWalkSpeed_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UBTT_ChargeAttack_Statics::NewProp_ChargeSpeedMultiplier = { "ChargeSpeedMultiplier", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_ChargeAttack, ChargeSpeedMultiplier), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ChargeSpeedMultiplier_MetaData), NewProp_ChargeSpeedMultiplier_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBTT_ChargeAttack_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_ChargeAttack_Statics::NewProp_AcceptableRadius,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_ChargeAttack_Statics::NewProp_ChargeWalkSpeed,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_ChargeAttack_Statics::NewProp_ChargeSpeedMultiplier,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBTT_ChargeAttack_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UBTT_ChargeAttack_Statics::DependentSingletons[])() = {
@@ -166,10 +166,10 @@ UBTT_ChargeAttack::~UBTT_ChargeAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_ChargeAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UBTT_ChargeAttack, UBTT_ChargeAttack::StaticClass, TEXT("UBTT_ChargeAttack"), &Z_Registration_Info_UClass_UBTT_ChargeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_ChargeAttack), 1171438978U) },
+		{ Z_Construct_UClass_UBTT_ChargeAttack, UBTT_ChargeAttack::StaticClass, TEXT("UBTT_ChargeAttack"), &Z_Registration_Info_UClass_UBTT_ChargeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_ChargeAttack), 1243696515U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_ChargeAttack_h_937023952(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_ChargeAttack_h_1465610688(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_ChargeAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_ChargeAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -27,12 +27,35 @@ public:
 	virtual void CreateHealthWidget() override;
 
 	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState) override;
+
+	virtual float GetAttackAnimReductionTime() override;
 	
 protected:
 
 	virtual void HandleDeath() override;
+
+	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	
 private:
+
+	UFUNCTION()
+	void CheckSecondPhase(float CurrentHealth);
+	
+	void ActivateSecondPhase();
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UBossHealthBar> HealthBarWidget;
+
+	UPROPERTY(EditAnywhere)
+	float SecondPhaseHealthPercent;
+
+	UPROPERTY(EditAnywhere)
+	UAnimMontage* PhaseTransitionMontage;
+	
+	bool bCanTakeDamage = true;
+
+	bool bSecondPhase = false;
+
+	UPROPERTY(EditAnywhere)
+	float AttackAnimReductionTime;
 };

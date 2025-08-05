@@ -46,6 +46,8 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "ModuleRelativePath", "Public/Characters/AI/EEnemyStates.h" },
 		{ "Patrol.DisplayName", "Patrol" },
 		{ "Patrol.Name", "Patrol" },
+		{ "PhaseTransition.DisplayName", "PhaseTransition" },
+		{ "PhaseTransition.Name", "PhaseTransition" },
 		{ "Range.DisplayName", "Range" },
 		{ "Range.Name", "Range" },
 	};
@@ -58,6 +60,7 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "GameOver", (int64)GameOver },
 		{ "Patrol", (int64)Patrol },
 		{ "GoingBack", (int64)GoingBack },
+		{ "PhaseTransition", (int64)PhaseTransition },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -87,10 +90,10 @@ UEnum* Z_Construct_UEnum_Course_ARPG_EEnemyStates()
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 939599814U) },
+		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 440304712U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_4205906905(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_3762478984(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics::EnumInfo));

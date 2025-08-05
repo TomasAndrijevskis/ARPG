@@ -19,10 +19,10 @@ class UDamageType;
 #define COURSE_ARPG_EnemyCharacter_Base_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_21_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execReceiveDamage); \
 	DECLARE_FUNCTION(execFinishedDeathAnim); \
 	DECLARE_FUNCTION(execHandlePlayerDeath); \
 	DECLARE_FUNCTION(execSetupAI); \
+	DECLARE_FUNCTION(execReceiveDamage); \
 	DECLARE_FUNCTION(execHandleDeath); \
 	DECLARE_FUNCTION(execCreateHealthWidget); \
 	DECLARE_FUNCTION(execDetectPawn);

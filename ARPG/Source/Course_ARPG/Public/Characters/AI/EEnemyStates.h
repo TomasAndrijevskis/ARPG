@@ -12,5 +12,6 @@ enum EEnemyStates
 	Melee UMETA(DisplayName = "Melee"),
 	GameOver UMETA(DisplayName = "GameOver"),
 	Patrol UMETA(DisplayName = "Patrol"),
-	GoingBack UMETA(DisplayName = "GoingBack")
+	GoingBack UMETA(DisplayName = "GoingBack"),
+	PhaseTransition UMETA(DisplayName = "PhaseTransition"),
 };

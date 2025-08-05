@@ -30,6 +30,8 @@ private:
 
 	void HandleRangeAttack(UBehaviorTreeComponent& OwnerComp);
 	
+	AAIController* ControllerRef;
+	
 	UPROPERTY(EditAnywhere)
 	bool bHasRangeAttack;
 	

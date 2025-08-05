@@ -31,5 +31,6 @@ public:
 
 	virtual bool CanTakeDamage(AActor* Opponent) {return true;};
 	
+	virtual float GetAttackAnimReductionTime() { return 0.0f; };
 	
 };

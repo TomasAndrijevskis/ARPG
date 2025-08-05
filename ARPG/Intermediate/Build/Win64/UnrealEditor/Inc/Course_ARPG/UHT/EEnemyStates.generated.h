@@ -26,5 +26,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	op(Melee) \
 	op(GameOver) \
 	op(Patrol) \
-	op(GoingBack) 
+	op(GoingBack) \
+	op(PhaseTransition) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

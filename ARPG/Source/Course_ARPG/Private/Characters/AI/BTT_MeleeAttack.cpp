@@ -19,6 +19,7 @@ UBTT_MeleeAttack::UBTT_MeleeAttack()
 void UBTT_MeleeAttack::FinishAttackTask()
 {
 	bIsFinished = true;
+	
 }
 
 
@@ -27,7 +28,7 @@ EBTNodeResult::Type UBTT_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerC
 	bIsFinished = false;
 	float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 
-	AAIController* AIRef = OwnerComp.GetAIOwner();
+	ControllerRef = OwnerComp.GetAIOwner();
 	if (Distance > AttackRadius)
 	{
 		APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
@@ -35,18 +36,19 @@ EBTNodeResult::Type UBTT_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerC
 		MoveRequest.SetUsePathfinding(true);
 		MoveRequest.SetAcceptanceRadius(AcceptableRadius);
 
-		AIRef->ReceiveMoveCompleted.AddUnique(MoveDelegate);
+		ControllerRef->ReceiveMoveCompleted.AddUnique(MoveDelegate);
 		
-		AIRef->MoveTo(MoveRequest);
-		AIRef->SetFocus(PlayerRef);
+		ControllerRef->MoveTo(MoveRequest);
+		ControllerRef->SetFocus(PlayerRef);
 	}
 	else
 	{
-		IFighter* FighterRef = Cast<IFighter>(AIRef->GetCharacter());
+		IFighter* FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
 		FighterRef->Attack();
 
-		FTimerHandle AttackTimerHandle;
-		AIRef->GetCharacter()->GetWorldTimerManager().SetTimer(AttackTimerHandle, this, &UBTT_MeleeAttack::FinishAttackTask, FighterRef->GetAnimDuration(), false);
+		FTimerHandle AttackTimerHandle; // -.3 сек на 2 фазе будет норм, но стоит добавить счетчик ударов - допустим 5 после которых будет перерыв на секунду
+		ControllerRef->GetCharacter()->GetWorldTimerManager().SetTimer(AttackTimerHandle, this, &UBTT_MeleeAttack::FinishAttackTask,
+			FighterRef->GetAnimDuration() - FighterRef->GetAttackAnimReductionTime(), false);
 	}
 	return EBTNodeResult::InProgress;
 }
@@ -56,17 +58,15 @@ void UBTT_MeleeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMe
 {
 	float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 
-	AAIController* AIRef = OwnerComp.GetAIOwner();
-
-	IFighter* FighterRef = Cast<IFighter>(AIRef->GetCharacter());
+	IFighter* FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
 	if (Distance > FighterRef->GetMeleeRange())
 	{
 		HandleRangeAttack(OwnerComp);
 		AbortTask(OwnerComp, NodeMemory);
 		FinishLatentTask(OwnerComp, EBTNodeResult::Aborted);
-		AIRef->StopMovement();
-		AIRef->ClearFocus(EAIFocusPriority::Gameplay);
-		AIRef->ReceiveMoveCompleted.Remove(MoveDelegate);
+		ControllerRef->StopMovement();
+		ControllerRef->ClearFocus(EAIFocusPriority::Gameplay);
+		ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
 	}
 	if (!bIsFinished)
 	{
@@ -87,6 +87,5 @@ void UBTT_MeleeAttack::HandleRangeAttack(UBehaviorTreeComponent& OwnerComp)
 	else
 	{
 		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
-		//OwnerComp.GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);
 	}
 }

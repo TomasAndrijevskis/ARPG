@@ -25,6 +25,12 @@ public:
 	
 	UFUNCTION()
 	void FinishAttackTask();
+
+protected:
+
+	virtual void TickTask ( UBehaviorTreeComponent & OwnerComp,  uint8* NodeMemory,  float DeltaSeconds) override;
+
+	virtual EBTNodeResult::Type AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 	
 private:
 
@@ -42,11 +48,8 @@ private:
 	float OriginalWalkSpeed;
 	
 	UPROPERTY(EditAnywhere)
-	float ChargeWalkSpeed = 2000.0f;
+	float ChargeSpeedMultiplier;
 
 	bool bIsFinished = false;
-
-protected:
-
-	virtual void TickTask ( UBehaviorTreeComponent & OwnerComp,  uint8* NodeMemory,  float DeltaSeconds) override;
+	
 };
