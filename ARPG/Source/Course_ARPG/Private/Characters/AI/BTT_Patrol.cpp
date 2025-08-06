@@ -93,7 +93,7 @@ EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, ui
 		ControllerRef->ReceiveMoveCompleted.Remove(MoveBackwardDelegate);
 		ControllerRef->ReceiveMoveCompleted.Remove(MoveForwardDelegate);
 	}
-	return EBTNodeResult::Aborted;
+	return Super::AbortTask(OwnerComp, NodeMemory);
 }
 
 

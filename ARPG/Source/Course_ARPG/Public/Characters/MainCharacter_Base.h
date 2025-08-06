@@ -13,6 +13,8 @@ class UPlayerWidget;
 class UAbilityComponent_Base;
 class USkeletalMeshComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBonfireInteractionSignature);
+
 UCLASS(Blueprintable)
 class COURSE_ARPG_API AMainCharacter_Base : public ACharacter, public IMainPlayer, public IFighter
 {
@@ -82,6 +84,8 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	class UPlayerAnimInstance* PlayerAnim;
+
+	FOnBonfireInteractionSignature FOnBonfireInteractionDelegate;
 	
 protected:
 

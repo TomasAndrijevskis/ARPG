@@ -809,6 +809,35 @@ DEFINE_FUNCTION(UStatsComponent::execRegenStamina)
 }
 // End Class UStatsComponent Function RegenStamina
 
+// Begin Class UStatsComponent Function RestoreStats
+struct Z_Construct_UFunction_UStatsComponent_RestoreStats_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/StatsComponent.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatsComponent_RestoreStats_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatsComponent, nullptr, "RestoreStats", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatsComponent_RestoreStats_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatsComponent_RestoreStats_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UStatsComponent_RestoreStats()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UStatsComponent_RestoreStats_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UStatsComponent::execRestoreStats)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->RestoreStats();
+	P_NATIVE_END;
+}
+// End Class UStatsComponent Function RestoreStats
+
 // Begin Class UStatsComponent Function SetStatValue
 struct Z_Construct_UFunction_UStatsComponent_SetStatValue_Statics
 {
@@ -874,6 +903,7 @@ void UStatsComponent::StaticRegisterNativesUStatsComponent()
 		{ "ReduceStamina", &UStatsComponent::execReduceStamina },
 		{ "RegenMana", &UStatsComponent::execRegenMana },
 		{ "RegenStamina", &UStatsComponent::execRegenStamina },
+		{ "RestoreStats", &UStatsComponent::execRestoreStats },
 		{ "SetStatValue", &UStatsComponent::execSetStatValue },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -976,6 +1006,7 @@ struct Z_Construct_UClass_UStatsComponent_Statics
 		{ &Z_Construct_UFunction_UStatsComponent_ReduceStamina, "ReduceStamina" }, // 877380551
 		{ &Z_Construct_UFunction_UStatsComponent_RegenMana, "RegenMana" }, // 2331136345
 		{ &Z_Construct_UFunction_UStatsComponent_RegenStamina, "RegenStamina" }, // 3544300034
+		{ &Z_Construct_UFunction_UStatsComponent_RestoreStats, "RestoreStats" }, // 1499550697
 		{ &Z_Construct_UFunction_UStatsComponent_SetStatValue, "SetStatValue" }, // 1932000417
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -1067,10 +1098,10 @@ UStatsComponent::~UStatsComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatsComponent, UStatsComponent::StaticClass, TEXT("UStatsComponent"), &Z_Registration_Info_UClass_UStatsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsComponent), 1839103082U) },
+		{ Z_Construct_UClass_UStatsComponent, UStatsComponent::StaticClass, TEXT("UStatsComponent"), &Z_Registration_Info_UClass_UStatsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsComponent), 814629126U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_3137255295(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_1251223356(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

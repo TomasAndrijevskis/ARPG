@@ -13,7 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeQuickTravelButton() {}
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AARPG_PlayerController_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerTeleport_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UBonfireInteractionAnim_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UQuickTravelButton();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UQuickTravelButton_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UButton_NoRegister();
@@ -148,11 +148,11 @@ struct Z_Construct_UClass_UQuickTravelButton_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerController_MetaData[] = {
 		{ "ModuleRelativePath", "Public/UI/QuickTravelButton.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerTeleportRef_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireInteractionAnimRef_MetaData[] = {
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/QuickTravelButton.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerTeleportClass_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireInteractionAnimClass_MetaData[] = {
 		{ "Category", "QuickTravelButton" },
 		{ "ModuleRelativePath", "Public/UI/QuickTravelButton.h" },
 	};
@@ -161,8 +161,8 @@ struct Z_Construct_UClass_UQuickTravelButton_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Text_QuickTravelLocation;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerController;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerTeleportRef;
-	static const UECodeGen_Private::FClassPropertyParams NewProp_PlayerTeleportClass;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireInteractionAnimRef;
+	static const UECodeGen_Private::FClassPropertyParams NewProp_BonfireInteractionAnimClass;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -180,15 +180,15 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UQuickTravelBu
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_Text_QuickTravelLocation = { "Text_QuickTravelLocation", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UQuickTravelButton, Text_QuickTravelLocation), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_QuickTravelLocation_MetaData), NewProp_Text_QuickTravelLocation_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerRef = { "PlayerRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UQuickTravelButton, PlayerRef), Z_Construct_UClass_AMainCharacter_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerRef_MetaData), NewProp_PlayerRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerController = { "PlayerController", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UQuickTravelButton, PlayerController), Z_Construct_UClass_AARPG_PlayerController_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerController_MetaData), NewProp_PlayerController_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerTeleportRef = { "PlayerTeleportRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UQuickTravelButton, PlayerTeleportRef), Z_Construct_UClass_UPlayerTeleport_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerTeleportRef_MetaData), NewProp_PlayerTeleportRef_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerTeleportClass = { "PlayerTeleportClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UQuickTravelButton, PlayerTeleportClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UPlayerTeleport_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerTeleportClass_MetaData), NewProp_PlayerTeleportClass_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_BonfireInteractionAnimRef = { "BonfireInteractionAnimRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UQuickTravelButton, BonfireInteractionAnimRef), Z_Construct_UClass_UBonfireInteractionAnim_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireInteractionAnimRef_MetaData), NewProp_BonfireInteractionAnimRef_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_BonfireInteractionAnimClass = { "BonfireInteractionAnimClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UQuickTravelButton, BonfireInteractionAnimClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UBonfireInteractionAnim_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireInteractionAnimClass_MetaData), NewProp_BonfireInteractionAnimClass_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UQuickTravelButton_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_Button_QuickTravel,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_Text_QuickTravelLocation,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerController,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerTeleportRef,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_PlayerTeleportClass,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_BonfireInteractionAnimRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UQuickTravelButton_Statics::NewProp_BonfireInteractionAnimClass,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UQuickTravelButton_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UQuickTravelButton_Statics::DependentSingletons[])() = {
@@ -232,10 +232,10 @@ UQuickTravelButton::~UQuickTravelButton() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_QuickTravelButton_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UQuickTravelButton, UQuickTravelButton::StaticClass, TEXT("UQuickTravelButton"), &Z_Registration_Info_UClass_UQuickTravelButton, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UQuickTravelButton), 3094713234U) },
+		{ Z_Construct_UClass_UQuickTravelButton, UQuickTravelButton::StaticClass, TEXT("UQuickTravelButton"), &Z_Registration_Info_UClass_UQuickTravelButton, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UQuickTravelButton), 1372583141U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_QuickTravelButton_h_3886443003(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_QuickTravelButton_h_916106149(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_QuickTravelButton_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_QuickTravelButton_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

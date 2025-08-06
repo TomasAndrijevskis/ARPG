@@ -51,6 +51,8 @@ void AMainCharacter_Base::BeginPlay()
 	LevelComp->OnXpUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnNewLevelDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	
+	FOnBonfireInteractionDelegate.AddDynamic(StatsComp, &UStatsComponent::RestoreStats);
+	
 	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
 	
 }

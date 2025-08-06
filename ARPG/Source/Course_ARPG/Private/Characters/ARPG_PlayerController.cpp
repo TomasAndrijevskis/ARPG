@@ -36,12 +36,6 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 		{
 			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), BonfireRef->GetActorLocation());
 		}
-
-		AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
-		if (GameMode)
-		{
-			GameMode->SpawnEnemies();
-		}
 	}
 }
 
@@ -49,7 +43,13 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 void AARPG_PlayerController::RemoveBonfireMenuWidget()
 {
 	PlayerRef->GetPlayerWidget()->RemoveBonfireMenuWidget();
+	PlayerRef->FOnBonfireInteractionDelegate.Broadcast();
 	HandleGamePause(false);
+	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
+	if (GameMode)
+	{
+		GameMode->SpawnEnemies();
+	}
 }
 
 

@@ -11,11 +11,12 @@
 #include "PlayerWidget.generated.h"
 
 
+class UBonfireInteractionAnim;
 class ABonfire;
 class UQuickTravelMenu;
 class UInfoFooter;
 enum EScreens : int;
-class UBonfireMenuWidget;
+class UBonfireMenu;
 class UPlayerDeath;
 class UStatsComponent;
 class UStatusIconWithAmount;
@@ -106,7 +107,7 @@ protected:
 	UVerticalBox* VerticalBox_UpgradeInfo;
 	
 private:
-
+	
 	UPROPERTY(meta = (BindWidget))
 	UProgressBar* ProgressBar_Health;
 
@@ -168,10 +169,10 @@ private:
 	UPlayerDeath* PlayerDeathWidgetRef;
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UBonfireMenuWidget> BonfireMenuWidgetClass;
+	TSubclassOf<UBonfireMenu> BonfireMenuWidgetClass;
 	
 	UPROPERTY()
-	UBonfireMenuWidget* BonfireMenuWidgetRef;
+	UBonfireMenu* BonfireMenuWidgetRef;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UInfoFooter> InfoFooterWidgetClass;
@@ -184,4 +185,5 @@ private:
 
 	UPROPERTY()
 	UQuickTravelMenu* QuickTravelMenuWidgetRef;
+	
 };

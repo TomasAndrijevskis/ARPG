@@ -46,6 +46,7 @@ COURSE_ARPG_API void FOnZeroHealthSignature_DelegateWrapper(const FMulticastScri
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_StatsComponent_h_20_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execEnableStaminaRegen); \
 	DECLARE_FUNCTION(execEnableManaRegen); \
+	DECLARE_FUNCTION(execRestoreStats); \
 	DECLARE_FUNCTION(execOnStatsUpdated); \
 	DECLARE_FUNCTION(execAddHealth); \
 	DECLARE_FUNCTION(execSetStatValue); \

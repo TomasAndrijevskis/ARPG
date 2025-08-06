@@ -8,7 +8,7 @@
 #include "Components/WidgetComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
-#include "UI/BonfireInteractionWidget.h"
+#include "UI/BonfireInteractionText.h"
 
 
 ABonfire::ABonfire()

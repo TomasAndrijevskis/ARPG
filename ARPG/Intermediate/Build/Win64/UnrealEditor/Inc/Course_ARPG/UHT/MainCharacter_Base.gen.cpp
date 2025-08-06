@@ -26,6 +26,7 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerAnimInstance_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPlayerWidget_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatsComponent_NoRegister();
 COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EStats();
+COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_ACharacter();
 ENGINE_API UClass* Z_Construct_UClass_AController_NoRegister();
@@ -34,6 +35,32 @@ ENGINE_API UClass* Z_Construct_UClass_UDamageType_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USkeletalMeshComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
+
+// Begin Delegate FOnBonfireInteractionSignature
+struct Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/MainCharacter_Base.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnBonfireInteractionSignature__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+void FOnBonfireInteractionSignature_DelegateWrapper(const FMulticastScriptDelegate& OnBonfireInteractionSignature)
+{
+	OnBonfireInteractionSignature.ProcessMulticastDelegate<UObject>(NULL);
+}
+// End Delegate FOnBonfireInteractionSignature
 
 // Begin Class AMainCharacter_Base Function AddToAbilitiesArray
 struct Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics

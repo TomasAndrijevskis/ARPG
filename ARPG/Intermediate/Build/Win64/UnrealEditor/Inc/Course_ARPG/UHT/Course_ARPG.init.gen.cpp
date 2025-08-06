@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityStartedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityTimerChangedSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityUnlockedSignature__DelegateSignature();
+	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature();
 	COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature();
@@ -42,6 +43,7 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityStartedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityTimerChangedSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnAbilityUnlockedSignature__DelegateSignature,
+				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnBonfireInteractionSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnStatUpdateSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnZeroArmorSignature__DelegateSignature,
 				(UObject* (*)())Z_Construct_UDelegateFunction_Course_ARPG_OnZeroHealthSignature__DelegateSignature,
@@ -65,13 +67,13 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x73FC12CE,
-				0x494A2CC1,
+				0x56000A66,
+				0x3B86642F,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x73FC12CE, 0x494A2CC1));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x56000A66, 0x3B86642F));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

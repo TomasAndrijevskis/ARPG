@@ -1,6 +1,5 @@
 
 #include "Characters/StatsComponent.h"
-
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/AbilityComponent_GetArmor.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -88,6 +87,15 @@ void UStatsComponent::OnStatsUpdated()
 	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
 	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
 	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
+}
+
+
+void UStatsComponent::RestoreStats()
+{
+	SetStatValue(EStats::Health, Stats[EStats::MaxHealth]);
+	SetStatValue(EStats::Stamina, Stats[EStats::MaxStamina]);
+	SetStatValue(EStats::Mana, Stats[EStats::MaxMana]);
+	OnStatsUpdated();
 }
 
 

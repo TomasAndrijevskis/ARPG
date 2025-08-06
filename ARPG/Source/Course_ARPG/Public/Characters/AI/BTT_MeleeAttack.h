@@ -26,6 +26,8 @@ protected:
 	
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 
+	virtual EBTNodeResult::Type AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
+	
 private:
 
 	void HandleRangeAttack(UBehaviorTreeComponent& OwnerComp);

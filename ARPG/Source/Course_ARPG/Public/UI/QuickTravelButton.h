@@ -6,7 +6,7 @@
 #include "QuickTravelButton.generated.h"
 
 
-class UPlayerTeleport;
+class UBonfireInteractionAnim;
 class AARPG_PlayerController;
 class UTextBlock;
 class AMainCharacter_Base;
@@ -49,10 +49,10 @@ private:
 	AARPG_PlayerController* PlayerController;
 
 	UPROPERTY()
-	UPlayerTeleport* PlayerTeleportRef;
+	UBonfireInteractionAnim* BonfireInteractionAnimRef;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UPlayerTeleport> PlayerTeleportClass;
+	TSubclassOf<UBonfireInteractionAnim> BonfireInteractionAnimClass;
 
 	float AnimDuration;
 };

@@ -62,6 +62,9 @@ public:
 	UFUNCTION()
 	void OnStatsUpdated();
 
+	UFUNCTION()
+	void RestoreStats();
+	
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
 

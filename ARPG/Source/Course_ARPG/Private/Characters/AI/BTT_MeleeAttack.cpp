@@ -46,7 +46,7 @@ EBTNodeResult::Type UBTT_MeleeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerC
 		IFighter* FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
 		FighterRef->Attack();
 
-		FTimerHandle AttackTimerHandle; // -.3 сек на 2 фазе будет норм, но стоит добавить счетчик ударов - допустим 5 после которых будет перерыв на секунду
+		FTimerHandle AttackTimerHandle;
 		ControllerRef->GetCharacter()->GetWorldTimerManager().SetTimer(AttackTimerHandle, this, &UBTT_MeleeAttack::FinishAttackTask,
 			FighterRef->GetAnimDuration() - FighterRef->GetAttackAnimReductionTime(), false);
 	}
@@ -88,4 +88,11 @@ void UBTT_MeleeAttack::HandleRangeAttack(UBehaviorTreeComponent& OwnerComp)
 	{
 		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
 	}
+}
+
+
+EBTNodeResult::Type UBTT_MeleeAttack::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
+{
+	ControllerRef->StopMovement();
+	return Super::AbortTask(OwnerComp, NodeMemory);
 }

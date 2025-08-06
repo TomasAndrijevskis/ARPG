@@ -5,7 +5,7 @@
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
-#include "UI/PlayerTeleport.h"
+#include "UI/BonfireInteractionAnim.h"
 
 
 void UQuickTravelButton::NativeConstruct()
@@ -39,11 +39,11 @@ void UQuickTravelButton::InitializeButton(FString NewTravelLocationName, FVector
 
 void UQuickTravelButton::ShowAnimBeforeTeleport()
 {
-	if (PlayerTeleportClass)
+	if (BonfireInteractionAnimClass)
 	{
-		PlayerTeleportRef = Cast<UPlayerTeleport>(CreateWidget(this, PlayerTeleportClass));
-		PlayerTeleportRef->AddToViewport(6);
-		AnimDuration = PlayerTeleportRef->GetAnimDuration();
+		BonfireInteractionAnimRef = Cast<UBonfireInteractionAnim>(CreateWidget(this, BonfireInteractionAnimClass));
+		BonfireInteractionAnimRef->AddToViewport(6);
+		AnimDuration = BonfireInteractionAnimRef->GetAnimDuration();
 	}
 	PlayerRef->DisableInput(PlayerController);
 	PlayerController->RemoveQuickTravelMenu();

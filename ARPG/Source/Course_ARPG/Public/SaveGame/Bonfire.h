@@ -6,7 +6,7 @@
 #include "Bonfire.generated.h"
 
 class AARPG_PlayerController;
-class UBonfireInteractionWidget;
+class UBonfireInteractionText;
 class UWidgetComponent;
 class USphereComponent;
 class UBoxComponent;
@@ -56,10 +56,10 @@ private:
 	USphereComponent* InteractionRangeCollision;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UBonfireInteractionWidget> InteractionWidgetClass;
+	TSubclassOf<UBonfireInteractionText> InteractionWidgetClass;
 
 	UPROPERTY()
-	UBonfireInteractionWidget* InteractionWidgetRef;
+	UBonfireInteractionText* InteractionWidgetRef;
 
 	UPROPERTY()
 	AARPG_PlayerController* PlayerController;

@@ -3,7 +3,8 @@
 #include "UI/AbilityFooter.h"
 #include "UI/StatsScreenWidget.h"
 #include "UI/AbilityUpgradeScreen.h"
-#include "UI/BonfireMenuWidget.h"
+#include "UI/BonfireInteractionAnim.h"
+#include "UI/BonfireMenu.h"
 #include "UI/EScreens.h"
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
@@ -162,11 +163,12 @@ void UPlayerWidget::CreateDeathWidget()
 }
 
 
+
 void UPlayerWidget::CreateBonfireMenuWidget()
 {
 	if (BonfireMenuWidgetClass)
 	{
-		BonfireMenuWidgetRef = Cast<UBonfireMenuWidget>(CreateWidget(this, BonfireMenuWidgetClass));
+		BonfireMenuWidgetRef = Cast<UBonfireMenu>(CreateWidget(this, BonfireMenuWidgetClass));
 		BonfireMenuWidgetRef->AddToViewport(5);
 	}
 }
