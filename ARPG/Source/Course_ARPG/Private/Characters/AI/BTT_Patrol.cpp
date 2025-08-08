@@ -80,7 +80,6 @@ void UBTT_Patrol::DelayPatrol(FVector TargetLocation, bool bDirectionForward)
 		ControllerRef->ReceiveMoveCompleted.Remove(MoveBackwardDelegate);
 		ControllerRef->ReceiveMoveCompleted.AddUnique(MoveForwardDelegate);
 	}
-	
 }
 
 

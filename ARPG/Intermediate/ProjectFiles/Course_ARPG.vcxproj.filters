@@ -268,10 +268,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityUpgradeScreen.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionWidget.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionAnim.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireMenuWidget.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionText.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireMenu.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BossHealthBar.cpp">
@@ -296,9 +299,6 @@
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerDeath.cpp">
-      <Filter>Source\Course_ARPG\Private\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerTeleport.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerWidget.cpp">
@@ -565,10 +565,13 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionWidget.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionAnim.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireMenuWidget.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionText.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireMenu.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BossHealthBar.h">
@@ -596,9 +599,6 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerDeath.h">
-      <Filter>Source\Course_ARPG\Public\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerTeleport.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerWidget.h">

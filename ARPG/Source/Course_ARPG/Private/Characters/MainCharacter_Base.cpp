@@ -82,13 +82,16 @@ void AMainCharacter_Base::CreateUI()
 	PlayerWidgetRef = Cast<UPlayerWidget>(CreateWidget(GetWorld()->GetFirstPlayerController(), PlayerWidget));
 	PlayerWidgetRef->AddToViewport();
 
-	PlayerWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
-	PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
-	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
-	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
-	PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
-	
-	CreateAbilitiesFooter();
+	if (PlayerWidgetRef)
+	{
+		PlayerWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
+		PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
+		PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
+		PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
+		PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
+		
+		CreateAbilitiesFooter();
+	}
 }
 
 
