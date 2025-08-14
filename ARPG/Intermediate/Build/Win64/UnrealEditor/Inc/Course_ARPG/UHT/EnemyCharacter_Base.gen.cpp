@@ -82,7 +82,7 @@ struct Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics::NewProp_DetectedPawn = { "DetectedPawn", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(EnemyCharacter_Base_eventDetectPawn_Parms, DetectedPawn), Z_Construct_UClass_APawn_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics::NewProp_PawnToDetect = { "PawnToDetect", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(EnemyCharacter_Base_eventDetectPawn_Parms, PawnToDetect), Z_Construct_UClass_APawn_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics::NewProp_NewEnemyState = { "NewEnemyState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(EnemyCharacter_Base_eventDetectPawn_Parms, NewEnemyState), Z_Construct_UEnum_Course_ARPG_EEnemyStates, METADATA_PARAMS(0, nullptr) }; // 440304712
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics::NewProp_NewEnemyState = { "NewEnemyState", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(EnemyCharacter_Base_eventDetectPawn_Parms, NewEnemyState), Z_Construct_UEnum_Course_ARPG_EEnemyStates, METADATA_PARAMS(0, nullptr) }; // 534292026
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics::NewProp_DetectedPawn,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn_Statics::NewProp_PawnToDetect,
@@ -357,6 +357,10 @@ struct Z_Construct_UClass_AEnemyCharacter_Base_Statics
 		{ "Category", "EnemyCharacter_Base" },
 		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter_Base.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bRandomAttacks_MetaData[] = {
+		{ "Category", "EnemyCharacter_Base" },
+		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter_Base.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ControllerRef_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Characters/EnemyCharacter_Base.h" },
 	};
@@ -373,13 +377,15 @@ struct Z_Construct_UClass_AEnemyCharacter_Base_Statics
 	static const UECodeGen_Private::FBytePropertyParams NewProp_InitialState;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_DeathAnim;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_RewardXP;
+	static void NewProp_bRandomAttacks_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp_bRandomAttacks;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ControllerRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BehaviorTree;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AEnemyCharacter_Base_CreateHealthWidget, "CreateHealthWidget" }, // 453377779
-		{ &Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn, "DetectPawn" }, // 285078041
+		{ &Z_Construct_UFunction_AEnemyCharacter_Base_DetectPawn, "DetectPawn" }, // 4256570163
 		{ &Z_Construct_UFunction_AEnemyCharacter_Base_FinishedDeathAnim, "FinishedDeathAnim" }, // 1755501080
 		{ &Z_Construct_UFunction_AEnemyCharacter_Base_HandleDeath, "HandleDeath" }, // 3563767845
 		{ &Z_Construct_UFunction_AEnemyCharacter_Base_HandlePlayerDeath, "HandlePlayerDeath" }, // 3131908296
@@ -398,9 +404,14 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacte
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_TraceComp = { "TraceComp", nullptr, (EPropertyFlags)0x001000000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, TraceComp), Z_Construct_UClass_UTraceComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_TraceComp_MetaData), NewProp_TraceComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_StatusEffectsComp = { "StatusEffectsComp", nullptr, (EPropertyFlags)0x0010000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, StatusEffectsComp), Z_Construct_UClass_UStatusEffectsComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatusEffectsComp_MetaData), NewProp_StatusEffectsComp_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_BlackboardComp = { "BlackboardComp", nullptr, (EPropertyFlags)0x0020080000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, BlackboardComp), Z_Construct_UClass_UBlackboardComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BlackboardComp_MetaData), NewProp_BlackboardComp_MetaData) };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_InitialState = { "InitialState", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, InitialState), Z_Construct_UEnum_Course_ARPG_EEnemyStates, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InitialState_MetaData), NewProp_InitialState_MetaData) }; // 440304712
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_InitialState = { "InitialState", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, InitialState), Z_Construct_UEnum_Course_ARPG_EEnemyStates, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InitialState_MetaData), NewProp_InitialState_MetaData) }; // 534292026
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_DeathAnim = { "DeathAnim", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, DeathAnim), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DeathAnim_MetaData), NewProp_DeathAnim_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_RewardXP = { "RewardXP", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, RewardXP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_RewardXP_MetaData), NewProp_RewardXP_MetaData) };
+void Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_bRandomAttacks_SetBit(void* Obj)
+{
+	((AEnemyCharacter_Base*)Obj)->bRandomAttacks = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_bRandomAttacks = { "bRandomAttacks", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AEnemyCharacter_Base), &Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_bRandomAttacks_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bRandomAttacks_MetaData), NewProp_bRandomAttacks_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_ControllerRef = { "ControllerRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, ControllerRef), Z_Construct_UClass_AAIController_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ControllerRef_MetaData), NewProp_ControllerRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_BehaviorTree = { "BehaviorTree", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemyCharacter_Base, BehaviorTree), Z_Construct_UClass_UBehaviorTree_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BehaviorTree_MetaData), NewProp_BehaviorTree_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AEnemyCharacter_Base_Statics::PropPointers[] = {
@@ -412,6 +423,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AEnemyCha
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_InitialState,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_DeathAnim,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_RewardXP,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_bRandomAttacks,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_ControllerRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AEnemyCharacter_Base_Statics::NewProp_BehaviorTree,
 };
@@ -460,10 +472,10 @@ AEnemyCharacter_Base::~AEnemyCharacter_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemyCharacter_Base, AEnemyCharacter_Base::StaticClass, TEXT("AEnemyCharacter_Base"), &Z_Registration_Info_UClass_AEnemyCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyCharacter_Base), 1777038181U) },
+		{ Z_Construct_UClass_AEnemyCharacter_Base, AEnemyCharacter_Base::StaticClass, TEXT("AEnemyCharacter_Base"), &Z_Registration_Info_UClass_AEnemyCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemyCharacter_Base), 1131135426U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_138524898(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_3243737919(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EnemyCharacter_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

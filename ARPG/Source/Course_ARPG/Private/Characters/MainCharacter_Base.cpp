@@ -150,7 +150,6 @@ bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent)
 	}
 	if (PlayerAnim->bIsBlocking)
 	{
-		//return !BlockComp->CanBlock(Opponent);
 		return false;
 	}
 	return true;
@@ -201,7 +200,6 @@ TArray<UAbilityComponent_Base*>& AMainCharacter_Base::GetAbilitiesArray()
 
 void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Base* NewAbility)
 {
-	//UE_LOG(LogTemp, Error, TEXT("AMainCharacter_Base|Ability: %s"), *NewAbility->GetName());
 	ArrAbilities.Add(NewAbility);
 }
 

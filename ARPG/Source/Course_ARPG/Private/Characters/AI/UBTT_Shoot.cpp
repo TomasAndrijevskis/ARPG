@@ -2,7 +2,7 @@
 #include "Characters/AI/UBTT_Shoot.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/EnemyCharacter_Elemental.h"
+#include "Characters/EC_Minion_Elemental.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/Projectiles/EnemyProjectileComponent.h"
 #include "Navigation/PathFollowingComponent.h"
@@ -22,7 +22,7 @@ EBTNodeResult::Type UUBTT_Shoot::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 		return EBTNodeResult::Failed;
 	}
 	CheckDistance();
-	Cast<AEnemyCharacter_Elemental>(CharacterRef)->ProjectileComp->SpawnProjectile();
+	Cast<AEC_Minion_Elemental>(CharacterRef)->ProjectileComp->SpawnProjectile();
 	return EBTNodeResult::Succeeded;
 }
 

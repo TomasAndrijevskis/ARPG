@@ -29,6 +29,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UAbilityComponent_HealingAura* AbilityComp_HealingAura;
 
+	virtual bool CanTakeDamage(AActor* Opponent) override;
+	
 protected:
 
 	virtual void BeginPlay() override;

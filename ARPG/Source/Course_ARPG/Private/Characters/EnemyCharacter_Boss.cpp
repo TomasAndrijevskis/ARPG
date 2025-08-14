@@ -11,7 +11,6 @@
 
 AEnemyCharacter_Boss::AEnemyCharacter_Boss()
 {
-	ProjectileComp = CreateDefaultSubobject<UEnemyProjectileComponent>(TEXT("Projectile Component"));
 	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
 	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 }
@@ -24,10 +23,14 @@ void AEnemyCharacter_Boss::CreateHealthWidget()
 		return;
 	}
 	HealthBarWidgetRef = Cast<UBossHealthBar>(CreateWidget(GetWorld(), HealthBarWidget));
-	HealthBarWidgetRef->AddToViewport();
-	HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
-	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UBossHealthBar::SetHealth);
-	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(this, &AEnemyCharacter_Boss::CheckSecondPhase);
+	if (HealthBarWidgetRef)
+	{
+		HealthBarWidgetRef->AddToViewport();
+		HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
+		HealthBarWidgetRef->SetBossName(GetBossName());
+		StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UBossHealthBar::SetHealth);
+		StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(this, &AEnemyCharacter_Boss::CheckSecondPhase);
+	}
 }
 
 
@@ -72,22 +75,22 @@ void AEnemyCharacter_Boss::CheckSecondPhase(float CurrentHealthPercent)
 {
 	if (CurrentHealthPercent <= SecondPhaseHealthPercent && !bSecondPhase)
 	{
-		bSecondPhase = true;
 		bCanTakeDamage = false;
 		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::PhaseTransition);
-		FTimerHandle TimerHandle;
-
-		GetMesh()->GetAnimInstance()->Montage_Stop(0.01f);
-		
-		float AnimDuration = PlayAnimMontage(PhaseTransitionMontage);
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter_Boss::ActivateSecondPhase, AnimDuration, false);
 	}
 }
 
 
 void AEnemyCharacter_Boss::ActivateSecondPhase()
 {
-	BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Charge);
+	bSecondPhase = true;
 	bCanTakeDamage = true;
 	StatsComp->SetStatValue(EStats::Strength, StatsComp->GetStatValue(EStats::Strength) * 2);
+}
+
+
+
+FText AEnemyCharacter_Boss::GetBossName()
+{
+	return BossName;
 }

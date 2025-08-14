@@ -19,7 +19,6 @@ UTraceComponent::UTraceComponent()
 void UTraceComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
 	SkeletalComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
 }
 
@@ -44,7 +43,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		double WeaponDistance = FVector::Distance(StartSocketLocation, EndSocketLocation);
 
 		FVector BoxHalfExtent = FVector(BoxCollisionLength, BoxCollisionLength, WeaponDistance);
-		BoxHalfExtent /=2;
+		BoxHalfExtent /= 2;
 
 		FCollisionShape Box = FCollisionShape::MakeBox(BoxHalfExtent);
 
@@ -105,7 +104,10 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		TargetActor->TakeDamage(CharacterDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 		TargetsToIgnore.AddUnique(TargetActor);
 		OnHitDelegate.Broadcast();
-		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticleTemplate, Hit.ImpactPoint);
+		if (HitParticleTemplate)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticleTemplate, Hit.ImpactPoint);
+		}
 	}
 }
 

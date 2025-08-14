@@ -89,6 +89,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	float RewardXP;
 
+	UPROPERTY(EditAnywhere)
+	bool bRandomAttacks;
+	
 	UPROPERTY()
 	AAIController* ControllerRef;
 	

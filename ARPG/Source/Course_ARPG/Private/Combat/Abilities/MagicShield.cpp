@@ -11,5 +11,4 @@ AMagicShield::AMagicShield()
 
 	MagicShield = CreateDefaultSubobject<UNiagaraComponent>(TEXT("VFX"));
 	MagicShield->SetupAttachment(ShieldCollision);
-	
 }

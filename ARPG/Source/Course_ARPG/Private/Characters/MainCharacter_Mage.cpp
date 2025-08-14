@@ -83,3 +83,16 @@ void AMainCharacter_Mage::HandleDeath()
 		ParticleComponentIce = nullptr;
 	}
 }
+
+
+bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent)
+{
+	if (AbilityComp_MagicShield->IsAbilityActive())
+	{
+		return false;
+	}
+	else
+	{
+		return Super::CanTakeDamage(Opponent);	
+	}
+}

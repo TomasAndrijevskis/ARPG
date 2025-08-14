@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -18,9 +17,6 @@ public:
 	
 	AEnemyCharacter_Boss();
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UEnemyProjectileComponent* ProjectileComp;
-
 	UPROPERTY(BlueprintReadOnly)
 	UBossHealthBar* HealthBarWidgetRef;
 	
@@ -29,6 +25,10 @@ public:
 	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState) override;
 
 	virtual float GetAttackAnimReductionTime() override;
+
+	FText GetBossName();
+
+	void ActivateSecondPhase();
 	
 protected:
 
@@ -41,8 +41,6 @@ private:
 	UFUNCTION()
 	void CheckSecondPhase(float CurrentHealth);
 	
-	void ActivateSecondPhase();
-	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UBossHealthBar> HealthBarWidget;
 
@@ -51,11 +49,15 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* PhaseTransitionMontage;
+
+	UPROPERTY(EditAnywhere)
+	float AttackAnimReductionTime;
+
+	UPROPERTY(EditAnywhere)
+	FText BossName;
 	
 	bool bCanTakeDamage = true;
 
 	bool bSecondPhase = false;
-
-	UPROPERTY(EditAnywhere)
-	float AttackAnimReductionTime;
+	
 };

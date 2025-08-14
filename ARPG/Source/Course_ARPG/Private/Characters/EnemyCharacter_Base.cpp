@@ -116,7 +116,14 @@ float AEnemyCharacter_Base::GetCurrentDamage()
 
 void AEnemyCharacter_Base::Attack()
 {
-	CombatComp->RandomAttack();
+	if (bRandomAttacks)
+	{
+		CombatComp->RandomAttack();
+	}
+	else
+	{
+		CombatComp->ComboAttack();
+	}
 }
 
 

@@ -10,3 +10,17 @@ void UCombatComponent_Enemy::RandomAttack()
 	AnimDuration = CharacterRef->PlayAnimMontage(AttackAnimations[RandomIndex]);
 }
 
+
+void UCombatComponent_Enemy::ComboAttack()
+{
+	if (ComboCounter == AttackAnimations.Num() - 1)
+	{
+		ComboCounter = 0;
+	}
+	else
+	{
+		ComboCounter++;
+	}
+	AnimDuration = CharacterRef->PlayAnimMontage(AttackAnimations[ComboCounter]);
+}
+

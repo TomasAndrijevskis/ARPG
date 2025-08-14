@@ -15,6 +15,12 @@ public:
 
 	void RandomAttack();
 
+	void ComboAttack();
+	
 	UPROPERTY()
 	float AnimDuration;
+
+private:
+
+	int ComboCounter = 0;
 };

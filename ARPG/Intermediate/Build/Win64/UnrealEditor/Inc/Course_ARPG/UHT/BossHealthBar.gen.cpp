@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeBossHealthBar() {}
 COURSE_ARPG_API UClass* Z_Construct_UClass_UBossHealthBar();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UBossHealthBar_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UProgressBar_NoRegister();
+UMG_API UClass* Z_Construct_UClass_UTextBlock_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UUserWidget();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
@@ -38,7 +39,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UBossH
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::NewProp_NewHealthPercent,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UBossHealthBar, nullptr, "SetHealth", nullptr, nullptr, Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::PropPointers), sizeof(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::BossHealthBar_eventSetHealth_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::Function_MetaDataParams), Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::Function_MetaDataParams) };
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UBossHealthBar, nullptr, "SetHealth", nullptr, nullptr, Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::PropPointers), sizeof(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::BossHealthBar_eventSetHealth_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::Function_MetaDataParams), Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::Function_MetaDataParams) };
 static_assert(sizeof(Z_Construct_UFunction_UBossHealthBar_SetHealth_Statics::BossHealthBar_eventSetHealth_Parms) < MAX_uint16);
 UFunction* Z_Construct_UFunction_UBossHealthBar_SetHealth()
 {
@@ -85,12 +86,18 @@ struct Z_Construct_UClass_UBossHealthBar_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/BossHealthBar.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Text_BossName_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/UI/BossHealthBar.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ProgressBar_HealthBar;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Text_BossName;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UBossHealthBar_SetHealth, "SetHealth" }, // 4112449020
+		{ &Z_Construct_UFunction_UBossHealthBar_SetHealth, "SetHealth" }, // 1730783728
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -99,8 +106,10 @@ struct Z_Construct_UClass_UBossHealthBar_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBossHealthBar_Statics::NewProp_ProgressBar_HealthBar = { "ProgressBar_HealthBar", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBossHealthBar, ProgressBar_HealthBar), Z_Construct_UClass_UProgressBar_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ProgressBar_HealthBar_MetaData), NewProp_ProgressBar_HealthBar_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBossHealthBar_Statics::NewProp_Text_BossName = { "Text_BossName", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBossHealthBar, Text_BossName), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_BossName_MetaData), NewProp_Text_BossName_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBossHealthBar_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBossHealthBar_Statics::NewProp_ProgressBar_HealthBar,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBossHealthBar_Statics::NewProp_Text_BossName,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBossHealthBar_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UBossHealthBar_Statics::DependentSingletons[])() = {
@@ -144,10 +153,10 @@ UBossHealthBar::~UBossHealthBar() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_BossHealthBar_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UBossHealthBar, UBossHealthBar::StaticClass, TEXT("UBossHealthBar"), &Z_Registration_Info_UClass_UBossHealthBar, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBossHealthBar), 390241529U) },
+		{ Z_Construct_UClass_UBossHealthBar, UBossHealthBar::StaticClass, TEXT("UBossHealthBar"), &Z_Registration_Info_UClass_UBossHealthBar, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBossHealthBar), 2273192204U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_BossHealthBar_h_1929408127(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_BossHealthBar_h_4199211105(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_BossHealthBar_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_BossHealthBar_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

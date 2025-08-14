@@ -27,5 +27,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	op(GameOver) \
 	op(Patrol) \
 	op(GoingBack) \
-	op(PhaseTransition) 
+	op(PhaseTransition) \
+	op(SpecialAttack) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

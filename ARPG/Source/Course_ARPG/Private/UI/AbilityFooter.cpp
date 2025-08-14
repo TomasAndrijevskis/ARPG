@@ -28,7 +28,7 @@ void UAbilityFooter::SetImageStyle()
 {
 	FSlateBrush ImageStyle;
 	ImageStyle.SetResourceObject(AbilityImage);
-	ImageStyle.SetImageSize(FVector2d(100,100));
+	ImageStyle.SetImageSize(FVector2d(50,50));
 	Image_AbilityIcon->SetBrush(ImageStyle);
 	
 }

@@ -25,7 +25,6 @@ void UCombatComponent_Mage::ComboAttack()
 	}
 	bCanAttack = false;
 	
-	
 	float AnimDuration = CharacterRef->PlayAnimMontage(AttackAnimations[ComboCounter]);
 	ComboCounter++;
 

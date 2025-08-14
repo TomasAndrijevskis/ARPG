@@ -38,7 +38,7 @@ private:
 	
 	ACharacter* CharacterRef;
 	
-	class UBossAnimInstance* BossAnimInstance;
+	class UBossAnimInstance_Base* BossAnimInstance;
 	
 	UPROPERTY(EditAnywhere)
 	float AcceptableRadius = 100.0f;

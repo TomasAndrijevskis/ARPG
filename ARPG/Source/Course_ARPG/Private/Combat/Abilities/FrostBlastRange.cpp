@@ -22,7 +22,6 @@ AFrostBlastRange::AFrostBlastRange()
 void AFrostBlastRange::BeginPlay()
 {
 	Super::BeginPlay();
-
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AFrostBlastRange::CheckEnemiesInRange, 1, false);
 }
 
@@ -43,7 +42,6 @@ void AFrostBlastRange::CheckEnemiesInRange()
 		{
 			continue;
 		}
-
 		float DistBtwEnemyAndCenter = FVector::DistSquared(FoundEnemy->GetActorLocation(), Center);
 		if (DistBtwEnemyAndCenter < Radius * Radius)
 		{

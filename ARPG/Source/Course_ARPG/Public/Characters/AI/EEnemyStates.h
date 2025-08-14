@@ -14,4 +14,5 @@ enum EEnemyStates
 	Patrol UMETA(DisplayName = "Patrol"),
 	GoingBack UMETA(DisplayName = "GoingBack"),
 	PhaseTransition UMETA(DisplayName = "PhaseTransition"),
+	SpecialAttack UMETA(DisplayName = "SpecialAttack")
 };

@@ -264,7 +264,13 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Course_ARPG\Course_ARPG.h"/>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Base.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Grux.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Rampage.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\LookAtPlayerAnimNotifyState.cpp">
@@ -279,16 +285,22 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\ARPG_PlayerController.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Boss_Grux.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Boss_Rampage.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Minion_Elemental.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Minion_Grux.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Base.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Boss.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Elemental.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Grux.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Minion.cpp">
@@ -321,19 +333,31 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_ChargeAttack.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_GroundSmashAttack.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_HitCounter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_HitCountReset.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack_Base.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack_Grux.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack_Rampage.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MoveToStartLocation.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_Patrol.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_PhaseTransition.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
@@ -361,6 +385,12 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\FTraceSockets.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\GroundSmashArea.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\GroundSmashComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
@@ -510,15 +540,19 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\StatusIconWithTimer.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Base.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Grux.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Rampage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\LookAtPlayerAnimNotifyState.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\PlayerAnimInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\ToggleTraceNotifyState.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Boss_Grux.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Boss_Rampage.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Minion_Elemental.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Minion_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Boss.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Elemental.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Minion.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>
@@ -530,11 +564,15 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\StatsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTS_PlayerDistance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_ChargeAttack.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_GroundSmashAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_HitCounter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_HitCountReset.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack_Base.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack_Grux.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack_Rampage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MoveToStartLocation.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_Patrol.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_PhaseTransition.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\EEnemyStates.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\UBTT_Shoot.h"/>
@@ -547,6 +585,8 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Enemy.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Mage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\FTraceSockets.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\GroundSmashArea.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\GroundSmashComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\StatusEffectsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h"/>

@@ -8,7 +8,6 @@ void UAbilityComponent_MagicShield::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	//SetAbilityAvailability(true);
 }
 
 

@@ -49,7 +49,13 @@
     <Filter Include="Source\Course_ARPG\Private\Animations">
       <UniqueIdentifier>{FA8BE011-257E-3EDE-A17D-E5FE71EE4ACB}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Base.cpp">
+      <Filter>Source\Course_ARPG\Private\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Grux.cpp">
+      <Filter>Source\Course_ARPG\Private\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Rampage.cpp">
       <Filter>Source\Course_ARPG\Private\Animations</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\LookAtPlayerAnimNotifyState.cpp">
@@ -67,16 +73,22 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\ARPG_PlayerController.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Boss_Grux.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Boss_Rampage.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Minion_Elemental.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EC_Minion_Grux.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Base.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Boss.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Elemental.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Grux.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Minion.cpp">
@@ -112,19 +124,31 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_ChargeAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_GroundSmashAttack.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_HitCounter.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_HitCountReset.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack_Base.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack_Grux.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MeleeAttack_Rampage.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_MoveToStartLocation.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_Patrol.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_PhaseTransition.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
@@ -158,6 +182,12 @@
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\FTraceSockets.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\GroundSmashArea.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\GroundSmashComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
@@ -331,7 +361,13 @@
     <Filter Include="Source\Course_ARPG\Public\Animations">
       <UniqueIdentifier>{728D16E0-7CC8-369F-8E3E-610F2954DAC9}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Base.h">
+      <Filter>Source\Course_ARPG\Public\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Grux.h">
+      <Filter>Source\Course_ARPG\Public\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Rampage.h">
       <Filter>Source\Course_ARPG\Public\Animations</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\LookAtPlayerAnimNotifyState.h">
@@ -349,16 +385,22 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Boss_Grux.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Boss_Rampage.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Minion_Elemental.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EC_Minion_Grux.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Base.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Boss.h">
-      <Filter>Source\Course_ARPG\Public\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Elemental.h">
-      <Filter>Source\Course_ARPG\Public\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Grux.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Minion.h">
@@ -397,19 +439,31 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_ChargeAttack.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_GroundSmashAttack.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_HitCounter.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_HitCountReset.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack_Base.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack_Grux.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MeleeAttack_Rampage.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MoveToStartLocation.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_Patrol.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_PhaseTransition.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h">
@@ -455,6 +509,12 @@
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\FTraceSockets.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\GroundSmashArea.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\GroundSmashComponent.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h">
