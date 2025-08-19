@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "EEnemyStates.h"
 #include "BehaviorTree/BTTaskNode.h"
 #include "BTT_PhaseTransition.generated.h"
 
@@ -23,6 +24,9 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* PhaseTransitionMontage;
+
+	UPROPERTY(EditAnywhere)
+	TEnumAsByte<EEnemyStates> NextState;
 	
 	AAIController* ControllerRef;
 

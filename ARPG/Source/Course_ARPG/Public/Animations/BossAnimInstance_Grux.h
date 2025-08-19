@@ -6,7 +6,7 @@
 #include "BossAnimInstance_Grux.generated.h"
 
 
-class AEC_Boss_Grux;
+class ABoss_Grux;
 
 UCLASS()
 class COURSE_ARPG_API UBossAnimInstance_Grux : public UBossAnimInstance_Base

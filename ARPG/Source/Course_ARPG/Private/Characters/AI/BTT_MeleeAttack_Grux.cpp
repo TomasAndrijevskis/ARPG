@@ -11,8 +11,7 @@ void UBTT_MeleeAttack_Grux::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 {
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
 	float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-
-	IFighter* FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
+	
 	if (Distance > FighterRef->GetMeleeRange())
 	{
 		HandleRangeAttack(OwnerComp);

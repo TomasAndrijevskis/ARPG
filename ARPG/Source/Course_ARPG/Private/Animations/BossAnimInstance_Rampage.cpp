@@ -3,7 +3,7 @@
 
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/EC_Boss_Rampage.h"
+#include "Characters/Boss_Rampage.h"
 #include "Combat/GroundSmashComponent.h"
 
 
@@ -13,7 +13,7 @@ void UBossAnimInstance_Rampage::HandleSmashingGround()
 	{
 		return;
 	}
-	Cast<AEC_Boss_Rampage>(PawnRef)->AbilityComp_GroundSmash->SpawnParticles();
+	Cast<ABoss_Rampage>(PawnRef)->AbilityComp_GroundSmash->SpawnParticles();
 }
 
 

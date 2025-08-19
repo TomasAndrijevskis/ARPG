@@ -24,8 +24,11 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-
+	
 	FVector GetParticleSpawnLocation(FName SocketName);
+
+	UPROPERTY(EditAnywhere)
+	float DamageMultiplier;
 	
 	UPROPERTY(EditAnywhere)
 	FName SpawnSocketName; //FX_Trail_L_03
@@ -40,4 +43,6 @@ private:
 	
 	UPROPERTY()
 	AGroundSmashArea* GroundSmashAreaActor;
+
+	ACharacter* PawnRef;
 };

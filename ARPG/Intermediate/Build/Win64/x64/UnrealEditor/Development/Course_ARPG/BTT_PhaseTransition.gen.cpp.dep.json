@@ -7,6 +7,7 @@
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\ai\\btt_phasetransition.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\ai\\eenemystates.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\aimodule\\classes\\behaviortree\\bttasknode.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\aimodule\\classes\\behaviortree\\btnode.h",
             "d:\\unreal engine\\ue_5.4\\engine\\source\\runtime\\aimodule\\classes\\behaviortree\\behaviortreetypes.h",

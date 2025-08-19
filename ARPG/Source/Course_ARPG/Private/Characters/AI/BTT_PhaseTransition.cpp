@@ -2,7 +2,7 @@
 #include "Characters/AI/BTT_PhaseTransition.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/EnemyCharacter_Boss.h"
+#include "Characters/Boss.h"
 #include "Characters/AI/EEnemyStates.h"
 #include "GameFramework/Character.h"
 
@@ -25,8 +25,10 @@ EBTNodeResult::Type UBTT_PhaseTransition::ExecuteTask(UBehaviorTreeComponent& Ow
 
 void UBTT_PhaseTransition::ActivateSecondPhase()
 {
-	CachedOwnerComp->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Charge);
-	Cast<AEnemyCharacter_Boss>(CharacterRef)->ActivateSecondPhase();
+	CachedOwnerComp->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), NextState);
+	CachedOwnerComp->GetBlackboardComponent()->SetValueAsBool(TEXT("IsSecondPhase"), true);
+	CachedOwnerComp->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), 0);
+	Cast<ABoss>(CharacterRef)->ActivateSecondPhase();
 	
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }

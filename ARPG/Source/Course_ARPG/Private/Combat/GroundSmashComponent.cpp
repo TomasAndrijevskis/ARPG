@@ -1,5 +1,8 @@
 
 #include "Combat/GroundSmashComponent.h"
+
+#include "Characters/Boss.h"
+#include "Characters/StatsComponent.h"
 #include "Combat/GroundSmashArea.h"
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
@@ -8,6 +11,12 @@
 void UGroundSmashComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	PawnRef = Cast<ACharacter>(GetOwner());
+	if (!PawnRef)
+	{
+		return;
+	}
 }
 
 
@@ -25,14 +34,16 @@ void UGroundSmashComponent::SpawnParticles()
 		FActorSpawnParameters Params;
 		Params.Owner = GetOwner();
 		GroundSmashAreaActor = GetWorld()->SpawnActor<AGroundSmashArea>(GroundSmashAreaClass,  SpawnLocation, SpawnRotation, Params);
-		GroundSmashAreaActor->SetParams(10);
+		if (PawnRef)
+		{
+			GroundSmashAreaActor->SetParams(Cast<AEnemyCharacter_Base>(PawnRef)->StatsComp->GetStatValue(EStats::Strength) * DamageMultiplier);
+		}
 	}
 }
 
 
 FVector UGroundSmashComponent::GetParticleSpawnLocation(FName SocketName)
 {
-	ACharacter* PawnRef = Cast<ACharacter>(GetOwner());
 	if (!PawnRef)
 	{
 		return FVector::ZeroVector;

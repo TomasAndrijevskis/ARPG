@@ -38,6 +38,10 @@ struct Z_Construct_UClass_UGroundSmashComponent_Statics
 		{ "IncludePath", "Combat/GroundSmashComponent.h" },
 		{ "ModuleRelativePath", "Public/Combat/GroundSmashComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DamageMultiplier_MetaData[] = {
+		{ "Category", "GroundSmashComponent" },
+		{ "ModuleRelativePath", "Public/Combat/GroundSmashComponent.h" },
+	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_SpawnSocketName_MetaData[] = {
 		{ "Category", "GroundSmashComponent" },
 		{ "ModuleRelativePath", "Public/Combat/GroundSmashComponent.h" },
@@ -60,6 +64,7 @@ struct Z_Construct_UClass_UGroundSmashComponent_Statics
 		{ "ModuleRelativePath", "Public/Combat/GroundSmashComponent.h" },
 	};
 #endif // WITH_METADATA
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_DamageMultiplier;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_SpawnSocketName;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ParticleClass;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_GroundSmashAreaClass;
@@ -71,11 +76,13 @@ struct Z_Construct_UClass_UGroundSmashComponent_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_DamageMultiplier = { "DamageMultiplier", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGroundSmashComponent, DamageMultiplier), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DamageMultiplier_MetaData), NewProp_DamageMultiplier_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_SpawnSocketName = { "SpawnSocketName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGroundSmashComponent, SpawnSocketName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpawnSocketName_MetaData), NewProp_SpawnSocketName_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_ParticleClass = { "ParticleClass", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGroundSmashComponent, ParticleClass), Z_Construct_UClass_UParticleSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ParticleClass_MetaData), NewProp_ParticleClass_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_GroundSmashAreaClass = { "GroundSmashAreaClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGroundSmashComponent, GroundSmashAreaClass), Z_Construct_UClass_UClass, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GroundSmashAreaClass_MetaData), NewProp_GroundSmashAreaClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_GroundSmashAreaActor = { "GroundSmashAreaActor", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UGroundSmashComponent, GroundSmashAreaActor), Z_Construct_UClass_AGroundSmashArea_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GroundSmashAreaActor_MetaData), NewProp_GroundSmashAreaActor_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UGroundSmashComponent_Statics::PropPointers[] = {
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_DamageMultiplier,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_SpawnSocketName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_ParticleClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UGroundSmashComponent_Statics::NewProp_GroundSmashAreaClass,
@@ -122,10 +129,10 @@ UGroundSmashComponent::~UGroundSmashComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UGroundSmashComponent, UGroundSmashComponent::StaticClass, TEXT("UGroundSmashComponent"), &Z_Registration_Info_UClass_UGroundSmashComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGroundSmashComponent), 254904273U) },
+		{ Z_Construct_UClass_UGroundSmashComponent, UGroundSmashComponent::StaticClass, TEXT("UGroundSmashComponent"), &Z_Registration_Info_UClass_UGroundSmashComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGroundSmashComponent), 813483144U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_592143888(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_3452751805(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -6,7 +6,7 @@
 #include "BossAnimInstance_Rampage.generated.h"
 
 
-class AEC_Boss_Rampage;
+class ABoss_Rampage;
 
 UCLASS()
 class COURSE_ARPG_API UBossAnimInstance_Rampage : public UBossAnimInstance_Base

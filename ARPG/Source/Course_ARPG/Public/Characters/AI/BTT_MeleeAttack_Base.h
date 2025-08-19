@@ -6,6 +6,8 @@
 #include "BTT_MeleeAttack_Base.generated.h"
 
 
+class IFighter;
+
 UCLASS()
 class COURSE_ARPG_API UBTT_MeleeAttack_Base : public UBTTaskNode
 {
@@ -15,11 +17,6 @@ public:
 
 	UBTT_MeleeAttack_Base();
 
-	UFUNCTION()
-	void FinishAttackTask();
-
-	bool bIsFinished = false;
-	
 protected:
 
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
@@ -29,13 +26,22 @@ protected:
 	virtual EBTNodeResult::Type AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 	AAIController* ControllerRef;
+
+	IFighter* FighterRef;
 	
 private:
 
-	//void HandleRangeAttack(UBehaviorTreeComponent& OwnerComp);
+	UFUNCTION()
+	void FinishAttack();
+
+	UFUNCTION()
+	void FinishMove();
 	
-	//UPROPERTY(EditAnywhere)
-	//bool bHasRangeAttack;
+	void Attack();
+	
+	void CheckDistance();
+	
+	void MoveToPlayer();
 	
 	UPROPERTY(EditAnywhere)
 	float AttackRadius = 200.0f;
@@ -44,5 +50,12 @@ private:
 	float AcceptableRadius = 100.0f;
 	
 	FScriptDelegate MoveDelegate;
+
+	UBehaviorTreeComponent* CachedOwnerComp;
 	
+	uint8* CachedNodeMemory;
+
+	bool bCanAttack = false;
+
+	bool bIsAttackFinished;
 };
