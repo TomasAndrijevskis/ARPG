@@ -19,6 +19,23 @@ AMinion::AMinion()
 }
 
 
+void AMinion::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (HealthBarWidgetClass)
+	{
+		HealthBarWidgetComponent->SetWidgetClass(HealthBarWidgetClass);
+		HealthBarWidgetRef = Cast<UEnemyHealthBar>(HealthBarWidgetComponent->GetWidget());
+		if (HealthBarWidgetRef)
+		{
+			HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
+			StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UEnemyHealthBar::SetHealth);
+		}
+	}
+}
+
+
 void AMinion::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -49,19 +66,3 @@ void AMinion::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates 
 	}
 }
 
-
-void AMinion::BeginPlay()
-{
-	Super::BeginPlay();
-
-	if (HealthBarWidgetClass)
-	{
-		HealthBarWidgetComponent->SetWidgetClass(HealthBarWidgetClass);
-		HealthBarWidgetRef = Cast<UEnemyHealthBar>(HealthBarWidgetComponent->GetWidget());
-		if (HealthBarWidgetRef)
-		{
-			HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
-			StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UEnemyHealthBar::SetHealth);
-		}
-	}
-}

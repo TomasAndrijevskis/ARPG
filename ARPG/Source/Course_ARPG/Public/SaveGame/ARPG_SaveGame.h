@@ -6,6 +6,7 @@
 #include "GameFramework/SaveGame.h"
 #include "ARPG_SaveGame.generated.h"
 
+class ABoss;
 class UAbilityComponent_Base;
 class AMainCharacter_Base;
 
@@ -56,4 +57,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacter;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FName> DefeatedBosses;
 };

@@ -2,6 +2,7 @@
 #include "Characters/Boss.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Blueprint/UserWidget.h"
+#include "Characters/ARPG_PlayerController.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/CombatComponent_Enemy.h"
 #include "Combat/TraceComponent.h"
@@ -59,6 +60,12 @@ float ABoss::GetAttackAnimReductionTime()
 
 void ABoss::HandleDeath()
 {
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
+	if (!PlayerController)
+	{
+		return;
+	}
+	PlayerController->AddDefeatedBoss(FName(*GetClass()->GetName()));
 	Super::HandleDeath();
 	HealthBarWidgetRef->RemoveFromParent();
 }

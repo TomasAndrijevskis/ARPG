@@ -1,6 +1,7 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Characters/ARPG_PlayerController.h"
+#include "Characters/Boss.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
@@ -46,6 +47,7 @@ void UARPG_GameInstance::SaveAll()
 	SaveStats();
 	SaveAbilities();
 	SaveBonfires();
+	//SaveDefeatedBosses();
 	bIsFirstLoad = false;
 }
 
@@ -90,12 +92,6 @@ void UARPG_GameInstance::LoadBonfires()
 	{
 		return;
 	}
-
-	/*for (TPair<FString, FVector>& Bonfire: SaveGameInstance->UnlockedBonfires)
-	{
-		UE_LOG(LogTemp, Error, TEXT("GI|Load|Bonfire name: %s"), *Bonfire.Key);
-		UE_LOG(LogTemp, Error, TEXT("GI|Load|Bonfire location:  %s"), *Bonfire.Value.ToString());
-	}*/
 	
 	for (TPair<FString, FVector>& Bonfire: SaveGameInstance->UnlockedBonfires)
 	{
@@ -242,6 +238,62 @@ void UARPG_GameInstance::LoadAbilities()
 		}
 	}
 }
+
+
+void UARPG_GameInstance::SaveDefeatedBosses()
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
+	if (!PlayerController)
+	{
+		return;
+	}
+	
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
+	}
+	
+	for (auto Boss : PlayerController->GetDefeatedBosses())
+	{
+		SaveGameInstance->DefeatedBosses.AddUnique(Boss);
+	}
+
+	for (auto Boss : SaveGameInstance->DefeatedBosses)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Saved Defeated boss: %s"), *Boss.ToString());
+	}
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadDefeatedBosses()
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
+	if (!PlayerController)
+	{
+		return;
+	}
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant Load DefeatedBosses"));
+		return;
+	}
+	for (auto Boss : SaveGameInstance->DefeatedBosses)
+	{
+		PlayerController->AddDefeatedBoss(Boss);
+	}
+}
+
 
 
 bool UARPG_GameInstance::bCheckSlot(FString SlotNameToCheck)

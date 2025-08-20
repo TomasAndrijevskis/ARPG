@@ -3,13 +3,6 @@
 #include "Characters/EnemyCharacter_Base.h"
 
 
-void AEnemySpawner::BeginPlay()
-{
-	Super::BeginPlay();
-	CheckEnemies();
-}
-
-
 void AEnemySpawner::CheckEnemies()
 {
 	if (SpawnedEnemies.IsEmpty())

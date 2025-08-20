@@ -18,7 +18,7 @@ public:
 	ABoss_Rampage();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UGroundSmashComponent* AbilityComp_GroundSmash;
+	UGroundSmashComponent* GroundSmashComp;
 
 protected:
 

@@ -6,6 +6,7 @@
 #include "ARPG_PlayerController.generated.h"
 
 
+class ABoss;
 class ABonfire;
 class UARPG_GameInstance;
 class AMainCharacter_Base;
@@ -41,8 +42,12 @@ public:
 	UFUNCTION()
 	void SaveAll();
 
-	TMap<FString, FVector> UnlockedBonfires;
+	TArray<FName> GetDefeatedBosses();
+
+	void AddDefeatedBoss(FName Boss);
 	
+	TMap<FString, FVector> UnlockedBonfires;
+
 protected:
 	
 	virtual void BeginPlay() override;
@@ -75,5 +80,7 @@ private:
 	bool bIsStatsScreenOpened = false;
 
 	bool bIsInBonfireRange = false;
-	
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<FName> DefeatedBosses;
 };

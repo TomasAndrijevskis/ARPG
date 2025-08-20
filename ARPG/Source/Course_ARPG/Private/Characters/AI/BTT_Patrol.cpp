@@ -85,7 +85,7 @@ void UBTT_Patrol::DelayPatrol(FVector TargetLocation, bool bDirectionForward)
 
 EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	UE_LOG(LogTemp, Error, TEXT("Patrol Abort"));
+	//UE_LOG(LogTemp, Error, TEXT("Patrol Abort"));
 	if (IsValid(ControllerRef))
 	{
 		ControllerRef->StopMovement();

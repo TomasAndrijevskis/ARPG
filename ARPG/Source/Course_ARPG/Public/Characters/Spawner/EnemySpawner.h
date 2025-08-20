@@ -2,13 +2,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Spawner.h"
 #include "EnemySpawner.generated.h"
 
-class AEnemyCharacter_Base;
 
 UCLASS()
-class COURSE_ARPG_API AEnemySpawner : public AActor
+class COURSE_ARPG_API AEnemySpawner : public ASpawner
 {
 	GENERATED_BODY()
 	
@@ -16,23 +15,19 @@ public:
 	
 	AEnemySpawner(){};
 
-	void CheckEnemies();
-
 protected:
+	
+	virtual void SpawnEnemies() override;
 
-	virtual void BeginPlay() override;
+	virtual void CheckEnemies() override;
 	
 private:
-
-	void SpawnEnemies();
-
+	
 	int GetRandomSpawnDistance();
 	
 	UPROPERTY(EditAnywhere)
 	int EnemySpawnCount;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<AEnemyCharacter_Base> EnemyClass;
+	
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<AEnemyCharacter_Base*> SpawnedEnemies;

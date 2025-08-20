@@ -7,6 +7,8 @@
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\spawner\\enemyspawner.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\spawner\\spawner.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\spawner.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyspawner.generated.h"
         ],
         "ImportedModules": [],

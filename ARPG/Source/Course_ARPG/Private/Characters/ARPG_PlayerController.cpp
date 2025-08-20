@@ -1,5 +1,7 @@
 
 #include "Characters/ARPG_PlayerController.h"
+
+#include "Characters/Boss.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
@@ -136,6 +138,7 @@ void AARPG_PlayerController::HandleGameLoad()
 		GameInstanceRef->LoadStats();
 		GameInstanceRef->LoadAbilities();
 		GameInstanceRef->LoadBonfires();
+		GameInstanceRef->LoadDefeatedBosses();
 		UE_LOG(LogTemp, Error, TEXT("PlayerController|SlotName: %s"), *SlotName);
 	}
 	else
@@ -161,6 +164,19 @@ void AARPG_PlayerController::SetIsInBonfireRange(bool bNewIsInBonfireRange, ABon
 {
 	bIsInBonfireRange = bNewIsInBonfireRange;
 	BonfireRef = BonfireInRange;
+}
+
+
+
+TArray<FName> AARPG_PlayerController::GetDefeatedBosses()
+{
+	return DefeatedBosses;
+}
+
+
+void AARPG_PlayerController::AddDefeatedBoss(FName Boss)
+{
+	DefeatedBosses.AddUnique(Boss);
 }
 
 

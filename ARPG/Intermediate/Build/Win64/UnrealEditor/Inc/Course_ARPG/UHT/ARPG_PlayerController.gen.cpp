@@ -450,10 +450,16 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireRef_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DefeatedBosses_MetaData[] = {
+		{ "Category", "ARPG_PlayerController" },
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_GameInstanceRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireRef;
+	static const UECodeGen_Private::FNamePropertyParams NewProp_DefeatedBosses_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_DefeatedBosses;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -479,10 +485,14 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_PlayerRef = { "PlayerRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, PlayerRef), Z_Construct_UClass_AMainCharacter_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerRef_MetaData), NewProp_PlayerRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_GameInstanceRef = { "GameInstanceRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, GameInstanceRef), Z_Construct_UClass_UARPG_GameInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_GameInstanceRef_MetaData), NewProp_GameInstanceRef_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_BonfireRef = { "BonfireRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, BonfireRef), Z_Construct_UClass_ABonfire_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireRef_MetaData), NewProp_BonfireRef_MetaData) };
+const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_DefeatedBosses_Inner = { "DefeatedBosses", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_DefeatedBosses = { "DefeatedBosses", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AARPG_PlayerController, DefeatedBosses), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DefeatedBosses_MetaData), NewProp_DefeatedBosses_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_PlayerRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_GameInstanceRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_BonfireRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_DefeatedBosses_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AARPG_PlayerController_Statics::NewProp_DefeatedBosses,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AARPG_PlayerController_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AARPG_PlayerController_Statics::DependentSingletons[])() = {
@@ -526,10 +536,10 @@ AARPG_PlayerController::~AARPG_PlayerController() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 3025500544U) },
+		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 1132979493U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_3718070227(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_3127134741(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -15,7 +15,7 @@ class ABonfire;
 #endif
 #define COURSE_ARPG_ARPG_PlayerController_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execHandleGameLoad); \
 	DECLARE_FUNCTION(execSetPlayerControllerSettings); \
 	DECLARE_FUNCTION(execHandleGamePause); \
@@ -30,7 +30,7 @@ class ABonfire;
 	DECLARE_FUNCTION(execCreateStatsScreen);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_16_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAARPG_PlayerController(); \
 	friend struct Z_Construct_UClass_AARPG_PlayerController_Statics; \
@@ -39,7 +39,7 @@ public: \
 	DECLARE_SERIALIZER(AARPG_PlayerController)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_16_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_17_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API AARPG_PlayerController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -53,13 +53,13 @@ public: \
 	NO_API virtual ~AARPG_PlayerController();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_13_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_16_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_14_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_16_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_16_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_16_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_17_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

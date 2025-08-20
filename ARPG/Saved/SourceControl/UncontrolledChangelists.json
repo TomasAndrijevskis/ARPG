@@ -7,7 +7,34 @@
 			"files": [
 				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/AI/BT_Boss_Rampage.uasset",
 				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/AI/BT_Minion_Grux.uasset",
-				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/AI/BT_Boss_Grux.uasset"
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/AI/BT_Boss_Grux.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/BP_Minion_Rampage.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/BP_Minion_Grux.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/AI/BT_Minion_Rampage.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/ParagonRampage/Characters/Heroes/Rampage/RampagePlayerCharacter.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/BP_Boss_Grux.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/BP_Boss_Rampage.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/ParagonRampage/Characters/Heroes/Rampage/AnimationTestMap.umap",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/Spawners/BP_EnemySpawner.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/Spawners/BP_BossSpawner.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/1/9B/H0YVNBQFVICI4L7N2P5MAE.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/2/SU/5L8NGDFALI6BLJ2SXP2HGC.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/7/F3/5HR644B57TK3L4IF6PRNO4.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/A/PU/Y0DCLSP9W97TSSUGONH779.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/8/J9/7AIBQ0GTXYDFQC5F2OUMRX.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/8/3A/8SOI6G24C1QL9WDNAVJXVI.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/6/2V/E12ORAADRGU6WS6KOQ0P8W.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/8/0K/5C3AKONH7L8U6MG3RTYYQT.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/9/CF/D60H40Y1APD5S87F7PFLVD.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/E/YK/VTKID0ZZOXN7SFLSBGF4SK.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/BP_EnemySpawner.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/EnemyCharacters/Spawners/BP_EnemySpawner1.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/2/60/LRINA8308V00Y5D842HY2N.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/A/K6/ZIDIF3GGIEK8VGPVY1O96Z.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/ParagonRampage/Characters/Heroes/Rampage/Animations/Attack_Biped_Melee_C_Montage.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/ParagonRampage/Characters/Heroes/Rampage/Animations/Attack_Biped_Melee_A_Montage.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/ParagonRampage/Characters/Heroes/Rampage/Animations/Attack_Biped_Melee_B_Montage.uasset",
+				"D:/projects/GIT HUB/ARPG/ARPG/Content/__ExternalActors__/Maps/TestMap/0/OY/6KO8VSMWPJ0R2VSQMOX4GB.uasset"
 			]
 		}
 	]

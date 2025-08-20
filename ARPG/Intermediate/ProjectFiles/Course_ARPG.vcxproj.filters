@@ -109,6 +109,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Grux.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Rampage.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\PlayerActionsComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
@@ -125,9 +128,6 @@
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_GroundSmashAttack.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_HitCounter.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_HitCountReset.cpp">
@@ -163,7 +163,13 @@
     <Filter Include="Source\Course_ARPG\Private\Characters\Spawner">
       <UniqueIdentifier>{40D56F71-D4E6-3468-98BF-7E76D813D2DF}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\BossSpawner.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\Spawner</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\EnemySpawner.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\Spawner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\Spawner.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\Spawner</Filter>
     </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Combat">
@@ -424,6 +430,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Grux.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Rampage.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
@@ -440,9 +449,6 @@
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_GroundSmashAttack.h">
-      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_HitCounter.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_HitCountReset.h">
@@ -490,7 +496,13 @@
     <Filter Include="Source\Course_ARPG\Public\Characters\Spawner">
       <UniqueIdentifier>{F80ECA41-150E-3A2C-A205-2B33B1ADFEFF}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Spawner\BossSpawner.h">
+      <Filter>Source\Course_ARPG\Public\Characters\Spawner</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Spawner\EnemySpawner.h">
+      <Filter>Source\Course_ARPG\Public\Characters\Spawner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Spawner\Spawner.h">
       <Filter>Source\Course_ARPG\Public\Characters\Spawner</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\Combat">

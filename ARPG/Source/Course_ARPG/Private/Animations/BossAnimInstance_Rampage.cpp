@@ -4,6 +4,7 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/Boss_Rampage.h"
+#include "Characters/Minion_Rampage.h"
 #include "Combat/GroundSmashComponent.h"
 
 
@@ -13,7 +14,11 @@ void UBossAnimInstance_Rampage::HandleSmashingGround()
 	{
 		return;
 	}
-	Cast<ABoss_Rampage>(PawnRef)->AbilityComp_GroundSmash->SpawnParticles();
+
+	if (PawnRef->FindComponentByClass<UGroundSmashComponent>())
+	{
+		PawnRef->FindComponentByClass<UGroundSmashComponent>()->SpawnParticles();
+	}
 }
 
 

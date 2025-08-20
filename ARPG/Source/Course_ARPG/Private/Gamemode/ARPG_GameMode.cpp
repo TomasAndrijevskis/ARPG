@@ -22,11 +22,12 @@ UClass* AARPG_GameMode::GetDefaultPawnClassForController_Implementation(AControl
 
 void AARPG_GameMode::SpawnEnemies()
 {
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemySpawner::StaticClass(), EnemySpawners);
-
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASpawner::StaticClass(), EnemySpawners);
+	
 	for (auto Spawner : EnemySpawners)
 	{
-		Cast<AEnemySpawner>(Spawner)->CheckEnemies();
+		Cast<ASpawner>(Spawner)->CheckEnemies();
+		UE_LOG(LogTemp, Error, TEXT("Spawner: %s"), *Spawner->GetName());
 	}
 }
 

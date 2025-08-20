@@ -48,9 +48,6 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool bCheckSlot(FString SlotNameToCheck);
-	
-	//UFUNCTION(BlueprintCallable)
-	//void SavePlayerClass();
 
 	UFUNCTION(BlueprintCallable)
 	void LoadPlayerClass();
@@ -58,6 +55,12 @@ public:
 	UFUNCTION()
 	void SetPlayerClass(TSubclassOf<AMainCharacter_Base> PlayerClass, bool bFirstLoad);
 
+	UFUNCTION()
+	void SaveDefeatedBosses();
+
+	UFUNCTION()
+	void LoadDefeatedBosses();
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacterClass;
 

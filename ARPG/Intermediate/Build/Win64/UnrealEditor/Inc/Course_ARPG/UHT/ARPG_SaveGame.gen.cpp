@@ -89,6 +89,10 @@ struct Z_Construct_UClass_UARPG_SaveGame_Statics
 		{ "Category", "ARPG_SaveGame" },
 		{ "ModuleRelativePath", "Public/SaveGame/ARPG_SaveGame.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_DefeatedBosses_MetaData[] = {
+		{ "Category", "ARPG_SaveGame" },
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_SaveGame.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentHealth;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_MaxHealth;
@@ -107,6 +111,8 @@ struct Z_Construct_UClass_UARPG_SaveGame_Statics
 	static const UECodeGen_Private::FStrPropertyParams NewProp_UnlockedBonfires_Key_KeyProp;
 	static const UECodeGen_Private::FMapPropertyParams NewProp_UnlockedBonfires;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_PlayerCharacter;
+	static const UECodeGen_Private::FNamePropertyParams NewProp_DefeatedBosses_Inner;
+	static const UECodeGen_Private::FArrayPropertyParams NewProp_DefeatedBosses;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -131,6 +137,8 @@ const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UARPG_SaveGame
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedBonfires_Key_KeyProp = { "UnlockedBonfires_Key", nullptr, (EPropertyFlags)0x0000000000000001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FMapPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedBonfires = { "UnlockedBonfires", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, UnlockedBonfires), EMapPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_UnlockedBonfires_MetaData), NewProp_UnlockedBonfires_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_PlayerCharacter = { "PlayerCharacter", nullptr, (EPropertyFlags)0x0014000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, PlayerCharacter), Z_Construct_UClass_UClass, Z_Construct_UClass_AMainCharacter_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerCharacter_MetaData), NewProp_PlayerCharacter_MetaData) };
+const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_DefeatedBosses_Inner = { "DefeatedBosses", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_DefeatedBosses = { "DefeatedBosses", nullptr, (EPropertyFlags)0x0010000000000001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UARPG_SaveGame, DefeatedBosses), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_DefeatedBosses_MetaData), NewProp_DefeatedBosses_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UARPG_SaveGame_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_CurrentHealth,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_MaxHealth,
@@ -149,6 +157,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UARPG_Sav
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedBonfires_Key_KeyProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_UnlockedBonfires,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_PlayerCharacter,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_DefeatedBosses_Inner,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UARPG_SaveGame_Statics::NewProp_DefeatedBosses,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UARPG_SaveGame_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UARPG_SaveGame_Statics::DependentSingletons[])() = {
@@ -191,10 +201,10 @@ UARPG_SaveGame::~UARPG_SaveGame() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UARPG_SaveGame, UARPG_SaveGame::StaticClass, TEXT("UARPG_SaveGame"), &Z_Registration_Info_UClass_UARPG_SaveGame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_SaveGame), 1428849875U) },
+		{ Z_Construct_UClass_UARPG_SaveGame, UARPG_SaveGame::StaticClass, TEXT("UARPG_SaveGame"), &Z_Registration_Info_UClass_UARPG_SaveGame, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_SaveGame), 3050247668U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_2759425945(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_4158355925(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_SaveGame_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -198,18 +198,41 @@ DEFINE_FUNCTION(UARPG_GameInstance::execLoadBonfires)
 }
 // End Class UARPG_GameInstance Function LoadBonfires
 
+// Begin Class UARPG_GameInstance Function LoadDefeatedBosses
+struct Z_Construct_UFunction_UARPG_GameInstance_LoadDefeatedBosses_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_LoadDefeatedBosses_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "LoadDefeatedBosses", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_LoadDefeatedBosses_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_LoadDefeatedBosses_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_LoadDefeatedBosses()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_LoadDefeatedBosses_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UARPG_GameInstance::execLoadDefeatedBosses)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->LoadDefeatedBosses();
+	P_NATIVE_END;
+}
+// End Class UARPG_GameInstance Function LoadDefeatedBosses
+
 // Begin Class UARPG_GameInstance Function LoadPlayerClass
 struct Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-#if !UE_BUILD_SHIPPING
-		{ "Comment", "//UFUNCTION(BlueprintCallable)\n//void SavePlayerClass();\n" },
-#endif
 		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
-#if !UE_BUILD_SHIPPING
-		{ "ToolTip", "UFUNCTION(BlueprintCallable)\nvoid SavePlayerClass();" },
-#endif
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FFunctionParams FuncParams;
@@ -349,6 +372,35 @@ DEFINE_FUNCTION(UARPG_GameInstance::execSaveBonfires)
 }
 // End Class UARPG_GameInstance Function SaveBonfires
 
+// Begin Class UARPG_GameInstance Function SaveDefeatedBosses
+struct Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SaveDefeatedBosses", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UARPG_GameInstance::execSaveDefeatedBosses)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SaveDefeatedBosses();
+	P_NATIVE_END;
+}
+// End Class UARPG_GameInstance Function SaveDefeatedBosses
+
 // Begin Class UARPG_GameInstance Function SaveStats
 struct Z_Construct_UFunction_UARPG_GameInstance_SaveStats_Statics
 {
@@ -482,11 +534,13 @@ void UARPG_GameInstance::StaticRegisterNativesUARPG_GameInstance()
 		{ "InitializeGameInstance", &UARPG_GameInstance::execInitializeGameInstance },
 		{ "LoadAbilities", &UARPG_GameInstance::execLoadAbilities },
 		{ "LoadBonfires", &UARPG_GameInstance::execLoadBonfires },
+		{ "LoadDefeatedBosses", &UARPG_GameInstance::execLoadDefeatedBosses },
 		{ "LoadPlayerClass", &UARPG_GameInstance::execLoadPlayerClass },
 		{ "LoadStats", &UARPG_GameInstance::execLoadStats },
 		{ "SaveAbilities", &UARPG_GameInstance::execSaveAbilities },
 		{ "SaveAll", &UARPG_GameInstance::execSaveAll },
 		{ "SaveBonfires", &UARPG_GameInstance::execSaveBonfires },
+		{ "SaveDefeatedBosses", &UARPG_GameInstance::execSaveDefeatedBosses },
 		{ "SaveStats", &UARPG_GameInstance::execSaveStats },
 		{ "SetPlayerClass", &UARPG_GameInstance::execSetPlayerClass },
 		{ "SetSlotName", &UARPG_GameInstance::execSetSlotName },
@@ -527,11 +581,13 @@ struct Z_Construct_UClass_UARPG_GameInstance_Statics
 		{ &Z_Construct_UFunction_UARPG_GameInstance_InitializeGameInstance, "InitializeGameInstance" }, // 3406541929
 		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadAbilities, "LoadAbilities" }, // 2298138032
 		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadBonfires, "LoadBonfires" }, // 4219144506
-		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass, "LoadPlayerClass" }, // 2017402217
+		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadDefeatedBosses, "LoadDefeatedBosses" }, // 2021448925
+		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadPlayerClass, "LoadPlayerClass" }, // 2407429810
 		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadStats, "LoadStats" }, // 388496173
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities, "SaveAbilities" }, // 1098041752
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAll, "SaveAll" }, // 2578912318
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveBonfires, "SaveBonfires" }, // 795124874
+		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses, "SaveDefeatedBosses" }, // 3008288654
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveStats, "SaveStats" }, // 2831133602
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SetPlayerClass, "SetPlayerClass" }, // 1192981413
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SetSlotName, "SetSlotName" }, // 1842137151
@@ -592,10 +648,10 @@ UARPG_GameInstance::~UARPG_GameInstance() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 3994205277U) },
+		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 1706485444U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_3209567128(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_4195794406(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

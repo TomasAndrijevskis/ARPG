@@ -16,6 +16,8 @@ class AMainCharacter_Base;
 #define COURSE_ARPG_ARPG_GameInstance_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execLoadDefeatedBosses); \
+	DECLARE_FUNCTION(execSaveDefeatedBosses); \
 	DECLARE_FUNCTION(execSetPlayerClass); \
 	DECLARE_FUNCTION(execLoadPlayerClass); \
 	DECLARE_FUNCTION(execbCheckSlot); \

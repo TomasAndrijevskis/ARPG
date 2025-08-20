@@ -1,9 +1,9 @@
 
 #include "Characters/AI/BTT_MeleeAttack_Rampage.h"
-
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/AI/EEnemyStates.h"
+#include "Interfaces/Fighter.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -21,4 +21,15 @@ EBTNodeResult::Type UBTT_MeleeAttack_Rampage::ExecuteTask(UBehaviorTreeComponent
 		}
 	}
 	return EBTNodeResult::InProgress;
+}
+
+
+void UBTT_MeleeAttack_Rampage::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
+{
+	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
+
+	if (OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance")) >= FighterRef->GetMeleeRange())
+	{
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
+	}
 }

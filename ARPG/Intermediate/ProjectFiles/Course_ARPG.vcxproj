@@ -321,6 +321,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Grux.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Rampage.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\PlayerActionsComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -366,7 +369,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\UBTT_Shoot.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\BossSpawner.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\EnemySpawner.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\Spawner.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\BlockComponent.cpp">
@@ -557,6 +566,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Elemental.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Grux.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Rampage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\StatsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTS_PlayerDistance.h"/>
@@ -575,7 +585,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequirements.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\CharacterSelectionStruct.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Spawner\BossSpawner.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Spawner\EnemySpawner.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Spawner\Spawner.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\BlockComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\CombatComponent_Enemy.h"/>

@@ -37,7 +37,7 @@ protected:
 	virtual void HandleDeath() override;
 
 	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
-	
+
 private:
 
 	UFUNCTION()

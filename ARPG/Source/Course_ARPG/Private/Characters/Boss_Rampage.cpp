@@ -5,7 +5,7 @@
 
 ABoss_Rampage::ABoss_Rampage()
 {
-	AbilityComp_GroundSmash = CreateDefaultSubobject<UGroundSmashComponent>(TEXT("Ground Smash Component"));
+	GroundSmashComp = CreateDefaultSubobject<UGroundSmashComponent>(TEXT("Ground Smash Component"));
 }
 
 
