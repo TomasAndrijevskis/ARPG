@@ -13,18 +13,6 @@ class COURSE_ARPG_API UAbilityComponent_LifeStealAttack : public UAbilityCompone
 
 public:	
 
-	UAbilityComponent_LifeStealAttack(){};
-	
-	UFUNCTION(BlueprintCallable)
-	float GetStolenHealthAmount();
-
-	UFUNCTION(BlueprintCallable)
-	void OnAbilityActivated();
-
-	float GetStolenHealthPercent();
-
-	void SetStolenHealthPercent(float NewStolenHealthPercent);
-
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
@@ -34,12 +22,23 @@ public:
 	virtual void SaveCustomProperties(FAbilityData& Data) override;
 
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
+
+	UFUNCTION(BlueprintCallable)
+	float GetStolenHealthAmount();
+
+	float GetStolenHealthPercent();
+
+	void SetStolenHealthPercent(float NewStolenHealthPercent);
 	
 protected:
 
 	virtual void BeginPlay() override;
 
 	virtual void OnAbilityTimerFinished() override;
+	
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 private:
 

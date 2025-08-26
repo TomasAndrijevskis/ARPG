@@ -16,6 +16,16 @@ class COURSE_ARPG_API UAbilityComponent_FrostBlast : public UAbilityComponent_Ba
 
 public:	
 
+	virtual void UpdateAbilityDescription() override;
+
+	virtual void UpdateUpgradeDescription() override;
+	
+	virtual void UpdateAbilityProperties() override;
+
+	virtual void SaveCustomProperties(FAbilityData& Data) override;
+
+	virtual void LoadCustomProperties(FAbilityData& SavedData) override;
+
 	void SetDamage(float NewDamage);
 
 	float GetDamage() const;
@@ -23,25 +33,16 @@ public:
 	void SetSlowDuration(float NewSlowDuration);
 
 	float GetSlowDuration() const;
-
-	virtual void UpdateAbilityDescription() override;
-
-	virtual void UpdateUpgradeDescription() override;
-	
-	virtual void UpdateAbilityProperties();
-
-	virtual void SaveCustomProperties(FAbilityData& Data);
-
-	virtual void LoadCustomProperties(FAbilityData& SavedData);
 	
 protected:
 
 	virtual void BeginPlay() override;
+
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 private:
-
-	UFUNCTION(BlueprintCallable)
-	void StartAbility();
 
 	UFUNCTION()
 	void CompleteAbility();

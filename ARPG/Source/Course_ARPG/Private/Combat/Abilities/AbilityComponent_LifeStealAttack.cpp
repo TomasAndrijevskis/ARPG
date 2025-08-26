@@ -30,10 +30,10 @@ float UAbilityComponent_LifeStealAttack::GetStolenHealthAmount()
 }
 
 
-void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
+void UAbilityComponent_LifeStealAttack::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-	
 	if (!IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
@@ -48,8 +48,16 @@ void UAbilityComponent_LifeStealAttack::OnAbilityActivated()
 
 		TimerDuration = GetAbilityDuration();
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::StartAbilityTimer, (AnimDuration + TempDuration), true);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::FinishAbilityCast, (AnimDuration + TempDuration), true);
 	}
+}
+
+
+void UAbilityComponent_LifeStealAttack::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::StartAbilityTimer, 1, true, .1);
 }
 
 

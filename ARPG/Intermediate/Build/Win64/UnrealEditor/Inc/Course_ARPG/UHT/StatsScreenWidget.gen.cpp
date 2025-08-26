@@ -110,7 +110,7 @@ struct Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::NewProp_StatToImprove = { "StatToImprove", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(StatsScreenWidget_eventSetStatsVariables_Parms, StatToImprove), Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::NewProp_StatToImprove = { "StatToImprove", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(StatsScreenWidget_eventSetStatsVariables_Parms, StatToImprove), Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 7366485
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables_Statics::NewProp_StatToImprove,
 };
@@ -246,7 +246,7 @@ struct Z_Construct_UClass_UStatsScreenWidget_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UStatsScreenWidget_ImproveStat, "ImproveStat" }, // 3335996652
 		{ &Z_Construct_UFunction_UStatsScreenWidget_OnClickedImproveStat, "OnClickedImproveStat" }, // 425721780
-		{ &Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables, "SetStatsVariables" }, // 2997399129
+		{ &Z_Construct_UFunction_UStatsScreenWidget_SetStatsVariables, "SetStatsVariables" }, // 3389999205
 		{ &Z_Construct_UFunction_UStatsScreenWidget_UpdateText, "UpdateText" }, // 3794125817
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -256,7 +256,7 @@ struct Z_Construct_UClass_UStatsScreenWidget_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UStatsScreenWidget_Statics::NewProp_StatValue = { "StatValue", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsScreenWidget, StatValue), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatValue_MetaData), NewProp_StatValue_MetaData) };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UStatsScreenWidget_Statics::NewProp_Stat = { "Stat", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsScreenWidget, Stat), Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Stat_MetaData), NewProp_Stat_MetaData) }; // 1779151500
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UStatsScreenWidget_Statics::NewProp_Stat = { "Stat", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsScreenWidget, Stat), Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Stat_MetaData), NewProp_Stat_MetaData) }; // 7366485
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_UStatsScreenWidget_Statics::NewProp_StatName = { "StatName", nullptr, (EPropertyFlags)0x0020080000000005, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsScreenWidget, StatName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatName_MetaData), NewProp_StatName_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UStatsScreenWidget_Statics::NewProp_Text_StatValue = { "Text_StatValue", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsScreenWidget, Text_StatValue), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_StatValue_MetaData), NewProp_Text_StatValue_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UStatsScreenWidget_Statics::NewProp_Text_StatName = { "Text_StatName", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatsScreenWidget, Text_StatName), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_StatName_MetaData), NewProp_Text_StatName_MetaData) };
@@ -311,10 +311,10 @@ UStatsScreenWidget::~UStatsScreenWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatsScreenWidget, UStatsScreenWidget::StaticClass, TEXT("UStatsScreenWidget"), &Z_Registration_Info_UClass_UStatsScreenWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsScreenWidget), 3597348847U) },
+		{ Z_Construct_UClass_UStatsScreenWidget, UStatsScreenWidget::StaticClass, TEXT("UStatsScreenWidget"), &Z_Registration_Info_UClass_UStatsScreenWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatsScreenWidget), 7272012U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_980382095(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_2864465368(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatsScreenWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -17,43 +17,9 @@ ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
-// Begin Class UAbilityComponent_DamageIncrease Function IncreaseDamage
-struct Z_Construct_UFunction_UAbilityComponent_DamageIncrease_IncreaseDamage_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_DamageIncrease.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_DamageIncrease_IncreaseDamage_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_DamageIncrease, nullptr, "IncreaseDamage", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_DamageIncrease_IncreaseDamage_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_DamageIncrease_IncreaseDamage_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UAbilityComponent_DamageIncrease_IncreaseDamage()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_DamageIncrease_IncreaseDamage_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UAbilityComponent_DamageIncrease::execIncreaseDamage)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->IncreaseDamage();
-	P_NATIVE_END;
-}
-// End Class UAbilityComponent_DamageIncrease Function IncreaseDamage
-
 // Begin Class UAbilityComponent_DamageIncrease
 void UAbilityComponent_DamageIncrease::StaticRegisterNativesUAbilityComponent_DamageIncrease()
 {
-	UClass* Class = UAbilityComponent_DamageIncrease::StaticClass();
-	static const FNameNativePtrPair Funcs[] = {
-		{ "IncreaseDamage", &UAbilityComponent_DamageIncrease::execIncreaseDamage },
-	};
-	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
 IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UAbilityComponent_DamageIncrease);
 UClass* Z_Construct_UClass_UAbilityComponent_DamageIncrease_NoRegister()
@@ -93,10 +59,6 @@ struct Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DamageMultiplier;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
-	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UAbilityComponent_DamageIncrease_IncreaseDamage, "IncreaseDamage" }, // 1333513194
-	};
-	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UAbilityComponent_DamageIncrease>::IsAbstract,
 	};
@@ -121,11 +83,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UAbilityComponent_Damag
 	"Engine",
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
-	FuncInfo,
+	nullptr,
 	Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
-	UE_ARRAY_COUNT(FuncInfo),
+	0,
 	UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics::PropPointers),
 	0,
 	0x00B000A4u,
@@ -143,6 +105,7 @@ template<> COURSE_ARPG_API UClass* StaticClass<UAbilityComponent_DamageIncrease>
 {
 	return UAbilityComponent_DamageIncrease::StaticClass();
 }
+UAbilityComponent_DamageIncrease::UAbilityComponent_DamageIncrease() {}
 DEFINE_VTABLE_PTR_HELPER_CTOR(UAbilityComponent_DamageIncrease);
 UAbilityComponent_DamageIncrease::~UAbilityComponent_DamageIncrease() {}
 // End Class UAbilityComponent_DamageIncrease
@@ -151,10 +114,10 @@ UAbilityComponent_DamageIncrease::~UAbilityComponent_DamageIncrease() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_DamageIncrease, UAbilityComponent_DamageIncrease::StaticClass, TEXT("UAbilityComponent_DamageIncrease"), &Z_Registration_Info_UClass_UAbilityComponent_DamageIncrease, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_DamageIncrease), 2644383540U) },
+		{ Z_Construct_UClass_UAbilityComponent_DamageIncrease, UAbilityComponent_DamageIncrease::StaticClass, TEXT("UAbilityComponent_DamageIncrease"), &Z_Registration_Info_UClass_UAbilityComponent_DamageIncrease, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_DamageIncrease), 2543607009U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_2661875089(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_2445672205(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -15,8 +15,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COURSE_ARPG_AbilityComponent_MagicShield_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execSpawnShield); \
-	DECLARE_FUNCTION(execStartAbility);
+	DECLARE_FUNCTION(execSpawnShield);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_17_INCLASS_NO_PURE_DECLS \

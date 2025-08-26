@@ -2,6 +2,7 @@
 #include "Characters/Minion.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/StatsComponent.h"
+#include "Combat/CombatComponent_Enemy.h"
 #include "Components/WidgetComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -15,7 +16,8 @@ AMinion::AMinion()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	HealthBarWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBarWidget"));
-	HealthBarWidgetComponent -> SetupAttachment(GetRootComponent());
+	HealthBarWidgetComponent->SetupAttachment(GetRootComponent());
+	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
 }
 
 
@@ -54,15 +56,15 @@ void AMinion::Tick(float DeltaTime)
 
 void AMinion::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState)
 {
-	if (BlackboardComp)
+	if (GetBlackboardComp())
 	{
-		EEnemyStates CurrentState = static_cast<EEnemyStates>(BlackboardComp->GetValueAsEnum(TEXT("CurrentState")));
+		EEnemyStates CurrentState = static_cast<EEnemyStates>(GetBlackboardComp()->GetValueAsEnum(TEXT("CurrentState")));
 		if (DetectedPawn != PawnToDetect || (CurrentState != EEnemyStates::Patrol && CurrentState != EEnemyStates::GoingBack))
 		{
 			return;
 		}
-		BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), false);
-		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), NewEnemyState);
+		GetBlackboardComp()->SetValueAsBool(TEXT("IsPatrolling"), false);
+		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), NewEnemyState);
 	}
 }
 

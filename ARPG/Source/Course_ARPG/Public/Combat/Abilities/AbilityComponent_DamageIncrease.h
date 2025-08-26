@@ -12,15 +12,6 @@ class COURSE_ARPG_API UAbilityComponent_DamageIncrease : public UAbilityComponen
 
 public:	
 
-	UAbilityComponent_DamageIncrease(){};
-	
-	UFUNCTION(BlueprintCallable)
-	void IncreaseDamage();
-
-	float GetDamageMultiplier();
-
-	void SetDamageMultiplier(float NewDamageMultiplier);
-
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
@@ -30,6 +21,10 @@ public:
 	virtual void SaveCustomProperties(FAbilityData& Data) override;
 
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
+
+	float GetDamageMultiplier();
+
+	void SetDamageMultiplier(float NewDamageMultiplier);
 	
 protected:
 
@@ -37,6 +32,9 @@ protected:
 
 	virtual void OnAbilityTimerFinished() override;
 
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 private:
 

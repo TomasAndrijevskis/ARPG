@@ -15,7 +15,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COURSE_ARPG_AbilityComponent_RangeAttack_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execStartAbilityAttack); \
 	DECLARE_FUNCTION(execSpawnProjectile);
 
 
@@ -29,6 +28,8 @@ public: \
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_13_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UAbilityComponent_RangeAttack(); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UAbilityComponent_RangeAttack(UAbilityComponent_RangeAttack&&); \

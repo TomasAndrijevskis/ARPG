@@ -78,14 +78,23 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	class ULevelingComponent* LevelComp;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	class UStatusEffectsComponent* StatusEffectsComp;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TEnumAsByte<EStats>> ArrStats;
 
 	UPROPERTY(BlueprintReadOnly)
-	class UPlayerAnimInstance* PlayerAnim;
+	class UPlayerAnimInstance* PlayerAnimInstance;
 
 	FOnBonfireInteractionSignature FOnBonfireInteractionDelegate;
+
+	void SetCanPlayHurtAnimation(bool bCanPlayAnim);
+
+	bool GetCanPlayHurtAnimation();
+
+	void InterruptHurtAnimation();
 	
 protected:
 
@@ -125,5 +134,7 @@ private:
 
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
+
+	bool bCanPlayHurtAnim = true;
 	
 };

@@ -48,7 +48,7 @@ void AMainCharacter_Warrior::BeginPlay()
 
 bool AMainCharacter_Warrior::CanTakeDamage(AActor* Opponent)
 {
-	if (PlayerAnim->bIsBlocking)
+	if (PlayerAnimInstance->bIsBlocking)
 	{
 		return !BlockComp->CanBlock(Opponent);
 	}

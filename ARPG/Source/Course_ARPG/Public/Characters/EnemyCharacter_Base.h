@@ -34,6 +34,8 @@ public:
 	virtual float GetAnimDuration();
 
 	virtual float GetMeleeRange() override;
+
+	virtual float GetRangeDistance() override;
 	
 	UFUNCTION(BlueprintCallable)
 	virtual void CreateHealthWidget(){};
@@ -54,6 +56,8 @@ public:
 
 	float GetSightRadius();
 	
+	UBlackboardComponent* GetBlackboardComp();
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -62,9 +66,6 @@ protected:
 	virtual void HandleDeath();
 
 	void GiveRewardXP();
-	
-	UPROPERTY()
-	UBlackboardComponent* BlackboardComp;
 
 	UFUNCTION()
 	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
@@ -97,5 +98,7 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UBehaviorTree* BehaviorTree;
-	
+
+	UPROPERTY()
+	UBlackboardComponent* BlackboardComp;
 };

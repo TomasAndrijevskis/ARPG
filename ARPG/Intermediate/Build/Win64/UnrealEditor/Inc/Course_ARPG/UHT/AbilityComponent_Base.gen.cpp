@@ -250,6 +250,35 @@ DEFINE_FUNCTION(UAbilityComponent_Base::execCreateIcon)
 }
 // End Class UAbilityComponent_Base Function CreateIcon
 
+// Begin Class UAbilityComponent_Base Function FinishAbilityCast
+struct Z_Construct_UFunction_UAbilityComponent_Base_FinishAbilityCast_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_Base_FinishAbilityCast_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_Base, nullptr, "FinishAbilityCast", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00080400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_FinishAbilityCast_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_Base_FinishAbilityCast_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UAbilityComponent_Base_FinishAbilityCast()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_Base_FinishAbilityCast_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UAbilityComponent_Base::execFinishAbilityCast)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->FinishAbilityCast();
+	P_NATIVE_END;
+}
+// End Class UAbilityComponent_Base Function FinishAbilityCast
+
 // Begin Class UAbilityComponent_Base Function GetAbilityDuration
 struct Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityDuration_Statics
 {
@@ -512,6 +541,35 @@ DEFINE_FUNCTION(UAbilityComponent_Base::execSetAbilityAvailability)
 }
 // End Class UAbilityComponent_Base Function SetAbilityAvailability
 
+// Begin Class UAbilityComponent_Base Function StartAbility
+struct Z_Construct_UFunction_UAbilityComponent_Base_StartAbility_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_Base.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_Base_StartAbility_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_Base, nullptr, "StartAbility", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04080400, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_Base_StartAbility_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_Base_StartAbility_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UAbilityComponent_Base_StartAbility()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_Base_StartAbility_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UAbilityComponent_Base::execStartAbility)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StartAbility();
+	P_NATIVE_END;
+}
+// End Class UAbilityComponent_Base Function StartAbility
+
 // Begin Class UAbilityComponent_Base Function UpgradeAbility
 struct Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility_Statics
 {
@@ -560,12 +618,14 @@ void UAbilityComponent_Base::StaticRegisterNativesUAbilityComponent_Base()
 	UClass* Class = UAbilityComponent_Base::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "CreateIcon", &UAbilityComponent_Base::execCreateIcon },
+		{ "FinishAbilityCast", &UAbilityComponent_Base::execFinishAbilityCast },
 		{ "GetAbilityDuration", &UAbilityComponent_Base::execGetAbilityDuration },
 		{ "GetActionKey", &UAbilityComponent_Base::execGetActionKey },
 		{ "GetCurrentAbilityLevel", &UAbilityComponent_Base::execGetCurrentAbilityLevel },
 		{ "IsAbilityActive", &UAbilityComponent_Base::execIsAbilityActive },
 		{ "IsAbilityAvailable", &UAbilityComponent_Base::execIsAbilityAvailable },
 		{ "SetAbilityAvailability", &UAbilityComponent_Base::execSetAbilityAvailability },
+		{ "StartAbility", &UAbilityComponent_Base::execStartAbility },
 		{ "UpgradeAbility", &UAbilityComponent_Base::execUpgradeAbility },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -678,12 +738,14 @@ struct Z_Construct_UClass_UAbilityComponent_Base_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_CreateIcon, "CreateIcon" }, // 2424374390
+		{ &Z_Construct_UFunction_UAbilityComponent_Base_FinishAbilityCast, "FinishAbilityCast" }, // 780690404
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_GetAbilityDuration, "GetAbilityDuration" }, // 284824163
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_GetActionKey, "GetActionKey" }, // 3268613383
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_GetCurrentAbilityLevel, "GetCurrentAbilityLevel" }, // 2311290974
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_IsAbilityActive, "IsAbilityActive" }, // 3238099954
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_IsAbilityAvailable, "IsAbilityAvailable" }, // 3455110506
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_SetAbilityAvailability, "SetAbilityAvailability" }, // 3175708875
+		{ &Z_Construct_UFunction_UAbilityComponent_Base_StartAbility, "StartAbility" }, // 2295583804
 		{ &Z_Construct_UFunction_UAbilityComponent_Base_UpgradeAbility, "UpgradeAbility" }, // 3652733501
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -781,10 +843,10 @@ UAbilityComponent_Base::~UAbilityComponent_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_Base, UAbilityComponent_Base::StaticClass, TEXT("UAbilityComponent_Base"), &Z_Registration_Info_UClass_UAbilityComponent_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_Base), 2675534894U) },
+		{ Z_Construct_UClass_UAbilityComponent_Base, UAbilityComponent_Base::StaticClass, TEXT("UAbilityComponent_Base"), &Z_Registration_Info_UClass_UAbilityComponent_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_Base), 682033855U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_222650790(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_4182083884(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

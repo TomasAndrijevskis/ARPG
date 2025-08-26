@@ -29,6 +29,8 @@ public:
 
 	virtual float GetMeleeRange() { return 0.0f; };
 
+	virtual float GetRangeDistance() { return 0.0f; };
+
 	virtual bool CanTakeDamage(AActor* Opponent) {return true;};
 	
 	virtual float GetAttackAnimReductionTime() { return 0.0f; };

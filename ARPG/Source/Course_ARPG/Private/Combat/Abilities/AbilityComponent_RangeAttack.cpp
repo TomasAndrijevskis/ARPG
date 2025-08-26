@@ -12,15 +12,14 @@
 void UAbilityComponent_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
-
 	OnAbilityFinishedDelegate.AddDynamic(this,&UAbilityComponent_RangeAttack::SpawnProjectile);
 }
 
 
-void UAbilityComponent_RangeAttack::StartAbilityAttack()
+void UAbilityComponent_RangeAttack::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-	
 	if (!IsOnCooldown() && !IsAbilityActive() && IsEnoughMana())
 	{
 		HandlePlayerActions(false);
@@ -33,8 +32,16 @@ void UAbilityComponent_RangeAttack::StartAbilityAttack()
 		ParticleComponent = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::CompleteAbilityAttack, AnimDuration/2, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::FinishAbilityCast, AnimDuration/2, false);
 	}
+}
+
+
+void UAbilityComponent_RangeAttack::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::CompleteAbilityAttack, .1, false);
 }
 
 
@@ -62,10 +69,8 @@ void UAbilityComponent_RangeAttack::SpawnProjectile()
 		return;
 	}
 	FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
-	
 	FVector ForwardDirection = GetOwner()->GetActorForwardVector();
 	FVector TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
-
 	FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);

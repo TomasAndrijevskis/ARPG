@@ -44,6 +44,6 @@ void ABossSpawner::SpawnEnemies()
 	{
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-		SpawnedBoss = GetWorld()->SpawnActor<ABoss>(EnemyClass, GetActorLocation(), FRotator::ZeroRotator, SpawnParameters);
+		SpawnedBoss = GetWorld()->SpawnActor<ABoss>(EnemyClass, GetActorLocation(), GetActorRotation(), SpawnParameters);
 	}
 }

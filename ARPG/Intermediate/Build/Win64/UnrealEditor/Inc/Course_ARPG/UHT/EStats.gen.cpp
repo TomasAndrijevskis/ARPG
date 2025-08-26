@@ -52,6 +52,8 @@ struct Z_Construct_UEnum_Course_ARPG_EStats_Statics
 		{ "ModuleRelativePath", "Public/Characters/EStats.h" },
 		{ "None.DisplayName", "None Selected" },
 		{ "None.Name", "None" },
+		{ "RangeDistance.DisplayName", "Range Distance" },
+		{ "RangeDistance.Name", "RangeDistance" },
 		{ "Stamina.DisplayName", "Stamina" },
 		{ "Stamina.Name", "Stamina" },
 		{ "Strength.DisplayName", "Strength" },
@@ -66,6 +68,7 @@ struct Z_Construct_UEnum_Course_ARPG_EStats_Statics
 		{ "Stamina", (int64)Stamina },
 		{ "MaxStamina", (int64)MaxStamina },
 		{ "MeleeRange", (int64)MeleeRange },
+		{ "RangeDistance", (int64)RangeDistance },
 		{ "Armor", (int64)Armor },
 		{ "MaxArmor", (int64)MaxArmor },
 		{ "Mana", (int64)Mana },
@@ -99,10 +102,10 @@ UEnum* Z_Construct_UEnum_Course_ARPG_EStats()
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EStats_StaticEnum, TEXT("EStats"), &Z_Registration_Info_UEnum_EStats, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1779151500U) },
+		{ EStats_StaticEnum, TEXT("EStats"), &Z_Registration_Info_UEnum_EStats, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 7366485U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_531276289(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_72930225(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_EStats_h_Statics::EnumInfo));

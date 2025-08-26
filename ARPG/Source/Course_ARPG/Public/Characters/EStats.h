@@ -14,6 +14,7 @@ enum EStats
 	Stamina UMETA(DisplayName = "Stamina"),
 	MaxStamina UMETA(DisplayName = "Maximum Stamina"),
 	MeleeRange UMETA(DisplayName = "MeleeRange"),
+	RangeDistance UMETA(DisplayName = "Range Distance"),
 	Armor UMETA(DisplayName = "Armor"),
 	MaxArmor UMETA(DisplayName = "Maximum Armor"),
 	Mana UMETA(DisplayName = "Mana"),

@@ -14,8 +14,6 @@ class COURSE_ARPG_API UAbilityComponent_RangeAttack : public UAbilityComponent_B
 
 public:	
 
-	UAbilityComponent_RangeAttack(){};
-
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
@@ -36,12 +34,12 @@ protected:
 	float GetProjectileDamage();
 
 	void SetProjectileDamage(float NewProjectileDamage);
-
-
-private:
 	
-	UFUNCTION(BlueprintCallable)
-	void StartAbilityAttack();
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
+	
+private:
 	
 	void CompleteAbilityAttack();
 

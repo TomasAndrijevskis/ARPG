@@ -1,8 +1,8 @@
 
 #include "Characters/AI/BTT_GroundSmashAttack.h"
 #include "AIController.h"
-#include "Animations/BossAnimInstance_Base.h"
-#include "Animations/BossAnimInstance_Rampage.h"
+#include "Animations/AnimInstance_Base.h"
+#include "Animations/AnimInstance_Rampage.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/Character.h"
 
@@ -11,8 +11,8 @@ EBTNodeResult::Type UBTT_GroundSmashAttack::ExecuteTask(UBehaviorTreeComponent& 
 {
 	ControllerRef = OwnerComp.GetAIOwner();
 	CharacterRef = ControllerRef->GetCharacter();
-	BossAnimInstance = Cast<UBossAnimInstance_Base>(CharacterRef->GetMesh()->GetAnimInstance());
-	Cast<UBossAnimInstance_Rampage>(BossAnimInstance)->SetIsSmashingGround(true);
+	BossAnimInstance = Cast<UAnimInstance_Base>(CharacterRef->GetMesh()->GetAnimInstance());
+	Cast<UAnimInstance_Rampage>(BossAnimInstance)->SetIsSmashingGround(true);
 	return EBTNodeResult::Succeeded;
 }
 

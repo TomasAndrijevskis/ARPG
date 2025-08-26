@@ -121,8 +121,14 @@ protected:
 
 	void HandlePlayerActions(bool bCanDo);
 
+	UFUNCTION(BlueprintCallable)
+	virtual void StartAbility();
+	
 	bool IsEnoughMana();
 
+	UFUNCTION()
+	virtual void FinishAbilityCast();
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture2D* Icon;
 	

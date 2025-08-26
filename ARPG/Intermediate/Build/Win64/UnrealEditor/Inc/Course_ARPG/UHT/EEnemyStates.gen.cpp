@@ -52,6 +52,8 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "Range.Name", "Range" },
 		{ "SpecialAttack.DisplayName", "SpecialAttack" },
 		{ "SpecialAttack.Name", "SpecialAttack" },
+		{ "Summon.DisplayName", "Summon" },
+		{ "Summon.Name", "Summon" },
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
@@ -64,6 +66,7 @@ struct Z_Construct_UEnum_Course_ARPG_EEnemyStates_Statics
 		{ "GoingBack", (int64)GoingBack },
 		{ "PhaseTransition", (int64)PhaseTransition },
 		{ "SpecialAttack", (int64)SpecialAttack },
+		{ "Summon", (int64)Summon },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -93,10 +96,10 @@ UEnum* Z_Construct_UEnum_Course_ARPG_EEnemyStates()
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 534292026U) },
+		{ EEnemyStates_StaticEnum, TEXT("EEnemyStates"), &Z_Registration_Info_UEnum_EEnemyStates, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 1265401373U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_3719165405(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_2274215632(TEXT("/Script/Course_ARPG"),
 	nullptr, 0,
 	nullptr, 0,
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_EEnemyStates_h_Statics::EnumInfo));

@@ -13,19 +13,6 @@ class COURSE_ARPG_API UAbilityComponent_GetArmor : public UAbilityComponent_Base
 
 public:	
 
-	UAbilityComponent_GetArmor(){};
-
-	UFUNCTION(BlueprintCallable)
-	void GiveArmor();
-
-	float GetArmor();
-
-	void SetArmor(float NewArmor);
-
-	float GetDamageReductionPercent();
-
-	void SetDamageReductionPercent(float NewDamageReductionPercent);
-
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
@@ -35,11 +22,23 @@ public:
 	virtual void SaveCustomProperties(FAbilityData& Data) override;
 
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
+
+	float GetArmor();
+
+	void SetArmor(float NewArmor);
+
+	float GetDamageReductionPercent();
+
+	void SetDamageReductionPercent(float NewDamageReductionPercent);
 	
 protected:
 	
 	virtual void BeginPlay() override;
+	
+	virtual void StartAbility() override;
 
+	virtual void FinishAbilityCast() override;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	FString Keyword = "Armor";
 	

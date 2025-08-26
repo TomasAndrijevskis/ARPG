@@ -13,12 +13,12 @@
 
 AMainCharacter_Mage::AMainCharacter_Mage()
 {
-	CombatComp = CreateDefaultSubobject<UCombatComponent_Mage>(TEXT("Combat Component"));
-
 	AbilityComp_MagicShield = CreateDefaultSubobject<UAbilityComponent_MagicShield>(TEXT("Magic Shield"));
 	AbilityComp_FrostBlast = CreateDefaultSubobject<UAbilityComponent_FrostBlast>(TEXT("Frost Blast"));
 	AbilityComp_FireStorm = CreateDefaultSubobject<UAbilityComponent_FireStorm>(TEXT("Fire Storm"));
 	AbilityComp_HealingAura = CreateDefaultSubobject<UAbilityComponent_HealingAura>(TEXT("Healing Aura"));
+
+	CombatComp = CreateDefaultSubobject<UCombatComponent_Mage>(TEXT("Combat Component"));
 	
 	AddToAbilitiesArray(AbilityComp_MagicShield);
 	AddToAbilitiesArray(AbilityComp_FrostBlast);
@@ -30,7 +30,6 @@ AMainCharacter_Mage::AMainCharacter_Mage()
 void AMainCharacter_Mage::BeginPlay()
 {
 	Super::BeginPlay();
-
 	
 	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
 	AbilityComp_FrostBlast->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
@@ -53,14 +52,12 @@ void AMainCharacter_Mage::SpawnParticles()
 	
 	if (ParticleFire)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("SpawnParticles: Fire"));
 		ParticleComponentFire = UGameplayStatics::SpawnEmitterAttached(ParticleFire, GetSkeletalMeshComponent(), RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 	}
 	
 	if (ParticleIce)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("SpawnParticles: Ice"));
 		ParticleComponentIce = UGameplayStatics::SpawnEmitterAttached(ParticleIce, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 	}
@@ -91,8 +88,5 @@ bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent)
 	{
 		return false;
 	}
-	else
-	{
-		return Super::CanTakeDamage(Opponent);	
-	}
+	return Super::CanTakeDamage(Opponent);	
 }

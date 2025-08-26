@@ -53,7 +53,7 @@ struct Z_Construct_UClass_UBTT_PhaseTransition_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBTT_PhaseTransition_Statics::NewProp_PhaseTransitionMontage = { "PhaseTransitionMontage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_PhaseTransition, PhaseTransitionMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PhaseTransitionMontage_MetaData), NewProp_PhaseTransitionMontage_MetaData) };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UBTT_PhaseTransition_Statics::NewProp_NextState = { "NextState", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_PhaseTransition, NextState), Z_Construct_UEnum_Course_ARPG_EEnemyStates, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NextState_MetaData), NewProp_NextState_MetaData) }; // 534292026
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UClass_UBTT_PhaseTransition_Statics::NewProp_NextState = { "NextState", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_PhaseTransition, NextState), Z_Construct_UEnum_Course_ARPG_EEnemyStates, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NextState_MetaData), NewProp_NextState_MetaData) }; // 1265401373
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBTT_PhaseTransition_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_PhaseTransition_Statics::NewProp_PhaseTransitionMontage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_PhaseTransition_Statics::NewProp_NextState,
@@ -99,10 +99,10 @@ UBTT_PhaseTransition::~UBTT_PhaseTransition() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_PhaseTransition_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UBTT_PhaseTransition, UBTT_PhaseTransition::StaticClass, TEXT("UBTT_PhaseTransition"), &Z_Registration_Info_UClass_UBTT_PhaseTransition, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_PhaseTransition), 659963497U) },
+		{ Z_Construct_UClass_UBTT_PhaseTransition, UBTT_PhaseTransition::StaticClass, TEXT("UBTT_PhaseTransition"), &Z_Registration_Info_UClass_UBTT_PhaseTransition, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_PhaseTransition), 3172777829U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_PhaseTransition_h_494210784(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_PhaseTransition_h_2905083018(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_PhaseTransition_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_PhaseTransition_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

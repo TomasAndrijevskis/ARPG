@@ -202,10 +202,10 @@ AMainCharacter_Mage::~AMainCharacter_Mage() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Mage, AMainCharacter_Mage::StaticClass, TEXT("AMainCharacter_Mage"), &Z_Registration_Info_UClass_AMainCharacter_Mage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Mage), 3169349808U) },
+		{ Z_Construct_UClass_AMainCharacter_Mage, AMainCharacter_Mage::StaticClass, TEXT("AMainCharacter_Mage"), &Z_Registration_Info_UClass_AMainCharacter_Mage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Mage), 3459362638U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_3908437718(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_2832844089(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Mage_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

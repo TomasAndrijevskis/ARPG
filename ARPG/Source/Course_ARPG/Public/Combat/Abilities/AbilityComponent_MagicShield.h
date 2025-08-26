@@ -17,9 +17,6 @@ class COURSE_ARPG_API UAbilityComponent_MagicShield : public UAbilityComponent_B
 	GENERATED_BODY()
 
 public:
-
-	UFUNCTION(BlueprintCallable)
-	void StartAbility();
 	
 	virtual void UpdateAbilityDescription() override;
 
@@ -38,7 +35,10 @@ protected:
 	virtual void StartAbilityTimer() override;
 
 	virtual void OnAbilityTimerFinished() override;
+	
+	virtual void StartAbility() override;
 
+	virtual void FinishAbilityCast() override;
 	
 private:
 

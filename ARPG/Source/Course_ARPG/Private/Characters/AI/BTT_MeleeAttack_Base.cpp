@@ -84,7 +84,6 @@ void UBTT_MeleeAttack_Base::FinishAttack()
 void UBTT_MeleeAttack_Base::FinishMove()
 {
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
-	//CheckDistance();
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }
 

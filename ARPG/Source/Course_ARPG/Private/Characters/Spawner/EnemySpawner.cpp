@@ -31,7 +31,7 @@ void AEnemySpawner::SpawnEnemies()
 	
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-		AEnemyCharacter_Base* SpawnedEnemy = GetWorld()->SpawnActor<AEnemyCharacter_Base>(EnemyClass, SpawnLocation, FRotator::ZeroRotator, SpawnParameters);
+		AEnemyCharacter_Base* SpawnedEnemy = GetWorld()->SpawnActor<AEnemyCharacter_Base>(EnemyClass, SpawnLocation, GetActorRotation(), SpawnParameters);
 		if (SpawnedEnemy)
 		{
 			SpawnedEnemies.Add(SpawnedEnemy);

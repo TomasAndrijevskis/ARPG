@@ -86,6 +86,27 @@ void UAbilityComponent_Base::HandlePlayerActions(bool bCanDo)
 }
 
 
+void UAbilityComponent_Base::StartAbility()
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	PlayerRef->SetCanPlayHurtAnimation(false);
+	PlayerRef->InterruptHurtAnimation();
+}
+
+
+void UAbilityComponent_Base::FinishAbilityCast()
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	PlayerRef->SetCanPlayHurtAnimation(true);
+}
+
+
 bool UAbilityComponent_Base::IsEnoughMana()
 {
 	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>())

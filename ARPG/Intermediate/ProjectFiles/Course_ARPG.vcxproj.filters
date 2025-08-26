@@ -49,13 +49,16 @@
     <Filter Include="Source\Course_ARPG\Private\Animations">
       <UniqueIdentifier>{FA8BE011-257E-3EDE-A17D-E5FE71EE4ACB}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Base.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Base.cpp">
       <Filter>Source\Course_ARPG\Private\Animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Grux.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Fey.cpp">
       <Filter>Source\Course_ARPG\Private\Animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Rampage.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Grux.cpp">
+      <Filter>Source\Course_ARPG\Private\Animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Rampage.cpp">
       <Filter>Source\Course_ARPG\Private\Animations</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\LookAtPlayerAnimNotifyState.cpp">
@@ -74,6 +77,9 @@
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss_Fey.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss_Grux.cpp">
@@ -106,6 +112,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Elemental.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Fey.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Grux.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
@@ -122,6 +131,9 @@
       <UniqueIdentifier>{E27D0B4E-70A9-339F-A652-D676D0A0B857}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTS_PlayerDistance.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTTask_SummonMinions.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_ChargeAttack.cpp">
@@ -151,7 +163,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_PhaseTransition.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_PoisonExplosion.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack_Fey.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack_Grux.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\EEnemyStates.cpp">
@@ -199,7 +217,16 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\PoisonExplosionArea.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\PoisonExplosionComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\StatusEffectsComponent.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\SummonMinionsComponent.cpp">
       <Filter>Source\Course_ARPG\Private\Combat</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\TraceComponent.cpp">
@@ -279,6 +306,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Interfaces\MainPlayer.cpp">
       <Filter>Source\Course_ARPG\Private\Interfaces</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Obstacles">
+      <UniqueIdentifier>{7C8E8037-BB57-39D8-8FC5-D077767A96FA}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Obstacles\BossLocationDoor.cpp">
+      <Filter>Source\Course_ARPG\Private\Obstacles</Filter>
     </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\SaveGame">
       <UniqueIdentifier>{85D57ACF-8291-3608-9118-5578C8DB5EB4}</UniqueIdentifier>
@@ -367,13 +400,16 @@
     <Filter Include="Source\Course_ARPG\Public\Animations">
       <UniqueIdentifier>{728D16E0-7CC8-369F-8E3E-610F2954DAC9}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Base.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Base.h">
       <Filter>Source\Course_ARPG\Public\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Grux.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Fey.h">
       <Filter>Source\Course_ARPG\Public\Animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Rampage.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Grux.h">
+      <Filter>Source\Course_ARPG\Public\Animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Rampage.h">
       <Filter>Source\Course_ARPG\Public\Animations</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\LookAtPlayerAnimNotifyState.h">
@@ -392,6 +428,9 @@
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Fey.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Grux.h">
@@ -427,6 +466,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Elemental.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Fey.h">
+      <Filter>Source\Course_ARPG\Public\Characters</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Grux.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
@@ -443,6 +485,9 @@
       <UniqueIdentifier>{514DCD5F-E156-3199-AD45-70C75C0C0C2C}</UniqueIdentifier>
     </Filter>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTS_PlayerDistance.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTTask_SummonMinions.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_ChargeAttack.h">
@@ -472,7 +517,13 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_PhaseTransition.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_PoisonExplosion.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Fey.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Grux.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\EEnemyStates.h">
@@ -532,7 +583,16 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\PoisonExplosionArea.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\PoisonExplosionComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\StatusEffectsComponent.h">
+      <Filter>Source\Course_ARPG\Public\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\SummonMinionsComponent.h">
       <Filter>Source\Course_ARPG\Public\Combat</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h">
@@ -612,6 +672,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h">
       <Filter>Source\Course_ARPG\Public\Interfaces</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Obstacles">
+      <UniqueIdentifier>{EB4F0DCD-9CC2-3556-B270-2908262F59A4}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Obstacles\BossLocationDoor.h">
+      <Filter>Source\Course_ARPG\Public\Obstacles</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\SaveGame">
       <UniqueIdentifier>{A2159DDA-70B3-3DBF-9C35-2A3585398F78}</UniqueIdentifier>

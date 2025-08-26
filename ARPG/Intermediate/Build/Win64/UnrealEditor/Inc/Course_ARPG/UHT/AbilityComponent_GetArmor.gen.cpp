@@ -16,43 +16,9 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_GetArmor_NoRegister
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
-// Begin Class UAbilityComponent_GetArmor Function GiveArmor
-struct Z_Construct_UFunction_UAbilityComponent_GetArmor_GiveArmor_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_GetArmor.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_GetArmor_GiveArmor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_GetArmor, nullptr, "GiveArmor", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_GetArmor_GiveArmor_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_GetArmor_GiveArmor_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UAbilityComponent_GetArmor_GiveArmor()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_GetArmor_GiveArmor_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UAbilityComponent_GetArmor::execGiveArmor)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->GiveArmor();
-	P_NATIVE_END;
-}
-// End Class UAbilityComponent_GetArmor Function GiveArmor
-
 // Begin Class UAbilityComponent_GetArmor
 void UAbilityComponent_GetArmor::StaticRegisterNativesUAbilityComponent_GetArmor()
 {
-	UClass* Class = UAbilityComponent_GetArmor::StaticClass();
-	static const FNameNativePtrPair Funcs[] = {
-		{ "GiveArmor", &UAbilityComponent_GetArmor::execGiveArmor },
-	};
-	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
 IMPLEMENT_CLASS_NO_AUTO_REGISTRATION(UAbilityComponent_GetArmor);
 UClass* Z_Construct_UClass_UAbilityComponent_GetArmor_NoRegister()
@@ -86,10 +52,6 @@ struct Z_Construct_UClass_UAbilityComponent_GetArmor_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_DamageReductionPercent;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
-	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UAbilityComponent_GetArmor_GiveArmor, "GiveArmor" }, // 3091579760
-	};
-	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<UAbilityComponent_GetArmor>::IsAbstract,
 	};
@@ -114,11 +76,11 @@ const UECodeGen_Private::FClassParams Z_Construct_UClass_UAbilityComponent_GetAr
 	"Engine",
 	&StaticCppClassTypeInfo,
 	DependentSingletons,
-	FuncInfo,
+	nullptr,
 	Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::PropPointers,
 	nullptr,
 	UE_ARRAY_COUNT(DependentSingletons),
-	UE_ARRAY_COUNT(FuncInfo),
+	0,
 	UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::PropPointers),
 	0,
 	0x00B000A4u,
@@ -136,6 +98,7 @@ template<> COURSE_ARPG_API UClass* StaticClass<UAbilityComponent_GetArmor>()
 {
 	return UAbilityComponent_GetArmor::StaticClass();
 }
+UAbilityComponent_GetArmor::UAbilityComponent_GetArmor() {}
 DEFINE_VTABLE_PTR_HELPER_CTOR(UAbilityComponent_GetArmor);
 UAbilityComponent_GetArmor::~UAbilityComponent_GetArmor() {}
 // End Class UAbilityComponent_GetArmor
@@ -144,10 +107,10 @@ UAbilityComponent_GetArmor::~UAbilityComponent_GetArmor() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 3378466362U) },
+		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 2928636435U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_2562445408(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_2243249152(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

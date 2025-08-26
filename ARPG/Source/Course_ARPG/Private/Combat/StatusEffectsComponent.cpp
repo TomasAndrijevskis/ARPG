@@ -2,7 +2,7 @@
 #include "Combat/StatusEffectsComponent.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/MainCharacter_Base.h"
 #include "Engine/DamageEvents.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -10,57 +10,59 @@
 void UStatusEffectsComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	EnemyCharacterRef = Cast<AEnemyCharacter_Base>(GetOwner());
-	if (EnemyCharacterRef)
+	CharacterRef = Cast<ACharacter>(GetOwner());
+	if (CharacterRef)
 	{
-		SkeletalMeshComp = EnemyCharacterRef->GetMesh();
-		OriginalSpeed = EnemyCharacterRef->GetCharacterMovement()->MaxWalkSpeed;
+		SkeletalMeshComp = CharacterRef->GetMesh();
+		OriginalSpeed = CharacterRef->GetCharacterMovement()->MaxWalkSpeed;
 	}
+}
+
+
+void UStatusEffectsComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
 }
 
 
 void UStatusEffectsComponent::SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect)
 {
-	EnemyCharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
-	GetWorld()->GetTimerManager().SetTimer(FreezeTimerHandle, this, &UStatusEffectsComponent::ReturnSpeed, SlowDuration, false);
+	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 
 	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-
-	if (FrozenEffect)
+	if (FrozenEffect && !FreezeData.Effect)
 	{
-		FrozenEffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				FrozenEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,FVector(1.f, 1.f, 1.f),
+		FreezeData.Effect = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				FrozenEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+
+		FreezeData.Type = EStatusEffects::Slow;
+		FreezeData.TimerHandle = FreezeTimerHandle;
+		FreezeData.SavedSpeed = OriginalSpeed;
 	}
+	GetWorld()->GetTimerManager().SetTimer(FreezeTimerHandle, this,  &UStatusEffectsComponent::StopFreeze, SlowDuration, false);
 }
 
 
-void UStatusEffectsComponent::ReturnSpeed()
-{
-	GetWorld()->GetTimerManager().ClearTimer(FreezeTimerHandle);
-	EnemyCharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed;
-	if (FrozenEffectRef)
-	{
-		FrozenEffectRef->DestroyComponent();
-		FrozenEffectRef = nullptr;	
-	}
-}
 
-
-void UStatusEffectsComponent::HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect, bool bNewIsOverlapping)
+void UStatusEffectsComponent::HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect, bool bNewIsOverlapping, float NewBurnRate)
 {
 	BurnDamage = NewBurnDamage;
 	BurnDuration = NewBurnDuration;
 	bIsOverlapping = bNewIsOverlapping;
-	UE_LOG(LogTemp, Error, TEXT("Handle Burn"));
+	BurnRate = NewBurnRate;
+	
 	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	
-	if (BurnEffect && !BurnEffectRef)
+	if (BurnEffect && !BurnData.Effect)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("EFFECT CREATED"));
-		BurnEffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				BurnEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,FVector(1.f, 1.f, 1.f),
+		BurnData.Effect = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				BurnEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+		BurnData.Type = EStatusEffects::Burn;
+		BurnData.TimerHandle = BurnTimerHandle;
 	}
 	GetWorld()->GetTimerManager().SetTimer(BurnTimerHandle, this, &UStatusEffectsComponent::Burn, BurnRate, true);
 }
@@ -74,25 +76,74 @@ void UStatusEffectsComponent::Burn()
 		{
 			BurnDuration -= BurnRate;
 		}
-		UE_LOG(LogTemp, Error, TEXT("Burning time left: %f"), BurnDuration);
 		FDamageEvent TargetAttackedEvent{ };
-		EnemyCharacterRef->TakeDamage(BurnDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
+		CharacterRef->TakeDamage(BurnDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 	}
 	else
 	{
-		StopBurning();
+		StopEffect(BurnData);
 	}
 }
 
 
-void UStatusEffectsComponent::StopBurning()
+void UStatusEffectsComponent::HandlePoison(float NewPoisonDuration, float NewPoisonDamage, UNiagaraSystem* PoisonEffect, float NewPoisonRate)
 {
-	UE_LOG(LogTemp, Error, TEXT("Stop Burning"));
-	GetWorld()->GetTimerManager().ClearTimer(BurnTimerHandle);
-	if (BurnEffectRef)
+	PoisonDamage = NewPoisonDamage;
+	PoisonDuration = NewPoisonDuration;
+	PoisonRate = NewPoisonRate;
+
+	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
+	
+	if (PoisonEffect && !PoisonData.Effect)
 	{
-		BurnEffectRef->DestroyComponent();
-		BurnEffectRef = nullptr;
+		PoisonData.Effect = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				PoisonEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
+	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+		PoisonData.Type = EStatusEffects::Poison;
+		PoisonData.TimerHandle = PoisonTimerHandle;
+	}
+	GetWorld()->GetTimerManager().SetTimer(BurnTimerHandle, this, &UStatusEffectsComponent::Poison, PoisonRate, true);
+}
+
+
+void UStatusEffectsComponent::Poison()
+{
+	if (PoisonDuration > 0)
+	{
+		PoisonDuration -= PoisonRate;
+		FDamageEvent TargetAttackedEvent{ };
+		CharacterRef->TakeDamage(PoisonDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
+	}
+	else
+	{
+		StopEffect(PoisonData);
 	}
 }
 
+
+void UStatusEffectsComponent::StopFreeze()
+{
+	StopEffect(FreezeData);
+}
+
+
+void UStatusEffectsComponent::StopEffect(FStatusEffectData& Data)
+{
+	GetWorld()->GetTimerManager().ClearTimer(Data.TimerHandle);
+	if (Data.Effect)
+	{
+		Data.Effect->DestroyInstance();
+		Data.Effect = nullptr;
+	}
+	switch (Data.Type)
+	{
+		case EStatusEffects::Slow:
+			CharacterRef->GetCharacterMovement()->MaxWalkSpeed = Data.SavedSpeed;
+			break;
+		case EStatusEffects::Burn:
+			break;
+		case EStatusEffects::Poison:
+			break;
+	}
+	
+}

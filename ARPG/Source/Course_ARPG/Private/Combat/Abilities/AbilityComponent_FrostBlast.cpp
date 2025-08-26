@@ -10,13 +10,13 @@
 void UAbilityComponent_FrostBlast::BeginPlay()
 {
 	Super::BeginPlay();
-	//SetAbilityAvailability(true);
 }
+
 
 void UAbilityComponent_FrostBlast::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-	
 	if (!IsOnCooldown() && !IsAbilityActive() && IsEnoughMana())
 	{
 		HandlePlayerActions(false);
@@ -24,7 +24,6 @@ void UAbilityComponent_FrostBlast::StartAbility()
 		OnAbilityStartedDelegate.Broadcast();
 
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		
 		SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 		if (Warmup)
 		{
@@ -42,9 +41,15 @@ void UAbilityComponent_FrostBlast::StartAbility()
 			FrostBlastRangeActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 			FrostBlastRangeActor->SetParams(Damage, SlowDuration);
 		}
-			
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FrostBlast::CompleteAbility, AnimDuration/2, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FrostBlast::FinishAbilityCast, AnimDuration/2, false);
 	}
+}
+
+void UAbilityComponent_FrostBlast::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FrostBlast::CompleteAbility, 1, true, .1);
 }
 
 
@@ -57,10 +62,7 @@ void UAbilityComponent_FrostBlast::CompleteAbility()
 		UGameplayStatics::SpawnEmitterAttached(InitialBlast, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(1, 1, 1),EAttachLocation::KeepWorldPosition,true, EPSCPoolMethod::None, true);
 	}
-
-	
 	PlayerRef->StatsComp->ReduceMana(GetManaCost());
-
 	HandlePlayerActions(true);
 	SetAbilityActive(false);
 	StartCooldown();
@@ -79,7 +81,6 @@ void UAbilityComponent_FrostBlast::UpdateUpgradeDescription()
 {
 	float NextMana = GetManaCost() - (GetManaCost() * .2f);
 	float NextCooldown = GetCooldownDuration() - 1 ;
-	
 	float NextDamage = GetDamage() + (GetDamage() * .4f);
 	float NextSlowDuration = GetSlowDuration() + 1;
 	

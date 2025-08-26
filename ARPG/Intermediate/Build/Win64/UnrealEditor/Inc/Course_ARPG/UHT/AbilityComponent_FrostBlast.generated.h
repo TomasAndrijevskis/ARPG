@@ -15,8 +15,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define COURSE_ARPG_AbilityComponent_FrostBlast_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FrostBlast_h_15_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execCompleteAbility); \
-	DECLARE_FUNCTION(execStartAbility);
+	DECLARE_FUNCTION(execCompleteAbility);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FrostBlast_h_15_INCLASS_NO_PURE_DECLS \

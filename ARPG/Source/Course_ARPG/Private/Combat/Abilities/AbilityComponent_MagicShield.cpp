@@ -13,6 +13,7 @@ void UAbilityComponent_MagicShield::BeginPlay()
 
 void UAbilityComponent_MagicShield::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	if (!IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
 	{
@@ -21,8 +22,16 @@ void UAbilityComponent_MagicShield::StartAbility()
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::SpawnShield, AnimDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::FinishAbilityCast, AnimDuration, false);
 	}
+}
+
+
+void UAbilityComponent_MagicShield::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::SpawnShield, .1, false);
 }
 
 

@@ -264,13 +264,16 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Course_ARPG\Course_ARPG.h"/>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Base.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Base.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Grux.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Fey.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\BossAnimInstance_Rampage.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Grux.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\AnimInstance_Rampage.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Animations\LookAtPlayerAnimNotifyState.cpp">
@@ -286,6 +289,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss_Fey.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss_Grux.cpp">
@@ -318,6 +324,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Elemental.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Fey.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Minion_Grux.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -331,6 +340,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTS_PlayerDistance.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTTask_SummonMinions.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_ChargeAttack.cpp">
@@ -360,7 +372,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_PhaseTransition.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_PoisonExplosion.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack_Fey.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack_Grux.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\EEnemyStates.cpp">
@@ -402,7 +420,16 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\LockonComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\PoisonExplosionArea.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\PoisonExplosionComponent.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\StatusEffectsComponent.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\SummonMinionsComponent.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\TraceComponent.cpp">
@@ -469,6 +496,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Interfaces\MainPlayer.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Obstacles\BossLocationDoor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\AbilityData.cpp">
@@ -546,14 +576,16 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\StatusIconWithTimer.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Base.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Grux.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\BossAnimInstance_Rampage.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Base.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Fey.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Grux.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\AnimInstance_Rampage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\LookAtPlayerAnimNotifyState.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\PlayerAnimInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Animations\ToggleTraceNotifyState.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\ARPG_PlayerController.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Fey.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Rampage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Base.h"/>
@@ -565,11 +597,13 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\MainCharacter_Warrior.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Elemental.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Fey.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Minion_Rampage.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\PlayerActionsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\StatsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTS_PlayerDistance.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTTask_SummonMinions.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_ChargeAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_GroundSmashAttack.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_HitCountReset.h"/>
@@ -579,7 +613,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_MoveToStartLocation.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_Patrol.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_PhaseTransition.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_PoisonExplosion.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Fey.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\EEnemyStates.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\UBTT_Shoot.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequirements.h"/>
@@ -596,7 +632,10 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\GroundSmashArea.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\GroundSmashComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\LockonComponent.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\PoisonExplosionArea.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\PoisonExplosionComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\StatusEffectsComponent.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\SummonMinionsComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\TraceComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Base.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_DamageIncrease.h"/>
@@ -619,6 +658,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\Enemy.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\Fighter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Obstacles\BossLocationDoor.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\AbilityData.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h"/>

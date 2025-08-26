@@ -87,35 +87,6 @@ DEFINE_FUNCTION(UAbilityComponent_LifeStealAttack::execHandleLifeStealOnHit)
 }
 // End Class UAbilityComponent_LifeStealAttack Function HandleLifeStealOnHit
 
-// Begin Class UAbilityComponent_LifeStealAttack Function OnAbilityActivated
-struct Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_OnAbilityActivated_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_LifeStealAttack.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_OnAbilityActivated_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_LifeStealAttack, nullptr, "OnAbilityActivated", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_OnAbilityActivated_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_OnAbilityActivated_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_OnAbilityActivated()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_OnAbilityActivated_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UAbilityComponent_LifeStealAttack::execOnAbilityActivated)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->OnAbilityActivated();
-	P_NATIVE_END;
-}
-// End Class UAbilityComponent_LifeStealAttack Function OnAbilityActivated
-
 // Begin Class UAbilityComponent_LifeStealAttack
 void UAbilityComponent_LifeStealAttack::StaticRegisterNativesUAbilityComponent_LifeStealAttack()
 {
@@ -123,7 +94,6 @@ void UAbilityComponent_LifeStealAttack::StaticRegisterNativesUAbilityComponent_L
 	static const FNameNativePtrPair Funcs[] = {
 		{ "GetStolenHealthAmount", &UAbilityComponent_LifeStealAttack::execGetStolenHealthAmount },
 		{ "HandleLifeStealOnHit", &UAbilityComponent_LifeStealAttack::execHandleLifeStealOnHit },
-		{ "OnAbilityActivated", &UAbilityComponent_LifeStealAttack::execOnAbilityActivated },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -162,7 +132,6 @@ struct Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_GetStolenHealthAmount, "GetStolenHealthAmount" }, // 172495301
 		{ &Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_HandleLifeStealOnHit, "HandleLifeStealOnHit" }, // 1230414716
-		{ &Z_Construct_UFunction_UAbilityComponent_LifeStealAttack_OnAbilityActivated, "OnAbilityActivated" }, // 3945713154
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -211,6 +180,7 @@ template<> COURSE_ARPG_API UClass* StaticClass<UAbilityComponent_LifeStealAttack
 {
 	return UAbilityComponent_LifeStealAttack::StaticClass();
 }
+UAbilityComponent_LifeStealAttack::UAbilityComponent_LifeStealAttack() {}
 DEFINE_VTABLE_PTR_HELPER_CTOR(UAbilityComponent_LifeStealAttack);
 UAbilityComponent_LifeStealAttack::~UAbilityComponent_LifeStealAttack() {}
 // End Class UAbilityComponent_LifeStealAttack
@@ -219,10 +189,10 @@ UAbilityComponent_LifeStealAttack::~UAbilityComponent_LifeStealAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_LifeStealAttack, UAbilityComponent_LifeStealAttack::StaticClass, TEXT("UAbilityComponent_LifeStealAttack"), &Z_Registration_Info_UClass_UAbilityComponent_LifeStealAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_LifeStealAttack), 1849963081U) },
+		{ Z_Construct_UClass_UAbilityComponent_LifeStealAttack, UAbilityComponent_LifeStealAttack::StaticClass, TEXT("UAbilityComponent_LifeStealAttack"), &Z_Registration_Info_UClass_UAbilityComponent_LifeStealAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_LifeStealAttack), 3640472424U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_3185158018(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_161799710(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

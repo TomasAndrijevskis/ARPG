@@ -28,5 +28,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	op(Patrol) \
 	op(GoingBack) \
 	op(PhaseTransition) \
-	op(SpecialAttack) 
+	op(SpecialAttack) \
+	op(Summon) 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

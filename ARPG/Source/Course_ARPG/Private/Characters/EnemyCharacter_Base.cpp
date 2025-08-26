@@ -139,6 +139,12 @@ float AEnemyCharacter_Base::GetMeleeRange()
 }
 
 
+float AEnemyCharacter_Base::GetRangeDistance()
+{
+	return StatsComp->GetStatValue(EStats::RangeDistance);
+}
+
+
 AAIController* AEnemyCharacter_Base::GetAIController()
 {
 	return ControllerRef;
@@ -153,4 +159,10 @@ float AEnemyCharacter_Base::GetSightRadius()
 		return SensingComp->SightRadius;
 	}
 	return 0;
+}
+
+
+UBlackboardComponent* AEnemyCharacter_Base::GetBlackboardComp()
+{
+	return BlackboardComp;
 }

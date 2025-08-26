@@ -25,7 +25,7 @@ public:
 	void OnComponentEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	
-	void SetProperties(float Duration, float Damage);
+	void SetProperties(float NewDuration, float NewDamage, float NewBurnRate);
 
 private:
 
@@ -46,6 +46,8 @@ private:
 	float BurnDuration;
 	
 	float BurnDamage;
+
+	float BurnRate;
 
 	float TimerDuration;
 	

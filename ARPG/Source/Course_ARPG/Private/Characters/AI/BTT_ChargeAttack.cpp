@@ -1,8 +1,8 @@
 
 #include "Characters/AI/BTT_ChargeAttack.h"
 #include "AIController.h"
-#include "Animations/BossAnimInstance_Base.h"
-#include "Animations/BossAnimInstance_Grux.h"
+#include "Animations/AnimInstance_Base.h"
+#include "Animations/AnimInstance_Grux.h"
 #include "GameFramework/Character.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/AI/EEnemyStates.h"
@@ -22,8 +22,8 @@ EBTNodeResult::Type UBTT_ChargeAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 {
 	ControllerRef = OwnerComp.GetAIOwner();
 	CharacterRef = ControllerRef->GetCharacter();
-	BossAnimInstance = Cast<UBossAnimInstance_Base>(CharacterRef->GetMesh()->GetAnimInstance());
-	Cast<UBossAnimInstance_Grux>(BossAnimInstance)->SetIsCharging(true);
+	BossAnimInstance = Cast<UAnimInstance_Base>(CharacterRef->GetMesh()->GetAnimInstance());
+	Cast<UAnimInstance_Grux>(BossAnimInstance)->SetIsCharging(true);
 	OwnerComp.GetBlackboardComponent()->SetValueAsBool(TEXT("IsReadyToCharge"), false);
 	bIsFinished = false;
 	return EBTNodeResult::InProgress;
@@ -51,7 +51,7 @@ void UBTT_ChargeAttack::ChargeAtPlayer()
 
 void UBTT_ChargeAttack::HandleMoveCompleted()
 {
-	Cast<UBossAnimInstance_Grux>(BossAnimInstance)->SetIsCharging(false);
+	Cast<UAnimInstance_Grux>(BossAnimInstance)->SetIsCharging(false);
 	FTimerHandle AttackTimerHandle;
 	CharacterRef->GetWorldTimerManager().SetTimer(AttackTimerHandle, this, &UBTT_ChargeAttack::FinishAttackTask, 1.0f, false);
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalWalkSpeed;

@@ -20,5 +20,5 @@ protected:
 private:
 
 	UPROPERTY(EditAnywhere)
-	double Threshold;
+	double OriginalThreshold;
 };

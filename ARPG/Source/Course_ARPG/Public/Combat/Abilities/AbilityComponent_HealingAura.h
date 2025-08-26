@@ -13,18 +13,15 @@ class COURSE_ARPG_API UAbilityComponent_HealingAura : public UAbilityComponent_B
 
 public:
 
-	UFUNCTION(BlueprintCallable)
-	void StartAbility();
-
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
 	
-	virtual void UpdateAbilityProperties();
+	virtual void UpdateAbilityProperties() override;
 
-	virtual void SaveCustomProperties(FAbilityData& Data);
+	virtual void SaveCustomProperties(FAbilityData& Data) override;
 
-	virtual void LoadCustomProperties(FAbilityData& SavedData);
+	virtual void LoadCustomProperties(FAbilityData& SavedData) override;
 
 	float GetHealthRegenAmount();
 	
@@ -37,6 +34,10 @@ protected:
 	virtual void StartAbilityTimer() override;
 
 	virtual void OnAbilityTimerFinished() override;
+	
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 private:
 

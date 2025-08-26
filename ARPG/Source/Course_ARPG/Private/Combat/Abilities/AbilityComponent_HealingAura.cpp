@@ -16,8 +16,8 @@ void UAbilityComponent_HealingAura::BeginPlay()
 
 void UAbilityComponent_HealingAura::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-
 	if (IsEnoughMana() && !IsOnCooldown() && !IsActive())
 	{
 		SetAbilityActive(true);
@@ -30,8 +30,16 @@ void UAbilityComponent_HealingAura::StartAbility()
 			FVector3d(.5f, .5f, 1.f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );//спавн эффекта
 		
 		TimerDuration = GetAbilityDuration();
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_HealingAura::StartAbilityTimer, AnimDuration+TempDuration, true);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_HealingAura::FinishAbilityCast, AnimDuration+TempDuration, true);
 	}
+}
+
+
+void UAbilityComponent_HealingAura::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_HealingAura::StartAbilityTimer, 1, true, .1);
 }
 
 

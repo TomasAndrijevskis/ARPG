@@ -7,6 +7,7 @@
 #include "Characters/PlayerActionsComponent.h"
 #include "Combat/BlockComponent.h"
 #include "Combat/LockonComponent.h"
+#include "Combat/StatusEffectsComponent.h"
 #include "Combat/Abilities/AbilityComponent_Base.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
@@ -20,7 +21,8 @@ AMainCharacter_Base::AMainCharacter_Base()
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
-
+	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
+	
 	ArrStats.Add(EStats::MaxHealth);
 	ArrStats.Add(EStats::MaxStamina);
 	ArrStats.Add(EStats::Strength);
@@ -32,14 +34,14 @@ void AMainCharacter_Base::BeginPlay()
 {
 	Super::BeginPlay();
 
-	PlayerAnim = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+	PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 
 	SetSkeletalMeshComponent();
 
 	CreateUI();
 	
-	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnim, &UPlayerAnimInstance::HandleUpdatedTarget);
+	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetHealth);
@@ -148,7 +150,7 @@ bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent)
 	{
 		return false;
 	}
-	if (PlayerAnim->bIsBlocking)
+	if (PlayerAnimInstance->bIsBlocking)
 	{
 		return false;
 	}
@@ -160,11 +162,21 @@ void AMainCharacter_Base::PlayHurtAnimation()
 {
 	UAnimMontage* CurrentMontage = GetCurrentMontage();
 	
-	if (CurrentMontage == DeathAnimMontage || CurrentMontage == PlayerActionsComp->RollAnimMontage)
+	if (CurrentMontage == DeathAnimMontage || CurrentMontage == PlayerActionsComp->RollAnimMontage || !GetCanPlayHurtAnimation())
 	{
 		return;
 	}
 	PlayAnimMontage(HurtAnimMontage);
+}
+
+
+void AMainCharacter_Base::InterruptHurtAnimation()
+{
+	UAnimMontage* CurrentMontage = GetCurrentMontage();
+	if (CurrentMontage == HurtAnimMontage)
+	{
+		PlayerAnimInstance->Montage_Stop(.1f);
+	}
 }
 
 
@@ -227,4 +239,16 @@ void AMainCharacter_Base::SetSkeletalMeshComponent()
 			SkeletalMeshComp = Character->GetMesh();
 		}
 	}
+}
+
+
+void AMainCharacter_Base::SetCanPlayHurtAnimation(bool bCanPlayAnim)
+{
+	bCanPlayHurtAnim = bCanPlayAnim;
+}
+
+
+bool AMainCharacter_Base::GetCanPlayHurtAnimation()
+{
+	return bCanPlayHurtAnim;
 }

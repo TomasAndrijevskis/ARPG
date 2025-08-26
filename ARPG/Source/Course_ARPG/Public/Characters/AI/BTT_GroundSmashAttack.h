@@ -25,6 +25,6 @@ private:
 	
 	ACharacter* CharacterRef;
 
-	class UBossAnimInstance_Base* BossAnimInstance;
+	class UAnimInstance_Base* BossAnimInstance;
 	
 };

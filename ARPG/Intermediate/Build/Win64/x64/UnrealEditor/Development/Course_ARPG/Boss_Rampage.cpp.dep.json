@@ -26,7 +26,11 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\boss.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\boss_rampage.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\groundsmashcomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\groundsmashcomponent.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\groundsmashcomponent.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\tracecomponent.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\ftracesockets.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\ftracesockets.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\tracecomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

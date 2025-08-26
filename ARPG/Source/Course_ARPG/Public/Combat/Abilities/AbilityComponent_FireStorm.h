@@ -13,9 +13,6 @@ class COURSE_ARPG_API UAbilityComponent_FireStorm : public UAbilityComponent_Bas
 	GENERATED_BODY()
 
 public:
-
-	UFUNCTION(BlueprintCallable)
-	void StartAbility();
 	
 	virtual void UpdateAbilityDescription() override;
 
@@ -28,14 +25,20 @@ public:
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
 
 	float GetBurnDamage();
+	
 	void SetBurnDamage(float NewDamage);
 
 	float GetBurnDuration();
+	
 	void SetBurnDuration(float NewDuration);
 	
 protected:
 
 	virtual void OnAbilityTimerFinished() override;
+	
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 private:
 	
@@ -50,7 +53,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float BurnDuration;
-
+	
 	UPROPERTY(EditAnywhere)
 	float BurnDamage = 3;
+
+	UPROPERTY(EditAnywhere)
+	float BurnRate;
 };

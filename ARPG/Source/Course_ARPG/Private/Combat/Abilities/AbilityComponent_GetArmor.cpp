@@ -12,10 +12,10 @@ void UAbilityComponent_GetArmor::BeginPlay()
 }
 
 
-void UAbilityComponent_GetArmor::GiveArmor()
+void UAbilityComponent_GetArmor::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-	
 	if (!IsOnCooldown() && !IsAbilityActive() && IsEnoughMana())
 	{
 		SetAbilityActive(true);
@@ -26,8 +26,16 @@ void UAbilityComponent_GetArmor::GiveArmor()
 		PlayerRef->StatsComp->SetStatValue(EStats::Armor, Armor);
 		OnAbilityStartedDelegate.Broadcast();
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::CompleteAbility, AnimDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::FinishAbilityCast, AnimDuration, false);
 	}
+}
+
+
+void UAbilityComponent_GetArmor::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::CompleteAbility, .1, false);
 }
 
 

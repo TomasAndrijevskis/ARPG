@@ -10,6 +10,7 @@
 
 void UAbilityComponent_FireStorm::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
 	if (IsEnoughMana() && !IsAbilityActive() && !IsOnCooldown())
 	{
@@ -18,8 +19,17 @@ void UAbilityComponent_FireStorm::StartAbility()
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
 
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::SpawnFireStorm, AnimDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::FinishAbilityCast, AnimDuration, false);
 	}
+}
+
+
+void UAbilityComponent_FireStorm::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::SpawnFireStorm, .1, false);
+
 }
 
 
@@ -39,7 +49,7 @@ void UAbilityComponent_FireStorm::SpawnFireStorm()
 
 	if (FireStormRef)
 	{
-		FireStormRef->SetProperties(BurnDuration, BurnDamage);
+		FireStormRef->SetProperties(BurnDuration, BurnDamage, BurnRate);
 		UGameplayStatics::FinishSpawningActor(FireStormRef, SpawnTransform);
 	}
 	OnAbilityStartedDelegate.Broadcast();

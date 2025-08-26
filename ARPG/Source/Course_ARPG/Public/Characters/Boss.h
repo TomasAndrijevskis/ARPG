@@ -31,6 +31,10 @@ public:
 	void ActivateSecondPhase();
 
 	bool IsSecondPhaseActive();
+
+	void SetCanTakeDamage(bool CanTakeDamage);
+
+	bool GetCanTakeDamage();
 	
 protected:
 

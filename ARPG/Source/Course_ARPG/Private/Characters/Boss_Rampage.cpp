@@ -1,11 +1,13 @@
 
 #include "Characters/Boss_Rampage.h"
 #include "Combat/GroundSmashComponent.h"
+#include "Combat/TraceComponent.h"
 
 
 ABoss_Rampage::ABoss_Rampage()
 {
 	GroundSmashComp = CreateDefaultSubobject<UGroundSmashComponent>(TEXT("Ground Smash Component"));
+	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 }
 
 

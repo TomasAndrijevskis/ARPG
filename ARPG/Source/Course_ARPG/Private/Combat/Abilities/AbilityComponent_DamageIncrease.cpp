@@ -14,10 +14,10 @@ void UAbilityComponent_DamageIncrease::BeginPlay()
 }
 
 
-void UAbilityComponent_DamageIncrease::IncreaseDamage()
+void UAbilityComponent_DamageIncrease::StartAbility()
 {
+	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-
 	if (!IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
@@ -31,12 +31,18 @@ void UAbilityComponent_DamageIncrease::IncreaseDamage()
 		
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );//спавн эффекта
-
-
 		
 		PlayerRef->StatsComp->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::StartAbilityTimer, (AnimDuration+tempDuration), true);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::FinishAbilityCast, (AnimDuration+tempDuration), false);
 	}
+}
+
+
+void UAbilityComponent_DamageIncrease::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::StartAbilityTimer, 1, true, .1);
 }
 
 

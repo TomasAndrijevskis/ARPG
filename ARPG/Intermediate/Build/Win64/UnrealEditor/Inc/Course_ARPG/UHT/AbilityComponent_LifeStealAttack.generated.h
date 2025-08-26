@@ -16,7 +16,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execHandleLifeStealOnHit); \
-	DECLARE_FUNCTION(execOnAbilityActivated); \
 	DECLARE_FUNCTION(execGetStolenHealthAmount);
 
 
@@ -30,6 +29,8 @@ public: \
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_12_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UAbilityComponent_LifeStealAttack(); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UAbilityComponent_LifeStealAttack(UAbilityComponent_LifeStealAttack&&); \

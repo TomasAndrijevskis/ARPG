@@ -264,7 +264,7 @@ struct Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen_Statics::NewProp_Stat = { "Stat", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateStatsScreen_Parms, Stat), Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 1779151500
+const UECodeGen_Private::FBytePropertyParams Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen_Statics::NewProp_Stat = { "Stat", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Byte, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateStatsScreen_Parms, Stat), Z_Construct_UEnum_Course_ARPG_EStats, METADATA_PARAMS(0, nullptr) }; // 7366485
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen_Statics::NewProp_Stat,
 };
@@ -1050,7 +1050,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget, "CreateBonfireMenuWidget" }, // 1274148549
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateDeathWidget, "CreateDeathWidget" }, // 3315036277
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget, "CreateQuickTravelMenuWidget" }, // 1059395091
-		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen, "CreateStatsScreen" }, // 3961906875
+		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen, "CreateStatsScreen" }, // 2487308861
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithAmount, "CreateStatusIconWithAmount" }, // 1220247603
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithTimer, "CreateStatusIconWithTimer" }, // 1058573187
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateUpgradeInfoFooter, "CreateUpgradeInfoFooter" }, // 2830945192
@@ -1178,10 +1178,10 @@ UPlayerWidget::~UPlayerWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 2326003155U) },
+		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 3696477339U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_1947110801(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_1827769606(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

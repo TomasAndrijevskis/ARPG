@@ -14,10 +14,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_AbilityComponent_DamageIncrease_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execIncreaseDamage);
-
-
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_11_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUAbilityComponent_DamageIncrease(); \
@@ -28,6 +24,8 @@ public: \
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_11_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UAbilityComponent_DamageIncrease(); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UAbilityComponent_DamageIncrease(UAbilityComponent_DamageIncrease&&); \
@@ -43,7 +41,6 @@ public: \
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_11_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_11_INCLASS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_DamageIncrease_h_11_ENHANCED_CONSTRUCTORS \
 private: \

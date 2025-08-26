@@ -48,42 +48,12 @@ DEFINE_FUNCTION(UAbilityComponent_MagicShield::execSpawnShield)
 }
 // End Class UAbilityComponent_MagicShield Function SpawnShield
 
-// Begin Class UAbilityComponent_MagicShield Function StartAbility
-struct Z_Construct_UFunction_UAbilityComponent_MagicShield_StartAbility_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Combat/Abilities/AbilityComponent_MagicShield.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UAbilityComponent_MagicShield_StartAbility_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UAbilityComponent_MagicShield, nullptr, "StartAbility", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UAbilityComponent_MagicShield_StartAbility_Statics::Function_MetaDataParams), Z_Construct_UFunction_UAbilityComponent_MagicShield_StartAbility_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_UAbilityComponent_MagicShield_StartAbility()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UAbilityComponent_MagicShield_StartAbility_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UAbilityComponent_MagicShield::execStartAbility)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->StartAbility();
-	P_NATIVE_END;
-}
-// End Class UAbilityComponent_MagicShield Function StartAbility
-
 // Begin Class UAbilityComponent_MagicShield
 void UAbilityComponent_MagicShield::StaticRegisterNativesUAbilityComponent_MagicShield()
 {
 	UClass* Class = UAbilityComponent_MagicShield::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "SpawnShield", &UAbilityComponent_MagicShield::execSpawnShield },
-		{ "StartAbility", &UAbilityComponent_MagicShield::execStartAbility },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -113,7 +83,6 @@ struct Z_Construct_UClass_UAbilityComponent_MagicShield_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UAbilityComponent_MagicShield_SpawnShield, "SpawnShield" }, // 3431141618
-		{ &Z_Construct_UFunction_UAbilityComponent_MagicShield_StartAbility, "StartAbility" }, // 2951414478
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -169,10 +138,10 @@ UAbilityComponent_MagicShield::~UAbilityComponent_MagicShield() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_MagicShield, UAbilityComponent_MagicShield::StaticClass, TEXT("UAbilityComponent_MagicShield"), &Z_Registration_Info_UClass_UAbilityComponent_MagicShield, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_MagicShield), 1156360186U) },
+		{ Z_Construct_UClass_UAbilityComponent_MagicShield, UAbilityComponent_MagicShield::StaticClass, TEXT("UAbilityComponent_MagicShield"), &Z_Registration_Info_UClass_UAbilityComponent_MagicShield, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_MagicShield), 1253285237U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_114684734(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_3205292459(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

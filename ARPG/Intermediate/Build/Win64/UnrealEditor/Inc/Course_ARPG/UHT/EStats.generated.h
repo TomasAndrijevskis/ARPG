@@ -27,6 +27,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 	op(Stamina) \
 	op(MaxStamina) \
 	op(MeleeRange) \
+	op(RangeDistance) \
 	op(Armor) \
 	op(MaxArmor) \
 	op(Mana) \

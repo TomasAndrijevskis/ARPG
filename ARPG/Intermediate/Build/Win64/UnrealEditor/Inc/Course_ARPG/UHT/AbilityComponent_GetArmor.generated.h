@@ -14,10 +14,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_AbilityComponent_GetArmor_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execGiveArmor);
-
-
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUAbilityComponent_GetArmor(); \
@@ -28,6 +24,8 @@ public: \
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_12_ENHANCED_CONSTRUCTORS \
+	/** Standard constructor, called after all reflected properties have been initialized */ \
+	NO_API UAbilityComponent_GetArmor(); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UAbilityComponent_GetArmor(UAbilityComponent_GetArmor&&); \
@@ -43,7 +41,6 @@ public: \
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_12_INCLASS_NO_PURE_DECLS \
 	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_12_ENHANCED_CONSTRUCTORS \
 private: \

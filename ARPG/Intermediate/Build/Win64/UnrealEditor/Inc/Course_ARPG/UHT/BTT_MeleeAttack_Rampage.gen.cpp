@@ -32,12 +32,12 @@ struct Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics
 		{ "IncludePath", "Characters/AI/BTT_MeleeAttack_Rampage.h" },
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_MeleeAttack_Rampage.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Threshold_MetaData[] = {
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OriginalThreshold_MetaData[] = {
 		{ "Category", "BTT_MeleeAttack_Rampage" },
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_MeleeAttack_Rampage.h" },
 	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FDoublePropertyParams NewProp_Threshold;
+	static const UECodeGen_Private::FDoublePropertyParams NewProp_OriginalThreshold;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -45,9 +45,9 @@ struct Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics::NewProp_Threshold = { "Threshold", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_MeleeAttack_Rampage, Threshold), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Threshold_MetaData), NewProp_Threshold_MetaData) };
+const UECodeGen_Private::FDoublePropertyParams Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics::NewProp_OriginalThreshold = { "OriginalThreshold", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_MeleeAttack_Rampage, OriginalThreshold), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OriginalThreshold_MetaData), NewProp_OriginalThreshold_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics::NewProp_Threshold,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics::NewProp_OriginalThreshold,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UBTT_MeleeAttack_Rampage_Statics::DependentSingletons[])() = {
@@ -91,10 +91,10 @@ UBTT_MeleeAttack_Rampage::~UBTT_MeleeAttack_Rampage() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_Rampage_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UBTT_MeleeAttack_Rampage, UBTT_MeleeAttack_Rampage::StaticClass, TEXT("UBTT_MeleeAttack_Rampage"), &Z_Registration_Info_UClass_UBTT_MeleeAttack_Rampage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_MeleeAttack_Rampage), 3497386726U) },
+		{ Z_Construct_UClass_UBTT_MeleeAttack_Rampage, UBTT_MeleeAttack_Rampage::StaticClass, TEXT("UBTT_MeleeAttack_Rampage"), &Z_Registration_Info_UClass_UBTT_MeleeAttack_Rampage, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_MeleeAttack_Rampage), 2904404389U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_Rampage_h_1992992593(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_Rampage_h_3001584135(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_Rampage_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_MeleeAttack_Rampage_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
