@@ -8,6 +8,7 @@
 #include "Interfaces/Fighter.h"
 #include "EnemyCharacter_Base.generated.h"
 
+class USphereComponent;
 class UBehaviorTree;
 class UEnemyHealthBar;
 class UNiagaraComponent;
@@ -92,13 +93,19 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	bool bRandomAttacks;
+
+	UPROPERTY(EditDefaultsOnly)
+	USphereComponent* BlockingSphere;
+
+	UPROPERTY(EditDefaultsOnly)
+	TEnumAsByte<ECollisionChannel> CollisionChannel;
+
+	UPROPERTY(EditAnywhere)
+	UBehaviorTree* BehaviorTree;
 	
 	UPROPERTY()
 	AAIController* ControllerRef;
 	
-	UPROPERTY(EditAnywhere)
-	UBehaviorTree* BehaviorTree;
-
 	UPROPERTY()
 	UBlackboardComponent* BlackboardComp;
 };

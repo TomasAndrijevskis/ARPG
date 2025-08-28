@@ -10,6 +10,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "Combat/StatusEffectsComponent.h"
+#include "Components/SphereComponent.h"
 #include "Perception/PawnSensingComponent.h"
 
 AEnemyCharacter_Base::AEnemyCharacter_Base()
@@ -18,6 +19,9 @@ AEnemyCharacter_Base::AEnemyCharacter_Base()
 
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
+	BlockingSphere = CreateDefaultSubobject<USphereComponent>(TEXT("Blocking Sphere"));
+	BlockingSphere->SetupAttachment(GetRootComponent());
+	
 }
 
 
@@ -33,6 +37,11 @@ void AEnemyCharacter_Base::BeginPlay()
 	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter_Base::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter_Base::ReceiveDamage);
 
+	if (BlockingSphere)
+	{
+		BlockingSphere->SetCollisionResponseToAllChannels(ECR_Ignore);
+		BlockingSphere->SetCollisionResponseToChannel(CollisionChannel, ECR_Block);
+	}
 }
 
 

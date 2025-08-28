@@ -11,15 +11,13 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AActor;
 class UPrimitiveComponent;
-struct FHitResult;
 #ifdef COURSE_ARPG_BossLocationDoor_generated_h
 #error "BossLocationDoor.generated.h already included, missing '#pragma once' in BossLocationDoor.h"
 #endif
 #define COURSE_ARPG_BossLocationDoor_generated_h
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execOnEndOverlap); \
-	DECLARE_FUNCTION(execOnBeginOverlap);
+	DECLARE_FUNCTION(execOnEndOverlap);
 
 
 #define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_INCLASS_NO_PURE_DECLS \

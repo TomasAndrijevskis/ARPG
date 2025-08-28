@@ -7,30 +7,22 @@ ABossLocationDoor::ABossLocationDoor()
 {
 	Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
 	Collision->SetupAttachment(GetRootComponent());
-
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(Collision);
 }
 
 
-
 void ABossLocationDoor::BeginPlay()
 {
 	Super::BeginPlay();
-	//Mesh->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Block);
-
 	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Mesh->SetVisibility(false);
-
+	if (MeshMaterial)
+	{
+		Mesh->SetMaterial(0, MeshMaterial);
+	}
 	SetCollisionSettings(ECR_Ignore, ECR_Ignore, ECR_Overlap);
-	Collision->OnComponentBeginOverlap.AddDynamic(this, &ABossLocationDoor::OnBeginOverlap);
 	Collision->OnComponentEndOverlap.AddDynamic(this, &ABossLocationDoor::OnEndOverlap);
-}
-
-
-void ABossLocationDoor::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	UE_LOG(LogTemp, Error, TEXT("OnBeginOverlap"));
 }
 
 
