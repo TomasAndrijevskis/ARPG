@@ -41,7 +41,6 @@
 			"BTTask_SummonMinions.gen.cpp.obj",
 			"BTT_ChargeAttack.gen.cpp.obj",
 			"BTT_GroundSmashAttack.gen.cpp.obj",
-			"BTT_HitCountReset.gen.cpp.obj",
 			"BTT_MeleeAttack_Base.gen.cpp.obj",
 			"BTT_MeleeAttack_Grux.gen.cpp.obj",
 			"BTT_MeleeAttack_Rampage.gen.cpp.obj",
@@ -63,6 +62,7 @@
 			"EnemyHealthBar.gen.cpp.obj",
 			"EnemyProjectile.gen.cpp.obj",
 			"EnemyProjectileComponent.gen.cpp.obj",
+			"BTT_HitCountReset.gen.cpp.obj",
 			"BTT_RangeAttack_Elemental.gen.cpp.obj",
 			"BTT_RangeAttack_Fey.gen.cpp.obj",
 			"Course_ARPG.init.gen.cpp.obj"
