@@ -5,24 +5,35 @@
 #include "GameFramework/Character.h"
 
 
+UBTT_HitCountReset::UBTT_HitCountReset()
+{
+	bCreateNodeInstance = true;
+}
+
+
 EBTNodeResult::Type UBTT_HitCountReset::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	MyOwnerComp = &OwnerComp;
-	
+	ControllerRef = OwnerComp.GetAIOwner();
 	ACharacter* CharacterRef = OwnerComp.GetAIOwner()->GetPawn<ACharacter>();
-	float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
 
 	FTimerHandle TimerHandle;
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBTT_HitCountReset::FinishTask, AnimDuration, false);
+	UBehaviorTreeComponent* LocalOwnerComp = &OwnerComp;
 	
+	if (AnimMontage)
+	{
+		float AnimDuration = CharacterRef->PlayAnimMontage(AnimMontage);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle,FTimerDelegate::CreateUObject(this,&UBTT_HitCountReset::FinishTask,LocalOwnerComp),AnimDuration,false);
+	}
+	else
+	{
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, FTimerDelegate::CreateUObject(this,&UBTT_HitCountReset::FinishTask,LocalOwnerComp), ResetDuration, false);
+	}
 	return EBTNodeResult::InProgress;
 }
 
 
-void UBTT_HitCountReset::FinishTask()
+void UBTT_HitCountReset::FinishTask(UBehaviorTreeComponent* LocalOwnerComp)
 {
-	ControllerRef = MyOwnerComp->GetAIOwner();
 	ControllerRef->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), 0);
-	
-	FinishLatentTask(*MyOwnerComp, EBTNodeResult::Succeeded);
+	FinishLatentTask(*LocalOwnerComp, EBTNodeResult::Succeeded);
 }

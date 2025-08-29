@@ -52,8 +52,13 @@ void AEnemyCharacter_Base::SetupAI()
 	{
 		ControllerRef->RunBehaviorTree(BehaviorTree);
 		BlackboardComp = ControllerRef->GetBlackboardComponent();
+		BlackboardComp->SetValueAsVector(TEXT("StartLocation"), GetActorLocation());
+		BlackboardComp->SetValueAsRotator(TEXT("StartRotation"), GetActorRotation());
 		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), InitialState);
-		BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), true);
+		if (InitialState == EEnemyStates::Patrol)
+		{
+			BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), true);
+		}
 	}
 }
 

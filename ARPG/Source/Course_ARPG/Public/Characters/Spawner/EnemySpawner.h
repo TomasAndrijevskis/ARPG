@@ -28,7 +28,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	int EnemySpawnCount;
 	
-
 	UPROPERTY(VisibleAnywhere)
 	TArray<AEnemyCharacter_Base*> SpawnedEnemies;
 

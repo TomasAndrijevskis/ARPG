@@ -9,116 +9,69 @@
 
 UBTT_RangeAttack_Fey::UBTT_RangeAttack_Fey()
 {
-	MoveDelegate.BindUFunction(this,"FinishMove");
-	bNotifyTick = true;
 	bCreateNodeInstance = true;
 }
 
 
 EBTNodeResult::Type UBTT_RangeAttack_Fey::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	CachedOwnerComp = &OwnerComp;
-	CachedNodeMemory = NodeMemory;
 	ControllerRef = OwnerComp.GetAIOwner();
 	CharacterRef = ControllerRef->GetCharacter();
 	if (!IsValid(CharacterRef))
 	{
 		return EBTNodeResult::Failed;
 	}
+	
 	FighterRef = Cast<IFighter>(CharacterRef);
+	Attack();
 	CheckDistance();
-	return EBTNodeResult::InProgress;
+	return EBTNodeResult::Succeeded;
 }
 
 
 EBTNodeResult::Type UBTT_RangeAttack_Fey::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	ControllerRef->StopMovement();
-	return Super::AbortTask(OwnerComp, NodeMemory);
-}
-
-
-void UBTT_RangeAttack_Fey::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
-{
-	float Distance = CachedOwnerComp->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-	if (Distance < FighterRef->GetRangeDistance())
+	if (IsValid(ControllerRef))
 	{
-		AbortTask(*CachedOwnerComp, CachedNodeMemory);
-		FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Aborted);
 		ControllerRef->StopMovement();
-		ControllerRef->ClearFocus(EAIFocusPriority::Gameplay);
-		ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
 	}
-	if (!bIsAttackFinished)
-	{
-		return;
-	}
-	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
+	return Super::AbortTask(OwnerComp, NodeMemory);
 }
 
 
 void UBTT_RangeAttack_Fey::CheckDistance()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Check"));
-	bIsAttackFinished = false;
-	float Distance = CachedOwnerComp->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-	if (Distance > FighterRef->GetRangeDistance())
+	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
+	FVector PlayerLocation = PlayerRef->GetActorLocation();
+	float CurrentDistance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
+	if (CurrentDistance > FighterRef->GetRangeDistance())
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Move"));
-		Move();
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Attack"));
-		bCanAttack = true;
-		Attack();
+		MoveToPlayer(FighterRef->GetRangeDistance(), PlayerLocation);
 	}
 }
 
 
 void UBTT_RangeAttack_Fey::Attack()
 {
-	UE_LOG(LogTemp, Warning, TEXT("attack task"));
-	if (bCanAttack)
+	if (FighterRef)
 	{
-		bCanAttack = false;
-		bIsAttackFinished = false;
 		FighterRef->Attack();
-		FTimerHandle TimerHandle;
-		float AnimDuration = FighterRef->GetAnimDuration();
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this , &UBTT_RangeAttack_Fey::FinishAttack, AnimDuration / 2, false); //Animation is too long
+		int CurrentHitCount = ControllerRef->GetBlackboardComponent()->GetValueAsInt(TEXT("HitCount"));
+		ControllerRef->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), CurrentHitCount + 1);
 	}
 }
 
 
-void UBTT_RangeAttack_Fey::FinishAttack()
+void UBTT_RangeAttack_Fey::MoveToPlayer(float AcceptableDistance, FVector PlayerLocation)
 {
-	bIsAttackFinished = true;
-	bCanAttack = true;
-	int CurrentHitCount = CachedOwnerComp->GetBlackboardComponent()->GetValueAsInt(TEXT("HitCount"));
-	CachedOwnerComp->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), CurrentHitCount + 1);
-	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
-}
-
-
-void UBTT_RangeAttack_Fey::Move()
-{
-	APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
-	FAIMoveRequest MoveRequest = PlayerRef;
+	FAIMoveRequest MoveRequest = PlayerLocation;
 	MoveRequest.SetUsePathfinding(true);
-	MoveRequest.SetAcceptanceRadius(FighterRef->GetRangeDistance() - 200); // Fey does not come exactly at this distance
-	
-	ControllerRef->ReceiveMoveCompleted.AddUnique(MoveDelegate);
-	
+	MoveRequest.SetAcceptanceRadius(AcceptableDistance);
+
 	ControllerRef->MoveTo(MoveRequest);
 	ControllerRef->SetFocus(PlayerRef);
+	
 }
 
-
-void UBTT_RangeAttack_Fey::FinishMove()
-{
-	ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
-	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
-}
 
 

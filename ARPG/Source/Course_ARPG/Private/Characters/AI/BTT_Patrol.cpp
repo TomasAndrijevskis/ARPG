@@ -19,9 +19,7 @@ EBTNodeResult::Type UBTT_Patrol::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 {
 	ControllerRef = OwnerComp.GetAIOwner();
 	CharacterRef = ControllerRef->GetCharacter();
-	StartLocation = CharacterRef->GetActorLocation();
-	
-	OwnerComp.GetBlackboardComponent()->SetValueAsVector(TEXT("StartLocation"), StartLocation);
+	StartLocation = OwnerComp.GetBlackboardComponent()->GetValueAsVector(TEXT("StartLocation"));
 	PatrolForward();
 	return EBTNodeResult::InProgress;
 }
@@ -67,6 +65,7 @@ void UBTT_Patrol::PatrolBackward()
 
 void UBTT_Patrol::DelayPatrol(FVector TargetLocation, bool bDirectionForward)
 {
+	ControllerRef->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetLocation"), TargetLocation);
 	FAIMoveRequest MoveRequest = TargetLocation;
 	MoveRequest.SetUsePathfinding(true);
 	ControllerRef->MoveTo(MoveRequest);
@@ -85,7 +84,6 @@ void UBTT_Patrol::DelayPatrol(FVector TargetLocation, bool bDirectionForward)
 
 EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	//UE_LOG(LogTemp, Error, TEXT("Patrol Abort"));
 	if (IsValid(ControllerRef))
 	{
 		ControllerRef->StopMovement();

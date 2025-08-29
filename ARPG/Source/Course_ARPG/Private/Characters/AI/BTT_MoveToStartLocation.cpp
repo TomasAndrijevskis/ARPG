@@ -3,6 +3,7 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/AI/EEnemyStates.h"
+#include "GameFramework/Character.h"
 #include "Navigation/PathFollowingComponent.h"
 
 
@@ -44,6 +45,7 @@ void UBTT_MoveToStartLocation::OnMoveCompleted(FAIRequestID RequestID, EPathFoll
 {
 	if (Result == EPathFollowingResult::Success)
 	{
+		CharacterRef->SetActorRotation(ControllerRef->GetBlackboardComponent()->GetValueAsRotator(TEXT("StartRotation")));
 		ControllerRef->ReceiveMoveCompleted.RemoveDynamic(this, &UBTT_MoveToStartLocation::OnMoveCompleted);
 		ChangeState();
 	}
@@ -51,8 +53,8 @@ void UBTT_MoveToStartLocation::OnMoveCompleted(FAIRequestID RequestID, EPathFoll
 
 void UBTT_MoveToStartLocation::ChangeState()
 {
-	ControllerRef -> GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Patrol);
-	ControllerRef -> GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);
+	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Patrol);
+	ControllerRef->GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }
 

@@ -13,7 +13,7 @@ class COURSE_ARPG_API UBTT_HitCountReset : public UBTTaskNode
 
 public:
 	
-	UBTT_HitCountReset(){};
+	UBTT_HitCountReset();
 
 
 protected:
@@ -22,12 +22,13 @@ protected:
 
 private:
 
-	void FinishTask();
-
-	UBehaviorTreeComponent* MyOwnerComp;
+	void FinishTask(UBehaviorTreeComponent* LocalOwnerComp);
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* AnimMontage;
+
+	UPROPERTY(EditAnywhere)
+	float ResetDuration;
 	
 	AAIController* ControllerRef;
 };

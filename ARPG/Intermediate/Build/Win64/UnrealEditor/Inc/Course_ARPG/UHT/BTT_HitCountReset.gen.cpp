@@ -37,8 +37,13 @@ struct Z_Construct_UClass_UBTT_HitCountReset_Statics
 		{ "Category", "BTT_HitCountReset" },
 		{ "ModuleRelativePath", "Public/Characters/AI/BTT_HitCountReset.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_ResetDuration_MetaData[] = {
+		{ "Category", "BTT_HitCountReset" },
+		{ "ModuleRelativePath", "Public/Characters/AI/BTT_HitCountReset.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AnimMontage;
+	static const UECodeGen_Private::FFloatPropertyParams NewProp_ResetDuration;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -47,8 +52,10 @@ struct Z_Construct_UClass_UBTT_HitCountReset_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UBTT_HitCountReset_Statics::NewProp_AnimMontage = { "AnimMontage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_HitCountReset, AnimMontage), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AnimMontage_MetaData), NewProp_AnimMontage_MetaData) };
+const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UBTT_HitCountReset_Statics::NewProp_ResetDuration = { "ResetDuration", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UBTT_HitCountReset, ResetDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ResetDuration_MetaData), NewProp_ResetDuration_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UBTT_HitCountReset_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_HitCountReset_Statics::NewProp_AnimMontage,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UBTT_HitCountReset_Statics::NewProp_ResetDuration,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UBTT_HitCountReset_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UBTT_HitCountReset_Statics::DependentSingletons[])() = {
@@ -91,10 +98,10 @@ UBTT_HitCountReset::~UBTT_HitCountReset() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_HitCountReset_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UBTT_HitCountReset, UBTT_HitCountReset::StaticClass, TEXT("UBTT_HitCountReset"), &Z_Registration_Info_UClass_UBTT_HitCountReset, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_HitCountReset), 1447603895U) },
+		{ Z_Construct_UClass_UBTT_HitCountReset, UBTT_HitCountReset::StaticClass, TEXT("UBTT_HitCountReset"), &Z_Registration_Info_UClass_UBTT_HitCountReset, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UBTT_HitCountReset), 1385845267U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_HitCountReset_h_3797059525(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_HitCountReset_h_3836145658(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_HitCountReset_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_AI_BTT_HitCountReset_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

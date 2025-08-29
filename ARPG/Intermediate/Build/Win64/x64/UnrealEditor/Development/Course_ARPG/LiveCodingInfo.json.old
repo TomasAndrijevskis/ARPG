@@ -32,6 +32,7 @@
 			"BonfireMenu.gen.cpp.obj",
 			"Boss.gen.cpp.obj",
 			"BossHealthBar.gen.cpp.obj",
+			"BossLocationDoor.gen.cpp.obj",
 			"BossSpawner.gen.cpp.obj",
 			"Boss_Fey.gen.cpp.obj",
 			"Boss_Grux.gen.cpp.obj",
@@ -48,7 +49,6 @@
 			"BTT_Patrol.gen.cpp.obj",
 			"BTT_PhaseTransition.gen.cpp.obj",
 			"BTT_PoisonExplosion.gen.cpp.obj",
-			"BTT_RangeAttack_Fey.gen.cpp.obj",
 			"BTT_RangeAttack_Grux.gen.cpp.obj",
 			"CharacterSelect.gen.cpp.obj",
 			"CharacterSelection.gen.cpp.obj",
@@ -63,7 +63,8 @@
 			"EnemyHealthBar.gen.cpp.obj",
 			"EnemyProjectile.gen.cpp.obj",
 			"EnemyProjectileComponent.gen.cpp.obj",
-			"BossLocationDoor.gen.cpp.obj",
+			"BTT_RangeAttack_Elemental.gen.cpp.obj",
+			"BTT_RangeAttack_Fey.gen.cpp.obj",
 			"Course_ARPG.init.gen.cpp.obj"
 		],
 		"Module.Course_ARPG.3.cpp.obj": [
@@ -116,7 +117,6 @@
 			"SummonMinionsComponent.gen.cpp.obj",
 			"ToggleTraceNotifyState.gen.cpp.obj",
 			"TraceComponent.gen.cpp.obj",
-			"UBTT_Shoot.gen.cpp.obj",
 			"XPLevels.gen.cpp.obj",
 			"Course_ARPG.cpp.obj",
 			"AnimInstance_Base.cpp.obj",
@@ -130,18 +130,13 @@
 			"BTTask_SummonMinions.cpp.obj",
 			"BTT_ChargeAttack.cpp.obj",
 			"BTT_GroundSmashAttack.cpp.obj",
-			"BTT_HitCountReset.cpp.obj",
 			"BTT_MeleeAttack_Base.cpp.obj",
 			"BTT_MeleeAttack_Grux.cpp.obj",
 			"BTT_MeleeAttack_Rampage.cpp.obj",
-			"BTT_MoveToStartLocation.cpp.obj",
-			"BTT_Patrol.cpp.obj",
 			"BTT_PhaseTransition.cpp.obj",
 			"BTT_PoisonExplosion.cpp.obj",
-			"BTT_RangeAttack_Fey.cpp.obj",
 			"BTT_RangeAttack_Grux.cpp.obj",
 			"EEnemyStates.cpp.obj",
-			"UBTT_Shoot.cpp.obj",
 			"ARPG_PlayerController.cpp.obj",
 			"Boss.cpp.obj",
 			"Boss_Fey.cpp.obj",
@@ -159,12 +154,17 @@
 			"Minion_Rampage.cpp.obj",
 			"PlayerActionsComponent.cpp.obj",
 			"BossSpawner.cpp.obj",
-			"EnemySpawner.cpp.obj",
-			"EnemyCharacter_Base.cpp.obj"
-		],
-		"Module.Course_ARPG.5.cpp.obj": [
 			"Spawner.cpp.obj",
 			"StatsComponent.cpp.obj",
+			"BTT_HitCountReset.cpp.obj",
+			"BTT_MoveToStartLocation.cpp.obj",
+			"BTT_Patrol.cpp.obj",
+			"BTT_RangeAttack_Elemental.cpp.obj",
+			"BTT_RangeAttack_Fey.cpp.obj",
+			"EnemyCharacter_Base.cpp.obj",
+			"EnemySpawner.cpp.obj"
+		],
+		"Module.Course_ARPG.5.cpp.obj": [
 			"AbilityComponent_Base.cpp.obj",
 			"AbilityComponent_DamageIncrease.cpp.obj",
 			"AbilityComponent_FireStorm.cpp.obj",
@@ -199,6 +199,7 @@
 			"Enemy.cpp.obj",
 			"Fighter.cpp.obj",
 			"MainPlayer.cpp.obj",
+			"BossLocationDoor.cpp.obj",
 			"AbilityData.cpp.obj",
 			"ARPG_GameInstance.cpp.obj",
 			"ARPG_SaveGame.cpp.obj",
@@ -223,8 +224,7 @@
 			"SaveSlotWidget.cpp.obj",
 			"StatsScreenWidget.cpp.obj",
 			"StatusIconWithAmount.cpp.obj",
-			"StatusIconWithTimer.cpp.obj",
-			"BossLocationDoor.cpp.obj"
+			"StatusIconWithTimer.cpp.obj"
 		]
 	}
 }

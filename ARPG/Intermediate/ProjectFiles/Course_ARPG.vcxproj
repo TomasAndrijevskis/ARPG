@@ -384,7 +384,7 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\EEnemyStates.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\UBTT_Shoot.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack_Elemental.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Spawner\BossSpawner.cpp">
@@ -617,7 +617,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Fey.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\EEnemyStates.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\UBTT_Shoot.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Elemental.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\AbilityUpgradeRequirements.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\CharacterSelectionStruct.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Data\XPLevels.h"/>

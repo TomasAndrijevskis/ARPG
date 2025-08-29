@@ -22,24 +22,14 @@ protected:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 	
 	virtual EBTNodeResult::Type AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
-
-	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 	
 private:
 
+	void MoveToPlayer(float AcceptableDistance, FVector PlayerLocation);
+	
 	void CheckDistance();
 
-	UFUNCTION()
 	void Attack();
-
-	UFUNCTION()
-	void Move();
-
-	UFUNCTION()
-	void FinishMove();
-
-	UFUNCTION()
-	void FinishAttack();
 	
 	AAIController* ControllerRef;
 
@@ -47,13 +37,6 @@ private:
 
 	IFighter* FighterRef;
 
-	UBehaviorTreeComponent* CachedOwnerComp;
-
-	uint8* CachedNodeMemory;
-
-	FScriptDelegate MoveDelegate;
-
-	bool bCanAttack = false;
-
-	bool bIsAttackFinished;
+	APawn* PlayerRef;
+	
 };
