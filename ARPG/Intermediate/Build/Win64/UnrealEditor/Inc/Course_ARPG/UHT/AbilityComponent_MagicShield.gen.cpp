@@ -12,9 +12,9 @@ void EmptyLinkFunctionForGeneratedCodeAbilityComponent_MagicShield() {}
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMagicShield_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_MagicShield();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_MagicShield_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
@@ -98,7 +98,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_MagicShield_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_MagicShield_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Base,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Player,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_MagicShield_Statics::DependentSingletons) < 16);
@@ -138,10 +138,10 @@ UAbilityComponent_MagicShield::~UAbilityComponent_MagicShield() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_MagicShield, UAbilityComponent_MagicShield::StaticClass, TEXT("UAbilityComponent_MagicShield"), &Z_Registration_Info_UClass_UAbilityComponent_MagicShield, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_MagicShield), 1253285237U) },
+		{ Z_Construct_UClass_UAbilityComponent_MagicShield, UAbilityComponent_MagicShield::StaticClass, TEXT("UAbilityComponent_MagicShield"), &Z_Registration_Info_UClass_UAbilityComponent_MagicShield, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_MagicShield), 200719757U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_3205292459(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_2820903287(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_MagicShield_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

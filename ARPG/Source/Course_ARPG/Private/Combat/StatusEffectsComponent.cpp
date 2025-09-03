@@ -2,9 +2,16 @@
 #include "Combat/StatusEffectsComponent.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Characters/Boss.h"
+#include "Characters/EnemyCharacter_Base.h"
 #include "Characters/MainCharacter_Base.h"
+#include "Characters/Minion.h"
+#include "Combat/Abilities/Base/AbilityComponent_Base.h"
 #include "Engine/DamageEvents.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "UI/BossHealthBar.h"
+#include "UI/MinionHealthBar.h"
+#include "UI/PlayerWidget.h"
 
 
 void UStatusEffectsComponent::BeginPlay()
@@ -42,6 +49,12 @@ void UStatusEffectsComponent::SlowDownEnemy(float SlowDuration, UNiagaraSystem* 
 		FreezeData.SavedSpeed = OriginalSpeed;
 	}
 	GetWorld()->GetTimerManager().SetTimer(FreezeTimerHandle, this,  &UStatusEffectsComponent::StopFreeze, SlowDuration, false);
+}
+
+
+void UStatusEffectsComponent::StopFreeze()
+{
+	StopEffect(FreezeData);
 }
 
 
@@ -86,11 +99,12 @@ void UStatusEffectsComponent::Burn()
 }
 
 
-void UStatusEffectsComponent::HandlePoison(float NewPoisonDuration, float NewPoisonDamage, UNiagaraSystem* PoisonEffect, float NewPoisonRate)
+void UStatusEffectsComponent::HandlePoison(float NewPoisonDuration, float NewPoisonDamage, UNiagaraSystem* PoisonEffect, float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon)
 {
 	PoisonDamage = NewPoisonDamage;
 	PoisonDuration = NewPoisonDuration;
 	PoisonRate = NewPoisonRate;
+	AbilityCompRef = NewAbilityCompRef;
 
 	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	
@@ -102,6 +116,7 @@ void UStatusEffectsComponent::HandlePoison(float NewPoisonDuration, float NewPoi
 		PoisonData.Type = EStatusEffects::Poison;
 		PoisonData.TimerHandle = PoisonTimerHandle;
 	}
+	Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusIconWithTimer(PoisonDuration, Icon, AbilityCompRef);
 	GetWorld()->GetTimerManager().SetTimer(BurnTimerHandle, this, &UStatusEffectsComponent::Poison, PoisonRate, true);
 }
 
@@ -111,19 +126,15 @@ void UStatusEffectsComponent::Poison()
 	if (PoisonDuration > 0)
 	{
 		PoisonDuration -= PoisonRate;
+		AbilityCompRef->OnAbilityTimerChangedDelegate.Broadcast(PoisonDuration);
 		FDamageEvent TargetAttackedEvent{ };
 		CharacterRef->TakeDamage(PoisonDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 	}
 	else
 	{
+		AbilityCompRef->OnAbilityFinishedDelegate.Broadcast();
 		StopEffect(PoisonData);
 	}
-}
-
-
-void UStatusEffectsComponent::StopFreeze()
-{
-	StopEffect(FreezeData);
 }
 
 

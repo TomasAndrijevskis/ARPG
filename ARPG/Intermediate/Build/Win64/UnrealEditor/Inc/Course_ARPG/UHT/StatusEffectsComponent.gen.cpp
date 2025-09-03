@@ -11,6 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeStatusEffectsComponent() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusEffectsComponent();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusEffectsComponent_NoRegister();
 COURSE_ARPG_API UScriptStruct* Z_Construct_UScriptStruct_FStatusEffectData();
@@ -253,6 +254,10 @@ struct Z_Construct_UClass_UStatusEffectsComponent_Statics
 		{ "Category", "StatusEffectsComponent" },
 		{ "ModuleRelativePath", "Public/Combat/StatusEffectsComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AbilityCompRef_MetaData[] = {
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/Combat/StatusEffectsComponent.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FrozenEffectRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BurnEffectRef;
@@ -261,6 +266,7 @@ struct Z_Construct_UClass_UStatusEffectsComponent_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_CharacterRef;
 	static const UECodeGen_Private::FNamePropertyParams NewProp_SocketName;
 	static const UECodeGen_Private::FStructPropertyParams NewProp_EffectScale;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_AbilityCompRef;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -282,6 +288,7 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UStatusEffects
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_CharacterRef = { "CharacterRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusEffectsComponent, CharacterRef), Z_Construct_UClass_ACharacter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CharacterRef_MetaData), NewProp_CharacterRef_MetaData) };
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_SocketName = { "SocketName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusEffectsComponent, SocketName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SocketName_MetaData), NewProp_SocketName_MetaData) };
 const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_EffectScale = { "EffectScale", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusEffectsComponent, EffectScale), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EffectScale_MetaData), NewProp_EffectScale_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_AbilityCompRef = { "AbilityCompRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UStatusEffectsComponent, AbilityCompRef), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityCompRef_MetaData), NewProp_AbilityCompRef_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatusEffectsComponent_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_FrozenEffectRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_BurnEffectRef,
@@ -290,6 +297,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UStatusEf
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_CharacterRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_SocketName,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_EffectScale,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UStatusEffectsComponent_Statics::NewProp_AbilityCompRef,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UStatusEffectsComponent_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UStatusEffectsComponent_Statics::DependentSingletons[])() = {
@@ -336,10 +344,10 @@ struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_P
 		{ FStatusEffectData::StaticStruct, Z_Construct_UScriptStruct_FStatusEffectData_Statics::NewStructOps, TEXT("StatusEffectData"), &Z_Registration_Info_UScriptStruct_StatusEffectData, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FStatusEffectData), 3537026047U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatusEffectsComponent, UStatusEffectsComponent::StaticClass, TEXT("UStatusEffectsComponent"), &Z_Registration_Info_UClass_UStatusEffectsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusEffectsComponent), 3571687980U) },
+		{ Z_Construct_UClass_UStatusEffectsComponent, UStatusEffectsComponent::StaticClass, TEXT("UStatusEffectsComponent"), &Z_Registration_Info_UClass_UStatusEffectsComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusEffectsComponent), 478746956U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_1246767562(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_3448246824(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_Statics::ClassInfo),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_Statics::ScriptStructInfo),
 	nullptr, 0);

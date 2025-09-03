@@ -13,67 +13,11 @@ void EmptyLinkFunctionForGeneratedCodeStatusIconWithTimer() {}
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusIconWithTimer();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusIconWithTimer_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UImage_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UTextBlock_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UUserWidget();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
-
-// Begin Class UStatusIconWithTimer Function InitializeWidget
-struct Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics
-{
-	struct StatusIconWithTimer_eventInitializeWidget_Parms
-	{
-		float Duration;
-		UTexture2D* Image;
-		UAbilityComponent_Base* NewAbilityCompRef;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/UI/StatusIconWithTimer.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_NewAbilityCompRef_MetaData[] = {
-		{ "EditInline", "true" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_Duration;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_Image;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_NewAbilityCompRef;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::NewProp_Duration = { "Duration", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(StatusIconWithTimer_eventInitializeWidget_Parms, Duration), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::NewProp_Image = { "Image", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(StatusIconWithTimer_eventInitializeWidget_Parms, Image), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::NewProp_NewAbilityCompRef = { "NewAbilityCompRef", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(StatusIconWithTimer_eventInitializeWidget_Parms, NewAbilityCompRef), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NewAbilityCompRef_MetaData), NewProp_NewAbilityCompRef_MetaData) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::NewProp_Duration,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::NewProp_Image,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::NewProp_NewAbilityCompRef,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatusIconWithTimer, nullptr, "InitializeWidget", nullptr, nullptr, Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::StatusIconWithTimer_eventInitializeWidget_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::StatusIconWithTimer_eventInitializeWidget_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UStatusIconWithTimer::execInitializeWidget)
-{
-	P_GET_PROPERTY(FFloatProperty,Z_Param_Duration);
-	P_GET_OBJECT(UTexture2D,Z_Param_Image);
-	P_GET_OBJECT(UAbilityComponent_Base,Z_Param_NewAbilityCompRef);
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->InitializeWidget(Z_Param_Duration,Z_Param_Image,Z_Param_NewAbilityCompRef);
-	P_NATIVE_END;
-}
-// End Class UStatusIconWithTimer Function InitializeWidget
 
 // Begin Class UStatusIconWithTimer Function RemoveWidget
 struct Z_Construct_UFunction_UStatusIconWithTimer_RemoveWidget_Statics
@@ -146,57 +90,13 @@ DEFINE_FUNCTION(UStatusIconWithTimer::execSetCountdownTime)
 }
 // End Class UStatusIconWithTimer Function SetCountdownTime
 
-// Begin Class UStatusIconWithTimer Function SetStatusIcon
-struct Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics
-{
-	struct StatusIconWithTimer_eventSetStatusIcon_Parms
-	{
-		UTexture2D* Icon;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/UI/StatusIconWithTimer.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_Icon;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::NewProp_Icon = { "Icon", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(StatusIconWithTimer_eventSetStatusIcon_Parms, Icon), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::NewProp_Icon,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UStatusIconWithTimer, nullptr, "SetStatusIcon", nullptr, nullptr, Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::PropPointers), sizeof(Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::StatusIconWithTimer_eventSetStatusIcon_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::Function_MetaDataParams), Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::StatusIconWithTimer_eventSetStatusIcon_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(UStatusIconWithTimer::execSetStatusIcon)
-{
-	P_GET_OBJECT(UTexture2D,Z_Param_Icon);
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->SetStatusIcon(Z_Param_Icon);
-	P_NATIVE_END;
-}
-// End Class UStatusIconWithTimer Function SetStatusIcon
-
 // Begin Class UStatusIconWithTimer
 void UStatusIconWithTimer::StaticRegisterNativesUStatusIconWithTimer()
 {
 	UClass* Class = UStatusIconWithTimer::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
-		{ "InitializeWidget", &UStatusIconWithTimer::execInitializeWidget },
 		{ "RemoveWidget", &UStatusIconWithTimer::execRemoveWidget },
 		{ "SetCountdownTime", &UStatusIconWithTimer::execSetCountdownTime },
-		{ "SetStatusIcon", &UStatusIconWithTimer::execSetStatusIcon },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -233,10 +133,8 @@ struct Z_Construct_UClass_UStatusIconWithTimer_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UStatusIconWithTimer_InitializeWidget, "InitializeWidget" }, // 1903640484
 		{ &Z_Construct_UFunction_UStatusIconWithTimer_RemoveWidget, "RemoveWidget" }, // 3235133936
 		{ &Z_Construct_UFunction_UStatusIconWithTimer_SetCountdownTime, "SetCountdownTime" }, // 2099435167
-		{ &Z_Construct_UFunction_UStatusIconWithTimer_SetStatusIcon, "SetStatusIcon" }, // 2629506964
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -294,10 +192,10 @@ UStatusIconWithTimer::~UStatusIconWithTimer() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatusIconWithTimer_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UStatusIconWithTimer, UStatusIconWithTimer::StaticClass, TEXT("UStatusIconWithTimer"), &Z_Registration_Info_UClass_UStatusIconWithTimer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusIconWithTimer), 408274443U) },
+		{ Z_Construct_UClass_UStatusIconWithTimer, UStatusIconWithTimer::StaticClass, TEXT("UStatusIconWithTimer"), &Z_Registration_Info_UClass_UStatusIconWithTimer, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UStatusIconWithTimer), 3973076040U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatusIconWithTimer_h_660758701(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatusIconWithTimer_h_3155826384(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatusIconWithTimer_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_StatusIconWithTimer_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -23,7 +23,7 @@ private: \
 	static void StaticRegisterNativesUAbilityComponent_FireStorm(); \
 	friend struct Z_Construct_UClass_UAbilityComponent_FireStorm_Statics; \
 public: \
-	DECLARE_CLASS(UAbilityComponent_FireStorm, UAbilityComponent_Base, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
+	DECLARE_CLASS(UAbilityComponent_FireStorm, UAbilityComponent_Player, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
 	DECLARE_SERIALIZER(UAbilityComponent_FireStorm)
 
 

@@ -12,9 +12,9 @@ void EmptyLinkFunctionForGeneratedCodeAbilityComponent_FireStorm() {}
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AFireStorm_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_FireStorm();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_FireStorm_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
@@ -118,7 +118,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_FireStorm_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_FireStorm_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Base,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Player,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_FireStorm_Statics::DependentSingletons) < 16);
@@ -158,10 +158,10 @@ UAbilityComponent_FireStorm::~UAbilityComponent_FireStorm() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FireStorm_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_FireStorm, UAbilityComponent_FireStorm::StaticClass, TEXT("UAbilityComponent_FireStorm"), &Z_Registration_Info_UClass_UAbilityComponent_FireStorm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_FireStorm), 1988299091U) },
+		{ Z_Construct_UClass_UAbilityComponent_FireStorm, UAbilityComponent_FireStorm::StaticClass, TEXT("UAbilityComponent_FireStorm"), &Z_Registration_Info_UClass_UAbilityComponent_FireStorm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_FireStorm), 3194109396U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FireStorm_h_1334685126(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FireStorm_h_2352285667(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FireStorm_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FireStorm_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -2,12 +2,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilityComponent_Base.h"
+#include "Base/AbilityComponent_Player.h"
 #include "Components/ActorComponent.h"
 #include "AbilityComponent_LifeStealAttack.generated.h"
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbilityComponent_LifeStealAttack : public UAbilityComponent_Base
+class COURSE_ARPG_API UAbilityComponent_LifeStealAttack : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 

@@ -7,6 +7,7 @@
 
 class UNiagaraSystem;
 class USphereComponent;
+class UAbilityComponent_Base;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnExplosionTriggeredSignature);
 UCLASS()
@@ -18,7 +19,7 @@ public:
 
 	APoisonExplosionArea();
 
-	void SetParams(float NewExplosionDamage, float NewPoisonDamage, float NewPoisonRate, float NewPoisonDuration, UNiagaraSystem* NewPoisonEffect);
+	void SetParams(float NewExplosionDamage, float NewPoisonDamage, float NewPoisonRate, float NewPoisonDuration, UNiagaraSystem* NewPoisonEffect, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* NewIcon);
 
 	FOnExplosionTriggeredSignature OnExplosionTriggeredDelegate;
 
@@ -32,6 +33,11 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	USphereComponent* PoisonArea;
+
+	UPROPERTY()
+	UAbilityComponent_Base* AbilityCompRef;
+
+	UTexture2D* Icon;
 	
 	float ExplosionDamage;
 

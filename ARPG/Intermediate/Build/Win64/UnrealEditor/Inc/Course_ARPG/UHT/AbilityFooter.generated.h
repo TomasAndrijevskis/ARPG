@@ -9,7 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UAbilityComponent_Base;
+class UAbilityComponent_Player;
 class UTexture2D;
 #ifdef COURSE_ARPG_AbilityFooter_generated_h
 #error "AbilityFooter.generated.h already included, missing '#pragma once' in AbilityFooter.h"

@@ -35,6 +35,8 @@ public:
 	void SetCanTakeDamage(bool CanTakeDamage);
 
 	bool GetCanTakeDamage();
+
+	UBossHealthBar* GetBossWidget();
 	
 protected:
 

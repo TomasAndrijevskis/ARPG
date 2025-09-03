@@ -11,7 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeAbilityUpgradeScreen() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityUpgradeScreen();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityUpgradeScreen_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UDescriptionWidget_NoRegister();
@@ -170,7 +170,7 @@ struct Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility_Statics
 {
 	struct AbilityUpgradeScreen_eventInitializeAbility_Parms
 	{
-		UAbilityComponent_Base* AbilityComp;
+		UAbilityComponent_Player* AbilityComp;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -184,7 +184,7 @@ struct Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility_Statics::NewProp_AbilityComp = { "AbilityComp", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityUpgradeScreen_eventInitializeAbility_Parms, AbilityComp), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_MetaData), NewProp_AbilityComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility_Statics::NewProp_AbilityComp = { "AbilityComp", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityUpgradeScreen_eventInitializeAbility_Parms, AbilityComp), Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_MetaData), NewProp_AbilityComp_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility_Statics::NewProp_AbilityComp,
 };
@@ -202,7 +202,7 @@ UFunction* Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility()
 }
 DEFINE_FUNCTION(UAbilityUpgradeScreen::execInitializeAbility)
 {
-	P_GET_OBJECT(UAbilityComponent_Base,Z_Param_AbilityComp);
+	P_GET_OBJECT(UAbilityComponent_Player,Z_Param_AbilityComp);
 	P_FINISH;
 	P_NATIVE_BEGIN;
 	P_THIS->InitializeAbility(Z_Param_AbilityComp);
@@ -612,7 +612,7 @@ struct Z_Construct_UClass_UAbilityUpgradeScreen_Statics
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_CreateDescriptionWidget, "CreateDescriptionWidget" }, // 246165812
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_CreateUpgradeDescriptionWidget, "CreateUpgradeDescriptionWidget" }, // 2939335390
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_HandleUpgradeButtonActions, "HandleUpgradeButtonActions" }, // 2974474059
-		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility, "InitializeAbility" }, // 2690938116
+		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_InitializeAbility, "InitializeAbility" }, // 603817329
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_RemoveAbilityDescriptionWidget, "RemoveAbilityDescriptionWidget" }, // 3583004453
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_RemoveDescriptionWidget, "RemoveDescriptionWidget" }, // 3453854116
 		{ &Z_Construct_UFunction_UAbilityUpgradeScreen_RemoveUpgradeDescriptionWidget, "RemoveUpgradeDescriptionWidget" }, // 3478661906
@@ -629,7 +629,7 @@ struct Z_Construct_UClass_UAbilityUpgradeScreen_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityUpgradeScreen_Statics::NewProp_AbilityComp_REF = { "AbilityComp_REF", nullptr, (EPropertyFlags)0x0020080000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityUpgradeScreen, AbilityComp_REF), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_REF_MetaData), NewProp_AbilityComp_REF_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityUpgradeScreen_Statics::NewProp_AbilityComp_REF = { "AbilityComp_REF", nullptr, (EPropertyFlags)0x0020080000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityUpgradeScreen, AbilityComp_REF), Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_REF_MetaData), NewProp_AbilityComp_REF_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityUpgradeScreen_Statics::NewProp_Button_AbilityIcon = { "Button_AbilityIcon", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityUpgradeScreen, Button_AbilityIcon), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Button_AbilityIcon_MetaData), NewProp_Button_AbilityIcon_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityUpgradeScreen_Statics::NewProp_Button_UpgradeAbility = { "Button_UpgradeAbility", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityUpgradeScreen, Button_UpgradeAbility), Z_Construct_UClass_UButton_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Button_UpgradeAbility_MetaData), NewProp_Button_UpgradeAbility_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityUpgradeScreen_Statics::NewProp_HorizontalBox_AbilityDescription = { "HorizontalBox_AbilityDescription", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityUpgradeScreen, HorizontalBox_AbilityDescription), Z_Construct_UClass_UHorizontalBox_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_HorizontalBox_AbilityDescription_MetaData), NewProp_HorizontalBox_AbilityDescription_MetaData) };
@@ -691,10 +691,10 @@ UAbilityUpgradeScreen::~UAbilityUpgradeScreen() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityUpgradeScreen, UAbilityUpgradeScreen::StaticClass, TEXT("UAbilityUpgradeScreen"), &Z_Registration_Info_UClass_UAbilityUpgradeScreen, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityUpgradeScreen), 3428316549U) },
+		{ Z_Construct_UClass_UAbilityUpgradeScreen, UAbilityUpgradeScreen::StaticClass, TEXT("UAbilityUpgradeScreen"), &Z_Registration_Info_UClass_UAbilityUpgradeScreen, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityUpgradeScreen), 1091873286U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_674346832(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_346852123(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityUpgradeScreen_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

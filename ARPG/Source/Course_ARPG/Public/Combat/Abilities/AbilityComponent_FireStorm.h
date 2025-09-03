@@ -2,13 +2,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Base/AbilityComponent_Player.h"
 #include "AbilityComponent_FireStorm.generated.h"
 
 class AFireStorm;
 
 UCLASS()
-class COURSE_ARPG_API UAbilityComponent_FireStorm : public UAbilityComponent_Base
+class COURSE_ARPG_API UAbilityComponent_FireStorm : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 

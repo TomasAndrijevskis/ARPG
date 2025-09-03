@@ -7,6 +7,10 @@
         "Includes": [
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\course_arpg\\definitions.course_arpg.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\poisonexplosioncomponent.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\base\\abilitycomponent_enemy.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\abilities\\base\\abilitycomponent_base.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_base.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\abilitycomponent_enemy.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\poisonexplosioncomponent.generated.h"
         ],
         "ImportedModules": [],

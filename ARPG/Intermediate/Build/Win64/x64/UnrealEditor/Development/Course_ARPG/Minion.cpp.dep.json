@@ -91,8 +91,8 @@
             "d:\\unreal engine\\ue_5.4\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\aimodule\\uht\\pawnsensingcomponent.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\bosshealthbar.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\bosshealthbar.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\enemyhealthbar.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyhealthbar.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\minionhealthbar.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\minionhealthbar.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

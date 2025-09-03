@@ -7,6 +7,8 @@
 #include "Particles/ParticleSystemComponent.h"
 
 
+class UAbilityComponent_Base;
+
 APoisonExplosionArea::APoisonExplosionArea()
 {
 	PrimaryActorTick.bCanEverTick = true;
@@ -40,19 +42,21 @@ void APoisonExplosionArea::CheckPlayerInRange()
 		PlayerRef->TakeDamage(ExplosionDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 		if (PlayerRef->FindComponentByClass<UStatusEffectsComponent>())
 		{
-			PlayerRef->FindComponentByClass<UStatusEffectsComponent>()->HandlePoison(PoisonDuration, PoisonDamage, PoisonEffect, PoisonRate);
+			PlayerRef->FindComponentByClass<UStatusEffectsComponent>()->HandlePoison(PoisonDuration, PoisonDamage, PoisonEffect, PoisonRate, AbilityCompRef, Icon);
 		}
 	}
 	this->Destroy();
 }
 
 
-void APoisonExplosionArea::SetParams(float NewExplosionDamage, float NewPoisonDamage, float NewPoisonRate, float NewPoisonDuration, UNiagaraSystem* NewPoisonEffect)
+void APoisonExplosionArea::SetParams(float NewExplosionDamage, float NewPoisonDamage, float NewPoisonRate, float NewPoisonDuration, UNiagaraSystem* NewPoisonEffect, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* NewIcon)
 {
 	ExplosionDamage = NewExplosionDamage;
 	PoisonDamage = NewPoisonDamage;
 	PoisonRate = NewPoisonRate;
 	PoisonDuration = NewPoisonDuration;
 	PoisonEffect = NewPoisonEffect;
+	AbilityCompRef = NewAbilityCompRef;
+	Icon = NewIcon;
 }
 

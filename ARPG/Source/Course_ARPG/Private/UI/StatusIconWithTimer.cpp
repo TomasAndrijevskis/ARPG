@@ -1,13 +1,12 @@
 
 #include "UI/StatusIconWithTimer.h"
-
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Combat/Abilities/Base/AbilityComponent_Base.h"
 #include "Components/Image.h"
 #include "Components/PanelWidget.h"
 #include "Components/TextBlock.h"
 
 
-void UStatusIconWithTimer::InitializeWidget(float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef)
+void UStatusIconWithTimer::InitializeWidget(float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef, FVector2d ImageSize)
 {
 	if (!NewAbilityCompRef || !Image)
 	{
@@ -15,7 +14,7 @@ void UStatusIconWithTimer::InitializeWidget(float Duration, UTexture2D* Image, U
 	}
 	AbilityCompRef = NewAbilityCompRef;
 	SetCountdownTime(Duration);
-	SetStatusIcon(Image);
+	SetStatusIcon(Image, ImageSize);
 	AbilityCompRef->OnAbilityTimerChangedDelegate.AddDynamic(this, &UStatusIconWithTimer::SetCountdownTime);
 	AbilityCompRef->OnAbilityFinishedDelegate.AddDynamic(this, &UStatusIconWithTimer::RemoveWidget);
 }
@@ -37,8 +36,10 @@ void UStatusIconWithTimer::SetCountdownTime(float TimeLeft)
 }
 
 
-void UStatusIconWithTimer::SetStatusIcon(UTexture2D* Icon)
+void UStatusIconWithTimer::SetStatusIcon(UTexture2D* Icon, FVector2d ImageSize)
 {
-	Image_StatusIcon->SetBrushFromTexture(Icon);
+	FSlateBrush ImageStyle;
+	ImageStyle.SetResourceObject(Icon);
+	ImageStyle.SetImageSize(ImageSize);
+	Image_StatusIcon->SetBrush(ImageStyle);
 }
-

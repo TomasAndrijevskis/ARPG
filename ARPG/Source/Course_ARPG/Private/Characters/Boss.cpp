@@ -116,3 +116,9 @@ bool ABoss::GetCanTakeDamage()
 {
 	return bCanTakeDamage;
 }
+
+
+UBossHealthBar* ABoss::GetBossWidget()
+{
+	return HealthBarWidgetRef;
+}

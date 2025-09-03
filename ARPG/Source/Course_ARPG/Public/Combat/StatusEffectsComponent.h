@@ -6,6 +6,7 @@
 #include "StatusEffectsComponent.generated.h"
 
 
+class UAbilityComponent_Base;
 class UNiagaraComponent;
 class UNiagaraSystem;
 class AEnemyCharacter_Base;
@@ -28,19 +29,19 @@ struct FStatusEffectData
 	float SavedSpeed;
 };
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
-
+	
+	
 	void SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect);
 
 	void HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect, bool bIsOverlapping, float NewBurnRate);
 
-	void HandlePoison(float NewPoisonDuration, float NewPoisonDamage, UNiagaraSystem* PoisonEffect, float NewPoisonRate);
+	void HandlePoison(float NewPoisonDuration, float NewPoisonDamage, UNiagaraSystem* PoisonEffect, float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon);
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	
@@ -82,6 +83,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	FVector EffectScale;
+
+	UPROPERTY()
+	UAbilityComponent_Base* AbilityCompRef;
 	
 	float BurnDamage;
 	

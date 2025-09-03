@@ -43,7 +43,14 @@ float UStatsScreenWidget::ImproveStat(float CurrentValue)
 		return StatValue;
 	}
 
-	StatValue += 5;
+	if (Stat == EStats::Strength)
+	{
+		StatValue += 5;
+	}
+	else
+	{
+		StatValue += 10;
+	}
 	PlayerRef->StatsComp->SetStatValue(Stat, StatValue);
 	Points--;
 	PlayerRef->LevelComp->SetStatPoints(Points);

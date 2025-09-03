@@ -166,6 +166,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_PoisonExplosion.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack_Elemental.cpp">
+      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\BTT_RangeAttack_Fey.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
@@ -173,9 +176,6 @@
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\EEnemyStates.cpp">
-      <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\AI\UBTT_Shoot.cpp">
       <Filter>Source\Course_ARPG\Private\Characters\AI</Filter>
     </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Characters\Spawner">
@@ -241,6 +241,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_DamageIncrease.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_Enemy.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_FireStorm.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
@@ -257,6 +260,9 @@
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_MagicShield.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_Player.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
@@ -520,6 +526,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_PoisonExplosion.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Elemental.h">
+      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\BTT_RangeAttack_Fey.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
@@ -527,9 +536,6 @@
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\EEnemyStates.h">
-      <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\AI\UBTT_Shoot.h">
       <Filter>Source\Course_ARPG\Public\Characters\AI</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\Characters\Data">
@@ -607,6 +613,9 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_DamageIncrease.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Enemy.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FireStorm.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
@@ -623,6 +632,9 @@
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_MagicShield.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Player.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h">

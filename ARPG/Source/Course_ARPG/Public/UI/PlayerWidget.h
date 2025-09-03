@@ -56,13 +56,13 @@ public:
 	void RemoveStatsScreen();
 	
 	UFUNCTION(BlueprintCallable)
-	void CreateAbilityUpgradeScreen(UAbilityComponent_Base* AbilityCompRef);
+	void CreateAbilityUpgradeScreen(UAbilityComponent_Player* AbilityCompRef);
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveAbilityUpgradeScreen();
 
 	UFUNCTION(BlueprintCallable)
-	void CreateAbilityFooter(UTexture2D* Image, FString ActionKey, UAbilityComponent_Base* AbilityCompRef);
+	void CreateAbilityFooter(UTexture2D* Image, FString ActionKey, UAbilityComponent_Player* AbilityCompRef);
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveAbilityFooter();
@@ -185,5 +185,7 @@ private:
 
 	UPROPERTY()
 	UQuickTravelMenu* QuickTravelMenuWidgetRef;
-	
+
+	UPROPERTY(EditAnywhere)
+	FVector IconSize;
 };

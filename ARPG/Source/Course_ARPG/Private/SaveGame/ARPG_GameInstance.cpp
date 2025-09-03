@@ -5,7 +5,8 @@
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Combat/Abilities/Base/AbilityComponent_Base.h"
+#include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -187,7 +188,7 @@ void UARPG_GameInstance::SaveAbilities()
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
 	
-	for (UAbilityComponent_Base* Ability: PlayerRef->GetAbilitiesArray())
+	for (UAbilityComponent_Player* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability))
 		{
@@ -222,7 +223,7 @@ void UARPG_GameInstance::LoadAbilities()
 	//UE_LOG(LogTemp, Warning, TEXT("GameInstance|Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
 	
 	
-	for (UAbilityComponent_Base* Ability: PlayerRef->GetAbilitiesArray())
+	for (UAbilityComponent_Player* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability))
 		{

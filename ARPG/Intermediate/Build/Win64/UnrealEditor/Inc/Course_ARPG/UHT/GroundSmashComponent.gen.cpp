@@ -12,10 +12,10 @@ void EmptyLinkFunctionForGeneratedCodeGroundSmashComponent() {}
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AGroundSmashArea_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Enemy();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UGroundSmashComponent();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UGroundSmashComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
@@ -90,7 +90,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UGroundSm
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UGroundSmashComponent_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UGroundSmashComponent_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UActorComponent,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Enemy,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UGroundSmashComponent_Statics::DependentSingletons) < 16);
@@ -129,10 +129,10 @@ UGroundSmashComponent::~UGroundSmashComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UGroundSmashComponent, UGroundSmashComponent::StaticClass, TEXT("UGroundSmashComponent"), &Z_Registration_Info_UClass_UGroundSmashComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGroundSmashComponent), 813483144U) },
+		{ Z_Construct_UClass_UGroundSmashComponent, UGroundSmashComponent::StaticClass, TEXT("UGroundSmashComponent"), &Z_Registration_Info_UClass_UGroundSmashComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UGroundSmashComponent), 1321291696U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_3452751805(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_901569587(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_GroundSmashComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

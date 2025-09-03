@@ -10,7 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAbilityFooter() {}
 
 // Begin Cross Module References
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityFooter();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityFooter_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
@@ -56,7 +56,7 @@ struct Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics
 	{
 		UTexture2D* Image;
 		FString ActionKey;
-		UAbilityComponent_Base* AbilityComp;
+		UAbilityComponent_Player* AbilityComp;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -74,7 +74,7 @@ struct Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics::NewProp_Image = { "Image", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityFooter_eventSetAbility_Parms, Image), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics::NewProp_ActionKey = { "ActionKey", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityFooter_eventSetAbility_Parms, ActionKey), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics::NewProp_AbilityComp = { "AbilityComp", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityFooter_eventSetAbility_Parms, AbilityComp), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_MetaData), NewProp_AbilityComp_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics::NewProp_AbilityComp = { "AbilityComp", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AbilityFooter_eventSetAbility_Parms, AbilityComp), Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_MetaData), NewProp_AbilityComp_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics::NewProp_Image,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UAbilityFooter_SetAbility_Statics::NewProp_ActionKey,
@@ -96,7 +96,7 @@ DEFINE_FUNCTION(UAbilityFooter::execSetAbility)
 {
 	P_GET_OBJECT(UTexture2D,Z_Param_Image);
 	P_GET_PROPERTY(FStrProperty,Z_Param_ActionKey);
-	P_GET_OBJECT(UAbilityComponent_Base,Z_Param_AbilityComp);
+	P_GET_OBJECT(UAbilityComponent_Player,Z_Param_AbilityComp);
 	P_FINISH;
 	P_NATIVE_BEGIN;
 	P_THIS->SetAbility(Z_Param_Image,Z_Param_ActionKey,Z_Param_AbilityComp);
@@ -233,7 +233,7 @@ struct Z_Construct_UClass_UAbilityFooter_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UAbilityFooter_RemoveCooldownText, "RemoveCooldownText" }, // 1114935626
-		{ &Z_Construct_UFunction_UAbilityFooter_SetAbility, "SetAbility" }, // 2533361158
+		{ &Z_Construct_UFunction_UAbilityFooter_SetAbility, "SetAbility" }, // 1218928272
 		{ &Z_Construct_UFunction_UAbilityFooter_SetCooldownText, "SetCooldownText" }, // 3980551470
 		{ &Z_Construct_UFunction_UAbilityFooter_SetImageAvailability, "SetImageAvailability" }, // 3309870358
 	};
@@ -243,7 +243,7 @@ struct Z_Construct_UClass_UAbilityFooter_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityFooter_Statics::NewProp_AbilityComp_REF = { "AbilityComp_REF", nullptr, (EPropertyFlags)0x002008000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityFooter, AbilityComp_REF), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_REF_MetaData), NewProp_AbilityComp_REF_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityFooter_Statics::NewProp_AbilityComp_REF = { "AbilityComp_REF", nullptr, (EPropertyFlags)0x002008000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityFooter, AbilityComp_REF), Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityComp_REF_MetaData), NewProp_AbilityComp_REF_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityFooter_Statics::NewProp_Text_CooldownValue = { "Text_CooldownValue", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityFooter, Text_CooldownValue), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_CooldownValue_MetaData), NewProp_Text_CooldownValue_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityFooter_Statics::NewProp_Text_ActionKey = { "Text_ActionKey", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityFooter, Text_ActionKey), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_ActionKey_MetaData), NewProp_Text_ActionKey_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UAbilityFooter_Statics::NewProp_Image_AbilityIcon = { "Image_AbilityIcon", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UAbilityFooter, Image_AbilityIcon), Z_Construct_UClass_UImage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Image_AbilityIcon_MetaData), NewProp_Image_AbilityIcon_MetaData) };
@@ -297,10 +297,10 @@ UAbilityFooter::~UAbilityFooter() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityFooter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityFooter, UAbilityFooter::StaticClass, TEXT("UAbilityFooter"), &Z_Registration_Info_UClass_UAbilityFooter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityFooter), 4248473439U) },
+		{ Z_Construct_UClass_UAbilityFooter, UAbilityFooter::StaticClass, TEXT("UAbilityFooter"), &Z_Registration_Info_UClass_UAbilityFooter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityFooter), 838186163U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityFooter_h_4254590893(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityFooter_h_3191565011(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityFooter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_AbilityFooter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

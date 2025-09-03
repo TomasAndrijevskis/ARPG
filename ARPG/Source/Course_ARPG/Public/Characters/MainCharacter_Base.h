@@ -7,10 +7,10 @@
 #include "Interfaces/Fighter.h"
 #include "MainCharacter_Base.generated.h"
 
+class UAbilityComponent_Player;
 enum EStats : int;
 class UARPG_GameInstance;
 class UPlayerWidget;
-class UAbilityComponent_Base;
 class USkeletalMeshComponent;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBonfireInteractionSignature);
@@ -44,10 +44,10 @@ public:
 	UPlayerWidget* GetPlayerWidget();
 
 	UFUNCTION()
-	TArray<UAbilityComponent_Base*>& GetAbilitiesArray();
+	TArray<UAbilityComponent_Player*>& GetAbilitiesArray();
 
 	UFUNCTION()
-	void AddToAbilitiesArray(UAbilityComponent_Base* NewAbility);
+	void AddToAbilitiesArray(UAbilityComponent_Player* NewAbility);
 
 	UFUNCTION(BlueprintCallable)
 	UARPG_GameInstance* GetGameInstanceRef();
@@ -130,7 +130,7 @@ private:
 	UARPG_GameInstance* GameInstance;
 
 	//UPROPERTY(EditAnywhere)
-	TArray<UAbilityComponent_Base*> ArrAbilities;
+	TArray<UAbilityComponent_Player*> ArrAbilities;
 
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;

@@ -2,15 +2,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Base/AbilityComponent_Player.h"
 #include "Components/ActorComponent.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
 #include "AbilityComponent_FrostBlast.generated.h"
 
 
 class AFrostBlastRange;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbilityComponent_FrostBlast : public UAbilityComponent_Base
+class COURSE_ARPG_API UAbilityComponent_FrostBlast : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 

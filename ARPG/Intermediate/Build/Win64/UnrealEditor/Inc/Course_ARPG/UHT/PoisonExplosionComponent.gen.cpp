@@ -12,10 +12,10 @@ void EmptyLinkFunctionForGeneratedCodePoisonExplosionComponent() {}
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_APoisonExplosionArea_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Enemy();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPoisonExplosionComponent();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UPoisonExplosionComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_UActorComponent();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 NIAGARA_API UClass* Z_Construct_UClass_UNiagaraSystem_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
@@ -67,10 +67,6 @@ struct Z_Construct_UClass_UPoisonExplosionComponent_Statics
 		{ "Category", "PoisonExplosionComponent" },
 		{ "ModuleRelativePath", "Public/Combat/PoisonExplosionComponent.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PoisonDuration_MetaData[] = {
-		{ "Category", "PoisonExplosionComponent" },
-		{ "ModuleRelativePath", "Public/Combat/PoisonExplosionComponent.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PoisonAreaRef_MetaData[] = {
 		{ "ModuleRelativePath", "Public/Combat/PoisonExplosionComponent.h" },
 	};
@@ -82,7 +78,6 @@ struct Z_Construct_UClass_UPoisonExplosionComponent_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_ExplosionDamage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_PoisonDamage;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_PoisonRate;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_PoisonDuration;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PoisonAreaRef;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
@@ -98,7 +93,6 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPoisonExplosi
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_ExplosionDamage = { "ExplosionDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPoisonExplosionComponent, ExplosionDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ExplosionDamage_MetaData), NewProp_ExplosionDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonDamage = { "PoisonDamage", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPoisonExplosionComponent, PoisonDamage), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PoisonDamage_MetaData), NewProp_PoisonDamage_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonRate = { "PoisonRate", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPoisonExplosionComponent, PoisonRate), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PoisonRate_MetaData), NewProp_PoisonRate_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonDuration = { "PoisonDuration", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPoisonExplosionComponent, PoisonDuration), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PoisonDuration_MetaData), NewProp_PoisonDuration_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonAreaRef = { "PoisonAreaRef", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPoisonExplosionComponent, PoisonAreaRef), Z_Construct_UClass_APoisonExplosionArea_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PoisonAreaRef_MetaData), NewProp_PoisonAreaRef_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPoisonExplosionComponent_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_ExplosionStartEffect,
@@ -108,12 +102,11 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPoisonEx
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_ExplosionDamage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonDamage,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonRate,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonDuration,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPoisonExplosionComponent_Statics::NewProp_PoisonAreaRef,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPoisonExplosionComponent_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPoisonExplosionComponent_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UActorComponent,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Enemy,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPoisonExplosionComponent_Statics::DependentSingletons) < 16);
@@ -144,7 +137,7 @@ template<> COURSE_ARPG_API UClass* StaticClass<UPoisonExplosionComponent>()
 {
 	return UPoisonExplosionComponent::StaticClass();
 }
-UPoisonExplosionComponent::UPoisonExplosionComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {}
+UPoisonExplosionComponent::UPoisonExplosionComponent() {}
 DEFINE_VTABLE_PTR_HELPER_CTOR(UPoisonExplosionComponent);
 UPoisonExplosionComponent::~UPoisonExplosionComponent() {}
 // End Class UPoisonExplosionComponent
@@ -153,10 +146,10 @@ UPoisonExplosionComponent::~UPoisonExplosionComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPoisonExplosionComponent, UPoisonExplosionComponent::StaticClass, TEXT("UPoisonExplosionComponent"), &Z_Registration_Info_UClass_UPoisonExplosionComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPoisonExplosionComponent), 358036637U) },
+		{ Z_Construct_UClass_UPoisonExplosionComponent, UPoisonExplosionComponent::StaticClass, TEXT("UPoisonExplosionComponent"), &Z_Registration_Info_UClass_UPoisonExplosionComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPoisonExplosionComponent), 2799291798U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_3981552390(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_866647529(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -11,7 +11,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AActor;
 class AController;
-class UAbilityComponent_Base;
+class UAbilityComponent_Player;
 class UARPG_GameInstance;
 class UDamageType;
 class UPlayerWidget;

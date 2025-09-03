@@ -46,11 +46,9 @@ void UAbilityComponent_MagicShield::SpawnShield()
 	FActorSpawnParameters Params;
 	Params.Owner = GetOwner();
 	ShieldActor = GetWorld()->SpawnActor<AMagicShield>(ShieldClass, SpawnLocation, SpawnRotation, Params);
+	if (!PlayerRef || !ShieldActor) return;
 
-	ACharacter* Character = Cast<ACharacter>(GetOwner());
-	if (!Character || !ShieldActor) return;
-
-	ShieldActor->AttachToComponent(Character->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	ShieldActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	
 	OnAbilityStartedDelegate.Broadcast();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::StartAbilityTimer, 1, true);

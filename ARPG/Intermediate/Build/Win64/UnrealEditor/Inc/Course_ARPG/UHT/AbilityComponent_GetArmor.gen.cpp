@@ -10,9 +10,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAbilityComponent_GetArmor() {}
 
 // Begin Cross Module References
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_GetArmor();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_GetArmor_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
 
@@ -67,7 +67,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Base,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Player,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_GetArmor_Statics::DependentSingletons) < 16);
@@ -107,10 +107,10 @@ UAbilityComponent_GetArmor::~UAbilityComponent_GetArmor() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 2928636435U) },
+		{ Z_Construct_UClass_UAbilityComponent_GetArmor, UAbilityComponent_GetArmor::StaticClass, TEXT("UAbilityComponent_GetArmor"), &Z_Registration_Info_UClass_UAbilityComponent_GetArmor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_GetArmor), 1103684795U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_2243249152(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_2473969322(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_GetArmor_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

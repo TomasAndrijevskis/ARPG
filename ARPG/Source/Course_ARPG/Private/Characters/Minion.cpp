@@ -8,13 +8,12 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Perception/PawnSensingComponent.h"
 #include "UI/BossHealthBar.h"
-#include "UI/EnemyHealthBar.h"
+#include "UI/MinionHealthBar.h"
 
 
 AMinion::AMinion()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	
 	HealthBarWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("HealthBarWidget"));
 	HealthBarWidgetComponent->SetupAttachment(GetRootComponent());
 	CombatComp = CreateDefaultSubobject<UCombatComponent_Enemy>(TEXT("Combat Component"));
@@ -24,17 +23,7 @@ AMinion::AMinion()
 void AMinion::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if (HealthBarWidgetClass)
-	{
-		HealthBarWidgetComponent->SetWidgetClass(HealthBarWidgetClass);
-		HealthBarWidgetRef = Cast<UEnemyHealthBar>(HealthBarWidgetComponent->GetWidget());
-		if (HealthBarWidgetRef)
-		{
-			HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
-			StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UEnemyHealthBar::SetHealth);
-		}
-	}
+	CreateHealthWidget();
 }
 
 
@@ -66,5 +55,27 @@ void AMinion::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates 
 		GetBlackboardComp()->SetValueAsBool(TEXT("IsPatrolling"), false);
 		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), NewEnemyState);
 	}
+}
+
+
+void AMinion::CreateHealthWidget()
+{
+	if (HealthBarWidgetClass)
+	{
+		HealthBarWidgetComponent->SetWidgetClass(HealthBarWidgetClass);
+		HealthBarWidgetRef = Cast<UMinionHealthBar>(HealthBarWidgetComponent->GetWidget());
+		if (HealthBarWidgetRef)
+		{
+			HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
+			StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UMinionHealthBar::SetHealth);
+		}
+	}
+}
+
+
+
+UMinionHealthBar* AMinion::GetMinionWidget()
+{
+	return HealthBarWidgetRef;
 }
 

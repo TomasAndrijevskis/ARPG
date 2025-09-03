@@ -1,8 +1,9 @@
 
 #include "UI/AbilityFooter.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Combat/Abilities/Base/AbilityComponent_Player.h"
 
-void UAbilityFooter::SetAbility(UTexture2D* Image,  FString ActionKey, UAbilityComponent_Base* AbilityComp)
+
+void UAbilityFooter::SetAbility(UTexture2D* Image,  FString ActionKey, UAbilityComponent_Player* AbilityComp)
 {
 	if (!AbilityComp || !Image)
 	{

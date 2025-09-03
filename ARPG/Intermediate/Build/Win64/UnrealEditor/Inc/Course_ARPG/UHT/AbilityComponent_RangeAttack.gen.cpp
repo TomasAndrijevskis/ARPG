@@ -11,7 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeAbilityComponent_RangeAttack() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_RangeAttack();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_RangeAttack_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
@@ -155,7 +155,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Base,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Player,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_RangeAttack_Statics::DependentSingletons) < 16);
@@ -195,10 +195,10 @@ UAbilityComponent_RangeAttack::~UAbilityComponent_RangeAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_RangeAttack, UAbilityComponent_RangeAttack::StaticClass, TEXT("UAbilityComponent_RangeAttack"), &Z_Registration_Info_UClass_UAbilityComponent_RangeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_RangeAttack), 836172568U) },
+		{ Z_Construct_UClass_UAbilityComponent_RangeAttack, UAbilityComponent_RangeAttack::StaticClass, TEXT("UAbilityComponent_RangeAttack"), &Z_Registration_Info_UClass_UAbilityComponent_RangeAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_RangeAttack), 2527032753U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_703437633(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_868268338(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_RangeAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

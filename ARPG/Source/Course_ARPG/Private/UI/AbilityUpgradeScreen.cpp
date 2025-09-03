@@ -2,12 +2,12 @@
 #include "UI/AbilityUpgradeScreen.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/DescriptionWidget.h"
 
 
-void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Base* AbilityComp)
+void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Player* AbilityComp)
 {
 	if (!AbilityComp)
 	{

@@ -38,7 +38,7 @@ void UPlayerWidget::RemoveStatsScreen()
 }
 
 
-void UPlayerWidget::CreateAbilityUpgradeScreen(UAbilityComponent_Base* AbilityCompRef)
+void UPlayerWidget::CreateAbilityUpgradeScreen(UAbilityComponent_Player* AbilityCompRef)
 {
 	if (!AbilityUpgradeScreenWidgetClass)
 	{
@@ -64,7 +64,7 @@ void UPlayerWidget::RemoveAbilityUpgradeScreen()
 }
 
 
-void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, FString ActionKey, UAbilityComponent_Base* AbilityCompRef)
+void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, FString ActionKey, UAbilityComponent_Player* AbilityCompRef)
 {
 	if (!AbilityFooterWidgetClass)
 	{
@@ -118,7 +118,7 @@ void UPlayerWidget::CreateStatusIconWithTimer(float Duration, UTexture2D* Image,
 		return;
 	}
 	StatusIconWithTimerWidgetRef = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
-	StatusIconWithTimerWidgetRef->InitializeWidget(Duration, Image, AbilityCompRef);
+	StatusIconWithTimerWidgetRef->InitializeWidget(Duration, Image, AbilityCompRef, FVector2d(IconSize.X, IconSize.Y));
 	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerWidgetRef);
 }
 

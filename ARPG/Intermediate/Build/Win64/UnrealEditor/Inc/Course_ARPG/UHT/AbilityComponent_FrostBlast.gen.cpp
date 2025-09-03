@@ -12,9 +12,9 @@ void EmptyLinkFunctionForGeneratedCodeAbilityComponent_FrostBlast() {}
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AFrostBlastRange_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_FrostBlast();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_FrostBlast_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
@@ -142,7 +142,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_FrostBlast_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_FrostBlast_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Base,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Player,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_FrostBlast_Statics::DependentSingletons) < 16);
@@ -182,10 +182,10 @@ UAbilityComponent_FrostBlast::~UAbilityComponent_FrostBlast() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FrostBlast_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_FrostBlast, UAbilityComponent_FrostBlast::StaticClass, TEXT("UAbilityComponent_FrostBlast"), &Z_Registration_Info_UClass_UAbilityComponent_FrostBlast, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_FrostBlast), 4080010515U) },
+		{ Z_Construct_UClass_UAbilityComponent_FrostBlast, UAbilityComponent_FrostBlast::StaticClass, TEXT("UAbilityComponent_FrostBlast"), &Z_Registration_Info_UClass_UAbilityComponent_FrostBlast, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_FrostBlast), 652211075U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FrostBlast_h_2036529144(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FrostBlast_h_3284940835(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FrostBlast_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_FrostBlast_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

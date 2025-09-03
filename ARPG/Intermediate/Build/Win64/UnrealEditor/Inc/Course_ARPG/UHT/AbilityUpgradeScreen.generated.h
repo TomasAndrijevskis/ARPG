@@ -9,7 +9,7 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
-class UAbilityComponent_Base;
+class UAbilityComponent_Player;
 class UDescriptionWidget;
 class UHorizontalBox;
 class UTexture2D;

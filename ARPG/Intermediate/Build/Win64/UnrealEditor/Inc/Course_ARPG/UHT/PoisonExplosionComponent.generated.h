@@ -14,18 +14,18 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define COURSE_ARPG_PoisonExplosionComponent_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_16_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesUPoisonExplosionComponent(); \
 	friend struct Z_Construct_UClass_UPoisonExplosionComponent_Statics; \
 public: \
-	DECLARE_CLASS(UPoisonExplosionComponent, UActorComponent, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
+	DECLARE_CLASS(UPoisonExplosionComponent, UAbilityComponent_Enemy, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
 	DECLARE_SERIALIZER(UPoisonExplosionComponent)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_16_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
-	NO_API UPoisonExplosionComponent(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
+	NO_API UPoisonExplosionComponent(); \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	UPoisonExplosionComponent(UPoisonExplosionComponent&&); \
@@ -33,16 +33,16 @@ private: \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, UPoisonExplosionComponent); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(UPoisonExplosionComponent); \
-	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(UPoisonExplosionComponent) \
+	DEFINE_DEFAULT_CONSTRUCTOR_CALL(UPoisonExplosionComponent) \
 	NO_API virtual ~UPoisonExplosionComponent();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_12_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_15_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_13_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_16_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_15_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_15_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_16_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_PoisonExplosionComponent_h_16_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

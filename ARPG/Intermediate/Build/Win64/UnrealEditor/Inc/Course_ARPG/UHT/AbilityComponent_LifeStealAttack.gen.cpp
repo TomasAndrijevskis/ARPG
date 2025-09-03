@@ -10,9 +10,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeAbilityComponent_LifeStealAttack() {}
 
 // Begin Cross Module References
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_LifeStealAttack();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_LifeStealAttack_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player();
 ENGINE_API UClass* Z_Construct_UClass_UParticleSystem_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
@@ -149,7 +149,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UAbilityC
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Base,
+	(UObject* (*)())Z_Construct_UClass_UAbilityComponent_Player,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UAbilityComponent_LifeStealAttack_Statics::DependentSingletons) < 16);
@@ -189,10 +189,10 @@ UAbilityComponent_LifeStealAttack::~UAbilityComponent_LifeStealAttack() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UAbilityComponent_LifeStealAttack, UAbilityComponent_LifeStealAttack::StaticClass, TEXT("UAbilityComponent_LifeStealAttack"), &Z_Registration_Info_UClass_UAbilityComponent_LifeStealAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_LifeStealAttack), 3640472424U) },
+		{ Z_Construct_UClass_UAbilityComponent_LifeStealAttack, UAbilityComponent_LifeStealAttack::StaticClass, TEXT("UAbilityComponent_LifeStealAttack"), &Z_Registration_Info_UClass_UAbilityComponent_LifeStealAttack, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UAbilityComponent_LifeStealAttack), 2677426251U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_161799710(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_2096368016(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_AbilityComponent_LifeStealAttack_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

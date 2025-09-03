@@ -11,6 +11,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
  
 class UAbilityComponent_Base;
+class UAbilityComponent_Player;
 class UStatsComponent;
 class UTexture2D;
 #ifdef COURSE_ARPG_PlayerWidget_generated_h

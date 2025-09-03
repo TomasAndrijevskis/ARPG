@@ -15,7 +15,7 @@ struct FStatusEffectData;
 #endif
 #define COURSE_ARPG_StatusEffectsComponent_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_24_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_StatusEffectsComponent_h_25_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FStatusEffectData_Statics; \
 	COURSE_ARPG_API static class UScriptStruct* StaticStruct();
 

@@ -1,10 +1,9 @@
 
 #include "Characters/ARPG_PlayerController.h"
-
 #include "Characters/Boss.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Gamemode/ARPG_GameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"

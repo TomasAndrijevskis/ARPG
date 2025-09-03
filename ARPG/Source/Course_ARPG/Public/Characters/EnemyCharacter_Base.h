@@ -10,7 +10,7 @@
 
 class USphereComponent;
 class UBehaviorTree;
-class UEnemyHealthBar;
+class UMinionHealthBar;
 class UNiagaraComponent;
 class UNiagaraSystem;
 class AAIController;

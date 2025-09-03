@@ -2,11 +2,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilityComponent_Base.h"
+#include "Base/AbilityComponent_Player.h"
 #include "AbilityComponent_DamageIncrease.generated.h"
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbilityComponent_DamageIncrease : public UAbilityComponent_Base
+class COURSE_ARPG_API UAbilityComponent_DamageIncrease : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 

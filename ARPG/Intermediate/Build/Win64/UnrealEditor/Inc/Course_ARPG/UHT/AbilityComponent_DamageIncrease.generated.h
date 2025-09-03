@@ -19,7 +19,7 @@ private: \
 	static void StaticRegisterNativesUAbilityComponent_DamageIncrease(); \
 	friend struct Z_Construct_UClass_UAbilityComponent_DamageIncrease_Statics; \
 public: \
-	DECLARE_CLASS(UAbilityComponent_DamageIncrease, UAbilityComponent_Base, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
+	DECLARE_CLASS(UAbilityComponent_DamageIncrease, UAbilityComponent_Player, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
 	DECLARE_SERIALIZER(UAbilityComponent_DamageIncrease)
 
 

@@ -8,7 +8,7 @@
 #include "AbilityFooter.generated.h"
 
 
-class UAbilityComponent_Base;
+class UAbilityComponent_Player;
 
 UCLASS()
 class COURSE_ARPG_API UAbilityFooter : public UUserWidget
@@ -18,12 +18,12 @@ class COURSE_ARPG_API UAbilityFooter : public UUserWidget
 public:
 
 	UFUNCTION(BlueprintCallable)
-	void SetAbility(UTexture2D* Image, FString ActionKey, UAbilityComponent_Base* AbilityComp);
+	void SetAbility(UTexture2D* Image, FString ActionKey, UAbilityComponent_Player* AbilityComp);
 	
 protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UAbilityComponent_Base* AbilityComp_REF;
+	UAbilityComponent_Player* AbilityComp_REF;
 	
 private:
 

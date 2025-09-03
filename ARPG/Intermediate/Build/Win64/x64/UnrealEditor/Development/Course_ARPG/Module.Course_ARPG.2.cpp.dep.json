@@ -209,16 +209,12 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent_mage.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\combatcomponent_mage.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\combatcomponent_mage.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\course_arpg.init.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\descriptionwidget.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\descriptionwidget.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\descriptionwidget.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\eenemystates.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemy.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemycharacter_base.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyhealthbar.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\enemyhealthbar.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyhealthbar.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectile.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\projectiles\\enemyprojectile.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\projectiles\\projectile_base.h",
@@ -226,7 +222,10 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectile.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectilecomponent.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\combat\\projectiles\\enemyprojectilecomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectilecomponent.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyprojectilecomponent.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyspawner.gen.cpp",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\spawner\\enemyspawner.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyspawner.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

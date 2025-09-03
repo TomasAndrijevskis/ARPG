@@ -18,11 +18,15 @@ public:
 	AMinion();
 
 	UPROPERTY(BlueprintReadOnly)
-	UEnemyHealthBar* HealthBarWidgetRef;
+	UMinionHealthBar* HealthBarWidgetRef;
 
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState) override;
+
+	virtual void CreateHealthWidget() override;
+
+	UMinionHealthBar* GetMinionWidget();
 	
 protected:
 	
@@ -34,6 +38,6 @@ protected:
 private:
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UEnemyHealthBar> HealthBarWidgetClass;
+	TSubclassOf<UMinionHealthBar> HealthBarWidgetClass;
 
 };

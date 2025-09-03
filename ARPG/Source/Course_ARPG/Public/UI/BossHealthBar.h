@@ -6,6 +6,9 @@
 #include "BossHealthBar.generated.h"
 
 
+class UAbilityComponent_Base;
+class UHorizontalBox;
+class UStatusIconWithTimer;
 class UTextBlock;
 class UProgressBar;
 
@@ -20,7 +23,7 @@ public:
 	void SetHealth(float NewHealthPercent);
 
 	void SetBossName(FText NewBossName);
-	
+
 private:
 
 	UPROPERTY(meta = (BindWidget))
@@ -28,4 +31,5 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_BossName;
+	
 };

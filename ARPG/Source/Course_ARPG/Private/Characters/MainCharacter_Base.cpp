@@ -8,7 +8,7 @@
 #include "Combat/BlockComponent.h"
 #include "Combat/LockonComponent.h"
 #include "Combat/StatusEffectsComponent.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
 
@@ -107,7 +107,7 @@ void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, cons
 void AMainCharacter_Base::CreateAbilitiesFooter()
 {
 	PlayerWidgetRef->RemoveAbilityFooter();
-	for (UAbilityComponent_Base* Ability: ArrAbilities)
+	for (UAbilityComponent_Player* Ability: ArrAbilities)
 	{
 		if (IsValid(Ability))
 		{
@@ -204,13 +204,13 @@ UPlayerWidget* AMainCharacter_Base::GetPlayerWidget()
 }
 
 
-TArray<UAbilityComponent_Base*>& AMainCharacter_Base::GetAbilitiesArray()
+TArray<UAbilityComponent_Player*>& AMainCharacter_Base::GetAbilitiesArray()
 {
 	return ArrAbilities;
 }
 
 
-void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Base* NewAbility)
+void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbility)
 {
 	ArrAbilities.Add(NewAbility);
 }

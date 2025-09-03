@@ -13,7 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeMainCharacter_Base() {}
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMainCharacter_Base_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UARPG_GameInstance_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UBlockComponent_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UCombatComponent_Base_NoRegister();
@@ -68,7 +68,7 @@ struct Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics
 {
 	struct MainCharacter_Base_eventAddToAbilitiesArray_Parms
 	{
-		UAbilityComponent_Base* NewAbility;
+		UAbilityComponent_Player* NewAbility;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -82,7 +82,7 @@ struct Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::NewProp_NewAbility = { "NewAbility", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainCharacter_Base_eventAddToAbilitiesArray_Parms, NewAbility), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NewAbility_MetaData), NewProp_NewAbility_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::NewProp_NewAbility = { "NewAbility", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainCharacter_Base_eventAddToAbilitiesArray_Parms, NewAbility), Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_NewAbility_MetaData), NewProp_NewAbility_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray_Statics::NewProp_NewAbility,
 };
@@ -100,7 +100,7 @@ UFunction* Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray()
 }
 DEFINE_FUNCTION(AMainCharacter_Base::execAddToAbilitiesArray)
 {
-	P_GET_OBJECT(UAbilityComponent_Base,Z_Param_NewAbility);
+	P_GET_OBJECT(UAbilityComponent_Player,Z_Param_NewAbility);
 	P_FINISH;
 	P_NATIVE_BEGIN;
 	P_THIS->AddToAbilitiesArray(Z_Param_NewAbility);
@@ -171,7 +171,7 @@ struct Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray_Statics
 {
 	struct MainCharacter_Base_eventGetAbilitiesArray_Parms
 	{
-		TArray<UAbilityComponent_Base*> ReturnValue;
+		TArray<UAbilityComponent_Player*> ReturnValue;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -186,7 +186,7 @@ struct Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray_Statics::NewProp_ReturnValue_Inner = { "ReturnValue", nullptr, (EPropertyFlags)0x0000000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010008000000588, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(MainCharacter_Base_eventGetAbilitiesArray_Parms, ReturnValue), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_ReturnValue_MetaData), NewProp_ReturnValue_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray_Statics::NewProp_ReturnValue_Inner,
@@ -208,7 +208,7 @@ DEFINE_FUNCTION(AMainCharacter_Base::execGetAbilitiesArray)
 {
 	P_FINISH;
 	P_NATIVE_BEGIN;
-	*(TArray<UAbilityComponent_Base*>*)Z_Param__Result=P_THIS->GetAbilitiesArray();
+	*(TArray<UAbilityComponent_Player*>*)Z_Param__Result=P_THIS->GetAbilitiesArray();
 	P_NATIVE_END;
 }
 // End Class AMainCharacter_Base Function GetAbilitiesArray
@@ -718,10 +718,10 @@ struct Z_Construct_UClass_AMainCharacter_Base_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray, "AddToAbilitiesArray" }, // 3525569098
+		{ &Z_Construct_UFunction_AMainCharacter_Base_AddToAbilitiesArray, "AddToAbilitiesArray" }, // 3775320987
 		{ &Z_Construct_UFunction_AMainCharacter_Base_CreateAbilitiesFooter, "CreateAbilitiesFooter" }, // 45677682
 		{ &Z_Construct_UFunction_AMainCharacter_Base_CreateUI, "CreateUI" }, // 3191333181
-		{ &Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray, "GetAbilitiesArray" }, // 1754653749
+		{ &Z_Construct_UFunction_AMainCharacter_Base_GetAbilitiesArray, "GetAbilitiesArray" }, // 3569969098
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetGameInstanceRef, "GetGameInstanceRef" }, // 794600634
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetPlayerWidget, "GetPlayerWidget" }, // 4038718488
 		{ &Z_Construct_UFunction_AMainCharacter_Base_GetSkeletalMeshComponent, "GetSkeletalMeshComponent" }, // 1673224966
@@ -818,10 +818,10 @@ AMainCharacter_Base::~AMainCharacter_Base() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 1238585689U) },
+		{ Z_Construct_UClass_AMainCharacter_Base, AMainCharacter_Base::StaticClass, TEXT("AMainCharacter_Base"), &Z_Registration_Info_UClass_AMainCharacter_Base, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMainCharacter_Base), 1371920919U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_3108280116(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_1903039713(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_MainCharacter_Base_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

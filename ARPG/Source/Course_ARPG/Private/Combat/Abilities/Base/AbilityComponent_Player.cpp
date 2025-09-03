@@ -1,0 +1,303 @@
+
+#include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Characters/LevelingComponent.h"
+#include "Characters/MainCharacter_Base.h"
+#include "Characters/PlayerActionsComponent.h"
+#include "Characters/Data/AbilityUpgradeRequirements.h"
+#include "Combat/CombatComponent_Base.h"
+#include "SaveGame/AbilityData.h"
+#include "UI/PlayerWidget.h"
+
+
+void UAbilityComponent_Player::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
+	SkeletalMeshComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
+
+	UpdateAbilityDescription();
+	UpdateUpgradeDescription();
+}
+
+
+void UAbilityComponent_Player::StartCooldown()
+{
+	OnAbilityFinishedDelegate.Broadcast();
+	TimerDuration = CooldownDuration;
+	bIsOnCooldown = true;
+	
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_Player::StartCooldownTimer, 1, true);
+}
+
+
+void UAbilityComponent_Player::StartCooldownTimer()
+{
+	if (TimerDuration > 0)
+	{
+		OnAbilityCooldownChangedDelegate.Broadcast(TimerDuration);
+		TimerDuration--;
+		UE_LOG(LogTemp, Warning,TEXT("Cooldown time left: %f"), TimerDuration);
+	}
+	else
+	{
+		bIsOnCooldown = false;
+		OnAbilityCooldownFinishedDelegate.Broadcast();
+		GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	}
+}
+
+
+void UAbilityComponent_Player::HandlePlayerActions(bool bCanDo)
+{
+	PlayerRef->CombatComp->bCanAttack = bCanDo;
+	PlayerRef->PlayerActionsComp->SetCanRoll(bCanDo);
+}
+
+
+bool UAbilityComponent_Player::IsEnoughMana()
+{
+	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>())
+	{
+		return false;
+	}
+
+	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(PlayerRef);
+	if (!IPlayerRef)
+	{
+		return false;
+	}
+	
+	return IPlayerRef->HasEnoughMana(ManaCost);
+}
+
+
+void UAbilityComponent_Player::StartAbilityTimer()
+{
+	if (TimerDuration > 0)
+	{
+		TimerDuration--;
+		OnAbilityTimerChangedDelegate.Broadcast(TimerDuration);
+		UE_LOG(LogTemp, Warning,TEXT("Ability time left: %f"), TimerDuration);
+	}
+	else
+	{
+		TimerDuration = CooldownDuration;
+		OnAbilityTimerFinished();
+		StartCooldown();
+	}
+}
+
+
+void UAbilityComponent_Player::StartAbility()
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	PlayerRef->SetCanPlayHurtAnimation(false);
+	PlayerRef->InterruptHurtAnimation();
+}
+
+
+void UAbilityComponent_Player::FinishAbilityCast()
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	PlayerRef->SetCanPlayHurtAnimation(true);
+}
+
+
+void UAbilityComponent_Player::CreateIcon()
+{
+	PlayerRef->GetPlayerWidget()->CreateStatusIconWithTimer(GetAbilityDuration(), GetIcon(), this);
+}
+
+
+void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
+{
+	int PointsRequired = GetRequiredUpgradePoints();
+
+	if (AvailablePoints >= PointsRequired && PointsRequired > 0)
+	{
+		CurrentLevel++;
+		AvailablePoints -= PointsRequired;
+		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
+		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
+		if (IsAbilityAvailable())
+		{
+			UpdateAbilityProperties();
+		}
+		else
+		{
+			//UE_LOG(LogTemp, Warning, TEXT("Ability unlocked"));
+			SetAbilityAvailability(true);
+			OnAbilityUnlockedDelegate.Broadcast();
+		}
+		UpdateAbilityDescription();
+		UpdateUpgradeDescription();
+	}
+}
+
+
+void UAbilityComponent_Player::UpdateAbilityProperties()
+{
+	SetCooldownDuration(CooldownDuration - 1);
+	SetManaCost(ManaCost - (ManaCost * .2f));
+}
+
+
+int UAbilityComponent_Player::GetRequiredUpgradePoints()
+{
+	if (!RequirementsDataTable)
+	{
+		//UE_LOG(LogTemp, Error, TEXT("Cant load levels data table"));
+		return -1;
+	}
+
+	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
+	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
+	if (!RequirementsRow)
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("No level row found for %s"), *RowName.ToString());
+		return -1;
+	}
+	return RequirementsRow->RequiredPoints;
+}
+
+
+bool UAbilityComponent_Player::IsAbilityMaxLevel()
+{
+	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
+	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
+	if (RequirementsRow)
+	{
+		return false;
+	}
+	return true;
+}
+
+
+void UAbilityComponent_Player::SaveCustomProperties(FAbilityData& Data)
+{
+	Data.bIsUnlocked = IsAbilityAvailable();
+	Data.CurrentLevel = GetCurrentAbilityLevel();
+	Data.AbilityDuration = GetAbilityDuration();
+	Data.CooldownDuration = GetCooldownDuration();
+	Data.ManaCost = GetManaCost();
+}
+
+
+void UAbilityComponent_Player::LoadCustomProperties(FAbilityData& SavedData)
+{
+	SetCurrentAbilityLevel(SavedData.CurrentLevel);
+	SetAbilityAvailability(SavedData.bIsUnlocked);
+	SetCooldownDuration(SavedData.CooldownDuration);
+	SetManaCost(SavedData.ManaCost);
+	SetAbilityDuration(SavedData.AbilityDuration);
+}
+
+
+
+bool UAbilityComponent_Player::CanPlayMontage() const
+{
+	return AnimMontage && PlayerRef && !PlayerRef->GetCurrentMontage();
+}
+
+
+int UAbilityComponent_Player::GetCurrentAbilityLevel()
+{
+	return CurrentLevel;
+}
+
+
+void UAbilityComponent_Player::SetCurrentAbilityLevel(int NewLevel)
+{
+	CurrentLevel = NewLevel;
+}
+
+
+FString UAbilityComponent_Player::GetAbilityDescription()
+{
+	return AbilityDescription;
+}
+
+
+FString UAbilityComponent_Player::GetUpgradeDescription()
+{
+	return UpgradeDescription;
+}
+
+void UAbilityComponent_Player::SetUpgradeDescription(FString NewDescription)
+{
+	UpgradeDescription = NewDescription;
+}
+
+void UAbilityComponent_Player::SetAbilityDescription(FString NewDescription)
+{
+	AbilityDescription = NewDescription;
+}
+
+
+bool UAbilityComponent_Player::IsAbilityAvailable()
+{
+	return bIsAbilityAvailable;
+}
+
+
+void UAbilityComponent_Player::SetAbilityAvailability(bool NewAvailability)
+{
+	bIsAbilityAvailable = NewAvailability;
+}
+
+
+float UAbilityComponent_Player::GetManaCost()
+{
+	return ManaCost;
+}
+
+
+void UAbilityComponent_Player::SetManaCost(float NewManaCost)
+{
+	ManaCost = NewManaCost;
+}
+
+
+float UAbilityComponent_Player::GetCooldownDuration()
+{
+	return CooldownDuration;
+}
+
+
+void UAbilityComponent_Player::SetCooldownDuration(float NewCooldownDuration)
+{
+	CooldownDuration = NewCooldownDuration;
+}
+
+
+
+FString UAbilityComponent_Player::GetActionKey()
+{
+	return ActionKey;
+}
+
+
+bool UAbilityComponent_Player::IsOnCooldown()
+{
+	return bIsOnCooldown;
+}
+
+
+bool UAbilityComponent_Player::IsAbilityActive()
+{
+	return bIsAbilityActive;
+}
+
+
+void UAbilityComponent_Player::SetAbilityActive(bool NewIsActive)
+{
+	bIsAbilityActive = NewIsActive;
+}

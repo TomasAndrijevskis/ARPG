@@ -5,6 +5,8 @@
 #include "Blueprint/UserWidget.h"
 #include "StatusIconWithTimer.generated.h"
 
+class UAbilityComponent_Base;
+class UVerticalBox;
 class UImage;
 class UTextBlock;
 
@@ -15,14 +17,14 @@ class COURSE_ARPG_API UStatusIconWithTimer : public UUserWidget
 
 public:
 
-	UFUNCTION()
-	void InitializeWidget(float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef);
+	//UFUNCTION()
+	void InitializeWidget(float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef, FVector2d ImageSize);
 	
 	UFUNCTION(BlueprintCallable)
 	void SetCountdownTime(float TimeLeft);
 
-	UFUNCTION(BlueprintCallable)
-	void SetStatusIcon(UTexture2D* Icon);
+	//UFUNCTION(BlueprintCallable)
+	void SetStatusIcon(UTexture2D* Icon, FVector2d ImageSize);
 
 	UFUNCTION()
 	void RemoveWidget();
@@ -34,7 +36,7 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UImage* Image_StatusIcon;
-
+	
 	UPROPERTY()
 	UAbilityComponent_Base* AbilityCompRef;
 };

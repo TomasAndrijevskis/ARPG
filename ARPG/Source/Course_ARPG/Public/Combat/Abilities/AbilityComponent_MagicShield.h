@@ -2,8 +2,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Base/AbilityComponent_Player.h"
 #include "Characters/MainCharacter_Mage.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
 #include "AbilityComponent_MagicShield.generated.h"
 
 class AMagicShield;
@@ -12,7 +12,7 @@ class UNiagaraSystem;
 
 
 UCLASS()
-class COURSE_ARPG_API UAbilityComponent_MagicShield : public UAbilityComponent_Base
+class COURSE_ARPG_API UAbilityComponent_MagicShield : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 

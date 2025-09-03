@@ -2,12 +2,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Combat/Abilities/AbilityComponent_Base.h"
+#include "Base/AbilityComponent_Player.h"
 #include "AbilityComponent_HealingAura.generated.h"
 
 
 UCLASS()
-class COURSE_ARPG_API UAbilityComponent_HealingAura : public UAbilityComponent_Base
+class COURSE_ARPG_API UAbilityComponent_HealingAura : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 

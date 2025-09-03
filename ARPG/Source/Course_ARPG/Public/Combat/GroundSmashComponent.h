@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Abilities/Base/AbilityComponent_Enemy.h"
 #include "Components/ActorComponent.h"
 #include "GroundSmashComponent.generated.h"
 
@@ -9,7 +10,7 @@
 class AGroundSmashArea;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UGroundSmashComponent : public UActorComponent
+class COURSE_ARPG_API UGroundSmashComponent : public UAbilityComponent_Enemy
 {
 	GENERATED_BODY()
 

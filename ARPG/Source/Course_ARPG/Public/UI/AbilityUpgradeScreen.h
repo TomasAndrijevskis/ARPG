@@ -24,14 +24,14 @@ public:
 	void RemoveAbilityDescriptionWidget();
 
 	UFUNCTION(BlueprintCallable)
-	void InitializeAbility(class UAbilityComponent_Base* AbilityComp);
+	void InitializeAbility(class UAbilityComponent_Player* AbilityComp);
 	
 protected:
 
 	virtual void NativeConstruct() override;
 	
 	UPROPERTY(EditAnywhere)
-	UAbilityComponent_Base* AbilityComp_REF;
+	UAbilityComponent_Player* AbilityComp_REF;
 	
 private:
 

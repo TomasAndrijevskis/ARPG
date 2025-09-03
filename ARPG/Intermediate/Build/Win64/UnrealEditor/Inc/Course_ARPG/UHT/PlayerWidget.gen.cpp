@@ -13,6 +13,7 @@ void EmptyLinkFunctionForGeneratedCodePlayerWidget() {}
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Base_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityComponent_Player_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityFooter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UAbilityUpgradeScreen_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UBonfireMenu_NoRegister();
@@ -44,7 +45,7 @@ struct Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics
 	{
 		UTexture2D* Image;
 		FString ActionKey;
-		UAbilityComponent_Base* AbilityCompRef;
+		UAbilityComponent_Player* AbilityCompRef;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -62,7 +63,7 @@ struct Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics::NewProp_Image = { "Image", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateAbilityFooter_Parms, Image), Z_Construct_UClass_UTexture2D_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics::NewProp_ActionKey = { "ActionKey", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateAbilityFooter_Parms, ActionKey), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics::NewProp_AbilityCompRef = { "AbilityCompRef", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateAbilityFooter_Parms, AbilityCompRef), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityCompRef_MetaData), NewProp_AbilityCompRef_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics::NewProp_AbilityCompRef = { "AbilityCompRef", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateAbilityFooter_Parms, AbilityCompRef), Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityCompRef_MetaData), NewProp_AbilityCompRef_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics::NewProp_Image,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter_Statics::NewProp_ActionKey,
@@ -84,7 +85,7 @@ DEFINE_FUNCTION(UPlayerWidget::execCreateAbilityFooter)
 {
 	P_GET_OBJECT(UTexture2D,Z_Param_Image);
 	P_GET_PROPERTY(FStrProperty,Z_Param_ActionKey);
-	P_GET_OBJECT(UAbilityComponent_Base,Z_Param_AbilityCompRef);
+	P_GET_OBJECT(UAbilityComponent_Player,Z_Param_AbilityCompRef);
 	P_FINISH;
 	P_NATIVE_BEGIN;
 	P_THIS->CreateAbilityFooter(Z_Param_Image,Z_Param_ActionKey,Z_Param_AbilityCompRef);
@@ -97,7 +98,7 @@ struct Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen_Statics
 {
 	struct PlayerWidget_eventCreateAbilityUpgradeScreen_Parms
 	{
-		UAbilityComponent_Base* AbilityCompRef;
+		UAbilityComponent_Player* AbilityCompRef;
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
@@ -111,7 +112,7 @@ struct Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen_Statics::NewProp_AbilityCompRef = { "AbilityCompRef", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateAbilityUpgradeScreen_Parms, AbilityCompRef), Z_Construct_UClass_UAbilityComponent_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityCompRef_MetaData), NewProp_AbilityCompRef_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen_Statics::NewProp_AbilityCompRef = { "AbilityCompRef", nullptr, (EPropertyFlags)0x0010000000080080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateAbilityUpgradeScreen_Parms, AbilityCompRef), Z_Construct_UClass_UAbilityComponent_Player_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityCompRef_MetaData), NewProp_AbilityCompRef_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen_Statics::NewProp_AbilityCompRef,
 };
@@ -129,7 +130,7 @@ UFunction* Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen()
 }
 DEFINE_FUNCTION(UPlayerWidget::execCreateAbilityUpgradeScreen)
 {
-	P_GET_OBJECT(UAbilityComponent_Base,Z_Param_AbilityCompRef);
+	P_GET_OBJECT(UAbilityComponent_Player,Z_Param_AbilityCompRef);
 	P_FINISH;
 	P_NATIVE_BEGIN;
 	P_THIS->CreateAbilityUpgradeScreen(Z_Param_AbilityCompRef);
@@ -1010,6 +1011,10 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_IconSize_MetaData[] = {
+		{ "Category", "PlayerWidget" },
+		{ "ModuleRelativePath", "Public/UI/PlayerWidget.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_ActiveStatusWidget_ValueProp;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_ActiveStatusWidget_Key_KeyProp;
@@ -1042,11 +1047,12 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InfoFooterWidgetRef;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_QuickTravelMenuWidgetClass;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_QuickTravelMenuWidgetRef;
+	static const UECodeGen_Private::FStructPropertyParams NewProp_IconSize;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter, "CreateAbilityFooter" }, // 2450226120
-		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 2089711585
+		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityFooter, "CreateAbilityFooter" }, // 3458016985
+		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 1301023494
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget, "CreateBonfireMenuWidget" }, // 1274148549
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateDeathWidget, "CreateDeathWidget" }, // 3315036277
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget, "CreateQuickTravelMenuWidget" }, // 1059395091
@@ -1103,6 +1109,7 @@ const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_S
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetRef = { "InfoFooterWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, InfoFooterWidgetRef), Z_Construct_UClass_UInfoFooter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InfoFooterWidgetRef_MetaData), NewProp_InfoFooterWidgetRef_MetaData) };
 const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetClass = { "QuickTravelMenuWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, QuickTravelMenuWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UQuickTravelMenu_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_QuickTravelMenuWidgetClass_MetaData), NewProp_QuickTravelMenuWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetRef = { "QuickTravelMenuWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, QuickTravelMenuWidgetRef), Z_Construct_UClass_UQuickTravelMenu_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_QuickTravelMenuWidgetRef_MetaData), NewProp_QuickTravelMenuWidgetRef_MetaData) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UClass_UPlayerWidget_Statics::NewProp_IconSize = { "IconSize", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UPlayerWidget, IconSize), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_IconSize_MetaData), NewProp_IconSize_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerWidget_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ActiveStatusWidget_ValueProp,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_ActiveStatusWidget_Key_KeyProp,
@@ -1135,6 +1142,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UPlayerWi
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_InfoFooterWidgetRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetClass,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_QuickTravelMenuWidgetRef,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UPlayerWidget_Statics::NewProp_IconSize,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UPlayerWidget_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UPlayerWidget_Statics::DependentSingletons[])() = {
@@ -1178,10 +1186,10 @@ UPlayerWidget::~UPlayerWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 3696477339U) },
+		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 3877305269U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_1827769606(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_3209169770(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
