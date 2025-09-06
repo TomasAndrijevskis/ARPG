@@ -9,7 +9,6 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/FTraceSockets.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/GroundSmashArea.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/LockonComponent.cpp"
-#include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/PoisonExplosionArea.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/Projectiles/EnemyProjectile.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/Projectiles/EnemyProjectileComponent.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Source/Course_ARPG/Private/Combat/Projectiles/Projectile_Base.cpp"

@@ -235,13 +235,7 @@
     <Filter Include="Source\Course_ARPG\Private\Combat\Abilities">
       <UniqueIdentifier>{76E63894-074E-3581-9C69-240032C88938}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_Base.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_DamageIncrease.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_Enemy.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_FireStorm.cpp">
@@ -262,9 +256,6 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_MagicShield.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_Player.cpp">
-      <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\AbilityComponent_RangeAttack.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
     </ClCompile>
@@ -276,6 +267,18 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\MagicShield.cpp">
       <Filter>Source\Course_ARPG\Private\Combat\Abilities</Filter>
+    </ClCompile>
+    <Filter Include="Source\Course_ARPG\Private\Combat\Abilities\Base">
+      <UniqueIdentifier>{C0890781-689B-384D-B392-6D2985CEF929}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\Base\AbilityComponent_Base.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\Base\AbilityComponent_Enemy.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Combat\Abilities\Base\AbilityComponent_Player.cpp">
+      <Filter>Source\Course_ARPG\Private\Combat\Abilities\Base</Filter>
     </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\Combat\Projectiles">
       <UniqueIdentifier>{86AE4974-131E-3EB6-9E93-FE69913BD9C5}</UniqueIdentifier>
@@ -364,13 +367,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\DescriptionWidget.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\EnemyHealthBar.cpp">
-      <Filter>Source\Course_ARPG\Private\UI</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\InfoFooter.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\InfoHeader.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\MinionHealthBar.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerDeath.cpp">
@@ -607,13 +610,7 @@
     <Filter Include="Source\Course_ARPG\Public\Combat\Abilities">
       <UniqueIdentifier>{9635779B-00C3-3FBE-AAB4-6642DCC86F42}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Base.h">
-      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_DamageIncrease.h">
-      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Enemy.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_FireStorm.h">
@@ -634,9 +631,6 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_MagicShield.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_Player.h">
-      <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\AbilityComponent_RangeAttack.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
     </ClInclude>
@@ -648,6 +642,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\MagicShield.h">
       <Filter>Source\Course_ARPG\Public\Combat\Abilities</Filter>
+    </ClInclude>
+    <Filter Include="Source\Course_ARPG\Public\Combat\Abilities\Base">
+      <UniqueIdentifier>{AB2DD850-6967-3692-85AF-CD034DF5AA72}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\Base\AbilityComponent_Base.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\Base\AbilityComponent_Enemy.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Combat\Abilities\Base\AbilityComponent_Player.h">
+      <Filter>Source\Course_ARPG\Public\Combat\Abilities\Base</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\Combat\Projectiles">
       <UniqueIdentifier>{64D534D3-1F11-3BC6-9BFB-A7A5889AD2CC}</UniqueIdentifier>
@@ -736,9 +742,6 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\DescriptionWidget.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\EnemyHealthBar.h">
-      <Filter>Source\Course_ARPG\Public\UI</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\EScreens.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
@@ -746,6 +749,9 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoHeader.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\MinionHealthBar.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerDeath.h">
