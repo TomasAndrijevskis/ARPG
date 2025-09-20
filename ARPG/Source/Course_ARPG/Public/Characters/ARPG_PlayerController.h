@@ -3,9 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Objects/BonfireData.h"
 #include "ARPG_PlayerController.generated.h"
 
 
+//struct FBonfireData;
 class ABoss;
 class ABonfire;
 class UARPG_GameInstance;
@@ -37,6 +39,12 @@ public:
 	void SetIsInBonfireRange(bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
 
 	UFUNCTION()
+	void SetIsInDoorRange(bool bNewIsInDoorRange);
+
+	UFUNCTION()
+	void SetMapName(FString NewMapName);
+	
+	UFUNCTION()
 	void LoadToMainMenu();
 
 	UFUNCTION()
@@ -46,7 +54,7 @@ public:
 
 	void AddDefeatedBoss(FName Boss);
 	
-	TMap<FString, FVector> UnlockedBonfires;
+	TMap<FString, FBonfireData> UnlockedBonfires;
 
 protected:
 	
@@ -54,6 +62,9 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void CreateBonfireMenuWidget();
+
+	UFUNCTION(BlueprintCallable)
+	void TeleportToMap();
 	
 private:
 
@@ -75,12 +86,16 @@ private:
 	UPROPERTY()
 	ABonfire* BonfireRef;
 	
+	UPROPERTY(VisibleAnywhere)
+	TArray<FName> DefeatedBosses;
+	
 	bool bIsAbilityScreenOpened = false;
 	
 	bool bIsStatsScreenOpened = false;
 
 	bool bIsInBonfireRange = false;
 
-	UPROPERTY(VisibleAnywhere)
-	TArray<FName> DefeatedBosses;
+	bool bIsInDoorRange = false;
+
+	FString MapName;
 };

@@ -11,6 +11,7 @@
 #include "PlayerWidget.generated.h"
 
 
+struct FBonfireData;
 class UBonfireInteractionAnim;
 class ABonfire;
 class UQuickTravelMenu;
@@ -92,7 +93,7 @@ public:
 	void RemoveQuickTravelMenuWidget();
 
 	UFUNCTION()
-	void CreateQuickTravelMenuWidget(TMap<FString, FVector> UnlockedBonfires, FString CurrentBonfireName);
+	void CreateQuickTravelMenuWidget(TMap<FString, FBonfireData> UnlockedBonfires, FString CurrentBonfireName);
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;

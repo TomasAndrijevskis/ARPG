@@ -128,10 +128,10 @@ AMinion_Elemental::~AMinion_Elemental() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_Elemental_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMinion_Elemental, AMinion_Elemental::StaticClass, TEXT("AMinion_Elemental"), &Z_Registration_Info_UClass_AMinion_Elemental, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinion_Elemental), 1425190084U) },
+		{ Z_Construct_UClass_AMinion_Elemental, AMinion_Elemental::StaticClass, TEXT("AMinion_Elemental"), &Z_Registration_Info_UClass_AMinion_Elemental, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinion_Elemental), 2497492611U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_Elemental_h_78057245(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_Elemental_h_363880289(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_Elemental_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_Elemental_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

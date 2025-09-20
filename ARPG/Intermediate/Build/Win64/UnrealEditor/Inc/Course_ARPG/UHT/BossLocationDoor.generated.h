@@ -4,7 +4,7 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-// IWYU pragma: private, include "Obstacles/BossLocationDoor.h"
+// IWYU pragma: private, include "Objects/BossLocationDoor.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
@@ -16,11 +16,17 @@ class UPrimitiveComponent;
 #endif
 #define COURSE_ARPG_BossLocationDoor_generated_h
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execOnEndOverlap);
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_12_DELEGATE \
+COURSE_ARPG_API void FOnBossDiedSignature_DelegateWrapper(const FMulticastScriptDelegate& OnBossDiedSignature);
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_INCLASS_NO_PURE_DECLS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execHandleDoor); \
+	DECLARE_FUNCTION(execOnEndOverlap); \
+	DECLARE_FUNCTION(execReopenDoor);
+
+
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_17_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesABossLocationDoor(); \
 	friend struct Z_Construct_UClass_ABossLocationDoor_Statics; \
@@ -29,7 +35,7 @@ public: \
 	DECLARE_SERIALIZER(ABossLocationDoor)
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_ENHANCED_CONSTRUCTORS \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ABossLocationDoor(ABossLocationDoor&&); \
@@ -41,13 +47,13 @@ public: \
 	NO_API virtual ~ABossLocationDoor();
 
 
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_11_PROLOG
-#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_GENERATED_BODY \
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_14_PROLOG
+#define FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_INCLASS_NO_PURE_DECLS \
-	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_14_ENHANCED_CONSTRUCTORS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_17_INCLASS_NO_PURE_DECLS \
+	FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_17_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -55,7 +61,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> COURSE_ARPG_API UClass* StaticClass<class ABossLocationDoor>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h
+#define CURRENT_FILE_ID FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

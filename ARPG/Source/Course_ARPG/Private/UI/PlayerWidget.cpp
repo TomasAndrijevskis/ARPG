@@ -184,7 +184,7 @@ void UPlayerWidget::RemoveBonfireMenuWidget()
 }
 
 
-void UPlayerWidget::CreateQuickTravelMenuWidget(TMap<FString, FVector> UnlockedBonfires, FString CurrentBonfireName)
+void UPlayerWidget::CreateQuickTravelMenuWidget(TMap<FString, FBonfireData> UnlockedBonfires, FString CurrentBonfireName)
 {
 	if (QuickTravelMenuWidgetClass)
 	{

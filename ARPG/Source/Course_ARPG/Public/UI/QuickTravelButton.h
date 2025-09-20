@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Objects/BonfireData.h"
 #include "QuickTravelButton.generated.h"
 
 
@@ -21,7 +22,7 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	void InitializeButton(FString NewTravelLocationName, FVector NewTravelLocation, FString CurrentBonfireName);
+	void InitializeButton(FString NewTravelLocationName, FBonfireData BonfireData, FString CurrentBonfireName);
 	
 private:
 
@@ -41,6 +42,8 @@ private:
 	UTextBlock* Text_QuickTravelLocation;
 
 	FVector TravelLocation;
+
+	FString TravelMapName;
 
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;

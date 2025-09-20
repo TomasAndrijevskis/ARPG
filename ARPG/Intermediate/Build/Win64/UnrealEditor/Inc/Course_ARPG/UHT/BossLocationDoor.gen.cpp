@@ -5,13 +5,14 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Course_ARPG/Public/Obstacles/BossLocationDoor.h"
+#include "Course_ARPG/Public/Objects/BossLocationDoor.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeBossLocationDoor() {}
 
 // Begin Cross Module References
 COURSE_ARPG_API UClass* Z_Construct_UClass_ABossLocationDoor();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ABossLocationDoor_NoRegister();
+COURSE_ARPG_API UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnBossDiedSignature__DelegateSignature();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
@@ -21,6 +22,61 @@ ENGINE_API UClass* Z_Construct_UClass_UStaticMeshComponent_NoRegister();
 ENGINE_API UEnum* Z_Construct_UEnum_Engine_ECollisionChannel();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
+
+// Begin Delegate FOnBossDiedSignature
+struct Z_Construct_UDelegateFunction_Course_ARPG_OnBossDiedSignature__DelegateSignature_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UDelegateFunction_Course_ARPG_OnBossDiedSignature__DelegateSignature_Statics::FuncParams = { (UObject*(*)())Z_Construct_UPackage__Script_Course_ARPG, nullptr, "OnBossDiedSignature__DelegateSignature", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00130000, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UDelegateFunction_Course_ARPG_OnBossDiedSignature__DelegateSignature_Statics::Function_MetaDataParams), Z_Construct_UDelegateFunction_Course_ARPG_OnBossDiedSignature__DelegateSignature_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UDelegateFunction_Course_ARPG_OnBossDiedSignature__DelegateSignature()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UDelegateFunction_Course_ARPG_OnBossDiedSignature__DelegateSignature_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+void FOnBossDiedSignature_DelegateWrapper(const FMulticastScriptDelegate& OnBossDiedSignature)
+{
+	OnBossDiedSignature.ProcessMulticastDelegate<UObject>(NULL);
+}
+// End Delegate FOnBossDiedSignature
+
+// Begin Class ABossLocationDoor Function HandleDoor
+struct Z_Construct_UFunction_ABossLocationDoor_HandleDoor_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ABossLocationDoor_HandleDoor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ABossLocationDoor, nullptr, "HandleDoor", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ABossLocationDoor_HandleDoor_Statics::Function_MetaDataParams), Z_Construct_UFunction_ABossLocationDoor_HandleDoor_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_ABossLocationDoor_HandleDoor()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ABossLocationDoor_HandleDoor_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ABossLocationDoor::execHandleDoor)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->HandleDoor();
+	P_NATIVE_END;
+}
+// End Class ABossLocationDoor Function HandleDoor
 
 // Begin Class ABossLocationDoor Function OnEndOverlap
 struct Z_Construct_UFunction_ABossLocationDoor_OnEndOverlap_Statics
@@ -34,7 +90,7 @@ struct Z_Construct_UFunction_ABossLocationDoor_OnEndOverlap_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/Obstacles/BossLocationDoor.h" },
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverlappedComponent_MetaData[] = {
 		{ "EditInline", "true" },
@@ -85,12 +141,43 @@ DEFINE_FUNCTION(ABossLocationDoor::execOnEndOverlap)
 }
 // End Class ABossLocationDoor Function OnEndOverlap
 
+// Begin Class ABossLocationDoor Function ReopenDoor
+struct Z_Construct_UFunction_ABossLocationDoor_ReopenDoor_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ABossLocationDoor_ReopenDoor_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ABossLocationDoor, nullptr, "ReopenDoor", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ABossLocationDoor_ReopenDoor_Statics::Function_MetaDataParams), Z_Construct_UFunction_ABossLocationDoor_ReopenDoor_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_ABossLocationDoor_ReopenDoor()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ABossLocationDoor_ReopenDoor_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ABossLocationDoor::execReopenDoor)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->ReopenDoor();
+	P_NATIVE_END;
+}
+// End Class ABossLocationDoor Function ReopenDoor
+
 // Begin Class ABossLocationDoor
 void ABossLocationDoor::StaticRegisterNativesABossLocationDoor()
 {
 	UClass* Class = ABossLocationDoor::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
+		{ "HandleDoor", &ABossLocationDoor::execHandleDoor },
 		{ "OnEndOverlap", &ABossLocationDoor::execOnEndOverlap },
+		{ "ReopenDoor", &ABossLocationDoor::execReopenDoor },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -103,26 +190,26 @@ struct Z_Construct_UClass_ABossLocationDoor_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
-		{ "IncludePath", "Obstacles/BossLocationDoor.h" },
-		{ "ModuleRelativePath", "Public/Obstacles/BossLocationDoor.h" },
+		{ "IncludePath", "Objects/BossLocationDoor.h" },
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Collision_MetaData[] = {
 		{ "Category", "BossLocationDoor" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/Obstacles/BossLocationDoor.h" },
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Mesh_MetaData[] = {
 		{ "Category", "BossLocationDoor" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/Obstacles/BossLocationDoor.h" },
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_CollisionChannel_MetaData[] = {
 		{ "Category", "BossLocationDoor" },
-		{ "ModuleRelativePath", "Public/Obstacles/BossLocationDoor.h" },
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MeshMaterial_MetaData[] = {
 		{ "Category", "BossLocationDoor" },
-		{ "ModuleRelativePath", "Public/Obstacles/BossLocationDoor.h" },
+		{ "ModuleRelativePath", "Public/Objects/BossLocationDoor.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Collision;
@@ -132,7 +219,9 @@ struct Z_Construct_UClass_ABossLocationDoor_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_ABossLocationDoor_OnEndOverlap, "OnEndOverlap" }, // 769589413
+		{ &Z_Construct_UFunction_ABossLocationDoor_HandleDoor, "HandleDoor" }, // 481939160
+		{ &Z_Construct_UFunction_ABossLocationDoor_OnEndOverlap, "OnEndOverlap" }, // 83451584
+		{ &Z_Construct_UFunction_ABossLocationDoor_ReopenDoor, "ReopenDoor" }, // 1455971028
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -188,14 +277,14 @@ ABossLocationDoor::~ABossLocationDoor() {}
 // End Class ABossLocationDoor
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_Statics
+struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ABossLocationDoor, ABossLocationDoor::StaticClass, TEXT("ABossLocationDoor"), &Z_Registration_Info_UClass_ABossLocationDoor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABossLocationDoor), 2154471846U) },
+		{ Z_Construct_UClass_ABossLocationDoor, ABossLocationDoor::StaticClass, TEXT("ABossLocationDoor"), &Z_Registration_Info_UClass_ABossLocationDoor, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABossLocationDoor), 868013078U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_32310806(TEXT("/Script/Course_ARPG"),
-	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Obstacles_BossLocationDoor_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_3052287992(TEXT("/Script/Course_ARPG"),
+	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_BossLocationDoor_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

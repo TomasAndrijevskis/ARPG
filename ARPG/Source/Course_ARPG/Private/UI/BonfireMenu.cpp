@@ -8,11 +8,8 @@
 void UBonfireMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-
 	PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
-	
 	if (!PlayerController) return;
-	
 	Button_AbilitiesScreen->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateAbilityUpgradeScreen);
 	Button_StatsScreen->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateStatsScreen);
 	Button_QuitBonfire->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::RemoveBonfireMenuWidget);

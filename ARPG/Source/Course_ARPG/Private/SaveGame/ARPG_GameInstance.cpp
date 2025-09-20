@@ -1,11 +1,9 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Characters/ARPG_PlayerController.h"
-#include "Characters/Boss.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/StatsComponent.h"
-#include "Combat/Abilities/Base/AbilityComponent_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
@@ -48,7 +46,8 @@ void UARPG_GameInstance::SaveAll()
 	SaveStats();
 	SaveAbilities();
 	SaveBonfires();
-	//SaveDefeatedBosses();
+	SaveDefeatedBosses();
+	SavePlayerLocation();
 	bIsFirstLoad = false;
 }
 
@@ -67,11 +66,11 @@ void UARPG_GameInstance::SaveBonfires()
 		return;
 	}
 	
-	for (TPair<FString, FVector>& Bonfire: PlayerController->UnlockedBonfires)
+	for (auto Bonfire: PlayerController->UnlockedBonfires)
 	{
 		SaveGameInstance->UnlockedBonfires.Add(Bonfire.Key, Bonfire.Value);
-		UE_LOG(LogTemp, Error, TEXT("GI|Save|Bonfire name: %s"), *Bonfire.Key);
-		UE_LOG(LogTemp, Error, TEXT("GI|Save|Bonfire location:  %s"), *Bonfire.Value.ToString());
+		//UE_LOG(LogTemp, Error, TEXT("GI|Save|Bonfire name: %s"), *Bonfire.Key);
+		//UE_LOG(LogTemp, Error, TEXT("GI|Save|Bonfire location:  %s"), *Bonfire.Value.ToString());
 	}
 	UE_LOG(LogTemp, Error, TEXT("GI|Bonfires saved"));
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
@@ -94,7 +93,7 @@ void UARPG_GameInstance::LoadBonfires()
 		return;
 	}
 	
-	for (TPair<FString, FVector>& Bonfire: SaveGameInstance->UnlockedBonfires)
+	for (auto Bonfire: SaveGameInstance->UnlockedBonfires)
 	{
 		PlayerController->UnlockedBonfires.Add(Bonfire.Key, Bonfire.Value);
 	}
@@ -113,7 +112,7 @@ void UARPG_GameInstance::LoadPlayerClass()
 	if (SaveGameInstance->PlayerCharacter)
 	{
 		PlayerCharacterClass = SaveGameInstance->PlayerCharacter;
-		UE_LOG(LogTemp,Error, TEXT("GameInstance|Loaded Player Class: %s"), *PlayerCharacterClass->GetName());
+		//UE_LOG(LogTemp,Error, TEXT("GameInstance|Loaded Player Class: %s"), *PlayerCharacterClass->GetName());
 	}
 }
 
@@ -130,7 +129,6 @@ void UARPG_GameInstance::SaveStats()
 	{
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
-	
 	SaveGameInstance->CurrentHealth = PlayerRef->StatsComp->GetStatValue(EStats::Health);
 	SaveGameInstance->MaxHealth = PlayerRef->StatsComp->GetStatValue(EStats::MaxHealth);
 	SaveGameInstance->CurrentMana = PlayerRef->StatsComp->GetStatValue(EStats::Mana);
@@ -141,8 +139,7 @@ void UARPG_GameInstance::SaveStats()
 	SaveGameInstance->CurrentXP = PlayerRef->LevelComp->GetCurrentXP();
 	SaveGameInstance->CurrentStatPoints = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
 	SaveGameInstance->CurrentAbilityPoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
-
-	UE_LOG(LogTemp,Error, TEXT("GameInstance|Stats Saved"));
+	//UE_LOG(LogTemp,Error, TEXT("GameInstance|Stats Saved"));
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -153,15 +150,12 @@ void UARPG_GameInstance::LoadStats()
 	{
 		return;
 	}
-	
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-	
 	if (!SaveGameInstance)
 	{
 		UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant Load Stats"));
 		return;
 	}
-	
 	PlayerRef->StatsComp->SetStatValue(EStats::Health, SaveGameInstance->CurrentHealth);
 	PlayerRef->StatsComp->SetStatValue(EStats::MaxHealth, SaveGameInstance->MaxHealth);
 	PlayerRef->StatsComp->SetStatValue(EStats::Mana, SaveGameInstance->CurrentMana);
@@ -181,13 +175,11 @@ void UARPG_GameInstance::SaveAbilities()
 	{
 		return;
 	}
-	
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 	if (!SaveGameInstance)
 	{
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
-	
 	for (UAbilityComponent_Player* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability))
@@ -197,10 +189,8 @@ void UARPG_GameInstance::SaveAbilities()
 		FAbilityData Data;
 		Ability->SaveCustomProperties(Data);
 		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
-		
 		//UE_LOG(LogTemp, Error, TEXT("GameInstance|Ability Added: %s, %i, %s"),*Ability->GetName(), Data.CurrentLevel, Data.bIsUnlocked ? TEXT("true") : TEXT("false"));
 	}
-	
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -211,18 +201,13 @@ void UARPG_GameInstance::LoadAbilities()
 	{
 		return;
 	}
-	
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-	
 	if (!SaveGameInstance)
 	{
 		UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant Load ArrAbilities"));
 		return;
 	}
-
 	//UE_LOG(LogTemp, Warning, TEXT("GameInstance|Loaded abilities count: %d"), SaveGameInstance->UnlockedAbilities.Num());
-	
-	
 	for (UAbilityComponent_Player* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability))
@@ -258,12 +243,10 @@ void UARPG_GameInstance::SaveDefeatedBosses()
 	{
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
-	
 	for (auto Boss : PlayerController->GetDefeatedBosses())
 	{
 		SaveGameInstance->DefeatedBosses.AddUnique(Boss);
 	}
-
 	for (auto Boss : SaveGameInstance->DefeatedBosses)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Saved Defeated boss: %s"), *Boss.ToString());
@@ -295,6 +278,80 @@ void UARPG_GameInstance::LoadDefeatedBosses()
 	}
 }
 
+
+void UARPG_GameInstance::SavePlayerLocation()
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		return;
+	}
+	SaveGameInstance->PlayerLocation = PlayerRef->GetActorLocation();
+	SaveGameInstance->CurrentMap = UGameplayStatics::GetCurrentLevelName(this);
+	UE_LOG(LogTemp, Error, TEXT("Saved Map: %s"), *SaveGameInstance->CurrentMap);
+	UE_LOG(LogTemp, Error, TEXT("Saved Location: %s"), *SaveGameInstance->PlayerLocation.ToString());
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+//To save future location on map where player will be teleported
+void UARPG_GameInstance::SavePlayerLocation(FVector NewLocation)
+{
+	if (!PlayerRef)
+	{
+		return;
+	}
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		return;
+	}
+	SaveGameInstance->PlayerLocation = NewLocation;
+	SaveGameInstance->CurrentMap = UGameplayStatics::GetCurrentLevelName(this);
+	UE_LOG(LogTemp, Error, TEXT("Saved Map: %s"), *SaveGameInstance->CurrentMap);
+	UE_LOG(LogTemp, Error, TEXT("Saved Location: %s"), *SaveGameInstance->PlayerLocation.ToString());
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadPlayerLocation()
+{
+	if (!PlayerRef || bTeleportByDoor)
+	{
+		return;
+	}
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (!SaveGameInstance)
+	{
+		return;
+	}
+	UE_LOG(LogTemp, Error, TEXT("Loaded Map: %s"), *SaveGameInstance->CurrentMap);
+	UE_LOG(LogTemp, Error, TEXT("Loaded Location: %s"), *SaveGameInstance->PlayerLocation.ToString());
+	PlayerRef->SetActorLocation(SaveGameInstance->PlayerLocation);
+}
+
+
+
+FString UARPG_GameInstance::GetCurrentMap()
+{
+	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+	if (SaveGameInstance)
+	{
+		if (SaveGameInstance->CurrentMap == "")
+		{
+			//UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant GetCurrentMap"));
+			FString Map = "FlyingIsland";
+			return Map;
+		}
+		//UE_LOG(LogTemp,Error, TEXT("GameInstance|Can GetCurrentMap"));
+		return SaveGameInstance->CurrentMap;
+	}
+	return TEXT("FlyingIsland");
+}
 
 
 bool UARPG_GameInstance::bCheckSlot(FString SlotNameToCheck)

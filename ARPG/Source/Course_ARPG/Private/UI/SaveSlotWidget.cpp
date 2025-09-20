@@ -35,13 +35,10 @@ void USaveSlotWidget::SetMapName(FName NewMapName)
 void USaveSlotWidget::OnButtonClicked()
 {
 	Cast<UARPG_GameInstance>(GetGameInstance())->SetSlotName(SlotName);
-
 	PlayerController->SetShowMouseCursor(false);
 	FInputModeGameOnly InputMode;
 	PlayerController->SetInputMode(InputMode);
-
 	UGameplayStatics::OpenLevel(GetWorld(),MapName);
-	
 }
 
 

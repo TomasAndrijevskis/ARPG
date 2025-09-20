@@ -8,6 +8,7 @@
 #include "Interfaces/Fighter.h"
 #include "EnemyCharacter_Base.generated.h"
 
+class AMainCharacter_Base;
 class USphereComponent;
 class UBehaviorTree;
 class UMinionHealthBar;
@@ -108,4 +109,7 @@ private:
 	
 	UPROPERTY()
 	UBlackboardComponent* BlackboardComp;
+
+	UPROPERTY()
+	AMainCharacter_Base* PlayerRef;
 };

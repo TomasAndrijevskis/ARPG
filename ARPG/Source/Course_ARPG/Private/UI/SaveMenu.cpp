@@ -1,12 +1,15 @@
 
 #include "UI/SaveMenu.h"
+
+#include "Characters/MainCharacter_Base.h"
+#include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
+#include "SaveGame/ARPG_SaveGame.h"
 #include"UI/SaveSlotWidget.h"
 
 void USaveMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-
 	SetPlayerControllerProperties();
 
 	SlotNames.Add(FString("Slot1"));
@@ -22,8 +25,8 @@ void USaveMenu::NativeConstruct()
 	}
 
 	CreateSlots(SaveSlotWidgetClass);
-	
 }
+
 
 void USaveMenu::CreateSlots(TSubclassOf<USaveSlotWidget> WidgetClass)
 {
@@ -36,11 +39,14 @@ void USaveMenu::CreateSlots(TSubclassOf<USaveSlotWidget> WidgetClass)
 		USaveSlotWidget* SaveSlotWidget = CreateWidget<USaveSlotWidget>(GetWorld(), WidgetClass);
 		VerticalBox_SaveSlots->AddChild(SaveSlotWidget);
 		SaveSlotWidget->SetSlotName(SlotName);
-
-		if (GameInstance->bCheckSlot(SlotName))
+		if (UGameplayStatics::DoesSaveGameExist(SlotName, 0))
 		{
 			SaveSlotWidget->SetSlotStatus(FText::FromString("Load"));
-			SaveSlotWidget->SetMapName(FName("TestMap"));
+			UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
+			if (SaveGameInstance)
+			{
+				SaveSlotWidget->SetMapName(FName(SaveGameInstance->CurrentMap));
+			}
 		}
 		else
 		{

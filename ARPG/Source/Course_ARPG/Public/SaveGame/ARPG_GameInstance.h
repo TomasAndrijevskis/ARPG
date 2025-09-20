@@ -60,11 +60,24 @@ public:
 
 	UFUNCTION()
 	void LoadDefeatedBosses();
+
+	UFUNCTION()
+	void SavePlayerLocation();
+	
+	void SavePlayerLocation(FVector NewLocation);
+
+	UFUNCTION()
+	void LoadPlayerLocation();
+
+	UFUNCTION()
+	FString GetCurrentMap();
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacterClass;
 
 	bool bIsFirstLoad;
+
+	bool bTeleportByDoor = false;
 	
 private:
 

@@ -32,7 +32,11 @@ void AEnemyCharacter_Base::BeginPlay()
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter_Base::SetupAI, .1f, false);
 	//из-за этой строки функция HandlePlayerDeath сработает когда у игрок умрет(OnZeroHealthDelegate) - таким образом можно триггерить функции через не связанные между собой классы
-	GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>()->StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter_Base::HandlePlayerDeath);
+	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>();
+	if (PlayerRef)
+	{
+		PlayerRef->StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter_Base::HandlePlayerDeath);
+	}
 	
 	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter_Base::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter_Base::ReceiveDamage);
@@ -87,12 +91,12 @@ void AEnemyCharacter_Base::HandleDeath()
 
 	FTimerHandle DestroyTimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(DestroyTimerHandle, this, &AEnemyCharacter_Base::FinishedDeathAnim, DeathAnimDuration, false);
-	IMainPlayer* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<IMainPlayer>();
-	if (!PlayerRef)
+	IMainPlayer* MainPlayerInterfaceRef = GetWorld()->GetFirstPlayerController()->GetPawn<IMainPlayer>();
+	if (!MainPlayerInterfaceRef)
 	{
 		return;
 	}
-	PlayerRef->EndLockonWithActor(this);
+	MainPlayerInterfaceRef->EndLockonWithActor(this);
 	GiveRewardXP();
 }
 
@@ -105,7 +109,6 @@ void AEnemyCharacter_Base::FinishedDeathAnim()
 
 void AEnemyCharacter_Base::GiveRewardXP()
 {
-	AMainCharacter_Base* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>();
 	if (!PlayerRef)
 	{
 		return;

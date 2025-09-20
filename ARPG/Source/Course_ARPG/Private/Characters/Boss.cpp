@@ -5,6 +5,8 @@
 #include "Characters/ARPG_PlayerController.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/CombatComponent_Enemy.h"
+#include "Kismet/GameplayStatics.h"
+#include "Course_ARPG/Public/Objects/BossLocationDoor.h"
 #include "UI/BossHealthBar.h"
 
 
@@ -62,7 +64,14 @@ void ABoss::HandleDeath()
 	{
 		return;
 	}
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABossLocationDoor::StaticClass(), FoundActors);
+	if (FoundActors.Num() > 0)
+	{
+		Cast<ABossLocationDoor>(FoundActors.Last())->OnBossDiedDelegate.Broadcast();
+	}
 	PlayerController->AddDefeatedBoss(FName(*GetClass()->GetName()));
+	PlayerController->SaveAll();
 	Super::HandleDeath();
 	HealthBarWidgetRef->RemoveFromParent();
 }

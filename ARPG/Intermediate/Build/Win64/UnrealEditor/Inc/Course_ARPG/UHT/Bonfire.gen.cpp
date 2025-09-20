@@ -5,7 +5,7 @@
 ===========================================================================*/
 
 #include "UObject/GeneratedCppIncludes.h"
-#include "Course_ARPG/Public/SaveGame/Bonfire.h"
+#include "Course_ARPG/Public/Objects/Bonfire.h"
 #include "Runtime/Engine/Classes/Engine/HitResult.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeBonfire() {}
@@ -15,7 +15,7 @@ COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AARPG_PlayerController_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ABonfire();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ABonfire_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_UBonfireInteractionText_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_UObjectInteractionText_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_UBoxComponent_NoRegister();
@@ -36,7 +36,7 @@ struct Z_Construct_UFunction_ABonfire_ChangeWidgetVisibility_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 #endif // WITH_METADATA
 	static void NewProp_bIsVisible_SetBit(void* Obj);
@@ -88,7 +88,7 @@ struct Z_Construct_UFunction_ABonfire_OnSphereBeginOverlap_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverlappedComp_MetaData[] = {
 		{ "EditInline", "true" },
@@ -167,7 +167,7 @@ struct Z_Construct_UFunction_ABonfire_OnSphereEndOverlap_Statics
 	};
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_OverlappedComponent_MetaData[] = {
 		{ "EditInline", "true" },
@@ -218,6 +218,35 @@ DEFINE_FUNCTION(ABonfire::execOnSphereEndOverlap)
 }
 // End Class ABonfire Function OnSphereEndOverlap
 
+// Begin Class ABonfire Function SetupWidget
+struct Z_Construct_UFunction_ABonfire_SetupWidget_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ABonfire_SetupWidget_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ABonfire, nullptr, "SetupWidget", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00040401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ABonfire_SetupWidget_Statics::Function_MetaDataParams), Z_Construct_UFunction_ABonfire_SetupWidget_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_ABonfire_SetupWidget()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ABonfire_SetupWidget_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ABonfire::execSetupWidget)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SetupWidget();
+	P_NATIVE_END;
+}
+// End Class ABonfire Function SetupWidget
+
 // Begin Class ABonfire
 void ABonfire::StaticRegisterNativesABonfire()
 {
@@ -226,6 +255,7 @@ void ABonfire::StaticRegisterNativesABonfire()
 		{ "ChangeWidgetVisibility", &ABonfire::execChangeWidgetVisibility },
 		{ "OnSphereBeginOverlap", &ABonfire::execOnSphereBeginOverlap },
 		{ "OnSphereEndOverlap", &ABonfire::execOnSphereEndOverlap },
+		{ "SetupWidget", &ABonfire::execSetupWidget },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
 }
@@ -238,43 +268,43 @@ struct Z_Construct_UClass_ABonfire_Statics
 {
 #if WITH_METADATA
 	static constexpr UECodeGen_Private::FMetaDataPairParam Class_MetaDataParams[] = {
-		{ "IncludePath", "SaveGame/Bonfire.h" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "IncludePath", "Objects/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InteractionWidgetComponent_MetaData[] = {
 		{ "Category", "Bonfire" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireMesh_MetaData[] = {
 		{ "Category", "Bonfire" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireCollision_MetaData[] = {
 		{ "Category", "Bonfire" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InteractionRangeCollision_MetaData[] = {
 		{ "Category", "Bonfire" },
 		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InteractionWidgetClass_MetaData[] = {
 		{ "Category", "Bonfire" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_InteractionWidgetRef_MetaData[] = {
-		{ "EditInline", "true" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PlayerController_MetaData[] = {
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_BonfireName_MetaData[] = {
 		{ "Category", "Bonfire" },
-		{ "ModuleRelativePath", "Public/SaveGame/Bonfire.h" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_MapName_MetaData[] = {
+		{ "Category", "Bonfire" },
+		{ "ModuleRelativePath", "Public/Objects/Bonfire.h" },
 	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractionWidgetComponent;
@@ -282,15 +312,16 @@ struct Z_Construct_UClass_ABonfire_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_BonfireCollision;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractionRangeCollision;
 	static const UECodeGen_Private::FClassPropertyParams NewProp_InteractionWidgetClass;
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_InteractionWidgetRef;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_PlayerController;
 	static const UECodeGen_Private::FStrPropertyParams NewProp_BonfireName;
+	static const UECodeGen_Private::FStrPropertyParams NewProp_MapName;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_ABonfire_ChangeWidgetVisibility, "ChangeWidgetVisibility" }, // 66153228
-		{ &Z_Construct_UFunction_ABonfire_OnSphereBeginOverlap, "OnSphereBeginOverlap" }, // 549721993
-		{ &Z_Construct_UFunction_ABonfire_OnSphereEndOverlap, "OnSphereEndOverlap" }, // 2745755305
+		{ &Z_Construct_UFunction_ABonfire_ChangeWidgetVisibility, "ChangeWidgetVisibility" }, // 150104766
+		{ &Z_Construct_UFunction_ABonfire_OnSphereBeginOverlap, "OnSphereBeginOverlap" }, // 985071182
+		{ &Z_Construct_UFunction_ABonfire_OnSphereEndOverlap, "OnSphereEndOverlap" }, // 2251103496
+		{ &Z_Construct_UFunction_ABonfire_SetupWidget, "SetupWidget" }, // 2333622405
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -302,19 +333,19 @@ const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Stati
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireMesh = { "BonfireMesh", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, BonfireMesh), Z_Construct_UClass_UStaticMeshComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireMesh_MetaData), NewProp_BonfireMesh_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireCollision = { "BonfireCollision", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, BonfireCollision), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireCollision_MetaData), NewProp_BonfireCollision_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionRangeCollision = { "InteractionRangeCollision", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, InteractionRangeCollision), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InteractionRangeCollision_MetaData), NewProp_InteractionRangeCollision_MetaData) };
-const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetClass = { "InteractionWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, InteractionWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UBonfireInteractionText_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InteractionWidgetClass_MetaData), NewProp_InteractionWidgetClass_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetRef = { "InteractionWidgetRef", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, InteractionWidgetRef), Z_Construct_UClass_UBonfireInteractionText_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InteractionWidgetRef_MetaData), NewProp_InteractionWidgetRef_MetaData) };
+const UECodeGen_Private::FClassPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetClass = { "InteractionWidgetClass", nullptr, (EPropertyFlags)0x0044000000000001, UECodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, InteractionWidgetClass), Z_Construct_UClass_UClass, Z_Construct_UClass_UObjectInteractionText_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_InteractionWidgetClass_MetaData), NewProp_InteractionWidgetClass_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_PlayerController = { "PlayerController", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, PlayerController), Z_Construct_UClass_AARPG_PlayerController_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PlayerController_MetaData), NewProp_PlayerController_MetaData) };
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireName = { "BonfireName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, BonfireName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BonfireName_MetaData), NewProp_BonfireName_MetaData) };
+const UECodeGen_Private::FStrPropertyParams Z_Construct_UClass_ABonfire_Statics::NewProp_MapName = { "MapName", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ABonfire, MapName), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MapName_MetaData), NewProp_MapName_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABonfire_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetComponent,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireMesh,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireCollision,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionRangeCollision,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetClass,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_InteractionWidgetRef,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_PlayerController,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_BonfireName,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ABonfire_Statics::NewProp_MapName,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ABonfire_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ABonfire_Statics::DependentSingletons[])() = {
@@ -354,14 +385,14 @@ ABonfire::~ABonfire() {}
 // End Class ABonfire
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_Statics
+struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_Bonfire_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ABonfire, ABonfire::StaticClass, TEXT("ABonfire"), &Z_Registration_Info_UClass_ABonfire, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABonfire), 848779814U) },
+		{ Z_Construct_UClass_ABonfire, ABonfire::StaticClass, TEXT("ABonfire"), &Z_Registration_Info_UClass_ABonfire, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABonfire), 3705572964U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_2440541927(TEXT("/Script/Course_ARPG"),
-	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_Bonfire_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_Bonfire_h_1744852333(TEXT("/Script/Course_ARPG"),
+	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_Bonfire_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Objects_Bonfire_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

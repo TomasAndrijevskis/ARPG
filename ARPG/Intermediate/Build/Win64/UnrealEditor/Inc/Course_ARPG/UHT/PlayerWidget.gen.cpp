@@ -6,6 +6,7 @@
 
 #include "UObject/GeneratedCppIncludes.h"
 #include "Course_ARPG/Public/UI/PlayerWidget.h"
+#include "Course_ARPG/Public/Objects/BonfireData.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodePlayerWidget() {}
 
@@ -29,6 +30,7 @@ COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusIconWithAmount_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UStatusIconWithTimer_NoRegister();
 COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EScreens();
 COURSE_ARPG_API UEnum* Z_Construct_UEnum_Course_ARPG_EStats();
+COURSE_ARPG_API UScriptStruct* Z_Construct_UScriptStruct_FBonfireData();
 ENGINE_API UClass* Z_Construct_UClass_UTexture2D_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UHorizontalBox_NoRegister();
 UMG_API UClass* Z_Construct_UClass_UProgressBar_NoRegister();
@@ -201,7 +203,7 @@ struct Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics
 {
 	struct PlayerWidget_eventCreateQuickTravelMenuWidget_Parms
 	{
-		TMap<FString,FVector> UnlockedBonfires;
+		TMap<FString,FBonfireData> UnlockedBonfires;
 		FString CurrentBonfireName;
 	};
 #if WITH_METADATA
@@ -216,9 +218,9 @@ struct Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static const UECodeGen_Private::FFunctionParams FuncParams;
 };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_ValueProp = { "UnlockedBonfires", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_ValueProp = { "UnlockedBonfires", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 1, Z_Construct_UScriptStruct_FBonfireData, METADATA_PARAMS(0, nullptr) }; // 1025949070
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_Key_KeyProp = { "UnlockedBonfires_Key", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FMapPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires = { "UnlockedBonfires", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateQuickTravelMenuWidget_Parms, UnlockedBonfires), EMapPropertyFlags::None, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FMapPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires = { "UnlockedBonfires", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Map, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateQuickTravelMenuWidget_Parms, UnlockedBonfires), EMapPropertyFlags::None, METADATA_PARAMS(0, nullptr) }; // 1025949070
 const UECodeGen_Private::FStrPropertyParams Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_CurrentBonfireName = { "CurrentBonfireName", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Str, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(PlayerWidget_eventCreateQuickTravelMenuWidget_Parms, CurrentBonfireName), METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget_Statics::NewProp_UnlockedBonfires_ValueProp,
@@ -240,7 +242,7 @@ UFunction* Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget()
 }
 DEFINE_FUNCTION(UPlayerWidget::execCreateQuickTravelMenuWidget)
 {
-	P_GET_TMAP(FString,FVector,Z_Param_UnlockedBonfires);
+	P_GET_TMAP(FString,FBonfireData,Z_Param_UnlockedBonfires);
 	P_GET_PROPERTY(FStrProperty,Z_Param_CurrentBonfireName);
 	P_FINISH;
 	P_NATIVE_BEGIN;
@@ -1055,7 +1057,7 @@ struct Z_Construct_UClass_UPlayerWidget_Statics
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 1301023494
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateBonfireMenuWidget, "CreateBonfireMenuWidget" }, // 1274148549
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateDeathWidget, "CreateDeathWidget" }, // 3315036277
-		{ &Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget, "CreateQuickTravelMenuWidget" }, // 1059395091
+		{ &Z_Construct_UFunction_UPlayerWidget_CreateQuickTravelMenuWidget, "CreateQuickTravelMenuWidget" }, // 2288904933
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatsScreen, "CreateStatsScreen" }, // 2487308861
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithAmount, "CreateStatusIconWithAmount" }, // 1220247603
 		{ &Z_Construct_UFunction_UPlayerWidget_CreateStatusIconWithTimer, "CreateStatusIconWithTimer" }, // 1058573187
@@ -1186,10 +1188,10 @@ UPlayerWidget::~UPlayerWidget() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 3877305269U) },
+		{ Z_Construct_UClass_UPlayerWidget, UPlayerWidget::StaticClass, TEXT("UPlayerWidget"), &Z_Registration_Info_UClass_UPlayerWidget, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UPlayerWidget), 3931638209U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_3209169770(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_1749387998(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_PlayerWidget_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

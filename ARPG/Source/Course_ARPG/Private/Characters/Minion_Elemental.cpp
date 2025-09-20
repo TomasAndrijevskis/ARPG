@@ -33,12 +33,12 @@ void AMinion_Elemental::HandleDeath()
 	}
 	FindComponentByClass<UCapsuleComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	
-	IMainPlayer* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<IMainPlayer>();
-	if (!PlayerRef)
+	IMainPlayer* MainPlayerInterfaceRef = GetWorld()->GetFirstPlayerController()->GetPawn<IMainPlayer>();
+	if (!MainPlayerInterfaceRef)
 	{
 		return;
 	}
-	PlayerRef->EndLockonWithActor(this);
+	MainPlayerInterfaceRef->EndLockonWithActor(this);
 	GiveRewardXP();
 
 	if (DeathParticleClass)

@@ -34,7 +34,7 @@ void UCharacterSelect::SetCharacterClass()
 		return;
 	}
 	GameInstance->SetPlayerClass(CharacterClass, true);
-	UGameplayStatics::OpenLevel(GetWorld(),FName("TestMap"));
+	UGameplayStatics::OpenLevel(GetWorld(),FName(GameInstance->GetCurrentMap()));
 }
 
 

@@ -5,6 +5,8 @@
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
+#include "SaveGame/ARPG_GameInstance.h"
+#include "Objects/BonfireData.h"
 #include "UI/BonfireInteractionAnim.h"
 
 
@@ -23,9 +25,10 @@ void UQuickTravelButton::NativeConstruct()
 }
 
 
-void UQuickTravelButton::InitializeButton(FString NewTravelLocationName, FVector NewTravelLocation, FString CurrentBonfireName)
+void UQuickTravelButton::InitializeButton(FString NewTravelLocationName, FBonfireData BonfireData, FString CurrentBonfireName)
 {
-	TravelLocation = NewTravelLocation;
+	TravelMapName = BonfireData.MapName;
+	TravelLocation = BonfireData.Location;
 	TravelLocation.X = TravelLocation.X + 200;
 
 	Text_QuickTravelLocation->SetText(FText::FromString(NewTravelLocationName));
@@ -56,7 +59,22 @@ void UQuickTravelButton::ShowAnimBeforeTeleport()
 
 void UQuickTravelButton::TeleportPlayer()
 {
-	PlayerRef->SetActorLocation(TravelLocation);
+	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(PlayerController->GetGameInstance());
+	if (!GameInstance)
+	{
+		return;
+	}
+	FString MapName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+	if (MapName ==  TravelMapName)
+	{
+		PlayerRef->TeleportTo(TravelLocation, PlayerRef->GetActorRotation());
+		//GameInstance->SavePlayerLocation();
+	}
+	else
+	{
+		GameInstance->SavePlayerLocation(TravelLocation);
+		UGameplayStatics::OpenLevel(this, FName(*TravelMapName));
+	}
 }
 
 

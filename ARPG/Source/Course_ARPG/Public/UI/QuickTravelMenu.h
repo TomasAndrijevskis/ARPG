@@ -3,8 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Objects/BonfireData.h"
 #include "QuickTravelMenu.generated.h"
 
+//struct FBonfireData;
 class UVerticalBox;
 class UQuickTravelButton;
 class AMainCharacter_Base;
@@ -19,7 +21,7 @@ public:
 	
 	virtual void NativeConstruct() override;
 
-	void SetBonfires(TMap<FString, FVector> AvailableBonfires, FString CurrentBonfireName);
+	void SetBonfires(TMap<FString, FBonfireData> AvailableBonfires, FString CurrentBonfireName);
 	
 private:
 
@@ -34,7 +36,7 @@ private:
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
 
-	TMap<FString, FVector> Bonfires;
+	TMap<FString, FBonfireData> Bonfires;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UQuickTravelButton> QuickTravelButtonClass;

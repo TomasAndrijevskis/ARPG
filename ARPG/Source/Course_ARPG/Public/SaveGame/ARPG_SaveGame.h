@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilityData.h"
+#include "Objects/BonfireData.h"
 #include "GameFramework/SaveGame.h"
 #include "ARPG_SaveGame.generated.h"
 
@@ -19,41 +20,47 @@ public:
 
 	UARPG_SaveGame(){};
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	float CurrentHealth;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	float MaxHealth;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	float CurrentMana;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	float MaxMana;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	float Strength;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	float MaxStamina;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	float CurrentXP;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	int CurrentLevel;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	int CurrentStatPoints;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	int CurrentAbilityPoints;
 
+	UPROPERTY()
+	FVector PlayerLocation;
+
+	UPROPERTY()
+	FString CurrentMap;
+	
 	UPROPERTY(EditAnywhere)
 	TMap<FString, FAbilityData> UnlockedAbilities;
 
 	UPROPERTY(EditAnywhere)
-	TMap<FString, FVector> UnlockedBonfires;
+	TMap<FString, FBonfireData> UnlockedBonfires;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacter;

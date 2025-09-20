@@ -316,11 +316,17 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Interfaces\MainPlayer.cpp">
       <Filter>Source\Course_ARPG\Private\Interfaces</Filter>
     </ClCompile>
-    <Filter Include="Source\Course_ARPG\Private\Obstacles">
-      <UniqueIdentifier>{7C8E8037-BB57-39D8-8FC5-D077767A96FA}</UniqueIdentifier>
+    <Filter Include="Source\Course_ARPG\Private\Objects">
+      <UniqueIdentifier>{E9BCD10A-EB97-37F1-8933-4FAA6A3B3105}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Obstacles\BossLocationDoor.cpp">
-      <Filter>Source\Course_ARPG\Private\Obstacles</Filter>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\Bonfire.cpp">
+      <Filter>Source\Course_ARPG\Private\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\BossLocationDoor.cpp">
+      <Filter>Source\Course_ARPG\Private\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\TeleportDoor.cpp">
+      <Filter>Source\Course_ARPG\Private\Objects</Filter>
     </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\SaveGame">
       <UniqueIdentifier>{85D57ACF-8291-3608-9118-5578C8DB5EB4}</UniqueIdentifier>
@@ -334,9 +340,6 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
       <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\Bonfire.cpp">
-      <Filter>Source\Course_ARPG\Private\SaveGame</Filter>
-    </ClCompile>
     <Filter Include="Source\Course_ARPG\Private\UI">
       <UniqueIdentifier>{A1E3A523-FE26-3931-80C8-F6E11BC948A3}</UniqueIdentifier>
     </Filter>
@@ -347,9 +350,6 @@
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionAnim.cpp">
-      <Filter>Source\Course_ARPG\Private\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionText.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireMenu.cpp">
@@ -374,6 +374,9 @@
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\MinionHealthBar.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\ObjectInteractionText.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerDeath.cpp">
@@ -691,11 +694,20 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h">
       <Filter>Source\Course_ARPG\Public\Interfaces</Filter>
     </ClInclude>
-    <Filter Include="Source\Course_ARPG\Public\Obstacles">
-      <UniqueIdentifier>{EB4F0DCD-9CC2-3556-B270-2908262F59A4}</UniqueIdentifier>
+    <Filter Include="Source\Course_ARPG\Public\Objects">
+      <UniqueIdentifier>{F91F487F-2420-36D4-82C4-655A71CB45B0}</UniqueIdentifier>
     </Filter>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Obstacles\BossLocationDoor.h">
-      <Filter>Source\Course_ARPG\Public\Obstacles</Filter>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\Bonfire.h">
+      <Filter>Source\Course_ARPG\Public\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\BonfireData.h">
+      <Filter>Source\Course_ARPG\Public\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\BossLocationDoor.h">
+      <Filter>Source\Course_ARPG\Public\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\TeleportDoor.h">
+      <Filter>Source\Course_ARPG\Public\Objects</Filter>
     </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\SaveGame">
       <UniqueIdentifier>{A2159DDA-70B3-3DBF-9C35-2A3585398F78}</UniqueIdentifier>
@@ -709,9 +721,6 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h">
       <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\Bonfire.h">
-      <Filter>Source\Course_ARPG\Public\SaveGame</Filter>
-    </ClInclude>
     <Filter Include="Source\Course_ARPG\Public\UI">
       <UniqueIdentifier>{B52EBCAF-D84D-317C-8CA2-92E68E50855D}</UniqueIdentifier>
     </Filter>
@@ -722,9 +731,6 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionAnim.h">
-      <Filter>Source\Course_ARPG\Public\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionText.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireMenu.h">
@@ -752,6 +758,9 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\MinionHealthBar.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\ObjectInteractionText.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerDeath.h">

@@ -504,7 +504,13 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Interfaces\MainPlayer.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Obstacles\BossLocationDoor.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\Bonfire.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\BossLocationDoor.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\TeleportDoor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\AbilityData.cpp">
@@ -516,9 +522,6 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\ARPG_SaveGame.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\SaveGame\Bonfire.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\AbilityFooter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -526,9 +529,6 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionAnim.cpp">
-      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireInteractionText.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\BonfireMenu.cpp">
@@ -553,6 +553,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\MinionHealthBar.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\ObjectInteractionText.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerDeath.cpp">
@@ -666,15 +669,16 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\Enemy.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\Fighter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Interfaces\MainPlayer.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Obstacles\BossLocationDoor.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\Bonfire.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\BonfireData.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\BossLocationDoor.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\TeleportDoor.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\AbilityData.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_SaveGame.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\Bonfire.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityFooter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\AbilityUpgradeScreen.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionAnim.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireInteractionText.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BonfireMenu.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\BossHealthBar.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\CharacterSelect.h"/>
@@ -684,6 +688,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoFooter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\InfoHeader.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\MinionHealthBar.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\ObjectInteractionText.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerDeath.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerWidget.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\QuickTravelButton.h"/>

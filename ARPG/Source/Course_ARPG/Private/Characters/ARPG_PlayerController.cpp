@@ -1,13 +1,13 @@
 
 #include "Characters/ARPG_PlayerController.h"
-#include "Characters/Boss.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Gamemode/ARPG_GameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
-#include "SaveGame/Bonfire.h"
+#include "Objects/Bonfire.h"
+#include "Objects/BonfireData.h"
 #include "UI/EScreens.h"
 #include "UI/PlayerWidget.h"
 
@@ -15,14 +15,10 @@
 void AARPG_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-
 	SetPlayerControllerSettings();
-	
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
-	
 	HandleGameLoad();
-	
 }
 
 
@@ -35,9 +31,27 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 
 		if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 		{
-			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), BonfireRef->GetActorLocation());
+			FBonfireData Data;
+			Data.Location = BonfireRef->GetActorLocation();
+			Data.MapName = BonfireRef->GetMapName();
+			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), Data);
+			GameInstanceRef->SaveBonfires();
 		}
 	}
+}
+
+
+void AARPG_PlayerController::TeleportToMap()
+{
+	GameInstanceRef->bTeleportByDoor = true;
+	UGameplayStatics::OpenLevel(this, FName(MapName));
+}
+
+
+void AARPG_PlayerController::LoadToMainMenu()
+{
+	SaveAll();
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MenuMap"));
 }
 
 
@@ -128,7 +142,6 @@ void AARPG_PlayerController::HandleGameLoad()
 	{
 		return;
 	}
-
 	GameInstanceRef->InitializeGameInstance();
 	FString SlotName = GameInstanceRef->GetSlotName();
 	
@@ -138,7 +151,9 @@ void AARPG_PlayerController::HandleGameLoad()
 		GameInstanceRef->LoadAbilities();
 		GameInstanceRef->LoadBonfires();
 		GameInstanceRef->LoadDefeatedBosses();
-		UE_LOG(LogTemp, Error, TEXT("PlayerController|SlotName: %s"), *SlotName);
+		GameInstanceRef->LoadPlayerLocation();
+		GameInstanceRef->bTeleportByDoor = false;
+		GameInstanceRef->SavePlayerLocation();
 	}
 	else
 	{
@@ -146,11 +161,6 @@ void AARPG_PlayerController::HandleGameLoad()
 	}
 }
 
-
-void AARPG_PlayerController::LoadToMainMenu()
-{
-	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MenuMap"));
-}
 
 
 void AARPG_PlayerController::SaveAll()
@@ -165,6 +175,17 @@ void AARPG_PlayerController::SetIsInBonfireRange(bool bNewIsInBonfireRange, ABon
 	BonfireRef = BonfireInRange;
 }
 
+
+void AARPG_PlayerController::SetIsInDoorRange(bool bNewIsInDoorRange)
+{
+	bIsInDoorRange = bNewIsInDoorRange;
+}
+
+
+void AARPG_PlayerController::SetMapName(FString NewMapName)
+{
+	MapName = NewMapName;
+}
 
 
 TArray<FName> AARPG_PlayerController::GetDefeatedBosses()

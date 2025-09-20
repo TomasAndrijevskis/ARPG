@@ -3,6 +3,7 @@
 #include "Characters/MainCharacter_Base.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
+#include "Objects/BonfireData.h"
 #include "UI/PlayerWidget.h"
 #include "UI/QuickTravelButton.h"
 
@@ -21,7 +22,7 @@ void UQuickTravelMenu::NativeConstruct()
 }
 
 
-void UQuickTravelMenu::SetBonfires(TMap<FString, FVector> AvailableBonfires, FString CurrentBonfireName)
+void UQuickTravelMenu::SetBonfires(TMap<FString, FBonfireData> AvailableBonfires, FString CurrentBonfireName)
 {
 	Bonfires = AvailableBonfires;
 	BonfireName = CurrentBonfireName;
@@ -34,6 +35,7 @@ void UQuickTravelMenu::CreateTravelMenu()
 	{
 		for (auto Bonfire : Bonfires)
 		{
+			//UE_LOG(LogTemp, Error, TEXT("Name:%s"), *Bonfire.Key);
 			QuickTravelButtonRef = Cast<UQuickTravelButton>(CreateWidget(this, QuickTravelButtonClass));
 			QuickTravelButtonRef->InitializeButton(Bonfire.Key, Bonfire.Value, BonfireName);
 			VB_QuickTravelContainer->AddChild(QuickTravelButtonRef);
