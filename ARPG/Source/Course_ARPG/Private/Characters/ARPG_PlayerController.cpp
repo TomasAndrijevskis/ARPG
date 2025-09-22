@@ -43,7 +43,7 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 
 void AARPG_PlayerController::TeleportToMap()
 {
-	GameInstanceRef->bTeleportByDoor = true;
+	GameInstanceRef->SetTeleportByDoor(true);
 	UGameplayStatics::OpenLevel(this, FName(MapName));
 }
 
@@ -153,7 +153,7 @@ void AARPG_PlayerController::HandleGameLoad()
 		GameInstanceRef->LoadBonfires();
 		GameInstanceRef->LoadDefeatedBosses();
 		GameInstanceRef->LoadPlayerLocation();
-		GameInstanceRef->bTeleportByDoor = false;
+		GameInstanceRef->SetTeleportByDoor(false);
 		GameInstanceRef->SavePlayerLocation();
 	}
 	else
@@ -195,6 +195,7 @@ void AARPG_PlayerController::QuitGame()
 {
 	UKismetSystemLibrary::QuitGame(GetWorld(), UGameplayStatics::GetPlayerController(GetWorld(), 0), EQuitPreference::Quit, false);
 }
+
 
 
 void AARPG_PlayerController::SetIsInBonfireRange(bool bNewIsInBonfireRange, ABonfire* BonfireInRange)

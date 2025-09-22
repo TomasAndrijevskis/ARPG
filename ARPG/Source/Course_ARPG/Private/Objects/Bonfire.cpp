@@ -57,6 +57,7 @@ void ABonfire::SetupWidget()
 	if (InteractionWidgetClass)
 	{
 		InteractionWidgetComponent->SetWidgetClass(InteractionWidgetClass);
+		InteractionWidgetComponent->SetCastShadow(false);
 		Cast<UObjectInteractionText>(InteractionWidgetComponent->GetUserWidgetObject())->InitializeText("Bonfire", "B");
 		ChangeWidgetVisibility(false);
 	}

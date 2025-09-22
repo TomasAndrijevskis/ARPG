@@ -56,6 +56,7 @@ void ATeleportDoor::SetupWidget()
 	if (InteractionWidgetClass)
 	{
 		InteractionWidgetComponent->SetWidgetClass(InteractionWidgetClass);
+		InteractionWidgetComponent->SetCastShadow(false);
 		Cast<UObjectInteractionText>(InteractionWidgetComponent->GetUserWidgetObject())->InitializeText("Door to " + DoorName, "F");
 		ChangeWidgetVisibility(false);
 	}

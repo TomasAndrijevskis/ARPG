@@ -7,7 +7,6 @@
 #include "ARPG_PlayerController.generated.h"
 
 
-//struct FBonfireData;
 class ABoss;
 class ABonfire;
 class UARPG_GameInstance;

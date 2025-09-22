@@ -364,6 +364,8 @@ FString UARPG_GameInstance::GetCurrentMap()
 }
 
 
+
+
 bool UARPG_GameInstance::bCheckSlot(FString SlotNameToCheck)
 {
 	return UGameplayStatics::DoesSaveGameExist(SlotNameToCheck,0);
@@ -379,4 +381,16 @@ void UARPG_GameInstance::SetSlotName(FString NewSlotName)
 FString UARPG_GameInstance::GetSlotName()
 {
 	return SlotName;
+}
+
+
+void UARPG_GameInstance::SetTeleportByDoor(bool bNewTeleportByDoor)
+{
+	bTeleportByDoor = bNewTeleportByDoor;
+}
+
+
+bool UARPG_GameInstance::GetTeleportByDoor()
+{
+	return bTeleportByDoor;
 }

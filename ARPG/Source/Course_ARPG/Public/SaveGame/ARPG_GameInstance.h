@@ -80,7 +80,9 @@ public:
 
 	bool bIsFirstLoad;
 
-	bool bTeleportByDoor = false;
+	void SetTeleportByDoor(bool bNewTeleportByDoor);
+
+	bool GetTeleportByDoor();
 	
 private:
 
@@ -92,5 +94,7 @@ private:
 	UPROPERTY()
 	AGameModeBase* ARPGGameMode;
 
+	//game will not load previous saved position on next map
+	bool bTeleportByDoor = false;
 	
 };

@@ -95,10 +95,6 @@ public:
 	bool GetCanPlayHurtAnimation();
 
 	void InterruptHurtAnimation();
-
-	void SetIsInFight(bool bNewIsInFight);
-
-	bool GetIsInFight();
 	
 protected:
 

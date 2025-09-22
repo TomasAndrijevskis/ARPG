@@ -63,6 +63,7 @@ void AMinion::CreateHealthWidget()
 	if (HealthBarWidgetClass)
 	{
 		HealthBarWidgetComponent->SetWidgetClass(HealthBarWidgetClass);
+		HealthBarWidgetComponent->SetCastShadow(false);
 		HealthBarWidgetRef = Cast<UMinionHealthBar>(HealthBarWidgetComponent->GetWidget());
 		if (HealthBarWidgetRef)
 		{

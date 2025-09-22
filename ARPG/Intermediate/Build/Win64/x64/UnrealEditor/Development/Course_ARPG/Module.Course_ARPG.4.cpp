@@ -10,6 +10,7 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/RangeAttackProjectile_Ice.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/SaveMenu.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/SaveSlotWidget.gen.cpp"
+#include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/Spawner.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/StatsComponent.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/StatsScreenWidget.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/StatusEffectsComponent.gen.cpp"
