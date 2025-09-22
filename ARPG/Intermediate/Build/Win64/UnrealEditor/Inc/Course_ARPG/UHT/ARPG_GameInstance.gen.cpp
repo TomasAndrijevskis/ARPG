@@ -413,6 +413,35 @@ DEFINE_FUNCTION(UARPG_GameInstance::execSaveAll)
 }
 // End Class UARPG_GameInstance Function SaveAll
 
+// Begin Class UARPG_GameInstance Function SaveAllExceptPosition
+struct Z_Construct_UFunction_UARPG_GameInstance_SaveAllExceptPosition_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/SaveGame/ARPG_GameInstance.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UARPG_GameInstance_SaveAllExceptPosition_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UARPG_GameInstance, nullptr, "SaveAllExceptPosition", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UARPG_GameInstance_SaveAllExceptPosition_Statics::Function_MetaDataParams), Z_Construct_UFunction_UARPG_GameInstance_SaveAllExceptPosition_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UARPG_GameInstance_SaveAllExceptPosition()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UARPG_GameInstance_SaveAllExceptPosition_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UARPG_GameInstance::execSaveAllExceptPosition)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SaveAllExceptPosition();
+	P_NATIVE_END;
+}
+// End Class UARPG_GameInstance Function SaveAllExceptPosition
+
 // Begin Class UARPG_GameInstance Function SaveBonfires
 struct Z_Construct_UFunction_UARPG_GameInstance_SaveBonfires_Statics
 {
@@ -640,6 +669,7 @@ void UARPG_GameInstance::StaticRegisterNativesUARPG_GameInstance()
 		{ "LoadStats", &UARPG_GameInstance::execLoadStats },
 		{ "SaveAbilities", &UARPG_GameInstance::execSaveAbilities },
 		{ "SaveAll", &UARPG_GameInstance::execSaveAll },
+		{ "SaveAllExceptPosition", &UARPG_GameInstance::execSaveAllExceptPosition },
 		{ "SaveBonfires", &UARPG_GameInstance::execSaveBonfires },
 		{ "SaveDefeatedBosses", &UARPG_GameInstance::execSaveDefeatedBosses },
 		{ "SavePlayerLocation", &UARPG_GameInstance::execSavePlayerLocation },
@@ -690,6 +720,7 @@ struct Z_Construct_UClass_UARPG_GameInstance_Statics
 		{ &Z_Construct_UFunction_UARPG_GameInstance_LoadStats, "LoadStats" }, // 388496173
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAbilities, "SaveAbilities" }, // 1098041752
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAll, "SaveAll" }, // 2578912318
+		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveAllExceptPosition, "SaveAllExceptPosition" }, // 1474430223
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveBonfires, "SaveBonfires" }, // 795124874
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SaveDefeatedBosses, "SaveDefeatedBosses" }, // 3008288654
 		{ &Z_Construct_UFunction_UARPG_GameInstance_SavePlayerLocation, "SavePlayerLocation" }, // 1599445502
@@ -753,10 +784,10 @@ UARPG_GameInstance::~UARPG_GameInstance() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 653810461U) },
+		{ Z_Construct_UClass_UARPG_GameInstance, UARPG_GameInstance::StaticClass, TEXT("UARPG_GameInstance"), &Z_Registration_Info_UClass_UARPG_GameInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UARPG_GameInstance), 4175168082U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_928322822(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_162120058(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_SaveGame_ARPG_GameInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

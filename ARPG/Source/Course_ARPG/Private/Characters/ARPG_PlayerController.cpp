@@ -50,7 +50,7 @@ void AARPG_PlayerController::TeleportToMap()
 
 void AARPG_PlayerController::LoadToMainMenu()
 {
-	SaveAll();
+	GameInstanceRef->SaveAllExceptPosition();
 	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MenuMap"));
 }
 
@@ -60,6 +60,7 @@ void AARPG_PlayerController::RemoveBonfireMenuWidget()
 	PlayerRef->GetPlayerWidget()->RemoveBonfireMenuWidget();
 	PlayerRef->FOnBonfireInteractionDelegate.Broadcast();
 	HandleGamePause(false);
+	GameInstanceRef->SaveAll();
 	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
 	if (GameMode)
 	{
@@ -162,10 +163,37 @@ void AARPG_PlayerController::HandleGameLoad()
 }
 
 
-
 void AARPG_PlayerController::SaveAll()
 {
 	GameInstanceRef->SaveAll();
+}
+
+
+void AARPG_PlayerController::CreatePauseMenu()
+{
+	HandleGamePause(true);
+	PlayerRef->GetPlayerWidget()->CreatePauseMenu();
+}
+
+
+void AARPG_PlayerController::RemovePauseMenu()
+{
+	HandleGamePause(false);
+	PlayerRef->GetPlayerWidget()->RemovePauseMenu();
+}
+
+
+void AARPG_PlayerController::SaveBeforeQuit()
+{
+	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, "SaveBeforeQuit");
+	GameInstanceRef->SaveAllExceptPosition();
+	QuitGame();
+}
+
+
+void AARPG_PlayerController::QuitGame()
+{
+	UKismetSystemLibrary::QuitGame(GetWorld(), UGameplayStatics::GetPlayerController(GetWorld(), 0), EQuitPreference::Quit, false);
 }
 
 

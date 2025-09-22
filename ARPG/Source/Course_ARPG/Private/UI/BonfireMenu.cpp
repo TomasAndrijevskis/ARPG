@@ -13,8 +13,8 @@ void UBonfireMenu::NativeConstruct()
 	Button_AbilitiesScreen->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateAbilityUpgradeScreen);
 	Button_StatsScreen->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateStatsScreen);
 	Button_QuitBonfire->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::RemoveBonfireMenuWidget);
-	Button_MainMenu->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::LoadToMainMenu);
-	Button_SaveAll->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::SaveAll);
+	//Button_MainMenu->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::LoadToMainMenu);
+	//Button_SaveAll->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::SaveAll);
 	Button_QuickTravelMenu->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateQuickTravelMenu);
 	
 }

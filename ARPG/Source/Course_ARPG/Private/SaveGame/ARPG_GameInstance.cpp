@@ -52,6 +52,16 @@ void UARPG_GameInstance::SaveAll()
 }
 
 
+void UARPG_GameInstance::SaveAllExceptPosition()
+{
+	SaveStats();
+	SaveAbilities();
+	SaveBonfires();
+	SaveDefeatedBosses();
+	//SavePlayerLocation();
+}
+
+
 void UARPG_GameInstance::SaveBonfires()
 {
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));

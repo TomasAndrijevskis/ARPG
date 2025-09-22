@@ -379,6 +379,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\ObjectInteractionText.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PauseMenu.cpp">
+      <Filter>Source\Course_ARPG\Private\UI</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\UI\PlayerDeath.cpp">
       <Filter>Source\Course_ARPG\Private\UI</Filter>
     </ClCompile>
@@ -761,6 +764,9 @@
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\ObjectInteractionText.h">
+      <Filter>Source\Course_ARPG\Public\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PauseMenu.h">
       <Filter>Source\Course_ARPG\Public\UI</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\UI\PlayerDeath.h">

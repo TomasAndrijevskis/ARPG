@@ -27,6 +27,7 @@ class AMainCharacter_Base;
 	DECLARE_FUNCTION(execInitializeGameInstance); \
 	DECLARE_FUNCTION(execLoadBonfires); \
 	DECLARE_FUNCTION(execSaveBonfires); \
+	DECLARE_FUNCTION(execSaveAllExceptPosition); \
 	DECLARE_FUNCTION(execSaveAll); \
 	DECLARE_FUNCTION(execLoadAbilities); \
 	DECLARE_FUNCTION(execSaveAbilities); \

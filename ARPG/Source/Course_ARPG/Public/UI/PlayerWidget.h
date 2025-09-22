@@ -11,6 +11,7 @@
 #include "PlayerWidget.generated.h"
 
 
+class UPauseMenu;
 struct FBonfireData;
 class UBonfireInteractionAnim;
 class ABonfire;
@@ -94,6 +95,12 @@ public:
 
 	UFUNCTION()
 	void CreateQuickTravelMenuWidget(TMap<FString, FBonfireData> UnlockedBonfires, FString CurrentBonfireName);
+
+	UFUNCTION()
+	void CreatePauseMenu();
+
+	UFUNCTION()
+	void RemovePauseMenu();
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
@@ -187,6 +194,12 @@ private:
 	UPROPERTY()
 	UQuickTravelMenu* QuickTravelMenuWidgetRef;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UPauseMenu> PauseMenuWidgetClass;
+	
+	UPROPERTY()
+	UPauseMenu* PauseMenuWidgetRef;
+	
 	UPROPERTY(EditAnywhere)
 	FVector IconSize;
 };

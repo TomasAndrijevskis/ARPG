@@ -50,6 +50,15 @@ public:
 	UFUNCTION()
 	void SaveAll();
 
+	UFUNCTION(BlueprintCallable)
+	void CreatePauseMenu();
+
+	UFUNCTION()
+	void RemovePauseMenu();
+
+	UFUNCTION()
+	void SaveBeforeQuit();
+	
 	TArray<FName> GetDefeatedBosses();
 
 	void AddDefeatedBoss(FName Boss);
@@ -67,7 +76,9 @@ protected:
 	void TeleportToMap();
 	
 private:
-
+	
+	void QuitGame();
+	
 	UFUNCTION()
 	void HandleGamePause(bool bIsGamePaused);
 	

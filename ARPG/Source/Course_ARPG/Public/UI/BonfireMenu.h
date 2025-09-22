@@ -23,8 +23,8 @@ protected:
 	
 private:
 	
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_SaveAll;
+	//UPROPERTY(meta = (BindWidget))
+	//UButton* Button_SaveAll;
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_QuickTravelMenu;
@@ -35,8 +35,8 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilitiesScreen;
 
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_MainMenu;
+	//UPROPERTY(meta = (BindWidget))
+	//UButton* Button_MainMenu;
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_QuitBonfire;

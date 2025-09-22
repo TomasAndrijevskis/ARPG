@@ -21,6 +21,9 @@ class ABonfire;
 	DECLARE_FUNCTION(execHandleGamePause); \
 	DECLARE_FUNCTION(execTeleportToMap); \
 	DECLARE_FUNCTION(execCreateBonfireMenuWidget); \
+	DECLARE_FUNCTION(execSaveBeforeQuit); \
+	DECLARE_FUNCTION(execRemovePauseMenu); \
+	DECLARE_FUNCTION(execCreatePauseMenu); \
 	DECLARE_FUNCTION(execSaveAll); \
 	DECLARE_FUNCTION(execLoadToMainMenu); \
 	DECLARE_FUNCTION(execSetMapName); \

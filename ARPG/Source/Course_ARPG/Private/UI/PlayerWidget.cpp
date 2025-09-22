@@ -8,6 +8,7 @@
 #include "UI/EScreens.h"
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
+#include "UI/PauseMenu.h"
 #include "UI/PlayerDeath.h"
 #include "UI/QuickTravelMenu.h"
 #include "UI/StatusIconWithAmount.h"
@@ -191,6 +192,26 @@ void UPlayerWidget::CreateQuickTravelMenuWidget(TMap<FString, FBonfireData> Unlo
 		QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
 		QuickTravelMenuWidgetRef -> SetBonfires(UnlockedBonfires, CurrentBonfireName);
 		QuickTravelMenuWidgetRef -> AddToViewport(5);
+	}
+}
+
+
+void UPlayerWidget::CreatePauseMenu()
+{
+	if (PauseMenuWidgetClass)
+	{
+		PauseMenuWidgetRef = Cast<UPauseMenu>(CreateWidget(this, PauseMenuWidgetClass));
+		PauseMenuWidgetRef->AddToViewport(5);
+	}
+}
+
+
+void UPlayerWidget::RemovePauseMenu()
+{
+	if (PauseMenuWidgetRef)
+	{
+		PauseMenuWidgetRef->RemoveFromParent();
+		PauseMenuWidgetRef = nullptr;
 	}
 }
 

@@ -77,6 +77,35 @@ DEFINE_FUNCTION(AARPG_PlayerController::execCreateBonfireMenuWidget)
 }
 // End Class AARPG_PlayerController Function CreateBonfireMenuWidget
 
+// Begin Class AARPG_PlayerController Function CreatePauseMenu
+struct Z_Construct_UFunction_AARPG_PlayerController_CreatePauseMenu_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_CreatePauseMenu_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "CreatePauseMenu", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_CreatePauseMenu_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_CreatePauseMenu_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AARPG_PlayerController_CreatePauseMenu()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AARPG_PlayerController_CreatePauseMenu_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AARPG_PlayerController::execCreatePauseMenu)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->CreatePauseMenu();
+	P_NATIVE_END;
+}
+// End Class AARPG_PlayerController Function CreatePauseMenu
+
 // Begin Class AARPG_PlayerController Function CreateQuickTravelMenu
 struct Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu_Statics
 {
@@ -269,6 +298,35 @@ DEFINE_FUNCTION(AARPG_PlayerController::execRemoveBonfireMenuWidget)
 }
 // End Class AARPG_PlayerController Function RemoveBonfireMenuWidget
 
+// Begin Class AARPG_PlayerController Function RemovePauseMenu
+struct Z_Construct_UFunction_AARPG_PlayerController_RemovePauseMenu_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_RemovePauseMenu_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "RemovePauseMenu", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_RemovePauseMenu_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_RemovePauseMenu_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AARPG_PlayerController_RemovePauseMenu()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AARPG_PlayerController_RemovePauseMenu_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AARPG_PlayerController::execRemovePauseMenu)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->RemovePauseMenu();
+	P_NATIVE_END;
+}
+// End Class AARPG_PlayerController Function RemovePauseMenu
+
 // Begin Class AARPG_PlayerController Function RemoveQuickTravelMenu
 struct Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu_Statics
 {
@@ -326,6 +384,35 @@ DEFINE_FUNCTION(AARPG_PlayerController::execSaveAll)
 	P_NATIVE_END;
 }
 // End Class AARPG_PlayerController Function SaveAll
+
+// Begin Class AARPG_PlayerController Function SaveBeforeQuit
+struct Z_Construct_UFunction_AARPG_PlayerController_SaveBeforeQuit_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/Characters/ARPG_PlayerController.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AARPG_PlayerController_SaveBeforeQuit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AARPG_PlayerController, nullptr, "SaveBeforeQuit", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AARPG_PlayerController_SaveBeforeQuit_Statics::Function_MetaDataParams), Z_Construct_UFunction_AARPG_PlayerController_SaveBeforeQuit_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_AARPG_PlayerController_SaveBeforeQuit()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AARPG_PlayerController_SaveBeforeQuit_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(AARPG_PlayerController::execSaveBeforeQuit)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->SaveBeforeQuit();
+	P_NATIVE_END;
+}
+// End Class AARPG_PlayerController Function SaveBeforeQuit
 
 // Begin Class AARPG_PlayerController Function SetIsInBonfireRange
 struct Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange_Statics
@@ -533,14 +620,17 @@ void AARPG_PlayerController::StaticRegisterNativesAARPG_PlayerController()
 	static const FNameNativePtrPair Funcs[] = {
 		{ "CreateAbilityUpgradeScreen", &AARPG_PlayerController::execCreateAbilityUpgradeScreen },
 		{ "CreateBonfireMenuWidget", &AARPG_PlayerController::execCreateBonfireMenuWidget },
+		{ "CreatePauseMenu", &AARPG_PlayerController::execCreatePauseMenu },
 		{ "CreateQuickTravelMenu", &AARPG_PlayerController::execCreateQuickTravelMenu },
 		{ "CreateStatsScreen", &AARPG_PlayerController::execCreateStatsScreen },
 		{ "HandleGameLoad", &AARPG_PlayerController::execHandleGameLoad },
 		{ "HandleGamePause", &AARPG_PlayerController::execHandleGamePause },
 		{ "LoadToMainMenu", &AARPG_PlayerController::execLoadToMainMenu },
 		{ "RemoveBonfireMenuWidget", &AARPG_PlayerController::execRemoveBonfireMenuWidget },
+		{ "RemovePauseMenu", &AARPG_PlayerController::execRemovePauseMenu },
 		{ "RemoveQuickTravelMenu", &AARPG_PlayerController::execRemoveQuickTravelMenu },
 		{ "SaveAll", &AARPG_PlayerController::execSaveAll },
+		{ "SaveBeforeQuit", &AARPG_PlayerController::execSaveBeforeQuit },
 		{ "SetIsInBonfireRange", &AARPG_PlayerController::execSetIsInBonfireRange },
 		{ "SetIsInDoorRange", &AARPG_PlayerController::execSetIsInDoorRange },
 		{ "SetMapName", &AARPG_PlayerController::execSetMapName },
@@ -586,14 +676,17 @@ struct Z_Construct_UClass_AARPG_PlayerController_Statics
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateAbilityUpgradeScreen, "CreateAbilityUpgradeScreen" }, // 3242308684
 		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateBonfireMenuWidget, "CreateBonfireMenuWidget" }, // 3394972311
+		{ &Z_Construct_UFunction_AARPG_PlayerController_CreatePauseMenu, "CreatePauseMenu" }, // 1128256997
 		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateQuickTravelMenu, "CreateQuickTravelMenu" }, // 4103149661
 		{ &Z_Construct_UFunction_AARPG_PlayerController_CreateStatsScreen, "CreateStatsScreen" }, // 1531694648
 		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGameLoad, "HandleGameLoad" }, // 897463061
 		{ &Z_Construct_UFunction_AARPG_PlayerController_HandleGamePause, "HandleGamePause" }, // 1776799696
 		{ &Z_Construct_UFunction_AARPG_PlayerController_LoadToMainMenu, "LoadToMainMenu" }, // 601955400
 		{ &Z_Construct_UFunction_AARPG_PlayerController_RemoveBonfireMenuWidget, "RemoveBonfireMenuWidget" }, // 2003974830
+		{ &Z_Construct_UFunction_AARPG_PlayerController_RemovePauseMenu, "RemovePauseMenu" }, // 1516626689
 		{ &Z_Construct_UFunction_AARPG_PlayerController_RemoveQuickTravelMenu, "RemoveQuickTravelMenu" }, // 2183402159
 		{ &Z_Construct_UFunction_AARPG_PlayerController_SaveAll, "SaveAll" }, // 462141983
+		{ &Z_Construct_UFunction_AARPG_PlayerController_SaveBeforeQuit, "SaveBeforeQuit" }, // 3000832195
 		{ &Z_Construct_UFunction_AARPG_PlayerController_SetIsInBonfireRange, "SetIsInBonfireRange" }, // 1123615764
 		{ &Z_Construct_UFunction_AARPG_PlayerController_SetIsInDoorRange, "SetIsInDoorRange" }, // 3239709777
 		{ &Z_Construct_UFunction_AARPG_PlayerController_SetMapName, "SetMapName" }, // 947473265
@@ -660,10 +753,10 @@ AARPG_PlayerController::~AARPG_PlayerController() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 2547173318U) },
+		{ Z_Construct_UClass_AARPG_PlayerController, AARPG_PlayerController::StaticClass, TEXT("AARPG_PlayerController"), &Z_Registration_Info_UClass_AARPG_PlayerController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AARPG_PlayerController), 851962596U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_2235831264(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_946932338(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_ARPG_PlayerController_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

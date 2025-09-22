@@ -38,6 +38,9 @@ public:
 	void SaveAll();
 
 	UFUNCTION()
+	void SaveAllExceptPosition();
+
+	UFUNCTION()
 	void SaveBonfires();
 
 	UFUNCTION()
