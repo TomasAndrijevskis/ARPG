@@ -11,7 +11,7 @@ void EmptyLinkFunctionForGeneratedCodeMinion() {}
 
 // Begin Cross Module References
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
-COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter_Base();
+COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMinion();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AMinion_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UMinionHealthBar_NoRegister();
@@ -71,7 +71,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMinion_S
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMinion_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMinion_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_AEnemyCharacter_Base,
+	(UObject* (*)())Z_Construct_UClass_AEnemyCharacter,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMinion_Statics::DependentSingletons) < 16);
@@ -110,10 +110,10 @@ AMinion::~AMinion() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMinion, AMinion::StaticClass, TEXT("AMinion"), &Z_Registration_Info_UClass_AMinion, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinion), 1950955913U) },
+		{ Z_Construct_UClass_AMinion, AMinion::StaticClass, TEXT("AMinion"), &Z_Registration_Info_UClass_AMinion, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMinion), 11756737U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_h_628445051(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_h_3275181636(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Minion_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Spawner.generated.h"
 
-class AEnemyCharacter_Base;
+class AEnemyCharacter;
 
 UCLASS()
 class COURSE_ARPG_API ASpawner : public AActor
@@ -26,7 +26,7 @@ protected:
 	virtual void SpawnEnemies(){};
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<AEnemyCharacter_Base> EnemyClass;
+	TSubclassOf<AEnemyCharacter> EnemyClass;
 	
 private:
 

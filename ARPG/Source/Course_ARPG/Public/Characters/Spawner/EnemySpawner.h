@@ -29,7 +29,7 @@ private:
 	int EnemySpawnCount;
 	
 	UPROPERTY(VisibleAnywhere)
-	TArray<AEnemyCharacter_Base*> SpawnedEnemies;
+	TArray<AEnemyCharacter*> SpawnedEnemies;
 
 	UPROPERTY(EditAnywhere)
 	int MinSpawnRange;

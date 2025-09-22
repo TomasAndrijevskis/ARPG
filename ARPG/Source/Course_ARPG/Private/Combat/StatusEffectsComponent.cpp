@@ -3,7 +3,7 @@
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Characters/Boss.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/EnemyCharacter.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Characters/Minion.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"

@@ -36,7 +36,7 @@ void UGroundSmashComponent::SpawnParticles()
 		GroundSmashAreaActor = GetWorld()->SpawnActor<AGroundSmashArea>(GroundSmashAreaClass,  SpawnLocation, SpawnRotation, Params);
 		if (PawnRef)
 		{
-			GroundSmashAreaActor->SetParams(Cast<AEnemyCharacter_Base>(PawnRef)->StatsComp->GetStatValue(EStats::Strength) * DamageMultiplier);
+			GroundSmashAreaActor->SetParams(Cast<AEnemyCharacter>(PawnRef)->StatsComp->GetStatValue(EStats::Strength) * DamageMultiplier);
 		}
 	}
 }

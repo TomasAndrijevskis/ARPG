@@ -1,6 +1,6 @@
 
 #include "Combat/Abilities/FireStorm.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/EnemyCharacter.h"
 #include "Characters/MainCharacter_Base.h"
 #include "Combat/StatusEffectsComponent.h"
 #include "Components/BoxComponent.h"
@@ -43,9 +43,9 @@ void AFireStorm::HandleOverlap(AActor* OtherActor, bool bIsOverlapping)
 		return;
 	}
 
-	if (Cast<AEnemyCharacter_Base>(OtherActor))
+	if (Cast<AEnemyCharacter>(OtherActor))
 	{
-		OverlappedActor = Cast<AEnemyCharacter_Base>(OtherActor);
+		OverlappedActor = Cast<AEnemyCharacter>(OtherActor);
 		OverlappedActor -> StatusEffectsComp->HandleBurn(BurnDuration, BurnDamage, BurnEffect, bIsOverlapping, BurnRate);
 	}
 }

@@ -1,13 +1,13 @@
 
 #include "Animations/AnimInstance_Base.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/EnemyCharacter.h"
 #include "Combat/TraceComponent.h"
 
 
 void UAnimInstance_Base::NativeBeginPlay()
 {
 	Super::NativeBeginPlay();
-	PawnRef = Cast<AEnemyCharacter_Base>(TryGetPawnOwner());
+	PawnRef = Cast<AEnemyCharacter>(TryGetPawnOwner());
 }
 
 

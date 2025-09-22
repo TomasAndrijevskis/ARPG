@@ -10,7 +10,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeEnemySpawner() {}
 
 // Begin Cross Module References
-COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter_Base_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemySpawner();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemySpawner_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ASpawner();
@@ -63,7 +63,7 @@ struct Z_Construct_UClass_AEnemySpawner_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AEnemySpawner_Statics::NewProp_EnemySpawnCount = { "EnemySpawnCount", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemySpawner, EnemySpawnCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_EnemySpawnCount_MetaData), NewProp_EnemySpawnCount_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemySpawner_Statics::NewProp_SpawnedEnemies_Inner = { "SpawnedEnemies", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_AEnemyCharacter_Base_NoRegister, METADATA_PARAMS(0, nullptr) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AEnemySpawner_Statics::NewProp_SpawnedEnemies_Inner = { "SpawnedEnemies", nullptr, (EPropertyFlags)0x0000000000020000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_AEnemyCharacter_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AEnemySpawner_Statics::NewProp_SpawnedEnemies = { "SpawnedEnemies", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemySpawner, SpawnedEnemies), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_SpawnedEnemies_MetaData), NewProp_SpawnedEnemies_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AEnemySpawner_Statics::NewProp_MinSpawnRange = { "MinSpawnRange", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemySpawner, MinSpawnRange), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MinSpawnRange_MetaData), NewProp_MinSpawnRange_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AEnemySpawner_Statics::NewProp_MaxSpawnRange = { "MaxSpawnRange", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AEnemySpawner, MaxSpawnRange), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_MaxSpawnRange_MetaData), NewProp_MaxSpawnRange_MetaData) };
@@ -115,10 +115,10 @@ AEnemySpawner::~AEnemySpawner() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_EnemySpawner_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AEnemySpawner, AEnemySpawner::StaticClass, TEXT("AEnemySpawner"), &Z_Registration_Info_UClass_AEnemySpawner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemySpawner), 1523590900U) },
+		{ Z_Construct_UClass_AEnemySpawner, AEnemySpawner::StaticClass, TEXT("AEnemySpawner"), &Z_Registration_Info_UClass_AEnemySpawner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemySpawner), 1216154040U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_EnemySpawner_h_1692769805(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_EnemySpawner_h_1550683648(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_EnemySpawner_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_EnemySpawner_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

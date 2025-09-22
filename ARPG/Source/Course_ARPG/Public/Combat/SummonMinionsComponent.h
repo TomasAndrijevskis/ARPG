@@ -6,7 +6,7 @@
 #include "SummonMinionsComponent.generated.h"
 
 
-class AEnemyCharacter_Base;
+class AEnemyCharacter;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API USummonMinionsComponent : public UActorComponent
@@ -37,6 +37,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	int MaxSpawnDistance;
 
-	AEnemyCharacter_Base* CharacterRef;
+	AEnemyCharacter* CharacterRef;
 
 };

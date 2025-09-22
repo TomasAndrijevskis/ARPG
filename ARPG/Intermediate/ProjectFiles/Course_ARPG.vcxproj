@@ -300,7 +300,7 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss_Rampage.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Base.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\LevelingComponent.cpp">
@@ -600,7 +600,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Fey.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Rampage.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Base.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter.h" />
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LookAtPlayerComponent.h"/>

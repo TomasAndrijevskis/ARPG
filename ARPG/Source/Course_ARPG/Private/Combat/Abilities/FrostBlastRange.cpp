@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/FrostBlastRange.h"
 #include "NiagaraComponent.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/EnemyCharacter.h"
 #include "Combat/StatusEffectsComponent.h"
 #include "Components/SphereComponent.h"
 #include "Engine/DamageEvents.h"
@@ -29,7 +29,7 @@ void AFrostBlastRange::BeginPlay()
 void AFrostBlastRange::CheckEnemiesInRange()
 {
 	TArray<AActor*> FoundEnemies;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemyCharacter_Base::StaticClass(), FoundEnemies);
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemyCharacter::StaticClass(), FoundEnemies);
 
 	float Radius = Collision->GetScaledSphereRadius();
 	FVector Center = GetActorLocation();
@@ -48,7 +48,7 @@ void AFrostBlastRange::CheckEnemiesInRange()
 			FoundEnemy->TakeDamage(Damage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 			if (FrozenEffectClass)
 			{
-				Cast<AEnemyCharacter_Base>(FoundEnemy)->StatusEffectsComp->SlowDownEnemy(SlowDuration, FrozenEffectClass);
+				Cast<AEnemyCharacter>(FoundEnemy)->StatusEffectsComp->SlowDownEnemy(SlowDuration, FrozenEffectClass);
 			}
 		}
 	}

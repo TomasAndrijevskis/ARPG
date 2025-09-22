@@ -19,7 +19,7 @@ private: \
 	static void StaticRegisterNativesAMinion(); \
 	friend struct Z_Construct_UClass_AMinion_Statics; \
 public: \
-	DECLARE_CLASS(AMinion, AEnemyCharacter_Base, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
+	DECLARE_CLASS(AMinion, AEnemyCharacter, COMPILED_IN_FLAGS(0 | CLASS_Config), CASTCLASS_None, TEXT("/Script/Course_ARPG"), NO_API) \
 	DECLARE_SERIALIZER(AMinion)
 
 

@@ -2,14 +2,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/EnemyCharacter.h"
 #include "Minion.generated.h"
 
 
 class UWidgetComponent;
 
 UCLASS()
-class COURSE_ARPG_API AMinion : public AEnemyCharacter_Base
+class COURSE_ARPG_API AMinion : public AEnemyCharacter
 {
 	GENERATED_BODY()
 

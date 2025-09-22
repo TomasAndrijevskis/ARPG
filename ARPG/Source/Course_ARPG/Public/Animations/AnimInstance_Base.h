@@ -6,7 +6,7 @@
 #include "AnimInstance_Base.generated.h"
 
 
-class AEnemyCharacter_Base;
+class AEnemyCharacter;
 
 UCLASS()
 class COURSE_ARPG_API UAnimInstance_Base : public UAnimInstance
@@ -30,5 +30,5 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void UpdateSpeed();
 
-	AEnemyCharacter_Base* PawnRef;
+	AEnemyCharacter* PawnRef;
 };

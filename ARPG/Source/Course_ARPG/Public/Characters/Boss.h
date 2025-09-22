@@ -2,14 +2,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/EnemyCharacter.h"
 #include "Boss.generated.h"
 
 class UEnemyProjectileComponent;
 class UBossHealthBar;
 
 UCLASS()
-class COURSE_ARPG_API ABoss : public AEnemyCharacter_Base
+class COURSE_ARPG_API ABoss : public AEnemyCharacter
 {
 	GENERATED_BODY()
 	

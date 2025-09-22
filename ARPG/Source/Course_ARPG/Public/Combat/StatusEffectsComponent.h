@@ -9,7 +9,7 @@
 class UAbilityComponent_Base;
 class UNiagaraComponent;
 class UNiagaraSystem;
-class AEnemyCharacter_Base;
+class AEnemyCharacter;
 
 
 enum EStatusEffects

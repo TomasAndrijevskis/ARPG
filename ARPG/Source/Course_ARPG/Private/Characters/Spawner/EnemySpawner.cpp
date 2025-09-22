@@ -1,6 +1,6 @@
 
 #include "Characters/Spawner/EnemySpawner.h"
-#include "Characters/EnemyCharacter_Base.h"
+#include "Characters/EnemyCharacter.h"
 
 
 void AEnemySpawner::CheckEnemies()
@@ -31,7 +31,7 @@ void AEnemySpawner::SpawnEnemies()
 	
 		FActorSpawnParameters SpawnParameters;
 		SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
-		AEnemyCharacter_Base* SpawnedEnemy = GetWorld()->SpawnActor<AEnemyCharacter_Base>(EnemyClass, SpawnLocation, GetActorRotation(), SpawnParameters);
+		AEnemyCharacter* SpawnedEnemy = GetWorld()->SpawnActor<AEnemyCharacter>(EnemyClass, SpawnLocation, GetActorRotation(), SpawnParameters);
 		if (SpawnedEnemy)
 		{
 			SpawnedEnemies.Add(SpawnedEnemy);

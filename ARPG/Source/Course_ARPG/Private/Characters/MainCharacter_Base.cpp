@@ -180,6 +180,19 @@ void AMainCharacter_Base::InterruptHurtAnimation()
 }
 
 
+
+void AMainCharacter_Base::SetIsInFight(bool bNewIsInFight)
+{
+	bIsInFight = bNewIsInFight;
+}
+
+
+bool AMainCharacter_Base::GetIsInFight()
+{
+	return bIsInFight;
+}
+
+
 float AMainCharacter_Base::GetCurrentDamage()
 {
 	return StatsComp->GetStatValue(EStats::Strength);

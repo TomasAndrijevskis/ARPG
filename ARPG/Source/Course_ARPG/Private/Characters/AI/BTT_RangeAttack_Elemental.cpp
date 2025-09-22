@@ -41,7 +41,7 @@ void UBTT_RangeAttack_Elemental::CheckDistance()
 {
 	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
 	FVector PlayerLocation = PlayerRef->GetActorLocation();
-	AEnemyCharacter_Base* EnemyCharacterRef = Cast<AEnemyCharacter_Base>(CharacterRef);
+	AEnemyCharacter* EnemyCharacterRef = Cast<AEnemyCharacter>(CharacterRef);
 	
 	if (!EnemyCharacterRef)
 	{

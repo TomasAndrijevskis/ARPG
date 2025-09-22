@@ -11,7 +11,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeFireStorm() {}
 
 // Begin Cross Module References
-COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter_Base_NoRegister();
+COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter_NoRegister();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AFireStorm();
 COURSE_ARPG_API UClass* Z_Construct_UClass_AFireStorm_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_AActor();
@@ -228,7 +228,7 @@ struct Z_Construct_UClass_AFireStorm_Statics
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFireStorm_Statics::NewProp_FireStormEffect = { "FireStormEffect", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFireStorm, FireStormEffect), Z_Construct_UClass_UParticleSystemComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FireStormEffect_MetaData), NewProp_FireStormEffect_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFireStorm_Statics::NewProp_CollisionBox = { "CollisionBox", nullptr, (EPropertyFlags)0x0040000000080009, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFireStorm, CollisionBox), Z_Construct_UClass_UBoxComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CollisionBox_MetaData), NewProp_CollisionBox_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFireStorm_Statics::NewProp_BurnEffect = { "BurnEffect", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFireStorm, BurnEffect), Z_Construct_UClass_UNiagaraSystem_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_BurnEffect_MetaData), NewProp_BurnEffect_MetaData) };
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFireStorm_Statics::NewProp_OverlappedActor = { "OverlappedActor", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFireStorm, OverlappedActor), Z_Construct_UClass_AEnemyCharacter_Base_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OverlappedActor_MetaData), NewProp_OverlappedActor_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AFireStorm_Statics::NewProp_OverlappedActor = { "OverlappedActor", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AFireStorm, OverlappedActor), Z_Construct_UClass_AEnemyCharacter_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_OverlappedActor_MetaData), NewProp_OverlappedActor_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AFireStorm_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFireStorm_Statics::NewProp_FireStormEffect,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AFireStorm_Statics::NewProp_CollisionBox,
@@ -276,10 +276,10 @@ AFireStorm::~AFireStorm() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AFireStorm, AFireStorm::StaticClass, TEXT("AFireStorm"), &Z_Registration_Info_UClass_AFireStorm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFireStorm), 1891647703U) },
+		{ Z_Construct_UClass_AFireStorm, AFireStorm::StaticClass, TEXT("AFireStorm"), &Z_Registration_Info_UClass_AFireStorm, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AFireStorm), 1594651908U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_1946884990(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_3633025405(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Combat_Abilities_FireStorm_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

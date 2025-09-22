@@ -5,7 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "FireStorm.generated.h"
 
-class AEnemyCharacter_Base;
+class AEnemyCharacter;
 class UNiagaraSystem;
 class UBoxComponent;
 
@@ -41,7 +41,7 @@ private:
 	UNiagaraSystem* BurnEffect;
 
 	UPROPERTY()
-	AEnemyCharacter_Base* OverlappedActor;
+	AEnemyCharacter* OverlappedActor;
 	
 	float BurnDuration;
 	

@@ -13,7 +13,7 @@ void EmptyLinkFunctionForGeneratedCodeBoss() {}
 COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ABoss();
 COURSE_ARPG_API UClass* Z_Construct_UClass_ABoss_NoRegister();
-COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter_Base();
+COURSE_ARPG_API UClass* Z_Construct_UClass_AEnemyCharacter();
 COURSE_ARPG_API UClass* Z_Construct_UClass_UBossHealthBar_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Course_ARPG();
 // End Cross Module References
@@ -141,7 +141,7 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ABoss_Sta
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ABoss_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ABoss_Statics::DependentSingletons[])() = {
-	(UObject* (*)())Z_Construct_UClass_AEnemyCharacter_Base,
+	(UObject* (*)())Z_Construct_UClass_AEnemyCharacter,
 	(UObject* (*)())Z_Construct_UPackage__Script_Course_ARPG,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ABoss_Statics::DependentSingletons) < 16);
@@ -180,10 +180,10 @@ ABoss::~ABoss() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Boss_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ABoss, ABoss::StaticClass, TEXT("ABoss"), &Z_Registration_Info_UClass_ABoss, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABoss), 3899193616U) },
+		{ Z_Construct_UClass_ABoss, ABoss::StaticClass, TEXT("ABoss"), &Z_Registration_Info_UClass_ABoss, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABoss), 3315290148U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Boss_h_3476804964(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Boss_h_1084250732(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Boss_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Boss_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

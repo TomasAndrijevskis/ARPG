@@ -7,7 +7,7 @@
 void USummonMinionsComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	CharacterRef = Cast<AEnemyCharacter_Base>(GetOwner());
+	CharacterRef = Cast<AEnemyCharacter>(GetOwner());
 }
 
 

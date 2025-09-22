@@ -79,10 +79,10 @@ ABossSpawner::~ABossSpawner() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_BossSpawner_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ABossSpawner, ABossSpawner::StaticClass, TEXT("ABossSpawner"), &Z_Registration_Info_UClass_ABossSpawner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABossSpawner), 1304908327U) },
+		{ Z_Construct_UClass_ABossSpawner, ABossSpawner::StaticClass, TEXT("ABossSpawner"), &Z_Registration_Info_UClass_ABossSpawner, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ABossSpawner), 1811961149U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_BossSpawner_h_1308642789(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_BossSpawner_h_3319381957(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_BossSpawner_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_Spawner_BossSpawner_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

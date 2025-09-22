@@ -95,6 +95,10 @@ public:
 	bool GetCanPlayHurtAnimation();
 
 	void InterruptHurtAnimation();
+
+	void SetIsInFight(bool bNewIsInFight);
+
+	bool GetIsInFight();
 	
 protected:
 
@@ -136,5 +140,6 @@ private:
 	USkeletalMeshComponent* SkeletalMeshComp;
 
 	bool bCanPlayHurtAnim = true;
-	
+
+	bool bIsInFight = false;
 };
