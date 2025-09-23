@@ -32,11 +32,29 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 		if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 		{
 			FBonfireData Data;
-			Data.Location = BonfireRef->GetActorLocation();
+			//UE_LOG(LogTemp, Error, TEXT("Location: %s"), *BonfireRef->GetActorLocation().ToString());
+			//UE_LOG(LogTemp, Error, TEXT("ForwardVector: %s"), *BonfireRef->GetActorForwardVector().ToString());
+			FVector Location = BonfireRef->GetActorLocation() + BonfireRef->GetActorForwardVector() * 200;
+			//UE_LOG(LogTemp, Error, TEXT("Desired location: %s"), *Location.ToString());
+			Data.Location = Location;
 			Data.MapName = BonfireRef->GetMapName();
 			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), Data);
 			GameInstanceRef->SaveBonfires();
 		}
+	}
+}
+
+
+void AARPG_PlayerController::RemoveBonfireMenuWidget()
+{
+	PlayerRef->GetPlayerWidget()->RemoveBonfireMenuWidget();
+	PlayerRef->FOnBonfireInteractionDelegate.Broadcast();
+	HandleGamePause(false);
+	GameInstanceRef->SaveAll();
+	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
+	if (GameMode)
+	{
+		GameMode->SpawnEnemies();
 	}
 }
 
@@ -52,20 +70,6 @@ void AARPG_PlayerController::LoadToMainMenu()
 {
 	GameInstanceRef->SaveAllExceptPosition();
 	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MenuMap"));
-}
-
-
-void AARPG_PlayerController::RemoveBonfireMenuWidget()
-{
-	PlayerRef->GetPlayerWidget()->RemoveBonfireMenuWidget();
-	PlayerRef->FOnBonfireInteractionDelegate.Broadcast();
-	HandleGamePause(false);
-	GameInstanceRef->SaveAll();
-	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
-	if (GameMode)
-	{
-		GameMode->SpawnEnemies();
-	}
 }
 
 

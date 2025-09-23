@@ -59,6 +59,11 @@ public:
 	float GetSightRadius();
 	
 	UBlackboardComponent* GetBlackboardComp();
+
+	UFUNCTION()
+	TEnumAsByte<EEnemyStates> GetInitialState();
+
+	void SetInitialState(TEnumAsByte<EEnemyStates> NewState);
 	
 protected:
 

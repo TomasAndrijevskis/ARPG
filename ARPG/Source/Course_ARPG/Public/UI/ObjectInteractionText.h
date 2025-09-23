@@ -17,11 +17,13 @@ public:
 
 	void NativeConstruct() override;
 	
-	void InitializeText(FString InteractObject, FString InteractKey);
+	void InitializeText(FString InteractionObject, FString InteractionObjectName,  FString InteractiontKey);
 	
 private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_InteractionText;
-	
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_InteractionText_1;
 };

@@ -38,8 +38,14 @@ struct Z_Construct_UClass_UObjectInteractionText_Statics
 		{ "EditInline", "true" },
 		{ "ModuleRelativePath", "Public/UI/ObjectInteractionText.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Text_InteractionText_1_MetaData[] = {
+		{ "BindWidget", "" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/UI/ObjectInteractionText.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_Text_InteractionText;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp_Text_InteractionText_1;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FCppClassTypeInfoStatic StaticCppClassTypeInfo = {
@@ -48,8 +54,10 @@ struct Z_Construct_UClass_UObjectInteractionText_Statics
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UObjectInteractionText_Statics::NewProp_Text_InteractionText = { "Text_InteractionText", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UObjectInteractionText, Text_InteractionText), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_InteractionText_MetaData), NewProp_Text_InteractionText_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UObjectInteractionText_Statics::NewProp_Text_InteractionText_1 = { "Text_InteractionText_1", nullptr, (EPropertyFlags)0x0040000000080008, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UObjectInteractionText, Text_InteractionText_1), Z_Construct_UClass_UTextBlock_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Text_InteractionText_1_MetaData), NewProp_Text_InteractionText_1_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UObjectInteractionText_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UObjectInteractionText_Statics::NewProp_Text_InteractionText,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UObjectInteractionText_Statics::NewProp_Text_InteractionText_1,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UObjectInteractionText_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UObjectInteractionText_Statics::DependentSingletons[])() = {
@@ -93,10 +101,10 @@ UObjectInteractionText::~UObjectInteractionText() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_ObjectInteractionText_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UObjectInteractionText, UObjectInteractionText::StaticClass, TEXT("UObjectInteractionText"), &Z_Registration_Info_UClass_UObjectInteractionText, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UObjectInteractionText), 2962384756U) },
+		{ Z_Construct_UClass_UObjectInteractionText, UObjectInteractionText::StaticClass, TEXT("UObjectInteractionText"), &Z_Registration_Info_UClass_UObjectInteractionText, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UObjectInteractionText), 2359640091U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_ObjectInteractionText_h_1635247696(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_ObjectInteractionText_h_3785099362(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_ObjectInteractionText_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_UI_ObjectInteractionText_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

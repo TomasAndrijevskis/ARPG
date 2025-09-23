@@ -57,7 +57,8 @@ void ATeleportDoor::SetupWidget()
 	{
 		InteractionWidgetComponent->SetWidgetClass(InteractionWidgetClass);
 		InteractionWidgetComponent->SetCastShadow(false);
-		Cast<UObjectInteractionText>(InteractionWidgetComponent->GetUserWidgetObject())->InitializeText("Door to " + DoorName, "F");
+		FString ChangedDoorName = DoorName.Replace(TEXT("_"), TEXT(" "));
+		Cast<UObjectInteractionText>(InteractionWidgetComponent->GetUserWidgetObject())->InitializeText("Door", ChangedDoorName, "F");
 		ChangeWidgetVisibility(false);
 	}
 }

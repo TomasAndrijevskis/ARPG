@@ -183,3 +183,15 @@ UBlackboardComponent* AEnemyCharacter::GetBlackboardComp()
 {
 	return BlackboardComp;
 }
+
+
+TEnumAsByte<EEnemyStates> AEnemyCharacter::GetInitialState()
+{
+	return InitialState;
+}
+
+
+void AEnemyCharacter::SetInitialState(TEnumAsByte<EEnemyStates> NewState)
+{
+	InitialState = NewState;
+}

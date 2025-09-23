@@ -29,7 +29,6 @@ void UQuickTravelButton::InitializeButton(FString NewTravelLocationName, FBonfir
 {
 	TravelMapName = BonfireData.MapName;
 	TravelLocation = BonfireData.Location;
-	TravelLocation.X = TravelLocation.X + 200;
 
 	Text_QuickTravelLocation->SetText(FText::FromString(NewTravelLocationName));
 

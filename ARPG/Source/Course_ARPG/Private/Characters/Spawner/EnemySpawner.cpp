@@ -34,6 +34,7 @@ void AEnemySpawner::SpawnEnemies()
 		AEnemyCharacter* SpawnedEnemy = GetWorld()->SpawnActor<AEnemyCharacter>(EnemyClass, SpawnLocation, GetActorRotation(), SpawnParameters);
 		if (SpawnedEnemy)
 		{
+			SpawnedEnemy->SetInitialState(InitialState);
 			SpawnedEnemies.Add(SpawnedEnemy);
 		}
 	}

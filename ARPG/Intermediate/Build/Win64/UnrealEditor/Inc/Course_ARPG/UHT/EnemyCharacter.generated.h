@@ -24,6 +24,7 @@ class UDamageType;
 	DECLARE_FUNCTION(execSetupAI); \
 	DECLARE_FUNCTION(execReceiveDamage); \
 	DECLARE_FUNCTION(execHandleDeath); \
+	DECLARE_FUNCTION(execGetInitialState); \
 	DECLARE_FUNCTION(execCreateHealthWidget); \
 	DECLARE_FUNCTION(execDetectPawn);
 
