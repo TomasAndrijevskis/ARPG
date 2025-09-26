@@ -93,8 +93,10 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	int AvailableAbilityPoints = 0;
 
+	UPROPERTY(EditAnywhere)
 	int StatPointsAmountForLevel = 10;
 
+	UPROPERTY(EditAnywhere)
 	int AbilityUpgradePointsAmountForLevel = 5;
 
 	float RequiredXP;

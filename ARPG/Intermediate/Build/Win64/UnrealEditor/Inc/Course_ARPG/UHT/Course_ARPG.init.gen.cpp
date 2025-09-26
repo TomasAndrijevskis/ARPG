@@ -71,7 +71,7 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xB568874E,
+				0x96FB3C19,
 				0x0C57C740,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -79,5 +79,5 @@ void EmptyLinkFunctionForGeneratedCodeCourse_ARPG_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_Course_ARPG.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xB568874E, 0x0C57C740));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Course_ARPG(Z_Construct_UPackage__Script_Course_ARPG, TEXT("/Script/Course_ARPG"), Z_Registration_Info_UPackage__Script_Course_ARPG, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x96FB3C19, 0x0C57C740));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

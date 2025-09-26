@@ -16,7 +16,7 @@ void UCharacterSelect::NativeConstruct()
 
 void UCharacterSelect::SetData()
 {
-	FCharacterSelectionStruct* CharacterRow = CharactersDataTable->FindRow<FCharacterSelectionStruct>(CharacterData.RowName, TEXT("Level to look for"));
+	FCharacterSelectionStruct* CharacterRow = CharactersDataTable->FindRow<FCharacterSelectionStruct>(CharacterData.RowName, TEXT("Character class to look for"));
 	if (CharacterRow)
 	{
 		Text_CharacterName->SetText(CharacterRow->Description);

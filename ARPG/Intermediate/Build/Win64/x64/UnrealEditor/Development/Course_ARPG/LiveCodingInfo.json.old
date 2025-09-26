@@ -143,6 +143,7 @@
 			"BTT_MeleeAttack_Grux.cpp.obj",
 			"BTT_MeleeAttack_Rampage.cpp.obj",
 			"BTT_MoveToStartLocation.cpp.obj",
+			"BTT_Patrol.cpp.obj",
 			"BTT_PhaseTransition.cpp.obj",
 			"BTT_PoisonExplosion.cpp.obj",
 			"BTT_RangeAttack_Elemental.cpp.obj",
@@ -155,7 +156,6 @@
 			"Boss_Grux.cpp.obj",
 			"Boss_Rampage.cpp.obj",
 			"EnemyCharacter.cpp.obj",
-			"LevelingComponent.cpp.obj",
 			"LookAtPlayerComponent.cpp.obj",
 			"MainCharacter_Base.cpp.obj",
 			"MainCharacter_Mage.cpp.obj",
@@ -208,16 +208,15 @@
 			"MainPlayer.cpp.obj",
 			"Bonfire.cpp.obj",
 			"BossLocationDoor.cpp.obj",
+			"DeathTrigger.cpp.obj",
 			"TeleportDoor.cpp.obj",
 			"AbilityData.cpp.obj",
-			"ARPG_GameInstance.cpp.obj",
 			"ARPG_SaveGame.cpp.obj",
 			"AbilityFooter.cpp.obj",
 			"AbilityUpgradeScreen.cpp.obj",
 			"BonfireInteractionAnim.cpp.obj",
 			"BonfireMenu.cpp.obj",
 			"BossHealthBar.cpp.obj",
-			"CharacterSelect.cpp.obj",
 			"CharacterSelection.cpp.obj",
 			"DescriptionWidget.cpp.obj",
 			"InfoFooter.cpp.obj",
@@ -234,8 +233,9 @@
 			"StatsScreenWidget.cpp.obj",
 			"StatusIconWithAmount.cpp.obj",
 			"StatusIconWithTimer.cpp.obj",
-			"BTT_Patrol.cpp.obj",
-			"DeathTrigger.cpp.obj"
+			"LevelingComponent.cpp.obj",
+			"ARPG_GameInstance.cpp.obj",
+			"CharacterSelect.cpp.obj"
 		]
 	}
 }

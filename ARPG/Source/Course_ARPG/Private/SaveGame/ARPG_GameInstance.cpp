@@ -354,13 +354,13 @@ FString UARPG_GameInstance::GetCurrentMap()
 		if (SaveGameInstance->CurrentMap == "")
 		{
 			//UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant GetCurrentMap"));
-			FString Map = "FlyingIsland";
+			FString Map = "Flying_Island";
 			return Map;
 		}
 		//UE_LOG(LogTemp,Error, TEXT("GameInstance|Can GetCurrentMap"));
 		return SaveGameInstance->CurrentMap;
 	}
-	return TEXT("FlyingIsland");
+	return TEXT("Flying_Island");
 }
 
 

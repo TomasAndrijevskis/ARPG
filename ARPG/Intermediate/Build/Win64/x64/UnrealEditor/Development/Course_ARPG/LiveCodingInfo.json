@@ -60,12 +60,12 @@
 			"CombatComponent_Base.gen.cpp.obj",
 			"CombatComponent_Enemy.gen.cpp.obj",
 			"CombatComponent_Mage.gen.cpp.obj",
+			"DeathTrigger.gen.cpp.obj",
 			"DescriptionWidget.gen.cpp.obj",
 			"EEnemyStates.gen.cpp.obj",
 			"Enemy.gen.cpp.obj",
 			"EnemyCharacter.gen.cpp.obj",
-			"Course_ARPG.init.gen.cpp.obj",
-			"DeathTrigger.gen.cpp.obj"
+			"Course_ARPG.init.gen.cpp.obj"
 		],
 		"Module.Course_ARPG.3.cpp.obj": [
 			"EnemyProjectile.gen.cpp.obj",
@@ -81,7 +81,6 @@
 			"GroundSmashComponent.gen.cpp.obj",
 			"InfoFooter.gen.cpp.obj",
 			"InfoHeader.gen.cpp.obj",
-			"LevelingComponent.gen.cpp.obj",
 			"LockonComponent.gen.cpp.obj",
 			"LookAtPlayerAnimNotifyState.gen.cpp.obj",
 			"LookAtPlayerComponent.gen.cpp.obj",
@@ -98,7 +97,8 @@
 			"Minion_Rampage.gen.cpp.obj",
 			"ObjectInteractionText.gen.cpp.obj",
 			"PauseMenu.gen.cpp.obj",
-			"PlayerActionsComponent.gen.cpp.obj"
+			"PlayerActionsComponent.gen.cpp.obj",
+			"LevelingComponent.gen.cpp.obj"
 		],
 		"Module.Course_ARPG.4.cpp.obj": [
 			"PlayerAnimInstance.gen.cpp.obj",
@@ -143,6 +143,7 @@
 			"BTT_MeleeAttack_Grux.cpp.obj",
 			"BTT_MeleeAttack_Rampage.cpp.obj",
 			"BTT_MoveToStartLocation.cpp.obj",
+			"BTT_Patrol.cpp.obj",
 			"BTT_PhaseTransition.cpp.obj",
 			"BTT_PoisonExplosion.cpp.obj",
 			"BTT_RangeAttack_Elemental.cpp.obj",
@@ -155,7 +156,6 @@
 			"Boss_Grux.cpp.obj",
 			"Boss_Rampage.cpp.obj",
 			"EnemyCharacter.cpp.obj",
-			"LevelingComponent.cpp.obj",
 			"LookAtPlayerComponent.cpp.obj",
 			"MainCharacter_Base.cpp.obj",
 			"MainCharacter_Mage.cpp.obj",
@@ -208,16 +208,15 @@
 			"MainPlayer.cpp.obj",
 			"Bonfire.cpp.obj",
 			"BossLocationDoor.cpp.obj",
+			"DeathTrigger.cpp.obj",
 			"TeleportDoor.cpp.obj",
 			"AbilityData.cpp.obj",
-			"ARPG_GameInstance.cpp.obj",
 			"ARPG_SaveGame.cpp.obj",
 			"AbilityFooter.cpp.obj",
 			"AbilityUpgradeScreen.cpp.obj",
 			"BonfireInteractionAnim.cpp.obj",
 			"BonfireMenu.cpp.obj",
 			"BossHealthBar.cpp.obj",
-			"CharacterSelect.cpp.obj",
 			"CharacterSelection.cpp.obj",
 			"DescriptionWidget.cpp.obj",
 			"InfoFooter.cpp.obj",
@@ -234,8 +233,9 @@
 			"StatsScreenWidget.cpp.obj",
 			"StatusIconWithAmount.cpp.obj",
 			"StatusIconWithTimer.cpp.obj",
-			"BTT_Patrol.cpp.obj",
-			"DeathTrigger.cpp.obj"
+			"LevelingComponent.cpp.obj",
+			"ARPG_GameInstance.cpp.obj",
+			"CharacterSelect.cpp.obj"
 		]
 	}
 }

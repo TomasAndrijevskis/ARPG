@@ -688,6 +688,14 @@ struct Z_Construct_UClass_ULevelingComponent_Statics
 		{ "Category", "LevelingComponent" },
 		{ "ModuleRelativePath", "Public/Characters/LevelingComponent.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_StatPointsAmountForLevel_MetaData[] = {
+		{ "Category", "LevelingComponent" },
+		{ "ModuleRelativePath", "Public/Characters/LevelingComponent.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AbilityUpgradePointsAmountForLevel_MetaData[] = {
+		{ "Category", "LevelingComponent" },
+		{ "ModuleRelativePath", "Public/Characters/LevelingComponent.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnNewLevelDelegate;
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp_OnXpUpdateDelegate;
@@ -698,6 +706,8 @@ struct Z_Construct_UClass_ULevelingComponent_Statics
 	static const UECodeGen_Private::FFloatPropertyParams NewProp_CurrentXP;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_AvailableStatPoints;
 	static const UECodeGen_Private::FIntPropertyParams NewProp_AvailableAbilityPoints;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_StatPointsAmountForLevel;
+	static const UECodeGen_Private::FIntPropertyParams NewProp_AbilityUpgradePointsAmountForLevel;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -727,6 +737,8 @@ const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ULevelingComponen
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_CurrentXP = { "CurrentXP", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, CurrentXP), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_CurrentXP_MetaData), NewProp_CurrentXP_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_AvailableStatPoints = { "AvailableStatPoints", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, AvailableStatPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AvailableStatPoints_MetaData), NewProp_AvailableStatPoints_MetaData) };
 const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_AvailableAbilityPoints = { "AvailableAbilityPoints", nullptr, (EPropertyFlags)0x0040000000020001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, AvailableAbilityPoints), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AvailableAbilityPoints_MetaData), NewProp_AvailableAbilityPoints_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_StatPointsAmountForLevel = { "StatPointsAmountForLevel", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, StatPointsAmountForLevel), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_StatPointsAmountForLevel_MetaData), NewProp_StatPointsAmountForLevel_MetaData) };
+const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_ULevelingComponent_Statics::NewProp_AbilityUpgradePointsAmountForLevel = { "AbilityUpgradePointsAmountForLevel", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(ULevelingComponent, AbilityUpgradePointsAmountForLevel), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AbilityUpgradePointsAmountForLevel_MetaData), NewProp_AbilityUpgradePointsAmountForLevel_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ULevelingComponent_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ULevelingComponent_Statics::NewProp_OnNewLevelDelegate,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ULevelingComponent_Statics::NewProp_OnXpUpdateDelegate,
@@ -737,6 +749,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_ULeveling
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ULevelingComponent_Statics::NewProp_CurrentXP,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ULevelingComponent_Statics::NewProp_AvailableStatPoints,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ULevelingComponent_Statics::NewProp_AvailableAbilityPoints,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ULevelingComponent_Statics::NewProp_StatPointsAmountForLevel,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_ULevelingComponent_Statics::NewProp_AbilityUpgradePointsAmountForLevel,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_ULevelingComponent_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_ULevelingComponent_Statics::DependentSingletons[])() = {
@@ -779,10 +793,10 @@ ULevelingComponent::~ULevelingComponent() {}
 struct Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ULevelingComponent, ULevelingComponent::StaticClass, TEXT("ULevelingComponent"), &Z_Registration_Info_UClass_ULevelingComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ULevelingComponent), 1112232338U) },
+		{ Z_Construct_UClass_ULevelingComponent, ULevelingComponent::StaticClass, TEXT("ULevelingComponent"), &Z_Registration_Info_UClass_ULevelingComponent, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ULevelingComponent), 281069787U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_2456984989(TEXT("/Script/Course_ARPG"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_3735402858(TEXT("/Script/Course_ARPG"),
 	Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_projects_GIT_HUB_ARPG_ARPG_Source_Course_ARPG_Public_Characters_LevelingComponent_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
