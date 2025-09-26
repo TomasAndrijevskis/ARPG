@@ -47,7 +47,7 @@ void UBTT_Patrol::PatrolForward()
 
 void UBTT_Patrol::PatrolBackward()
 {
-	UE_LOG(LogTemp, Error, TEXT("Patrol Backward"));
+	//UE_LOG(LogTemp, Error, TEXT("Patrol Backward"));
 	if (!ControllerRef)
 	{
 		return;

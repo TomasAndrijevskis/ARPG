@@ -510,6 +510,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\BossLocationDoor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\DeathTrigger.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\TeleportDoor.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -600,7 +603,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Fey.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Grux.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Rampage.h"/>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter.h" />
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LevelingComponent.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\LookAtPlayerComponent.h"/>
@@ -675,6 +678,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\Bonfire.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\BonfireData.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\BossLocationDoor.h"/>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\DeathTrigger.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\TeleportDoor.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\AbilityData.h"/>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\SaveGame\ARPG_GameInstance.h"/>

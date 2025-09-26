@@ -88,7 +88,7 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\Boss_Rampage.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter_Base.cpp">
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\EnemyCharacter.cpp">
       <Filter>Source\Course_ARPG\Private\Characters</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Characters\LevelingComponent.cpp">
@@ -325,6 +325,9 @@
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\BossLocationDoor.cpp">
       <Filter>Source\Course_ARPG\Private\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\DeathTrigger.cpp">
+      <Filter>Source\Course_ARPG\Private\Objects</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Course_ARPG\Private\Objects\TeleportDoor.cpp">
       <Filter>Source\Course_ARPG\Private\Objects</Filter>
     </ClCompile>
@@ -454,7 +457,7 @@
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\Boss_Rampage.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter_Base.h">
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EnemyCharacter.h">
       <Filter>Source\Course_ARPG\Public\Characters</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Characters\EStats.h">
@@ -707,6 +710,9 @@
       <Filter>Source\Course_ARPG\Public\Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\BossLocationDoor.h">
+      <Filter>Source\Course_ARPG\Public\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\DeathTrigger.h">
       <Filter>Source\Course_ARPG\Public\Objects</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Course_ARPG\Public\Objects\TeleportDoor.h">

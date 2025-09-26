@@ -18,6 +18,7 @@
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\spawner\\enemyspawner.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\spawner\\spawner.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\spawner.generated.h",
+            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\ai\\eenemystates.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemyspawner.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\escreens.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\ui\\escreens.h",
@@ -121,7 +122,6 @@
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\enemycharacter.h",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\interfaces\\enemy.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemy.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\ai\\eenemystates.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\enemycharacter.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\minion.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\minionhealthbar.gen.cpp",
@@ -147,10 +147,7 @@
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\pausemenu.generated.h",
             "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\playeractionscomponent.gen.cpp",
             "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\characters\\playeractionscomponent.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\playeractionscomponent.generated.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\playeraniminstance.gen.cpp",
-            "d:\\projects\\git hub\\arpg\\arpg\\source\\course_arpg\\public\\animations\\playeraniminstance.h",
-            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\playeraniminstance.generated.h"
+            "d:\\projects\\git hub\\arpg\\arpg\\intermediate\\build\\win64\\unrealeditor\\inc\\course_arpg\\uht\\playeractionscomponent.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

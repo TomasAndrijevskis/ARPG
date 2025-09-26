@@ -41,10 +41,12 @@ void UPlayerActionsComponent::Sprint()
 	OnSprintDelegate.Broadcast(SprintCost);
 }
 
+
 void UPlayerActionsComponent::Walk()
 {
 	MovementComp->MaxWalkSpeed = WalkSpeed;
 }
+
 
 void UPlayerActionsComponent::Roll()
 {

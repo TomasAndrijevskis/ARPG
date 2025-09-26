@@ -10,7 +10,7 @@ class AMainCharacter_Base;
 class UCharacterMovementComponent;
 
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam( FOnSprintSignature, UPlayerActionsComponent, OnSprintDelegate, float, SprintStaminaCost);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnRollSignature, UPlayerActionsComponent, OnRollDelegate, float, RollStaminaCost);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam( FOnRollSignature, UPlayerActionsComponent, OnRollDelegate, float, RollStaminaCost);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UPlayerActionsComponent : public UActorComponent

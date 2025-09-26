@@ -21,6 +21,5 @@
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/MainCharacter_Warrior.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/MainPlayer.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/MinionHealthBar.gen.cpp"
-#include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/ObjectInteractionText.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/PauseMenu.gen.cpp"
 #include "D:/projects/GIT HUB/ARPG/ARPG/Intermediate/Build/Win64/UnrealEditor/Inc/Course_ARPG/UHT/PlayerActionsComponent.gen.cpp"
