@@ -17,6 +17,7 @@ class UNiagaraSystem;
 class AAIController;
 class UBlackboardComponent;
 
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnEnemyDiedSignature, AEnemyCharacter, OnEnemyDiedDelegate, AEnemyCharacter*, Enemy);
 UCLASS()
 class COURSE_ARPG_API AEnemyCharacter : public ACharacter, public IEnemy, public IFighter
 {
@@ -64,6 +65,8 @@ public:
 	TEnumAsByte<EEnemyStates> GetInitialState();
 
 	void SetInitialState(TEnumAsByte<EEnemyStates> NewState);
+
+	FOnEnemyDiedSignature OnEnemyDiedDelegate;
 	
 protected:
 

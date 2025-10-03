@@ -13,11 +13,21 @@ void AEnemySpawner::CheckEnemies()
 	{
 		for (auto Enemy : SpawnedEnemies)
 		{
-			Enemy->Destroy();
+			if (IsValid(Enemy))
+			{
+				Enemy->Destroy();
+				Enemy->OnEnemyDiedDelegate.RemoveDynamic(this, &AEnemySpawner::RemoveEnemyFromArray);
+			}
 		}
 		SpawnedEnemies.Empty();
 		SpawnEnemies();
 	}
+}
+
+
+void AEnemySpawner::RemoveEnemyFromArray(AEnemyCharacter* Enemy)
+{
+	SpawnedEnemies.Remove(Enemy);
 }
 
 
@@ -36,6 +46,7 @@ void AEnemySpawner::SpawnEnemies()
 		{
 			SpawnedEnemy->SetInitialState(InitialState);
 			SpawnedEnemies.Add(SpawnedEnemy);
+			SpawnedEnemy->OnEnemyDiedDelegate.AddDynamic(this, &AEnemySpawner::RemoveEnemyFromArray);
 		}
 	}
 }

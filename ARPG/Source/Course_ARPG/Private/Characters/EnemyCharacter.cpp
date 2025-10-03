@@ -21,7 +21,6 @@ AEnemyCharacter::AEnemyCharacter()
 	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
 	BlockingSphere = CreateDefaultSubobject<USphereComponent>(TEXT("Blocking Sphere"));
 	BlockingSphere->SetupAttachment(GetRootComponent());
-	
 }
 
 
@@ -88,9 +87,6 @@ void AEnemyCharacter::HandleDeath()
 		ControllerRef->GetBrainComponent()->StopLogic("Defeated");
 	}
 	FindComponentByClass<UCapsuleComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
-	FTimerHandle DestroyTimerHandle;
-	GetWorld()->GetTimerManager().SetTimer(DestroyTimerHandle, this, &AEnemyCharacter::FinishedDeathAnim, DeathAnimDuration, false);
 	IMainPlayer* MainPlayerInterfaceRef = GetWorld()->GetFirstPlayerController()->GetPawn<IMainPlayer>();
 	if (!MainPlayerInterfaceRef)
 	{
@@ -98,6 +94,9 @@ void AEnemyCharacter::HandleDeath()
 	}
 	MainPlayerInterfaceRef->EndLockonWithActor(this);
 	GiveRewardXP();
+	OnEnemyDiedDelegate.Broadcast(this);
+	FTimerHandle DestroyTimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(DestroyTimerHandle, this, &AEnemyCharacter::FinishedDeathAnim, DeathAnimDuration, false);
 }
 
 

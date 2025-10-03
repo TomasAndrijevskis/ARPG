@@ -139,9 +139,9 @@ void UARPG_GameInstance::SaveStats()
 	{
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	}
-	SaveGameInstance->CurrentHealth = PlayerRef->StatsComp->GetStatValue(EStats::Health);
+	//SaveGameInstance->CurrentHealth = PlayerRef->StatsComp->GetStatValue(EStats::Health);
 	SaveGameInstance->MaxHealth = PlayerRef->StatsComp->GetStatValue(EStats::MaxHealth);
-	SaveGameInstance->CurrentMana = PlayerRef->StatsComp->GetStatValue(EStats::Mana);
+	//SaveGameInstance->CurrentMana = PlayerRef->StatsComp->GetStatValue(EStats::Mana);
 	SaveGameInstance->MaxMana = PlayerRef->StatsComp->GetStatValue(EStats::MaxMana);
 	SaveGameInstance->MaxStamina = PlayerRef->StatsComp->GetStatValue(EStats::MaxStamina);
 	SaveGameInstance->Strength = PlayerRef->StatsComp->GetStatValue(EStats::Strength);
@@ -166,9 +166,9 @@ void UARPG_GameInstance::LoadStats()
 		UE_LOG(LogTemp,Error, TEXT("GameInstance|Cant Load Stats"));
 		return;
 	}
-	PlayerRef->StatsComp->SetStatValue(EStats::Health, SaveGameInstance->CurrentHealth);
+	PlayerRef->StatsComp->SetStatValue(EStats::Health, SaveGameInstance->MaxHealth);
 	PlayerRef->StatsComp->SetStatValue(EStats::MaxHealth, SaveGameInstance->MaxHealth);
-	PlayerRef->StatsComp->SetStatValue(EStats::Mana, SaveGameInstance->CurrentMana);
+	PlayerRef->StatsComp->SetStatValue(EStats::Mana, SaveGameInstance->MaxMana);
 	PlayerRef->StatsComp->SetStatValue(EStats::MaxMana, SaveGameInstance->MaxMana);
 	PlayerRef->StatsComp->SetStatValue(EStats::Strength, SaveGameInstance->Strength);
 	PlayerRef->StatsComp->SetStatValue(EStats::MaxStamina, SaveGameInstance->MaxStamina);

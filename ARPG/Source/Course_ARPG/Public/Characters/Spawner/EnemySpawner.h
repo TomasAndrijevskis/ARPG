@@ -21,6 +21,9 @@ protected:
 	virtual void SpawnEnemies() override;
 
 	virtual void CheckEnemies() override;
+
+	UFUNCTION()
+	virtual void RemoveEnemyFromArray(AEnemyCharacter* Enemy) override;
 	
 private:
 	

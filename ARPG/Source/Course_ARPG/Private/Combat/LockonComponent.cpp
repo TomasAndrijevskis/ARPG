@@ -55,41 +55,55 @@ void ULockonComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void ULockonComponent::StartLockon(float Radius)
 {
-	FHitResult OutResult;
+	//for enemies in certain radius
+	TArray<FHitResult> OutResults;
 	FVector CurrentLocation = OwnerRef->GetActorLocation();
 	FCollisionShape Sphere = FCollisionShape::MakeSphere(Radius);
 	FCollisionQueryParams IgnoreParams{ FName{TEXT("Ignore Collision Params")}, false, OwnerRef};
 	
 	//finds first collision that detects; multi -> all collisions detected
-	bool bHasFoundTarget = GetWorld()->SweepSingleByChannel(OutResult, CurrentLocation, CurrentLocation, FQuat::Identity,  ECollisionChannel::ECC_GameTraceChannel1, Sphere, IgnoreParams);
-
+	AActor* TargetActor = nullptr;
+	bool bHasFoundTarget = GetWorld()->SweepMultiByChannel(OutResults, CurrentLocation, CurrentLocation, FQuat::Identity,  ECollisionChannel::ECC_GameTraceChannel1, Sphere, IgnoreParams);
 	if (!bHasFoundTarget)
 	{
 		return;
 	}
-
-	if (!OutResult.GetActor()->Implements<UEnemy>())
+	for (FHitResult OutResult : OutResults)
 	{
-		return;
+		if (!OutResult.GetActor()->Implements<UEnemy>())
+		{
+			continue;
+		}
+		FHitResult HitResult;//for obstacles in sight between player and enemy
+		bool bObstaclesBetween = GetWorld()->LineTraceSingleByChannel(HitResult, CurrentLocation, OutResult.GetActor()->GetActorLocation(), ECollisionChannel::ECC_Visibility);
+		if (bObstaclesBetween)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Object: %s"), *HitResult.GetActor()->GetName());
+			continue;
+		}
+		TargetActor = OutResult.GetActor();
 	}
-		
-	CurrentTargetActor = OutResult.GetActor();
-	
-	Controller->SetIgnoreLookInput(true);
-	MovementComponent->bOrientRotationToMovement = false;
-	MovementComponent->bUseControllerDesiredRotation = true;
-	SpringArmComponent->TargetOffset = FVector{0.0,0.0, 80.0};
+	if (TargetActor != nullptr)
+	{
+		CurrentTargetActor = TargetActor;
+		Controller->SetIgnoreLookInput(true);
+		MovementComponent->bOrientRotationToMovement = false;
+		MovementComponent->bUseControllerDesiredRotation = true;
+		SpringArmComponent->TargetOffset = FVector{0.0,0.0, 80.0};
 
-	IEnemy::Execute_OnSelect(CurrentTargetActor);
+		IEnemy::Execute_OnSelect(CurrentTargetActor);
 
-	OnUpdatedTargetDelegate.Broadcast(CurrentTargetActor);
+		OnUpdatedTargetDelegate.Broadcast(CurrentTargetActor);
+		bIsLocked = true;
+	}
 }
 
 
 void ULockonComponent::EndLockon()
 {
 	IEnemy::Execute_OnDeselect(CurrentTargetActor);
-	
+
+	bIsLocked = false;
 	CurrentTargetActor = nullptr;
 	MovementComponent->bOrientRotationToMovement = true;
 	MovementComponent->bUseControllerDesiredRotation = false;
@@ -110,4 +124,11 @@ void ULockonComponent::ToggleLockon(float Radius)
 	{
 		StartLockon(Radius);
 	}
+}
+
+
+
+bool ULockonComponent::bGetIsLocked()
+{
+	return bIsLocked;
 }

@@ -2,6 +2,7 @@
 #include "Characters/ARPG_PlayerController.h"
 #include "Characters/LevelingComponent.h"
 #include "Characters/MainCharacter_Base.h"
+#include "Combat/LockonComponent.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Gamemode/ARPG_GameMode.h"
 #include "Kismet/GameplayStatics.h"
@@ -28,7 +29,7 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 	{
 		PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
 		HandleGamePause(true);
-
+		
 		if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 		{
 			FBonfireData Data;
@@ -55,6 +56,10 @@ void AARPG_PlayerController::RemoveBonfireMenuWidget()
 	if (GameMode)
 	{
 		GameMode->SpawnEnemies();
+	}
+	if (PlayerRef->LockonComp->bGetIsLocked())
+	{
+		PlayerRef->LockonComp->EndLockon();
 	}
 }
 

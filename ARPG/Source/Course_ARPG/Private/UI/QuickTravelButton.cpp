@@ -67,12 +67,19 @@ void UQuickTravelButton::TeleportPlayer()
 	if (MapName ==  TravelMapName)
 	{
 		PlayerRef->TeleportTo(TravelLocation, PlayerRef->GetActorRotation());
-		//GameInstance->SavePlayerLocation();
 	}
 	else
 	{
-		GameInstance->SavePlayerLocation(TravelLocation);
-		UGameplayStatics::OpenLevel(this, FName(*TravelMapName));
+		FString MapPath = "/Game/Maps/" + TravelMapName;
+		if (FPackageName::DoesPackageExist(MapPath))
+		{
+			GameInstance->SavePlayerLocation(TravelLocation);
+			UGameplayStatics::OpenLevel(this, FName(*TravelMapName));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Error, TEXT("Wrong map name"));
+		}
 	}
 }
 

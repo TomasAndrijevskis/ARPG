@@ -24,6 +24,8 @@ public:
 	FOnUpdatedTargetSignature OnUpdatedTargetDelegate;
 	
 	void EndLockon();
+
+	bool bGetIsLocked();
 	
 protected:
 	
@@ -49,5 +51,6 @@ private:
 	class UCharacterMovementComponent* MovementComponent;
 	
 	class USpringArmComponent* SpringArmComponent;
-		
+
+	bool bIsLocked = false;
 };

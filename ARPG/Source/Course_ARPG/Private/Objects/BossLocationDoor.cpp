@@ -7,10 +7,12 @@
 
 ABossLocationDoor::ABossLocationDoor()
 {
-	Collision = CreateDefaultSubobject<UBoxComponent>(TEXT("Collision"));
-	Collision->SetupAttachment(GetRootComponent());
+	BlockCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BlockCollision"));
+	BlockCollision->SetupAttachment(GetRootComponent());
+	TriggerCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerCollision"));
+	TriggerCollision->SetupAttachment(BlockCollision);
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(Collision);
+	Mesh->SetupAttachment(BlockCollision);
 }
 
 
@@ -23,7 +25,8 @@ void ABossLocationDoor::BeginPlay()
 	{
 		Mesh->SetMaterial(0, MeshMaterial);
 	}
-	SetCollisionSettings(ECR_Ignore, ECR_Ignore, ECR_Overlap);
+	SetCollisionSettings(*BlockCollision,ECR_Ignore, ECR_Ignore, ECR_Overlap);
+	SetCollisionSettings(*TriggerCollision,ECR_Ignore, ECR_Ignore, ECR_Overlap);
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &ABossLocationDoor::HandleDoor, .5, false);
@@ -37,38 +40,40 @@ void ABossLocationDoor::HandleDoor()
 	if (FoundActors.Num() > 0)
 	{
 		UE_LOG(LogTemp, Error, TEXT("FoundBoss"));
-		Collision->OnComponentEndOverlap.AddDynamic(this, &ABossLocationDoor::OnEndOverlap);
+		TriggerCollision->OnComponentBeginOverlap.AddDynamic(this, &ABossLocationDoor::OnBeginOverlap);
 		OnBossDiedDelegate.AddDynamic(this, &ABossLocationDoor::ReopenDoor);
 	}
 }
 
 
-void ABossLocationDoor::OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void ABossLocationDoor::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	CloseDoor();
 }
 
 
-void ABossLocationDoor::SetCollisionSettings(ECollisionResponse OtherResponse, ECollisionResponse CamVisResponse, ECollisionResponse PlayerResponse)
+void ABossLocationDoor::SetCollisionSettings(UBoxComponent& Collision, ECollisionResponse OtherResponse, ECollisionResponse CamVisResponse, ECollisionResponse PlayerResponse)
 {
-	Collision->SetCollisionResponseToAllChannels(OtherResponse);
-	Collision->SetCollisionResponseToChannel(ECC_Camera, CamVisResponse);
-	Collision->SetCollisionResponseToChannel(ECC_Visibility, CamVisResponse);
-	Collision->SetCollisionResponseToChannel(CollisionChannel, PlayerResponse);
+	Collision.SetCollisionResponseToAllChannels(OtherResponse);
+	Collision.SetCollisionResponseToChannel(ECC_Camera, CamVisResponse);
+	Collision.SetCollisionResponseToChannel(ECC_Visibility, CamVisResponse);
+	Collision.SetCollisionResponseToChannel(CollisionChannel, PlayerResponse);
 }
 
 
 void ABossLocationDoor::ReopenDoor()
 {
 	Mesh->SetVisibility(false);
-	Collision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	SetCollisionSettings(ECR_Block, ECR_Ignore, ECR_Overlap);
+	BlockCollision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	TriggerCollision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	SetCollisionSettings(*BlockCollision,ECR_Block, ECR_Ignore, ECR_Overlap);
+	SetCollisionSettings(*TriggerCollision,ECR_Block, ECR_Ignore, ECR_Overlap);
 }
 
 
 void ABossLocationDoor::CloseDoor()
 {
 	Mesh->SetVisibility(true);
-	Collision->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-	SetCollisionSettings(ECR_Block, ECR_Block, ECR_Block);
+	BlockCollision->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	SetCollisionSettings(*BlockCollision,ECR_Block, ECR_Block, ECR_Block);
 }

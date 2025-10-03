@@ -71,7 +71,7 @@ void UCombatComponent_Mage::SpawnProjectile()
 		{
 			return;
 		}
-		Projectile->SetStats(PlayerRef->StatsComp->GetStatValue(EStats::Strength), AliveTime);
+		Projectile->SetStats(PlayerRef->StatsComp->GetStatValue(EStats::Strength)/2, AliveTime);//half damage for each hand
 		Projectile->StartAliveTimer();
 	}
 }

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Characters/EnemyCharacter.h"
 #include "GameFramework/Actor.h"
 #include "Spawner.generated.h"
 
@@ -28,7 +29,6 @@ protected:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AEnemyCharacter> EnemyClass;
 	
-private:
-
+	virtual void RemoveEnemyFromArray(AEnemyCharacter* Enemy){};
 	
 };
