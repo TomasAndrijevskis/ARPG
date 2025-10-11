@@ -14,7 +14,6 @@ class COURSE_ARPG_API AMinion_Elemental : public AMinion
 {
 	GENERATED_BODY()
 
-
 public:
 
 	AMinion_Elemental();
@@ -36,9 +35,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UNiagaraComponent* NiagaraEffect;
-
-
-
+	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* DeathParticleClass;
 	

@@ -33,7 +33,8 @@ void USummonMinionsComponent::StartSummon()
 }
 
 
-int USummonMinionsComponent::GetRandomSpawnDistance()
+
+int USummonMinionsComponent::GetRandomSpawnDistance() const
 {
 	return FMath::RandRange(MinSpawnDistance, MaxSpawnDistance);
 }

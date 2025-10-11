@@ -16,15 +16,15 @@ class COURSE_ARPG_API UAnimInstance_Grux : public UAnimInstance_Base
 public:
 
 	UFUNCTION(BlueprintCallable)
-	void SetIsCharging(bool IsCharging);
+	void SetIsCharging(const bool IsCharging);
 	
 protected:
 
 	UFUNCTION(BlueprintCallable)
-	void HandleProjectileSpawn();
+	void HandleProjectileSpawn() const;
 
 	UFUNCTION(BlueprintCallable)
-	void HandleChargeStart(bool bIsReadyToCharge);
+	void HandleChargeStart(const bool bIsReadyToCharge) const;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsCharging = false;

@@ -11,6 +11,8 @@
 #include "PlayerWidget.generated.h"
 
 
+class UBorder;
+class UBackgroundBlur;
 class UPauseMenu;
 struct FBonfireData;
 class UBonfireInteractionAnim;
@@ -36,50 +38,50 @@ class COURSE_ARPG_API UPlayerWidget : public UUserWidget
 
 public:
 
-	UFUNCTION(BlueprintCallable)
-	void SetHealth(float NewHealthPercent);
+	UFUNCTION()
+	void SetHealth(const float NewHealthPercent);
 
-	UFUNCTION(BlueprintCallable)
-	void SetStamina(float NewStaminaPercent);
+	UFUNCTION()
+	void SetStamina(const float NewStaminaPercent);
 
-	UFUNCTION(BlueprintCallable)
-	void SetMana(float NewManaPercent);
+	UFUNCTION()
+	void SetMana(const float NewManaPercent);
 
-	UFUNCTION(BlueprintCallable)
-	void SetLevel(int CurrentLevel);
+	UFUNCTION()
+	void SetLevel(const int CurrentLevel);
 
-	UFUNCTION(BlueprintCallable)
-	void SetXP(float CurrentXP);
+	UFUNCTION()
+	void SetXP(const float CurrentXP);
 	
-	UFUNCTION(BlueprintCallable)
-	void CreateStatsScreen(EStats Stat);
+	UFUNCTION()
+	void CreateStatsScreen(const EStats& Stat);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void RemoveStatsScreen();
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void CreateAbilityUpgradeScreen(UAbilityComponent_Player* AbilityCompRef);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void RemoveAbilityUpgradeScreen();
 
-	UFUNCTION(BlueprintCallable)
-	void CreateAbilityFooter(UTexture2D* Image, FString ActionKey, UAbilityComponent_Player* AbilityCompRef);
+	UFUNCTION()
+	void CreateAbilityFooter(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void RemoveAbilityFooter();
 
-	UFUNCTION(BlueprintCallable)
-	void CreateUpgradeInfoHeader(int Value);
+	UFUNCTION()
+	void CreateUpgradeInfoHeader(const int Value);
 
-	UFUNCTION(BlueprintCallable)
-	void CreateUpgradeInfoFooter(EScreens ScreenType);
+	UFUNCTION()
+	void CreateUpgradeInfoFooter(const EScreens& ScreenType);
 
-	UFUNCTION(BlueprintCallable)
-	void CreateStatusIconWithTimer(float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
+	UFUNCTION()
+	void CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
 
-	UFUNCTION(BlueprintCallable)
-	void CreateStatusIconWithAmount(float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, FString Keyword);
+	UFUNCTION()
+	void CreateStatusIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword);
 
 	UFUNCTION()
 	void CreateDeathWidget();
@@ -94,27 +96,27 @@ public:
 	void RemoveQuickTravelMenuWidget();
 
 	UFUNCTION()
-	void CreateQuickTravelMenuWidget(TMap<FString, FBonfireData> UnlockedBonfires, FString CurrentBonfireName);
+	void CreateQuickTravelMenuWidget(const TMap<FString, FBonfireData>& UnlockedBonfires, const FString& CurrentBonfireName);
 
 	UFUNCTION()
 	void CreatePauseMenu();
 
 	UFUNCTION()
 	void RemovePauseMenu();
+
+	UFUNCTION()
+	void HandleUpgradeInfoBorder(const ESlateVisibility InVisibility);
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
-	
-protected:
 
+private:
 
-	UPROPERTY(meta = (BindWidget), BlueprintReadOnly)
+	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_StatusEffects;
 
-	UPROPERTY(meta = (BindWidget), BlueprintReadOnly)
+	UPROPERTY(meta = (BindWidget))
 	UVerticalBox* VerticalBox_UpgradeInfo;
-	
-private:
 	
 	UPROPERTY(meta = (BindWidget))
 	UProgressBar* ProgressBar_Health;
@@ -133,7 +135,13 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_AbilitiesFooter;
+	
+	UPROPERTY(meta = (BindWidget))
+	UBackgroundBlur* BackgroundBlur_Blur;
 
+	UPROPERTY(meta = (BindWidget))
+	UBorder* Border_UpgradeInfo;
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UStatsScreenWidget> StatsWidgetClass;
 

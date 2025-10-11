@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "EnemyProjectile.generated.h"
 
+
 UCLASS()
 class COURSE_ARPG_API AEnemyProjectile : public AProjectile_Base
 {

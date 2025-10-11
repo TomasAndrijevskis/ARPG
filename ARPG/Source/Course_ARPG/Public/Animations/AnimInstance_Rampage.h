@@ -17,12 +17,12 @@ public:
 	
 	
 	UFUNCTION(BlueprintCallable)
-	void SetIsSmashingGround(bool bIsSmashing);
+	void SetIsSmashingGround(const bool bIsSmashing);
 	
 protected:
 
 	UFUNCTION(BlueprintCallable)
-	void HandleSmashingGround();
+	void HandleSmashingGround() const;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsSmashingGround = false;

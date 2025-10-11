@@ -5,6 +5,8 @@
 #include "Components/ActorComponent.h"
 #include "LockonComponent.generated.h"
 
+class UCharacterMovementComponent;
+class USpringArmComponent;
 
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam( FOnUpdatedTargetSignature, ULockonComponent, OnUpdatedTargetDelegate, AActor*, NewTargetActorRef);
 
@@ -18,14 +20,15 @@ public:
 	
 	ULockonComponent();
 
-	AActor* CurrentTargetActor;
-
-	UPROPERTY(BlueprintAssignable)
-	FOnUpdatedTargetSignature OnUpdatedTargetDelegate;
-	
 	void EndLockon();
 
-	bool bGetIsLocked();
+	bool IsLocked() const;
+	
+	UPROPERTY()
+	AActor* CurrentTargetActor;
+
+	UPROPERTY()
+	FOnUpdatedTargetSignature OnUpdatedTargetDelegate;
 	
 protected:
 	
@@ -33,24 +36,28 @@ protected:
 
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	UFUNCTION(BlueprintCallable)
-	void StartLockon(float Radius = 750.f);
+	UFUNCTION()
+	void StartLockon(const float Radius);
 
 	UFUNCTION(BlueprintCallable)
-	void ToggleLockon(float Radius = 750.f);
+	void ToggleLockon(const float Radius);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditAnywhere)
 	float BreakDistance = 1000.f;
 
 private:
 
+	UPROPERTY()
 	ACharacter* OwnerRef;
-	
+
+	UPROPERTY()
 	APlayerController* Controller;
-	
-	class UCharacterMovementComponent* MovementComponent;
-	
-	class USpringArmComponent* SpringArmComponent;
+
+	UPROPERTY()
+	UCharacterMovementComponent* MovementComponent;
+
+	UPROPERTY()
+	USpringArmComponent* SpringArmComponent;
 
 	bool bIsLocked = false;
 };

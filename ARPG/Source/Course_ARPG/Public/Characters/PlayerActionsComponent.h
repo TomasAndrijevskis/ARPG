@@ -19,31 +19,29 @@ class COURSE_ARPG_API UPlayerActionsComponent : public UActorComponent
 
 public:	
 	
-	UPlayerActionsComponent(){};
-	
 	UFUNCTION(BlueprintCallable)
 	void Sprint();
 
 	UFUNCTION(BlueprintCallable)
-	void Walk();
+	void Walk() const;
 
 	UFUNCTION(BlueprintCallable)
 	void Roll();
+
+	bool CanRoll() const;
+
+	void SetCanRoll(const bool CanRoll);
+
+	bool IsRollActive() const;
 	
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnSprintSignature OnSprintDelegate;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnRollSignature OnRollDelegate;
 
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* RollAnimMontage;
-
-	bool GetCanRoll();
-
-	void SetCanRoll(bool CanRoll);
-
-	bool IsRollActive();
 	
 protected:
 

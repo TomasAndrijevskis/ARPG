@@ -22,51 +22,51 @@ public:
 
 	UAbilityComponent_Base();
 	
-	UPROPERTY(BlueprintAssignable)
-	FOnAbilityTimerChangedSignature OnAbilityTimerChangedDelegate;//both
+	UPROPERTY()
+	FOnAbilityTimerChangedSignature OnAbilityTimerChangedDelegate;
 
-	UPROPERTY(BlueprintAssignable)
-	FOnAbilityStartedSignature OnAbilityStartedDelegate;//both
+	UPROPERTY()
+	FOnAbilityStartedSignature OnAbilityStartedDelegate;
 	
-	UPROPERTY(BlueprintAssignable)
-	FOnAbilityFinishedSignature OnAbilityFinishedDelegate;//both
+	UPROPERTY()
+	FOnAbilityFinishedSignature OnAbilityFinishedDelegate;
 	
 	UFUNCTION()
-	float GetAbilityDuration();//both
+	float GetAbilityDuration() const;
 
-	void SetAbilityDuration(float NewAbilityDuration);//both
+	void SetAbilityDuration(const float NewAbilityDuration);
 	
-	UTexture2D* GetIcon();//both
+	UTexture2D* GetIcon() const;
 	
 	UFUNCTION()
-	virtual void CreateIcon(){};//both
+	virtual void CreateIcon(){};
 	
 protected:
 
-	virtual void StartAbilityTimer(){};//both
+	virtual void StartAbilityTimer(){};
 
-	virtual void OnAbilityTimerFinished(){};//both
+	virtual void OnAbilityTimerFinished(){};
 
 	UFUNCTION(BlueprintCallable)
-	virtual void StartAbility(){};//both
+	virtual void StartAbility(){};
 
 	UFUNCTION()
-	virtual void FinishAbilityCast(){};//both
+	virtual void FinishAbilityCast(){};
 	
 	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComp;//both
+	USkeletalMeshComponent* SkeletalMeshComp;
 
 	UPROPERTY()
-	FTimerHandle TimerHandle;//both
+	FTimerHandle TimerHandle;
 
-	float TimerDuration;//both
+	float TimerDuration;
 
 private:
 	
 	UPROPERTY(EditAnywhere)
-	float AbilityDuration = 10.0f;//both
+	float AbilityDuration = 10.0f;
 
 	UPROPERTY(EditAnywhere)
-	UTexture2D* Icon;//both
+	UTexture2D* Icon;
 };
 

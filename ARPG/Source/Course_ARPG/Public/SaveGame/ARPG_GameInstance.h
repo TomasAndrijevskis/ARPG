@@ -16,25 +16,25 @@ public:
 
 	virtual void Init() override;
 	
-	UFUNCTION(BlueprintCallable)
-	void SetSlotName(FString NewSlotName);
+	UFUNCTION()
+	void SetSlotName(const FString& NewSlotName);
 
-	UFUNCTION(BlueprintCallable)
-	FString GetSlotName();
+	UFUNCTION()
+	FString GetSlotName() const;
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void SaveStats();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void LoadStats();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void SaveAbilities();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void LoadAbilities();
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void SaveAll();
 
 	UFUNCTION()
@@ -46,17 +46,17 @@ public:
 	UFUNCTION()
 	void LoadBonfires();
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void InitializeGameInstance();
 
-	UFUNCTION(BlueprintCallable)
-	bool bCheckSlot(FString SlotNameToCheck);
+	UFUNCTION()
+	bool CheckSlot(const FString& SlotNameToCheck) const;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void LoadPlayerClass();
 	
 	UFUNCTION()
-	void SetPlayerClass(TSubclassOf<AMainCharacter_Base> PlayerClass, bool bFirstLoad);
+	void SetPlayerClass(const TSubclassOf<AMainCharacter_Base>& PlayerClass, const bool bFirstLoad);
 
 	UFUNCTION()
 	void SaveDefeatedBosses();
@@ -67,33 +67,33 @@ public:
 	UFUNCTION()
 	void SavePlayerLocation();
 	
-	void SavePlayerLocation(FVector NewLocation);
+	void SavePlayerLocation(const FVector& NewLocation);
 
 	UFUNCTION()
 	void LoadPlayerLocation();
 
 	UFUNCTION()
-	FString GetCurrentMap();
+	FString GetCurrentMap() const;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacterClass;
 
+	void SetTeleportByDoor(const bool bNewTeleportByDoor);
+
+	bool GetTeleportByDoor() const;
+
 	bool bIsFirstLoad;
-
-	void SetTeleportByDoor(bool bNewTeleportByDoor);
-
-	bool GetTeleportByDoor();
 	
 private:
-
-	FString SlotName = FString("Slot1");
 
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
 
 	UPROPERTY()
 	AGameModeBase* ARPGGameMode;
-
+	
+	FString SlotName = FString("Slot1");
+	
 	//game will not load previous saved position on next map
 	bool bTeleportByDoor = false;
 	

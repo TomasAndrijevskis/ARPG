@@ -16,13 +16,13 @@ class COURSE_ARPG_API UBonfireInteractionAnim : public UUserWidget
 
 public:
 
-	float GetAnimDuration();
+	float GetAnimDuration() const;
 	
 protected:
 
 	virtual void NativeConstruct() override;
 
-	virtual void OnAnimationFinished_Implementation( const UWidgetAnimation* Animation);
+	virtual void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 	
 private:
 

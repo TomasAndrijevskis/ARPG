@@ -28,13 +28,13 @@ private:
 	void ExplodePoison();
 
 	UFUNCTION()
-	void FinishTask();
+	void FinishTask() const;
 
 	UFUNCTION()
-	void MoveToPlayer();
+	void MoveToPlayer() const;
 	
 	UFUNCTION()
-	void FinishMove();
+	void FinishMove() const;
 
 	UFUNCTION()
 	void CheckDistance();
@@ -49,11 +49,14 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float SpeedMultiplier;
-	
+
+	UPROPERTY()
 	AAIController* ControllerRef;
 
+	UPROPERTY()
 	ACharacter* CharacterRef;
 
+	UPROPERTY()
 	UBehaviorTreeComponent* CachedOwnerComp;
 	
 	uint8* CachedNodeMemory;

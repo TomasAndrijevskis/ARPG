@@ -10,7 +10,7 @@ void UBonfireInteractionAnim::NativeConstruct()
 }
 
 
-float UBonfireInteractionAnim::GetAnimDuration()
+float UBonfireInteractionAnim::GetAnimDuration() const
 {
 	return FadeIn->GetEndTime();
 }

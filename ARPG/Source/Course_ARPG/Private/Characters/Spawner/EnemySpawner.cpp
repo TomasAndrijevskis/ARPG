@@ -53,7 +53,7 @@ void AEnemySpawner::SpawnEnemies()
 
 
 
-int AEnemySpawner::GetRandomSpawnDistance()
+int AEnemySpawner::GetRandomSpawnDistance() const
 {
 	return FMath::RandRange(MinSpawnRange, MaxSpawnRange);
 }

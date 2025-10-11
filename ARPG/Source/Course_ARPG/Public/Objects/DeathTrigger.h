@@ -28,6 +28,4 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* Collision;
-
-
 };

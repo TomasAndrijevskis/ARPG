@@ -5,26 +5,25 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "BTT_GroundSmashAttack.generated.h"
 
-
+class UAnimInstance_Base;
 UCLASS()
 class COURSE_ARPG_API UBTT_GroundSmashAttack : public UBTTaskNode
 {
 	GENERATED_BODY()
-
-public:
-
-	UBTT_GroundSmashAttack(){};
 
 protected:
 
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 private:
-	
+
+	UPROPERTY()
 	AAIController* ControllerRef;
-	
+
+	UPROPERTY()
 	ACharacter* CharacterRef;
 
-	class UAnimInstance_Base* BossAnimInstance;
+	UPROPERTY()
+	UAnimInstance_Base* BossAnimInstance;
 	
 };

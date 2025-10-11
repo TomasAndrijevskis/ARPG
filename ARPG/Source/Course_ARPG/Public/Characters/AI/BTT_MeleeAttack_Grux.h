@@ -11,14 +11,13 @@ class COURSE_ARPG_API UBTT_MeleeAttack_Grux : public UBTT_MeleeAttack_Base
 {
 	GENERATED_BODY()
 
-
 protected:
 	
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 	
 private:
 
-	void HandleRangeAttack(UBehaviorTreeComponent& OwnerComp);
+	void HandleRangeAttack(UBehaviorTreeComponent& OwnerComp) const;
 	
 	UPROPERTY(EditAnywhere)
 	bool bHasRangeAttack;

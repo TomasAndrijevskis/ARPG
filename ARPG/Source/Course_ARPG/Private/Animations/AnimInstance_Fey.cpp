@@ -1,13 +1,12 @@
 
 #include "Animations/AnimInstance_Fey.h"
 #include "Characters/Boss_Fey.h"
-#include "Characters/AI/BTTask_SummonMinions.h"
 #include "Combat/PoisonExplosionComponent.h"
 #include "Combat/SummonMinionsComponent.h"
 #include "Combat/Projectiles/EnemyProjectileComponent.h"
 
 
-void UAnimInstance_Fey::HandleProjectileSpawn()
+void UAnimInstance_Fey::HandleProjectileSpawn() const
 {
 	if (!PawnRef)
 	{
@@ -20,7 +19,7 @@ void UAnimInstance_Fey::HandleProjectileSpawn()
 }
 
 
-void UAnimInstance_Fey::SpawnPoisonArea()
+void UAnimInstance_Fey::SpawnPoisonArea() const
 {
 	if (!PawnRef)
 	{
@@ -30,7 +29,7 @@ void UAnimInstance_Fey::SpawnPoisonArea()
 }
 
 
-void UAnimInstance_Fey::ExplodePoisonArea()
+void UAnimInstance_Fey::ExplodePoisonArea() const
 {
 	if (!PawnRef)
 	{
@@ -40,7 +39,7 @@ void UAnimInstance_Fey::ExplodePoisonArea()
 }
 
 
-void UAnimInstance_Fey::HandleSummonMinions()
+void UAnimInstance_Fey::HandleSummonMinions() const
 {
 	if (!PawnRef)
 	{

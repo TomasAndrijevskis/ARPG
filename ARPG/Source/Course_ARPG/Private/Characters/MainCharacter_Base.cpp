@@ -39,7 +39,7 @@ void AMainCharacter_Base::BeginPlay()
 
 	SetSkeletalMeshComponent();
 
-	CreateUI();
+	CreatePlayerWidget();
 	
 	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
@@ -56,7 +56,6 @@ void AMainCharacter_Base::BeginPlay()
 	FOnBonfireInteractionDelegate.AddDynamic(StatsComp, &UStatsComponent::RestoreStats);
 	
 	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
-	
 }
 
 
@@ -75,13 +74,13 @@ void AMainCharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInput
 }
 
 
-void AMainCharacter_Base::CreateUI()
+void AMainCharacter_Base::CreatePlayerWidget()
 {
-	if (!PlayerWidget)
+	if (!PlayerWidgetClass)
 	{
 		return;
 	}
-	PlayerWidgetRef = Cast<UPlayerWidget>(CreateWidget(GetWorld()->GetFirstPlayerController(), PlayerWidget));
+	PlayerWidgetRef = Cast<UPlayerWidget>(CreateWidget(GetWorld()->GetFirstPlayerController(), PlayerWidgetClass));
 	PlayerWidgetRef->AddToViewport();
 
 	if (PlayerWidgetRef)
@@ -93,11 +92,12 @@ void AMainCharacter_Base::CreateUI()
 		PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
 		
 		CreateAbilitiesFooter();
+		PlayerWidgetRef->HandleUpgradeInfoBorder(ESlateVisibility::Hidden);
 	}
 }
 
 
-void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	StatsComp->ReduceHealth(StatsComp->GetReducedDamage(Damage, DamageCauser), DamageCauser);
 	PlayHurtAnimation();
@@ -144,7 +144,7 @@ void AMainCharacter_Base::EndLockonWithActor(AActor* ActorRef)
 }
 
 
-bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent)
+bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent) const
 {
 	if (PlayerActionsComp->IsRollActive())
 	{
@@ -162,7 +162,7 @@ void AMainCharacter_Base::PlayHurtAnimation()
 {
 	UAnimMontage* CurrentMontage = GetCurrentMontage();
 	
-	if (CurrentMontage == DeathAnimMontage || CurrentMontage == PlayerActionsComp->RollAnimMontage || !GetCanPlayHurtAnimation())
+	if (CurrentMontage == DeathAnimMontage || CurrentMontage == PlayerActionsComp->RollAnimMontage || !CanPlayHurtAnimation())
 	{
 		return;
 	}
@@ -170,7 +170,7 @@ void AMainCharacter_Base::PlayHurtAnimation()
 }
 
 
-void AMainCharacter_Base::InterruptHurtAnimation()
+void AMainCharacter_Base::InterruptHurtAnimation() const
 {
 	UAnimMontage* CurrentMontage = GetCurrentMontage();
 	if (CurrentMontage == HurtAnimMontage)
@@ -181,25 +181,25 @@ void AMainCharacter_Base::InterruptHurtAnimation()
 
 
 
-float AMainCharacter_Base::GetCurrentDamage()
+float AMainCharacter_Base::GetCurrentDamage() const
 {
 	return StatsComp->GetStatValue(EStats::Strength);
 }
 
 
-bool AMainCharacter_Base::HasEnoughStamina(float Stamina)
+bool AMainCharacter_Base::HasEnoughStamina(const float Stamina) const
 {
 	return StatsComp->GetStatValue(EStats::Stamina) >= Stamina;
 }
 
 
-bool AMainCharacter_Base::HasEnoughMana(float Mana)
+bool AMainCharacter_Base::HasEnoughMana(const float Mana) const
 {
 	return StatsComp->GetStatValue(EStats::Mana) >= Mana;
 }
 
 
-UPlayerWidget* AMainCharacter_Base::GetPlayerWidget()
+UPlayerWidget* AMainCharacter_Base::GetPlayerWidget() const
 {
 	return PlayerWidgetRef;
 }
@@ -217,13 +217,13 @@ void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbili
 }
 
 
-UARPG_GameInstance* AMainCharacter_Base::GetGameInstanceRef()
+UARPG_GameInstance* AMainCharacter_Base::GetGameInstanceRef() const
 {
 	return GameInstance;
 }
 
 
-USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent()
+USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent() const
 {
 	return SkeletalMeshComp;
 }
@@ -243,13 +243,13 @@ void AMainCharacter_Base::SetSkeletalMeshComponent()
 }
 
 
-void AMainCharacter_Base::SetCanPlayHurtAnimation(bool bCanPlayAnim)
+void AMainCharacter_Base::SetCanPlayHurtAnimation(const bool bCanPlayAnim)
 {
 	bCanPlayHurtAnim = bCanPlayAnim;
 }
 
 
-bool AMainCharacter_Base::GetCanPlayHurtAnimation()
+bool AMainCharacter_Base::CanPlayHurtAnimation() const
 {
 	return bCanPlayHurtAnim;
 }

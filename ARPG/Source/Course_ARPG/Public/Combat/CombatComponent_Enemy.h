@@ -15,7 +15,7 @@ public:
 
 	void RandomAttack();
 
-	void ComboAttack();
+	virtual void ComboAttack() override;
 	
 	UPROPERTY()
 	float AnimDuration;

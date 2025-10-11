@@ -18,8 +18,8 @@ class COURSE_ARPG_API UMinionHealthBar : public UUserWidget
 
 public:
 
-	UFUNCTION(BlueprintCallable)
-	void SetHealth(float NewHealthPercent);
+	UFUNCTION()
+	void SetHealth(const float NewHealthPercent);
 
 private:
 

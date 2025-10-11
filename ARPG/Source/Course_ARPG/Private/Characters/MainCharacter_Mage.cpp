@@ -82,7 +82,7 @@ void AMainCharacter_Mage::HandleDeath()
 }
 
 
-bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent)
+bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent) const
 {
 	if (AbilityComp_MagicShield->IsAbilityActive())
 	{

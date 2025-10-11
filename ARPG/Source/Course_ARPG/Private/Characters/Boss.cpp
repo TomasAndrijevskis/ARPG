@@ -34,7 +34,7 @@ void ABoss::CreateHealthWidget()
 }
 
 
-void ABoss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState)
+void ABoss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, const EEnemyStates& NewEnemyState)
 {
 	if (GetBlackboardComp())
 	{
@@ -45,15 +45,6 @@ void ABoss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates Ne
 		}
 		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), NewEnemyState);
 	}
-}
-
-float ABoss::GetAttackAnimReductionTime()
-{
-	if (!bSecondPhase)
-	{
-		return 0;
-	}
-	return AttackAnimReductionTime;
 }
 
 
@@ -77,14 +68,14 @@ void ABoss::HandleDeath()
 }
 
 
-void ABoss::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType,class AController* InstigatedBy, AActor* DamageCauser)
+void ABoss::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType,class AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (!GetCanTakeDamage()) return;
 	Super::ReceiveDamage(DamagedActor, Damage, DamageType, InstigatedBy, DamageCauser);
 }
 
 
-void ABoss::CheckSecondPhase(float CurrentHealthPercent)
+void ABoss::CheckSecondPhase(const float CurrentHealthPercent)
 {
 	if (CurrentHealthPercent <= SecondPhaseHealthPercent && !IsSecondPhaseActive())
 	{
@@ -103,31 +94,41 @@ void ABoss::ActivateSecondPhase()
 
 
 
-bool ABoss::IsSecondPhaseActive()
+float ABoss::GetAttackAnimReductionTime() const
+{
+	if (!bSecondPhase)
+	{
+		return 0;
+	}
+	return AttackAnimReductionTime;
+}
+
+
+bool ABoss::IsSecondPhaseActive() const
 {
 	return bSecondPhase;
 }
 
 
-FText ABoss::GetBossName()
+FText ABoss::GetBossName() const
 {
 	return BossName;
 }
 
 
-void ABoss::SetCanTakeDamage(bool CanTakeDamage)
+void ABoss::SetCanTakeDamage(const bool CanTakeDamage)
 {
 	bCanTakeDamage = CanTakeDamage;
 }
 
 
-bool ABoss::GetCanTakeDamage()
+bool ABoss::GetCanTakeDamage() const
 {
 	return bCanTakeDamage;
 }
 
 
-UBossHealthBar* ABoss::GetBossWidget()
+UBossHealthBar* ABoss::GetBossWidget() const
 {
 	return HealthBarWidgetRef;
 }

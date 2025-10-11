@@ -19,9 +19,9 @@ class COURSE_ARPG_API IMainPlayer
 
 public:
 
-	virtual bool HasEnoughStamina(float Stamina) {return true;};
+	virtual bool HasEnoughStamina(const float Stamina) const {return true;};
 
-	virtual bool HasEnoughMana(float Mana) {return true;} ;
+	virtual bool HasEnoughMana(const float Mana) const {return true;} ;
 
 	virtual void EndLockonWithActor(AActor* ActorRef) = 0;
 	

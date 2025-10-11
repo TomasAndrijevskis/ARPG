@@ -1,11 +1,10 @@
 
 #include "UI/SaveMenu.h"
-
-#include "Characters/MainCharacter_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "SaveGame/ARPG_SaveGame.h"
 #include"UI/SaveSlotWidget.h"
+
 
 void USaveMenu::NativeConstruct()
 {
@@ -25,10 +24,11 @@ void USaveMenu::NativeConstruct()
 	}
 
 	CreateSlots(SaveSlotWidgetClass);
+	Button_ExitToMainMenu->OnClicked.AddDynamic(this, &USaveMenu::BackToMainMenu);
 }
 
 
-void USaveMenu::CreateSlots(TSubclassOf<USaveSlotWidget> WidgetClass)
+void USaveMenu::CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass)
 {
 	if (!WidgetClass)
 	{
@@ -67,5 +67,11 @@ void USaveMenu::SetPlayerControllerProperties()
 	PlayerController->SetShowMouseCursor(true);
 	FInputModeGameAndUI InputMode;
 	PlayerController->SetInputMode(InputMode);
+}
+
+
+void USaveMenu::BackToMainMenu()
+{
+	UGameplayStatics::OpenLevel(GetWorld(), FName("MainMenu"));
 }
 

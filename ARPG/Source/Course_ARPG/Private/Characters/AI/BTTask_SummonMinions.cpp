@@ -33,7 +33,7 @@ void UBTTask_SummonMinions::StartSummon()
 }
 
 
-void UBTTask_SummonMinions::FinishTask()
+void UBTTask_SummonMinions::FinishTask() const
 {
 	Cast<ABoss_Fey>(CharacterRef)->SetCanTakeDamage(true);
 	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);

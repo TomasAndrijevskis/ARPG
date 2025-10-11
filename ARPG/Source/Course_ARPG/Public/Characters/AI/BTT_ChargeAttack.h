@@ -5,6 +5,7 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "BTT_ChargeAttack.generated.h"
 
+class UAnimInstance_Base;
 
 UCLASS()
 
@@ -34,22 +35,25 @@ protected:
 	
 private:
 
+	UPROPERTY()
 	AAIController* ControllerRef;
-	
+
+	UPROPERTY()
 	ACharacter* CharacterRef;
-	
-	class UAnimInstance_Base* BossAnimInstance;
+
+	UPROPERTY()
+	UAnimInstance_Base* BossAnimInstance;
 	
 	UPROPERTY(EditAnywhere)
 	float AcceptableRadius = 100.0f;
 
+	UPROPERTY(EditAnywhere)
+	float ChargeSpeedMultiplier;
+	
 	FScriptDelegate MoveCompletedDelegate;
 
 	float OriginalWalkSpeed;
 	
-	UPROPERTY(EditAnywhere)
-	float ChargeSpeedMultiplier;
-
 	bool bIsFinished = false;
 	
 };

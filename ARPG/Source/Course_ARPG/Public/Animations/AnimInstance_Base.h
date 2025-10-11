@@ -17,18 +17,19 @@ public:
 
 	virtual void NativeBeginPlay() override;
 
-	virtual void NativeUpdateAnimation(float DeltaSeconds) override;
+	virtual void NativeUpdateAnimation(const float DeltaSeconds) override;
 	
 protected:
 
 	UFUNCTION(BlueprintCallable)
-	void HandleResetAttack();
+	void HandleResetAttack() const;
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateSpeed();
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	float CurrentSpeed = 0.0f;
 
-	UFUNCTION(BlueprintCallable)
-	void UpdateSpeed();
-
+	UPROPERTY()
 	AEnemyCharacter* PawnRef;
 };

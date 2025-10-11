@@ -30,11 +30,11 @@ protected:
 private:
 
 	UFUNCTION()
-	void DelayPatrol(FVector TargetLocation, bool bDirectionForward);
+	void DelayPatrol(const FVector& TargetLocation, const bool bDirectionForward) const;
 
-	float GetRandomWaitDuration();
+	float GetRandomWaitDuration() const;
 
-	float GetRandomPatrolDistance();
+	float GetRandomPatrolDistance() const;
 
 	UPROPERTY(EditAnywhere)
 	float MinWaitDuration;
@@ -47,9 +47,11 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float MaxPatrolDistance;
-	
+
+	UPROPERTY()
 	AAIController* ControllerRef;
-	
+
+	UPROPERTY()
 	ACharacter* CharacterRef;
 	
 	FVector StartLocation;

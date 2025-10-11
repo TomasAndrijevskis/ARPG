@@ -6,7 +6,7 @@
 #include "Components/TextBlock.h"
 
 
-void UStatusIconWithTimer::InitializeWidget(float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef, FVector2d ImageSize)
+void UStatusIconWithTimer::InitializeWidget(const float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef, const FVector2d& ImageSize)
 {
 	if (!NewAbilityCompRef || !Image)
 	{
@@ -30,13 +30,13 @@ void UStatusIconWithTimer::RemoveWidget()
 }
 
 
-void UStatusIconWithTimer::SetCountdownTime(float TimeLeft)
+void UStatusIconWithTimer::SetCountdownTime(const float TimeLeft)
 {
 	Text_Countdown->SetText(FText::AsNumber(TimeLeft));
 }
 
 
-void UStatusIconWithTimer::SetStatusIcon(UTexture2D* Icon, FVector2d ImageSize)
+void UStatusIconWithTimer::SetStatusIcon(UTexture2D* Icon, const FVector2d& ImageSize)
 {
 	FSlateBrush ImageStyle;
 	ImageStyle.SetResourceObject(Icon);

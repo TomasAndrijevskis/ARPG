@@ -18,51 +18,42 @@ class COURSE_ARPG_API ULevelingComponent : public UActorComponent
 
 public:
 	
-	ULevelingComponent(){};
-
-	UFUNCTION(BlueprintCallable)
-	void AddXP(float XP);
+	void AddXP(const float XP);
 	
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UFUNCTION()
+	float GetCurrentXP() const;
+
+	UFUNCTION()
+	int GetCurrentLevel() const;
+	
+	int GetCurrentStatPointsAmount() const;
+	
+	int GetCurrentAbilityPointsAmount() const;
+
+	UFUNCTION()
+	void SetXP(const float NewXP);
+
+	UFUNCTION()
+	void SetLevel(const int NewLevel);
+	
+	void SetStatPoints(const int NewStatPointsAmount);
+	
+	void SetAbilityPoints(const int NewAbilityPointsAmount);
+
+	UFUNCTION()
+	float GetXPPercentage() const;
+
+	UPROPERTY()
 	FOnNewLevelSignature OnNewLevelDelegate;
 
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UPROPERTY()
 	FOnXpUpdateSignature OnXpUpdateDelegate;
 
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UPROPERTY()
 	FOnStatPointsUpdateSignature OnStatPointsUpdateDelegate;
 
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UPROPERTY()
 	FOnAbilityPointsUpdateSignature OnAbilityPointsUpdateDelegate;
-	
-	UFUNCTION()
-	float GetCurrentXP();
-
-	UFUNCTION()
-	int GetCurrentLevel();
-
-	//В конце убрать BlueprintPure - нужно только для Debug
-	UFUNCTION(BlueprintPure)
-	int GetCurrentStatPointsAmount();
-	
-	UFUNCTION(BlueprintPure)
-	int GetCurrentAbilityPointsAmount();
-
-	UFUNCTION()
-	void SetXP(float NewXP);
-
-	UFUNCTION()
-	void SetLevel(int NewLevel);
-
-	//В конце убрать BlueprintCallable - нужно только для Debug
-	UFUNCTION(BlueprintCallable)
-	void SetStatPoints(int NewStatPointsAmount);
-
-	UFUNCTION(BlueprintCallable)
-	void SetAbilityPoints(int NewAbilityPointsAmount);
-
-	UFUNCTION()
-	float GetXPPercentage();
 
 protected:
 
@@ -72,9 +63,9 @@ private:
 	
 	void TryLevelUp();
 
-	float GetRequiredXP();
+	float GetRequiredXP() const;
 
-	bool CanAddXP();
+	bool CanAddXP() const;
 	
 	FXPLevels* GetNextLevelRow() const;
 	
@@ -100,5 +91,4 @@ private:
 	int AbilityUpgradePointsAmountForLevel = 5;
 
 	float RequiredXP;
-	
 };

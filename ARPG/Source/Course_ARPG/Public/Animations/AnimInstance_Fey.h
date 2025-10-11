@@ -14,15 +14,15 @@ class COURSE_ARPG_API UAnimInstance_Fey : public UAnimInstance_Base
 protected:
 
 	UFUNCTION(BlueprintCallable)
-	void HandleProjectileSpawn();
+	void HandleProjectileSpawn() const;
 
 	UFUNCTION(BlueprintCallable)
-	void SpawnPoisonArea();
+	void SpawnPoisonArea() const;
 
 	UFUNCTION(BlueprintCallable)
-	void ExplodePoisonArea();
+	void ExplodePoisonArea() const;
 
 	UFUNCTION(BlueprintCallable)
-	void HandleSummonMinions();
+	void HandleSummonMinions() const;
 	
 };

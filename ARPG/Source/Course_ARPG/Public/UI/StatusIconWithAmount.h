@@ -17,12 +17,12 @@ class COURSE_ARPG_API UStatusIconWithAmount : public UUserWidget
 public:
 
 	UFUNCTION()
-	void InitializeWidget(float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, FString NewKey);
+	void InitializeWidget(const float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, const FString& NewKey);
 	
-	UFUNCTION(BlueprintCallable)
-	void SetAmount(float AmountLeft);
+	UFUNCTION()
+	void SetAmount(const float AmountLeft);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void SetStatusIcon(UTexture2D* Icon);
 
 	UFUNCTION()

@@ -17,7 +17,7 @@ public:
 
 	AGroundSmashArea();
 
-	void SetParams(float NewDamage);
+	void SetParams(const float NewDamage);
 
 protected:
 

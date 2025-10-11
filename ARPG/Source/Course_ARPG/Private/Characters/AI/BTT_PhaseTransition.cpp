@@ -3,7 +3,6 @@
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/Boss.h"
-#include "Characters/AI/EEnemyStates.h"
 #include "GameFramework/Character.h"
 
 
@@ -23,12 +22,11 @@ EBTNodeResult::Type UBTT_PhaseTransition::ExecuteTask(UBehaviorTreeComponent& Ow
 }
 
 
-void UBTT_PhaseTransition::ActivateSecondPhase()
+void UBTT_PhaseTransition::ActivateSecondPhase() const
 {
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), NextState);
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsBool(TEXT("IsSecondPhase"), true);
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), 0);
 	Cast<ABoss>(CharacterRef)->ActivateSecondPhase();
-	
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }

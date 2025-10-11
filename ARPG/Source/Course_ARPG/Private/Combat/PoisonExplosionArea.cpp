@@ -49,7 +49,7 @@ void APoisonExplosionArea::CheckPlayerInRange()
 }
 
 
-void APoisonExplosionArea::SetParams(float NewExplosionDamage, float NewPoisonDamage, float NewPoisonRate, float NewPoisonDuration, UNiagaraSystem* NewPoisonEffect, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* NewIcon)
+void APoisonExplosionArea::SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UNiagaraSystem* NewPoisonEffect, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* NewIcon)
 {
 	ExplosionDamage = NewExplosionDamage;
 	PoisonDamage = NewPoisonDamage;

@@ -24,12 +24,12 @@ public:
 	
 protected:
 
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float CurrentSpeed { 0.0f };
-
 	UFUNCTION(BlueprintCallable)
 	void UpdateSpeed();
-
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float CurrentSpeed = 0.0f ;
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsInCombat = false;
 

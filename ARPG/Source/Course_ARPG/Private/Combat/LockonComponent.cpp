@@ -53,7 +53,7 @@ void ULockonComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 }
 
 
-void ULockonComponent::StartLockon(float Radius)
+void ULockonComponent::StartLockon(const float Radius)
 {
 	//for enemies in certain radius
 	TArray<FHitResult> OutResults;
@@ -114,7 +114,7 @@ void ULockonComponent::EndLockon()
 }
 
 
-void ULockonComponent::ToggleLockon(float Radius)
+void ULockonComponent::ToggleLockon(const float Radius)
 {
 	if (IsValid(CurrentTargetActor))
 	{
@@ -128,7 +128,7 @@ void ULockonComponent::ToggleLockon(float Radius)
 
 
 
-bool ULockonComponent::bGetIsLocked()
+bool ULockonComponent::IsLocked() const
 {
 	return bIsLocked;
 }

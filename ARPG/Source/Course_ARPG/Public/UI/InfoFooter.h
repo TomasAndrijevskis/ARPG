@@ -18,7 +18,7 @@ class COURSE_ARPG_API UInfoFooter : public UUserWidget
 public:
 
 	UFUNCTION()
-	void InitializeFooter(EScreens ScreenType);
+	void InitializeFooter(const EScreens& ScreenType);
 
 private:
 

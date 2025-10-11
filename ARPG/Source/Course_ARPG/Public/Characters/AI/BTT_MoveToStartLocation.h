@@ -6,7 +6,7 @@
 #include "Navigation/PathFollowingComponent.h"
 #include "BTT_MoveToStartLocation.generated.h"
 
-struct FPathFollowingResult;
+//struct FPathFollowingResult;
 
 UCLASS()
 class COURSE_ARPG_API UBTT_MoveToStartLocation : public UBTTaskNode
@@ -25,20 +25,22 @@ private:
 	UFUNCTION()
 	void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result);
 	
-	void ChangeState();
+	void ChangeState() const;
 
-	void GoBack(FVector TargetLocation);
+	void GoBack(const FVector& TargetLocation);
 
 	UPROPERTY(EditAnywhere)
 	float AcceptableRadius = 100.0f;
-	
+
+	UPROPERTY()
 	AAIController* ControllerRef;
 	
+	UPROPERTY()
 	ACharacter* CharacterRef;
 
-	FScriptDelegate ReturnToStartLocation;
-
+	UPROPERTY()
 	UBehaviorTreeComponent* CachedOwnerComp = nullptr;
-
+	
+	FScriptDelegate ReturnToStartLocation;
 	
 };

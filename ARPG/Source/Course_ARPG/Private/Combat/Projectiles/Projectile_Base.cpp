@@ -64,7 +64,7 @@ void AProjectile_Base::DestroyProjectile()
 }
 
 
-void AProjectile_Base::SetStats(float NewDamage, float NewAliveTime)
+void AProjectile_Base::SetStats(const float NewDamage, const float NewAliveTime)
 {
 	Damage = NewDamage;
 	AliveTime = NewAliveTime;

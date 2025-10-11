@@ -28,23 +28,32 @@ public:
 	AEnemyCharacter();
 	
 	UFUNCTION(BlueprintCallable)
-	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState){};
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, const EEnemyStates& NewEnemyState){};
 
-	virtual float GetCurrentDamage() override;
+	virtual float GetCurrentDamage() const override;
 
 	virtual void Attack() override;
 
-	virtual float GetAnimDuration();
+	virtual float GetAnimDuration() const override;
 
-	virtual float GetMeleeRange() override;
+	virtual float GetMeleeRange() const override;
 
-	virtual float GetRangeDistance() override;
+	virtual float GetRangeDistance() const override;
 	
 	UFUNCTION(BlueprintCallable)
 	virtual void CreateHealthWidget(){};
 
-	AAIController* GetAIController();
+	AAIController* GetAIController() const;
+
+	float GetSightRadius() const;
 	
+	UBlackboardComponent* GetBlackboardComp() const;
+
+	UFUNCTION()
+	TEnumAsByte<EEnemyStates> GetInitialState() const;
+
+	void SetInitialState(const TEnumAsByte<EEnemyStates> NewState);
+
 	UPROPERTY(EditAnywhere)
 	class UStatsComponent* StatsComp;
 
@@ -56,16 +65,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	class UStatusEffectsComponent* StatusEffectsComp;
-
-	float GetSightRadius();
 	
-	UBlackboardComponent* GetBlackboardComp();
-
-	UFUNCTION()
-	TEnumAsByte<EEnemyStates> GetInitialState();
-
-	void SetInitialState(TEnumAsByte<EEnemyStates> NewState);
-
 	FOnEnemyDiedSignature OnEnemyDiedDelegate;
 	
 protected:
@@ -78,7 +78,7 @@ protected:
 	void GiveRewardXP();
 
 	UFUNCTION()
-	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	virtual void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 	
 private:
 

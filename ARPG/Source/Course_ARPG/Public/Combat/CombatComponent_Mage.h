@@ -15,7 +15,6 @@ public:
 
 	virtual void ComboAttack() override;
 
-	
 private:
 
 	UFUNCTION()
@@ -32,11 +31,11 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float AliveTime = 4.0f;
-
-	FTimerHandle ProjectileTimerHandle;
-
+	
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
-
+	
+	FTimerHandle ProjectileTimerHandle;
+	
 	int ProjectileCounter = 0;
 };

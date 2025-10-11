@@ -25,18 +25,20 @@ protected:
 	
 private:
 
-	void MoveToPlayer(float AcceptableDistance, FVector PlayerLocation);
+	void MoveToPlayer(const float AcceptableDistance, const FVector& PlayerLocation) const;
 	
 	void CheckDistance();
 
-	void Attack();
-	
+	void Attack() const; 
+
+	UPROPERTY()
 	AAIController* ControllerRef;
 
+	UPROPERTY()
 	ACharacter* CharacterRef;
 
-	IFighter* FighterRef;
-
+	UPROPERTY()
 	APawn* PlayerRef;
 	
+	IFighter* FighterRef;
 };

@@ -10,11 +10,10 @@ void UObjectInteractionText::NativeConstruct()
 }
 
 
-void UObjectInteractionText::InitializeText(FString InteractionObject,  FString InteractionObjectName, FString InteractiontKey)
+void UObjectInteractionText::InitializeText(const FString& InteractionObject, const FString& InteractionObjectName,  const FString& InteractionKey)
 {
-	//FString Text = "Interact with " + InteractionObject + ": " + InteractiontKey;
 	FString Text = InteractionObjectName;
-	FString Text2 = "Interact with " + InteractionObject + ": " + InteractiontKey;
-	Text_InteractionText->SetText(FText::FromString(Text));
-	Text_InteractionText_1->SetText(FText::FromString(Text2));
+	FString Text2 = "Interact with " + InteractionObject + ": " + InteractionKey;
+	Text_InteractionText_Upper->SetText(FText::FromString(Text));
+	Text_InteractionText_Lower->SetText(FText::FromString(Text2));
 }

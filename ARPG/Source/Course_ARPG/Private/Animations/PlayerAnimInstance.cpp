@@ -20,7 +20,6 @@ void UPlayerAnimInstance::UpdateDirection()
 	{
 		return;
 	}
-	
 	CurrentDirection = UKismetAnimationLibrary::CalculateDirection(PlayerRef->GetVelocity(), PlayerRef->GetActorRotation());
 }
 
@@ -34,5 +33,4 @@ void UPlayerAnimInstance::UpdateSpeed()
 	}
 	FVector Velocity = PlayerRef->GetVelocity();
 	CurrentSpeed = static_cast<float>(Velocity.Length()); // double->float
-
 }

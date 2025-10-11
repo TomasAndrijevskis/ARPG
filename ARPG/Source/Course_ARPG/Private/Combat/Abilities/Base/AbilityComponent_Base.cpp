@@ -8,7 +8,7 @@ UAbilityComponent_Base::UAbilityComponent_Base()
 }
 
 
-UTexture2D* UAbilityComponent_Base::GetIcon()
+UTexture2D* UAbilityComponent_Base::GetIcon() const
 {
 	if (!Icon)
 	{
@@ -18,13 +18,13 @@ UTexture2D* UAbilityComponent_Base::GetIcon()
 }
 
 
-float UAbilityComponent_Base::GetAbilityDuration()
+float UAbilityComponent_Base::GetAbilityDuration() const
 {
 	return AbilityDuration;
 }
 
 
-void UAbilityComponent_Base::SetAbilityDuration(float NewAbilityDuration)
+void UAbilityComponent_Base::SetAbilityDuration(const float NewAbilityDuration)
 {
 	AbilityDuration = NewAbilityDuration;
 }

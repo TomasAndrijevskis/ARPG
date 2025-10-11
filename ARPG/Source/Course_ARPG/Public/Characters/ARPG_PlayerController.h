@@ -35,19 +35,19 @@ public:
 	void RemoveQuickTravelMenu();
 	
 	UFUNCTION()
-	void SetIsInBonfireRange(bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
+	void SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
 
 	UFUNCTION()
-	void SetIsInDoorRange(bool bNewIsInDoorRange);
+	void SetIsInDoorRange(const bool bNewIsInDoorRange);
 
 	UFUNCTION()
-	void SetMapName(FString NewMapName);
+	void SetMapName(const FString& NewMapName);
 	
 	UFUNCTION()
 	void LoadToMainMenu();
 
 	UFUNCTION()
-	void SaveAll();
+	void SaveAll() const;
 
 	UFUNCTION(BlueprintCallable)
 	void CreatePauseMenu();
@@ -58,9 +58,9 @@ public:
 	UFUNCTION()
 	void SaveBeforeQuit();
 	
-	TArray<FName> GetDefeatedBosses();
+	TArray<FName> GetDefeatedBosses() const;
 
-	void AddDefeatedBoss(FName Boss);
+	void AddDefeatedBoss(const FName& Boss);
 	
 	TMap<FString, FBonfireData> UnlockedBonfires;
 
@@ -76,16 +76,16 @@ protected:
 	
 private:
 	
-	void QuitGame();
+	void QuitGame() const;
 	
 	UFUNCTION()
-	void HandleGamePause(bool bIsGamePaused);
+	void HandleGamePause(const bool bIsGamePaused);
 	
 	UFUNCTION()
 	void SetPlayerControllerSettings();
 
 	UFUNCTION()
-	void HandleGameLoad();
+	void HandleGameLoad() const;
 	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;

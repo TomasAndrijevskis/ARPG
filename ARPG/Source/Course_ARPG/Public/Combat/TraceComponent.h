@@ -27,7 +27,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	bool bIsAttacking = false;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnHitSignature OnHitDelegate;
 	
 protected:
@@ -35,7 +35,8 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	
+
+	UPROPERTY()
 	USkeletalMeshComponent* SkeletalComp;
 
 	UPROPERTY(EditAnywhere)
@@ -47,6 +48,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	bool bDebugMode = true;
 
+	UPROPERTY()
 	TArray<AActor*> TargetsToIgnore;
 
 	UPROPERTY(EditAnywhere)

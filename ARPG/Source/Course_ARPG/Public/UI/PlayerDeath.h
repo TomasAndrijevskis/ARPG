@@ -15,7 +15,7 @@ protected:
 
 	virtual void NativeConstruct() override;
 
-	virtual void OnAnimationFinished_Implementation( const UWidgetAnimation* Animation);
+	virtual void OnAnimationFinished_Implementation(const UWidgetAnimation* Animation) override;
 	
 private:
 

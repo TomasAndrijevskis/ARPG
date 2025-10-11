@@ -8,7 +8,6 @@
 void UCharacterSelect::NativeConstruct()
 {
 	Super::NativeConstruct();
-
 	SetData();
 	Button_SelectCharacter->OnClicked.AddDynamic(this, &UCharacterSelect::SetCharacterClass);
 }
@@ -48,11 +47,11 @@ void UCharacterSelect::SetButtonStyle(UTexture2D* Image)
 	
 	FSlateBrush HoveredBrush;
 	HoveredBrush.SetResourceObject(Image);
-	HoveredBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.7f));
+	HoveredBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.4f));
 	
 	FSlateBrush PressedBrush;
 	PressedBrush.SetResourceObject(Image);
-	PressedBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.4f));
+	PressedBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.7f));
 	
 	CustomStyle.SetNormal(NormalBrush);
 	CustomStyle.SetHovered(HoveredBrush);

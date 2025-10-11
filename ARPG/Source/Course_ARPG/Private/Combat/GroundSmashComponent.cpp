@@ -11,17 +11,16 @@
 void UGroundSmashComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
 	PawnRef = Cast<ACharacter>(GetOwner());
-	if (!PawnRef)
-	{
-		return;
-	}
 }
 
 
 void UGroundSmashComponent::SpawnParticles()
 {
+	if (!PawnRef)
+	{
+		return;
+	}
 	if (ParticleClass)
 	{
 		ParticleRef = UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ParticleClass, GetParticleSpawnLocation(SpawnSocketName), FRotator(180, 0, 0), FVector(2,2,2), true);
@@ -42,7 +41,7 @@ void UGroundSmashComponent::SpawnParticles()
 }
 
 
-FVector UGroundSmashComponent::GetParticleSpawnLocation(FName SocketName)
+FVector UGroundSmashComponent::GetParticleSpawnLocation(const FName& SocketName) const
 {
 	if (!PawnRef)
 	{

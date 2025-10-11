@@ -19,7 +19,7 @@ public:
 
 	void SpawnArea();
 
-	void SpawnExplosion();
+	void SpawnExplosion() const;
 
 private:
 	

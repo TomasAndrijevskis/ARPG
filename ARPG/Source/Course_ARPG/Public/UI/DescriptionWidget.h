@@ -12,10 +12,9 @@ class COURSE_ARPG_API UDescriptionWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-
 public:
 	
-	void SetDescription(FString Description);
+	void SetDescription(const FString& Description);
 	
 private:
 

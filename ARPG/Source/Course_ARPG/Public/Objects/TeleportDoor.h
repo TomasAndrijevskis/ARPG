@@ -37,7 +37,7 @@ private:
 	UFUNCTION()
 	void SetupWidget();
 	
-	void ChangeWidgetVisibility(bool bIsVisible);
+	void ChangeWidgetVisibility(const bool bIsVisible) const;
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStaticMeshComponent* Mesh;

@@ -5,6 +5,11 @@
 #include "Characters/MainCharacter_Base.h"
 #include "MainCharacter_Warrior.generated.h"
 
+class UAbilityComponent_DamageIncrease;
+class UAbilityComponent_LifeStealAttack;
+class UAbilityComponent_RangeAttack;
+class UAbilityComponent_GetArmor;
+class UTraceComponent;
 
 UCLASS()
 class COURSE_ARPG_API AMainCharacter_Warrior : public AMainCharacter_Base
@@ -16,23 +21,23 @@ public:
 	AMainCharacter_Warrior();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UAbilityComponent_DamageIncrease* AbilityComp_DamageIncrease;
+	UAbilityComponent_DamageIncrease* AbilityComp_DamageIncrease;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UAbilityComponent_LifeStealAttack* AbilityComp_LifeStealAttack;
+	UAbilityComponent_LifeStealAttack* AbilityComp_LifeStealAttack;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UAbilityComponent_RangeAttack* AbilityComp_RangeAttack;
+	UAbilityComponent_RangeAttack* AbilityComp_RangeAttack;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UAbilityComponent_GetArmor* AbilityComp_GetArmor;
+	UAbilityComponent_GetArmor* AbilityComp_GetArmor;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UTraceComponent* TraceComp;
+	UTraceComponent* TraceComp;
 	
 protected:
 
 	virtual void BeginPlay() override;
 
-	virtual bool CanTakeDamage(AActor* Opponent) override;
+	virtual bool CanTakeDamage(AActor* Opponent) const override;
 };

@@ -122,7 +122,7 @@ void UAbilityComponent_FireStorm::LoadCustomProperties(FAbilityData& SavedData)
 
 
 
-float UAbilityComponent_FireStorm::GetBurnDamage()
+float UAbilityComponent_FireStorm::GetBurnDamage() const
 {
 	return BurnDamage;
 }
@@ -134,7 +134,7 @@ void UAbilityComponent_FireStorm::SetBurnDamage(float NewDamage)
 }
 
 
-float UAbilityComponent_FireStorm::GetBurnDuration()
+float UAbilityComponent_FireStorm::GetBurnDuration() const
 {
 	return BurnDuration;
 }

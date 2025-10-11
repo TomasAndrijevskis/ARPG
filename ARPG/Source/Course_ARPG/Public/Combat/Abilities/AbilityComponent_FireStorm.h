@@ -24,11 +24,11 @@ public:
 
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
 
-	float GetBurnDamage();
+	float GetBurnDamage() const;
 	
 	void SetBurnDamage(float NewDamage);
 
-	float GetBurnDuration();
+	float GetBurnDuration() const;
 	
 	void SetBurnDuration(float NewDuration);
 	

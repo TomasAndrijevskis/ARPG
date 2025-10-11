@@ -6,7 +6,6 @@
 
 void ABossSpawner::CheckEnemies()
 {
-	//UE_LOG(LogTemp, Warning, TEXT("Spawning"));
 	PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 	if (!PlayerController)
 	{

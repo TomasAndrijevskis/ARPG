@@ -33,7 +33,7 @@ void UStatusEffectsComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 }
 
 
-void UStatusEffectsComponent::SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect)
+void UStatusEffectsComponent::SlowDownEnemy(const float SlowDuration, UNiagaraSystem* FrozenEffect)
 {
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 
@@ -59,7 +59,7 @@ void UStatusEffectsComponent::StopFreeze()
 
 
 
-void UStatusEffectsComponent::HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect, bool bNewIsOverlapping, float NewBurnRate)
+void UStatusEffectsComponent::HandleBurn(const float NewBurnDuration, const float NewBurnDamage, UNiagaraSystem* BurnEffect, const bool bNewIsOverlapping, const float NewBurnRate)
 {
 	BurnDamage = NewBurnDamage;
 	BurnDuration = NewBurnDuration;
@@ -99,7 +99,7 @@ void UStatusEffectsComponent::Burn()
 }
 
 
-void UStatusEffectsComponent::HandlePoison(float NewPoisonDuration, float NewPoisonDamage, UNiagaraSystem* PoisonEffect, float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon)
+void UStatusEffectsComponent::HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, UNiagaraSystem* PoisonEffect, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon)
 {
 	PoisonDamage = NewPoisonDamage;
 	PoisonDuration = NewPoisonDuration;
@@ -138,7 +138,7 @@ void UStatusEffectsComponent::Poison()
 }
 
 
-void UStatusEffectsComponent::StopEffect(FStatusEffectData& Data)
+void UStatusEffectsComponent::StopEffect(FStatusEffectData& Data) const
 {
 	GetWorld()->GetTimerManager().ClearTimer(Data.TimerHandle);
 	if (Data.Effect)

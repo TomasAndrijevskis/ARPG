@@ -21,18 +21,18 @@ class COURSE_ARPG_API IFighter
 
 public:
 
-	virtual float GetCurrentDamage() { return 0.0f; }
+	virtual float GetCurrentDamage() const { return 0.0f; }
 
 	virtual void Attack() {};
 
-	virtual float GetAnimDuration() { return 0.0f; };
+	virtual float GetAnimDuration() const { return 0.0f; };
 
-	virtual float GetMeleeRange() { return 0.0f; };
+	virtual float GetMeleeRange() const { return 0.0f; };
 
-	virtual float GetRangeDistance() { return 0.0f; };
+	virtual float GetRangeDistance() const { return 0.0f; };
 
-	virtual bool CanTakeDamage(AActor* Opponent) {return true;};
+	virtual bool CanTakeDamage(AActor* Opponent) const {return true;};
 	
-	virtual float GetAttackAnimReductionTime() { return 0.0f; };
+	virtual float GetAttackAnimReductionTime() const { return 0.0f; };
 	
 };

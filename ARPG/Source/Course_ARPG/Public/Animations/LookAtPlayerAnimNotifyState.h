@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -17,5 +16,5 @@ class COURSE_ARPG_API ULookAtPlayerAnimNotifyState : public UAnimNotifyState
 
 	virtual void NotifyEnd ( USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference) override;
 
-	void ToggleRotationState(bool bCanRotate, USkeletalMeshComponent* MeshComp);
+	void ToggleRotationState(const bool bCanRotate, const USkeletalMeshComponent* MeshComp);
 };

@@ -66,7 +66,6 @@ void ATeleportDoor::SetupWidget()
 
 void ATeleportDoor::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	//UE_LOG(LogTemp, Error, TEXT("OnBeginOverlap"));
 	ChangeWidgetVisibility(true);
 	PlayerController->SetIsInDoorRange(true);
 	PlayerController->SetMapName(DoorName);
@@ -75,13 +74,12 @@ void ATeleportDoor::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* 
 
 void ATeleportDoor::OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	//UE_LOG(LogTemp, Error, TEXT("OnEndOverlap"));
 	ChangeWidgetVisibility(false);
 	PlayerController->SetIsInDoorRange(false);
 }
 
 
-void ATeleportDoor::ChangeWidgetVisibility(bool bIsVisible)
+void ATeleportDoor::ChangeWidgetVisibility(const bool bIsVisible) const
 {
 	InteractionWidgetComponent->SetVisibility(bIsVisible);
 }

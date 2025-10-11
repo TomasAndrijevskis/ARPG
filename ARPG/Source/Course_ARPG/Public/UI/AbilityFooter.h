@@ -17,27 +17,16 @@ class COURSE_ARPG_API UAbilityFooter : public UUserWidget
 
 public:
 
-	UFUNCTION(BlueprintCallable)
-	void SetAbility(UTexture2D* Image, FString ActionKey, UAbilityComponent_Player* AbilityComp);
+	UFUNCTION()
+	void SetAbility(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityComp);
 	
 protected:
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere)
 	UAbilityComponent_Player* AbilityComp_REF;
 	
 private:
 
-	void SetImageStyle();
-
-	UFUNCTION()
-	void SetImageAvailability();
-
-	UFUNCTION()
-	void SetCooldownText(float TimeLeft);
-
-	UFUNCTION()
-	void RemoveCooldownText();
-	
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_CooldownValue;
 	
@@ -50,4 +39,14 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UTexture2D* AbilityImage;
 	
+	void SetImageStyle();
+
+	UFUNCTION()
+	void SetImageAvailability();
+
+	UFUNCTION()
+	void SetCooldownText(const float TimeLeft);
+
+	UFUNCTION()
+	void RemoveCooldownText();
 };

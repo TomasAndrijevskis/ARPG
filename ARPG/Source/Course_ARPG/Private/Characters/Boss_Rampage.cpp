@@ -26,7 +26,7 @@ void ABoss_Rampage::ReceiveDamage(AActor* DamagedActor, float Damage, const clas
 
 
 
-float ABoss_Rampage::GetFinalDamage(float Damage)
+float ABoss_Rampage::GetFinalDamage(const float Damage) const
 {
 	float ClampedReduction = FMath::Clamp(DamageReductionPercent, 0.f, .9f);
 	float ReducedDamage = Damage * ClampedReduction;

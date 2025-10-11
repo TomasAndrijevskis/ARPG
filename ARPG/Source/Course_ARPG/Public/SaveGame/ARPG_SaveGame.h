@@ -18,8 +18,6 @@ class COURSE_ARPG_API UARPG_SaveGame : public USaveGame
 
 public:
 
-	UARPG_SaveGame(){};
-
 	UPROPERTY()
 	float CurrentHealth;
 
@@ -56,15 +54,15 @@ public:
 	UPROPERTY()
 	FString CurrentMap;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	TMap<FString, FAbilityData> UnlockedAbilities;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	TMap<FString, FBonfireData> UnlockedBonfires;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	TSubclassOf<AMainCharacter_Base> PlayerCharacter;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY()
 	TArray<FName> DefeatedBosses;
 };

@@ -1,6 +1,5 @@
 
 #include "Characters/MainCharacter_Warrior.h"
-
 #include "Animations/PlayerAnimInstance.h"
 #include "Characters/StatsComponent.h"
 #include "Combat/BlockComponent.h"
@@ -46,7 +45,7 @@ void AMainCharacter_Warrior::BeginPlay()
 }
 
 
-bool AMainCharacter_Warrior::CanTakeDamage(AActor* Opponent)
+bool AMainCharacter_Warrior::CanTakeDamage(AActor* Opponent) const
 {
 	if (PlayerAnimInstance->bIsBlocking)
 	{

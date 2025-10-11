@@ -129,13 +129,13 @@ void UAbilityComponent_RangeAttack::LoadCustomProperties(FAbilityData& SavedData
 
 
 
-float UAbilityComponent_RangeAttack::GetProjectileDamage()
+float UAbilityComponent_RangeAttack::GetProjectileDamage() const
 {
 	return ProjectileDamage;
 }
 
 
-void UAbilityComponent_RangeAttack::SetProjectileDamage(float NewProjectileDamage)
+void UAbilityComponent_RangeAttack::SetProjectileDamage(const float NewProjectileDamage)
 {
 	ProjectileDamage = NewProjectileDamage;
 }

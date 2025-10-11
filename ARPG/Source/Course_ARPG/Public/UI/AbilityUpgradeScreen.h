@@ -8,6 +8,7 @@
 #include "Components/HorizontalBox.h"
 #include "AbilityUpgradeScreen.generated.h"
 
+class AMainCharacter_Base;
 
 UCLASS()
 class COURSE_ARPG_API UAbilityUpgradeScreen : public UUserWidget
@@ -17,56 +18,23 @@ class COURSE_ARPG_API UAbilityUpgradeScreen : public UUserWidget
 public:
 	
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void RemoveUpgradeDescriptionWidget();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void RemoveAbilityDescriptionWidget();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void InitializeAbility(class UAbilityComponent_Player* AbilityComp);
 	
 protected:
 
 	virtual void NativeConstruct() override;
 	
-	UPROPERTY(EditAnywhere)
-	UAbilityComponent_Player* AbilityComp_REF;
+	UPROPERTY()
+	UAbilityComponent_Player* AbilityComp_Ref;
 	
 private:
-
-	UFUNCTION()
-	void SetupButtonCallbacks();
-	
-	UFUNCTION()
-	void CreateDescriptionWidget(UHorizontalBox* HorizontalBox, TSubclassOf<UDescriptionWidget> WidgetClass, FString Description);
-
-	UFUNCTION()
-	void RemoveDescriptionWidget(UHorizontalBox* Box);
-
-	UFUNCTION()
-	void CreateUpgradeDescriptionWidget();
-
-	UFUNCTION()
-	void CreateAbilityDescriptionWidget();
-	
-	UFUNCTION()
-	void SetAbilityIconEnable();
-	
-	UFUNCTION()
-	void SetIconStyle(UTexture2D* Icon);
-
-	UFUNCTION()
-	void SetUpgradeButtonText(bool bIsLevelMaxed);
-
-	UFUNCTION()
-	void SetRequiredPointsText();
-	
-	UFUNCTION()
-	void UpgradeAbility();
-
-	UFUNCTION()
-	void HandleUpgradeButtonActions();
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilityIcon;
@@ -85,16 +53,53 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_RequiredPoints;
+	
+	UFUNCTION()
+	void SetupButtonCallbacks();
+	
+	UFUNCTION()
+	void CreateDescriptionWidget(const TSubclassOf<UDescriptionWidget>& WidgetClass, const FString& Description);
 
+	UFUNCTION()
+	void RemoveDescriptionWidget();
+
+	UFUNCTION()
+	void CreateUpgradeDescriptionWidget();
+
+	UFUNCTION()
+	void CreateAbilityDescriptionWidget();
+	
+	UFUNCTION()
+	void SetAbilityIconEnable();
+	
+	UFUNCTION()
+	void SetIconStyle(UTexture2D* Icon);
+
+	UFUNCTION()
+	void SetUpgradeButtonText(const bool bIsLevelMaxed);
+
+	UFUNCTION()
+	void SetRequiredPointsText();
+	
+	UFUNCTION()
+	void UpgradeAbility();
+
+	UFUNCTION()
+	void HandleUpgradeButtonActions();
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UDescriptionWidget> AbilityDescriptionClass;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UDescriptionWidget> UpgradeDescriptionClass;
+
+	UPROPERTY()
+	AMainCharacter_Base* PlayerRef;
+
+	UPROPERTY()
+	UDescriptionWidget* DescriptionWidgetRef;
 	
 	FString AbilityDescription;
 
 	FString UpgradeDescription;
-
-	class AMainCharacter_Base* PlayerRef;
 };

@@ -8,7 +8,7 @@
 #include "Combat/GroundSmashComponent.h"
 
 
-void UAnimInstance_Rampage::HandleSmashingGround()
+void UAnimInstance_Rampage::HandleSmashingGround() const
 {
 	if (!PawnRef)
 	{
@@ -22,7 +22,7 @@ void UAnimInstance_Rampage::HandleSmashingGround()
 }
 
 
-void UAnimInstance_Rampage::SetIsSmashingGround(bool bIsSmashing)
+void UAnimInstance_Rampage::SetIsSmashingGround(const bool bIsSmashing)
 {
 	if (!bIsSmashing)
 	{

@@ -24,7 +24,7 @@ void AGroundSmashArea::BeginPlay()
 }
 
 
-void AGroundSmashArea::SetParams(float NewDamage)
+void AGroundSmashArea::SetParams(const float NewDamage)
 {
 	Damage = NewDamage;
 }
@@ -32,8 +32,7 @@ void AGroundSmashArea::SetParams(float NewDamage)
 
 void AGroundSmashArea::CheckPlayerInRange()
 {
-	AMainCharacter_Base* PlayerRef;
-	PlayerRef = Cast<AMainCharacter_Base>(GetWorld()->GetFirstPlayerController()->GetPawn());
+	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	if (!PlayerRef)
 	{
 		return;

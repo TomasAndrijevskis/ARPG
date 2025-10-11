@@ -20,9 +20,9 @@ class COURSE_ARPG_API UBossHealthBar : public UUserWidget
 public:
 
 	UFUNCTION()
-	void SetHealth(float NewHealthPercent);
+	void SetHealth(const float NewHealthPercent);
 
-	void SetBossName(FText NewBossName);
+	void SetBossName(const FText& NewBossName);
 
 private:
 

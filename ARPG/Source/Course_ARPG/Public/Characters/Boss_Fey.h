@@ -29,7 +29,7 @@ public:
 	
 protected:
 
-	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	virtual void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser) override;
 	
 private:
 
@@ -48,5 +48,4 @@ private:
 	int MeleeAttacksCounter = 0;
 
 	int SummonCounter = 0;
-	
 };

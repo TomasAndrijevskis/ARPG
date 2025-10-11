@@ -15,9 +15,7 @@ class COURSE_ARPG_API UGroundSmashComponent : public UAbilityComponent_Enemy
 	GENERATED_BODY()
 
 public:	
-
-	UGroundSmashComponent(){};
-
+	
 	void SpawnParticles();
 	
 protected:
@@ -26,7 +24,7 @@ protected:
 
 private:
 	
-	FVector GetParticleSpawnLocation(FName SocketName);
+	FVector GetParticleSpawnLocation(const FName& SocketName) const;
 
 	UPROPERTY(EditAnywhere)
 	float DamageMultiplier;
@@ -36,7 +34,8 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* ParticleClass;
-	
+
+	UPROPERTY()
 	UParticleSystemComponent* ParticleRef;
 
 	UPROPERTY(EditAnywhere)
@@ -45,5 +44,6 @@ private:
 	UPROPERTY()
 	AGroundSmashArea* GroundSmashAreaActor;
 
+	UPROPERTY()
 	ACharacter* PawnRef;
 };

@@ -25,15 +25,18 @@ private:
 	void StartSummon();
 	
 	UFUNCTION()
-	void FinishTask();
+	void FinishTask() const;
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* SummonAnimMontage;
-	
+
+	UPROPERTY()
 	AAIController* ControllerRef;
 
+	UPROPERTY()
 	ACharacter* CharacterRef;
 
+	UPROPERTY()
 	UBehaviorTreeComponent* CachedOwnerComp;
 
 

@@ -15,20 +15,20 @@ public:
 	
 	UBTT_HitCountReset();
 
-
 protected:
 
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 private:
 
-	void FinishTask(UBehaviorTreeComponent* LocalOwnerComp);
+	void FinishTask(UBehaviorTreeComponent* LocalOwnerComp) const;
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* AnimMontage;
 
 	UPROPERTY(EditAnywhere)
 	float ResetDuration;
-	
+
+	UPROPERTY()
 	AAIController* ControllerRef;
 };

@@ -64,7 +64,7 @@ void UBTT_Patrol::PatrolBackward()
 }
 
 
-void UBTT_Patrol::DelayPatrol(FVector TargetLocation, bool bDirectionForward)
+void UBTT_Patrol::DelayPatrol(const FVector& TargetLocation, const bool bDirectionForward) const
 {
 	ControllerRef->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetLocation"), TargetLocation);
 	FAIMoveRequest MoveRequest = TargetLocation;
@@ -96,13 +96,13 @@ EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, ui
 
 
 
-float UBTT_Patrol::GetRandomWaitDuration()
+float UBTT_Patrol::GetRandomWaitDuration() const
 {
 	return FMath::RandRange(MinWaitDuration, MaxWaitDuration);
 }
 
 
-float UBTT_Patrol::GetRandomPatrolDistance()
+float UBTT_Patrol::GetRandomPatrolDistance() const
 {
 	return FMath::RandRange(MinPatrolDistance, MaxPatrolDistance);
 }

@@ -5,7 +5,6 @@
 #include "Blueprint/UserWidget.h"
 #include "Characters/Data/CharacterSelectionStruct.h"
 #include "Components/Button.h"
-#include "Components/Image.h"
 #include "Components/TextBlock.h"
 #include "CharacterSelect.generated.h"
 
@@ -20,7 +19,6 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	
 protected:
 
 	UPROPERTY(EditAnywhere)
@@ -28,18 +26,18 @@ protected:
 	
 private:
 
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_SelectCharacter;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_CharacterName;
+	
 	void SetData();
 
 	void SetButtonStyle(UTexture2D* Image);
 	
 	UFUNCTION()
 	void SetCharacterClass();
-
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_SelectCharacter;
-
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_CharacterName;
 
 	UPROPERTY(EditAnywhere)
 	FDataTableRowHandle CharacterData;

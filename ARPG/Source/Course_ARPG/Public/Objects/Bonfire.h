@@ -22,13 +22,13 @@ public:
 
 	virtual void Tick(float DeltaSeconds) override;
 
-	FString GetBonfireName();
+	FString GetBonfireName() const;
 
-	FString GetMapName();
+	FString GetMapName() const;
 
-	bool GetIsFirstTimeUsed();
+	bool IsFirstTimeUsed() const;
 
-	void SetIsFirstTimeUsed(bool NewIsFirstTimeUsed);
+	void SetIsFirstTimeUsed(const bool NewIsFirstTimeUsed);
 	
 protected:
 
@@ -46,10 +46,10 @@ protected:
 private:
 
 	UFUNCTION()
-	void SetupWidget();
+	void SetupWidget() const;
 	
 	UFUNCTION()
-	void ChangeWidgetVisibility(bool bIsVisible);
+	void ChangeWidgetVisibility(const bool bIsVisible) const;
 	
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* BonfireMesh;

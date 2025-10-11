@@ -18,7 +18,7 @@ public:
 	
 	AFrostBlastRange();
 
-	void SetParams(float NewDamage, float NewDuration);
+	void SetParams(const float NewDamage, const float NewDuration);
 	
 protected:
 

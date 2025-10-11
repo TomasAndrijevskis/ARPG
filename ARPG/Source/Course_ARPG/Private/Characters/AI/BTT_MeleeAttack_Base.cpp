@@ -81,7 +81,7 @@ void UBTT_MeleeAttack_Base::FinishAttack()
 }
 
 
-void UBTT_MeleeAttack_Base::FinishMove()
+void UBTT_MeleeAttack_Base::FinishMove() const
 {
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
@@ -104,7 +104,7 @@ void UBTT_MeleeAttack_Base::CheckDistance()
 }
 
 
-void UBTT_MeleeAttack_Base::MoveToPlayer()
+void UBTT_MeleeAttack_Base::MoveToPlayer() const
 {
 	APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
 	FAIMoveRequest MoveRequest = PlayerRef;

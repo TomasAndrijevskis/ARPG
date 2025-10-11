@@ -28,12 +28,12 @@ protected:
 
 	virtual void BeginPlay() override;
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void SpawnProjectile();
 
-	float GetProjectileDamage();
+	float GetProjectileDamage() const;
 
-	void SetProjectileDamage(float NewProjectileDamage);
+	void SetProjectileDamage(const float NewProjectileDamage);
 	
 	virtual void StartAbility() override;
 
@@ -60,10 +60,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float AliveTime = 4.0f;
-
-	//UPROPERTY()
-	//FTimerHandle ParticleTimerHandle;
-
+	
 	UPROPERTY()
 	UParticleSystemComponent* ParticleComponent;
 	

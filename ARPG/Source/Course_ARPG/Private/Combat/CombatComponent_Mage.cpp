@@ -11,11 +11,9 @@ void UCombatComponent_Mage::ComboAttack()
 {
 	if (CharacterRef->Implements<UMainPlayer>()) //проверяет есть ли интерфейс
 	{
-		//UE_LOG(LogTemp, Error, TEXT("CombatComp|Implements"));
 		IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);
 		if (IPlayerRef && !IPlayerRef->HasEnoughMana(AttackManaCost))
 		{
-			//UE_LOG(LogTemp, Error, TEXT("CombatComp|Has mana"));
 			return;
 		}
 	}

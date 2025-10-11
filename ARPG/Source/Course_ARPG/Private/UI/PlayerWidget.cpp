@@ -1,5 +1,8 @@
 
 #include "UI/PlayerWidget.h"
+
+#include "Components/BackgroundBlur.h"
+#include "Components/Border.h"
 #include "UI/AbilityFooter.h"
 #include "UI/StatsScreenWidget.h"
 #include "UI/AbilityUpgradeScreen.h"
@@ -15,7 +18,7 @@
 #include "UI/StatusIconWithTimer.h"
 
 
-void UPlayerWidget::CreateStatsScreen(EStats Stat)
+void UPlayerWidget::CreateStatsScreen(const EStats& Stat)
 {
 	if (!StatsWidgetClass)
 	{
@@ -24,6 +27,8 @@ void UPlayerWidget::CreateStatsScreen(EStats Stat)
 	StatsScreenRef = Cast<UStatsScreenWidget>(CreateWidget(this, StatsWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(StatsScreenRef);
 	StatsScreenRef->SetStatsVariables(Stat);
+	BackgroundBlur_Blur->SetBlurStrength(10);
+	HandleUpgradeInfoBorder(ESlateVisibility::Visible);
 }
 
 
@@ -36,6 +41,8 @@ void UPlayerWidget::RemoveStatsScreen()
 	}
 	VerticalBox_UpgradeInfo->ClearChildren();
 	CreateBonfireMenuWidget();
+	BackgroundBlur_Blur->SetBlurStrength(0);
+	HandleUpgradeInfoBorder(ESlateVisibility::Hidden);
 }
 
 
@@ -48,6 +55,8 @@ void UPlayerWidget::CreateAbilityUpgradeScreen(UAbilityComponent_Player* Ability
 	AbilityUpgradeScreenWidgetRef = Cast<UAbilityUpgradeScreen>(CreateWidget(this, AbilityUpgradeScreenWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(AbilityUpgradeScreenWidgetRef);
 	AbilityUpgradeScreenWidgetRef->InitializeAbility(AbilityCompRef);
+	BackgroundBlur_Blur->SetBlurStrength(10);
+	HandleUpgradeInfoBorder(ESlateVisibility::Visible);
 }
 
 
@@ -62,10 +71,12 @@ void UPlayerWidget::RemoveAbilityUpgradeScreen()
 	}
 	VerticalBox_UpgradeInfo->ClearChildren();
 	CreateBonfireMenuWidget();
+	BackgroundBlur_Blur->SetBlurStrength(0);
+	HandleUpgradeInfoBorder(ESlateVisibility::Hidden);
 }
 
 
-void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, FString ActionKey, UAbilityComponent_Player* AbilityCompRef)
+void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef)
 {
 	if (!AbilityFooterWidgetClass)
 	{
@@ -88,7 +99,7 @@ void UPlayerWidget::RemoveAbilityFooter()
 }
 
 
-void UPlayerWidget::CreateUpgradeInfoHeader(int Value)
+void UPlayerWidget::CreateUpgradeInfoHeader(const int Value)
 {
 	if (!InfoHeaderWidgetClass)
 	{
@@ -100,7 +111,7 @@ void UPlayerWidget::CreateUpgradeInfoHeader(int Value)
 }
 
 
-void UPlayerWidget::CreateUpgradeInfoFooter(EScreens ScreenType)
+void UPlayerWidget::CreateUpgradeInfoFooter(const EScreens& ScreenType)
 {
 	if (!InfoFooterWidgetClass)
 	{
@@ -112,7 +123,7 @@ void UPlayerWidget::CreateUpgradeInfoFooter(EScreens ScreenType)
 }
 
 
-void UPlayerWidget::CreateStatusIconWithTimer(float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
+void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
 {
 	if (!StatusIconWithTimerWidgetClass)
 	{
@@ -124,7 +135,7 @@ void UPlayerWidget::CreateStatusIconWithTimer(float Duration, UTexture2D* Image,
 }
 
 
-void UPlayerWidget::CreateStatusIconWithAmount(float Amount, UTexture2D* Image,UStatsComponent* StatsCompRef, FString Keyword)
+void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword)
 {
 	if (!StatusIconWithAmountWidgetClass)
 	{
@@ -167,11 +178,12 @@ void UPlayerWidget::CreateDeathWidget()
 
 void UPlayerWidget::CreateBonfireMenuWidget()
 {
-	if (BonfireMenuWidgetClass)
+	if (!BonfireMenuWidgetClass)
 	{
-		BonfireMenuWidgetRef = Cast<UBonfireMenu>(CreateWidget(this, BonfireMenuWidgetClass));
-		BonfireMenuWidgetRef->AddToViewport(5);
+		return;
 	}
+	BonfireMenuWidgetRef = Cast<UBonfireMenu>(CreateWidget(this, BonfireMenuWidgetClass));
+	BonfireMenuWidgetRef->AddToViewport(5);
 }
 
 
@@ -185,34 +197,16 @@ void UPlayerWidget::RemoveBonfireMenuWidget()
 }
 
 
-void UPlayerWidget::CreateQuickTravelMenuWidget(TMap<FString, FBonfireData> UnlockedBonfires, FString CurrentBonfireName)
+void UPlayerWidget::CreateQuickTravelMenuWidget(const TMap<FString, FBonfireData>& UnlockedBonfires, const FString& CurrentBonfireName)
 {
-	if (QuickTravelMenuWidgetClass)
+	if (!QuickTravelMenuWidgetClass)
 	{
-		QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
-		QuickTravelMenuWidgetRef -> SetBonfires(UnlockedBonfires, CurrentBonfireName);
-		QuickTravelMenuWidgetRef -> AddToViewport(5);
+		return;
 	}
-}
-
-
-void UPlayerWidget::CreatePauseMenu()
-{
-	if (PauseMenuWidgetClass)
-	{
-		PauseMenuWidgetRef = Cast<UPauseMenu>(CreateWidget(this, PauseMenuWidgetClass));
-		PauseMenuWidgetRef->AddToViewport(5);
-	}
-}
-
-
-void UPlayerWidget::RemovePauseMenu()
-{
-	if (PauseMenuWidgetRef)
-	{
-		PauseMenuWidgetRef->RemoveFromParent();
-		PauseMenuWidgetRef = nullptr;
-	}
+	QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
+	QuickTravelMenuWidgetRef -> SetBonfires(UnlockedBonfires, CurrentBonfireName);
+	QuickTravelMenuWidgetRef -> AddToViewport(5);
+	BackgroundBlur_Blur->SetBlurStrength(10);
 }
 
 
@@ -222,36 +216,64 @@ void UPlayerWidget::RemoveQuickTravelMenuWidget()
 	{
 		QuickTravelMenuWidgetRef->RemoveFromParent();
 		QuickTravelMenuWidgetRef = nullptr;
+		BackgroundBlur_Blur->SetBlurStrength(0);
 	}
 }
 
 
+void UPlayerWidget::CreatePauseMenu()
+{
+	if (!PauseMenuWidgetClass)
+	{
+		return;
+	}
+	PauseMenuWidgetRef = Cast<UPauseMenu>(CreateWidget(this, PauseMenuWidgetClass));
+	PauseMenuWidgetRef->AddToViewport(5);
+}
 
-void UPlayerWidget::SetHealth(float NewHealthPercent)
+
+void UPlayerWidget::RemovePauseMenu()
+{
+	if (PauseMenuWidgetRef)
+	{
+		PauseMenuWidgetRef->RemoveControlsWindow();
+		PauseMenuWidgetRef->RemoveFromParent();
+		PauseMenuWidgetRef = nullptr;
+	}
+}
+
+
+void UPlayerWidget::HandleUpgradeInfoBorder(const ESlateVisibility InVisibility)
+{
+	Border_UpgradeInfo->SetVisibility(InVisibility);
+}
+
+
+void UPlayerWidget::SetHealth(const float NewHealthPercent)
 {
 	ProgressBar_Health->SetPercent(NewHealthPercent);
 }
 
 
-void UPlayerWidget::SetStamina(float NewStaminaPercent)
+void UPlayerWidget::SetStamina(const float NewStaminaPercent)
 {
 	ProgressBar_Stamina->SetPercent(NewStaminaPercent);
 }
 
 
-void UPlayerWidget::SetMana(float NewManaPercent)
+void UPlayerWidget::SetMana(const float NewManaPercent)
 {
 	ProgressBar_Mana->SetPercent(NewManaPercent);
 }
 
 
-void UPlayerWidget::SetLevel(int CurrentLevel)
+void UPlayerWidget::SetLevel(const int CurrentLevel)
 {
 	TextBlock_Level->SetText(FText::AsNumber(CurrentLevel));
 }
 
 
-void UPlayerWidget::SetXP(float NewXPPercent)
+void UPlayerWidget::SetXP(const float NewXPPercent)
 {
 	ProgressBar_XP->SetPercent(NewXPPercent);
 }

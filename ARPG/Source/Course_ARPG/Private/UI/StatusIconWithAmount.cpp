@@ -10,7 +10,7 @@
 #include "UI/PlayerWidget.h"
 
 
-void UStatusIconWithAmount::InitializeWidget(float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, FString NewKey)
+void UStatusIconWithAmount::InitializeWidget(const float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, const FString& NewKey)
 {
 	if (!NewStatsCompRef)
 	{
@@ -25,7 +25,7 @@ void UStatusIconWithAmount::InitializeWidget(float Amount, UTexture2D* Image, US
 }
 
 
-void UStatusIconWithAmount::SetAmount(float AmountLeft)
+void UStatusIconWithAmount::SetAmount(const float AmountLeft)
 {
 	Text_Amount->SetText(FText::AsNumber(AmountLeft));
 }

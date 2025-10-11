@@ -3,7 +3,7 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 
 
-void UAbilityFooter::SetAbility(UTexture2D* Image,  FString ActionKey, UAbilityComponent_Player* AbilityComp)
+void UAbilityFooter::SetAbility(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityComp)
 {
 	if (!AbilityComp || !Image)
 	{
@@ -31,7 +31,6 @@ void UAbilityFooter::SetImageStyle()
 	ImageStyle.SetResourceObject(AbilityImage);
 	ImageStyle.SetImageSize(FVector2d(50,50));
 	Image_AbilityIcon->SetBrush(ImageStyle);
-	
 }
 
 
@@ -48,7 +47,7 @@ void UAbilityFooter::SetImageAvailability()
 }
 
 
-void UAbilityFooter::SetCooldownText(float TimeLeft)
+void UAbilityFooter::SetCooldownText(const float TimeLeft)
 {
 	Text_CooldownValue->SetText(FText::AsNumber(TimeLeft));
 }

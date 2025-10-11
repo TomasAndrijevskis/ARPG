@@ -116,17 +116,11 @@ void AEnemyCharacter::GiveRewardXP()
 }
 
 
-void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
 	UE_LOG(LogTemp, Error, TEXT("Base|Received Damage: %f"), Damage);
 	StatsComp->ReduceHealth(Damage, nullptr);
-}
-
-
-float AEnemyCharacter::GetCurrentDamage()
-{
-	return StatsComp->GetStatValue(EStats::Strength);
 }
 
 
@@ -143,31 +137,38 @@ void AEnemyCharacter::Attack()
 }
 
 
-float AEnemyCharacter::GetAnimDuration()
+
+float AEnemyCharacter::GetCurrentDamage() const
+{
+	return StatsComp->GetStatValue(EStats::Strength);
+}
+
+
+float AEnemyCharacter::GetAnimDuration() const
 {
 	return CombatComp->AnimDuration;
 }
 
 
-float AEnemyCharacter::GetMeleeRange()
+float AEnemyCharacter::GetMeleeRange() const
 {
 	return StatsComp->GetStatValue(EStats::MeleeRange);
 }
 
 
-float AEnemyCharacter::GetRangeDistance()
+float AEnemyCharacter::GetRangeDistance() const
 {
 	return StatsComp->GetStatValue(EStats::RangeDistance);
 }
 
 
-AAIController* AEnemyCharacter::GetAIController()
+AAIController* AEnemyCharacter::GetAIController() const
 {
 	return ControllerRef;
 }
 
 
-float AEnemyCharacter::GetSightRadius()
+float AEnemyCharacter::GetSightRadius() const
 {
 	UPawnSensingComponent* SensingComp = FindComponentByClass<UPawnSensingComponent>();
 	if (SensingComp)
@@ -178,19 +179,19 @@ float AEnemyCharacter::GetSightRadius()
 }
 
 
-UBlackboardComponent* AEnemyCharacter::GetBlackboardComp()
+UBlackboardComponent* AEnemyCharacter::GetBlackboardComp() const
 {
 	return BlackboardComp;
 }
 
 
-TEnumAsByte<EEnemyStates> AEnemyCharacter::GetInitialState()
+TEnumAsByte<EEnemyStates> AEnemyCharacter::GetInitialState() const
 {
 	return InitialState;
 }
 
 
-void AEnemyCharacter::SetInitialState(TEnumAsByte<EEnemyStates> NewState)
+void AEnemyCharacter::SetInitialState(const TEnumAsByte<EEnemyStates> NewState)
 {
 	InitialState = NewState;
 }

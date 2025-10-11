@@ -14,15 +14,13 @@ class COURSE_ARPG_API UCombatComponent_Base : public UActorComponent
 	
 public:	
 	
-	UCombatComponent_Base(){};
-	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable)//character's class
 	virtual void ComboAttack();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable)//anim instance class
 	void HandleResetAttack();
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnAttackPerformedSignature OnAttackPerformedDelegate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

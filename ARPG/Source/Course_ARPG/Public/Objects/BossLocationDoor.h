@@ -31,9 +31,6 @@ protected:
 
 	virtual void BeginPlay() override;
 	
-	/*UFUNCTION()
-	void OnEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
-*/
 	UFUNCTION()
 	void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 	
@@ -42,7 +39,7 @@ private:
 	UFUNCTION()
 	void HandleDoor();
 	
-	void SetCollisionSettings(UBoxComponent& Collision, ECollisionResponse OtherResponse, ECollisionResponse CamVisResponse, ECollisionResponse PlayerResponse);
+	void SetCollisionSettings(UBoxComponent& Collision, const ECollisionResponse OtherResponse, const ECollisionResponse CamVisResponse, const ECollisionResponse PlayerResponse);
 	
 	UPROPERTY(EditDefaultsOnly)
 	UBoxComponent* BlockCollision;

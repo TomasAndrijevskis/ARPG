@@ -56,7 +56,7 @@ void AFrostBlastRange::CheckEnemiesInRange()
 }
 
 
-void AFrostBlastRange::SetParams(float NewDamage, float NewDuration)
+void AFrostBlastRange::SetParams(const float NewDamage, const float NewDuration)
 {
 	Damage = NewDamage;
 	SlowDuration = NewDuration;

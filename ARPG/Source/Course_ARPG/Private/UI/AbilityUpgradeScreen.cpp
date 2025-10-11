@@ -13,13 +13,13 @@ void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Player* AbilityC
 	{
 		return;
 	}
-	AbilityComp_REF = AbilityComp;
-	if (!AbilityComp_REF)
+	AbilityComp_Ref = AbilityComp;
+	if (!AbilityComp_Ref)
 	{
 		return;
 	}
-	SetIconStyle(AbilityComp_REF->GetIcon());
-	SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+	SetIconStyle(AbilityComp_Ref->GetIcon());
+	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
 	SetAbilityIconEnable();
 	SetupButtonCallbacks();
 	SetRequiredPointsText();
@@ -29,7 +29,6 @@ void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Player* AbilityC
 void UAbilityUpgradeScreen::NativeConstruct()
 {
 	Super::NativeConstruct();
-
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 }
 
@@ -40,7 +39,7 @@ void UAbilityUpgradeScreen::SetupButtonCallbacks()
 	{
 		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UpgradeAbility);
 		HandleUpgradeButtonActions();
-		if (AbilityComp_REF->IsAbilityMaxLevel())
+		if (AbilityComp_Ref->IsAbilityMaxLevel())
 		{
 			Button_UpgradeAbility->SetIsEnabled(false);
 		}
@@ -58,7 +57,7 @@ void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
 {
 	RemoveAbilityDescriptionWidget();
 	RemoveUpgradeDescriptionWidget();
-	if (AbilityComp_REF->IsAbilityAvailable())
+	if (AbilityComp_Ref->IsAbilityAvailable())
 	{
 		Button_UpgradeAbility->OnHovered.Clear();
 		Button_UpgradeAbility->OnUnhovered.Clear();
@@ -77,40 +76,40 @@ void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
 }
 
 
-void UAbilityUpgradeScreen::CreateDescriptionWidget(UHorizontalBox* HorizontalBox, TSubclassOf<UDescriptionWidget> WidgetClass, FString Description)
+void UAbilityUpgradeScreen::CreateDescriptionWidget(const TSubclassOf<UDescriptionWidget>& WidgetClass, const FString& Description)
 {
 	if (!WidgetClass)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Null!"));
 		return;
 	}
 	
-	UDescriptionWidget* DescriptionWidget = CreateWidget<UDescriptionWidget>(GetWorld(), WidgetClass);
-	
-	if (!DescriptionWidget)
+	DescriptionWidgetRef = CreateWidget<UDescriptionWidget>(GetWorld(), WidgetClass);
+	if (!DescriptionWidgetRef)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Failed to create"));
 		return;
 	}
-	
-	HorizontalBox->AddChild(DescriptionWidget);
-	DescriptionWidget->SetDescription(Description);	
+	DescriptionWidgetRef->AddToViewport(10);
+	DescriptionWidgetRef->SetDescription(Description);
 }
 
 
-void UAbilityUpgradeScreen::RemoveDescriptionWidget(UHorizontalBox* HorizontalBox)
+void UAbilityUpgradeScreen::RemoveDescriptionWidget()
 {
-	HorizontalBox->ClearChildren();
+	if (DescriptionWidgetRef)
+	{
+		DescriptionWidgetRef->RemoveFromParent();
+		DescriptionWidgetRef = nullptr;
+	}
 }
 
 
-void UAbilityUpgradeScreen::SetUpgradeButtonText(bool bIsLevelMaxed)
+void UAbilityUpgradeScreen::SetUpgradeButtonText(const bool bIsLevelMaxed)
 {
-	if (AbilityComp_REF->IsAbilityAvailable() && bIsLevelMaxed)
+	if (AbilityComp_Ref->IsAbilityAvailable() && bIsLevelMaxed)
 	{
 		Text_Upgrade->SetText(FText::FromString("Maxed"));
 	}
-	else if (AbilityComp_REF->IsAbilityAvailable() && !bIsLevelMaxed)
+	else if (AbilityComp_Ref->IsAbilityAvailable() && !bIsLevelMaxed)
 	{
 		Text_Upgrade->SetText(FText::FromString("Upgrade"));
 	}
@@ -123,7 +122,7 @@ void UAbilityUpgradeScreen::SetUpgradeButtonText(bool bIsLevelMaxed)
 
 void UAbilityUpgradeScreen::SetRequiredPointsText()
 {
-	int RequiredPoints = AbilityComp_REF->GetRequiredUpgradePoints();
+	int RequiredPoints = AbilityComp_Ref->GetRequiredUpgradePoints();
 	if (RequiredPoints == -1)
 	{
 		Text_RequiredPoints->SetText(FText::FromString(""));
@@ -133,7 +132,6 @@ void UAbilityUpgradeScreen::SetRequiredPointsText()
 		FString Text = FString::Printf(TEXT("Required points: %d"), RequiredPoints);
 		Text_RequiredPoints->SetText(FText::FromString(Text));
 	}
-	
 }
 
 
@@ -145,22 +143,19 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 	}
 
 	int AvailablePoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
-
 	if (AvailablePoints <= 0)
 	{
 		return;
 	}
 	
-	AbilityComp_REF->UpgradeAbility(AvailablePoints);
-
-	SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+	AbilityComp_Ref->UpgradeAbility(AvailablePoints);
+	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
 	SetAbilityIconEnable();
 	
-	
-	if (AbilityComp_REF->IsAbilityMaxLevel())
+	if (AbilityComp_Ref->IsAbilityMaxLevel())
 	{
 		Button_UpgradeAbility->SetIsEnabled(false);
-		SetUpgradeButtonText(AbilityComp_REF->IsAbilityMaxLevel());
+		SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
 	}
 	HandleUpgradeButtonActions();
 	SetRequiredPointsText();
@@ -169,7 +164,7 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 
 void UAbilityUpgradeScreen::SetAbilityIconEnable()
 {
-	Button_AbilityIcon->SetIsEnabled(AbilityComp_REF->IsAbilityAvailable());
+	Button_AbilityIcon->SetIsEnabled(AbilityComp_Ref->IsAbilityAvailable());
 }
 
 
@@ -215,25 +210,25 @@ void UAbilityUpgradeScreen::SetIconStyle(UTexture2D* Icon)
 
 void UAbilityUpgradeScreen::CreateAbilityDescriptionWidget()
 {
-	AbilityDescription = AbilityComp_REF->GetAbilityDescription();
-	CreateDescriptionWidget(HorizontalBox_AbilityDescription, AbilityDescriptionClass, AbilityDescription);
+	AbilityDescription = AbilityComp_Ref->GetAbilityDescription();
+	CreateDescriptionWidget(AbilityDescriptionClass, AbilityDescription);
 }
 
 
 void UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget()
 {
-	UpgradeDescription = AbilityComp_REF->GetUpgradeDescription();
-	CreateDescriptionWidget(HorizontalBox_UpgradeDescription, UpgradeDescriptionClass, UpgradeDescription);
+	UpgradeDescription = AbilityComp_Ref->GetUpgradeDescription();
+	CreateDescriptionWidget(UpgradeDescriptionClass, UpgradeDescription);
 }
 
 
 void UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget()
 {
-	RemoveDescriptionWidget(HorizontalBox_AbilityDescription);
+	RemoveDescriptionWidget();
 }
 
 
 void UAbilityUpgradeScreen::RemoveUpgradeDescriptionWidget()
 {
-	RemoveDescriptionWidget(HorizontalBox_UpgradeDescription);
+	RemoveDescriptionWidget();
 }

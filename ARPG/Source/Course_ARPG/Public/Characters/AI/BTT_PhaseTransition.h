@@ -13,25 +13,26 @@ class COURSE_ARPG_API UBTT_PhaseTransition : public UBTTaskNode
 	GENERATED_BODY()
 
 public:
-
-	UBTT_PhaseTransition(){};
 	
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
 private:
-
-	void ActivateSecondPhase();
+	
+	void ActivateSecondPhase() const;
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* PhaseTransitionMontage;
 
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<EEnemyStates> NextState;
-	
+
+	UPROPERTY()
 	AAIController* ControllerRef;
 
+	UPROPERTY()
 	ACharacter* CharacterRef;
 
+	UPROPERTY()
 	UBehaviorTreeComponent* CachedOwnerComp = nullptr;
 	
 };

@@ -63,7 +63,7 @@ void UBTT_RangeAttack_Elemental::CheckDistance()
 }
 
 
-void UBTT_RangeAttack_Elemental::Attack()
+void UBTT_RangeAttack_Elemental::Attack() const
 {
 	Cast<AMinion_Elemental>(CharacterRef)->ProjectileComp->SpawnProjectile();
 	int CurrentHitCount = ControllerRef->GetBlackboardComponent()->GetValueAsInt(TEXT("HitCount"));
@@ -71,7 +71,7 @@ void UBTT_RangeAttack_Elemental::Attack()
 }
 
 
-void UBTT_RangeAttack_Elemental::MoveToPlayer(float AcceptableDistance, FVector PlayerLocation)
+void UBTT_RangeAttack_Elemental::MoveToPlayer(const float AcceptableDistance, const FVector& PlayerLocation) const
 {
 	FAIMoveRequest MoveRequest = PlayerLocation;
 	MoveRequest.SetUsePathfinding(true);

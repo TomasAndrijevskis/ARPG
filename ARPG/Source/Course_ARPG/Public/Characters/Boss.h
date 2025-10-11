@@ -22,32 +22,32 @@ public:
 	
 	virtual void CreateHealthWidget() override;
 
-	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState) override;
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, const EEnemyStates& NewEnemyState) override;
 
-	virtual float GetAttackAnimReductionTime() override;
+	virtual float GetAttackAnimReductionTime() const override;
 
-	FText GetBossName();
+	FText GetBossName() const;
 
 	void ActivateSecondPhase();
 
-	bool IsSecondPhaseActive();
+	bool IsSecondPhaseActive() const;
 
-	void SetCanTakeDamage(bool CanTakeDamage);
+	void SetCanTakeDamage(const bool CanTakeDamage);
 
-	bool GetCanTakeDamage();
+	bool GetCanTakeDamage() const;
 
-	UBossHealthBar* GetBossWidget();
+	UBossHealthBar* GetBossWidget() const;
 	
 protected:
 
 	virtual void HandleDeath() override;
 
-	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	virtual void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser) override;
 
 private:
 
 	UFUNCTION()
-	void CheckSecondPhase(float CurrentHealth);
+	void CheckSecondPhase(const float CurrentHealth);
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UBossHealthBar> HealthBarWidget;

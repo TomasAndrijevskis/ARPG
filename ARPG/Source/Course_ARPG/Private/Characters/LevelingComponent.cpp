@@ -12,7 +12,7 @@ void ULevelingComponent::BeginPlay()
 }
 
 
-void ULevelingComponent::AddXP(float XP)
+void ULevelingComponent::AddXP(const float XP)
 {
 	if (!CanAddXP())
 	{
@@ -44,7 +44,8 @@ void ULevelingComponent::TryLevelUp()
 }
 
 
-float ULevelingComponent::GetRequiredXP()
+
+float ULevelingComponent::GetRequiredXP() const
 {
 	if (!LevelDataTable)
 	{
@@ -61,7 +62,7 @@ float ULevelingComponent::GetRequiredXP()
 }
 
 
-bool ULevelingComponent::CanAddXP()
+bool ULevelingComponent::CanAddXP() const
 {
 	if (!LevelDataTable)
 	{
@@ -90,55 +91,55 @@ FXPLevels* ULevelingComponent::GetNextLevelRow() const
 }
 
 
-float ULevelingComponent::GetCurrentXP()
+float ULevelingComponent::GetCurrentXP() const
 {
 	return CurrentXP;
 }
 
 
-int ULevelingComponent::GetCurrentLevel()
+int ULevelingComponent::GetCurrentLevel() const
 {
 	return  CurrentLevel;
 }
 
 
-int ULevelingComponent::GetCurrentStatPointsAmount()
+int ULevelingComponent::GetCurrentStatPointsAmount() const
 {
 	return AvailableStatPoints;
 }
 
 
-int ULevelingComponent::GetCurrentAbilityPointsAmount()
+int ULevelingComponent::GetCurrentAbilityPointsAmount() const
 {
 	return AvailableAbilityPoints;
 }
 
 
-void ULevelingComponent::SetXP(float NewXP)
+void ULevelingComponent::SetXP(const float NewXP)
 {
 	CurrentXP = NewXP;
 }
 
 
-void ULevelingComponent::SetLevel(int NewLevel)
+void ULevelingComponent::SetLevel(const int NewLevel)
 {
 	CurrentLevel = NewLevel;
 }
 
 
-void ULevelingComponent::SetStatPoints(int NewStatPointsAmount)
+void ULevelingComponent::SetStatPoints(const int NewStatPointsAmount)
 {
 	AvailableStatPoints = NewStatPointsAmount;
 }
 
 
-void ULevelingComponent::SetAbilityPoints(int NewAbilityPointsAmount)
+void ULevelingComponent::SetAbilityPoints(const int NewAbilityPointsAmount)
 {
 	AvailableAbilityPoints = NewAbilityPointsAmount;
 }
 
 
-float ULevelingComponent::GetXPPercentage()
+float ULevelingComponent::GetXPPercentage() const
 {
 	return CurrentXP / RequiredXP;
 }

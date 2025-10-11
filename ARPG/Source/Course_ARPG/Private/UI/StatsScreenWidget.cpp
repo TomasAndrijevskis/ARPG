@@ -29,7 +29,7 @@ void UStatsScreenWidget::OnClickedImproveStat()
 }
 
 
-float UStatsScreenWidget::ImproveStat(float CurrentValue)
+float UStatsScreenWidget::ImproveStat(const float CurrentValue)
 {
 	StatValue = CurrentValue;
 	if (!PlayerRef)
@@ -60,23 +60,20 @@ float UStatsScreenWidget::ImproveStat(float CurrentValue)
 }
 
 
-void UStatsScreenWidget::SetStatsVariables(EStats StatToImprove)
+void UStatsScreenWidget::SetStatsVariables(const EStats& StatToImprove)
 {
 	Stat = StatToImprove;
-
 	if (!PlayerRef)
 	{
 		return;
 	}
-
 	StatName = PlayerRef->StatsComp->GetStatName(Stat);
 	StatValue = PlayerRef->StatsComp->GetStatValue(Stat);
-
 	UpdateText(StatName, StatValue);
 }
 
 
-void UStatsScreenWidget::UpdateText(FString Name, float Value)
+void UStatsScreenWidget::UpdateText(FString& Name, const float Value)
 {
 	FString Prefix = TEXT("Max");
 	if (Name.StartsWith(Prefix))

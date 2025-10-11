@@ -7,7 +7,10 @@
 
 class UNiagaraComponent;
 class UNiagaraSystem;
-
+class UAbilityComponent_MagicShield;
+class UAbilityComponent_FrostBlast;
+class UAbilityComponent_FireStorm;
+class UAbilityComponent_HealingAura;
 UCLASS()
 class COURSE_ARPG_API AMainCharacter_Mage : public AMainCharacter_Base
 {
@@ -18,18 +21,18 @@ public:
 	AMainCharacter_Mage();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UAbilityComponent_MagicShield* AbilityComp_MagicShield;
+	UAbilityComponent_MagicShield* AbilityComp_MagicShield;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UAbilityComponent_FrostBlast* AbilityComp_FrostBlast;
+	UAbilityComponent_FrostBlast* AbilityComp_FrostBlast;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UAbilityComponent_FireStorm* AbilityComp_FireStorm;
+	UAbilityComponent_FireStorm* AbilityComp_FireStorm;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UAbilityComponent_HealingAura* AbilityComp_HealingAura;
+	UAbilityComponent_HealingAura* AbilityComp_HealingAura;
 
-	virtual bool CanTakeDamage(AActor* Opponent) override;
+	virtual bool CanTakeDamage(AActor* Opponent) const override;
 	
 protected:
 
@@ -59,5 +62,4 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* ParticleIce;
-	
 };

@@ -22,7 +22,7 @@ public:
 
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
 
-	float GetDamageMultiplier();
+	float GetDamageMultiplier() const;
 
 	void SetDamageMultiplier(float NewDamageMultiplier);
 	
@@ -46,7 +46,8 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float DamageMultiplier = 1.5f;
-	
+
+	UPROPERTY()
 	UParticleSystemComponent* ParticleComp;
 	
 	

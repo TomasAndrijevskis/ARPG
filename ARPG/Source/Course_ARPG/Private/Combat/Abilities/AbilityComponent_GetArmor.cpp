@@ -108,25 +108,25 @@ void UAbilityComponent_GetArmor::LoadCustomProperties(FAbilityData& Data)
 
 
 
-float UAbilityComponent_GetArmor::GetArmor()
+float UAbilityComponent_GetArmor::GetArmor() const
 {
 	return Armor;
 }
 
 
-void UAbilityComponent_GetArmor::SetArmor(float NewArmor)
+void UAbilityComponent_GetArmor::SetArmor(const float NewArmor)
 {
 	Armor = NewArmor;
 }
 
 
-float UAbilityComponent_GetArmor::GetDamageReductionPercent()
+float UAbilityComponent_GetArmor::GetDamageReductionPercent() const
 {
 	return DamageReductionPercent;
 }
 
 
-void UAbilityComponent_GetArmor::SetDamageReductionPercent(float NewDamageReductionPercent)
+void UAbilityComponent_GetArmor::SetDamageReductionPercent(const float NewDamageReductionPercent)
 {
 	DamageReductionPercent = NewDamageReductionPercent;
 }

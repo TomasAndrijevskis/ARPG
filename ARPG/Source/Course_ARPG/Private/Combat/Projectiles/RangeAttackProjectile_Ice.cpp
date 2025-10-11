@@ -7,7 +7,6 @@
 ARangeAttackProjectile_Ice::ARangeAttackProjectile_Ice()
 {
 	CollisionComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
-	//CollisionComponent->SetupAttachment(RootComponent);
 	RootComponent = CollisionComponent;
 	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
@@ -15,7 +14,7 @@ ARangeAttackProjectile_Ice::ARangeAttackProjectile_Ice()
 	
 	NiagaraEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraEffect"));
 	NiagaraEffect->SetupAttachment(CollisionComponent);
-
+	
 	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
 	Particle->SetupAttachment(CollisionComponent);
 
@@ -25,7 +24,6 @@ ARangeAttackProjectile_Ice::ARangeAttackProjectile_Ice()
 bool ARangeAttackProjectile_Ice::IsPlayerControlledActor(AActor* OtherActor)
 {
 	APawn* PawnRef = Cast<APawn>(OtherActor);
-
 	if (PawnRef->IsPlayerControlled())
 	{
 		return true;

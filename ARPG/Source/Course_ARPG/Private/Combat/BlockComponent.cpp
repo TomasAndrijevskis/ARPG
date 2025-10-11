@@ -4,7 +4,7 @@
 #include "Interfaces/MainPlayer.h"
 
 
-bool UBlockComponent::CanBlock(AActor* Opponent)
+bool UBlockComponent::CanBlock(const AActor* Opponent)
 {
 	ACharacter* CharacterRef = GetOwner<ACharacter>();
 

@@ -15,36 +15,16 @@ class COURSE_ARPG_API UStatsScreenWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-
 	
-	UFUNCTION(BlueprintCallable)
-	void SetStatsVariables(EStats StatToImprove);
+	UFUNCTION()
+	void SetStatsVariables(const EStats& StatToImprove);
 
-	
 protected:
 	
 	virtual void NativeConstruct() override;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float StatValue;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TEnumAsByte<EStats> Stat;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FString StatName;
-	
 private:
 
-	UFUNCTION()
-	void OnClickedImproveStat();
-	
-	UFUNCTION()
-	float ImproveStat(float CurrentValue);
-	
-	UFUNCTION()
-	void UpdateText(FString Name, float Value);
-	
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_StatValue;
 
@@ -54,5 +34,24 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_ImproveStat;
 	
+	UFUNCTION()
+	void OnClickedImproveStat();
+	
+	UFUNCTION()
+	float ImproveStat(const float CurrentValue);
+	
+	UFUNCTION()
+	void UpdateText(FString& Name, const float Value);
+	
+	UPROPERTY()
 	class AMainCharacter_Base* PlayerRef;
+		
+	UPROPERTY()
+	float StatValue;
+
+	UPROPERTY()
+	TEnumAsByte<EStats> Stat;
+
+	UPROPERTY()
+	FString StatName;
 };

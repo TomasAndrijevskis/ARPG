@@ -52,7 +52,7 @@ void ABonfire::BeginPlay()
 }
 
 
-void ABonfire::SetupWidget()
+void ABonfire::SetupWidget() const
 {
 	if (InteractionWidgetClass)
 	{
@@ -86,32 +86,32 @@ void ABonfire::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 }
 
 
-void ABonfire::ChangeWidgetVisibility(bool bIsVisible)
+void ABonfire::ChangeWidgetVisibility(const bool bIsVisible) const
 {
 	InteractionWidgetComponent->SetVisibility(bIsVisible);
 }
 
 
 
-FString ABonfire::GetBonfireName()
+FString ABonfire::GetBonfireName() const
 {
 	return BonfireName;
 }
 
 
-FString ABonfire::GetMapName()
+FString ABonfire::GetMapName() const
 {
 	return MapName;
 }
 
 
-bool ABonfire::GetIsFirstTimeUsed()
+bool ABonfire::IsFirstTimeUsed() const
 {
 	return bIsFirstTimeUsed;
 }
 
 
-void ABonfire::SetIsFirstTimeUsed(bool NewIsFirstTimeUsed)
+void ABonfire::SetIsFirstTimeUsed(const bool NewIsFirstTimeUsed)
 {
 	bIsFirstTimeUsed = NewIsFirstTimeUsed;
 }

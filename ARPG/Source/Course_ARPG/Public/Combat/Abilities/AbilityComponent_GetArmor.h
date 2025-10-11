@@ -23,13 +23,13 @@ public:
 
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
 
-	float GetArmor();
+	float GetArmor() const;
 
-	void SetArmor(float NewArmor);
+	void SetArmor(const float NewArmor);
 
-	float GetDamageReductionPercent();
+	float GetDamageReductionPercent() const;
 
-	void SetDamageReductionPercent(float NewDamageReductionPercent);
+	void SetDamageReductionPercent(const float NewDamageReductionPercent);
 	
 protected:
 	
@@ -39,14 +39,14 @@ protected:
 
 	virtual void FinishAbilityCast() override;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Keyword = "Armor";
-	
 	virtual void CreateIcon() override;
 	
 private:
 
 	void CompleteAbility();
+
+	UPROPERTY(EditAnywhere)
+	FString Keyword = "Armor";
 	
 	UPROPERTY(EditAnywhere)
 	float Armor = 25.0f;

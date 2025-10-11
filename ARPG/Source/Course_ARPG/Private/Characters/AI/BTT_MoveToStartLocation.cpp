@@ -26,7 +26,7 @@ EBTNodeResult::Type UBTT_MoveToStartLocation::ExecuteTask(UBehaviorTreeComponent
 }
 
 
-void UBTT_MoveToStartLocation::GoBack(FVector TargetLocation)
+void UBTT_MoveToStartLocation::GoBack(const FVector& TargetLocation)
 {
 	FAIMoveRequest MoveRequest = TargetLocation;
 	MoveRequest.SetUsePathfinding(true);
@@ -37,7 +37,6 @@ void UBTT_MoveToStartLocation::GoBack(FVector TargetLocation)
 		ControllerRef->ReceiveMoveCompleted.RemoveDynamic(this, &UBTT_MoveToStartLocation::OnMoveCompleted);
 		ControllerRef->ReceiveMoveCompleted.AddDynamic(this, &UBTT_MoveToStartLocation::OnMoveCompleted);
 	}
-	
 }
 
 
@@ -51,7 +50,7 @@ void UBTT_MoveToStartLocation::OnMoveCompleted(FAIRequestID RequestID, EPathFoll
 	}
 }
 
-void UBTT_MoveToStartLocation::ChangeState()
+void UBTT_MoveToStartLocation::ChangeState() const
 {
 	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Patrol);
 	ControllerRef->GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);

@@ -32,7 +32,7 @@ EBTNodeResult::Type UBTT_HitCountReset::ExecuteTask(UBehaviorTreeComponent& Owne
 }
 
 
-void UBTT_HitCountReset::FinishTask(UBehaviorTreeComponent* LocalOwnerComp)
+void UBTT_HitCountReset::FinishTask(UBehaviorTreeComponent* LocalOwnerComp) const
 {
 	ControllerRef->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), 0);
 	FinishLatentTask(*LocalOwnerComp, EBTNodeResult::Succeeded);

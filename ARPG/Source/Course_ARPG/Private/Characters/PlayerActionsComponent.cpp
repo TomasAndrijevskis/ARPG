@@ -42,7 +42,7 @@ void UPlayerActionsComponent::Sprint()
 }
 
 
-void UPlayerActionsComponent::Walk()
+void UPlayerActionsComponent::Walk() const
 {
 	MovementComp->MaxWalkSpeed = WalkSpeed;
 }
@@ -77,18 +77,18 @@ void UPlayerActionsComponent::FinishRollAnim()
 
 
 
-bool UPlayerActionsComponent::GetCanRoll()
+bool UPlayerActionsComponent::CanRoll() const
 {
 	return bCanRoll;
 }
 
-void UPlayerActionsComponent::SetCanRoll(bool CanRoll)
+void UPlayerActionsComponent::SetCanRoll(const bool CanRoll)
 {
 	bCanRoll = CanRoll;
 }
 
 
-bool UPlayerActionsComponent::IsRollActive()
+bool UPlayerActionsComponent::IsRollActive() const
 {
 	return bIsRollActive;
 }

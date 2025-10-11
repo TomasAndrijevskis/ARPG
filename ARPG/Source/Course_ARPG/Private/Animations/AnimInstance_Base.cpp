@@ -11,7 +11,7 @@ void UAnimInstance_Base::NativeBeginPlay()
 }
 
 
-void UAnimInstance_Base::NativeUpdateAnimation(float DeltaSeconds)
+void UAnimInstance_Base::NativeUpdateAnimation(const float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
 	UpdateSpeed();
@@ -24,12 +24,12 @@ void UAnimInstance_Base::UpdateSpeed()
 	{
 		return;
 	}
-	FVector Velocity { TryGetPawnOwner()->GetVelocity()};
+	FVector Velocity = TryGetPawnOwner()->GetVelocity();
 	CurrentSpeed = static_cast<float>(Velocity.Length()); // double->float
 }
 
 
-void UAnimInstance_Base::HandleResetAttack()
+void UAnimInstance_Base::HandleResetAttack() const
 {
 	PawnRef->TraceComp->HandleResetAttack();
 }

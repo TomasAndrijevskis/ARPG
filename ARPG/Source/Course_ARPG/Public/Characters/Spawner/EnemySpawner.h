@@ -11,10 +11,6 @@ UCLASS()
 class COURSE_ARPG_API AEnemySpawner : public ASpawner
 {
 	GENERATED_BODY()
-	
-public:
-	
-	AEnemySpawner(){};
 
 protected:
 	
@@ -27,7 +23,7 @@ protected:
 	
 private:
 	
-	int GetRandomSpawnDistance();
+	int GetRandomSpawnDistance() const;
 	
 	UPROPERTY(EditAnywhere)
 	int EnemySpawnCount;

@@ -19,17 +19,6 @@ void UAbilityComponent_LifeStealAttack::BeginPlay()
 }
 
 
-float UAbilityComponent_LifeStealAttack::GetStolenHealthAmount()
-{
-	if (!FighterRef)
-	{
-		return 0;	
-	}
-	float CurrentDamage = FighterRef->GetCurrentDamage();
-	return CurrentDamage * StolenHealthPercent;
-}
-
-
 void UAbilityComponent_LifeStealAttack::StartAbility()
 {
 	Super::StartAbility();
@@ -130,13 +119,24 @@ void UAbilityComponent_LifeStealAttack::LoadCustomProperties(FAbilityData& Data)
 
 
 
-float UAbilityComponent_LifeStealAttack::GetStolenHealthPercent()
+float UAbilityComponent_LifeStealAttack::GetStolenHealthPercent() const
 {
 	return StolenHealthPercent;
 }
 
 
-void UAbilityComponent_LifeStealAttack::SetStolenHealthPercent(float NewStolenHealthPercent)
+void UAbilityComponent_LifeStealAttack::SetStolenHealthPercent(const float NewStolenHealthPercent)
 {
 	StolenHealthPercent = NewStolenHealthPercent;
+}
+
+
+float UAbilityComponent_LifeStealAttack::GetStolenHealthAmount() const
+{
+	if (!FighterRef)
+	{
+		return 0;	
+	}
+	float CurrentDamage = FighterRef->GetCurrentDamage();
+	return CurrentDamage * StolenHealthPercent;
 }

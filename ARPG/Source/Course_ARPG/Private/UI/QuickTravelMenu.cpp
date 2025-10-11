@@ -22,7 +22,7 @@ void UQuickTravelMenu::NativeConstruct()
 }
 
 
-void UQuickTravelMenu::SetBonfires(TMap<FString, FBonfireData> AvailableBonfires, FString CurrentBonfireName)
+void UQuickTravelMenu::SetBonfires(const TMap<FString, FBonfireData>& AvailableBonfires, const FString& CurrentBonfireName)
 {
 	Bonfires = AvailableBonfires;
 	BonfireName = CurrentBonfireName;

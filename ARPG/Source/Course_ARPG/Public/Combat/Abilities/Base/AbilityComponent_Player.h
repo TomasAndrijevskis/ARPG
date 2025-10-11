@@ -15,86 +15,83 @@ class COURSE_ARPG_API UAbilityComponent_Player : public UAbilityComponent_Base
 	GENERATED_BODY()
 
 public:
-
-	UAbilityComponent_Player(){};
-
-	UPROPERTY(BlueprintAssignable)
-	FOnAbilityUnlockedSignature OnAbilityUnlockedDelegate;//player
-
-	UPROPERTY(BlueprintAssignable)
-	FOnAbilityCooldownChangedSignature OnAbilityCooldownChangedDelegate;//player
 	
-	UPROPERTY(BlueprintAssignable)
-	FOnAbilityCooldownFinishedSignature OnAbilityCooldownFinishedDelegate;//player
+	UPROPERTY()
+	FOnAbilityUnlockedSignature OnAbilityUnlockedDelegate;
+
+	UPROPERTY()
+	FOnAbilityCooldownChangedSignature OnAbilityCooldownChangedDelegate;
+	
+	UPROPERTY()
+	FOnAbilityCooldownFinishedSignature OnAbilityCooldownFinishedDelegate;
 
 	virtual void CreateIcon() override;
 	
-	UFUNCTION(BlueprintCallable)
-	void UpgradeAbility(int AvailablePoints);//player
-
-	UFUNCTION(BlueprintCallable)
-	int GetCurrentAbilityLevel();//player
-	
-	void SetCurrentAbilityLevel(int32 NewLevel);//player
-
-	bool IsAbilityMaxLevel();//player
-	
-	FString GetAbilityDescription();//player
-
-	void SetAbilityDescription(FString NewDescription);//player
-
-	virtual void UpdateAbilityDescription() {};//player
-
-	FString GetUpgradeDescription();//player
-
-	void SetUpgradeDescription(FString NewDescription);//player
-
-	virtual void UpdateUpgradeDescription() {};//player
-	
-	UFUNCTION(BlueprintPure)
-	bool IsAbilityAvailable();//player
-
-	UFUNCTION(BlueprintCallable)
-	void SetAbilityAvailability(bool NewAvailability);//player
-
-	float GetManaCost();//player
-
-	void SetManaCost(float NewManaCost);//player
-
-	float GetCooldownDuration();//player
-
-	void SetCooldownDuration(float NewCooldownDuration);//player
-
-	int GetRequiredUpgradePoints();//player
+	UFUNCTION()
+	void UpgradeAbility(int AvailablePoints);
 
 	UFUNCTION()
-	FString GetActionKey();//player
+	int GetCurrentAbilityLevel();
+	
+	void SetCurrentAbilityLevel(const int32 NewLevel);
 
-	bool IsOnCooldown();//player
+	bool IsAbilityMaxLevel();
+	
+	FString GetAbilityDescription() const;
+
+	void SetAbilityDescription(const FString& NewDescription);
+
+	virtual void UpdateAbilityDescription() {};
+
+	FString GetUpgradeDescription() const;
+
+	void SetUpgradeDescription(const FString& NewDescription);
+
+	virtual void UpdateUpgradeDescription() {};
+	
+	UFUNCTION()
+	bool IsAbilityAvailable() const;
 
 	UFUNCTION()
-	bool IsAbilityActive();//player
+	void SetAbilityAvailability(const bool NewAvailability);
 
-	void SetAbilityActive(bool NewIsActive);//player
+	float GetManaCost() const;
+
+	void SetManaCost(const float NewManaCost);
+
+	float GetCooldownDuration() const;
+
+	void SetCooldownDuration(const float NewCooldownDuration);
+
+	int GetRequiredUpgradePoints();
+
+	UFUNCTION()
+	FString GetActionKey() const;
+
+	bool IsOnCooldown() const;
+
+	UFUNCTION()
+	bool IsAbilityActive() const;
+
+	void SetAbilityActive(const bool NewIsActive);
 	
-	virtual void UpdateAbilityProperties();//player
+	virtual void UpdateAbilityProperties();
 
-	virtual void SaveCustomProperties(FAbilityData& Data);//player
+	virtual void SaveCustomProperties(FAbilityData& Data);
 
-	virtual void LoadCustomProperties(FAbilityData& SavedData);//player
+	virtual void LoadCustomProperties(FAbilityData& SavedData);
 
-	
 protected:
 
-	virtual void BeginPlay() override;//both
+	virtual void BeginPlay() override;
 	
-	virtual void StartCooldown();//player
+	virtual void StartCooldown();
 
-	bool CanPlayMontage() const; //player
+	bool CanPlayMontage() const;
 
-	void HandlePlayerActions(bool bCanDo);//player
+	void HandlePlayerActions(const bool bCanDo);
 
-	bool IsEnoughMana();//player
+	bool IsEnoughMana() const;
 
 	virtual void StartAbilityTimer() override;
 	
@@ -103,41 +100,40 @@ protected:
 	virtual void FinishAbilityCast() override;
 	
 	UPROPERTY(EditAnywhere)
-	UAnimMontage* AnimMontage;//player
+	UAnimMontage* AnimMontage;
 
 	UPROPERTY(VisibleAnywhere)
-	bool bIsAbilityAvailable = false;//player
+	bool bIsAbilityAvailable = false;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	UDataTable* RequirementsDataTable;//player
+	UPROPERTY(EditDefaultsOnly)
+	UDataTable* RequirementsDataTable;
 
 	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;//player
+	AMainCharacter_Base* PlayerRef;
 
-	
 private:
 
-	void StartCooldownTimer();//player
+	void StartCooldownTimer();
 
 	UPROPERTY(EditAnywhere)
-	float ManaCost;//player
+	float ManaCost;
 
 	UPROPERTY(EditAnywhere)
-	float CooldownDuration = 10.0f;//player
+	float CooldownDuration = 10.0f;
 
 	UPROPERTY(VisibleAnywhere)
-	int CurrentLevel = 0;//player
+	int CurrentLevel = 0;
 
 	UPROPERTY(VisibleAnywhere)
-	bool bIsOnCooldown = false;//player
+	bool bIsOnCooldown = false;
 
 	UPROPERTY(EditDefaultsOnly)
-	FString ActionKey;//player
+	FString ActionKey;
 	
-	FString AbilityDescription;//player
+	FString AbilityDescription;
 
-	FString UpgradeDescription;//player
+	FString UpgradeDescription;
 	
-	bool bIsAbilityActive = false;//player
+	bool bIsAbilityActive = false;
 	
 };

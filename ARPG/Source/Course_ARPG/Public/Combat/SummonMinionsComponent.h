@@ -23,7 +23,7 @@ protected:
 	
 private:
 	
-	int GetRandomSpawnDistance();
+	int GetRandomSpawnDistance() const;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ACharacter> MinionClass;
@@ -37,6 +37,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	int MaxSpawnDistance;
 
+	UPROPERTY()
 	AEnemyCharacter* CharacterRef;
 
 };

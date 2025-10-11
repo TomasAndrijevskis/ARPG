@@ -23,9 +23,9 @@ public:
 
 	virtual void LoadCustomProperties(FAbilityData& SavedData) override;
 
-	float GetHealthRegenAmount();
+	float GetHealthRegenAmount() const;
 	
-	void SetHealthRegenAmount(float NewAmount);
+	void SetHealthRegenAmount(const float NewAmount);
 	
 protected:
 

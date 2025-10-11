@@ -5,7 +5,7 @@
 #include "UI/StatusIconWithTimer.h"
 
 
-void UMinionHealthBar::SetHealth(float NewHealthPercent)
+void UMinionHealthBar::SetHealth(const float NewHealthPercent)
 {
 	ProgressBar_HealthBar->SetPercent(NewHealthPercent);
 }

@@ -7,7 +7,7 @@
 #include "Combat/Projectiles/EnemyProjectileComponent.h"
 
 
-void UAnimInstance_Grux::HandleProjectileSpawn()
+void UAnimInstance_Grux::HandleProjectileSpawn() const
 {
 	if (!PawnRef)
 	{
@@ -17,7 +17,7 @@ void UAnimInstance_Grux::HandleProjectileSpawn()
 }
 
 
-void UAnimInstance_Grux::HandleChargeStart(bool bIsReadyToCharge)
+void UAnimInstance_Grux::HandleChargeStart(const bool bIsReadyToCharge) const
 {
 	if (!PawnRef)
 	{
@@ -27,8 +27,7 @@ void UAnimInstance_Grux::HandleChargeStart(bool bIsReadyToCharge)
 }
 
 
-
-void UAnimInstance_Grux::SetIsCharging(bool IsCharging)
+void UAnimInstance_Grux::SetIsCharging(const bool IsCharging)
 {
 	bIsCharging = IsCharging;
 }

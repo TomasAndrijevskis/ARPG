@@ -12,6 +12,14 @@ enum EStats : int;
 class UARPG_GameInstance;
 class UPlayerWidget;
 class USkeletalMeshComponent;
+class UStatsComponent;
+class ULockonComponent;
+class UBlockComponent;
+class UPlayerActionsComponent;
+class UCombatComponent_Base;
+class ULevelingComponent;
+class UStatusEffectsComponent;
+class UPlayerAnimInstance;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBonfireInteractionSignature);
 
@@ -28,20 +36,20 @@ public:
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	virtual float GetCurrentDamage() override;
+	virtual float GetCurrentDamage() const override;
 
 	virtual void EndLockonWithActor(AActor* ActorRef) override;
 
-	virtual bool CanTakeDamage(AActor* Opponent) override;
+	virtual bool CanTakeDamage(AActor* Opponent) const override;
 	
 	UFUNCTION()
-	virtual bool HasEnoughStamina(float Stamina) override;
+	virtual bool HasEnoughStamina(const float Stamina) const override;
 
 	UFUNCTION()
-	virtual bool HasEnoughMana(float Mana) override;
+	virtual bool HasEnoughMana(const float Mana) const override;
 	
 	UFUNCTION()
-	UPlayerWidget* GetPlayerWidget();
+	UPlayerWidget* GetPlayerWidget() const;
 
 	UFUNCTION()
 	TArray<UAbilityComponent_Player*>& GetAbilitiesArray();
@@ -49,52 +57,52 @@ public:
 	UFUNCTION()
 	void AddToAbilitiesArray(UAbilityComponent_Player* NewAbility);
 
-	UFUNCTION(BlueprintCallable)
-	UARPG_GameInstance* GetGameInstanceRef();
+	UFUNCTION()
+	UARPG_GameInstance* GetGameInstanceRef() const;
 
 	UFUNCTION()
 	void CreateAbilitiesFooter();
 
 	UFUNCTION()
-	USkeletalMeshComponent* GetSkeletalMeshComponent();
+	USkeletalMeshComponent* GetSkeletalMeshComponent() const;
 
 	UFUNCTION()
 	void SetSkeletalMeshComponent();
+
+	void SetCanPlayHurtAnimation(const bool bCanPlayAnim);
+
+	bool CanPlayHurtAnimation() const;
+
+	void InterruptHurtAnimation() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UStatsComponent* StatsComp;
+	UStatsComponent* StatsComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class ULockonComponent* LockonComp;
+	ULockonComponent* LockonComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UBlockComponent* BlockComp;
+	UBlockComponent* BlockComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UPlayerActionsComponent* PlayerActionsComp;
+	UPlayerActionsComponent* PlayerActionsComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UCombatComponent_Base* CombatComp;
+	UCombatComponent_Base* CombatComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class ULevelingComponent* LevelComp;
+	ULevelingComponent* LevelComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	class UStatusEffectsComponent* StatusEffectsComp;
+	UStatusEffectsComponent* StatusEffectsComp;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<TEnumAsByte<EStats>> ArrStats;
 
 	UPROPERTY(BlueprintReadOnly)
-	class UPlayerAnimInstance* PlayerAnimInstance;
+	UPlayerAnimInstance* PlayerAnimInstance;
 
 	FOnBonfireInteractionSignature FOnBonfireInteractionDelegate;
-
-	void SetCanPlayHurtAnimation(bool bCanPlayAnim);
-
-	bool GetCanPlayHurtAnimation();
-
-	void InterruptHurtAnimation();
 	
 protected:
 
@@ -106,13 +114,13 @@ protected:
 private:
 
 	UFUNCTION()
-	void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 	UFUNCTION()
 	void PlayHurtAnimation();
 	
 	UFUNCTION()
-	void CreateUI();
+	void CreatePlayerWidget();
 	
 	UPROPERTY()
 	UPlayerWidget* PlayerWidgetRef;
@@ -124,12 +132,11 @@ private:
 	UAnimMontage* HurtAnimMontage;
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UPlayerWidget> PlayerWidget;
+	TSubclassOf<UPlayerWidget> PlayerWidgetClass;
 	
 	UPROPERTY()
 	UARPG_GameInstance* GameInstance;
-
-	//UPROPERTY(EditAnywhere)
+	
 	TArray<UAbilityComponent_Player*> ArrAbilities;
 
 	UPROPERTY()

@@ -15,15 +15,15 @@ class COURSE_ARPG_API UObjectInteractionText : public UUserWidget
 
 public:
 
-	void NativeConstruct() override;
+	virtual void NativeConstruct() override;
 	
-	void InitializeText(FString InteractionObject, FString InteractionObjectName,  FString InteractiontKey);
+	void InitializeText(const FString& InteractionObject, const FString& InteractionObjectName,  const FString& InteractionKey);
 	
 private:
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_InteractionText;
+	UTextBlock* Text_InteractionText_Upper;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_InteractionText_1;
+	UTextBlock* Text_InteractionText_Lower;
 };

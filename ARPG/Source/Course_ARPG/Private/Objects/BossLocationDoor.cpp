@@ -52,7 +52,7 @@ void ABossLocationDoor::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent,
 }
 
 
-void ABossLocationDoor::SetCollisionSettings(UBoxComponent& Collision, ECollisionResponse OtherResponse, ECollisionResponse CamVisResponse, ECollisionResponse PlayerResponse)
+void ABossLocationDoor::SetCollisionSettings(UBoxComponent& Collision, const ECollisionResponse OtherResponse, const ECollisionResponse CamVisResponse, const ECollisionResponse PlayerResponse)
 {
 	Collision.SetCollisionResponseToAllChannels(OtherResponse);
 	Collision.SetCollisionResponseToChannel(ECC_Camera, CamVisResponse);

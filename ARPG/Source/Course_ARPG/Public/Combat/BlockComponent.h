@@ -12,14 +12,11 @@ class COURSE_ARPG_API UBlockComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-
-	UBlockComponent(){};
 	
-	bool CanBlock(AActor* Opponent);
+	bool CanBlock(const AActor* Opponent);
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnBlockSignature OnBlockDelegate;
-
 
 private:
 

@@ -7,6 +7,7 @@
 #include "SaveMenu.generated.h"
 
 
+class UButton;
 class USaveSlotWidget;
 class UARPG_GameInstance;
 
@@ -21,19 +22,27 @@ protected:
 
 private:
 
-	void CreateSlots(TSubclassOf<USaveSlotWidget> WidgetClass);
+	void CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass);
 
 	void SetPlayerControllerProperties();
+
+	UFUNCTION()
+	void BackToMainMenu();
 	
 	UPROPERTY(meta = (BindWidget))
 	UVerticalBox* VerticalBox_SaveSlots;
-	
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_ExitToMainMenu;
+
+	UPROPERTY()
 	APlayerController* PlayerController;
 
+	UPROPERTY()
 	UARPG_GameInstance* GameInstance;
-
-	TArray<FString> SlotNames;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<USaveSlotWidget> SaveSlotWidgetClass;
+	
+	TArray<FString> SlotNames;
 };

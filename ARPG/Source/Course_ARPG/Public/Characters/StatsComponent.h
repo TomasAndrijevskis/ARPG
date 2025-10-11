@@ -21,43 +21,38 @@ class COURSE_ARPG_API UStatsComponent : public UActorComponent
 
 public:	
 	
-	UStatsComponent(){};
-
-	//Debug
-	UFUNCTION(BlueprintCallable)
-	void ReduceHealth(float Damage, AActor* Opponent);
-
-	//Debug
-	UFUNCTION(BlueprintCallable)
-	float GetReducedDamage(float Damage, AActor* Opponent);
+	UFUNCTION()
+	void ReduceHealth(const float Damage, AActor* Opponent);
+	
+	UFUNCTION()
+	float GetReducedDamage(const float Damage, AActor* Opponent);
 
 	UFUNCTION()
-	void ReduceStamina(float Stamina);
+	void ReduceStamina(const float Stamina);
 
 	UFUNCTION()
-	void ReduceMana(float Mana);
+	void ReduceMana(const float Mana);
 
 	UFUNCTION()
 	void RegenStamina();
 
 	UFUNCTION()
 	void RegenMana();
-
-	//Debug
-	UFUNCTION(BlueprintPure)
-	float GetStatPercentage(EStats Current, EStats Max);
+	
+	UFUNCTION()
+	float GetStatPercentage(const EStats Current, const EStats Max) const;
 
 	UFUNCTION()
-	float GetStatValue(EStats Stat);
+	float GetStatValue(const EStats Stat) const;
 
 	UFUNCTION()
-	FString GetStatName(EStats Stat);
+	FString GetStatName(const EStats Stat) const;
 
 	UFUNCTION()
-	void SetStatValue(EStats Stat, float NewValue);
+	void SetStatValue(const EStats Stat, const float NewValue);
 
 	UFUNCTION()
-	void AddHealth(float HealthToAdd);
+	void AddHealth(const float HealthToAdd);
 
 	UFUNCTION()
 	void OnStatsUpdated();
@@ -65,25 +60,25 @@ public:
 	UFUNCTION()
 	void RestoreStats();
 	
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UPROPERTY()
 	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
 
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UPROPERTY()
 	FOnStaminaPercentUpdateSignature OnStaminaPercentUpdateDelegate;
 
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UPROPERTY()
 	FOnManaPercentUpdateSignature OnManaPercentUpdateDelegate;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnZeroHealthSignature OnZeroHealthDelegate;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnZeroArmorSignature OnZeroArmorDelegate;
 
-	UPROPERTY(BlueprintAssignable)
+	UPROPERTY()
 	FOnArmorUpdateSignature OnArmorUpdateDelegate;
 
-	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	UPROPERTY()
 	FOnStatUpdateSignature OnStatUpdateDelegate;
 
 protected:

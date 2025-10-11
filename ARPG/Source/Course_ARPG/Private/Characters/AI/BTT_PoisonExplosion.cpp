@@ -51,7 +51,7 @@ void UBTT_PoisonExplosion::StartAttack()
 }
 
 
-void UBTT_PoisonExplosion::ExplodePoison()
+void UBTT_PoisonExplosion::ExplodePoison() 
 {
 	float AnimDuration = CharacterRef->PlayAnimMontage(ExplodeAnimMontage);
 	FTimerHandle TimerHandle;
@@ -59,7 +59,7 @@ void UBTT_PoisonExplosion::ExplodePoison()
 }
 
 
-void UBTT_PoisonExplosion::FinishTask()
+void UBTT_PoisonExplosion::FinishTask() const
 {
 	CharacterRef->FindComponentByClass<UCharacterMovementComponent>()->MaxWalkSpeed /= SpeedMultiplier;
 	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
@@ -67,7 +67,7 @@ void UBTT_PoisonExplosion::FinishTask()
 }
 
 
-void UBTT_PoisonExplosion::MoveToPlayer()
+void UBTT_PoisonExplosion::MoveToPlayer() const
 {
 	CharacterRef->FindComponentByClass<UCharacterMovementComponent>()->MaxWalkSpeed *= SpeedMultiplier;
 	APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
@@ -82,7 +82,7 @@ void UBTT_PoisonExplosion::MoveToPlayer()
 }
 
 
-void UBTT_PoisonExplosion::FinishMove()
+void UBTT_PoisonExplosion::FinishMove() const
 {
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);

@@ -25,8 +25,5 @@ protected:
 	virtual void StartAbility() override;
 	
 	virtual void FinishAbilityCast() override;
-
-private:
-
 	
 };

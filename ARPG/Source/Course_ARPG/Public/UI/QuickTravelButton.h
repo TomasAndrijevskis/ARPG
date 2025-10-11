@@ -22,10 +22,16 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	void InitializeButton(FString NewTravelLocationName, FBonfireData BonfireData, FString CurrentBonfireName);
+	void InitializeButton(const FString& NewTravelLocationName, FBonfireData BonfireData, const FString& CurrentBonfireName);
 	
 private:
 
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_QuickTravel;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_QuickTravelLocation;
+	
 	UFUNCTION()
 	void TeleportPlayer();
 
@@ -34,16 +40,6 @@ private:
 	
 	UFUNCTION()
 	void EnablePlayerInput();
-	
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_QuickTravel;
-
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_QuickTravelLocation;
-
-	FVector TravelLocation;
-
-	FString TravelMapName;
 
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
@@ -57,5 +53,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UBonfireInteractionAnim> BonfireInteractionAnimClass;
 
+	FVector TravelLocation;
+
+	FString TravelMapName;
+	
 	float AnimDuration;
 };

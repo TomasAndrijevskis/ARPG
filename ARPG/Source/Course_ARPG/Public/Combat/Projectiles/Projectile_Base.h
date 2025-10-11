@@ -11,13 +11,11 @@ class COURSE_ARPG_API AProjectile_Base : public AActor
 	GENERATED_BODY()
 	
 public:	
-	
-	AProjectile_Base(){};
-	
+
 	UFUNCTION()
 	void DestroyProjectile();
 
-	void SetStats(float NewDamage, float NewAliveTime);
+	void SetStats(const float NewDamage, const float NewAliveTime);
 
 	void StartAliveTimer();
 

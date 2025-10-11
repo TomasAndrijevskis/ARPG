@@ -23,7 +23,7 @@ void UPoisonExplosionComponent::SpawnArea()
 }
 
 
-void UPoisonExplosionComponent::SpawnExplosion()
+void UPoisonExplosionComponent::SpawnExplosion() const
 {
 	if (ExplosionEndEffect)
 	{

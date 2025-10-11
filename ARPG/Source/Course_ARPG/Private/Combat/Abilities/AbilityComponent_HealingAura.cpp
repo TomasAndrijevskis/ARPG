@@ -113,13 +113,13 @@ void UAbilityComponent_HealingAura::LoadCustomProperties(FAbilityData& SavedData
 
 
 
-float UAbilityComponent_HealingAura::GetHealthRegenAmount()
+float UAbilityComponent_HealingAura::GetHealthRegenAmount() const
 {
 	return HealthRegenAmount;
 }
 
 
-void UAbilityComponent_HealingAura::SetHealthRegenAmount(float NewAmount)
+void UAbilityComponent_HealingAura::SetHealthRegenAmount(const float NewAmount)
 {
 	HealthRegenAmount = NewAmount;
 }

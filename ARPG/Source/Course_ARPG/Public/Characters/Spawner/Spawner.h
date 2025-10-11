@@ -16,8 +16,6 @@ class COURSE_ARPG_API ASpawner : public AActor
 
 public:
 
-	ASpawner(){};
-
 	virtual void CheckEnemies(){};
 	
 protected:
@@ -30,5 +28,4 @@ protected:
 	TSubclassOf<AEnemyCharacter> EnemyClass;
 	
 	virtual void RemoveEnemyFromArray(AEnemyCharacter* Enemy){};
-	
 };

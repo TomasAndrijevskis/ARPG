@@ -106,7 +106,7 @@ void UAbilityComponent_DamageIncrease::LoadCustomProperties(FAbilityData& Data)
 
 
 
-float UAbilityComponent_DamageIncrease::GetDamageMultiplier()
+float UAbilityComponent_DamageIncrease::GetDamageMultiplier() const
 {
 	return DamageMultiplier;
 }

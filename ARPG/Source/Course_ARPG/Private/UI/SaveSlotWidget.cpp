@@ -7,26 +7,25 @@
 void USaveSlotWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_MangageSaveSlot->OnClicked.AddDynamic(this, &USaveSlotWidget::OnButtonClicked);
-
+	Button_ManageSaveSlot->OnClicked.AddDynamic(this, &USaveSlotWidget::OnButtonClicked);
 	PlayerController = GetWorld()->GetFirstPlayerController();
 }
 
 
-void USaveSlotWidget::SetSlotName(FString NewSlotName)
+void USaveSlotWidget::SetSlotName(const FString& NewSlotName)
 {
 	SlotName = NewSlotName;
 	Text_SaveSlotName->SetText(FText::FromString(SlotName));
 }
 
 
-void USaveSlotWidget::SetSlotStatus(FText NewText)
+void USaveSlotWidget::SetSlotStatus(const FText& NewText)
 {
 	Text_SaveSlotStatus->SetText(NewText);
 }
 
 
-void USaveSlotWidget::SetMapName(FName NewMapName)
+void USaveSlotWidget::SetMapName(const FName& NewMapName)
 {
 	MapName = NewMapName;
 }
@@ -43,7 +42,7 @@ void USaveSlotWidget::OnButtonClicked()
 
 
 
-FString USaveSlotWidget::GetSlotName()
+FString USaveSlotWidget::GetSlotName() const
 {
 	return SlotName;
 }

@@ -56,7 +56,7 @@ void UAbilityComponent_Player::HandlePlayerActions(bool bCanDo)
 }
 
 
-bool UAbilityComponent_Player::IsEnoughMana()
+bool UAbilityComponent_Player::IsEnoughMana() const 
 {
 	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>())
 	{
@@ -154,7 +154,6 @@ int UAbilityComponent_Player::GetRequiredUpgradePoints()
 {
 	if (!RequirementsDataTable)
 	{
-		//UE_LOG(LogTemp, Error, TEXT("Cant load levels data table"));
 		return -1;
 	}
 
@@ -162,7 +161,6 @@ int UAbilityComponent_Player::GetRequiredUpgradePoints()
 	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
 	if (!RequirementsRow)
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("No level row found for %s"), *RowName.ToString());
 		return -1;
 	}
 	return RequirementsRow->RequiredPoints;
@@ -214,90 +212,90 @@ int UAbilityComponent_Player::GetCurrentAbilityLevel()
 }
 
 
-void UAbilityComponent_Player::SetCurrentAbilityLevel(int NewLevel)
+void UAbilityComponent_Player::SetCurrentAbilityLevel(const int NewLevel)
 {
 	CurrentLevel = NewLevel;
 }
 
 
-FString UAbilityComponent_Player::GetAbilityDescription()
+FString UAbilityComponent_Player::GetAbilityDescription() const
 {
 	return AbilityDescription;
 }
 
 
-FString UAbilityComponent_Player::GetUpgradeDescription()
+FString UAbilityComponent_Player::GetUpgradeDescription() const
 {
 	return UpgradeDescription;
 }
 
-void UAbilityComponent_Player::SetUpgradeDescription(FString NewDescription)
+void UAbilityComponent_Player::SetUpgradeDescription(const FString& NewDescription)
 {
 	UpgradeDescription = NewDescription;
 }
 
-void UAbilityComponent_Player::SetAbilityDescription(FString NewDescription)
+void UAbilityComponent_Player::SetAbilityDescription(const FString& NewDescription)
 {
 	AbilityDescription = NewDescription;
 }
 
 
-bool UAbilityComponent_Player::IsAbilityAvailable()
+bool UAbilityComponent_Player::IsAbilityAvailable() const
 {
 	return bIsAbilityAvailable;
 }
 
 
-void UAbilityComponent_Player::SetAbilityAvailability(bool NewAvailability)
+void UAbilityComponent_Player::SetAbilityAvailability(const bool NewAvailability)
 {
 	bIsAbilityAvailable = NewAvailability;
 }
 
 
-float UAbilityComponent_Player::GetManaCost()
+float UAbilityComponent_Player::GetManaCost() const
 {
 	return ManaCost;
 }
 
 
-void UAbilityComponent_Player::SetManaCost(float NewManaCost)
+void UAbilityComponent_Player::SetManaCost(const float NewManaCost)
 {
 	ManaCost = NewManaCost;
 }
 
 
-float UAbilityComponent_Player::GetCooldownDuration()
+float UAbilityComponent_Player::GetCooldownDuration() const
 {
 	return CooldownDuration;
 }
 
 
-void UAbilityComponent_Player::SetCooldownDuration(float NewCooldownDuration)
+void UAbilityComponent_Player::SetCooldownDuration(const float NewCooldownDuration)
 {
 	CooldownDuration = NewCooldownDuration;
 }
 
 
 
-FString UAbilityComponent_Player::GetActionKey()
+FString UAbilityComponent_Player::GetActionKey() const
 {
 	return ActionKey;
 }
 
 
-bool UAbilityComponent_Player::IsOnCooldown()
+bool UAbilityComponent_Player::IsOnCooldown() const
 {
 	return bIsOnCooldown;
 }
 
 
-bool UAbilityComponent_Player::IsAbilityActive()
+bool UAbilityComponent_Player::IsAbilityActive() const
 {
 	return bIsAbilityActive;
 }
 
 
-void UAbilityComponent_Player::SetAbilityActive(bool NewIsActive)
+void UAbilityComponent_Player::SetAbilityActive(const bool NewIsActive)
 {
 	bIsAbilityActive = NewIsActive;
 }

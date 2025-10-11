@@ -51,7 +51,7 @@ void UBTT_RangeAttack_Fey::CheckDistance()
 }
 
 
-void UBTT_RangeAttack_Fey::Attack()
+void UBTT_RangeAttack_Fey::Attack() const
 {
 	if (FighterRef)
 	{
@@ -62,7 +62,7 @@ void UBTT_RangeAttack_Fey::Attack()
 }
 
 
-void UBTT_RangeAttack_Fey::MoveToPlayer(float AcceptableDistance, FVector PlayerLocation)
+void UBTT_RangeAttack_Fey::MoveToPlayer(const float AcceptableDistance, const FVector& PlayerLocation) const
 {
 	FAIMoveRequest MoveRequest = PlayerLocation;
 	MoveRequest.SetUsePathfinding(true);

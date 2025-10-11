@@ -19,7 +19,7 @@ void UBTT_MeleeAttack_Grux::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 }
 
 
-void UBTT_MeleeAttack_Grux::HandleRangeAttack(UBehaviorTreeComponent& OwnerComp)
+void UBTT_MeleeAttack_Grux::HandleRangeAttack(UBehaviorTreeComponent& OwnerComp) const
 {
 	if (bHasRangeAttack)
 	{

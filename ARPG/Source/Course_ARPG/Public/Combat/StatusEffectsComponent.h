@@ -36,12 +36,11 @@ class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 
 public:	
 	
-	
-	void SlowDownEnemy(float SlowDuration, UNiagaraSystem* FrozenEffect);
+	void SlowDownEnemy(const float SlowDuration, UNiagaraSystem* FrozenEffect);
 
-	void HandleBurn(float NewBurnDuration, float NewBurnDamage, UNiagaraSystem* BurnEffect, bool bIsOverlapping, float NewBurnRate);
+	void HandleBurn(const float NewBurnDuration, const float NewBurnDamage, UNiagaraSystem* BurnEffect, const bool bNewIsOverlapping, const float NewBurnRate);
 
-	void HandlePoison(float NewPoisonDuration, float NewPoisonDamage, UNiagaraSystem* PoisonEffect, float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon);
+	void HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, UNiagaraSystem* PoisonEffect, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon);
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	
@@ -55,7 +54,7 @@ private:
 	void StopFreeze();
 	
 	UFUNCTION()
-	void StopEffect(FStatusEffectData& Data);
+	void StopEffect(FStatusEffectData& Data) const;
 	
 	UFUNCTION()
 	void Burn();

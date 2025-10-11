@@ -7,7 +7,7 @@
 #include "Interfaces/Fighter.h"
 
 
-void UStatsComponent::ReduceHealth(float Damage, AActor* Opponent)
+void UStatsComponent::ReduceHealth(const float Damage, AActor* Opponent)
 {
 	if (Stats[EStats::Health] <=0)
 	{
@@ -32,7 +32,95 @@ void UStatsComponent::ReduceHealth(float Damage, AActor* Opponent)
 }
 
 
-float UStatsComponent::GetReducedDamage(float Damage, AActor* Opponent)
+void UStatsComponent::AddHealth(const float HealthToAdd)
+{
+	float CurrentHealth = Stats[EStats::Health];
+
+	float NewHealth = FMath::Min(HealthToAdd + CurrentHealth, Stats[EStats::MaxHealth]);
+	Stats[EStats::Health] = NewHealth;
+	
+	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
+}
+
+
+void UStatsComponent::OnStatsUpdated()
+{
+	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
+	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
+	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
+}
+
+
+void UStatsComponent::RestoreStats()
+{
+	SetStatValue(EStats::Health, Stats[EStats::MaxHealth]);
+	SetStatValue(EStats::Stamina, Stats[EStats::MaxStamina]);
+	SetStatValue(EStats::Mana, Stats[EStats::MaxMana]);
+	OnStatsUpdated();
+}
+
+
+void UStatsComponent::ReduceStamina(const float Stamina)
+{
+	Stats[EStats::Stamina] -= Stamina;
+	Stats[EStats::Stamina] = UKismetMathLibrary::FClamp(Stats[EStats::Stamina], 0, Stats[EStats::MaxStamina]);
+
+	bCanRegenStamina = false;
+
+	FLatentActionInfo FunctionInfo{0, 100/*id любое не занятое число*/, TEXT("EnableStaminaRegen"), this };
+	UKismetSystemLibrary::RetriggerableDelay(GetWorld(), StaminaDelayDuration,FunctionInfo );
+	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
+}
+
+
+void UStatsComponent::RegenStamina()
+{
+	if (!bCanRegenStamina)
+	{
+		return;
+	}
+	Stats[EStats::Stamina] = UKismetMathLibrary::FInterpTo_Constant(Stats[EStats::Stamina], Stats[EStats::MaxStamina], GetWorld()->DeltaTimeSeconds, StaminaRegenRate);
+	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
+}
+
+
+void UStatsComponent::EnableStaminaRegen()
+{
+	bCanRegenStamina = true;
+}
+
+
+void UStatsComponent::ReduceMana(const float Mana)
+{
+	Stats[EStats::Mana] -= Mana;
+	Stats[EStats::Mana] = UKismetMathLibrary::FClamp(Stats[EStats::Mana], 0, Stats[EStats::MaxMana]);
+
+	bCanRegenMana = false;
+
+	FLatentActionInfo FunctionInfo{0, 101/*id любое не занятое число*/, TEXT("EnableManaRegen"), this };
+	UKismetSystemLibrary::RetriggerableDelay(GetWorld(), ManaDelayDuration,FunctionInfo );
+	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
+}
+
+
+void UStatsComponent::RegenMana()
+{
+	if (!bCanRegenMana)
+	{
+		return;
+	}
+	Stats[EStats::Mana] = UKismetMathLibrary::FInterpTo_Constant(Stats[EStats::Mana], Stats[EStats::MaxMana], GetWorld()->DeltaTimeSeconds, ManaRegenRate);
+	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
+}
+
+
+void UStatsComponent::EnableManaRegen()
+{
+	bCanRegenMana = true;
+}
+
+
+float UStatsComponent::GetReducedDamage(const float Damage, AActor* Opponent)
 {
 	if (Stats[EStats::Armor] <= 0)
 	{
@@ -71,114 +159,26 @@ float UStatsComponent::GetReducedDamage(float Damage, AActor* Opponent)
 }
 
 
-void UStatsComponent::AddHealth(float HealthToAdd)
-{
-	float CurrentHealth = Stats[EStats::Health];
-
-	float NewHealth = FMath::Min(HealthToAdd + CurrentHealth, Stats[EStats::MaxHealth]);
-	Stats[EStats::Health] = NewHealth;
-	
-	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
-}
-
-
-void UStatsComponent::OnStatsUpdated()
-{
-	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
-	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
-	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
-}
-
-
-void UStatsComponent::RestoreStats()
-{
-	SetStatValue(EStats::Health, Stats[EStats::MaxHealth]);
-	SetStatValue(EStats::Stamina, Stats[EStats::MaxStamina]);
-	SetStatValue(EStats::Mana, Stats[EStats::MaxMana]);
-	OnStatsUpdated();
-}
-
-
-void UStatsComponent::ReduceStamina(float Stamina)
-{
-	Stats[EStats::Stamina] -= Stamina;
-	Stats[EStats::Stamina] = UKismetMathLibrary::FClamp(Stats[EStats::Stamina], 0, Stats[EStats::MaxStamina]);
-
-	bCanRegenStamina = false;
-
-	FLatentActionInfo FunctionInfo{0, 100/*id любое не занятое число*/, TEXT("EnableStaminaRegen"), this };
-	UKismetSystemLibrary::RetriggerableDelay(GetWorld(), StaminaDelayDuration,FunctionInfo );
-	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
-}
-
-
-void UStatsComponent::RegenStamina()
-{
-	if (!bCanRegenStamina)
-	{
-		return;
-	}
-	Stats[EStats::Stamina] = UKismetMathLibrary::FInterpTo_Constant(Stats[EStats::Stamina], Stats[EStats::MaxStamina], GetWorld()->DeltaTimeSeconds, StaminaRegenRate);
-	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
-}
-
-
-void UStatsComponent::EnableStaminaRegen()
-{
-	bCanRegenStamina = true;
-}
-
-
-void UStatsComponent::ReduceMana(float Mana)
-{
-	Stats[EStats::Mana] -= Mana;
-	Stats[EStats::Mana] = UKismetMathLibrary::FClamp(Stats[EStats::Mana], 0, Stats[EStats::MaxMana]);
-
-	bCanRegenMana = false;
-
-	FLatentActionInfo FunctionInfo{0, 101/*id любое не занятое число*/, TEXT("EnableManaRegen"), this };
-	UKismetSystemLibrary::RetriggerableDelay(GetWorld(), ManaDelayDuration,FunctionInfo );
-	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
-}
-
-
-void UStatsComponent::RegenMana()
-{
-	if (!bCanRegenMana)
-	{
-		return;
-	}
-	Stats[EStats::Mana] = UKismetMathLibrary::FInterpTo_Constant(Stats[EStats::Mana], Stats[EStats::MaxMana], GetWorld()->DeltaTimeSeconds, ManaRegenRate);
-	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
-}
-
-
-void UStatsComponent::EnableManaRegen()
-{
-	bCanRegenMana = true;
-}
-
-
-float UStatsComponent::GetStatPercentage(EStats Current, EStats Max)
+float UStatsComponent::GetStatPercentage(const EStats Current, const EStats Max) const
 {
 	return Stats[Current] / Stats[Max];
 }
 
 
-float UStatsComponent::GetStatValue(EStats Stat)
+float UStatsComponent::GetStatValue(const EStats Stat) const
 {
 	return Stats[Stat];
 }
 
 
-FString UStatsComponent::GetStatName(EStats Stat)
+FString UStatsComponent::GetStatName(const EStats Stat) const
 {
 	FString Name = UEnum::GetValueAsString(Stat); 
 	return Name;
 }
 
 
-void UStatsComponent::SetStatValue(EStats Stat, float NewValue)
+void UStatsComponent::SetStatValue(const EStats Stat, const float NewValue)
 {
 	Stats[Stat] = NewValue;
 }

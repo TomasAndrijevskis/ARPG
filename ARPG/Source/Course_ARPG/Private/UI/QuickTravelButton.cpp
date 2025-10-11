@@ -25,7 +25,7 @@ void UQuickTravelButton::NativeConstruct()
 }
 
 
-void UQuickTravelButton::InitializeButton(FString NewTravelLocationName, FBonfireData BonfireData, FString CurrentBonfireName)
+void UQuickTravelButton::InitializeButton(const FString& NewTravelLocationName, FBonfireData BonfireData, const FString& CurrentBonfireName)
 {
 	TravelMapName = BonfireData.MapName;
 	TravelLocation = BonfireData.Location;

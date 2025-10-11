@@ -16,23 +16,20 @@ public:
 
 	virtual void NativeConstruct() override;
 	
-	UFUNCTION(BlueprintCallable)
-	void SetSlotName(FString NewSlotName);
+	UFUNCTION()
+	void SetSlotName(const FString& NewSlotName);
 	
-	UFUNCTION(BlueprintCallable)
-	void SetSlotStatus(FText NewText);
+	UFUNCTION()
+	void SetSlotStatus(const FText& NewText);
 
-	FString GetSlotName();
+	FString GetSlotName() const;
 
-	void SetMapName(FName NewMapName);
+	void SetMapName(const FName& NewMapName);
 	
 private:
-
-	UFUNCTION()
-	void OnButtonClicked();
 	
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_MangageSaveSlot;
+	UButton* Button_ManageSaveSlot;
 
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* Text_SaveSlotName;
@@ -40,9 +37,13 @@ private:
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* Text_SaveSlotStatus;
 	
-	FString SlotName;
+	UFUNCTION()
+	void OnButtonClicked();
 
+	UPROPERTY()
 	APlayerController* PlayerController;
+	
+	FString SlotName;
 
 	FName MapName;
 };

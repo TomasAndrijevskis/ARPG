@@ -6,6 +6,8 @@
 #include "Components/ActorComponent.h"
 #include "AbilityComponent_LifeStealAttack.generated.h"
 
+class IFighter;
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbilityComponent_LifeStealAttack : public UAbilityComponent_Player
 {
@@ -23,12 +25,12 @@ public:
 
 	virtual void LoadCustomProperties(FAbilityData& Data) override;
 
-	UFUNCTION(BlueprintCallable)
-	float GetStolenHealthAmount();
+	UFUNCTION()
+	float GetStolenHealthAmount() const;
 
-	float GetStolenHealthPercent();
+	float GetStolenHealthPercent() const;
 
-	void SetStolenHealthPercent(float NewStolenHealthPercent);
+	void SetStolenHealthPercent(const float NewStolenHealthPercent);
 	
 protected:
 
@@ -54,9 +56,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	FName ParticleSpawnSocketName;
 	
-	class IFighter* FighterRef;
-	
+	UPROPERTY()
 	UParticleSystemComponent* ParticleComp;
 	
-	
+	IFighter* FighterRef;
 };

@@ -29,14 +29,10 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 	{
 		PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
 		HandleGamePause(true);
-		
 		if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 		{
 			FBonfireData Data;
-			//UE_LOG(LogTemp, Error, TEXT("Location: %s"), *BonfireRef->GetActorLocation().ToString());
-			//UE_LOG(LogTemp, Error, TEXT("ForwardVector: %s"), *BonfireRef->GetActorForwardVector().ToString());
 			FVector Location = BonfireRef->GetActorLocation() + BonfireRef->GetActorForwardVector() * 200;
-			//UE_LOG(LogTemp, Error, TEXT("Desired location: %s"), *Location.ToString());
 			Data.Location = Location;
 			Data.MapName = BonfireRef->GetMapName();
 			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), Data);
@@ -57,7 +53,7 @@ void AARPG_PlayerController::RemoveBonfireMenuWidget()
 	{
 		GameMode->SpawnEnemies();
 	}
-	if (PlayerRef->LockonComp->bGetIsLocked())
+	if (PlayerRef->LockonComp->IsLocked())
 	{
 		PlayerRef->LockonComp->EndLockon();
 	}
@@ -74,7 +70,7 @@ void AARPG_PlayerController::TeleportToMap()
 void AARPG_PlayerController::LoadToMainMenu()
 {
 	GameInstanceRef->SaveAllExceptPosition();
-	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MenuMap"));
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu"));
 }
 
 
@@ -128,7 +124,7 @@ void AARPG_PlayerController::SetPlayerControllerSettings()
 }
 
 
-void AARPG_PlayerController::HandleGamePause(bool bIsGamePaused)
+void AARPG_PlayerController::HandleGamePause(const bool bIsGamePaused)
 {
 	SetShowMouseCursor(bIsGamePaused);
 	bEnableClickEvents = bIsGamePaused;
@@ -146,7 +142,7 @@ void AARPG_PlayerController::HandleGamePause(bool bIsGamePaused)
 }
 
 
-void AARPG_PlayerController::HandleGameLoad()
+void AARPG_PlayerController::HandleGameLoad() const
 {
 	if (!GameInstanceRef)
 	{
@@ -155,7 +151,7 @@ void AARPG_PlayerController::HandleGameLoad()
 	GameInstanceRef->InitializeGameInstance();
 	FString SlotName = GameInstanceRef->GetSlotName();
 	
-	if (GameInstanceRef->bCheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad)
+	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad)
 	{
 		GameInstanceRef->LoadStats();
 		GameInstanceRef->LoadAbilities();
@@ -172,7 +168,7 @@ void AARPG_PlayerController::HandleGameLoad()
 }
 
 
-void AARPG_PlayerController::SaveAll()
+void AARPG_PlayerController::SaveAll() const
 {
 	GameInstanceRef->SaveAll();
 }
@@ -194,45 +190,44 @@ void AARPG_PlayerController::RemovePauseMenu()
 
 void AARPG_PlayerController::SaveBeforeQuit()
 {
-	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, "SaveBeforeQuit");
 	GameInstanceRef->SaveAllExceptPosition();
 	QuitGame();
 }
 
 
-void AARPG_PlayerController::QuitGame()
+void AARPG_PlayerController::QuitGame() const
 {
 	UKismetSystemLibrary::QuitGame(GetWorld(), UGameplayStatics::GetPlayerController(GetWorld(), 0), EQuitPreference::Quit, false);
 }
 
 
 
-void AARPG_PlayerController::SetIsInBonfireRange(bool bNewIsInBonfireRange, ABonfire* BonfireInRange)
+void AARPG_PlayerController::SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange)
 {
 	bIsInBonfireRange = bNewIsInBonfireRange;
 	BonfireRef = BonfireInRange;
 }
 
 
-void AARPG_PlayerController::SetIsInDoorRange(bool bNewIsInDoorRange)
+void AARPG_PlayerController::SetIsInDoorRange(const bool bNewIsInDoorRange)
 {
 	bIsInDoorRange = bNewIsInDoorRange;
 }
 
 
-void AARPG_PlayerController::SetMapName(FString NewMapName)
+void AARPG_PlayerController::SetMapName(const FString& NewMapName)
 {
 	MapName = NewMapName;
 }
 
 
-TArray<FName> AARPG_PlayerController::GetDefeatedBosses()
+TArray<FName> AARPG_PlayerController::GetDefeatedBosses() const
 {
 	return DefeatedBosses;
 }
 
 
-void AARPG_PlayerController::AddDefeatedBoss(FName Boss)
+void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss)
 {
 	DefeatedBosses.AddUnique(Boss);
 }

@@ -25,6 +25,7 @@ protected:
 
 	virtual EBTNodeResult::Type AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
+	UPROPERTY()
 	AAIController* ControllerRef;
 
 	IFighter* FighterRef;
@@ -35,23 +36,24 @@ private:
 	void FinishAttack();
 
 	UFUNCTION()
-	void FinishMove();
+	void FinishMove() const;
 	
 	void Attack();
 	
 	void CheckDistance();
 	
-	void MoveToPlayer();
+	void MoveToPlayer() const;
 	
 	UPROPERTY(EditAnywhere)
 	float AttackRadius = 200.0f;
 
 	UPROPERTY(EditAnywhere)
 	float AcceptableRadius = 100.0f;
+
+	UPROPERTY()
+	UBehaviorTreeComponent* CachedOwnerComp;
 	
 	FScriptDelegate MoveDelegate;
-
-	UBehaviorTreeComponent* CachedOwnerComp;
 	
 	uint8* CachedNodeMemory;
 

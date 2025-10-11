@@ -18,14 +18,9 @@ class COURSE_ARPG_API UBonfireMenu : public UUserWidget
 public:
 
 	virtual void NativeConstruct() override;
-	
-protected:
-	
+
 private:
 	
-	//UPROPERTY(meta = (BindWidget))
-	//UButton* Button_SaveAll;
-
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_QuickTravelMenu;
 
@@ -35,15 +30,8 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilitiesScreen;
 
-	//UPROPERTY(meta = (BindWidget))
-	//UButton* Button_MainMenu;
-
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_QuitBonfire;
-
-	
-	UPROPERTY()
-	UTextBlock* Text_SaveAll;
 	
 	UPROPERTY()
 	UTextBlock* Text_QuickTravelMenu;
@@ -54,9 +42,6 @@ private:
 	UPROPERTY()
 	UTextBlock* Text_AbilitiesScreen;
 	
-	UPROPERTY()
-	UTextBlock* Text_MainMenu;
-
 	UPROPERTY()
 	UTextBlock* Text_QuitBonfire;
 

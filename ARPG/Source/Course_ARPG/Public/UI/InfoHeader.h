@@ -16,17 +16,17 @@ class COURSE_ARPG_API UInfoHeader : public UUserWidget
 
 public:
 
-	UFUNCTION(BlueprintCallable)
-	void InitializeInfoHeader(int Value);
+	UFUNCTION()
+	void InitializeInfoHeader(const int Value);
 
 	UFUNCTION()
-	void SetPointsAmount(int NewAmount);
+	void SetPointsAmount(const int NewAmount);
 
 	UFUNCTION()
-	void UpdateStatValue(int NewValue);
+	void UpdateStatValue(const int NewValue);
 
 	UFUNCTION()
-	void UpdateAbilityPoints(int NewValue);
+	void UpdateAbilityPoints(const int NewValue);
 	
 private:
 
