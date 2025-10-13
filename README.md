@@ -1,6 +1,6 @@
 # Overview
 This is an action RPG project built in **Unreal Engine 5.4**.  
-Originally started as part of the course project from  
+Originally started as part of the course project from 
 [*Unreal Engine 5 C++: Make Your Own Action Combat Game*](https://www.udemy.com/course/unreal-engine-action-combat-game/?couponCode=PMNVD2025),  
 I continued developing and expanding it beyond the original version - adding new systems, balancing, and overall polish.
 
