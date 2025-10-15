@@ -28,7 +28,7 @@ public:
 	AEnemyCharacter();
 	
 	UFUNCTION(BlueprintCallable)
-	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, const EEnemyStates& NewEnemyState){};
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState){};
 
 	virtual float GetCurrentDamage() const override;
 

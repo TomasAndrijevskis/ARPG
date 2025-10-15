@@ -34,7 +34,7 @@ void ABoss::CreateHealthWidget()
 }
 
 
-void ABoss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, const EEnemyStates& NewEnemyState)
+void ABoss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState)
 {
 	if (GetBlackboardComp())
 	{

@@ -43,7 +43,7 @@ void AMinion::Tick(float DeltaTime)
 }
 
 
-void AMinion::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, const EEnemyStates& NewEnemyState)
+void AMinion::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState)
 {
 	if (GetBlackboardComp())
 	{

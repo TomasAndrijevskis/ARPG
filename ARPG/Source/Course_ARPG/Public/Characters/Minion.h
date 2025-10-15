@@ -22,7 +22,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, const EEnemyStates& NewEnemyState) override;
+	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState) override;
 
 	virtual void CreateHealthWidget() override;
 
