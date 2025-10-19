@@ -16,6 +16,9 @@ I had two main goals when I started enhancing this project:
 - **Save & Load** - 5 save slots, each storing map, player stats, and character data.  
 - **Custom UI** - in the original course, all UI widgets were made with Blueprints. I recreated them in C++ and added several new ones.
 
+## Demonstration
+[Link](https://youtu.be/fEuL-m66lR0)  
+
 ## Used Assets 
 Since my focus was primarily on coding, I used free, ready-to-use assets from Epic Games and other sources.
 ### Epic Games Paragon Packs:
@@ -31,5 +34,6 @@ Since my focus was primarily on coding, I used free, ready-to-use assets from Ep
 [FX Variety Pack](https://www.fab.com/listings/53531e17-369f-4bba-b493-8588f0dec07b),
 [Mega Magic VFX Bundle](https://www.fab.com/listings/d0b1351a-acbf-4da6-ab4e-32fc934a255f),
 [Realistic Starter VFX Pack Vol 2](https://www.fab.com/listings/ac2818b3-7d35-4cf5-a1af-cbf8ff5c61c1)
+
 ## Known Issues
  - Sometimes when player character falls of the map, it dies but reloading the save is not triggered.
