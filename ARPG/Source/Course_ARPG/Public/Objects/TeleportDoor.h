@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "TeleportDoor.generated.h"
 
+
 class AARPG_PlayerController;
 class UObjectInteractionText;
 class UWidgetComponent;

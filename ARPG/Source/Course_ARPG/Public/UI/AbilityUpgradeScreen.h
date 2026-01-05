@@ -8,6 +8,7 @@
 #include "Components/HorizontalBox.h"
 #include "AbilityUpgradeScreen.generated.h"
 
+
 class AMainCharacter_Base;
 
 UCLASS()
@@ -73,8 +74,10 @@ private:
 	void SetAbilityIconEnable();
 	
 	UFUNCTION()
-	void SetIconStyle(UTexture2D* Icon);
+	void SetIcon(UTexture2D* Icon);
 
+	void ApplyIconStyle(UTexture2D* Icon, FSlateBrush& BrushStyle, TEnumAsByte<ESlateBrushDrawType::Type> DrawType);
+	
 	UFUNCTION()
 	void SetUpgradeButtonText(const bool bIsLevelMaxed);
 
@@ -98,6 +101,9 @@ private:
 
 	UPROPERTY()
 	UDescriptionWidget* DescriptionWidgetRef;
+
+	UPROPERTY(EditAnywhere)
+	FVector2D AbilityIconSize =  FVector2D(64, 64);
 	
 	FString AbilityDescription;
 

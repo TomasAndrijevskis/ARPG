@@ -5,6 +5,7 @@
 #include "Blueprint/UserWidget.h"
 #include "StatusIconWithAmount.generated.h"
 
+
 class UStatsComponent;
 class UTextBlock;
 class UImage;

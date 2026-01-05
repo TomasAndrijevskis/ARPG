@@ -1,10 +1,10 @@
 
 #include "UI/StatsScreenWidget.h"
-#include "Characters/EStats.h"
-#include "Characters/LevelingComponent.h"
-#include "Characters/MainCharacter_Base.h"
-#include "Characters/StatsComponent.h"
+#include "Characters/Data/EStats.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
+#include "Components/LevelingComponent.h"
+#include "Components/StatsComponent.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -12,13 +12,8 @@
 void UStatsScreenWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-
-	if (Button_ImproveStat)
-	{
-		Button_ImproveStat->OnClicked.AddDynamic(this, &UStatsScreenWidget::OnClickedImproveStat);
-	}
+	if (Button_ImproveStat) Button_ImproveStat->OnClicked.AddDynamic(this, &UStatsScreenWidget::OnClickedImproveStat);
 }
 
 
@@ -32,30 +27,16 @@ void UStatsScreenWidget::OnClickedImproveStat()
 float UStatsScreenWidget::ImproveStat(const float CurrentValue)
 {
 	StatValue = CurrentValue;
-	if (!PlayerRef)
-	{
-		return StatValue;
-	}
-	
+	if (!PlayerRef) return StatValue;
 	int Points = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
-	if (Points <= 0)
-	{
-		return StatValue;
-	}
+	if (Points <= 0) return StatValue;
 
-	if (Stat == EStats::Strength)
-	{
-		StatValue += 5;
-	}
-	else
-	{
-		StatValue += 10;
-	}
+	if (Stat == EStats::Strength) StatValue += 5;
+	else StatValue += 10;
 	PlayerRef->StatsComp->SetStatValue(Stat, StatValue);
 	Points--;
 	PlayerRef->LevelComp->SetStatPoints(Points);
 	PlayerRef->LevelComp->OnStatPointsUpdateDelegate.Broadcast(Points);
-	
 	return StatValue;
 }
 
@@ -63,10 +44,7 @@ float UStatsScreenWidget::ImproveStat(const float CurrentValue)
 void UStatsScreenWidget::SetStatsVariables(const EStats& StatToImprove)
 {
 	Stat = StatToImprove;
-	if (!PlayerRef)
-	{
-		return;
-	}
+	if (!PlayerRef) return;
 	StatName = PlayerRef->StatsComp->GetStatName(Stat);
 	StatValue = PlayerRef->StatsComp->GetStatValue(Stat);
 	UpdateText(StatName, StatValue);
@@ -76,10 +54,7 @@ void UStatsScreenWidget::SetStatsVariables(const EStats& StatToImprove)
 void UStatsScreenWidget::UpdateText(FString& Name, const float Value)
 {
 	FString Prefix = TEXT("Max");
-	if (Name.StartsWith(Prefix))
-	{
-		Name = Name.RightChop(Prefix.Len());
-	}
+	if (Name.StartsWith(Prefix)) Name = Name.RightChop(Prefix.Len());
 	Text_StatName->SetText(FText::FromString(Name));
 	Text_StatValue->SetText(FText::AsNumber(Value));
 }

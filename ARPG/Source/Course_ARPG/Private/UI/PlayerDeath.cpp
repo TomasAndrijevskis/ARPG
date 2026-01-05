@@ -13,6 +13,6 @@ void UPlayerDeath::NativeConstruct()
 void UPlayerDeath::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
 {
 	Super::OnAnimationFinished_Implementation(Animation);
-	FString LevelName = UGameplayStatics::GetCurrentLevelName(this, true);
+	const FString LevelName = UGameplayStatics::GetCurrentLevelName(this, true);
 	UGameplayStatics::OpenLevel(this, FName(*LevelName));
 }

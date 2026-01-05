@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "BossLocationDoor.generated.h"
 
+
 class ABoss;
 class UBoxComponent;
 

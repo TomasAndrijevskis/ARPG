@@ -5,7 +5,7 @@
 #include "Components/ActorComponent.h"
 #include "AbilityComponent_Base.generated.h"
 
-struct FAbilityData;
+
 class AMainCharacter_Base;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityTimerChangedSignature, float, TimeLeft);

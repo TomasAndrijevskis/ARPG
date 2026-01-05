@@ -8,10 +8,7 @@
 
 void UStatusIconWithTimer::InitializeWidget(const float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef, const FVector2d& ImageSize)
 {
-	if (!NewAbilityCompRef || !Image)
-	{
-		return;
-	}
+	if (!NewAbilityCompRef || !Image) return;
 	AbilityCompRef = NewAbilityCompRef;
 	SetCountdownTime(Duration);
 	SetStatusIcon(Image, ImageSize);
@@ -23,10 +20,7 @@ void UStatusIconWithTimer::InitializeWidget(const float Duration, UTexture2D* Im
 void UStatusIconWithTimer::RemoveWidget()
 {
 	AbilityCompRef->OnAbilityTimerChangedDelegate.Clear();
-	if (this->GetParent())
-	{
-		this->GetParent()->RemoveChild(this);
-	}
+	if (this->GetParent()) this->GetParent()->RemoveChild(this);
 }
 
 

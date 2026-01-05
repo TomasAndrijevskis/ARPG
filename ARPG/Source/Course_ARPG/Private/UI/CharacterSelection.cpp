@@ -12,10 +12,7 @@ void UCharacterSelection::NativeConstruct()
 void UCharacterSelection::SetPlayerControllerProperties()
 {
 	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	if (!PlayerController)
-	{
-		return;
-	}
+	if (!PlayerController) return;
 	PlayerController->SetShowMouseCursor(true);
 	FInputModeGameAndUI InputMode;
 	PlayerController->SetInputMode(InputMode);

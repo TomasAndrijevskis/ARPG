@@ -1,24 +1,18 @@
 
 #include "UI/AbilityUpgradeScreen.h"
-#include "Characters/LevelingComponent.h"
-#include "Characters/MainCharacter_Base.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Components/LevelingComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/DescriptionWidget.h"
 
 
 void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Player* AbilityComp)
 {
-	if (!AbilityComp)
-	{
-		return;
-	}
+	if (!AbilityComp) return;
 	AbilityComp_Ref = AbilityComp;
-	if (!AbilityComp_Ref)
-	{
-		return;
-	}
-	SetIconStyle(AbilityComp_Ref->GetIcon());
+	if (!AbilityComp_Ref) return;
+	SetIcon(AbilityComp_Ref->GetIcon());
 	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
 	SetAbilityIconEnable();
 	SetupButtonCallbacks();
@@ -39,12 +33,8 @@ void UAbilityUpgradeScreen::SetupButtonCallbacks()
 	{
 		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UpgradeAbility);
 		HandleUpgradeButtonActions();
-		if (AbilityComp_Ref->IsAbilityMaxLevel())
-		{
-			Button_UpgradeAbility->SetIsEnabled(false);
-		}
+		if (AbilityComp_Ref->IsAbilityMaxLevel()) Button_UpgradeAbility->SetIsEnabled(false);
 	}
-
 	if (Button_AbilityIcon)
 	{
 		Button_AbilityIcon->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateAbilityDescriptionWidget);
@@ -78,16 +68,10 @@ void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
 
 void UAbilityUpgradeScreen::CreateDescriptionWidget(const TSubclassOf<UDescriptionWidget>& WidgetClass, const FString& Description)
 {
-	if (!WidgetClass)
-	{
-		return;
-	}
+	if (!WidgetClass) return;
 	
 	DescriptionWidgetRef = CreateWidget<UDescriptionWidget>(GetWorld(), WidgetClass);
-	if (!DescriptionWidgetRef)
-	{
-		return;
-	}
+	if (!DescriptionWidgetRef) return;
 	DescriptionWidgetRef->AddToViewport(10);
 	DescriptionWidgetRef->SetDescription(Description);
 }
@@ -105,28 +89,16 @@ void UAbilityUpgradeScreen::RemoveDescriptionWidget()
 
 void UAbilityUpgradeScreen::SetUpgradeButtonText(const bool bIsLevelMaxed)
 {
-	if (AbilityComp_Ref->IsAbilityAvailable() && bIsLevelMaxed)
-	{
-		Text_Upgrade->SetText(FText::FromString("Maxed"));
-	}
-	else if (AbilityComp_Ref->IsAbilityAvailable() && !bIsLevelMaxed)
-	{
-		Text_Upgrade->SetText(FText::FromString("Upgrade"));
-	}
-	else
-	{
-		Text_Upgrade->SetText(FText::FromString("Unlock"));
-	}
+	if (AbilityComp_Ref->IsAbilityAvailable() && bIsLevelMaxed) Text_Upgrade->SetText(FText::FromString("Maxed"));
+	else if (AbilityComp_Ref->IsAbilityAvailable() && !bIsLevelMaxed) Text_Upgrade->SetText(FText::FromString("Upgrade"));
+	else Text_Upgrade->SetText(FText::FromString("Unlock"));
 }
 
 
 void UAbilityUpgradeScreen::SetRequiredPointsText()
 {
 	int RequiredPoints = AbilityComp_Ref->GetRequiredUpgradePoints();
-	if (RequiredPoints == -1)
-	{
-		Text_RequiredPoints->SetText(FText::FromString(""));
-	}
+	if (RequiredPoints == -1) Text_RequiredPoints->SetText(FText::FromString(""));
 	else
 	{
 		FString Text = FString::Printf(TEXT("Required points: %d"), RequiredPoints);
@@ -137,16 +109,9 @@ void UAbilityUpgradeScreen::SetRequiredPointsText()
 
 void UAbilityUpgradeScreen::UpgradeAbility()
 {
-	if (!PlayerRef)
-	{
-		return;
-	}
-
+	if (!PlayerRef) return;
 	int AvailablePoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
-	if (AvailablePoints <= 0)
-	{
-		return;
-	}
+	if (AvailablePoints <= 0) return;
 	
 	AbilityComp_Ref->UpgradeAbility(AvailablePoints);
 	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
@@ -168,43 +133,25 @@ void UAbilityUpgradeScreen::SetAbilityIconEnable()
 }
 
 
-void UAbilityUpgradeScreen::SetIconStyle(UTexture2D* Icon)
+void UAbilityUpgradeScreen::SetIcon(UTexture2D* Icon)
 {
-	if (!Icon)
-	{
-		return;
-	}
+	if (!Icon) return;
 	FButtonStyle CustomStyle;
-
-	// Normal Brush (Image)
-	FSlateBrush NormalBrush;
-	NormalBrush.SetResourceObject(Icon);
-	NormalBrush.DrawAs = ESlateBrushDrawType::Image;
-	NormalBrush.Tiling = ESlateBrushTileType::NoTile;
-	NormalBrush.ImageSize = FVector2D(64, 64);
-	
-	// Hovered Brush
-	FSlateBrush HoveredBrush;
-	HoveredBrush.SetResourceObject(Icon);
-	HoveredBrush.DrawAs = ESlateBrushDrawType::RoundedBox;
-	HoveredBrush.Tiling = ESlateBrushTileType::NoTile;
-	HoveredBrush.ImageSize = FVector2D(64, 64);
-	
-	// Disabled Brush
-	FSlateBrush DisabledBrush;
-	DisabledBrush.SetResourceObject(Icon);
-	DisabledBrush.DrawAs = ESlateBrushDrawType::Image;
-	DisabledBrush.Tiling = ESlateBrushTileType::NoTile;
-	DisabledBrush.ImageSize = FVector2D(64, 64);
-	DisabledBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.3f)); 
-	
-	// Apply Brushes
-	CustomStyle.SetNormal(NormalBrush);
-	CustomStyle.SetHovered(HoveredBrush);
-	CustomStyle.SetDisabled(DisabledBrush);
-	CustomStyle.SetPressed(HoveredBrush);
-	
+	ApplyIconStyle(Icon, CustomStyle.Normal, ESlateBrushDrawType::Image);
+	ApplyIconStyle(Icon, CustomStyle.Hovered, ESlateBrushDrawType::RoundedBox);
+	ApplyIconStyle(Icon, CustomStyle.Pressed, ESlateBrushDrawType::RoundedBox);
+	ApplyIconStyle(Icon, CustomStyle.Disabled, ESlateBrushDrawType::Image);
+	CustomStyle.Disabled.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.3f)); 
 	Button_AbilityIcon->SetStyle(CustomStyle);
+}
+
+
+void UAbilityUpgradeScreen::ApplyIconStyle(UTexture2D* Icon, FSlateBrush& BrushStyle, TEnumAsByte<ESlateBrushDrawType::Type> DrawType)
+{
+	BrushStyle.SetResourceObject(Icon);
+	BrushStyle.Tiling = ESlateBrushTileType::NoTile;
+	BrushStyle.DrawAs = DrawType;
+	BrushStyle.ImageSize = AbilityIconSize;
 }
 
 

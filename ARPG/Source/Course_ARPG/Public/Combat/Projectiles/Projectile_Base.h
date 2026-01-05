@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "Projectile_Base.generated.h"
 
+
 UCLASS()
 class COURSE_ARPG_API AProjectile_Base : public AActor
 {
@@ -50,5 +51,4 @@ private:
 	float Damage;
 
 	FTimerHandle AliveTimerHandle;
-
 };

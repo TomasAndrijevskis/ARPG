@@ -27,15 +27,9 @@ EBTNodeResult::Type UBTT_Patrol::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 
 void UBTT_Patrol::PatrolForward()
 {
-	if (!ControllerRef)
-	{
-		return;
-	}
+	if (!ControllerRef) return;
 	bool bIsPatrolling = ControllerRef->GetBlackboardComponent()->GetValueAsBool(TEXT("IsPatrolling"));
-	if (!bIsPatrolling)
-	{
-		return;
-	}
+	if (!bIsPatrolling) return;
 	FVector ForwardDirection = CharacterRef->GetActorForwardVector();
 	FVector TargetLocation = StartLocation + ForwardDirection * GetRandomPatrolDistance();
 	FTimerDelegate DelayTimerDelegate;
@@ -47,16 +41,9 @@ void UBTT_Patrol::PatrolForward()
 
 void UBTT_Patrol::PatrolBackward()
 {
-	//UE_LOG(LogTemp, Error, TEXT("Patrol Backward"));
-	if (!ControllerRef)
-	{
-		return;
-	}
+	if (!ControllerRef) return;
 	bool bIsPatrolling = ControllerRef->GetBlackboardComponent()->GetValueAsBool(TEXT("IsPatrolling"));
-	if (!bIsPatrolling)
-	{
-		return;
-	}
+	if (!bIsPatrolling) return;
 	FTimerDelegate DelayTimerDelegate;
 	FTimerHandle DelayTimerHandle;
 	DelayTimerDelegate.BindUFunction(this, FName("DelayPatrol"), StartLocation, false);

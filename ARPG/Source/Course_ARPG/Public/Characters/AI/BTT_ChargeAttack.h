@@ -5,6 +5,7 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "BTT_ChargeAttack.generated.h"
 
+
 class UAnimInstance_Base;
 
 UCLASS()

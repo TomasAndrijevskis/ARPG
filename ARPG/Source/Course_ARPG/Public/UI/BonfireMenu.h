@@ -5,6 +5,7 @@
 #include "Blueprint/UserWidget.h"
 #include "BonfireMenu.generated.h"
 
+
 class ABonfire;
 class AARPG_PlayerController;
 class UTextBlock;

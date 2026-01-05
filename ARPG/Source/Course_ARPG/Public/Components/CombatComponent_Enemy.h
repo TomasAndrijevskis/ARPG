@@ -1,0 +1,26 @@
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "CombatComponent_Base.h"
+#include "CombatComponent_Enemy.generated.h"
+
+
+UCLASS()
+class COURSE_ARPG_API UCombatComponent_Enemy : public UCombatComponent_Base
+{
+	GENERATED_BODY()
+
+public:
+
+	void RandomAttack();
+
+	virtual void ComboAttack() override;
+	
+	UPROPERTY()
+	float AnimDuration;
+
+private:
+
+	int ComboCounter = 0;
+};

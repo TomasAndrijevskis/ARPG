@@ -8,6 +8,7 @@
 #include "Components/TextBlock.h"
 #include "CharacterSelect.generated.h"
 
+
 class AMainCharacter_Base;
 
 UCLASS()
@@ -35,6 +36,8 @@ private:
 	void SetData();
 
 	void SetButtonStyle(UTexture2D* Image);
+
+	void ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle, const FSlateColor& Color);
 	
 	UFUNCTION()
 	void SetCharacterClass();

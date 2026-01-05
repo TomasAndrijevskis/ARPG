@@ -11,9 +11,6 @@ class COURSE_ARPG_API UAbilityComponent_Enemy : public UAbilityComponent_Base
 {
 	GENERATED_BODY()
 
-public:
-
-
 protected:
 
 	virtual void BeginPlay() override;

@@ -24,5 +24,4 @@ public:
 	virtual bool HasEnoughMana(const float Mana) const {return true;} ;
 
 	virtual void EndLockonWithActor(AActor* ActorRef) = 0;
-	
 };

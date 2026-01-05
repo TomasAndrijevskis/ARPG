@@ -3,7 +3,6 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Engine/DamageEvents.h"
-#include "Kismet/KismetMathLibrary.h"
 
 
 void AProjectile_Base::BeginPlay()
@@ -21,22 +20,14 @@ void AProjectile_Base::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedCo
 
 void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 {
-	if (!OtherActor || OtherActor == this)
-	{
-		return;
-	}
+	if (!OtherActor || OtherActor == this) return;
 	APawn* PawnRef = Cast<APawn>(OtherActor);
 	if (!PawnRef)
 	{
 		HandleDestruction();
 		return;
 	}
-	
-	if (IsPlayerControlledActor(PawnRef))
-	{
-		return;
-	}
-	
+	if (IsPlayerControlledActor(PawnRef)) return;
 	HandleDestruction();
 	FDamageEvent ProjectileAttackedEvent;
 	PawnRef->TakeDamage(Damage, ProjectileAttackedEvent, PawnRef->GetController(), this );
@@ -45,10 +36,7 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 
 void AProjectile_Base::HandleDestruction()
 {
-	if (HitTemplate && Particle)
-	{
-		Particle->SetTemplate(HitTemplate);
-	}
+	if (HitTemplate && Particle) Particle->SetTemplate(HitTemplate);
 	FindComponentByClass<UProjectileMovementComponent>()->StopMovementImmediately();
 	FTimerHandle DeathTimerHandle;
 	GetWorldTimerManager().SetTimer(DeathTimerHandle, this, &AProjectile_Base::DestroyProjectile, 0.5f);

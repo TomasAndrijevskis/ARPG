@@ -35,7 +35,4 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_PointsValue;
-
-	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
 };

@@ -20,10 +20,7 @@
 
 void UPlayerWidget::CreateStatsScreen(const EStats& Stat)
 {
-	if (!StatsWidgetClass)
-	{
-		return;
-	}
+	if (!StatsWidgetClass) return;
 	StatsScreenRef = Cast<UStatsScreenWidget>(CreateWidget(this, StatsWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(StatsScreenRef);
 	StatsScreenRef->SetStatsVariables(Stat);
@@ -48,10 +45,7 @@ void UPlayerWidget::RemoveStatsScreen()
 
 void UPlayerWidget::CreateAbilityUpgradeScreen(UAbilityComponent_Player* AbilityCompRef)
 {
-	if (!AbilityUpgradeScreenWidgetClass)
-	{
-		return;
-	}
+	if (!AbilityUpgradeScreenWidgetClass) return;
 	AbilityUpgradeScreenWidgetRef = Cast<UAbilityUpgradeScreen>(CreateWidget(this, AbilityUpgradeScreenWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(AbilityUpgradeScreenWidgetRef);
 	AbilityUpgradeScreenWidgetRef->InitializeAbility(AbilityCompRef);
@@ -78,10 +72,7 @@ void UPlayerWidget::RemoveAbilityUpgradeScreen()
 
 void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef)
 {
-	if (!AbilityFooterWidgetClass)
-	{
-		return;
-	}
+	if (!AbilityFooterWidgetClass) return;
 	AbilityFooterWidgetRef = Cast<UAbilityFooter>(CreateWidget(this, AbilityFooterWidgetClass));
 	AbilityFooterWidgetRef->SetAbility(Image, ActionKey, AbilityCompRef);
 	HorizontalBox_AbilitiesFooter->AddChild(AbilityFooterWidgetRef);
@@ -101,10 +92,7 @@ void UPlayerWidget::RemoveAbilityFooter()
 
 void UPlayerWidget::CreateUpgradeInfoHeader(const int Value)
 {
-	if (!InfoHeaderWidgetClass)
-	{
-		return;
-	}
+	if (!InfoHeaderWidgetClass) return;
 	InfoHeaderWidgetRef = Cast<UInfoHeader>(CreateWidget(this, InfoHeaderWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(InfoHeaderWidgetRef);
 	InfoHeaderWidgetRef->InitializeInfoHeader(Value);
@@ -113,10 +101,7 @@ void UPlayerWidget::CreateUpgradeInfoHeader(const int Value)
 
 void UPlayerWidget::CreateUpgradeInfoFooter(const EScreens& ScreenType)
 {
-	if (!InfoFooterWidgetClass)
-	{
-		return;
-	}
+	if (!InfoFooterWidgetClass) return;
 	InfoFooterWidgetRef = Cast<UInfoFooter>(CreateWidget(this, InfoFooterWidgetClass));
 	VerticalBox_UpgradeInfo->AddChild(InfoFooterWidgetRef);
 	InfoFooterWidgetRef->InitializeFooter(ScreenType);
@@ -125,10 +110,7 @@ void UPlayerWidget::CreateUpgradeInfoFooter(const EScreens& ScreenType)
 
 void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
 {
-	if (!StatusIconWithTimerWidgetClass)
-	{
-		return;
-	}
+	if (!StatusIconWithTimerWidgetClass) return;
 	StatusIconWithTimerWidgetRef = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
 	StatusIconWithTimerWidgetRef->InitializeWidget(Duration, Image, AbilityCompRef, FVector2d(IconSize.X, IconSize.Y));
 	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerWidgetRef);
@@ -137,20 +119,14 @@ void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* 
 
 void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword)
 {
-	if (!StatusIconWithAmountWidgetClass)
-	{
-		return;
-	}
+	if (!StatusIconWithAmountWidgetClass) return;
 	if (ActiveStatusWidget.Contains(Keyword))
 	{
 		UStatusIconWithAmount** FoundWiget = ActiveStatusWidget.Find(Keyword);
 		if (FoundWiget)
 		{
 			UStatusIconWithAmount* StatusWidget = Cast<UStatusIconWithAmount>(*FoundWiget);
-			if (StatusWidget)
-			{
-				StatusWidget->SetAmount(Amount);
-			}
+			if (StatusWidget) StatusWidget->SetAmount(Amount);
 		}
 	}
 	else
@@ -165,11 +141,7 @@ void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* I
 
 void UPlayerWidget::CreateDeathWidget()
 {
-	if (!PlayerDeathWidgetClass)
-	{
-		return;
-	}
-
+	if (!PlayerDeathWidgetClass) return;
 	PlayerDeathWidgetRef = Cast<UPlayerDeath>(CreateWidget(this, PlayerDeathWidgetClass));
 	PlayerDeathWidgetRef->AddToViewport(5);
 }
@@ -178,10 +150,7 @@ void UPlayerWidget::CreateDeathWidget()
 
 void UPlayerWidget::CreateBonfireMenuWidget()
 {
-	if (!BonfireMenuWidgetClass)
-	{
-		return;
-	}
+	if (!BonfireMenuWidgetClass) return;
 	BonfireMenuWidgetRef = Cast<UBonfireMenu>(CreateWidget(this, BonfireMenuWidgetClass));
 	BonfireMenuWidgetRef->AddToViewport(5);
 }
@@ -199,10 +168,7 @@ void UPlayerWidget::RemoveBonfireMenuWidget()
 
 void UPlayerWidget::CreateQuickTravelMenuWidget(const TMap<FString, FBonfireData>& UnlockedBonfires, const FString& CurrentBonfireName)
 {
-	if (!QuickTravelMenuWidgetClass)
-	{
-		return;
-	}
+	if (!QuickTravelMenuWidgetClass) return;
 	QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
 	QuickTravelMenuWidgetRef -> SetBonfires(UnlockedBonfires, CurrentBonfireName);
 	QuickTravelMenuWidgetRef -> AddToViewport(5);
@@ -223,10 +189,7 @@ void UPlayerWidget::RemoveQuickTravelMenuWidget()
 
 void UPlayerWidget::CreatePauseMenu()
 {
-	if (!PauseMenuWidgetClass)
-	{
-		return;
-	}
+	if (!PauseMenuWidgetClass) return;
 	PauseMenuWidgetRef = Cast<UPauseMenu>(CreateWidget(this, PauseMenuWidgetClass));
 	PauseMenuWidgetRef->AddToViewport(5);
 }

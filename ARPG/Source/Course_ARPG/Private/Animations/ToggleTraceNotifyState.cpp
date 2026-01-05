@@ -1,6 +1,6 @@
 
 #include "Animations/ToggleTraceNotifyState.h"
-#include "Combat/TraceComponent.h"
+#include "Components/TraceComponent.h"
 
 
 void UToggleTraceNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration, const FAnimNotifyEventReference& EventReference)
@@ -17,19 +17,10 @@ void UToggleTraceNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UAnimS
 
 void UToggleTraceNotifyState::ToggleTraceState(bool bIsAttacking, USkeletalMeshComponent* MeshComp)
 {
-	if (!IsValid(MeshComp))
-	{
-		return;
-	}
+	if (!IsValid(MeshComp)) return;
 	AActor* Owner = MeshComp->GetOwner();
-	if (!IsValid(Owner))
-	{
-		return;
-	}
+	if (!IsValid(Owner)) return;
 	UTraceComponent* TraceComp = Owner->FindComponentByClass<UTraceComponent>();
-	if (!IsValid(TraceComp))
-	{
-		return;
-	}
+	if (!IsValid(TraceComp)) return;
 	TraceComp->bIsAttacking = bIsAttacking;
 }

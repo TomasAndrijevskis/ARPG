@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "AbilityData.generated.h"
 
+
 USTRUCT(BlueprintType)
 struct FAbilityData
 {
@@ -25,5 +26,4 @@ struct FAbilityData
 
 	UPROPERTY()
 	TMap<FString, float> CustomProperties;
-	
 };

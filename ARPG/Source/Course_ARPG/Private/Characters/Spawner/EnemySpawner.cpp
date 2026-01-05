@@ -1,14 +1,11 @@
 
 #include "Characters/Spawner/EnemySpawner.h"
-#include "Characters/EnemyCharacter.h"
+#include "Characters/Enemy/EnemyCharacter.h"
 
 
 void AEnemySpawner::CheckEnemies()
 {
-	if (SpawnedEnemies.IsEmpty())
-	{
-		SpawnEnemies();
-	}
+	if (SpawnedEnemies.IsEmpty()) SpawnEnemies();
 	else
 	{
 		for (auto Enemy : SpawnedEnemies)

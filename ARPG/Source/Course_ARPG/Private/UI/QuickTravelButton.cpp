@@ -1,7 +1,7 @@
 
 #include "UI/QuickTravelButton.h"
-#include "Characters/ARPG_PlayerController.h"
-#include "Characters/MainCharacter_Base.h"
+#include "Characters/Player/ARPG_PlayerController.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
@@ -13,13 +13,8 @@
 void UQuickTravelButton::NativeConstruct()
 {
 	Super::NativeConstruct();
-
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
-	if (PlayerRef)
-	{
-		PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
-	}
-	
+	if (PlayerRef) PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
 	Button_QuickTravel->OnClicked.Clear();
 	Button_QuickTravel->OnClicked.AddDynamic(this, &UQuickTravelButton::ShowAnimBeforeTeleport);
 }
@@ -29,13 +24,8 @@ void UQuickTravelButton::InitializeButton(const FString& NewTravelLocationName, 
 {
 	TravelMapName = BonfireData.MapName;
 	TravelLocation = BonfireData.Location;
-
 	Text_QuickTravelLocation->SetText(FText::FromString(NewTravelLocationName));
-
-	if (CurrentBonfireName == NewTravelLocationName)
-	{
-		Button_QuickTravel->SetIsEnabled(false);
-	}
+	if (CurrentBonfireName == NewTravelLocationName) Button_QuickTravel->SetIsEnabled(false);
 }
 
 
@@ -59,15 +49,9 @@ void UQuickTravelButton::ShowAnimBeforeTeleport()
 void UQuickTravelButton::TeleportPlayer()
 {
 	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(PlayerController->GetGameInstance());
-	if (!GameInstance)
-	{
-		return;
-	}
+	if (!GameInstance) return;
 	FString MapName = UGameplayStatics::GetCurrentLevelName(GetWorld());
-	if (MapName ==  TravelMapName)
-	{
-		PlayerRef->TeleportTo(TravelLocation, PlayerRef->GetActorRotation());
-	}
+	if (MapName ==  TravelMapName) PlayerRef->TeleportTo(TravelLocation, PlayerRef->GetActorRotation());
 	else
 	{
 		FString MapPath = "/Game/Maps/" + TravelMapName;
@@ -75,10 +59,6 @@ void UQuickTravelButton::TeleportPlayer()
 		{
 			GameInstance->SavePlayerLocation(TravelLocation);
 			UGameplayStatics::OpenLevel(this, FName(*TravelMapName));
-		}
-		else
-		{
-			UE_LOG(LogTemp, Error, TEXT("Wrong map name"));
 		}
 	}
 }

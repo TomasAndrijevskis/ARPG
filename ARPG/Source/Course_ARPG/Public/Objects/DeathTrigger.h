@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "DeathTrigger.generated.h"
 
+
 class UBoxComponent;
 
 UCLASS()

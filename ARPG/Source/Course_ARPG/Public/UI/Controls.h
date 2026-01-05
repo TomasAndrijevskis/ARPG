@@ -14,5 +14,4 @@ struct COURSE_ARPG_API FControls : public FTableRowBase
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FText Description;
-
 };

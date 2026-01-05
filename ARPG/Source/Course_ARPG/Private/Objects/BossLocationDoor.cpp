@@ -1,6 +1,6 @@
 
 #include "Course_ARPG/Public/Objects/BossLocationDoor.h"
-#include "Characters/Boss.h"
+#include "Characters/Enemy/Boss.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -21,10 +21,7 @@ void ABossLocationDoor::BeginPlay()
 	Super::BeginPlay();
 	Mesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	Mesh->SetVisibility(false);
-	if (MeshMaterial)
-	{
-		Mesh->SetMaterial(0, MeshMaterial);
-	}
+	if (MeshMaterial) Mesh->SetMaterial(0, MeshMaterial);
 	SetCollisionSettings(*BlockCollision,ECR_Ignore, ECR_Ignore, ECR_Overlap);
 	SetCollisionSettings(*TriggerCollision,ECR_Ignore, ECR_Ignore, ECR_Overlap);
 
@@ -39,7 +36,6 @@ void ABossLocationDoor::HandleDoor()
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABoss::StaticClass(), FoundActors);
 	if (FoundActors.Num() > 0)
 	{
-		UE_LOG(LogTemp, Error, TEXT("FoundBoss"));
 		TriggerCollision->OnComponentBeginOverlap.AddDynamic(this, &ABossLocationDoor::OnBeginOverlap);
 		OnBossDiedDelegate.AddDynamic(this, &ABossLocationDoor::ReopenDoor);
 	}

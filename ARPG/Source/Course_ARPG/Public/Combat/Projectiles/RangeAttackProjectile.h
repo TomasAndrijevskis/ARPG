@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "RangeAttackProjectile.generated.h"
 
+
 UCLASS()
 class COURSE_ARPG_API ARangeAttackProjectile : public AProjectile_Base
 {
@@ -16,6 +17,4 @@ public:
 	ARangeAttackProjectile();
 
 	virtual bool IsPlayerControlledActor(AActor* OtherActor) override;
-
-	
 };

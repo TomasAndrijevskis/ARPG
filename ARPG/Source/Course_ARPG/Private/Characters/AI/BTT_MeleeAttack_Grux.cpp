@@ -12,21 +12,14 @@ void UBTT_MeleeAttack_Grux::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
 	float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 	
-	if (Distance > FighterRef->GetMeleeRange())
-	{
-		HandleRangeAttack(OwnerComp);
-	}
+	if (Distance > FighterRef->GetMeleeRange()) HandleRangeAttack(OwnerComp);
 }
 
 
 void UBTT_MeleeAttack_Grux::HandleRangeAttack(UBehaviorTreeComponent& OwnerComp) const
 {
 	if (bHasRangeAttack)
-	{
 		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
-	}
 	else
-	{
 		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
-	}
 }

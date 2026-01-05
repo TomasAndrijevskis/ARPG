@@ -1,21 +1,18 @@
 
 #include "Gamemode/ARPG_GameMode.h"
 #include "SaveGame/ARPG_GameInstance.h"
-#include "Characters/MainCharacter_Base.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Characters/Spawner/EnemySpawner.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
+
 
 UClass* AARPG_GameMode::GetDefaultPawnClassForController_Implementation(AController* InController)
 {
 	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(GameInstance->GetSlotName(), 0));
 		
-	if (SaveGameInstance && SaveGameInstance->PlayerCharacter)
-	{
-		//UE_LOG(LogTemp,Error,TEXT("GameMode|Loaded class: %s"), *SaveGameInstance->PlayerCharacter->GetName());
-		return SaveGameInstance->PlayerCharacter;
-	}
+	if (SaveGameInstance && SaveGameInstance->PlayerCharacter) return SaveGameInstance->PlayerCharacter;
 	return Super::GetDefaultPawnClassForController_Implementation(InController);
 }
 
@@ -27,7 +24,6 @@ void AARPG_GameMode::SpawnEnemies()
 	for (auto Spawner : EnemySpawners)
 	{
 		Cast<ASpawner>(Spawner)->CheckEnemies();
-		UE_LOG(LogTemp, Error, TEXT("Spawner: %s"), *Spawner->GetName());
 	}
 }
 

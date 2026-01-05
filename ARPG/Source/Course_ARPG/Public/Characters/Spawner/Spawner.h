@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/EnemyCharacter.h"
+#include "Characters/Enemy/EnemyCharacter.h"
 #include "GameFramework/Actor.h"
 #include "Spawner.generated.h"
 
@@ -15,7 +15,7 @@ class COURSE_ARPG_API ASpawner : public AActor
 	GENERATED_BODY()
 
 public:
-
+	
 	virtual void CheckEnemies(){};
 	
 protected:

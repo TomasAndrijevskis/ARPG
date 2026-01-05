@@ -20,7 +20,6 @@ EBTNodeResult::Type UBTT_MoveToStartLocation::ExecuteTask(UBehaviorTreeComponent
 	ControllerRef = OwnerComp.GetAIOwner();
 	CharacterRef = ControllerRef->GetCharacter();
 	FVector StartLocation = OwnerComp.GetBlackboardComponent()->GetValueAsVector(TEXT("StartLocation"));
-	
 	GoBack(StartLocation);
 	return EBTNodeResult::InProgress;
 }

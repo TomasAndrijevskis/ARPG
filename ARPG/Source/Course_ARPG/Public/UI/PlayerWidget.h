@@ -2,24 +2,25 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "EScreens.h"
 #include "Blueprint/UserWidget.h"
-#include "Characters/EStats.h"
+#include "Characters/Data/EStats.h"
 #include "Components/HorizontalBox.h"
 #include "Components/ProgressBar.h"
 #include "Components/TextBlock.h"
 #include "Components/VerticalBox.h"
+#include "Objects/BonfireData.h"
 #include "PlayerWidget.generated.h"
 
 
+class UAbilityComponent_Player;
 class UBorder;
 class UBackgroundBlur;
 class UPauseMenu;
-struct FBonfireData;
 class UBonfireInteractionAnim;
 class ABonfire;
 class UQuickTravelMenu;
 class UInfoFooter;
-enum EScreens : int;
 class UBonfireMenu;
 class UPlayerDeath;
 class UStatsComponent;

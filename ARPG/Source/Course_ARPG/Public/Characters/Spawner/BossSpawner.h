@@ -13,7 +13,7 @@ UCLASS()
 class COURSE_ARPG_API ABossSpawner : public ASpawner
 {
 	GENERATED_BODY()
-
+	
 protected:
 
 	virtual void CheckEnemies() override;
@@ -21,11 +21,9 @@ protected:
 	virtual void SpawnEnemies() override;
 
 private:
-
-	UPROPERTY()
+	
 	AARPG_PlayerController* PlayerController;
-
-	UPROPERTY()
+	
 	ABoss* SpawnedBoss;
 
 	bool bShouldSpawn;

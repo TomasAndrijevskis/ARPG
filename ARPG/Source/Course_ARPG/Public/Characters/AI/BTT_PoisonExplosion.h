@@ -5,6 +5,7 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "BTT_PoisonExplosion.generated.h"
 
+
 class IFighter;
 
 UCLASS()

@@ -12,14 +12,7 @@ void UPlayerAnimInstance::HandleUpdatedTarget(AActor* NewTargetActorRef)
 void UPlayerAnimInstance::UpdateDirection()
 {
 	APawn* PlayerRef = TryGetPawnOwner();
-	if (!IsValid(PlayerRef))
-	{
-		return;
-	}
-	if (!bIsInCombat)
-	{
-		return;
-	}
+	if (!IsValid(PlayerRef) || !bIsInCombat) return;
 	CurrentDirection = UKismetAnimationLibrary::CalculateDirection(PlayerRef->GetVelocity(), PlayerRef->GetActorRotation());
 }
 
@@ -27,10 +20,7 @@ void UPlayerAnimInstance::UpdateDirection()
 void UPlayerAnimInstance::UpdateSpeed()
 {
 	APawn* PlayerRef = TryGetPawnOwner();
-	if (!IsValid(PlayerRef))
-	{
-		return;
-	}
+	if (!IsValid(PlayerRef)) return;
 	FVector Velocity = PlayerRef->GetVelocity();
 	CurrentSpeed = static_cast<float>(Velocity.Length()); // double->float
 }

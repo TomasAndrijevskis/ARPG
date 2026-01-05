@@ -1,10 +1,10 @@
 
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Characters/LevelingComponent.h"
-#include "Characters/MainCharacter_Base.h"
-#include "Characters/PlayerActionsComponent.h"
 #include "Characters/Data/AbilityUpgradeRequirements.h"
-#include "Combat/CombatComponent_Base.h"
+#include "Characters/Player/MainCharacter_Base.h"
+#include "Components/CombatComponent_Base.h"
+#include "Components/LevelingComponent.h"
+#include "Components/PlayerActionsComponent.h"
 #include "SaveGame/AbilityData.h"
 #include "UI/PlayerWidget.h"
 
@@ -28,7 +28,7 @@ void UAbilityComponent_Player::StartCooldown()
 	bIsOnCooldown = true;
 	
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_Player::StartCooldownTimer, 1, true);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_Player::StartCooldownTimer, 1, true, 0.f);
 }
 
 
@@ -38,7 +38,6 @@ void UAbilityComponent_Player::StartCooldownTimer()
 	{
 		OnAbilityCooldownChangedDelegate.Broadcast(TimerDuration);
 		TimerDuration--;
-		UE_LOG(LogTemp, Warning,TEXT("Cooldown time left: %f"), TimerDuration);
 	}
 	else
 	{
@@ -58,16 +57,10 @@ void UAbilityComponent_Player::HandlePlayerActions(bool bCanDo)
 
 bool UAbilityComponent_Player::IsEnoughMana() const 
 {
-	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>())
-	{
-		return false;
-	}
+	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>()) return false;
 
 	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(PlayerRef);
-	if (!IPlayerRef)
-	{
-		return false;
-	}
+	if (!IPlayerRef) return false;
 	
 	return IPlayerRef->HasEnoughMana(ManaCost);
 }
@@ -79,7 +72,6 @@ void UAbilityComponent_Player::StartAbilityTimer()
 	{
 		TimerDuration--;
 		OnAbilityTimerChangedDelegate.Broadcast(TimerDuration);
-		UE_LOG(LogTemp, Warning,TEXT("Ability time left: %f"), TimerDuration);
 	}
 	else
 	{
@@ -92,10 +84,7 @@ void UAbilityComponent_Player::StartAbilityTimer()
 
 void UAbilityComponent_Player::StartAbility()
 {
-	if (!PlayerRef)
-	{
-		return;
-	}
+	if (!PlayerRef) return;
 	PlayerRef->SetCanPlayHurtAnimation(false);
 	PlayerRef->InterruptHurtAnimation();
 }
@@ -103,10 +92,7 @@ void UAbilityComponent_Player::StartAbility()
 
 void UAbilityComponent_Player::FinishAbilityCast()
 {
-	if (!PlayerRef)
-	{
-		return;
-	}
+	if (!PlayerRef) return;
 	PlayerRef->SetCanPlayHurtAnimation(true);
 }
 
@@ -127,13 +113,9 @@ void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 		AvailablePoints -= PointsRequired;
 		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
 		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
-		if (IsAbilityAvailable())
-		{
-			UpdateAbilityProperties();
-		}
+		if (IsAbilityAvailable()) UpdateAbilityProperties();
 		else
 		{
-			//UE_LOG(LogTemp, Warning, TEXT("Ability unlocked"));
 			SetAbilityAvailability(true);
 			OnAbilityUnlockedDelegate.Broadcast();
 		}
@@ -152,17 +134,10 @@ void UAbilityComponent_Player::UpdateAbilityProperties()
 
 int UAbilityComponent_Player::GetRequiredUpgradePoints()
 {
-	if (!RequirementsDataTable)
-	{
-		return -1;
-	}
-
+	if (!RequirementsDataTable) return -1;
 	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
 	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
-	if (!RequirementsRow)
-	{
-		return -1;
-	}
+	if (!RequirementsRow) return -1;
 	return RequirementsRow->RequiredPoints;
 }
 
@@ -170,11 +145,7 @@ int UAbilityComponent_Player::GetRequiredUpgradePoints()
 bool UAbilityComponent_Player::IsAbilityMaxLevel()
 {
 	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
-	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
-	if (RequirementsRow)
-	{
-		return false;
-	}
+	if (RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"))) return false;
 	return true;
 }
 

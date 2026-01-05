@@ -1,9 +1,9 @@
 
 #include "Objects/DeathTrigger.h"
-
-#include "Characters/MainCharacter_Base.h"
-#include "Characters/StatsComponent.h"
+#include "Characters/Data/EStats.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/BoxComponent.h"
+#include "Components/StatsComponent.h"
 
 
 ADeathTrigger::ADeathTrigger()
@@ -23,10 +23,6 @@ void ADeathTrigger::BeginPlay()
 void ADeathTrigger::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(OtherActor);
-	if (!PlayerRef)
-	{
-		return;
-	}
+	if (!PlayerRef) return;
 	PlayerRef->StatsComp->ReduceHealth(PlayerRef->StatsComp->GetStatValue(EStats::MaxHealth), nullptr);
-	
 }

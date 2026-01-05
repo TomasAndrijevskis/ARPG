@@ -1,6 +1,6 @@
 
 #include "UI/BonfireMenu.h"
-#include "Characters/ARPG_PlayerController.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -14,5 +14,4 @@ void UBonfireMenu::NativeConstruct()
 	Button_StatsScreen->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateStatsScreen);
 	Button_QuitBonfire->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::RemoveBonfireMenuWidget);
 	Button_QuickTravelMenu->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateQuickTravelMenu);
-	
 }

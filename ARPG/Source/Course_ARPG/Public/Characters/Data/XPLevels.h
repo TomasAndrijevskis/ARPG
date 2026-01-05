@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "XPLevels.generated.h"
 
+
 USTRUCT(BlueprintType)
 struct COURSE_ARPG_API FXPLevels: public FTableRowBase
 {

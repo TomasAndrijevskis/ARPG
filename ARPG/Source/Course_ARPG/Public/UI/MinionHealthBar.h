@@ -25,5 +25,4 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UProgressBar* ProgressBar_HealthBar;
-	
 };

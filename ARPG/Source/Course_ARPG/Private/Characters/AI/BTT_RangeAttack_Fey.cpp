@@ -3,7 +3,7 @@
 #include "AIController.h"
 #include "GameFramework/Character.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/Boss_Fey.h"
+#include "Interfaces/Fighter.h"
 #include "Navigation/PathFollowingComponent.h"
 
 
@@ -17,10 +17,7 @@ EBTNodeResult::Type UBTT_RangeAttack_Fey::ExecuteTask(UBehaviorTreeComponent& Ow
 {
 	ControllerRef = OwnerComp.GetAIOwner();
 	CharacterRef = ControllerRef->GetCharacter();
-	if (!IsValid(CharacterRef))
-	{
-		return EBTNodeResult::Failed;
-	}
+	if (!IsValid(CharacterRef)) return EBTNodeResult::Failed;
 	
 	FighterRef = Cast<IFighter>(CharacterRef);
 	Attack();
@@ -31,10 +28,7 @@ EBTNodeResult::Type UBTT_RangeAttack_Fey::ExecuteTask(UBehaviorTreeComponent& Ow
 
 EBTNodeResult::Type UBTT_RangeAttack_Fey::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	if (IsValid(ControllerRef))
-	{
-		ControllerRef->StopMovement();
-	}
+	if (IsValid(ControllerRef)) ControllerRef->StopMovement();
 	return Super::AbortTask(OwnerComp, NodeMemory);
 }
 
@@ -44,10 +38,7 @@ void UBTT_RangeAttack_Fey::CheckDistance()
 	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
 	FVector PlayerLocation = PlayerRef->GetActorLocation();
 	float CurrentDistance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-	if (CurrentDistance > FighterRef->GetRangeDistance())
-	{
-		MoveToPlayer(FighterRef->GetRangeDistance(), PlayerLocation);
-	}
+	if (CurrentDistance > FighterRef->GetRangeDistance()) MoveToPlayer(FighterRef->GetRangeDistance(), PlayerLocation);
 }
 
 

@@ -1,6 +1,6 @@
 
 #include "Animations/LookAtPlayerAnimNotifyState.h"
-#include "Characters/LookAtPlayerComponent.h"
+#include "Components/LookAtPlayerComponent.h"
 
 
 void ULookAtPlayerAnimNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration, const FAnimNotifyEventReference& EventReference)
@@ -18,14 +18,8 @@ void ULookAtPlayerAnimNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, U
 void ULookAtPlayerAnimNotifyState::ToggleRotationState(const bool bCanRotate, const USkeletalMeshComponent* MeshComp)
 {
 	AActor* OwnerRef = MeshComp->GetOwner();
-	if (!IsValid(OwnerRef))
-	{
-		return;
-	}
+	if (!IsValid(OwnerRef)) return;
 	ULookAtPlayerComponent* RotationComp = OwnerRef->FindComponentByClass<ULookAtPlayerComponent>();
-	if (!IsValid(RotationComp))
-	{
-		return;
-	}
+	if (!IsValid(RotationComp)) return;
 	RotationComp->bCanRotate = bCanRotate;
 }

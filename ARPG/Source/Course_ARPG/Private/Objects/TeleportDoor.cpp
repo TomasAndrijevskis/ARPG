@@ -1,7 +1,6 @@
 
 #include "Objects/TeleportDoor.h"
-
-#include "Characters/ARPG_PlayerController.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/BoxComponent.h"
 #include "Components/WidgetComponent.h"
 #include "Kismet/GameplayStatics.h"

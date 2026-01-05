@@ -7,6 +7,7 @@
 #include "Components/TextBlock.h"
 #include "SaveSlotWidget.generated.h"
 
+
 UCLASS()
 class COURSE_ARPG_API USaveSlotWidget : public UUserWidget
 {

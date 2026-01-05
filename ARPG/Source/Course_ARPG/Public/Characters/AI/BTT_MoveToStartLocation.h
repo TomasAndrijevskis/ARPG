@@ -6,7 +6,6 @@
 #include "Navigation/PathFollowingComponent.h"
 #include "BTT_MoveToStartLocation.generated.h"
 
-//struct FPathFollowingResult;
 
 UCLASS()
 class COURSE_ARPG_API UBTT_MoveToStartLocation : public UBTTaskNode

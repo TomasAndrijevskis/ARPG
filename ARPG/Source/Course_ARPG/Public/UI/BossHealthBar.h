@@ -31,5 +31,4 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_BossName;
-	
 };

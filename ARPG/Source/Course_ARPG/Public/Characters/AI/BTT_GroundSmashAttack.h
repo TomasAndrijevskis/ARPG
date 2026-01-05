@@ -5,6 +5,7 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "BTT_GroundSmashAttack.generated.h"
 
+
 class UAnimInstance_Base;
 UCLASS()
 class COURSE_ARPG_API UBTT_GroundSmashAttack : public UBTTaskNode

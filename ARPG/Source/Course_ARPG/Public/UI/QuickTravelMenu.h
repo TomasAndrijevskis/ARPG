@@ -6,7 +6,7 @@
 #include "Objects/BonfireData.h"
 #include "QuickTravelMenu.generated.h"
 
-//struct FBonfireData;
+
 class UVerticalBox;
 class UQuickTravelButton;
 class AMainCharacter_Base;

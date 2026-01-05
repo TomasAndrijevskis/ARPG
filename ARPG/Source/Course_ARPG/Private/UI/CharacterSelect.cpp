@@ -28,10 +28,7 @@ void UCharacterSelect::SetData()
 void UCharacterSelect::SetCharacterClass()
 {
 	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	if (!GameInstance)
-	{
-		return;
-	}
+	if (!GameInstance) return;
 	GameInstance->SetPlayerClass(CharacterClass, true);
 	UGameplayStatics::OpenLevel(GetWorld(),FName(GameInstance->GetCurrentMap()));
 }
@@ -39,26 +36,18 @@ void UCharacterSelect::SetCharacterClass()
 
 void UCharacterSelect::SetButtonStyle(UTexture2D* Image)
 {
+	if (!Image) return;
 	FButtonStyle CustomStyle;
-	
-	FSlateBrush NormalBrush;
-	NormalBrush.SetResourceObject(Image);
-	NormalBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 1.f));
-	
-	FSlateBrush HoveredBrush;
-	HoveredBrush.SetResourceObject(Image);
-	HoveredBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.4f));
-	
-	FSlateBrush PressedBrush;
-	PressedBrush.SetResourceObject(Image);
-	PressedBrush.TintColor = FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.7f));
-	
-	CustomStyle.SetNormal(NormalBrush);
-	CustomStyle.SetHovered(HoveredBrush);
-	CustomStyle.SetPressed(PressedBrush);
-	
+	ApplyImageStyle(Image, CustomStyle.Normal, FSlateColor(FLinearColor(1.f, 1.f, 1.f, 1.f)));
+	ApplyImageStyle(Image, CustomStyle.Hovered, FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.4f)));
+	ApplyImageStyle(Image, CustomStyle.Pressed, FSlateColor(FLinearColor(1.f, 1.f, 1.f, 0.7f)));
 	Button_SelectCharacter->SetStyle(CustomStyle);
 }
 
 
+void UCharacterSelect::ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle, const FSlateColor& Color)
+{
+	BrushStyle.SetResourceObject(Image);
+	BrushStyle.TintColor = Color;
+}
 

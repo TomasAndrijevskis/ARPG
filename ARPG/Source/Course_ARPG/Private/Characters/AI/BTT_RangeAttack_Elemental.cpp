@@ -2,8 +2,9 @@
 #include "Characters/AI/BTT_RangeAttack_Elemental.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/Minion_Elemental.h"
-#include "Characters/MainCharacter_Base.h"
+#include "Characters/Enemy/EnemyCharacter.h"
+#include "Characters/Enemy/Minion_Elemental.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Projectiles/EnemyProjectileComponent.h"
 #include "Navigation/PathFollowingComponent.h"
 
@@ -20,10 +21,7 @@ EBTNodeResult::Type UBTT_RangeAttack_Elemental::ExecuteTask(UBehaviorTreeCompone
 	ControllerRef = OwnerComp.GetAIOwner();
 	CharacterRef = ControllerRef->GetCharacter();
 	FighterRef = Cast<IFighter>(CharacterRef);
-	if (!IsValid(CharacterRef))
-	{
-		return EBTNodeResult::Failed;
-	}
+	if (!IsValid(CharacterRef)) return EBTNodeResult::Failed;
 	CheckDistance();
 	Attack();
 	return EBTNodeResult::Succeeded;
@@ -43,22 +41,14 @@ void UBTT_RangeAttack_Elemental::CheckDistance()
 	FVector PlayerLocation = PlayerRef->GetActorLocation();
 	AEnemyCharacter* EnemyCharacterRef = Cast<AEnemyCharacter>(CharacterRef);
 	
-	if (!EnemyCharacterRef)
-	{
-		return;
-	}
+	if (!EnemyCharacterRef) return;
 	float SightRadius = EnemyCharacterRef->GetSightRadius();
 	float CurrentDistance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 	if (CurrentDistance >= SightRadius)
-	{
 		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
-	}
 	else
 	{
-		if (CurrentDistance > FighterRef->GetRangeDistance())
-		{
-			MoveToPlayer(FighterRef->GetRangeDistance(), PlayerLocation);
-		}
+		if (CurrentDistance > FighterRef->GetRangeDistance()) MoveToPlayer(FighterRef->GetRangeDistance(), PlayerLocation);
 	}
 }
 

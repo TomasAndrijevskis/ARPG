@@ -32,14 +32,8 @@ EBTNodeResult::Type UBTT_PoisonExplosion::ExecuteTask(UBehaviorTreeComponent& Ow
 void UBTT_PoisonExplosion::CheckDistance()
 {
 	float Distance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-	if (Distance > FighterRef->GetMeleeRange())
-	{
-		MoveToPlayer();
-	}
-	else
-	{
-		StartAttack();
-	}
+	if (Distance > FighterRef->GetMeleeRange()) MoveToPlayer();
+	else StartAttack();
 }
 
 
@@ -74,7 +68,6 @@ void UBTT_PoisonExplosion::MoveToPlayer() const
 	FAIMoveRequest MoveRequest = PlayerRef;
 	MoveRequest.SetUsePathfinding(true);
 	MoveRequest.SetAcceptanceRadius(FighterRef->GetMeleeRange() /2);
-	UE_LOG(LogTemp, Error, TEXT("accept: %f"),FighterRef->GetMeleeRange());
 	ControllerRef->ReceiveMoveCompleted.AddUnique(MoveDelegate);
 		
 	ControllerRef->MoveTo(MoveRequest);

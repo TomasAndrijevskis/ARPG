@@ -15,11 +15,6 @@ ARangeAttackProjectile::ARangeAttackProjectile()
 
 bool ARangeAttackProjectile::IsPlayerControlledActor(AActor* OtherActor)
 {
-	APawn* PawnRef = Cast<APawn>(OtherActor);
-
-	if (PawnRef->IsPlayerControlled())
-	{
-		return true;
-	}
+	if (Cast<APawn>(OtherActor)->IsPlayerControlled()) return true;
 	return false;
 }

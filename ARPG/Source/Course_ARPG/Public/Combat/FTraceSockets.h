@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "FTraceSockets.generated.h"
 
+
 USTRUCT(BlueprintType)
 struct COURSE_ARPG_API FTraceSockets
 {

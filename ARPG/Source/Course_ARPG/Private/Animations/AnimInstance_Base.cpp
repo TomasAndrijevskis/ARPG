@@ -1,7 +1,7 @@
 
 #include "Animations/AnimInstance_Base.h"
-#include "Characters/EnemyCharacter.h"
-#include "Combat/TraceComponent.h"
+#include "Characters/Enemy/EnemyCharacter.h"
+#include "Components/TraceComponent.h"
 
 
 void UAnimInstance_Base::NativeBeginPlay()
@@ -20,10 +20,7 @@ void UAnimInstance_Base::NativeUpdateAnimation(const float DeltaSeconds)
 
 void UAnimInstance_Base::UpdateSpeed()
 {
-	if (!IsValid(PawnRef))
-	{
-		return;
-	}
+	if (!IsValid(PawnRef)) return;
 	FVector Velocity = TryGetPawnOwner()->GetVelocity();
 	CurrentSpeed = static_cast<float>(Velocity.Length()); // double->float
 }

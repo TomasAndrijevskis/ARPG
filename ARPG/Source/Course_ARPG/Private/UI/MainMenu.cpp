@@ -27,11 +27,8 @@ void UMainMenu::QuitGame()
 
 void UMainMenu::SetPlayerControllerProperties()
 {
-	PlayerController = GetWorld()->GetFirstPlayerController();
-	if (!PlayerController)
-	{
-		return;
-	}
+	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
+	if (!PlayerController) return;
 	PlayerController->SetShowMouseCursor(true);
 	FInputModeGameAndUI InputMode;
 	PlayerController->SetInputMode(InputMode);

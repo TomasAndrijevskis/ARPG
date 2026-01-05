@@ -38,10 +38,7 @@ void UBTT_MeleeAttack_Base::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 		ControllerRef->ClearFocus(EAIFocusPriority::Gameplay);
 		ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
 	}
-	if (!bIsAttackFinished)
-	{
-		return;
-	}
+	if (!bIsAttackFinished) return;
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 }
 
@@ -92,10 +89,7 @@ void UBTT_MeleeAttack_Base::CheckDistance()
 {
 	bIsAttackFinished = false;
 	float Distance = CachedOwnerComp->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-	if (Distance > AttackRadius)
-	{
-		MoveToPlayer();
-	}
+	if (Distance > AttackRadius) MoveToPlayer();
 	else
 	{
 		bCanAttack = true;

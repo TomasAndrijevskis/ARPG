@@ -24,8 +24,4 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_Exit;
-
-	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
-	
 };

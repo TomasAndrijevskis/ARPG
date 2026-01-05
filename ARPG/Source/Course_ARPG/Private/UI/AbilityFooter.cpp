@@ -5,10 +5,7 @@
 
 void UAbilityFooter::SetAbility(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityComp)
 {
-	if (!AbilityComp || !Image)
-	{
-		return;
-	}
+	if (!AbilityComp || !Image) return;
 	AbilityComp_REF = AbilityComp;
 	AbilityImage = Image;
 	
@@ -37,13 +34,9 @@ void UAbilityFooter::SetImageStyle()
 void UAbilityFooter::SetImageAvailability()
 {
 	if (AbilityComp_REF->IsOnCooldown() || AbilityComp_REF->IsAbilityActive())
-	{
 		Image_AbilityIcon->SetColorAndOpacity(FLinearColor(1,1,1,.3));
-	}
 	else
-	{
 		Image_AbilityIcon->SetColorAndOpacity(FLinearColor(1,1,1,1));
-	}
 }
 
 

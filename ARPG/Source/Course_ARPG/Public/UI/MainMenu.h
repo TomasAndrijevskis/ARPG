@@ -32,7 +32,4 @@ private:
 	void QuitGame();
 
 	void SetPlayerControllerProperties();
-
-	UPROPERTY()
-	APlayerController* PlayerController;
 };

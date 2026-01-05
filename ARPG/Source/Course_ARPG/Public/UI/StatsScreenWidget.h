@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
-#include "Characters/EStats.h"
+#include "Characters/Data/EStats.h"
 #include "Components/TextBlock.h"
 #include "StatsScreenWidget.generated.h"
 

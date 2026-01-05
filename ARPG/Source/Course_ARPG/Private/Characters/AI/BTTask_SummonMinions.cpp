@@ -2,8 +2,8 @@
 #include "Characters/AI/BTTask_SummonMinions.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/Boss_Fey.h"
 #include "Characters/AI/EEnemyStates.h"
+#include "Characters/Enemy/Boss_Fey.h"
 #include "GameFramework/Character.h"
 
 

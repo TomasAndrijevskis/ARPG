@@ -35,7 +35,6 @@ void UBTT_MeleeAttack_Rampage::TickTask(UBehaviorTreeComponent& OwnerComp, uint8
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
 
 	if (OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance")) >= FighterRef->GetMeleeRange())
-	{
 		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
-	}
+	
 }

@@ -18,11 +18,7 @@ void USaveMenu::NativeConstruct()
 	SlotNames.Add(FString("Slot5"));
 	
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	if (!GameInstance)
-	{
-		return;
-	}
-
+	if (!GameInstance) return;
 	CreateSlots(SaveSlotWidgetClass);
 	Button_ExitToMainMenu->OnClicked.AddDynamic(this, &USaveMenu::BackToMainMenu);
 }
@@ -30,10 +26,7 @@ void USaveMenu::NativeConstruct()
 
 void USaveMenu::CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass)
 {
-	if (!WidgetClass)
-	{
-		return;
-	}
+	if (!WidgetClass) return;
 	for (auto SlotName : SlotNames)
 	{
 		USaveSlotWidget* SaveSlotWidget = CreateWidget<USaveSlotWidget>(GetWorld(), WidgetClass);
@@ -43,10 +36,7 @@ void USaveMenu::CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass)
 		{
 			SaveSlotWidget->SetSlotStatus(FText::FromString("Load"));
 			UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-			if (SaveGameInstance)
-			{
-				SaveSlotWidget->SetMapName(FName(SaveGameInstance->CurrentMap));
-			}
+			if (SaveGameInstance) SaveSlotWidget->SetMapName(FName(SaveGameInstance->CurrentMap));
 		}
 		else
 		{
@@ -60,10 +50,7 @@ void USaveMenu::CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass)
 void USaveMenu::SetPlayerControllerProperties()
 {
 	PlayerController = GetWorld()->GetFirstPlayerController();
-	if (!PlayerController)
-	{
-		return;
-	}
+	if (!PlayerController) return;
 	PlayerController->SetShowMouseCursor(true);
 	FInputModeGameAndUI InputMode;
 	PlayerController->SetInputMode(InputMode);

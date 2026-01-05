@@ -72,10 +72,7 @@ void UBTT_ChargeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 		OwnerComp.GetBlackboardComponent()->SetValueAsBool(TEXT("IsReadyToCharge"), false);
 		ChargeAtPlayer();
 	}
-	if (!bIsFinished)
-	{
-		return;
-	}
+	if (!bIsFinished) return;
 	OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Melee);
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveCompletedDelegate);
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);

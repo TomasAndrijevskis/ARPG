@@ -3,7 +3,9 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
+#include "SaveGame/AbilityData.h"
 #include "AbilityComponent_Player.generated.h"
+
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityUnlockedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityCooldownFinishedSignature);

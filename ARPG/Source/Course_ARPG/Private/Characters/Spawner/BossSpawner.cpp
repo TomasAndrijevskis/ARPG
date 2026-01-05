@@ -1,39 +1,27 @@
 
 #include "Characters/Spawner/BossSpawner.h"
-#include "Characters/ARPG_PlayerController.h"
-#include "Characters/Boss.h"
+#include "Characters/Enemy/Boss.h"
+#include "Characters/Enemy/EnemyCharacter.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 
 
 void ABossSpawner::CheckEnemies()
 {
 	PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
-	if (!PlayerController)
-	{
-		return;
-	}
+	if (!PlayerController) return;
 	
-	if (SpawnedBoss)
-	{
-		return;
-	}
+	if (SpawnedBoss) return;
 	if (PlayerController->GetDefeatedBosses().IsEmpty())
 	{
-		UE_LOG(LogTemp, Error, TEXT("Array is empty"));
 		SpawnEnemies();
 		return;
 	}
 	bShouldSpawn = true;
 	for (auto Boss : PlayerController->GetDefeatedBosses())
 	{
-		if (EnemyClass->GetName() == Boss)
-		{
-			bShouldSpawn = false;
-		}
+		if (EnemyClass->GetName() == Boss) bShouldSpawn = false;
 	}
-	if (bShouldSpawn)
-	{
-		SpawnEnemies();
-	}
+	if (bShouldSpawn) SpawnEnemies();
 }
 
 

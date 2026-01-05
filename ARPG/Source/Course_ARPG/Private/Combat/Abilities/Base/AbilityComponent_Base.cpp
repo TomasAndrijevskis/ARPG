@@ -10,10 +10,7 @@ UAbilityComponent_Base::UAbilityComponent_Base()
 
 UTexture2D* UAbilityComponent_Base::GetIcon() const
 {
-	if (!Icon)
-	{
-		return nullptr;
-	}
+	if (!Icon) return nullptr;
 	return Icon;
 }
 

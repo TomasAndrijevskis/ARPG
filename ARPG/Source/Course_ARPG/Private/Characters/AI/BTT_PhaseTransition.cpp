@@ -2,7 +2,7 @@
 #include "Characters/AI/BTT_PhaseTransition.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/Boss.h"
+#include "Characters/Enemy/Boss.h"
 #include "GameFramework/Character.h"
 
 

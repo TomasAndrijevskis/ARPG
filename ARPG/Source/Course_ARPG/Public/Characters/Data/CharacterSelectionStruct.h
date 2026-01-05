@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "CharacterSelectionStruct.generated.h"
 
+
 class AMainCharacter_Base;
 
 USTRUCT(BlueprintType)

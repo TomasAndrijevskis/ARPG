@@ -5,6 +5,7 @@
 #include "Engine/GameInstance.h"
 #include "ARPG_GameInstance.generated.h"
 
+
 class AMainCharacter_Base;
 
 UCLASS()
@@ -96,5 +97,4 @@ private:
 	
 	//game will not load previous saved position on next map
 	bool bTeleportByDoor = false;
-	
 };

@@ -34,5 +34,4 @@ private:
 
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
-	
 };

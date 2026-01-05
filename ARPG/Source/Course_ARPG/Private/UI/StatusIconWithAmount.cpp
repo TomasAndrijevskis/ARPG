@@ -1,10 +1,9 @@
 
 #include "UI/StatusIconWithAmount.h"
-
-#include "Characters/MainCharacter_Base.h"
-#include "Characters/StatsComponent.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Image.h"
 #include "Components/PanelWidget.h"
+#include "Components/StatsComponent.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/PlayerWidget.h"
@@ -12,10 +11,7 @@
 
 void UStatusIconWithAmount::InitializeWidget(const float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, const FString& NewKey)
 {
-	if (!NewStatsCompRef)
-	{
-		return;
-	}
+	if (!NewStatsCompRef) return;
 	Keyword = NewKey;
 	StatsCompRef = NewStatsCompRef;
 	SetAmount(Amount);
@@ -40,16 +36,8 @@ void UStatusIconWithAmount::SetStatusIcon(UTexture2D* Icon)
 void UStatusIconWithAmount::RemoveWidget()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(this, 0));
-	if (!PlayerRef)
-	{
-		return;
-	}
+	if (!PlayerRef) return;
 	PlayerRef->GetPlayerWidget()->ActiveStatusWidget.Remove(Keyword);
-	
 	StatsCompRef->OnArmorUpdateDelegate.Clear();
-
-	if (this->GetParent())
-	{
-		this->GetParent()->RemoveChild(this);
-	}
+	if (this->GetParent()) this->GetParent()->RemoveChild(this);
 }

@@ -14,8 +14,6 @@ class COURSE_ARPG_API UObjectInteractionText : public UUserWidget
 	GENERATED_BODY()
 
 public:
-
-	virtual void NativeConstruct() override;
 	
 	void InitializeText(const FString& InteractionObject, const FString& InteractionObjectName,  const FString& InteractionKey);
 	

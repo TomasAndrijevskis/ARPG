@@ -1,6 +1,6 @@
 
 #include "Objects/Bonfire.h"
-#include "Characters/ARPG_PlayerController.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/BoxComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/WidgetComponent.h"
@@ -66,23 +66,15 @@ void ABonfire::SetupWidget() const
 
 void ABonfire::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	//UE_LOG(LogTemp, Error, TEXT("Overlapped"));
 	ChangeWidgetVisibility(true);
-	if (PlayerController)
-	{
-		PlayerController->SetIsInBonfireRange(true, this);
-	}
+	if (PlayerController) PlayerController->SetIsInBonfireRange(true, this);
 }
 
 
 void ABonfire::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	//UE_LOG(LogTemp, Error, TEXT("Stopped"));
 	ChangeWidgetVisibility(false);
-	if (PlayerController)
-	{
-		PlayerController->SetIsInBonfireRange(false, nullptr);
-	}
+	if (PlayerController) PlayerController->SetIsInBonfireRange(false, nullptr);
 }
 
 

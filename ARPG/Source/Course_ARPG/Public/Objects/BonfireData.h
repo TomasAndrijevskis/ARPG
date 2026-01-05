@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "BonfireData.generated.h"
 
+
 USTRUCT(BlueprintType)
 struct FBonfireData
 {
