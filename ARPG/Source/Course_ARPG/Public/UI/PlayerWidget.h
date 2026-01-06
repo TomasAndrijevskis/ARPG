@@ -217,5 +217,5 @@ private:
 	TSubclassOf<ULevelUpNotification> LevelUpNotificationClass;
 	
 	UPROPERTY(EditAnywhere)
-	FVector IconSize;
+	FVector2D IconSize;
 };

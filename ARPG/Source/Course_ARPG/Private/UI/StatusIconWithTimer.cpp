@@ -17,13 +17,6 @@ void UStatusIconWithTimer::InitializeWidget(const float Duration, UTexture2D* Im
 }
 
 
-void UStatusIconWithTimer::RemoveWidget()
-{
-	AbilityCompRef->OnAbilityTimerChangedDelegate.Clear();
-	if (this->GetParent()) this->GetParent()->RemoveChild(this);
-}
-
-
 void UStatusIconWithTimer::SetCountdownTime(const float TimeLeft)
 {
 	Text_Countdown->SetText(FText::AsNumber(TimeLeft));
@@ -36,4 +29,11 @@ void UStatusIconWithTimer::SetStatusIcon(UTexture2D* Icon, const FVector2d& Imag
 	ImageStyle.SetResourceObject(Icon);
 	ImageStyle.SetImageSize(ImageSize);
 	Image_StatusIcon->SetBrush(ImageStyle);
+}
+
+
+void UStatusIconWithTimer::RemoveWidget()
+{
+	AbilityCompRef->OnAbilityTimerChangedDelegate.Clear();
+	if (this->GetParent()) this->GetParent()->RemoveChild(this);
 }

@@ -16,15 +16,13 @@ class COURSE_ARPG_API UStatusIconWithAmount : public UUserWidget
 	GENERATED_BODY()
 
 public:
-
-	UFUNCTION()
-	void InitializeWidget(const float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, const FString& NewKey);
+	
+	void InitializeWidget(const float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, const FString& NewKey, const FVector2d& ImageSize);
 	
 	UFUNCTION()
 	void SetAmount(const float AmountLeft);
-
-	UFUNCTION()
-	void SetStatusIcon(UTexture2D* Icon);
+	
+	void SetStatusIcon(UTexture2D* Icon, const FVector2d& ImageSize);
 
 	UFUNCTION()
 	void RemoveWidget();

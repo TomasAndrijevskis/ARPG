@@ -1,12 +1,10 @@
 
 #include "UI/PlayerWidget.h"
-
 #include "Components/BackgroundBlur.h"
 #include "Components/Border.h"
 #include "UI/AbilityFooter.h"
 #include "UI/StatsScreenWidget.h"
 #include "UI/AbilityUpgradeScreen.h"
-#include "UI/BonfireInteractionAnim.h"
 #include "UI/BonfireMenu.h"
 #include "UI/EScreens.h"
 #include "UI/InfoFooter.h"
@@ -113,7 +111,7 @@ void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* 
 {
 	if (!StatusIconWithTimerWidgetClass) return;
 	StatusIconWithTimerWidgetRef = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
-	StatusIconWithTimerWidgetRef->InitializeWidget(Duration, Image, AbilityCompRef, FVector2d(IconSize.X, IconSize.Y));
+	StatusIconWithTimerWidgetRef->InitializeWidget(Duration, Image, AbilityCompRef, IconSize);
 	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerWidgetRef);
 }
 
@@ -133,7 +131,7 @@ void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* I
 	else
 	{
 		StatusIconWithAmountWidgetRef = Cast<UStatusIconWithAmount>(CreateWidget(this, StatusIconWithAmountWidgetClass));
-		StatusIconWithAmountWidgetRef->InitializeWidget(Amount, Image, StatsCompRef, Keyword);
+		StatusIconWithAmountWidgetRef->InitializeWidget(Amount, Image, StatsCompRef, Keyword, IconSize);
 		ActiveStatusWidget.Add(Keyword, StatusIconWithAmountWidgetRef);
 		HorizontalBox_StatusEffects->AddChild(StatusIconWithAmountWidgetRef);
 	}

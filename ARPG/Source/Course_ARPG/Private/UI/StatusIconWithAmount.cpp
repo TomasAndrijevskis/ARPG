@@ -9,13 +9,13 @@
 #include "UI/PlayerWidget.h"
 
 
-void UStatusIconWithAmount::InitializeWidget(const float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, const FString& NewKey)
+void UStatusIconWithAmount::InitializeWidget(const float Amount, UTexture2D* Image, UStatsComponent* NewStatsCompRef, const FString& NewKey, const FVector2d& ImageSize)
 {
 	if (!NewStatsCompRef) return;
 	Keyword = NewKey;
 	StatsCompRef = NewStatsCompRef;
 	SetAmount(Amount);
-	SetStatusIcon(Image);
+	SetStatusIcon(Image, ImageSize);
 	StatsCompRef->OnZeroArmorDelegate.AddDynamic(this, &UStatusIconWithAmount::RemoveWidget);
 	StatsCompRef->OnArmorUpdateDelegate.AddDynamic(this, &UStatusIconWithAmount::SetAmount);
 }
@@ -27,9 +27,12 @@ void UStatusIconWithAmount::SetAmount(const float AmountLeft)
 }
 
 
-void UStatusIconWithAmount::SetStatusIcon(UTexture2D* Icon)
+void UStatusIconWithAmount::SetStatusIcon(UTexture2D* Icon, const FVector2d& ImageSize)
 {
-	Image_StatusIcon->SetBrushFromTexture(Icon);
+	FSlateBrush ImageStyle;
+	ImageStyle.SetResourceObject(Icon);
+	ImageStyle.SetImageSize(ImageSize);
+	Image_StatusIcon->SetBrush(ImageStyle);
 }
 
 
