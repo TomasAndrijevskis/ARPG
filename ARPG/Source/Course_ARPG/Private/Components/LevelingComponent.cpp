@@ -17,7 +17,7 @@ void ULevelingComponent::AddXP(const float XP)
 	if (!CanAddXP())
 	{
 		CurrentXP = 0;
-		OnXpUpdateDelegate.Broadcast(GetXPPercentage());
+		OnXpUpdatedDelegate.Broadcast(GetXPPercentage());
 		return;
 	}
 	CurrentXP += XP;
@@ -29,19 +29,19 @@ void ULevelingComponent::AddXP(const float XP)
 void ULevelingComponent::TryLevelUp()
 {
 	RequiredXP = GetRequiredXP();
-	OnXpUpdateDelegate.Broadcast(GetXPPercentage());
+	OnXpUpdatedDelegate.Broadcast(GetXPPercentage());
 	if (CurrentXP >= RequiredXP && RequiredXP != -1)
 	{
 		CurrentLevel++;
 		CurrentXP -= RequiredXP;
-		OnNewLevelDelegate.Broadcast(CurrentLevel);
-		OnXpUpdateDelegate.Broadcast(GetXPPercentage());
+		OnNewLevelDelegate.Broadcast();
+		OnLevelUpdatedDelegate.Broadcast(CurrentLevel);
+		OnXpUpdatedDelegate.Broadcast(GetXPPercentage());
 
 		SetStatPoints(AvailableStatPoints + StatPointsAmountForLevel);
 		SetAbilityPoints(AvailableAbilityPoints + AbilityUpgradePointsAmountForLevel);
 	}
 }
-
 
 
 float ULevelingComponent::GetRequiredXP() const

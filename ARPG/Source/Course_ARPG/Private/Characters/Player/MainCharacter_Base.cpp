@@ -40,17 +40,18 @@ void AMainCharacter_Base::BeginPlay()
 
 	CreatePlayerWidget();
 	
-	LockonComp->OnUpdatedTargetDelegate.AddDynamic(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
-	PlayerActionsComp->OnSprintDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
-	PlayerActionsComp->OnRollDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
-	StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetHealth);
-	StatsComp->OnManaPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetMana);
-	StatsComp->OnStaminaPercentUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetStamina);
-	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AMainCharacter_Base::HandleDeath);
-	StatsComp->OnStatUpdateDelegate.AddDynamic(StatsComp, &UStatsComponent::OnStatsUpdated);
-	StatsComp->OnStatUpdateDelegate.AddDynamic(GameInstance, &UARPG_GameInstance::SaveStats);
-	LevelComp->OnXpUpdateDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
-	LevelComp->OnNewLevelDelegate.AddDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
+	LockonComp->OnUpdatedTargetDelegate.AddUniqueDynamic(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
+	PlayerActionsComp->OnSprintDelegate.AddUniqueDynamic(StatsComp, &UStatsComponent::ReduceStamina);
+	PlayerActionsComp->OnRollDelegate.AddUniqueDynamic(StatsComp, &UStatsComponent::ReduceStamina);
+	StatsComp->OnHealthPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetHealth);
+	StatsComp->OnManaPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetMana);
+	StatsComp->OnStaminaPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetStamina);
+	StatsComp->OnZeroHealthDelegate.AddUniqueDynamic(this, &AMainCharacter_Base::HandleDeath);
+	StatsComp->OnStatUpdateDelegate.AddUniqueDynamic(StatsComp, &UStatsComponent::OnStatsUpdated);
+	StatsComp->OnStatUpdateDelegate.AddUniqueDynamic(GameInstance, &UARPG_GameInstance::SaveStats);
+	LevelComp->OnXpUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
+	LevelComp->OnLevelUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
+	LevelComp->OnNewLevelDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
 	
 	FOnBonfireInteractionDelegate.AddDynamic(StatsComp, &UStatsComponent::RestoreStats);
 	

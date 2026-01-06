@@ -1,5 +1,4 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -8,8 +7,9 @@
 #include "LevelingComponent.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnNewLevelSignature, ULevelingComponent, OnNewLevelDelegate, int,Level);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnXpUpdateSignature, ULevelingComponent, OnXpUpdateDelegate, float, XP);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnNewLevelSignature);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnLevelUpdatedSignature, ULevelingComponent, OnLevelUpdatedDelegate, int,Level);
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnXpUpdatedSignature, ULevelingComponent, OnXpUpdatedDelegate, float, XP);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStatPointsUpdateSignature, ULevelingComponent, OnStatPointsUpdateDelegate,int, Points);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnAbilityPointsUpdateSignature, ULevelingComponent, OnAbilityPointsUpdateDelegate,int, Points);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -46,10 +46,10 @@ public:
 	float GetXPPercentage() const;
 
 	UPROPERTY()
-	FOnNewLevelSignature OnNewLevelDelegate;
+	FOnLevelUpdatedSignature OnLevelUpdatedDelegate;
 
 	UPROPERTY()
-	FOnXpUpdateSignature OnXpUpdateDelegate;
+	FOnXpUpdatedSignature OnXpUpdatedDelegate;
 
 	UPROPERTY()
 	FOnStatPointsUpdateSignature OnStatPointsUpdateDelegate;
@@ -57,6 +57,9 @@ public:
 	UPROPERTY()
 	FOnAbilityPointsUpdateSignature OnAbilityPointsUpdateDelegate;
 
+	UPROPERTY()
+	FOnNewLevelSignature OnNewLevelDelegate;
+	
 protected:
 
 	virtual void BeginPlay() override;

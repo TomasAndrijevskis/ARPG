@@ -11,6 +11,7 @@
 #include "UI/EScreens.h"
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
+#include "UI/LevelUpNotification.h"
 #include "UI/PauseMenu.h"
 #include "UI/PlayerDeath.h"
 #include "UI/QuickTravelMenu.h"
@@ -209,6 +210,13 @@ void UPlayerWidget::RemovePauseMenu()
 void UPlayerWidget::HandleUpgradeInfoBorder(const ESlateVisibility InVisibility)
 {
 	Border_UpgradeInfo->SetVisibility(InVisibility);
+}
+
+
+void UPlayerWidget::ShowLevelUpAnimation()
+{
+	if (!LevelUpNotificationClass) return;
+	Cast<ULevelUpNotification>(CreateWidget(this, LevelUpNotificationClass))->AddToViewport(10);
 }
 
 

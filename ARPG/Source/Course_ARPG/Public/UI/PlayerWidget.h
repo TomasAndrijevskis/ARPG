@@ -13,6 +13,7 @@
 #include "PlayerWidget.generated.h"
 
 
+class ULevelUpNotification;
 class UAbilityComponent_Player;
 class UBorder;
 class UBackgroundBlur;
@@ -107,6 +108,9 @@ public:
 
 	UFUNCTION()
 	void HandleUpgradeInfoBorder(const ESlateVisibility InVisibility);
+
+	UFUNCTION()
+	void ShowLevelUpAnimation();
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
@@ -208,6 +212,9 @@ private:
 	
 	UPROPERTY()
 	UPauseMenu* PauseMenuWidgetRef;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<ULevelUpNotification> LevelUpNotificationClass;
 	
 	UPROPERTY(EditAnywhere)
 	FVector IconSize;
