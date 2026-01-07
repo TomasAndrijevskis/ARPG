@@ -53,7 +53,7 @@ void AMainCharacter_Base::BeginPlay()
 	LevelComp->OnLevelUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
 	
-	FOnBonfireInteractionDelegate.AddDynamic(StatsComp, &UStatsComponent::RestoreStats);
+	FOnBonfireInteractionFinishedDelegate.AddDynamic(StatsComp, &UStatsComponent::RestoreStats);
 	
 	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
 }

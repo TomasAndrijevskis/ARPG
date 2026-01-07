@@ -1,9 +1,8 @@
 
 #include "UI/QuickTravelMenu.h"
-#include "Characters/Player/MainCharacter_Base.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/Button.h"
-#include "Kismet/GameplayStatics.h"
-#include "Objects/BonfireData.h"
+#include "Objects/Bonfire.h"
 #include "UI/PlayerWidget.h"
 #include "UI/QuickTravelButton.h"
 
@@ -11,33 +10,36 @@
 void UQuickTravelMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	
-	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
-	if (!PlayerRef) return;
-	Button_Exit->OnClicked.Clear();
-	Button_Exit->OnClicked.AddDynamic(PlayerRef->GetPlayerWidget(), &UPlayerWidget::RemoveQuickTravelMenuWidget);
-	Button_Exit->OnClicked.AddDynamic(PlayerRef->GetPlayerWidget(), &UPlayerWidget::CreateBonfireMenuWidget);
+	Button_Exit->OnClicked.AddDynamic(this, &UQuickTravelMenu::RemoveWidget);
+	SetBonfires();
 	CreateTravelMenu();
 }
 
 
-void UQuickTravelMenu::SetBonfires(const TMap<FString, FBonfireData>& AvailableBonfires, const FString& CurrentBonfireName)
+void UQuickTravelMenu::SetBonfires()
 {
-	Bonfires = AvailableBonfires;
-	BonfireName = CurrentBonfireName;
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
+	if (!PlayerController) return;
+	Bonfires = PlayerController->GetUnlockedBonfires();
+	BonfireName = PlayerController->GetCurrentBonfire()->GetBonfireName();
+	PlayerController->OnPlayerTeleportedDelegate.AddUObject(this, &UQuickTravelMenu::RemoveWidget);
 }
 
 
 void UQuickTravelMenu::CreateTravelMenu()
 {
-	if (QuickTravelButtonClass)
+	if (!QuickTravelButtonClass) return;
+	for (const auto& Bonfire : Bonfires)
 	{
-		for (auto Bonfire : Bonfires)
-		{
-			QuickTravelButtonRef = Cast<UQuickTravelButton>(CreateWidget(this, QuickTravelButtonClass));
-			QuickTravelButtonRef->InitializeButton(Bonfire.Key, Bonfire.Value, BonfireName);
-			VB_QuickTravelContainer->AddChild(QuickTravelButtonRef);
-		}
+		UQuickTravelButton* QuickTravelButtonRef = Cast<UQuickTravelButton>(CreateWidget(this, QuickTravelButtonClass));
+		QuickTravelButtonRef->InitializeButton(Bonfire.Key, Bonfire.Value, BonfireName);
+		VB_QuickTravelContainer->AddChild(QuickTravelButtonRef);
 	}
+}
+
+
+void UQuickTravelMenu::RemoveWidget()
+{
+	this->RemoveFromParent();
 }
 

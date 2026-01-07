@@ -63,7 +63,7 @@ void UARPG_GameInstance::SaveBonfires()
 		SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::CreateSaveGameObject(UARPG_SaveGame::StaticClass()));
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
 	if (!PlayerController) return;
-	for (auto Bonfire: PlayerController->UnlockedBonfires)
+	for (const auto& Bonfire: PlayerController->GetUnlockedBonfires())
 	{
 		SaveGameInstance->UnlockedBonfires.Add(Bonfire.Key, Bonfire.Value);
 	}
@@ -77,9 +77,9 @@ void UARPG_GameInstance::LoadBonfires()
 	if (!SaveGameInstance) return;
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
 	if (!PlayerController) return;
-	for (auto Bonfire: SaveGameInstance->UnlockedBonfires)
+	for (const auto& Bonfire: SaveGameInstance->UnlockedBonfires)
 	{
-		PlayerController->UnlockedBonfires.Add(Bonfire.Key, Bonfire.Value);
+		PlayerController->GetUnlockedBonfires().Add(Bonfire.Key, Bonfire.Value);
 	}
 }
 

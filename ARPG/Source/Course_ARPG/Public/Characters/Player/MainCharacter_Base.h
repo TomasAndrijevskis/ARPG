@@ -22,7 +22,7 @@ class ULevelingComponent;
 class UStatusEffectsComponent;
 class UPlayerAnimInstance;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBonfireInteractionSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBonfireInteractionFinishedSignature);
 
 UCLASS(Blueprintable)
 class COURSE_ARPG_API AMainCharacter_Base : public ACharacter, public IMainPlayer, public IFighter
@@ -102,7 +102,7 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	UPlayerAnimInstance* PlayerAnimInstance;
 
-	FOnBonfireInteractionSignature FOnBonfireInteractionDelegate;
+	FOnBonfireInteractionFinishedSignature FOnBonfireInteractionFinishedDelegate;
 	
 protected:
 

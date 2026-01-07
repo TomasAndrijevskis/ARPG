@@ -100,22 +100,12 @@ void UPlayerWidget::CreateBonfireMenuWidget()
 }
 
 
-void UPlayerWidget::CreateQuickTravelMenuWidget(const TMap<FString, FBonfireData>& UnlockedBonfires, const FString& CurrentBonfireName)
+void UPlayerWidget::CreateQuickTravelMenuWidget()
 {
 	if (!QuickTravelMenuWidgetClass) return;
-	QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
-	QuickTravelMenuWidgetRef -> SetBonfires(UnlockedBonfires, CurrentBonfireName);
+	UQuickTravelMenu* QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
 	QuickTravelMenuWidgetRef -> AddToViewport(5);
-}
-
-
-void UPlayerWidget::RemoveQuickTravelMenuWidget()
-{
-	if (QuickTravelMenuWidgetRef)
-	{
-		QuickTravelMenuWidgetRef->RemoveFromParent();
-		QuickTravelMenuWidgetRef = nullptr;
-	}
+	QuickTravelMenuWidgetRef->Button_Exit->OnClicked.AddUniqueDynamic(this, &UPlayerWidget::CreateBonfireMenuWidget);
 }
 
 

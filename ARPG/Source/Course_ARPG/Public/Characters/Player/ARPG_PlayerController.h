@@ -12,6 +12,10 @@ class ABonfire;
 class UARPG_GameInstance;
 class AMainCharacter_Base;
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnGamePauseStateChangeRequestSignature, const bool);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerInputEnabledChangedSignature, const bool);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnTeleportPlayerRequestSignature, const FVector&);
+DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleportedSignature);
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
@@ -20,13 +24,7 @@ class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 public:
 	
 	UFUNCTION()
-	void HandleQuitBonfireMenu();
-
-	UFUNCTION()
-	void CreateQuickTravelMenu();
-
-	UFUNCTION()
-	void RemoveQuickTravelMenu();
+	void HandleBonfireMenuQuit();
 	
 	UFUNCTION()
 	void SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
@@ -55,9 +53,19 @@ public:
 	TArray<FName> GetDefeatedBosses() const;
 
 	void AddDefeatedBoss(const FName& Boss);
-	
-	TMap<FString, FBonfireData> UnlockedBonfires;
 
+	TMap<FString, FBonfireData>& GetUnlockedBonfires();
+
+	ABonfire*& GetCurrentBonfire();
+
+	FOnGamePauseStateChangeRequestSignature OnGamePauseStateChangeRequestDelegate;
+
+	FOnPlayerInputEnabledChangedSignature OnPlayerInputEnabledChangedDelegate;
+
+	FOnTeleportPlayerRequestSignature OnTeleportPlayerRequestDelegate;
+
+	FOnPlayerTeleportedSignature OnPlayerTeleportedDelegate;
+	
 protected:
 	
 	virtual void BeginPlay() override;
@@ -72,7 +80,6 @@ private:
 	
 	void QuitGame() const;
 	
-	UFUNCTION()
 	void HandleGamePause(const bool bIsGamePaused);
 	
 	UFUNCTION()
@@ -80,6 +87,10 @@ private:
 
 	UFUNCTION()
 	void HandleGameLoad() const;
+
+	void SetPlayerInputEnabled(const bool IsEnabled);
+
+	void TeleportPlayer(const FVector& Location);
 	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
@@ -92,6 +103,8 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FName> DefeatedBosses;
+
+	TMap<FString, FBonfireData> UnlockedBonfires;
 	
 	bool bIsAbilityScreenOpened = false;
 	

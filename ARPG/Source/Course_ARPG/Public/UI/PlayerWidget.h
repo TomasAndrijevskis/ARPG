@@ -81,11 +81,8 @@ public:
 	void CreateBonfireMenuWidget();
 
 	UFUNCTION()
-	void RemoveQuickTravelMenuWidget();
-
-	UFUNCTION()
-	void CreateQuickTravelMenuWidget(const TMap<FString, FBonfireData>& UnlockedBonfires, const FString& CurrentBonfireName);
-
+	void CreateQuickTravelMenuWidget();
+	
 	UFUNCTION()
 	void CreatePauseMenu();
 
@@ -120,12 +117,6 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_AbilitiesFooter;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAbilityUpgradeSlotWidget> AbilityUpgradeSlotClass;
-
-	UPROPERTY()
-	UAbilityUpgradeSlotWidget* AbilityUpgradeSlotRef;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UAbilityFooter> AbilityFooterWidgetClass;
@@ -165,9 +156,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UQuickTravelMenu> QuickTravelMenuWidgetClass;
-
-	UPROPERTY()
-	UQuickTravelMenu* QuickTravelMenuWidgetRef;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPauseMenu> PauseMenuWidgetClass;

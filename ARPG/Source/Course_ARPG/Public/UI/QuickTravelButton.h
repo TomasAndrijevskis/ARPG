@@ -22,7 +22,7 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	void InitializeButton(const FString& NewTravelLocationName, FBonfireData BonfireData, const FString& CurrentBonfireName);
+	void InitializeButton(const FString& NewTravelLocationName, const FBonfireData& BonfireData, const FString& CurrentBonfireName);
 	
 private:
 
@@ -42,13 +42,7 @@ private:
 	void EnablePlayerInput();
 
 	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
-
-	UPROPERTY()
 	AARPG_PlayerController* PlayerController;
-
-	UPROPERTY()
-	UBonfireInteractionAnim* BonfireInteractionAnimRef;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UBonfireInteractionAnim> BonfireInteractionAnimClass;

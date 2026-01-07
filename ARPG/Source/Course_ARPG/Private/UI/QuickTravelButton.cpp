@@ -1,7 +1,6 @@
 
 #include "UI/QuickTravelButton.h"
 #include "Characters/Player/ARPG_PlayerController.h"
-#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
@@ -13,14 +12,14 @@
 void UQuickTravelButton::NativeConstruct()
 {
 	Super::NativeConstruct();
-	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
-	if (PlayerRef) PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
+	PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
+	if (!PlayerController) return;
 	Button_QuickTravel->OnClicked.Clear();
 	Button_QuickTravel->OnClicked.AddDynamic(this, &UQuickTravelButton::ShowAnimBeforeTeleport);
 }
 
 
-void UQuickTravelButton::InitializeButton(const FString& NewTravelLocationName, FBonfireData BonfireData, const FString& CurrentBonfireName)
+void UQuickTravelButton::InitializeButton(const FString& NewTravelLocationName, const FBonfireData& BonfireData, const FString& CurrentBonfireName)
 {
 	TravelMapName = BonfireData.MapName;
 	TravelLocation = BonfireData.Location;
@@ -33,12 +32,13 @@ void UQuickTravelButton::ShowAnimBeforeTeleport()
 {
 	if (BonfireInteractionAnimClass)
 	{
-		BonfireInteractionAnimRef = Cast<UBonfireInteractionAnim>(CreateWidget(this, BonfireInteractionAnimClass));
+		UBonfireInteractionAnim* BonfireInteractionAnimRef = Cast<UBonfireInteractionAnim>(CreateWidget(this, BonfireInteractionAnimClass));
 		BonfireInteractionAnimRef->AddToViewport(6);
 		AnimDuration = BonfireInteractionAnimRef->GetAnimDuration();
 	}
-	PlayerRef->DisableInput(PlayerController);
-	PlayerController->RemoveQuickTravelMenu();
+	PlayerController->OnPlayerInputEnabledChangedDelegate.Broadcast(false);
+	PlayerController->OnGamePauseStateChangeRequestDelegate.Broadcast(false);
+	PlayerController->OnPlayerTeleportedDelegate.Broadcast();
 	FTimerHandle TimerHandleTeleport;
 	FTimerHandle TimerHandleInput;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandleTeleport, this, &UQuickTravelButton::TeleportPlayer, AnimDuration/2, false);
@@ -51,7 +51,7 @@ void UQuickTravelButton::TeleportPlayer()
 	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(PlayerController->GetGameInstance());
 	if (!GameInstance) return;
 	FString MapName = UGameplayStatics::GetCurrentLevelName(GetWorld());
-	if (MapName ==  TravelMapName) PlayerRef->TeleportTo(TravelLocation, PlayerRef->GetActorRotation());
+	if (MapName ==  TravelMapName) PlayerController->OnTeleportPlayerRequestDelegate.Broadcast(TravelLocation);
 	else
 	{
 		FString MapPath = "/Game/Maps/" + TravelMapName;
@@ -66,7 +66,7 @@ void UQuickTravelButton::TeleportPlayer()
 
 void UQuickTravelButton::EnablePlayerInput()
 {
-	PlayerRef->EnableInput(PlayerController);
+	PlayerController->OnPlayerInputEnabledChangedDelegate.Broadcast(true);
 }
 
 

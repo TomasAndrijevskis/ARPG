@@ -1,15 +1,12 @@
 
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Components/LevelingComponent.h"
 #include "Components/LockonComponent.h"
 #include "Gamemode/ARPG_GameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Objects/Bonfire.h"
 #include "Objects/BonfireData.h"
-#include "UI/EScreens.h"
 #include "UI/PlayerWidget.h"
 
 
@@ -22,6 +19,9 @@ void AARPG_PlayerController::BeginPlay()
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
 	if (!GameInstanceRef) return;
 	HandleGameLoad();
+	OnGamePauseStateChangeRequestDelegate.AddUObject(this, &AARPG_PlayerController::HandleGamePause);
+	OnPlayerInputEnabledChangedDelegate.AddUObject(this, &AARPG_PlayerController::SetPlayerInputEnabled);
+	OnTeleportPlayerRequestDelegate.AddUObject(this, &AARPG_PlayerController::TeleportPlayer);
 }
 
 
@@ -44,13 +44,14 @@ void AARPG_PlayerController::HandleBonfireInteraction()
 }
 
 
-void AARPG_PlayerController::HandleQuitBonfireMenu()
+void AARPG_PlayerController::HandleBonfireMenuQuit()
 {
-	PlayerRef->FOnBonfireInteractionDelegate.Broadcast();
+	PlayerRef->FOnBonfireInteractionFinishedDelegate.Broadcast();
 	HandleGamePause(false);
 	GameInstanceRef->SaveAll();
 	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
-	if (GameMode) GameMode->SpawnEnemies();
+	if (!GameMode) return;
+	GameMode->SpawnEnemies();
 	if (PlayerRef->LockonComp->IsLocked()) PlayerRef->LockonComp->EndLockon();
 }
 
@@ -62,23 +63,16 @@ void AARPG_PlayerController::TeleportToMap()
 }
 
 
+void AARPG_PlayerController::TeleportPlayer(const FVector& Location)
+{
+	PlayerRef->TeleportTo(Location, PlayerRef->GetActorRotation());
+}
+
+
 void AARPG_PlayerController::LoadToMainMenu()
 {
 	GameInstanceRef->SaveAllExceptPosition();
 	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu"));
-}
-
-
-void AARPG_PlayerController::CreateQuickTravelMenu()
-{
-	PlayerRef->GetPlayerWidget()->CreateQuickTravelMenuWidget(UnlockedBonfires, BonfireRef->GetBonfireName());
-}
-
-
-void AARPG_PlayerController::RemoveQuickTravelMenu()
-{
-	PlayerRef->GetPlayerWidget()->RemoveQuickTravelMenuWidget();
-	HandleGamePause(false);
 }
 
 
@@ -96,9 +90,7 @@ void AARPG_PlayerController::HandleGamePause(const bool bIsGamePaused)
 	bEnableClickEvents = bIsGamePaused;
 	bEnableMouseOverEvents = bIsGamePaused;
 	UGameplayStatics::SetGamePaused(GetWorld(), bIsGamePaused);
-
-	if (bIsGamePaused) SetInputMode(FInputModeGameAndUI());
-	else SetInputMode(FInputModeGameOnly());
+	bIsGamePaused ? SetInputMode(FInputModeGameAndUI()) : SetInputMode(FInputModeGameOnly());
 }
 
 
@@ -119,6 +111,12 @@ void AARPG_PlayerController::HandleGameLoad() const
 		GameInstanceRef->SavePlayerLocation();
 	}
 	else GameInstanceRef->SaveAll();
+}
+
+
+void AARPG_PlayerController::SetPlayerInputEnabled(const bool IsEnabled)
+{
+	IsEnabled ? PlayerRef->EnableInput(this) : PlayerRef->DisableInput(this);
 }
 
 
@@ -187,3 +185,13 @@ void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss)
 }
 
 
+TMap<FString, FBonfireData>& AARPG_PlayerController::GetUnlockedBonfires()
+{
+	return UnlockedBonfires;
+}
+
+
+ABonfire*& AARPG_PlayerController::GetCurrentBonfire()
+{
+	return BonfireRef;
+}

@@ -21,26 +21,24 @@ public:
 	
 	virtual void NativeConstruct() override;
 
-	void SetBonfires(const TMap<FString, FBonfireData>& AvailableBonfires, const FString& CurrentBonfireName);
+	void SetBonfires();
+
+	UPROPERTY(meta = (BindWidget))
+	UButton* Button_Exit;
 	
 private:
 
 	UPROPERTY(meta = (BindWidget))
 	UVerticalBox* VB_QuickTravelContainer;
-
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_Exit;
 	
 	void CreateTravelMenu();
-	
-	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
+
+	UFUNCTION()
+	void RemoveWidget();
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UQuickTravelButton> QuickTravelButtonClass;
-
-	UPROPERTY()
-	UQuickTravelButton* QuickTravelButtonRef;
+	
 
 	TMap<FString, FBonfireData> Bonfires;
 	
