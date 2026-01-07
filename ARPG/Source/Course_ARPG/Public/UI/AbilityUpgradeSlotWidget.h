@@ -1,24 +1,25 @@
 
+
 #pragma once
 
 #include "CoreMinimal.h"
-#include "DescriptionWidget.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/Button.h"
-#include "Components/HorizontalBox.h"
-#include "AbilityUpgradeScreen.generated.h"
+#include "AbilityUpgradeSlotWidget.generated.h"
 
 
+class UDescriptionWidget;
+class UTextBlock;
+class UHorizontalBox;
+class UButton;
 class AMainCharacter_Base;
 
 UCLASS()
-class COURSE_ARPG_API UAbilityUpgradeScreen : public UUserWidget
+class COURSE_ARPG_API UAbilityUpgradeSlotWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
 public:
 	
-
 	UFUNCTION()
 	void RemoveUpgradeDescriptionWidget();
 
@@ -26,7 +27,7 @@ public:
 	void RemoveAbilityDescriptionWidget();
 
 	UFUNCTION()
-	void InitializeAbility(class UAbilityComponent_Player* AbilityComp);
+	void InitializeAbilityUpgradeSlot(class UAbilityComponent_Player* AbilityComp);
 	
 protected:
 
@@ -103,7 +104,7 @@ private:
 	UDescriptionWidget* DescriptionWidgetRef;
 
 	UPROPERTY(EditAnywhere)
-	FVector2D AbilityIconSize =  FVector2D(64, 64);
+	FVector2D AbilityIconSize = FVector2D(64, 64);
 	
 	FString AbilityDescription;
 

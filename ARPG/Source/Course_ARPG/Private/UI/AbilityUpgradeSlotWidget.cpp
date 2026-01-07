@@ -1,13 +1,14 @@
 
-#include "UI/AbilityUpgradeScreen.h"
+#include "UI/AbilityUpgradeSlotWidget.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Components/Button.h"
 #include "Components/LevelingComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/DescriptionWidget.h"
 
 
-void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Player* AbilityComp)
+void UAbilityUpgradeSlotWidget::InitializeAbilityUpgradeSlot(UAbilityComponent_Player* AbilityComp)
 {
 	if (!AbilityComp) return;
 	AbilityComp_Ref = AbilityComp;
@@ -20,30 +21,30 @@ void UAbilityUpgradeScreen::InitializeAbility(UAbilityComponent_Player* AbilityC
 }
 
 
-void UAbilityUpgradeScreen::NativeConstruct()
+void UAbilityUpgradeSlotWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 }
 
 
-void UAbilityUpgradeScreen::SetupButtonCallbacks()
+void UAbilityUpgradeSlotWidget::SetupButtonCallbacks()
 {
 	if (Button_UpgradeAbility)
 	{
-		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeScreen::UpgradeAbility);
+		Button_UpgradeAbility->OnClicked.AddDynamic(this, &UAbilityUpgradeSlotWidget::UpgradeAbility);
 		HandleUpgradeButtonActions();
 		if (AbilityComp_Ref->IsAbilityMaxLevel()) Button_UpgradeAbility->SetIsEnabled(false);
 	}
 	if (Button_AbilityIcon)
 	{
-		Button_AbilityIcon->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateAbilityDescriptionWidget);
-		Button_AbilityIcon->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget);
+		Button_AbilityIcon->OnHovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateAbilityDescriptionWidget);
+		Button_AbilityIcon->OnUnhovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveAbilityDescriptionWidget);
 	}
 }
 
 
-void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
+void UAbilityUpgradeSlotWidget::HandleUpgradeButtonActions()
 {
 	RemoveAbilityDescriptionWidget();
 	RemoveUpgradeDescriptionWidget();
@@ -52,21 +53,21 @@ void UAbilityUpgradeScreen::HandleUpgradeButtonActions()
 		Button_UpgradeAbility->OnHovered.Clear();
 		Button_UpgradeAbility->OnUnhovered.Clear();
 			
-		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget);
-		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveUpgradeDescriptionWidget);
+		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateUpgradeDescriptionWidget);
+		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveUpgradeDescriptionWidget);
 	}
 	else
 	{
 		Button_UpgradeAbility->OnHovered.Clear();
 		Button_UpgradeAbility->OnUnhovered.Clear();
 			
-		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeScreen::CreateAbilityDescriptionWidget);
-		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget);
+		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateAbilityDescriptionWidget);
+		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveAbilityDescriptionWidget);
 	}
 }
 
 
-void UAbilityUpgradeScreen::CreateDescriptionWidget(const TSubclassOf<UDescriptionWidget>& WidgetClass, const FString& Description)
+void UAbilityUpgradeSlotWidget::CreateDescriptionWidget(const TSubclassOf<UDescriptionWidget>& WidgetClass, const FString& Description)
 {
 	if (!WidgetClass) return;
 	
@@ -77,7 +78,7 @@ void UAbilityUpgradeScreen::CreateDescriptionWidget(const TSubclassOf<UDescripti
 }
 
 
-void UAbilityUpgradeScreen::RemoveDescriptionWidget()
+void UAbilityUpgradeSlotWidget::RemoveDescriptionWidget()
 {
 	if (DescriptionWidgetRef)
 	{
@@ -87,7 +88,7 @@ void UAbilityUpgradeScreen::RemoveDescriptionWidget()
 }
 
 
-void UAbilityUpgradeScreen::SetUpgradeButtonText(const bool bIsLevelMaxed)
+void UAbilityUpgradeSlotWidget::SetUpgradeButtonText(const bool bIsLevelMaxed)
 {
 	if (AbilityComp_Ref->IsAbilityAvailable() && bIsLevelMaxed) Text_Upgrade->SetText(FText::FromString("Maxed"));
 	else if (AbilityComp_Ref->IsAbilityAvailable() && !bIsLevelMaxed) Text_Upgrade->SetText(FText::FromString("Upgrade"));
@@ -95,7 +96,7 @@ void UAbilityUpgradeScreen::SetUpgradeButtonText(const bool bIsLevelMaxed)
 }
 
 
-void UAbilityUpgradeScreen::SetRequiredPointsText()
+void UAbilityUpgradeSlotWidget::SetRequiredPointsText()
 {
 	int RequiredPoints = AbilityComp_Ref->GetRequiredUpgradePoints();
 	if (RequiredPoints == -1) Text_RequiredPoints->SetText(FText::FromString(""));
@@ -107,12 +108,11 @@ void UAbilityUpgradeScreen::SetRequiredPointsText()
 }
 
 
-void UAbilityUpgradeScreen::UpgradeAbility()
+void UAbilityUpgradeSlotWidget::UpgradeAbility()
 {
 	if (!PlayerRef) return;
 	int AvailablePoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
 	if (AvailablePoints <= 0) return;
-	
 	AbilityComp_Ref->UpgradeAbility(AvailablePoints);
 	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
 	SetAbilityIconEnable();
@@ -127,13 +127,13 @@ void UAbilityUpgradeScreen::UpgradeAbility()
 }
 
 
-void UAbilityUpgradeScreen::SetAbilityIconEnable()
+void UAbilityUpgradeSlotWidget::SetAbilityIconEnable()
 {
 	Button_AbilityIcon->SetIsEnabled(AbilityComp_Ref->IsAbilityAvailable());
 }
 
 
-void UAbilityUpgradeScreen::SetIcon(UTexture2D* Icon)
+void UAbilityUpgradeSlotWidget::SetIcon(UTexture2D* Icon)
 {
 	if (!Icon) return;
 	FButtonStyle CustomStyle;
@@ -146,7 +146,7 @@ void UAbilityUpgradeScreen::SetIcon(UTexture2D* Icon)
 }
 
 
-void UAbilityUpgradeScreen::ApplyIconStyle(UTexture2D* Icon, FSlateBrush& BrushStyle, TEnumAsByte<ESlateBrushDrawType::Type> DrawType)
+void UAbilityUpgradeSlotWidget::ApplyIconStyle(UTexture2D* Icon, FSlateBrush& BrushStyle, TEnumAsByte<ESlateBrushDrawType::Type> DrawType)
 {
 	BrushStyle.SetResourceObject(Icon);
 	BrushStyle.Tiling = ESlateBrushTileType::NoTile;
@@ -155,27 +155,28 @@ void UAbilityUpgradeScreen::ApplyIconStyle(UTexture2D* Icon, FSlateBrush& BrushS
 }
 
 
-void UAbilityUpgradeScreen::CreateAbilityDescriptionWidget()
+void UAbilityUpgradeSlotWidget::CreateAbilityDescriptionWidget()
 {
 	AbilityDescription = AbilityComp_Ref->GetAbilityDescription();
 	CreateDescriptionWidget(AbilityDescriptionClass, AbilityDescription);
 }
 
 
-void UAbilityUpgradeScreen::CreateUpgradeDescriptionWidget()
+void UAbilityUpgradeSlotWidget::CreateUpgradeDescriptionWidget()
 {
 	UpgradeDescription = AbilityComp_Ref->GetUpgradeDescription();
 	CreateDescriptionWidget(UpgradeDescriptionClass, UpgradeDescription);
 }
 
 
-void UAbilityUpgradeScreen::RemoveAbilityDescriptionWidget()
+void UAbilityUpgradeSlotWidget::RemoveAbilityDescriptionWidget()
 {
 	RemoveDescriptionWidget();
 }
 
 
-void UAbilityUpgradeScreen::RemoveUpgradeDescriptionWidget()
+void UAbilityUpgradeSlotWidget::RemoveUpgradeDescriptionWidget()
 {
 	RemoveDescriptionWidget();
 }
+

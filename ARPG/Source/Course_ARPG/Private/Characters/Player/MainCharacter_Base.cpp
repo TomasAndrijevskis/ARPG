@@ -89,7 +89,6 @@ void AMainCharacter_Base::CreatePlayerWidget()
 		PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
 		
 		CreateAbilitiesFooter();
-		PlayerWidgetRef->HandleUpgradeInfoBorder(ESlateVisibility::Hidden);
 	}
 }
 
@@ -103,11 +102,11 @@ void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, const float Damage
 
 void AMainCharacter_Base::CreateAbilitiesFooter()
 {
-	PlayerWidgetRef->RemoveAbilityFooter();
+	PlayerWidgetRef->RemoveAbilityFooterPanel();
 	for (UAbilityComponent_Player* Ability: ArrAbilities)
 	{
 		if (IsValid(Ability) && Ability->IsAbilityAvailable())
-			PlayerWidgetRef->CreateAbilityFooter(Ability->GetIcon(), Ability->GetActionKey(), Ability);
+			PlayerWidgetRef->CreateAbilityFooterPanel(Ability->GetIcon(), Ability->GetActionKey(), Ability);
 	}
 }
 
@@ -218,4 +217,10 @@ void AMainCharacter_Base::SetCanPlayHurtAnimation(const bool bCanPlayAnim)
 bool AMainCharacter_Base::CanPlayHurtAnimation() const
 {
 	return bCanPlayHurtAnim;
+}
+
+
+TArray<TEnumAsByte<EStats>> AMainCharacter_Base::GetStatsArray() const
+{
+	return ArrStats;
 }

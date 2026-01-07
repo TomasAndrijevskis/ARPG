@@ -105,8 +105,7 @@ void UAbilityComponent_Player::CreateIcon()
 
 void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 {
-	int PointsRequired = GetRequiredUpgradePoints();
-
+	const int PointsRequired = GetRequiredUpgradePoints();
 	if (AvailablePoints >= PointsRequired && PointsRequired > 0)
 	{
 		CurrentLevel++;

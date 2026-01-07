@@ -6,7 +6,6 @@
 #include "InfoFooter.generated.h"
 
 
-enum EScreens : int;
 class AMainCharacter_Base;
 class UButton;
 
@@ -17,11 +16,10 @@ class COURSE_ARPG_API UInfoFooter : public UUserWidget
 
 public:
 
-	UFUNCTION()
-	void InitializeFooter(const EScreens& ScreenType);
-
-private:
-
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_Exit;
+
+protected:
+
+	virtual void NativeConstruct() override;
 };

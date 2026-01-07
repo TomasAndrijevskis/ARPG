@@ -18,12 +18,14 @@ void AARPG_PlayerController::BeginPlay()
 	Super::BeginPlay();
 	SetPlayerControllerSettings();
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
+	if (!PlayerRef) return;
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
+	if (!GameInstanceRef) return;
 	HandleGameLoad();
 }
 
 
-void AARPG_PlayerController::CreateBonfireMenuWidget()
+void AARPG_PlayerController::HandleBonfireInteraction()
 {
 	if (bIsInBonfireRange)
 	{
@@ -42,9 +44,8 @@ void AARPG_PlayerController::CreateBonfireMenuWidget()
 }
 
 
-void AARPG_PlayerController::RemoveBonfireMenuWidget()
+void AARPG_PlayerController::HandleQuitBonfireMenu()
 {
-	PlayerRef->GetPlayerWidget()->RemoveBonfireMenuWidget();
 	PlayerRef->FOnBonfireInteractionDelegate.Broadcast();
 	HandleGamePause(false);
 	GameInstanceRef->SaveAll();
@@ -70,8 +71,6 @@ void AARPG_PlayerController::LoadToMainMenu()
 
 void AARPG_PlayerController::CreateQuickTravelMenu()
 {
-	RemoveBonfireMenuWidget();
-	HandleGamePause(true);
 	PlayerRef->GetPlayerWidget()->CreateQuickTravelMenuWidget(UnlockedBonfires, BonfireRef->GetBonfireName());
 }
 
@@ -80,32 +79,6 @@ void AARPG_PlayerController::RemoveQuickTravelMenu()
 {
 	PlayerRef->GetPlayerWidget()->RemoveQuickTravelMenuWidget();
 	HandleGamePause(false);
-}
-
-
-void AARPG_PlayerController::CreateStatsScreen()
-{
-	RemoveBonfireMenuWidget();
-	HandleGamePause(true);
-	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentStatPointsAmount());
-	for (auto Stat : PlayerRef->ArrStats)
-	{
-		PlayerRef->GetPlayerWidget()->CreateStatsScreen(Stat);
-	}
-	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoFooter(EScreens::StatsScreen);
-}
-
-
-void AARPG_PlayerController::CreateAbilityUpgradeScreen()
-{
-	RemoveBonfireMenuWidget();
-	HandleGamePause(true);
-	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoHeader(PlayerRef->LevelComp->GetCurrentAbilityPointsAmount());
-	for (auto Ability : PlayerRef->GetAbilitiesArray())
-	{
-		PlayerRef->GetPlayerWidget()->CreateAbilityUpgradeScreen(Ability);
-	}
-	PlayerRef->GetPlayerWidget()->CreateUpgradeInfoFooter(EScreens::AbilitiesScreen);
 }
 
 

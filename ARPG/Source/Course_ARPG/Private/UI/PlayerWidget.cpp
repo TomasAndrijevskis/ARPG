@@ -1,75 +1,36 @@
 
 #include "UI/PlayerWidget.h"
-#include "Components/BackgroundBlur.h"
-#include "Components/Border.h"
 #include "UI/AbilityFooter.h"
-#include "UI/StatsScreenWidget.h"
-#include "UI/AbilityUpgradeScreen.h"
+#include "UI/AbilityUpgradeWidget.h"
 #include "UI/BonfireMenu.h"
-#include "UI/EScreens.h"
-#include "UI/InfoFooter.h"
-#include "UI/InfoHeader.h"
 #include "UI/LevelUpNotification.h"
 #include "UI/PauseMenu.h"
 #include "UI/PlayerDeath.h"
 #include "UI/QuickTravelMenu.h"
+#include "UI/StatsUpgradeWidget.h"
 #include "UI/StatusIconWithAmount.h"
 #include "UI/StatusIconWithTimer.h"
 
 
-void UPlayerWidget::CreateStatsScreen(const EStats& Stat)
+void UPlayerWidget::CreateAbilityUpgradeScreen()
 {
-	if (!StatsWidgetClass) return;
-	StatsScreenRef = Cast<UStatsScreenWidget>(CreateWidget(this, StatsWidgetClass));
-	VerticalBox_UpgradeInfo->AddChild(StatsScreenRef);
-	StatsScreenRef->SetStatsVariables(Stat);
-	BackgroundBlur_Blur->SetBlurStrength(10);
-	HandleUpgradeInfoBorder(ESlateVisibility::Visible);
+	if (!AbilityUpgradeWidgetClass) return;
+	UAbilityUpgradeWidget* AbilityUpgradeWidget = Cast<UAbilityUpgradeWidget>(CreateWidget(this, AbilityUpgradeWidgetClass));
+	if (!AbilityUpgradeWidget) return;
+	AbilityUpgradeWidget->AddToViewport(5);
 }
 
 
-void UPlayerWidget::RemoveStatsScreen()
+void UPlayerWidget::CreateStatsUpgradeScreen()
 {
-	if (StatsScreenRef)
-	{
-		StatsScreenRef->RemoveFromParent();
-		StatsScreenRef = nullptr; 
-	}
-	VerticalBox_UpgradeInfo->ClearChildren();
-	CreateBonfireMenuWidget();
-	BackgroundBlur_Blur->SetBlurStrength(0);
-	HandleUpgradeInfoBorder(ESlateVisibility::Hidden);
+	if (!StatsUpgradeWidgetClass) return;
+	UStatsUpgradeWidget* StatsUpgradeWidget = Cast<UStatsUpgradeWidget>(CreateWidget(this, StatsUpgradeWidgetClass));
+	if (!StatsUpgradeWidget) return;
+	StatsUpgradeWidget->AddToViewport(5);
 }
 
 
-void UPlayerWidget::CreateAbilityUpgradeScreen(UAbilityComponent_Player* AbilityCompRef)
-{
-	if (!AbilityUpgradeScreenWidgetClass) return;
-	AbilityUpgradeScreenWidgetRef = Cast<UAbilityUpgradeScreen>(CreateWidget(this, AbilityUpgradeScreenWidgetClass));
-	VerticalBox_UpgradeInfo->AddChild(AbilityUpgradeScreenWidgetRef);
-	AbilityUpgradeScreenWidgetRef->InitializeAbility(AbilityCompRef);
-	BackgroundBlur_Blur->SetBlurStrength(10);
-	HandleUpgradeInfoBorder(ESlateVisibility::Visible);
-}
-
-
-void UPlayerWidget::RemoveAbilityUpgradeScreen()
-{
-	if (AbilityUpgradeScreenWidgetRef)
-	{
-		AbilityUpgradeScreenWidgetRef->RemoveAbilityDescriptionWidget();
-		AbilityUpgradeScreenWidgetRef->RemoveUpgradeDescriptionWidget();
-		AbilityUpgradeScreenWidgetRef->RemoveFromParent();
-		AbilityUpgradeScreenWidgetRef = nullptr;
-	}
-	VerticalBox_UpgradeInfo->ClearChildren();
-	CreateBonfireMenuWidget();
-	BackgroundBlur_Blur->SetBlurStrength(0);
-	HandleUpgradeInfoBorder(ESlateVisibility::Hidden);
-}
-
-
-void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef)
+void UPlayerWidget::CreateAbilityFooterPanel(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef)
 {
 	if (!AbilityFooterWidgetClass) return;
 	AbilityFooterWidgetRef = Cast<UAbilityFooter>(CreateWidget(this, AbilityFooterWidgetClass));
@@ -78,7 +39,7 @@ void UPlayerWidget::CreateAbilityFooter(UTexture2D* Image, const FString& Action
 }
 
 
-void UPlayerWidget::RemoveAbilityFooter()
+void UPlayerWidget::RemoveAbilityFooterPanel()
 {
 	if (AbilityFooterWidgetRef)
 	{
@@ -86,24 +47,6 @@ void UPlayerWidget::RemoveAbilityFooter()
 		AbilityFooterWidgetRef = nullptr;
 	}
 	HorizontalBox_AbilitiesFooter->ClearChildren();
-}
-
-
-void UPlayerWidget::CreateUpgradeInfoHeader(const int Value)
-{
-	if (!InfoHeaderWidgetClass) return;
-	InfoHeaderWidgetRef = Cast<UInfoHeader>(CreateWidget(this, InfoHeaderWidgetClass));
-	VerticalBox_UpgradeInfo->AddChild(InfoHeaderWidgetRef);
-	InfoHeaderWidgetRef->InitializeInfoHeader(Value);
-}
-
-
-void UPlayerWidget::CreateUpgradeInfoFooter(const EScreens& ScreenType)
-{
-	if (!InfoFooterWidgetClass) return;
-	InfoFooterWidgetRef = Cast<UInfoFooter>(CreateWidget(this, InfoFooterWidgetClass));
-	VerticalBox_UpgradeInfo->AddChild(InfoFooterWidgetRef);
-	InfoFooterWidgetRef->InitializeFooter(ScreenType);
 }
 
 
@@ -141,27 +84,19 @@ void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* I
 void UPlayerWidget::CreateDeathWidget()
 {
 	if (!PlayerDeathWidgetClass) return;
-	PlayerDeathWidgetRef = Cast<UPlayerDeath>(CreateWidget(this, PlayerDeathWidgetClass));
-	PlayerDeathWidgetRef->AddToViewport(5);
+	UPlayerDeath* PlayerDeath = Cast<UPlayerDeath>(CreateWidget(this, PlayerDeathWidgetClass));
+	if (!PlayerDeath) return;
+	PlayerDeath->AddToViewport(5);
 }
-
 
 
 void UPlayerWidget::CreateBonfireMenuWidget()
 {
 	if (!BonfireMenuWidgetClass) return;
-	BonfireMenuWidgetRef = Cast<UBonfireMenu>(CreateWidget(this, BonfireMenuWidgetClass));
-	BonfireMenuWidgetRef->AddToViewport(5);
-}
-
-
-void UPlayerWidget::RemoveBonfireMenuWidget()
-{
-	if (BonfireMenuWidgetRef)
-	{
-		BonfireMenuWidgetRef->RemoveFromParent();
-		BonfireMenuWidgetRef = nullptr;
-	}
+	UBonfireMenu* BonfireMenu = Cast<UBonfireMenu>(CreateWidget(this, BonfireMenuWidgetClass));
+	if (!BonfireMenu) return;
+	BonfireMenu->Init(this);
+	BonfireMenu->AddToViewport(5);
 }
 
 
@@ -171,7 +106,6 @@ void UPlayerWidget::CreateQuickTravelMenuWidget(const TMap<FString, FBonfireData
 	QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
 	QuickTravelMenuWidgetRef -> SetBonfires(UnlockedBonfires, CurrentBonfireName);
 	QuickTravelMenuWidgetRef -> AddToViewport(5);
-	BackgroundBlur_Blur->SetBlurStrength(10);
 }
 
 
@@ -181,7 +115,6 @@ void UPlayerWidget::RemoveQuickTravelMenuWidget()
 	{
 		QuickTravelMenuWidgetRef->RemoveFromParent();
 		QuickTravelMenuWidgetRef = nullptr;
-		BackgroundBlur_Blur->SetBlurStrength(0);
 	}
 }
 
@@ -202,12 +135,6 @@ void UPlayerWidget::RemovePauseMenu()
 		PauseMenuWidgetRef->RemoveFromParent();
 		PauseMenuWidgetRef = nullptr;
 	}
-}
-
-
-void UPlayerWidget::HandleUpgradeInfoBorder(const ESlateVisibility InVisibility)
-{
-	Border_UpgradeInfo->SetVisibility(InVisibility);
 }
 
 

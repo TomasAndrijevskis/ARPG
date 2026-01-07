@@ -6,11 +6,11 @@
 #include "Components/Button.h"
 #include "Characters/Data/EStats.h"
 #include "Components/TextBlock.h"
-#include "StatsScreenWidget.generated.h"
+#include "StatUpgradeSlot.generated.h"
 
 
 UCLASS()
-class COURSE_ARPG_API UStatsScreenWidget : public UUserWidget
+class COURSE_ARPG_API UStatUpgradeSlot : public UUserWidget
 {
 	GENERATED_BODY()
 

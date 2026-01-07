@@ -1,5 +1,5 @@
 
-#include "UI/StatsScreenWidget.h"
+#include "UI/StatUpgradeSlot.h"
 #include "Characters/Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
@@ -9,28 +9,27 @@
 #include "Kismet/GameplayStatics.h"
 
 
-void UStatsScreenWidget::NativeConstruct()
+void UStatUpgradeSlot::NativeConstruct()
 {
 	Super::NativeConstruct();
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-	if (Button_ImproveStat) Button_ImproveStat->OnClicked.AddDynamic(this, &UStatsScreenWidget::OnClickedImproveStat);
+	if (Button_ImproveStat) Button_ImproveStat->OnClicked.AddDynamic(this, &UStatUpgradeSlot::OnClickedImproveStat);
 }
 
 
-void UStatsScreenWidget::OnClickedImproveStat()
+void UStatUpgradeSlot::OnClickedImproveStat()
 {
 	ImproveStat(StatValue);
 	UpdateText(StatName, StatValue);
 }
 
 
-float UStatsScreenWidget::ImproveStat(const float CurrentValue)
+float UStatUpgradeSlot::ImproveStat(const float CurrentValue)
 {
 	StatValue = CurrentValue;
 	if (!PlayerRef) return StatValue;
 	int Points = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
 	if (Points <= 0) return StatValue;
-
 	if (Stat == EStats::Strength) StatValue += 5;
 	else StatValue += 10;
 	PlayerRef->StatsComp->SetStatValue(Stat, StatValue);
@@ -41,7 +40,7 @@ float UStatsScreenWidget::ImproveStat(const float CurrentValue)
 }
 
 
-void UStatsScreenWidget::SetStatsVariables(const EStats& StatToImprove)
+void UStatUpgradeSlot::SetStatsVariables(const EStats& StatToImprove)
 {
 	Stat = StatToImprove;
 	if (!PlayerRef) return;
@@ -51,7 +50,7 @@ void UStatsScreenWidget::SetStatsVariables(const EStats& StatToImprove)
 }
 
 
-void UStatsScreenWidget::UpdateText(FString& Name, const float Value)
+void UStatUpgradeSlot::UpdateText(FString& Name, const float Value)
 {
 	FString Prefix = TEXT("Max");
 	if (Name.StartsWith(Prefix)) Name = Name.RightChop(Prefix.Len());

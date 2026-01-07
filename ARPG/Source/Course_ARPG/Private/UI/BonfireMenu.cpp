@@ -3,15 +3,32 @@
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
+#include "UI/PlayerWidget.h"
+
+
+void UBonfireMenu::Init(UPlayerWidget* PlayerWidget)
+{
+	PlayerWidgetRef = PlayerWidget;
+}
 
 
 void UBonfireMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
-	if (!PlayerController) return;
-	Button_AbilitiesScreen->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateAbilityUpgradeScreen);
-	Button_StatsScreen->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateStatsScreen);
-	Button_QuitBonfire->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::RemoveBonfireMenuWidget);
-	Button_QuickTravelMenu->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::CreateQuickTravelMenu);
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+	if (!PlayerController || !PlayerWidgetRef) return;
+	Button_AbilitiesScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
+	Button_StatsScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateStatsUpgradeScreen);
+	Button_QuitBonfire->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::HandleQuitBonfireMenu);
+	Button_QuickTravelMenu->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::CreateQuickTravelMenu);
+	Button_QuitBonfire->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_QuickTravelMenu->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_AbilitiesScreen->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_StatsScreen->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+}
+
+
+void UBonfireMenu::RemoveWidget()
+{
+	this->RemoveFromParent();
 }

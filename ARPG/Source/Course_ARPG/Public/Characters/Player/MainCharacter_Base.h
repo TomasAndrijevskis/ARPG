@@ -97,8 +97,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatusEffectsComponent* StatusEffectsComp;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TEnumAsByte<EStats>> ArrStats;
+	TArray<TEnumAsByte<EStats>> GetStatsArray() const;
 
 	UPROPERTY(BlueprintReadOnly)
 	UPlayerAnimInstance* PlayerAnimInstance;
@@ -112,6 +111,9 @@ protected:
 	UFUNCTION()
 	virtual void HandleDeath();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<TEnumAsByte<EStats>> ArrStats;
+	
 private:
 
 	UFUNCTION()

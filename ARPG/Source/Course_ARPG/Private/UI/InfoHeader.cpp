@@ -8,7 +8,7 @@
 
 void UInfoHeader::InitializeInfoHeader(const int Value)
 {
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	const AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	if (!PlayerRef) return;
 	PlayerRef->LevelComp->OnStatPointsUpdateDelegate.AddDynamic(this, &UInfoHeader::UpdateStatValue);
 	PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.AddDynamic(this, &UInfoHeader::UpdateStatValue);

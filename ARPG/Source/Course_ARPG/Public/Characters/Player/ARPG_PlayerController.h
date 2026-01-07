@@ -18,15 +18,9 @@ class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 	GENERATED_BODY()
 
 public:
-
-	UFUNCTION()
-	void CreateStatsScreen();
-
-	UFUNCTION()
-	void CreateAbilityUpgradeScreen();
 	
 	UFUNCTION()
-	void RemoveBonfireMenuWidget();
+	void HandleQuitBonfireMenu();
 
 	UFUNCTION()
 	void CreateQuickTravelMenu();
@@ -69,7 +63,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
-	void CreateBonfireMenuWidget();
+	void HandleBonfireInteraction();
 
 	UFUNCTION(BlueprintCallable)
 	void TeleportToMap();

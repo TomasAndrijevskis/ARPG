@@ -13,6 +13,9 @@
 #include "PlayerWidget.generated.h"
 
 
+class UStatsUpgradeWidget;
+class UAbilityUpgradeWidget;
+class UAbilityUpgradeSlotWidget;
 class ULevelUpNotification;
 class UAbilityComponent_Player;
 class UBorder;
@@ -28,9 +31,7 @@ class UStatsComponent;
 class UStatusIconWithAmount;
 class UStatusIconWithTimer;
 class UInfoHeader;
-class UStatsScreenWidget;
 class UAbilityFooter;
-class UAbilityUpgradeScreen;
 class UAbilityComponent_Base;
 
 UCLASS()
@@ -56,29 +57,17 @@ public:
 	void SetXP(const float CurrentXP);
 	
 	UFUNCTION()
-	void CreateStatsScreen(const EStats& Stat);
+	void CreateAbilityUpgradeScreen();
 
 	UFUNCTION()
-	void RemoveStatsScreen();
+	void CreateStatsUpgradeScreen();
 	
 	UFUNCTION()
-	void CreateAbilityUpgradeScreen(UAbilityComponent_Player* AbilityCompRef);
+	void CreateAbilityFooterPanel(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef);
 
 	UFUNCTION()
-	void RemoveAbilityUpgradeScreen();
-
-	UFUNCTION()
-	void CreateAbilityFooter(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef);
-
-	UFUNCTION()
-	void RemoveAbilityFooter();
-
-	UFUNCTION()
-	void CreateUpgradeInfoHeader(const int Value);
-
-	UFUNCTION()
-	void CreateUpgradeInfoFooter(const EScreens& ScreenType);
-
+	void RemoveAbilityFooterPanel();
+	
 	UFUNCTION()
 	void CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
 
@@ -87,9 +76,6 @@ public:
 
 	UFUNCTION()
 	void CreateDeathWidget();
-
-	UFUNCTION()
-	void RemoveBonfireMenuWidget();
 
 	UFUNCTION()
 	void CreateBonfireMenuWidget();
@@ -105,10 +91,7 @@ public:
 
 	UFUNCTION()
 	void RemovePauseMenu();
-
-	UFUNCTION()
-	void HandleUpgradeInfoBorder(const ESlateVisibility InVisibility);
-
+	
 	UFUNCTION()
 	void ShowLevelUpAnimation();
 	
@@ -119,9 +102,6 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_StatusEffects;
-
-	UPROPERTY(meta = (BindWidget))
-	UVerticalBox* VerticalBox_UpgradeInfo;
 	
 	UPROPERTY(meta = (BindWidget))
 	UProgressBar* ProgressBar_Health;
@@ -141,23 +121,11 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_AbilitiesFooter;
 	
-	UPROPERTY(meta = (BindWidget))
-	UBackgroundBlur* BackgroundBlur_Blur;
-
-	UPROPERTY(meta = (BindWidget))
-	UBorder* Border_UpgradeInfo;
-	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatsScreenWidget> StatsWidgetClass;
+	TSubclassOf<UAbilityUpgradeSlotWidget> AbilityUpgradeSlotClass;
 
 	UPROPERTY()
-	UStatsScreenWidget* StatsScreenRef;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAbilityUpgradeScreen> AbilityUpgradeScreenWidgetClass;
-
-	UPROPERTY()
-	UAbilityUpgradeScreen* AbilityUpgradeScreenWidgetRef;
+	UAbilityUpgradeSlotWidget* AbilityUpgradeSlotRef;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UAbilityFooter> AbilityFooterWidgetClass;
@@ -185,15 +153,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPlayerDeath> PlayerDeathWidgetClass;
-
-	UPROPERTY()
-	UPlayerDeath* PlayerDeathWidgetRef;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UBonfireMenu> BonfireMenuWidgetClass;
-	
-	UPROPERTY()
-	UBonfireMenu* BonfireMenuWidgetRef;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UInfoFooter> InfoFooterWidgetClass;
@@ -215,6 +177,12 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ULevelUpNotification> LevelUpNotificationClass;
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UAbilityUpgradeWidget> AbilityUpgradeWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UStatsUpgradeWidget> StatsUpgradeWidgetClass;
 	
 	UPROPERTY(EditAnywhere)
 	FVector2D IconSize;
