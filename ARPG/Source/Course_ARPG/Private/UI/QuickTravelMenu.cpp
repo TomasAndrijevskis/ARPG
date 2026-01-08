@@ -2,6 +2,7 @@
 #include "UI/QuickTravelMenu.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/Button.h"
+#include "Components/VerticalBox.h"
 #include "Objects/Bonfire.h"
 #include "UI/PlayerWidget.h"
 #include "UI/QuickTravelButton.h"

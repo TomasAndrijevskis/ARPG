@@ -78,18 +78,14 @@ void AMainCharacter_Base::CreatePlayerWidget()
 {
 	if (!PlayerWidgetClass) return;
 	PlayerWidgetRef = Cast<UPlayerWidget>(CreateWidget(GetWorld()->GetFirstPlayerController(), PlayerWidgetClass));
+	if (!PlayerWidgetRef) return;
 	PlayerWidgetRef->AddToViewport();
-
-	if (PlayerWidgetRef)
-	{
-		PlayerWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
-		PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
-		PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
-		PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
-		PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
-		
-		CreateAbilitiesFooter();
-	}
+	PlayerWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
+	PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
+	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
+	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
+	PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
+	CreateAbilitiesFooterPanel();
 }
 
 
@@ -100,9 +96,9 @@ void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, const float Damage
 }
 
 
-void AMainCharacter_Base::CreateAbilitiesFooter()
+void AMainCharacter_Base::CreateAbilitiesFooterPanel()
 {
-	PlayerWidgetRef->RemoveAbilityFooterPanel();
+	PlayerWidgetRef->ClearAbilityFooterPanel();
 	for (UAbilityComponent_Player* Ability: ArrAbilities)
 	{
 		if (IsValid(Ability) && Ability->IsAbilityAvailable())

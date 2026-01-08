@@ -32,10 +32,10 @@ void AMainCharacter_Mage::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
-	AbilityComp_FrostBlast->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
-	AbilityComp_FireStorm->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
-	AbilityComp_HealingAura->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
+	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_FrostBlast->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_FireStorm->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_HealingAura->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	
 	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceMana);
 	

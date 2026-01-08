@@ -136,7 +136,6 @@ void AARPG_PlayerController::CreatePauseMenu()
 void AARPG_PlayerController::RemovePauseMenu()
 {
 	HandleGamePause(false);
-	PlayerRef->GetPlayerWidget()->RemovePauseMenu();
 }
 
 

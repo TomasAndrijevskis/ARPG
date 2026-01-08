@@ -12,20 +12,13 @@ void UPauseMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
-	Button_Resume->OnClicked.Clear();
-	Button_MainMenu->OnClicked.Clear();
-	Button_QuitGame->OnClicked.Clear();
-	Button_Resume->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::RemovePauseMenu);
-	Button_MainMenu->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::LoadToMainMenu);
-	Button_QuitGame->OnClicked.AddDynamic(PlayerController, &AARPG_PlayerController::SaveBeforeQuit);
+	if (!PlayerController) return;
+	Button_Resume->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::RemovePauseMenu);
+	Button_Resume->OnClicked.AddUniqueDynamic(this, &UPauseMenu::RemoveWidget);
+	Button_MainMenu->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::LoadToMainMenu);
+	Button_QuitGame->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::SaveBeforeQuit);
 
 	CreateControlsWindows();
-}
-
-
-void UPauseMenu::RemoveControlsWindow()
-{
-	VerticalBox_Controls->ClearChildren();
 }
 
 
@@ -33,10 +26,9 @@ void UPauseMenu::CreateControlsWindows()
 {
 	if (ControlsDataTable)
 	{
-		TArray<FName> RowNames = ControlsDataTable->GetRowNames();
-		for (FName RowName: RowNames)
+		for (const FName& RowName: ControlsDataTable->GetRowNames())
 		{
-			FControls* Row = ControlsDataTable->FindRow<FControls>(RowName, TEXT("Control slot"), true);
+			const FControls* Row = ControlsDataTable->FindRow<FControls>(RowName, TEXT("Control slot"), true);
 			if (Row) CreateControlSlot(Row->Image, Row->Description);
 		}
 	}
@@ -47,11 +39,24 @@ void UPauseMenu::CreateControlSlot(UTexture2D* Icon, const FText& Description)
 {
 	if (ControlSlotWidgetClass)
 	{
-		ControlSlotWidgetRef = Cast<UControlSlot>(CreateWidget(this, ControlSlotWidgetClass));
-		if (ControlSlotWidgetRef)
+		UControlSlot* ControlSlotWidget = Cast<UControlSlot>(CreateWidget(this, ControlSlotWidgetClass));
+		if (ControlSlotWidget)
 		{
-			ControlSlotWidgetRef->InitializeControlSlot(Icon, Description);
-			VerticalBox_Controls->AddChild(ControlSlotWidgetRef);
+			ControlSlotWidget->InitializeControlSlot(Icon, Description);
+			VerticalBox_Controls->AddChild(ControlSlotWidget);
 		}
 	}
+}
+
+
+void UPauseMenu::RemoveControlsWindow()
+{
+	VerticalBox_Controls->ClearChildren();
+}
+
+
+void UPauseMenu::RemoveWidget()
+{
+	RemoveControlsWindow();
+	this->RemoveFromParent();
 }

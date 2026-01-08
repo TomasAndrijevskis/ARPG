@@ -52,7 +52,6 @@ void UAbilityUpgradeSlotWidget::HandleUpgradeButtonActions()
 	{
 		Button_UpgradeAbility->OnHovered.Clear();
 		Button_UpgradeAbility->OnUnhovered.Clear();
-			
 		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateUpgradeDescriptionWidget);
 		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveUpgradeDescriptionWidget);
 	}
@@ -60,7 +59,6 @@ void UAbilityUpgradeSlotWidget::HandleUpgradeButtonActions()
 	{
 		Button_UpgradeAbility->OnHovered.Clear();
 		Button_UpgradeAbility->OnUnhovered.Clear();
-			
 		Button_UpgradeAbility->OnHovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateAbilityDescriptionWidget);
 		Button_UpgradeAbility->OnUnhovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveAbilityDescriptionWidget);
 	}
@@ -70,7 +68,6 @@ void UAbilityUpgradeSlotWidget::HandleUpgradeButtonActions()
 void UAbilityUpgradeSlotWidget::CreateDescriptionWidget(const TSubclassOf<UDescriptionWidget>& WidgetClass, const FString& Description)
 {
 	if (!WidgetClass) return;
-	
 	DescriptionWidgetRef = CreateWidget<UDescriptionWidget>(GetWorld(), WidgetClass);
 	if (!DescriptionWidgetRef) return;
 	DescriptionWidgetRef->AddToViewport(10);

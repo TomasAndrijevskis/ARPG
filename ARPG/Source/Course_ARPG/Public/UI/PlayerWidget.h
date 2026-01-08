@@ -2,37 +2,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EScreens.h"
 #include "Blueprint/UserWidget.h"
-#include "Characters/Data/EStats.h"
-#include "Components/HorizontalBox.h"
-#include "Components/ProgressBar.h"
-#include "Components/TextBlock.h"
-#include "Components/VerticalBox.h"
-#include "Objects/BonfireData.h"
 #include "PlayerWidget.generated.h"
 
 
 class UStatsUpgradeWidget;
 class UAbilityUpgradeWidget;
-class UAbilityUpgradeSlotWidget;
 class ULevelUpNotification;
-class UAbilityComponent_Player;
-class UBorder;
-class UBackgroundBlur;
 class UPauseMenu;
-class UBonfireInteractionAnim;
-class ABonfire;
 class UQuickTravelMenu;
-class UInfoFooter;
 class UBonfireMenu;
 class UPlayerDeath;
-class UStatsComponent;
-class UStatusIconWithAmount;
+class UTextBlock;
+class UProgressBar;
+class UHorizontalBox;
 class UStatusIconWithTimer;
-class UInfoHeader;
 class UAbilityFooter;
+class UStatusIconWithAmount;
+class UStatsComponent;
 class UAbilityComponent_Base;
+class UAbilityComponent_Player;
 
 UCLASS()
 class COURSE_ARPG_API UPlayerWidget : public UUserWidget
@@ -64,9 +53,9 @@ public:
 	
 	UFUNCTION()
 	void CreateAbilityFooterPanel(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef);
-
+	
 	UFUNCTION()
-	void RemoveAbilityFooterPanel();
+	void ClearAbilityFooterPanel();
 	
 	UFUNCTION()
 	void CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
@@ -85,9 +74,6 @@ public:
 	
 	UFUNCTION()
 	void CreatePauseMenu();
-
-	UFUNCTION()
-	void RemovePauseMenu();
 	
 	UFUNCTION()
 	void ShowLevelUpAnimation();
@@ -121,47 +107,23 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UAbilityFooter> AbilityFooterWidgetClass;
 
-	UPROPERTY()
-	UAbilityFooter* AbilityFooterWidgetRef;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UInfoHeader> InfoHeaderWidgetClass;
-
-	UPROPERTY()
-	UInfoHeader* InfoHeaderWidgetRef;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UStatusIconWithTimer> StatusIconWithTimerWidgetClass;
 
-	UPROPERTY()
-	UStatusIconWithTimer* StatusIconWithTimerWidgetRef;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UStatusIconWithAmount> StatusIconWithAmountWidgetClass;
-
-	UPROPERTY()
-	UStatusIconWithAmount* StatusIconWithAmountWidgetRef;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPlayerDeath> PlayerDeathWidgetClass;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UBonfireMenu> BonfireMenuWidgetClass;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UInfoFooter> InfoFooterWidgetClass;
-
-	UPROPERTY()
-	UInfoFooter* InfoFooterWidgetRef;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UQuickTravelMenu> QuickTravelMenuWidgetClass;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPauseMenu> PauseMenuWidgetClass;
-	
-	UPROPERTY()
-	UPauseMenu* PauseMenuWidgetRef;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<ULevelUpNotification> LevelUpNotificationClass;

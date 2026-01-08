@@ -32,10 +32,10 @@ AMainCharacter_Warrior::AMainCharacter_Warrior()
 void AMainCharacter_Warrior::BeginPlay()
 {
 	Super::BeginPlay();
-	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
-	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
-	AbilityComp_LifeStealAttack->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
-	AbilityComp_GetArmor->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooter);
+	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_LifeStealAttack->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_GetArmor->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	
 	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);
 	BlockComp->OnBlockDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceStamina);

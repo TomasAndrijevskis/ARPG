@@ -1,5 +1,7 @@
 
 #include "UI/PlayerWidget.h"
+#include "Components/HorizontalBox.h"
+#include "Components/ProgressBar.h"
 #include "UI/AbilityFooter.h"
 #include "UI/AbilityUpgradeWidget.h"
 #include "UI/BonfireMenu.h"
@@ -33,19 +35,14 @@ void UPlayerWidget::CreateStatsUpgradeScreen()
 void UPlayerWidget::CreateAbilityFooterPanel(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef)
 {
 	if (!AbilityFooterWidgetClass) return;
-	AbilityFooterWidgetRef = Cast<UAbilityFooter>(CreateWidget(this, AbilityFooterWidgetClass));
-	AbilityFooterWidgetRef->SetAbility(Image, ActionKey, AbilityCompRef);
-	HorizontalBox_AbilitiesFooter->AddChild(AbilityFooterWidgetRef);
+	UAbilityFooter* AbilityFooterWidget = Cast<UAbilityFooter>(CreateWidget(this, AbilityFooterWidgetClass));
+	AbilityFooterWidget->SetAbility(Image, ActionKey, AbilityCompRef);
+	HorizontalBox_AbilitiesFooter->AddChild(AbilityFooterWidget);
 }
 
 
-void UPlayerWidget::RemoveAbilityFooterPanel()
+void UPlayerWidget::ClearAbilityFooterPanel()
 {
-	if (AbilityFooterWidgetRef)
-	{
-		AbilityFooterWidgetRef->RemoveFromParent();
-		AbilityFooterWidgetRef = nullptr;
-	}
 	HorizontalBox_AbilitiesFooter->ClearChildren();
 }
 
@@ -53,9 +50,9 @@ void UPlayerWidget::RemoveAbilityFooterPanel()
 void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
 {
 	if (!StatusIconWithTimerWidgetClass) return;
-	StatusIconWithTimerWidgetRef = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
-	StatusIconWithTimerWidgetRef->InitializeWidget(Duration, Image, AbilityCompRef, IconSize);
-	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerWidgetRef);
+	UStatusIconWithTimer* StatusIconWithTimerWidget = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
+	StatusIconWithTimerWidget->InitializeWidget(Duration, Image, AbilityCompRef, IconSize);
+	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerWidget);
 }
 
 
@@ -73,10 +70,10 @@ void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* I
 	}
 	else
 	{
-		StatusIconWithAmountWidgetRef = Cast<UStatusIconWithAmount>(CreateWidget(this, StatusIconWithAmountWidgetClass));
-		StatusIconWithAmountWidgetRef->InitializeWidget(Amount, Image, StatsCompRef, Keyword, IconSize);
-		ActiveStatusWidget.Add(Keyword, StatusIconWithAmountWidgetRef);
-		HorizontalBox_StatusEffects->AddChild(StatusIconWithAmountWidgetRef);
+		UStatusIconWithAmount* StatusIconWithAmountWidget = Cast<UStatusIconWithAmount>(CreateWidget(this, StatusIconWithAmountWidgetClass));
+		StatusIconWithAmountWidget->InitializeWidget(Amount, Image, StatsCompRef, Keyword, IconSize);
+		ActiveStatusWidget.Add(Keyword, StatusIconWithAmountWidget);
+		HorizontalBox_StatusEffects->AddChild(StatusIconWithAmountWidget);
 	}
 }
 
@@ -103,28 +100,18 @@ void UPlayerWidget::CreateBonfireMenuWidget()
 void UPlayerWidget::CreateQuickTravelMenuWidget()
 {
 	if (!QuickTravelMenuWidgetClass) return;
-	UQuickTravelMenu* QuickTravelMenuWidgetRef = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
-	QuickTravelMenuWidgetRef -> AddToViewport(5);
-	QuickTravelMenuWidgetRef->Button_Exit->OnClicked.AddUniqueDynamic(this, &UPlayerWidget::CreateBonfireMenuWidget);
+	UQuickTravelMenu* QuickTravelMenuWidget = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
+	QuickTravelMenuWidget -> AddToViewport(5);
+	QuickTravelMenuWidget->Button_Exit->OnClicked.AddUniqueDynamic(this, &UPlayerWidget::CreateBonfireMenuWidget);
 }
 
 
 void UPlayerWidget::CreatePauseMenu()
 {
 	if (!PauseMenuWidgetClass) return;
-	PauseMenuWidgetRef = Cast<UPauseMenu>(CreateWidget(this, PauseMenuWidgetClass));
-	PauseMenuWidgetRef->AddToViewport(5);
-}
-
-
-void UPlayerWidget::RemovePauseMenu()
-{
-	if (PauseMenuWidgetRef)
-	{
-		PauseMenuWidgetRef->RemoveControlsWindow();
-		PauseMenuWidgetRef->RemoveFromParent();
-		PauseMenuWidgetRef = nullptr;
-	}
+	UPauseMenu* PauseMenuWidget = Cast<UPauseMenu>(CreateWidget(this, PauseMenuWidgetClass));
+	if (!PauseMenuWidget) return;
+	PauseMenuWidget->AddToViewport(5);
 }
 
 
@@ -163,5 +150,3 @@ void UPlayerWidget::SetXP(const float NewXPPercent)
 {
 	ProgressBar_XP->SetPercent(NewXPPercent);
 }
-
-

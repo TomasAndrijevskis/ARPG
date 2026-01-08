@@ -62,7 +62,7 @@ public:
 	UARPG_GameInstance* GetGameInstanceRef() const;
 
 	UFUNCTION()
-	void CreateAbilitiesFooter();
+	void CreateAbilitiesFooterPanel();
 
 	UFUNCTION()
 	USkeletalMeshComponent* GetSkeletalMeshComponent() const;

@@ -3,11 +3,11 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
 #include "Components/LevelingComponent.h"
+#include "Components/VerticalBox.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/AbilityUpgradeSlotWidget.h"
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
-#include "UI/PlayerWidget.h"
 
 
 void UAbilityUpgradeWidget::NativeConstruct()
