@@ -12,6 +12,7 @@
 AInteractableObject_Base::AInteractableObject_Base()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	ObjectMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ObjectMesh"));
 	ObjectMesh -> SetupAttachment(RootComponent);
 	ObjectCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BonfireCollision"));

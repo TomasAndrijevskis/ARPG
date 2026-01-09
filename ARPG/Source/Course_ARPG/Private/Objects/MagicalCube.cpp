@@ -7,7 +7,7 @@
 void AMagicalCube::SetupWidget() const
 {
 	Super::SetupWidget();
-	Cast<UObjectInteractionText>(InteractionWidgetComponent->GetUserWidgetObject())->InitializeText("Magical Cube","", InteractionKey);
+	Cast<UObjectInteractionText>(InteractionWidgetComponent->GetUserWidgetObject())->InitializeText("Magical Cube","Magical Cube", InteractionKey);
 }
 
 

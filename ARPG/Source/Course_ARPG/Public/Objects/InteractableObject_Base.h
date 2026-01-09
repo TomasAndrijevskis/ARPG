@@ -44,15 +44,15 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	FString InteractionKey;
-	
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* ObjectMesh;
+
 private:
 	
 	UFUNCTION()
 	void ChangeWidgetVisibility(const bool bIsVisible) const;
 	
-	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* ObjectMesh;
-
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* ObjectCollision;
 

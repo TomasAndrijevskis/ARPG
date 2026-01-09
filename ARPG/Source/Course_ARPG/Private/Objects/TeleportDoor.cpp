@@ -5,6 +5,13 @@
 #include "UI/ObjectInteractionText.h"
 
 
+ATeleportDoor::ATeleportDoor()
+{
+	DoorEffect = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("DoorEffect"));
+	DoorEffect -> SetupAttachment(ObjectMesh);
+}
+
+
 void ATeleportDoor::SetupWidget() const
 {
 	Super::SetupWidget();
