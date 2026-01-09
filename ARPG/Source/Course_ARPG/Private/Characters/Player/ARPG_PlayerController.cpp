@@ -27,19 +27,17 @@ void AARPG_PlayerController::BeginPlay()
 
 void AARPG_PlayerController::HandleBonfireInteraction()
 {
-	if (bIsInBonfireRange)
+	if (!bIsInBonfireRange) return;
+	PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
+	HandleGamePause(true);
+	if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 	{
-		PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
-		HandleGamePause(true);
-		if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
-		{
-			FBonfireData Data;
-			FVector Location = BonfireRef->GetActorLocation() + BonfireRef->GetActorForwardVector() * 200;
-			Data.Location = Location;
-			Data.MapName = BonfireRef->GetMapName();
-			UnlockedBonfires.Add(BonfireRef->GetBonfireName(), Data);
-			GameInstanceRef->SaveBonfires();
-		}
+		FBonfireData Data;
+		FVector Location = BonfireRef->GetActorLocation() + BonfireRef->GetActorForwardVector() * 200;
+		Data.Location = Location;
+		Data.MapName = BonfireRef->GetMapName();
+		UnlockedBonfires.Add(BonfireRef->GetBonfireName(), Data);
+		GameInstanceRef->SaveBonfires();
 	}
 }
 
@@ -56,8 +54,24 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 }
 
 
+void AARPG_PlayerController::HandleMagicalCubeInteraction()
+{
+	if (!bIsInMagicalCubeRange) return;
+	PlayerRef->GetPlayerWidget()->CreateResetWidget();
+	HandleGamePause(true);
+}
+
+
+void AARPG_PlayerController::HandleResetMenuQuit()
+{
+	HandleGamePause(false);
+	GameInstanceRef->SaveAll();
+}
+
+
 void AARPG_PlayerController::TeleportToMap()
 {
+	if (!bIsInDoorRange) return;
 	GameInstanceRef->SetTeleportByDoor(true);
 	UGameplayStatics::OpenLevel(this, FName(MapName));
 }
@@ -65,6 +79,7 @@ void AARPG_PlayerController::TeleportToMap()
 
 void AARPG_PlayerController::TeleportPlayer(const FVector& Location)
 {
+	if (!bIsInDoorRange) return;
 	PlayerRef->TeleportTo(Location, PlayerRef->GetActorRotation());
 }
 
@@ -157,6 +172,12 @@ void AARPG_PlayerController::SetIsInBonfireRange(const bool bNewIsInBonfireRange
 {
 	bIsInBonfireRange = bNewIsInBonfireRange;
 	BonfireRef = BonfireInRange;
+}
+
+
+void AARPG_PlayerController::SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange)
+{
+	bIsInMagicalCubeRange = bNewIsInMagicalCubeRange;
 }
 
 

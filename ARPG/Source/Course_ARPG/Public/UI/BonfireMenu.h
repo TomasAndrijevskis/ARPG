@@ -10,7 +10,6 @@
 class UPlayerWidget;
 class ABonfire;
 class AARPG_PlayerController;
-class UTextBlock;
 
 UCLASS()
 class COURSE_ARPG_API UBonfireMenu : public UUserWidget
@@ -36,18 +35,6 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_QuitBonfire;
-	
-	UPROPERTY()
-	UTextBlock* Text_QuickTravelMenu;
-
-	UPROPERTY()
-	UTextBlock* Text_StatsScreen;
-
-	UPROPERTY()
-	UTextBlock* Text_AbilitiesScreen;
-	
-	UPROPERTY()
-	UTextBlock* Text_QuitBonfire;
 
 	UFUNCTION()
 	void RemoveWidget();

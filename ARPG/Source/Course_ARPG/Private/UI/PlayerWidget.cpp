@@ -9,6 +9,7 @@
 #include "UI/PauseMenu.h"
 #include "UI/PlayerDeath.h"
 #include "UI/QuickTravelMenu.h"
+#include "UI/StatsAbilitiesResetWidget.h"
 #include "UI/StatsUpgradeWidget.h"
 #include "UI/StatusIconWithAmount.h"
 #include "UI/StatusIconWithTimer.h"
@@ -119,6 +120,15 @@ void UPlayerWidget::ShowLevelUpAnimation()
 {
 	if (!LevelUpNotificationClass) return;
 	Cast<ULevelUpNotification>(CreateWidget(this, LevelUpNotificationClass))->AddToViewport(10);
+}
+
+
+void UPlayerWidget::CreateResetWidget()
+{
+	if (!StatsAbilitiesResetWidgetClass) return;
+	UStatsAbilitiesResetWidget* ResetWidget = Cast<UStatsAbilitiesResetWidget>(CreateWidget(this, StatsAbilitiesResetWidgetClass));
+	if (!ResetWidget) return;
+	ResetWidget->AddToViewport(5);
 }
 
 

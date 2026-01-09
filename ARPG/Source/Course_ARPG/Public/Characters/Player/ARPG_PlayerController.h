@@ -25,6 +25,9 @@ public:
 	
 	UFUNCTION()
 	void HandleBonfireMenuQuit();
+
+	UFUNCTION()
+	void HandleResetMenuQuit();
 	
 	UFUNCTION()
 	void SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
@@ -32,6 +35,9 @@ public:
 	UFUNCTION()
 	void SetIsInDoorRange(const bool bNewIsInDoorRange);
 
+	UFUNCTION()
+	void SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange);
+	
 	UFUNCTION()
 	void SetMapName(const FString& NewMapName);
 	
@@ -74,6 +80,9 @@ protected:
 	void HandleBonfireInteraction();
 
 	UFUNCTION(BlueprintCallable)
+	void HandleMagicalCubeInteraction();
+	
+	UFUNCTION(BlueprintCallable)
 	void TeleportToMap();
 	
 private:
@@ -114,5 +123,7 @@ private:
 
 	bool bIsInDoorRange = false;
 
+	bool bIsInMagicalCubeRange = false;
+	
 	FString MapName;
 };

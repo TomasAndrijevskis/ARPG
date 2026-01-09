@@ -6,6 +6,7 @@
 #include "PlayerWidget.generated.h"
 
 
+class UStatsAbilitiesResetWidget;
 class UStatsUpgradeWidget;
 class UAbilityUpgradeWidget;
 class ULevelUpNotification;
@@ -77,6 +78,9 @@ public:
 	
 	UFUNCTION()
 	void ShowLevelUpAnimation();
+
+	UFUNCTION()
+	void CreateResetWidget();
 	
 	UPROPERTY()
 	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
@@ -133,6 +137,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UStatsUpgradeWidget> StatsUpgradeWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UStatsAbilitiesResetWidget> StatsAbilitiesResetWidgetClass;
 	
 	UPROPERTY(EditAnywhere)
 	FVector2D IconSize;

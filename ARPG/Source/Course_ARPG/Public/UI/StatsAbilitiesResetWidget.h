@@ -1,0 +1,63 @@
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Blueprint/UserWidget.h"
+#include "StatsAbilitiesResetWidget.generated.h"
+
+
+class UConfirmationWindow;
+class UButton;
+
+UENUM(BlueprintType)
+enum EResetType
+{
+	ResetStats,
+	ResetAbilities,
+};
+
+DECLARE_MULTICAST_DELEGATE(FOnResetWidgetClosedSignature);
+UCLASS()
+class COURSE_ARPG_API UStatsAbilitiesResetWidget : public UUserWidget
+{
+	GENERATED_BODY()
+
+public:
+
+	virtual void NativeConstruct() override;
+
+	FOnResetWidgetClosedSignature OnResetWidgetClosedDelegate;
+	
+private:
+
+	UPROPERTY(meta=(BindWidget))
+	UButton* Button_ResetAbilities;
+
+	UPROPERTY(meta=(BindWidget))
+	UButton* Button_ResetStats;
+
+	UPROPERTY(meta=(BindWidget))
+	UButton* Button_Close;
+
+	UFUNCTION()
+	void RemoveWidget();
+	
+	void CreateConfirmationWindow();
+
+	void OnConfirmed();
+
+	UFUNCTION()
+	void OnResetAbilitiesClicked();
+
+	UFUNCTION()
+	void OnResetStatsClicked();
+
+	void HandleResetAbilities();
+
+	void HandleResetStats();
+	
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UConfirmationWindow> ConfirmationWindowClass;
+
+	EResetType CurrentChoice;
+};
