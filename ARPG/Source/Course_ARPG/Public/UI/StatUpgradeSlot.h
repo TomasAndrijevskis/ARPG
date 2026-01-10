@@ -35,10 +35,10 @@ private:
 	UButton* Button_ImproveStat;
 	
 	UFUNCTION()
-	void OnClickedImproveStat();
+	void OnImproveStatClicked();
 	
 	UFUNCTION()
-	float ImproveStat(const float CurrentValue);
+	void ImproveStat();
 	
 	UFUNCTION()
 	void UpdateText(FString& Name, const float Value);

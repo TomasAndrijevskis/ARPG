@@ -50,6 +50,9 @@ public:
 	int CurrentAbilityPoints;
 
 	UPROPERTY()
+	int UsedStatPoints;
+	
+	UPROPERTY()
 	FVector PlayerLocation;
 
 	UPROPERTY()

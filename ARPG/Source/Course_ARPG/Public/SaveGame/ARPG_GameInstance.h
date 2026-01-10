@@ -6,6 +6,7 @@
 #include "ARPG_GameInstance.generated.h"
 
 
+class UARPG_SaveGame;
 class AMainCharacter_Base;
 
 UCLASS()
@@ -83,10 +84,19 @@ public:
 
 	bool GetTeleportByDoor() const;
 
+	void SaveUsedStatPoints();
+
+	void LoadUsedStatPoints();
+	
 	bool bIsFirstLoad;
 	
 private:
 
+	void HandleSaveGame();
+
+	UPROPERTY()
+	UARPG_SaveGame* SaveGameInstance;
+	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
 

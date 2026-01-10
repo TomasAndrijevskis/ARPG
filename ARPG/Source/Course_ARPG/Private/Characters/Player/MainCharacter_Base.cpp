@@ -47,12 +47,10 @@ void AMainCharacter_Base::BeginPlay()
 	StatsComp->OnManaPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetMana);
 	StatsComp->OnStaminaPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetStamina);
 	StatsComp->OnZeroHealthDelegate.AddUniqueDynamic(this, &AMainCharacter_Base::HandleDeath);
-	StatsComp->OnStatUpdateDelegate.AddUniqueDynamic(StatsComp, &UStatsComponent::OnStatsUpdated);
 	StatsComp->OnStatUpdateDelegate.AddUniqueDynamic(GameInstance, &UARPG_GameInstance::SaveStats);
 	LevelComp->OnXpUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnLevelUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
-	
 	FOnBonfireInteractionFinishedDelegate.AddDynamic(StatsComp, &UStatsComponent::RestoreStats);
 	
 	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
@@ -145,6 +143,16 @@ void AMainCharacter_Base::InterruptHurtAnimation() const
 	if (CurrentMontage == HurtAnimMontage) PlayerAnimInstance->Montage_Stop(.1f);
 }
 
+
+void AMainCharacter_Base::ResetStats()
+{
+	const int UsedStatPoints = LevelComp->GetUsedStatPoints();
+	if (UsedStatPoints == 0) return;
+	const int AvailablePoints = LevelComp->GetCurrentStatPointsAmount();
+	LevelComp->SetStatPoints(UsedStatPoints + AvailablePoints);
+	LevelComp->SetUsedStatPoints(0);
+	StatsComp->OnStatsRevertedToDefaultDelegate.Broadcast();
+}
 
 
 float AMainCharacter_Base::GetCurrentDamage() const

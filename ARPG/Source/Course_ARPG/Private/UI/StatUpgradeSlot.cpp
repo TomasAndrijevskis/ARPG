@@ -13,30 +13,29 @@ void UStatUpgradeSlot::NativeConstruct()
 {
 	Super::NativeConstruct();
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-	if (Button_ImproveStat) Button_ImproveStat->OnClicked.AddDynamic(this, &UStatUpgradeSlot::OnClickedImproveStat);
+	if (Button_ImproveStat) Button_ImproveStat->OnClicked.AddDynamic(this, &UStatUpgradeSlot::OnImproveStatClicked);
 }
 
 
-void UStatUpgradeSlot::OnClickedImproveStat()
+void UStatUpgradeSlot::OnImproveStatClicked()
 {
-	ImproveStat(StatValue);
+	ImproveStat();
 	UpdateText(StatName, StatValue);
 }
 
 
-float UStatUpgradeSlot::ImproveStat(const float CurrentValue)
+void UStatUpgradeSlot::ImproveStat()
 {
-	StatValue = CurrentValue;
-	if (!PlayerRef) return StatValue;
+	if (!PlayerRef) return;
 	int Points = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
-	if (Points <= 0) return StatValue;
-	if (Stat == EStats::Strength) StatValue += 5;
+	if (Points <= 0) return;
+	if (Stat == Strength) StatValue += 5;
 	else StatValue += 10;
 	PlayerRef->StatsComp->SetStatValue(Stat, StatValue);
 	Points--;
 	PlayerRef->LevelComp->SetStatPoints(Points);
+	PlayerRef->LevelComp->IncreaseUsedStatPoints();
 	PlayerRef->LevelComp->OnStatPointsUpdateDelegate.Broadcast(Points);
-	return StatValue;
 }
 
 

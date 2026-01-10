@@ -1,10 +1,30 @@
 
 #include "Components/StatsComponent.h"
+#include "Characters/Data/DefaultStatsDataAsset.h"
 #include "Characters/Data/EStats.h"
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_GetArmor.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Interfaces/Fighter.h"
+
+
+void UStatsComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	OnStatUpdateDelegate.AddUniqueDynamic(this, &UStatsComponent::OnStatsUpdated);
+	OnStatsRevertedToDefaultDelegate.AddUObject(this, &UStatsComponent::RevertStatsToDefault);
+}
+
+
+void UStatsComponent::RevertStatsToDefault()
+{
+	if (!DefaultStatsDataAsset) return;
+	for (const auto& Stat : DefaultStatsDataAsset->DefaultStats)
+	{
+		SetStatValue(Stat.Key, Stat.Value);
+	}
+	RestoreStats();
+}
 
 
 void UStatsComponent::ReduceHealth(const float Damage, AActor* Opponent)

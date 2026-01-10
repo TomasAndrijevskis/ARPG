@@ -45,6 +45,12 @@ public:
 	UFUNCTION()
 	float GetXPPercentage() const;
 
+	void SetUsedStatPoints(const int NewUsedStatPoints);
+
+	int GetUsedStatPoints() const;
+
+	void IncreaseUsedStatPoints();
+	
 	UPROPERTY()
 	FOnLevelUpdatedSignature OnLevelUpdatedDelegate;
 
@@ -96,4 +102,6 @@ private:
 	int AbilityUpgradePointsAmountForLevel = 5;
 
 	float RequiredXP;
+
+	int UsedStatPoints = 0;
 };

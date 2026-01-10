@@ -75,6 +75,8 @@ public:
 	bool CanPlayHurtAnimation() const;
 
 	void InterruptHurtAnimation() const;
+
+	void ResetStats();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

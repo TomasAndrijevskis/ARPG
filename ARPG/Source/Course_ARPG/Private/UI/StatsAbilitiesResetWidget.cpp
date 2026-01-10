@@ -1,7 +1,10 @@
 
 #include "UI/StatsAbilitiesResetWidget.h"
 #include "Characters/Player/ARPG_PlayerController.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
+#include "Components/LevelingComponent.h"
+#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
 
@@ -65,7 +68,8 @@ void UStatsAbilitiesResetWidget::HandleResetAbilities()
 
 void UStatsAbilitiesResetWidget::HandleResetStats()
 {
-	UE_LOG(LogTemp, Warning, TEXT("HandleResetStats"));
+	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
+	PlayerRef->ResetStats();
 }
 
 

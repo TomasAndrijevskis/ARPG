@@ -7,22 +7,25 @@
 #include "StatsComponent.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnHealthPercentUpdateSignature, UStatsComponent, OnHealthPercentUpdateDelegate,float, Percentage);
+class UDefaultStatsDataAsset;
+DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnHealthPercentUpdateSignature, UStatsComponent,OnHealthPercentUpdateDelegate, float, Percentage);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStaminaPercentUpdateSignature, UStatsComponent, OnStaminaPercentUpdateDelegate,float, Percentage);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnManaPercentUpdateSignature, UStatsComponent, OnManaPercentUpdateDelegate,float, Percentage);
 DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnArmorUpdateSignature, UStatsComponent, OnArmorUpdateDelegate,float, Amount);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStatUpdateSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnZeroArmorSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnZeroHealthSignature);
-
+DECLARE_MULTICAST_DELEGATE(FOnStatsRevertedToDefaultSignature);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatsComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
+
+	virtual void BeginPlay() override;
 	
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)//for testing
 	void ReduceHealth(const float Damage, AActor* Opponent);
 	
 	UFUNCTION()
@@ -82,6 +85,8 @@ public:
 	UPROPERTY()
 	FOnStatUpdateSignature OnStatUpdateDelegate;
 
+	FOnStatsRevertedToDefaultSignature OnStatsRevertedToDefaultDelegate;
+	
 protected:
 	
 	UFUNCTION()
@@ -92,6 +97,8 @@ protected:
 	
 private:
 
+	void RevertStatsToDefault();
+	
 	UPROPERTY(EditAnywhere)
 	double StaminaRegenRate = 8.0;
 
@@ -112,4 +119,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TMap<TEnumAsByte<EStats>, float> Stats;
+
+	UPROPERTY(EditAnywhere)
+	UDefaultStatsDataAsset* DefaultStatsDataAsset;
 };

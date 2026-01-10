@@ -123,3 +123,21 @@ float ULevelingComponent::GetXPPercentage() const
 	return CurrentXP / RequiredXP;
 }
 
+
+void ULevelingComponent::SetUsedStatPoints(const int NewUsedStatPoints)
+{
+	UsedStatPoints = NewUsedStatPoints;
+}
+
+
+int ULevelingComponent::GetUsedStatPoints() const
+{
+	return UsedStatPoints;
+}
+
+
+void ULevelingComponent::IncreaseUsedStatPoints()
+{
+	UsedStatPoints++;
+}
+
