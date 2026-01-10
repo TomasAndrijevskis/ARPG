@@ -87,6 +87,10 @@ public:
 	void SaveUsedStatPoints();
 
 	void LoadUsedStatPoints();
+
+	void SaveUsedAbilityPoints();
+
+	void LoadUsedAbilityPoints();
 	
 	bool bIsFirstLoad;
 	

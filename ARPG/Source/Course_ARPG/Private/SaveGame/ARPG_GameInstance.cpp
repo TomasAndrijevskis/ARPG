@@ -49,6 +49,7 @@ void UARPG_GameInstance::SaveAll()
 	SaveDefeatedBosses();
 	SavePlayerLocation();
 	SaveUsedStatPoints();
+	SaveUsedAbilityPoints();
 	bIsFirstLoad = false;
 }
 
@@ -216,6 +217,23 @@ void UARPG_GameInstance::LoadUsedStatPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	PlayerRef->LevelComp->SetUsedStatPoints(SaveGameInstance->UsedStatPoints);
+}
+
+
+void UARPG_GameInstance::SaveUsedAbilityPoints()
+{
+	if (!PlayerRef || !SaveGameInstance) return;
+	SaveGameInstance->UsedAbilityPoints = PlayerRef->GetUsedAbilityPoints();
+	UE_LOG(LogTemp, Warning, TEXT("UsedAbilityPoints: %i"),SaveGameInstance->UsedAbilityPoints);
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadUsedAbilityPoints()
+{
+	if (!PlayerRef || !SaveGameInstance) return;
+	PlayerRef->SetUsedAbilityPoints(SaveGameInstance->UsedAbilityPoints);
+	UE_LOG(LogTemp, Warning, TEXT("UsedAbilityPoints: %i"),SaveGameInstance->UsedAbilityPoints);
 }
 
 

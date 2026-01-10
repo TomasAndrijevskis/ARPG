@@ -21,6 +21,8 @@ public:
 	
 	AMainCharacter_Mage();
 
+	virtual bool CanTakeDamage(AActor* Opponent) const override;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbilityComponent_MagicShield* AbilityComp_MagicShield;
 	
@@ -32,8 +34,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbilityComponent_HealingAura* AbilityComp_HealingAura;
-
-	virtual bool CanTakeDamage(AActor* Opponent) const override;
 	
 protected:
 

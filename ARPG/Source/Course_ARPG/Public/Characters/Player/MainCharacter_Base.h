@@ -77,6 +77,14 @@ public:
 	void InterruptHurtAnimation() const;
 
 	void ResetStats();
+
+	virtual void ResetAbilities();
+
+	void IncreaseUsedAbilityPoints(const int UsedPoints);
+
+	void SetUsedAbilityPoints(const int NewUsedPoints);
+
+	int GetUsedAbilityPoints() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -150,4 +158,6 @@ private:
 	bool bCanPlayHurtAnim = true;
 
 	bool bIsInFight = false;
+	
+	int UsedAbilityPoints = 0;
 };

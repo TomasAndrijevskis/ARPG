@@ -154,6 +154,17 @@ void AMainCharacter_Base::ResetStats()
 	StatsComp->OnStatsRevertedToDefaultDelegate.Broadcast();
 }
 
+void AMainCharacter_Base::ResetAbilities()
+{
+	for (auto& Ability : GetAbilitiesArray())
+	{
+		Ability->SetAbilityAvailability(false);
+	}
+	GetPlayerWidget()->ClearAbilityFooterPanel();
+	LevelComp->SetAbilityPoints(LevelComp->GetCurrentAbilityPointsAmount() + GetUsedAbilityPoints());
+	SetUsedAbilityPoints(0);
+}
+
 
 float AMainCharacter_Base::GetCurrentDamage() const
 {
@@ -227,4 +238,22 @@ bool AMainCharacter_Base::CanPlayHurtAnimation() const
 TArray<TEnumAsByte<EStats>> AMainCharacter_Base::GetStatsArray() const
 {
 	return ArrStats;
+}
+
+
+void AMainCharacter_Base::IncreaseUsedAbilityPoints(const int UsedPoints)
+{
+	UsedAbilityPoints += UsedPoints;
+}
+
+
+void AMainCharacter_Base::SetUsedAbilityPoints(const int NewUsedPoints)
+{
+	UsedAbilityPoints = NewUsedPoints;
+}
+
+
+int AMainCharacter_Base::GetUsedAbilityPoints() const
+{
+	return UsedAbilityPoints;
 }

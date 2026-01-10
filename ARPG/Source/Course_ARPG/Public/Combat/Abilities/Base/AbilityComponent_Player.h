@@ -82,7 +82,7 @@ public:
 	virtual void SaveCustomProperties(FAbilityData& Data);
 
 	virtual void LoadCustomProperties(FAbilityData& SavedData);
-
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -137,5 +137,4 @@ private:
 	FString UpgradeDescription;
 	
 	bool bIsAbilityActive = false;
-	
 };

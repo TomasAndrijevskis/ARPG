@@ -63,13 +63,15 @@ void UStatsAbilitiesResetWidget::OnConfirmed()
 void UStatsAbilitiesResetWidget::HandleResetAbilities()
 {
 	UE_LOG(LogTemp, Warning, TEXT("HandleResetAbilities"));
+	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
+		PlayerRef->ResetAbilities();
 }
 
 
 void UStatsAbilitiesResetWidget::HandleResetStats()
 {
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
-	PlayerRef->ResetStats();
+		PlayerRef->ResetStats();
 }
 
 

@@ -105,11 +105,13 @@ void UAbilityComponent_Player::CreateIcon()
 
 void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 {
+	if (!PlayerRef) return;
 	const int PointsRequired = GetRequiredUpgradePoints();
 	if (AvailablePoints >= PointsRequired && PointsRequired > 0)
 	{
 		CurrentLevel++;
 		AvailablePoints -= PointsRequired;
+		PlayerRef->IncreaseUsedAbilityPoints(PointsRequired);
 		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
 		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
 		if (IsAbilityAvailable()) UpdateAbilityProperties();
@@ -167,7 +169,6 @@ void UAbilityComponent_Player::LoadCustomProperties(FAbilityData& SavedData)
 	SetManaCost(SavedData.ManaCost);
 	SetAbilityDuration(SavedData.AbilityDuration);
 }
-
 
 
 bool UAbilityComponent_Player::CanPlayMontage() const

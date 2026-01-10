@@ -123,6 +123,7 @@ void AARPG_PlayerController::HandleGameLoad() const
 		GameInstanceRef->LoadDefeatedBosses();
 		GameInstanceRef->LoadPlayerLocation();
 		GameInstanceRef->LoadUsedStatPoints();
+		GameInstanceRef->LoadUsedAbilityPoints();
 		GameInstanceRef->SetTeleportByDoor(false);
 		GameInstanceRef->SavePlayerLocation();
 	}

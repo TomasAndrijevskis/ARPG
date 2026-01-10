@@ -9,7 +9,9 @@
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_MagicShield.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_Mage.h"
+#include "Components/LevelingComponent.h"
 #include "Components/StatsComponent.h"
+#include "UI/PlayerWidget.h"
 
 
 AMainCharacter_Mage::AMainCharacter_Mage()
