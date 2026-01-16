@@ -3,9 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "SaveGame/AbilityData.h"
 #include "AbilityComponent_DamageIncrease.generated.h"
 
+
+struct FDamageIncreasePropertiesData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbilityComponent_DamageIncrease : public UAbilityComponent_Player
@@ -17,13 +18,7 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	virtual void UpdateAbilityProperties() override;
-
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& Data) override;
-
+	
 	float GetDamageMultiplier() const;
 
 	void SetDamageMultiplier(float NewDamageMultiplier);
@@ -37,6 +32,10 @@ protected:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	FDamageIncreasePropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 
@@ -46,8 +45,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* Particle;
 
-	UPROPERTY(EditAnywhere)
-	float DamageMultiplier = 1.5f;
+	UPROPERTY(VisibleAnywhere)
+	float DamageMultiplier = 0.f;
 
 	UPROPERTY()
 	UParticleSystemComponent* ParticleComp;

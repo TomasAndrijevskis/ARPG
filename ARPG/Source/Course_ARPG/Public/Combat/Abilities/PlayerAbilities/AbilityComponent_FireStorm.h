@@ -7,6 +7,7 @@
 #include "AbilityComponent_FireStorm.generated.h"
 
 
+struct FFireStormPropertiesData;
 class AFireStorm;
 
 UCLASS()
@@ -20,12 +21,6 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 
-	virtual void UpdateAbilityProperties() override;
-
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& Data) override;
-
 	float GetBurnDamage() const;
 	
 	void SetBurnDamage(float NewDamage);
@@ -36,11 +31,17 @@ public:
 	
 protected:
 
+	virtual void BeginPlay() override;
+	
 	virtual void OnAbilityTimerFinished() override;
 	
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	FFireStormPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 	
@@ -53,12 +54,12 @@ private:
 	UPROPERTY()
 	AFireStorm* FireStormRef;
 
-	UPROPERTY(EditAnywhere)
-	float BurnDuration;
+	UPROPERTY(VisibleAnywhere)
+	float BurnDuration = 0.f;
 	
-	UPROPERTY(EditAnywhere)
-	float BurnDamage = 3;
+	UPROPERTY(VisibleAnywhere)
+	float BurnDamage = 0.f;
 
 	UPROPERTY(EditAnywhere)
-	float BurnRate;
+	float BurnRate = .2f;
 };

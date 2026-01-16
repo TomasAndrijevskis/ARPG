@@ -1,22 +1,23 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_FrostBlast.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FrostBlastRange.h"
 #include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "SaveGame/AbilityData.h"
 
 
 void UAbilityComponent_FrostBlast::BeginPlay()
 {
 	Super::BeginPlay();
+	SetAbilityData(0);
 }
 
 
 void UAbilityComponent_FrostBlast::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		HandlePlayerActions(false);
 		SetAbilityActive(true);
@@ -76,40 +77,34 @@ void UAbilityComponent_FrostBlast::UpdateAbilityDescription()
 
 void UAbilityComponent_FrostBlast::UpdateUpgradeDescription()
 {
-	float NextMana = GetManaCost() - (GetManaCost() * .2f);
-	float NextCooldown = GetCooldownDuration() - 1 ;
-	float NextDamage = GetDamage() + (GetDamage() * .4f);
-	float NextSlowDuration = GetSlowDuration() + 1;
-	
+	const FFrostBlastPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nDamage: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nSlow duration: %.2f -> %.2f s"),
-		GetManaCost(), NextMana, GetDamage(), NextDamage, GetCooldownDuration(), NextCooldown, GetSlowDuration(), NextSlowDuration));
+		GetManaCost(), NextLevelData->ManaCost,
+		GetDamage(), NextLevelData->Damage,
+		GetCooldownDuration(), NextLevelData->CooldownDuration,
+		GetSlowDuration(), NextLevelData->SlowDuration));
 }
 
 
-void UAbilityComponent_FrostBlast::UpdateAbilityProperties()
+
+FFrostBlastPropertiesData* UAbilityComponent_FrostBlast::GetAbilityData(const int32 Level)
 {
-	Super::UpdateAbilityProperties();
-	float NewDamage = Damage + (Damage * 0.4f);
-	SetDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
-	SetSlowDuration(GetSlowDuration() + 1);
+	if (!AbilitiesUpgradeDataAsset) return nullptr;
+	if (!AbilitiesUpgradeDataAsset->FrostBlastLevels.IsValidIndex(Level)) return nullptr;
+	return &AbilitiesUpgradeDataAsset->FrostBlastLevels[Level];
 }
 
 
-void UAbilityComponent_FrostBlast::SaveCustomProperties(FAbilityData& Data)
+void UAbilityComponent_FrostBlast::SetAbilityData(const int32 Level)
 {
-	Super::SaveCustomProperties(Data);
-	Data.CustomProperties.Add("SlowDamage", GetDamage());
-	Data.CustomProperties.Add("SlowDuration", GetSlowDuration());
+	const FFrostBlastPropertiesData* Data = GetAbilityData(Level);
+	if (!Data) return;
+	SetDamage(Data->Damage);
+	SetSlowDuration(Data->SlowDuration);
+	SetCommonAbilityProperties(Data);
+	UpdateAbilityDescription();
 }
-
-
-void UAbilityComponent_FrostBlast::LoadCustomProperties(FAbilityData& SavedData)
-{
-	Super::LoadCustomProperties(SavedData);
-	SetDamage(SavedData.CustomProperties.FindRef("SlowDamage"));
-	SetSlowDuration(SavedData.CustomProperties.FindRef("SlowDuration"));
-}
-
 
 
 void UAbilityComponent_FrostBlast::SetDamage(float NewDamage)

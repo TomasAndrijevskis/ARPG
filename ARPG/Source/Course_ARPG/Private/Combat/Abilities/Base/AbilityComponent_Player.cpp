@@ -2,6 +2,7 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Characters/Data/AbilityUpgradeRequirements.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/LevelingComponent.h"
 #include "Components/PlayerActionsComponent.h"
@@ -55,7 +56,7 @@ void UAbilityComponent_Player::HandlePlayerActions(bool bCanDo)
 }
 
 
-bool UAbilityComponent_Player::IsEnoughMana() const 
+bool UAbilityComponent_Player::HasEnoughMana() const 
 {
 	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>()) return false;
 
@@ -109,12 +110,12 @@ void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 	const int PointsRequired = GetRequiredUpgradePoints();
 	if (AvailablePoints >= PointsRequired && PointsRequired > 0)
 	{
-		CurrentLevel++;
+		CurrentAbilityLevel++;
 		AvailablePoints -= PointsRequired;
 		PlayerRef->IncreaseUsedAbilityPoints(PointsRequired);
 		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
 		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
-		if (IsAbilityAvailable()) UpdateAbilityProperties();
+		if (IsAbilityAvailable()) SetAbilityData(CurrentAbilityLevel - 1);
 		else
 		{
 			SetAbilityAvailability(true);
@@ -123,13 +124,6 @@ void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 		UpdateAbilityDescription();
 		UpdateUpgradeDescription();
 	}
-}
-
-
-void UAbilityComponent_Player::UpdateAbilityProperties()
-{
-	SetCooldownDuration(CooldownDuration - 1);
-	SetManaCost(ManaCost - (ManaCost * .2f));
 }
 
 
@@ -151,23 +145,26 @@ bool UAbilityComponent_Player::IsAbilityMaxLevel()
 }
 
 
-void UAbilityComponent_Player::SaveCustomProperties(FAbilityData& Data)
+void UAbilityComponent_Player::SaveAbilityProperties(FAbilityData& Data)
 {
 	Data.bIsUnlocked = IsAbilityAvailable();
 	Data.CurrentLevel = GetCurrentAbilityLevel();
-	Data.AbilityDuration = GetAbilityDuration();
-	Data.CooldownDuration = GetCooldownDuration();
-	Data.ManaCost = GetManaCost();
 }
 
 
-void UAbilityComponent_Player::LoadCustomProperties(FAbilityData& SavedData)
+void UAbilityComponent_Player::LoadAbilityProperties(FAbilityData& SavedData)
 {
 	SetCurrentAbilityLevel(SavedData.CurrentLevel);
 	SetAbilityAvailability(SavedData.bIsUnlocked);
-	SetCooldownDuration(SavedData.CooldownDuration);
-	SetManaCost(SavedData.ManaCost);
-	SetAbilityDuration(SavedData.AbilityDuration);
+	SetAbilityData(CurrentAbilityLevel - 1);
+}
+
+
+void UAbilityComponent_Player::SetCommonAbilityProperties(const FAbilityPropertiesBaseData* Data)
+{
+	SetCooldownDuration(Data->CooldownDuration);
+	SetManaCost(Data->ManaCost);
+	SetAbilityDuration(Data->AbilityDuration);
 }
 
 
@@ -179,13 +176,14 @@ bool UAbilityComponent_Player::CanPlayMontage() const
 
 int UAbilityComponent_Player::GetCurrentAbilityLevel()
 {
-	return CurrentLevel;
+	return CurrentAbilityLevel;
 }
 
 
 void UAbilityComponent_Player::SetCurrentAbilityLevel(const int NewLevel)
 {
-	CurrentLevel = NewLevel;
+	UE_LOG(LogTemp, Warning, TEXT("Current level: %d"), NewLevel);
+	CurrentAbilityLevel = NewLevel;
 }
 
 

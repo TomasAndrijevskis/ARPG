@@ -14,16 +14,4 @@ struct FAbilityData
 
 	UPROPERTY()
 	int32 CurrentLevel = 0;
-
-	UPROPERTY()
-	float ManaCost = 0;
-
-	UPROPERTY()
-	float AbilityDuration = 0;
-
-	UPROPERTY()
-	float CooldownDuration = 0;
-
-	UPROPERTY()
-	TMap<FString, float> CustomProperties;
 };

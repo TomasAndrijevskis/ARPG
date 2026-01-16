@@ -8,6 +8,8 @@
 #include "AbilityComponent_FrostBlast.generated.h"
 
 
+struct FFrostBlastPropertiesData;
+struct FGetArmorPropertiesData;
 class AFrostBlastRange;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -20,12 +22,6 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-	
-	virtual void UpdateAbilityProperties() override;
-
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& SavedData) override;
 
 	void SetDamage(float NewDamage);
 
@@ -42,6 +38,10 @@ protected:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	FFrostBlastPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 
@@ -63,11 +63,11 @@ private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> FrostBlastClass;
 
-	UPROPERTY(EditAnywhere)
-	float Damage;
+	UPROPERTY(VisibleAnywhere)
+	float Damage = 0.f;
 
-	UPROPERTY(EditAnywhere)
-	float SlowDuration;
+	UPROPERTY(VisibleAnywhere)
+	float SlowDuration = 0.f;
 	
 	FVector SocketLocation;
 };

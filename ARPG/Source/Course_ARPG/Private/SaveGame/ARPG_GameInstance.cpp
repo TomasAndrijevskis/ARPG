@@ -13,7 +13,6 @@
 void UARPG_GameInstance::Init()
 {
 	LoadPlayerClass();
-	HandleSaveGame();
 }
 
 
@@ -133,7 +132,7 @@ void UARPG_GameInstance::SaveAbilities()
 	{
 		if (!IsValid(Ability)) continue;
 		FAbilityData Data;
-		Ability->SaveCustomProperties(Data);
+		Ability->SaveAbilityProperties(Data);
 		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
 	}
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
@@ -150,7 +149,7 @@ void UARPG_GameInstance::LoadAbilities()
 		if (SaveGameInstance->UnlockedAbilities.Contains(AbilityName))
 		{
 			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
-			Ability->LoadCustomProperties(SavedData);
+			Ability->LoadAbilityProperties(SavedData);
 		}
 	}
 }
@@ -258,6 +257,7 @@ bool UARPG_GameInstance::CheckSlot(const FString& SlotNameToCheck) const
 void UARPG_GameInstance::SetSlotName(const FString& NewSlotName)
 {
 	SlotName = NewSlotName;
+	HandleSaveGame();
 }
 
 

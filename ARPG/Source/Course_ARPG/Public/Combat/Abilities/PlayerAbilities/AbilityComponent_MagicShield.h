@@ -7,6 +7,7 @@
 #include "AbilityComponent_MagicShield.generated.h"
 
 
+struct FMagicShieldPropertiesData;
 class AMagicShield;
 class USphereComponent;
 class UNiagaraSystem;
@@ -22,12 +23,6 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	virtual void UpdateAbilityProperties() override;
-
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& Data) override;
 	
 protected:
 
@@ -40,6 +35,10 @@ protected:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+	
+	FMagicShieldPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 

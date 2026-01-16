@@ -6,6 +6,8 @@
 #include "AbilityComponent_HealingAura.generated.h"
 
 
+struct FHealingAuraPropertiesData;
+
 UCLASS()
 class COURSE_ARPG_API UAbilityComponent_HealingAura : public UAbilityComponent_Player
 {
@@ -16,12 +18,6 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-	
-	virtual void UpdateAbilityProperties() override;
-
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& SavedData) override;
 
 	float GetHealthRegenAmount() const;
 	
@@ -38,11 +34,15 @@ protected:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	FHealingAuraPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 
-	UPROPERTY(EditAnywhere)
-	float HealthRegenAmount;
+	UPROPERTY(VisibleAnywhere)
+	float HealthRegenAmount = 0.f;
 	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* Particle;

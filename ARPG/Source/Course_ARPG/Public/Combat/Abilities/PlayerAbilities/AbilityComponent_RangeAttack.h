@@ -8,6 +8,8 @@
 #include "AbilityComponent_RangeAttack.generated.h"
 
 
+struct FRangeAttackPropertiesData;
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbilityComponent_RangeAttack : public UAbilityComponent_Player
 {
@@ -18,12 +20,6 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	virtual void UpdateAbilityProperties() override;
-
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& SavedData) override;
 	
 protected:
 
@@ -39,6 +35,10 @@ protected:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	FRangeAttackPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 	
@@ -56,8 +56,8 @@ private:
 	UPROPERTY(EditAnywhere)
 	FName ComponentName; //ProjectileSpawnLocation
 
-	UPROPERTY(EditAnywhere)
-	float ProjectileDamage = 10.0f;
+	UPROPERTY(VisibleAnywhere)
+	float ProjectileDamage = 0.f;
 
 	UPROPERTY(EditAnywhere)
 	float AliveTime = 4.0f;

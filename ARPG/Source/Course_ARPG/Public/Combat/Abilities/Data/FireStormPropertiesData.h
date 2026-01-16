@@ -16,7 +16,4 @@ struct COURSE_ARPG_API FFireStormPropertiesData: public FAbilityPropertiesBaseDa
 	
 	UPROPERTY(EditDefaultsOnly)
 	float BurnDamage = 0;
-
-	UPROPERTY(EditDefaultsOnly)
-	float BurnRate = 0;
 };

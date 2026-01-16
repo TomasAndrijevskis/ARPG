@@ -3,10 +3,12 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
+#include "Combat/Abilities/Data/AbilityPropertiesBaseData.h"
 #include "SaveGame/AbilityData.h"
 #include "AbilityComponent_Player.generated.h"
 
 
+class UAbilitiesUpgradeData;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityUnlockedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityCooldownFinishedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityCooldownChangedSignature, float, TimeLeft);
@@ -76,12 +78,10 @@ public:
 	bool IsAbilityActive() const;
 
 	void SetAbilityActive(const bool NewIsActive);
-	
-	virtual void UpdateAbilityProperties();
 
-	virtual void SaveCustomProperties(FAbilityData& Data);
+	void SaveAbilityProperties(FAbilityData& Data);
 
-	virtual void LoadCustomProperties(FAbilityData& SavedData);
+	void LoadAbilityProperties(FAbilityData& SavedData);
 	
 protected:
 
@@ -93,13 +93,19 @@ protected:
 
 	void HandlePlayerActions(const bool bCanDo);
 
-	bool IsEnoughMana() const;
+	bool HasEnoughMana() const;
 
 	virtual void StartAbilityTimer() override;
 	
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	void SetCommonAbilityProperties(const FAbilityPropertiesBaseData* Data);
+	
+	virtual void SetAbilityData(const int32 Level) {};
+
+	virtual void SetDefaultAbilityData() {};
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* AnimMontage;
@@ -113,18 +119,21 @@ protected:
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
 
+	UPROPERTY(EditAnywhere)
+	UAbilitiesUpgradeData* AbilitiesUpgradeDataAsset;
+	
 private:
 
 	void StartCooldownTimer();
-
-	UPROPERTY(EditAnywhere)
-	float ManaCost;
-
-	UPROPERTY(EditAnywhere)
-	float CooldownDuration = 10.0f;
+	
+	UPROPERTY(VisibleAnywhere)
+	float ManaCost = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	int CurrentLevel = 0;
+	float CooldownDuration = 0.f;
+
+	UPROPERTY(VisibleAnywhere)
+	int CurrentAbilityLevel = 0;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsOnCooldown = false;

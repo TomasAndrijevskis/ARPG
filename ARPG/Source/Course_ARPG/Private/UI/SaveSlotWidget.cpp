@@ -33,7 +33,9 @@ void USaveSlotWidget::SetMapName(const FName& NewMapName)
 
 void USaveSlotWidget::OnButtonClicked()
 {
-	Cast<UARPG_GameInstance>(GetGameInstance())->SetSlotName(SlotName);
+	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
+	if (!GameInstance) return;
+	GameInstance->SetSlotName(SlotName);
 	PlayerController->SetShowMouseCursor(false);
 	FInputModeGameOnly InputMode;
 	PlayerController->SetInputMode(InputMode);

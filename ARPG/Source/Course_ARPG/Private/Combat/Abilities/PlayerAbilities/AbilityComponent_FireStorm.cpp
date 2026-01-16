@@ -1,18 +1,25 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_FireStorm.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FireStorm.h"
 #include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
-#include "SaveGame/AbilityData.h"
+
+
+void UAbilityComponent_FireStorm::BeginPlay()
+{
+	Super::BeginPlay();
+	SetAbilityData(0);
+}
 
 
 void UAbilityComponent_FireStorm::StartAbility()
 {
 	Super::StartAbility();
 	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-	if (IsEnoughMana() && !IsAbilityActive() && !IsOnCooldown())
+	if (HasEnoughMana() && !IsAbilityActive() && !IsOnCooldown())
 	{
 		SetAbilityActive(true);
 		
@@ -81,45 +88,34 @@ void UAbilityComponent_FireStorm::UpdateAbilityDescription()
 
 void UAbilityComponent_FireStorm::UpdateUpgradeDescription()
 {
-	float NextMana = GetManaCost() - (GetManaCost() * .2f);
-	float NextCooldown = GetCooldownDuration() - 1 ;
-	float NextAbilityDuration = GetAbilityDuration() + 1;
-	
-	float NextDamage = GetBurnDamage() + 2;
-	float NextBurnDuration = GetBurnDuration() + 1;
-	
+	const FFireStormPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nBurn damage per tick: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nAbility duration: %.2f -> %.2f s\nBurn duration: %.2f -> %.2f s"),
-		GetManaCost(), NextMana, GetBurnDamage(), NextDamage, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextAbilityDuration, GetBurnDuration(), NextBurnDuration));
-
-	
+		GetManaCost(), NextLevelData->ManaCost,
+		GetBurnDamage(), NextLevelData->BurnDamage,
+		GetCooldownDuration(), NextLevelData->CooldownDuration,
+		GetAbilityDuration(), NextLevelData->AbilityDuration,
+		GetBurnDuration(), NextLevelData->BurnDuration));
 }
 
 
-void UAbilityComponent_FireStorm::UpdateAbilityProperties()
+FFireStormPropertiesData* UAbilityComponent_FireStorm::GetAbilityData(const int32 Level)
 {
-	Super::UpdateAbilityProperties();
-
-	SetAbilityDuration(GetAbilityDuration() + 1);
-	SetBurnDamage(GetBurnDamage() + 2);
-	SetBurnDuration(GetBurnDuration() + 1);
+	if (!AbilitiesUpgradeDataAsset) return nullptr;
+	if (!AbilitiesUpgradeDataAsset->FireStormLevels.IsValidIndex(Level)) return nullptr;
+	return &AbilitiesUpgradeDataAsset->FireStormLevels[Level];
 }
 
 
-void UAbilityComponent_FireStorm::SaveCustomProperties(FAbilityData& Data)
+void UAbilityComponent_FireStorm::SetAbilityData(const int32 Level)
 {
-	Super::SaveCustomProperties(Data);
-	Data.CustomProperties.Add("BurnDuration", GetBurnDuration());
-	Data.CustomProperties.Add("BurnDamage", GetBurnDamage());
+	const FFireStormPropertiesData* Data = GetAbilityData(Level);
+	if (!Data) return;
+	SetBurnDuration(Data->BurnDuration);
+	SetBurnDamage(Data->BurnDamage);
+	SetCommonAbilityProperties(Data);
+	UpdateAbilityDescription();
 }
-
-
-void UAbilityComponent_FireStorm::LoadCustomProperties(FAbilityData& SavedData)
-{
-	Super::LoadCustomProperties(SavedData);
-	SetBurnDuration(SavedData.CustomProperties.FindRef("BurnDuration"));
-	SetBurnDamage(SavedData.CustomProperties.FindRef("BurnDamage"));
-}
-
 
 
 float UAbilityComponent_FireStorm::GetBurnDamage() const

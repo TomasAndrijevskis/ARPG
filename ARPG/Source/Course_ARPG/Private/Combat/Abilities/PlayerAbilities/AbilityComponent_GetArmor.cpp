@@ -2,8 +2,8 @@
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_GetArmor.h"
 #include "Characters/Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Components/StatsComponent.h"
-#include "SaveGame/AbilityData.h"
 #include "UI/PlayerWidget.h"
 
 
@@ -11,13 +11,14 @@ void UAbilityComponent_GetArmor::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
+	SetAbilityData(0);
 }
 
 
 void UAbilityComponent_GetArmor::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		SetAbilityActive(true);
 		HandlePlayerActions(false);
@@ -64,42 +65,33 @@ void UAbilityComponent_GetArmor::UpdateAbilityDescription()
 
 void UAbilityComponent_GetArmor::UpdateUpgradeDescription()
 {
-	
-	float NextMana = GetManaCost() - (GetManaCost() * .2f);
-	float NextCooldown = GetCooldownDuration() - 1;
-	float NextArmor = GetArmor() + (GetArmor() * .4f);
-	float NextDamageReduction = GetDamageReductionPercent() + (GetDamageReductionPercent() * .2f);
-
+	const FGetArmorPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nDamage reduction: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s"),
-		GetManaCost(), NextMana, GetArmor(), NextArmor,  GetDamageReductionPercent() * 100, NextDamageReduction * 100, GetCooldownDuration(), NextCooldown));
+		GetManaCost(), NextLevelData->ManaCost,
+		GetArmor(), NextLevelData->Armor,
+		GetDamageReductionPercent() * 100, NextLevelData->DamageReductionPercent * 100,
+		GetCooldownDuration(), NextLevelData->CooldownDuration));
 }
 
 
-void UAbilityComponent_GetArmor::UpdateAbilityProperties()
+FGetArmorPropertiesData* UAbilityComponent_GetArmor::GetAbilityData(const int32 Level)
 {
-	Super::UpdateAbilityProperties();
-	float NewArmor = GetArmor() + (GetArmor() * .4f);
-	float NewReductionPercent = GetDamageReductionPercent() + (GetDamageReductionPercent() * .2f);
-	SetArmor(FMath::RoundToFloat(NewArmor * 100.0f) / 100.0f);
-	SetDamageReductionPercent(FMath::RoundToFloat(NewReductionPercent * 100.0f) / 100.0f);
+	if (!AbilitiesUpgradeDataAsset) return nullptr;
+	if (!AbilitiesUpgradeDataAsset->GetArmorLevels.IsValidIndex(Level)) return nullptr;
+	return &AbilitiesUpgradeDataAsset->GetArmorLevels[Level];
 }
 
 
-void UAbilityComponent_GetArmor::SaveCustomProperties(FAbilityData& Data) 
+void UAbilityComponent_GetArmor::SetAbilityData(const int32 Level)
 {
-	Super::SaveCustomProperties(Data);
-	Data.CustomProperties.Add("Armor", GetArmor());
-	Data.CustomProperties.Add("DamageReductionPercent", GetDamageReductionPercent());
+	const FGetArmorPropertiesData* Data = GetAbilityData(Level);
+	if (!Data) return;
+	SetArmor(Data->Armor);
+	SetDamageReductionPercent(Data->DamageReductionPercent);
+	SetCommonAbilityProperties(Data);
+	UpdateAbilityDescription();
 }
-
-
-void UAbilityComponent_GetArmor::LoadCustomProperties(FAbilityData& Data)
-{
-	Super::LoadCustomProperties(Data);
-	SetArmor(Data.CustomProperties.FindRef("Armor"));
-	SetDamageReductionPercent(Data.CustomProperties.FindRef("DamageReductionPercent"));
-}
-
 
 
 float UAbilityComponent_GetArmor::GetArmor() const

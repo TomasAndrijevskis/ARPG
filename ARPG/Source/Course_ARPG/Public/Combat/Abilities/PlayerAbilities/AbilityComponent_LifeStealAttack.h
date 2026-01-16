@@ -8,6 +8,7 @@
 #include "AbilityComponent_LifeStealAttack.generated.h"
 
 
+struct FLifeStealAttackPropertiesData;
 class IFighter;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -20,12 +21,6 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	virtual void UpdateAbilityProperties() override;
-
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& Data) override;
 
 	UFUNCTION()
 	float GetStolenHealthAmount() const;
@@ -43,14 +38,18 @@ protected:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	FLifeStealAttackPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 
 	UFUNCTION()
 	void HandleLifeStealOnHit();
 	
-	UPROPERTY(EditAnywhere)
-	float StolenHealthPercent = 0.2f;
+	UPROPERTY(VisibleAnywhere)
+	float StolenHealthPercent = 0.f;
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* Particle;

@@ -63,8 +63,8 @@ protected:
 
 private:
 	
-	UPROPERTY(EditAnywhere)
-	float AbilityDuration = 10.0f;
+	UPROPERTY(VisibleAnywhere)
+	float AbilityDuration = 0.f;
 
 	UPROPERTY(EditAnywhere)
 	UTexture2D* Icon;

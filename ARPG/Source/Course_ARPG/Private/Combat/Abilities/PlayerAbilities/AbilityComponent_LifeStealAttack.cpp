@@ -1,11 +1,11 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_LifeStealAttack.h"
 #include "Characters/Player/MainCharacter_Warrior.h"
+#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Components/StatsComponent.h"
 #include "Components/TraceComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
-#include "SaveGame/AbilityData.h"
 
 
 void UAbilityComponent_LifeStealAttack::BeginPlay()
@@ -13,15 +13,17 @@ void UAbilityComponent_LifeStealAttack::BeginPlay()
 	Super::BeginPlay();
 	FighterRef = Cast<IFighter>(GetOwner());
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	AMainCharacter_Warrior* PlayerWarriorRef = Cast<AMainCharacter_Warrior>(PlayerRef);
+	const AMainCharacter_Warrior* PlayerWarriorRef = Cast<AMainCharacter_Warrior>(PlayerRef);
+	if (!PlayerWarriorRef) return;
 	PlayerWarriorRef->TraceComp->OnHitDelegate.AddDynamic(this, &UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit);
+	SetAbilityData(0);
 }
 
 
 void UAbilityComponent_LifeStealAttack::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
@@ -75,36 +77,32 @@ void UAbilityComponent_LifeStealAttack::UpdateAbilityDescription()
 
 void UAbilityComponent_LifeStealAttack::UpdateUpgradeDescription()
 {
-	float NextMana = GetManaCost() - (GetManaCost() * .2f);
-	float NextCooldown = GetCooldownDuration() - 1 ;
-	float NextDuration = GetAbilityDuration() + 1;
-	float NextStolenHealth = GetStolenHealthPercent() + (GetStolenHealthPercent() * .2f);
+	const FLifeStealAttackPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nStolen health: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
-		GetManaCost(), NextMana, GetStolenHealthPercent() * 100, NextStolenHealth * 100, GetCooldownDuration(), NextCooldown, GetAbilityDuration(), NextDuration));
+		GetManaCost(), NextLevelData->ManaCost,
+		GetStolenHealthPercent() * 100, NextLevelData->StolenHealthPercent * 100,
+		GetCooldownDuration(), NextLevelData->CooldownDuration,
+		GetAbilityDuration(), NextLevelData->AbilityDuration));
 }
 
 
-void UAbilityComponent_LifeStealAttack::UpdateAbilityProperties()
+FLifeStealAttackPropertiesData* UAbilityComponent_LifeStealAttack::GetAbilityData(const int32 Level)
 {
-	Super::UpdateAbilityProperties();
-	float NewStolenHealthPercent = GetStolenHealthPercent() + (GetStolenHealthPercent() * .2f);
-	SetStolenHealthPercent(FMath::RoundToFloat(NewStolenHealthPercent * 100.0f) / 100.0f);
-	SetAbilityDuration(GetAbilityDuration() + 1);
+	if (!AbilitiesUpgradeDataAsset) return nullptr;
+	if (!AbilitiesUpgradeDataAsset->LifeStealAttackLevels.IsValidIndex(Level)) return nullptr;
+	return &AbilitiesUpgradeDataAsset->LifeStealAttackLevels[Level];
 }
 
 
-void UAbilityComponent_LifeStealAttack::SaveCustomProperties(FAbilityData& Data) 
+void UAbilityComponent_LifeStealAttack::SetAbilityData(const int32 Level)
 {
-	Super::SaveCustomProperties(Data);
-	Data.CustomProperties.Add("SetStolenHealthPercent", GetStolenHealthPercent());
+	const FLifeStealAttackPropertiesData* Data = GetAbilityData(Level);
+	if (!Data) return;
+	SetStolenHealthPercent(Data->StolenHealthPercent);
+	SetCommonAbilityProperties(Data);
+	UpdateAbilityDescription();
 }
-
-void UAbilityComponent_LifeStealAttack::LoadCustomProperties(FAbilityData& Data)
-{
-	Super::LoadCustomProperties(Data);
-	SetStolenHealthPercent(Data.CustomProperties.FindRef("SetStolenHealthPercent"));
-}
-
 
 
 float UAbilityComponent_LifeStealAttack::GetStolenHealthPercent() const
@@ -122,6 +120,5 @@ void UAbilityComponent_LifeStealAttack::SetStolenHealthPercent(const float NewSt
 float UAbilityComponent_LifeStealAttack::GetStolenHealthAmount() const
 {
 	if (!FighterRef) return 0;
-	float CurrentDamage = FighterRef->GetCurrentDamage();
-	return CurrentDamage * StolenHealthPercent;
+	return FighterRef->GetCurrentDamage() * StolenHealthPercent;
 }

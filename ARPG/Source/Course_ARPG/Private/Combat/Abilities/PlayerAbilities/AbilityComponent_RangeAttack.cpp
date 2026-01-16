@@ -1,25 +1,27 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_RangeAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
+#include "Combat/Abilities/Data/RangeAttackPropertiesData.h"
 #include "Combat/Projectiles/RangeAttackProjectile.h"
 #include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
-#include "SaveGame/AbilityData.h"
 
 
 void UAbilityComponent_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityFinishedDelegate.AddDynamic(this,&UAbilityComponent_RangeAttack::SpawnProjectile);
+	SetAbilityData(0);
 }
 
 
 void UAbilityComponent_RangeAttack::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && IsEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		HandlePlayerActions(false);
 		SetAbilityActive(true);
@@ -81,36 +83,31 @@ void UAbilityComponent_RangeAttack::UpdateAbilityDescription()
 
 void UAbilityComponent_RangeAttack::UpdateUpgradeDescription()
 {
-	float NextMana = GetManaCost() - (GetManaCost() * .2f);
-	float NextCooldown = GetCooldownDuration() - 1 ;
-	float NextDamage = GetProjectileDamage() + (GetProjectileDamage() * .5f);
+	const FRangeAttackPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
-		GetManaCost(), NextMana, GetProjectileDamage(), NextDamage, GetCooldownDuration(), NextCooldown));
-	
+		GetManaCost(), NextLevelData->ManaCost,
+		GetProjectileDamage(), NextLevelData->ProjectileDamage,
+		GetCooldownDuration(), NextLevelData->CooldownDuration));
 }
 
 
-void UAbilityComponent_RangeAttack::UpdateAbilityProperties()
+FRangeAttackPropertiesData* UAbilityComponent_RangeAttack::GetAbilityData(const int32 Level)
 {
-	Super::UpdateAbilityProperties();
-	float NewDamage = ProjectileDamage + (ProjectileDamage * 0.5f);
-	SetProjectileDamage(FMath::RoundToFloat(NewDamage * 100.0f) / 100.0f);
+	if (!AbilitiesUpgradeDataAsset) return nullptr;
+	if (!AbilitiesUpgradeDataAsset->RangeAttackLevels.IsValidIndex(Level)) return nullptr;
+	return &AbilitiesUpgradeDataAsset->RangeAttackLevels[Level];
 }
 
 
-void UAbilityComponent_RangeAttack::SaveCustomProperties(FAbilityData& Data) 
+void UAbilityComponent_RangeAttack::SetAbilityData(const int32 Level)
 {
-	Super::SaveCustomProperties(Data);
-	Data.CustomProperties.Add("ProjectileDamage", GetProjectileDamage());
+	const FRangeAttackPropertiesData* Data = GetAbilityData(Level);
+	if (!Data) return;
+	SetProjectileDamage(Data->ProjectileDamage);
+	SetCommonAbilityProperties(Data);
+	UpdateAbilityDescription();
 }
-
-
-void UAbilityComponent_RangeAttack::LoadCustomProperties(FAbilityData& SavedData)
-{
-	Super::LoadCustomProperties(SavedData);
-	SetProjectileDamage(SavedData.CustomProperties.FindRef("ProjectileDamage"));
-}
-
 
 
 float UAbilityComponent_RangeAttack::GetProjectileDamage() const

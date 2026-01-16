@@ -8,6 +8,8 @@
 #include "AbilityComponent_GetArmor.generated.h"
 
 
+struct FGetArmorPropertiesData;
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbilityComponent_GetArmor : public UAbilityComponent_Player
 {
@@ -18,12 +20,6 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	virtual void UpdateAbilityProperties() override;
-	
-	virtual void SaveCustomProperties(FAbilityData& Data) override;
-
-	virtual void LoadCustomProperties(FAbilityData& Data) override;
 
 	float GetArmor() const;
 
@@ -42,6 +38,10 @@ protected:
 	virtual void FinishAbilityCast() override;
 	
 	virtual void CreateIcon() override;
+
+	FGetArmorPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 
@@ -50,9 +50,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	FString Keyword = "Armor";
 	
-	UPROPERTY(EditAnywhere)
-	float Armor = 25.0f;
+	UPROPERTY(VisibleAnywhere)
+	float Armor = 0.f;
 
-	UPROPERTY(EditAnywhere)
-	float DamageReductionPercent = 0.3f;
+	UPROPERTY(VisibleAnywhere)
+	float DamageReductionPercent = 0.f;
 };
