@@ -160,6 +160,15 @@ void UAbilityComponent_Player::LoadAbilityProperties(FAbilityData& SavedData)
 }
 
 
+void UAbilityComponent_Player::ClearAbilityData()
+{
+	SetCurrentAbilityLevel(0);
+	SetAbilityAvailability(false);
+	UpdateAbilityDescription();
+	UpdateUpgradeDescription();
+}
+
+
 void UAbilityComponent_Player::SetCommonAbilityProperties(const FAbilityPropertiesBaseData* Data)
 {
 	SetCooldownDuration(Data->CooldownDuration);

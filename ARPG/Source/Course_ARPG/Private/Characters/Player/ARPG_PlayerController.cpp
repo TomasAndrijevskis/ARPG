@@ -29,6 +29,7 @@ void AARPG_PlayerController::HandleBonfireInteraction()
 {
 	if (!bIsInBonfireRange) return;
 	PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
+	GameInstanceRef->SaveAll();
 	HandleGamePause(true);
 	if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 	{
@@ -58,6 +59,7 @@ void AARPG_PlayerController::HandleMagicalCubeInteraction()
 {
 	if (!bIsInMagicalCubeRange) return;
 	PlayerRef->GetPlayerWidget()->CreateResetWidget();
+	GameInstanceRef->SaveAll();
 	HandleGamePause(true);
 }
 

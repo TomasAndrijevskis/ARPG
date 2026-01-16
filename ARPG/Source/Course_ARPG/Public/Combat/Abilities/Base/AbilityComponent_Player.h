@@ -82,6 +82,8 @@ public:
 	void SaveAbilityProperties(FAbilityData& Data);
 
 	void LoadAbilityProperties(FAbilityData& SavedData);
+
+	void ClearAbilityData();
 	
 protected:
 

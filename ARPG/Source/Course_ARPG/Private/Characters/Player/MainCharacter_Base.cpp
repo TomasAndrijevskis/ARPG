@@ -158,7 +158,7 @@ void AMainCharacter_Base::ResetAbilities()
 {
 	for (auto& Ability : GetAbilitiesArray())
 	{
-		Ability->SetAbilityAvailability(false);
+		Ability->ClearAbilityData();
 	}
 	GetPlayerWidget()->ClearAbilityFooterPanel();
 	LevelComp->SetAbilityPoints(LevelComp->GetCurrentAbilityPointsAmount() + GetUsedAbilityPoints());
