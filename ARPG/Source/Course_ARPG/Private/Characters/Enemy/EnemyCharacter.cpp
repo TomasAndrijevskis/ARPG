@@ -32,9 +32,9 @@ void AEnemyCharacter::BeginPlay()
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter::SetupAI, .1f, false);
 	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>();
-	if (PlayerRef) PlayerRef->StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter::HandlePlayerDeath);
+	if (PlayerRef) PlayerRef->StatsComp->OnZeroHealthDelegate.AddUObject(this, &AEnemyCharacter::HandlePlayerDeath);
 	
-	StatsComp->OnZeroHealthDelegate.AddDynamic(this, &AEnemyCharacter::HandleDeath);
+	StatsComp->OnZeroHealthDelegate.AddUObject(this, &AEnemyCharacter::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter::ReceiveDamage);
 
 	if (BlockingSphere)
@@ -100,7 +100,7 @@ void AEnemyCharacter::GiveRewardXP()
 void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
-	StatsComp->ReduceHealth(Damage, nullptr);
+	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, SafeCauser);
 }
 
 

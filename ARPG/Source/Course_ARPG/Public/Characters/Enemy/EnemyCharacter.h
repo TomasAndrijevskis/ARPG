@@ -9,6 +9,11 @@
 #include "EnemyCharacter.generated.h"
 
 
+class UStatusEffectsComponent;
+class UTraceComponent;
+class UCombatComponent_Enemy;
+class UStatsComponent;
+class UHealthStatsComponent;
 class AMainCharacter_Base;
 class USphereComponent;
 class UBehaviorTree;
@@ -56,16 +61,16 @@ public:
 	void SetInitialState(const TEnumAsByte<EEnemyStates> NewState);
 
 	UPROPERTY(EditAnywhere)
-	class UStatsComponent* StatsComp;
-
+	UStatsComponent* StatsComp;
+	
 	UPROPERTY(EditAnywhere)
-	class UCombatComponent_Enemy* CombatComp;
+	UCombatComponent_Enemy* CombatComp;
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
-	class UTraceComponent* TraceComp;
+	UTraceComponent* TraceComp;
 
 	UPROPERTY(EditAnywhere)
-	class UStatusEffectsComponent* StatusEffectsComp;
+	UStatusEffectsComponent* StatusEffectsComp;
 	
 	FOnEnemyDiedSignature OnEnemyDiedDelegate;
 	

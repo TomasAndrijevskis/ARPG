@@ -65,7 +65,7 @@ void AMinion::CreateHealthWidget()
 		if (HealthBarWidgetRef)
 		{
 			HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
-			StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UMinionHealthBar::SetHealth);
+			StatsComp->OnHealthPercentUpdateDelegate.AddUObject(HealthBarWidgetRef, &UMinionHealthBar::SetHealth);
 		}
 	}
 }

@@ -24,5 +24,5 @@ void ADeathTrigger::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* 
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(OtherActor);
 	if (!PlayerRef) return;
-	PlayerRef->StatsComp->ReduceHealth(PlayerRef->StatsComp->GetStatValue(EStats::MaxHealth), nullptr);
+	PlayerRef->StatsComp->OnReduceHealthRequestDelegate.Broadcast(PlayerRef->StatsComp->GetStatValue(EStats::MaxHealth), PlayerRef, this);
 }

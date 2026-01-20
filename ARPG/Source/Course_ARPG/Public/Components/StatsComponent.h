@@ -1,21 +1,34 @@
 
 #pragma once
 
+#include <tiffio.h>
+
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Characters/Data/EStats.h"
 #include "StatsComponent.generated.h"
 
 
+class UManaManager;
+class UStaminaManager;
+class UHealthManager;
 class UDefaultStatsDataAsset;
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnHealthPercentUpdateSignature, UStatsComponent,OnHealthPercentUpdateDelegate, float, Percentage);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStaminaPercentUpdateSignature, UStatsComponent, OnStaminaPercentUpdateDelegate,float, Percentage);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnManaPercentUpdateSignature, UStatsComponent, OnManaPercentUpdateDelegate,float, Percentage);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnArmorUpdateSignature, UStatsComponent, OnArmorUpdateDelegate,float, Amount);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnStatUpdateSignature);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnZeroArmorSignature);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnZeroHealthSignature);
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthPercentUpdateSignature, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnStaminaPercentUpdateSignature,float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnManaPercentUpdateSignature,float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnArmorUpdateSignature, float);
+DECLARE_MULTICAST_DELEGATE(FOnStatUpdateSignature);
+DECLARE_MULTICAST_DELEGATE(FOnZeroArmorSignature);
+DECLARE_MULTICAST_DELEGATE(FOnZeroHealthSignature);
 DECLARE_MULTICAST_DELEGATE(FOnStatsRevertedToDefaultSignature);
+
+DECLARE_MULTICAST_DELEGATE(FOnRegenStaminaRequestSignature);
+DECLARE_MULTICAST_DELEGATE(FOnRegenManaRequestSignature);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceManaRequestSignature, const float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceStaminaRequestSignature, const float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAddHealthRequestSignature, const float);
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnReduceHealthRequestSignature, const float, AActor*, AActor*);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatsComponent : public UActorComponent
 {
@@ -25,23 +38,8 @@ public:
 
 	virtual void BeginPlay() override;
 	
-	UFUNCTION(BlueprintCallable)//for testing
-	void ReduceHealth(const float Damage, AActor* Opponent);
-	
 	UFUNCTION()
 	float GetReducedDamage(const float Damage, AActor* Opponent);
-
-	UFUNCTION()
-	void ReduceStamina(const float Stamina);
-
-	UFUNCTION()
-	void ReduceMana(const float Mana);
-
-	UFUNCTION()
-	void RegenStamina();
-
-	UFUNCTION()
-	void RegenMana();
 	
 	UFUNCTION()
 	float GetStatPercentage(const EStats Current, const EStats Max) const;
@@ -56,70 +54,74 @@ public:
 	void SetStatValue(const EStats Stat, const float NewValue);
 
 	UFUNCTION()
-	void AddHealth(const float HealthToAdd);
-
-	UFUNCTION()
 	void OnStatsUpdated();
 
 	UFUNCTION()
 	void RestoreStats();
+
+	UFUNCTION(BlueprintCallable)//testing
+	void ReduceHealth(const float Damage);
+
+	UPROPERTY()
+	UHealthManager* HealthManager;
+
+	UPROPERTY()
+	UStaminaManager* StaminaManager;
+
+	UPROPERTY()
+	UManaManager* ManaManager;
 	
-	UPROPERTY()
-	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
-
-	UPROPERTY()
 	FOnStaminaPercentUpdateSignature OnStaminaPercentUpdateDelegate;
-
-	UPROPERTY()
+	
 	FOnManaPercentUpdateSignature OnManaPercentUpdateDelegate;
-
-	UPROPERTY()
-	FOnZeroHealthSignature OnZeroHealthDelegate;
-
-	UPROPERTY()
+	
 	FOnZeroArmorSignature OnZeroArmorDelegate;
-
-	UPROPERTY()
+	
 	FOnArmorUpdateSignature OnArmorUpdateDelegate;
-
-	UPROPERTY()
+	
 	FOnStatUpdateSignature OnStatUpdateDelegate;
 
 	FOnStatsRevertedToDefaultSignature OnStatsRevertedToDefaultDelegate;
-	
-protected:
-	
-	UFUNCTION()
-	void EnableManaRegen();
 
-	UFUNCTION()
-	void EnableStaminaRegen();
+	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
+	
+	FOnZeroHealthSignature OnZeroHealthDelegate;
+
+	FOnRegenStaminaRequestSignature OnRegenStaminaRequestDelegate;
+
+	FOnRegenManaRequestSignature OnRegenManaRequestDelegate;
+
+	FOnReduceManaRequestSignature OnReduceManaRequestDelegate;
+
+	FOnReduceStaminaRequestSignature OnReduceStaminaRequestDelegate;
+	
+	FOnAddHealthRequestSignature OnAddHealthRequestDelegate;
+
+	FOnReduceHealthRequestSignature OnReduceHealthRequestDelegate;
 	
 private:
+	
+	void BindDelegates();
 
+	void SetStatHelpers();
+	
 	void RevertStatsToDefault();
 	
 	UPROPERTY(EditAnywhere)
-	double StaminaRegenRate = 8.0;
-
-	UPROPERTY(EditAnywhere)
-	double ManaRegenRate = 2.0;
-	
-	UPROPERTY(VisibleAnywhere)
-	bool bCanRegenMana = true;
-
-	UPROPERTY(VisibleAnywhere)
-	bool bCanRegenStamina = true;
-
-	UPROPERTY(EditAnywhere)
-	float StaminaDelayDuration = 2.0f;
-
-	UPROPERTY(EditAnywhere)
-	float ManaDelayDuration = 2.0f;
-
-	UPROPERTY(EditAnywhere)
 	TMap<TEnumAsByte<EStats>, float> Stats;
-
+	
 	UPROPERTY(EditAnywhere)
 	UDefaultStatsDataAsset* DefaultStatsDataAsset;
+
+	UPROPERTY(EditDefaultsOnly)
+	double ManaRegenRate = 2.0;
+
+	UPROPERTY(EditDefaultsOnly)
+	float ManaDelayDuration = 2.0f;
+
+	UPROPERTY(EditDefaultsOnly)
+	double StaminaRegenRate = 8.0;
+
+	UPROPERTY(EditDefaultsOnly)
+	float StaminaDelayDuration = 2.0f;
 };

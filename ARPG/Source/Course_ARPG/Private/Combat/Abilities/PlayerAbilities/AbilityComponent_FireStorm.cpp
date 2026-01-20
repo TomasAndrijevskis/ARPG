@@ -24,7 +24,7 @@ void UAbilityComponent_FireStorm::StartAbility()
 		SetAbilityActive(true);
 		
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		PlayerRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::FinishAbilityCast, AnimDuration, false);
 	}

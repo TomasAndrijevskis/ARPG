@@ -6,7 +6,7 @@
 #include "CombatComponent_Base.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam( FOnAttackPerformedSignature, UCombatComponent_Base, OnAttackPerformedDelegate, float, AttackStaminaCost);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttackPerformedSignature, float);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UCombatComponent_Base : public UActorComponent
@@ -20,8 +20,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)//anim instance class
 	void HandleResetAttack();
-
-	UPROPERTY()
+	
 	FOnAttackPerformedSignature OnAttackPerformedDelegate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)

@@ -9,9 +9,6 @@
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_MagicShield.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_Mage.h"
-#include "Components/LevelingComponent.h"
-#include "Components/StatsComponent.h"
-#include "UI/PlayerWidget.h"
 
 
 AMainCharacter_Mage::AMainCharacter_Mage()
@@ -39,7 +36,7 @@ void AMainCharacter_Mage::BeginPlay()
 	AbilityComp_FireStorm->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_HealingAura->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	
-	CombatComp->OnAttackPerformedDelegate.AddDynamic(StatsComp, &UStatsComponent::ReduceMana);
+	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
 	
 	if (GetSkeletalMeshComponent()) SpawnParticles();
 }

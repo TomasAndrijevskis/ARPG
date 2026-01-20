@@ -33,7 +33,7 @@ void UAbilityComponent_LifeStealAttack::StartAbility()
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
 				FVector3d(.5f, .5f, .5f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 		TimerDuration = GetAbilityDuration();
-		PlayerRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::FinishAbilityCast, (AnimDuration + TempDuration), false);
 	}
 }
@@ -63,7 +63,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityTimerFinished()
 void UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit()
 {
 	if (!IsAbilityActive()) return;
-	PlayerRef->StatsComp->AddHealth(GetStolenHealthAmount());
+	PlayerRef->StatsComp->OnAddHealthRequestDelegate.Broadcast(GetStolenHealthAmount());
 }
 
 

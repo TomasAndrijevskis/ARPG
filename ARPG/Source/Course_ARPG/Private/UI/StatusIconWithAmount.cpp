@@ -16,8 +16,8 @@ void UStatusIconWithAmount::InitializeWidget(const float Amount, UTexture2D* Ima
 	StatsCompRef = NewStatsCompRef;
 	SetAmount(Amount);
 	SetStatusIcon(Image, ImageSize);
-	StatsCompRef->OnZeroArmorDelegate.AddDynamic(this, &UStatusIconWithAmount::RemoveWidget);
-	StatsCompRef->OnArmorUpdateDelegate.AddDynamic(this, &UStatusIconWithAmount::SetAmount);
+	StatsCompRef->OnZeroArmorDelegate.AddUObject(this, &UStatusIconWithAmount::RemoveWidget);
+	StatsCompRef->OnArmorUpdateDelegate.AddUObject(this, &UStatusIconWithAmount::SetAmount);
 }
 
 

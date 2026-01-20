@@ -60,7 +60,7 @@ void UAbilityComponent_FrostBlast::CompleteAbility()
 	if (InitialBlast)
 		UGameplayStatics::SpawnEmitterAttached(InitialBlast, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(1, 1, 1),EAttachLocation::KeepWorldPosition,true, EPSCPoolMethod::None, true);
-	PlayerRef->StatsComp->ReduceMana(GetManaCost());
+	PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
 	HandlePlayerActions(true);
 	SetAbilityActive(false);
 	StartCooldown();

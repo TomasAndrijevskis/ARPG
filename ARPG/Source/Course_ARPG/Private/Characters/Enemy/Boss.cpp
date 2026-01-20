@@ -26,8 +26,8 @@ void ABoss::CreateHealthWidget()
 		HealthBarWidgetRef->AddToViewport();
 		HealthBarWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
 		HealthBarWidgetRef->SetBossName(GetBossName());
-		StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(HealthBarWidgetRef, &UBossHealthBar::SetHealth);
-		StatsComp->OnHealthPercentUpdateDelegate.AddDynamic(this, &ABoss::CheckSecondPhase);
+		StatsComp->OnHealthPercentUpdateDelegate.AddUObject(HealthBarWidgetRef, &UBossHealthBar::SetHealth);
+		StatsComp->OnHealthPercentUpdateDelegate.AddUObject(this, &ABoss::CheckSecondPhase);
 	}
 }
 

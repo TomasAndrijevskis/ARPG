@@ -41,13 +41,13 @@ void AMainCharacter_Base::BeginPlay()
 	CreatePlayerWidget();
 	
 	LockonComp->OnUpdatedTargetDelegate.AddUniqueDynamic(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
-	PlayerActionsComp->OnSprintDelegate.AddUniqueDynamic(StatsComp, &UStatsComponent::ReduceStamina);
-	PlayerActionsComp->OnRollDelegate.AddUniqueDynamic(StatsComp, &UStatsComponent::ReduceStamina);
-	StatsComp->OnHealthPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetHealth);
-	StatsComp->OnManaPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetMana);
-	StatsComp->OnStaminaPercentUpdateDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetStamina);
-	StatsComp->OnZeroHealthDelegate.AddUniqueDynamic(this, &AMainCharacter_Base::HandleDeath);
-	StatsComp->OnStatUpdateDelegate.AddUniqueDynamic(GameInstance, &UARPG_GameInstance::SaveStats);
+	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+	PlayerActionsComp->OnRollDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+	StatsComp->OnHealthPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetHealth);
+	StatsComp->OnManaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetMana);
+	StatsComp->OnStaminaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetStamina);
+	StatsComp->OnZeroHealthDelegate.AddUObject(this, &AMainCharacter_Base::HandleDeath);
+	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SaveStats);
 	LevelComp->OnXpUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnLevelUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
@@ -60,9 +60,8 @@ void AMainCharacter_Base::BeginPlay()
 void AMainCharacter_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	StatsComp->RegenStamina();
-	StatsComp->RegenMana();
+	StatsComp->OnRegenStaminaRequestDelegate.Broadcast();
+	StatsComp->OnRegenManaRequestDelegate.Broadcast();
 }
 
 
@@ -89,7 +88,8 @@ void AMainCharacter_Base::CreatePlayerWidget()
 
 void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
-	StatsComp->ReduceHealth(StatsComp->GetReducedDamage(Damage, DamageCauser), DamageCauser);
+	const float ReducedDamage = StatsComp->GetReducedDamage(Damage, DamageCauser);
+	StatsComp->OnReduceHealthRequestDelegate.Broadcast(ReducedDamage,this, DamageCauser);
 	PlayHurtAnimation();
 }
 
@@ -163,6 +163,24 @@ void AMainCharacter_Base::ResetAbilities()
 	GetPlayerWidget()->ClearAbilityFooterPanel();
 	LevelComp->SetAbilityPoints(LevelComp->GetCurrentAbilityPointsAmount() + GetUsedAbilityPoints());
 	SetUsedAbilityPoints(0);
+}
+
+
+void AMainCharacter_Base::ReduceStamina(const float Stamina)
+{
+	StatsComp->OnReduceStaminaRequestDelegate.Broadcast(Stamina);
+}
+
+
+void AMainCharacter_Base::ReduceMana(const float Mana)
+{
+	StatsComp->OnReduceManaRequestDelegate.Broadcast(Mana);
+}
+
+
+void AMainCharacter_Base::ReduceHealth(const float Damage, AActor* Opponent)
+{
+	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, Opponent);
 }
 
 

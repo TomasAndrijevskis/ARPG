@@ -33,7 +33,7 @@ void UAbilityComponent_DamageIncrease::StartAbility()
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 		
-		PlayerRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::FinishAbilityCast, (AnimDuration+tempDuration), false);
 	}
 }

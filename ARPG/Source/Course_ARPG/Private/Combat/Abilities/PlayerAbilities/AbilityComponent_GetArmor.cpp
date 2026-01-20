@@ -26,7 +26,7 @@ void UAbilityComponent_GetArmor::StartAbility()
 		PlayerRef->StatsComp->SetStatValue(EStats::MaxArmor, Armor);
 		PlayerRef->StatsComp->SetStatValue(EStats::Armor, Armor);
 		OnAbilityStartedDelegate.Broadcast();
-		PlayerRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::FinishAbilityCast, AnimDuration, false);
 	}
 }

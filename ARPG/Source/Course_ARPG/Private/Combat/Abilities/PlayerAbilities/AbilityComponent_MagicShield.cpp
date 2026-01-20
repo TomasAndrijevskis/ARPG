@@ -22,7 +22,7 @@ void UAbilityComponent_MagicShield::StartAbility()
 		SetAbilityActive(true);
 		TimerDuration = GetAbilityDuration();
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		PlayerRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::FinishAbilityCast, AnimDuration, false);
 	}
 }

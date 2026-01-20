@@ -10,8 +10,8 @@ class IMainPlayer;
 class AMainCharacter_Base;
 class UCharacterMovementComponent;
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam( FOnSprintSignature, UPlayerActionsComponent, OnSprintDelegate, float, SprintStaminaCost);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam( FOnRollSignature, UPlayerActionsComponent, OnRollDelegate, float, RollStaminaCost);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnSprintSignature, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnRollSignature, float);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UPlayerActionsComponent : public UActorComponent
@@ -35,10 +35,8 @@ public:
 
 	bool IsRollActive() const;
 	
-	UPROPERTY()
 	FOnSprintSignature OnSprintDelegate;
-
-	UPROPERTY()
+	
 	FOnRollSignature OnRollDelegate;
 
 	UPROPERTY(EditAnywhere)

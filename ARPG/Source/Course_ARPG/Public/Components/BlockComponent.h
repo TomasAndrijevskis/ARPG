@@ -6,7 +6,7 @@
 #include "BlockComponent.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnBlockSignature, UBlockComponent, OnBlockDelegate, float, Cost);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnBlockSignature, float);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UBlockComponent : public UActorComponent
 {
@@ -15,8 +15,7 @@ class COURSE_ARPG_API UBlockComponent : public UActorComponent
 public:	
 	
 	bool CanBlock(const AActor* Opponent);
-
-	UPROPERTY()
+	
 	FOnBlockSignature OnBlockDelegate;
 
 private:

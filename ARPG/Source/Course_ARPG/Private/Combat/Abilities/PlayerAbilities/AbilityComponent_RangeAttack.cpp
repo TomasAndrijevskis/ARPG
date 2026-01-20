@@ -30,7 +30,7 @@ void UAbilityComponent_RangeAttack::StartAbility()
 		const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 		ParticleComponent = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
-		PlayerRef->StatsComp->ReduceMana(GetManaCost());
+		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::FinishAbilityCast, AnimDuration/2, false);
 	}
 }

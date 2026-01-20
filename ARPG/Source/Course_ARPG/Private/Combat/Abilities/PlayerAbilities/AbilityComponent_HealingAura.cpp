@@ -45,7 +45,7 @@ void UAbilityComponent_HealingAura::FinishAbilityCast()
 void UAbilityComponent_HealingAura::StartAbilityTimer()
 {
 	Super::StartAbilityTimer();
-	if (TimerDuration > 0) PlayerRef->StatsComp->AddHealth(HealthRegenAmount);
+	if (TimerDuration > 0) PlayerRef->StatsComp->OnAddHealthRequestDelegate.Broadcast(HealthRegenAmount);
 }
 
 
@@ -64,7 +64,7 @@ void UAbilityComponent_HealingAura::OnAbilityTimerFinished()
 void UAbilityComponent_HealingAura::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon healing aura\nwhich will restore\nyour health"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per tick: %.2f"),
+	"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per second: %.2f"),
 	GetCurrentAbilityLevel(), GetManaCost(), GetAbilityDuration(), GetCooldownDuration(), GetHealthRegenAmount()));
 }
 

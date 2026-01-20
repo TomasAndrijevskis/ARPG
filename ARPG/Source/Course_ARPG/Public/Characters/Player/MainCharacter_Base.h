@@ -9,6 +9,8 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UStaminaStatsComponent;
+class UHealthStatsComponent;
 class UAbilityComponent_Player;
 class UARPG_GameInstance;
 class UPlayerWidget;
@@ -85,6 +87,16 @@ public:
 	void SetUsedAbilityPoints(const int NewUsedPoints);
 
 	int GetUsedAbilityPoints() const;
+
+	UFUNCTION()
+	void ReduceStamina(const float Stamina);
+
+	UFUNCTION()
+	void ReduceMana(const float Mana);
+	
+	void ReduceHealth(const float Damage, AActor* Opponent);
+
+	TArray<TEnumAsByte<EStats>> GetStatsArray() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -106,8 +118,6 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatusEffectsComponent* StatusEffectsComp;
-	
-	TArray<TEnumAsByte<EStats>> GetStatsArray() const;
 
 	UPROPERTY(BlueprintReadOnly)
 	UPlayerAnimInstance* PlayerAnimInstance;
