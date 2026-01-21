@@ -91,6 +91,8 @@ public:
 	void SaveUsedAbilityPoints();
 
 	void LoadUsedAbilityPoints();
+
+	void HandleGameLoad();
 	
 	bool bIsFirstLoad;
 	

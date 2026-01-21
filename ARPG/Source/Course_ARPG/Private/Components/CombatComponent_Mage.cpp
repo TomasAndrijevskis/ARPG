@@ -34,13 +34,10 @@ void UCombatComponent_Mage::SpawnProjectile()
 
 	USceneComponent* SpawnPointComp = Cast<USceneComponent>(GetOwner()->GetDefaultSubobjectByName(ComponentName));
 	if (!SpawnPointComp) return;
-
-	FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
-	
-	FVector ForwardDirection = GetOwner()->GetActorForwardVector();
-	FVector TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
-
-	FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
+	const FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
+	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
+	const FVector TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
+	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClasses[ProjectileCounter], SpawnLocation, SpawnRotation);
 	if (!Projectile) return;

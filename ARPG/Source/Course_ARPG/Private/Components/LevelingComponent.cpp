@@ -140,4 +140,3 @@ void ULevelingComponent::IncreaseUsedStatPoints()
 {
 	UsedStatPoints++;
 }
-

@@ -9,8 +9,8 @@ void UPoisonExplosionComponent::SpawnArea()
 {
 	if (PoisonAreaClass)
 	{
-		FVector SpawnLocation = GetOwner()->GetActorLocation();
-		FRotator SpawnRotation = FRotator::ZeroRotator;
+		const FVector SpawnLocation = GetOwner()->GetActorLocation();
+		const FRotator SpawnRotation = FRotator::ZeroRotator;
 		FActorSpawnParameters Params;
 		Params.Owner = GetOwner();
 		PoisonAreaRef = GetWorld()->SpawnActor<APoisonExplosionArea>(PoisonAreaClass, SpawnLocation, SpawnRotation, Params);
@@ -24,12 +24,11 @@ void UPoisonExplosionComponent::SpawnExplosion() const
 {
 	if (ExplosionEndEffect)
 	{
-		FVector SpawnLocation = GetOwner()->GetActorLocation();
-		FRotator SpawnRotation = FRotator::ZeroRotator;
+		const FVector SpawnLocation = GetOwner()->GetActorLocation();
+		const FRotator SpawnRotation = FRotator::ZeroRotator;
 		FActorSpawnParameters Params;
 		Params.Owner = GetOwner();
 		UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionEndEffect, SpawnLocation, SpawnRotation, FVector(2, 2, 2), true);
 		PoisonAreaRef->OnExplosionTriggeredDelegate.Broadcast();
 	}
 }
-

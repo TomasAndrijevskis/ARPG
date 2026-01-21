@@ -3,7 +3,6 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/Button.h"
-#include "Components/LevelingComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/DescriptionWidget.h"
 
@@ -108,7 +107,7 @@ void UAbilityUpgradeSlotWidget::SetRequiredPointsText()
 void UAbilityUpgradeSlotWidget::UpgradeAbility()
 {
 	if (!PlayerRef) return;
-	int AvailablePoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
+	int AvailablePoints = PlayerRef->GetCurrentAbilityPointsAmount();
 	if (AvailablePoints <= 0) return;
 	AbilityComp_Ref->UpgradeAbility(AvailablePoints);
 	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
@@ -176,4 +175,3 @@ void UAbilityUpgradeSlotWidget::RemoveUpgradeDescriptionWidget()
 {
 	RemoveDescriptionWidget();
 }
-

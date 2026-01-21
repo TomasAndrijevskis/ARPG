@@ -3,9 +3,7 @@
 #include "Characters/Data/AbilityUpgradeRequirements.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
-#include "Components/CombatComponent_Base.h"
 #include "Components/LevelingComponent.h"
-#include "Components/PlayerActionsComponent.h"
 #include "SaveGame/AbilityData.h"
 #include "UI/PlayerWidget.h"
 
@@ -13,10 +11,9 @@
 void UAbilityComponent_Player::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	if (CurrentAbilityLevel == 0) SetAbilityData(0);
 	PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
 	SkeletalMeshComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
-
 	UpdateAbilityDescription();
 	UpdateUpgradeDescription();
 }
@@ -49,20 +46,18 @@ void UAbilityComponent_Player::StartCooldownTimer()
 }
 
 
-void UAbilityComponent_Player::HandlePlayerActions(bool bCanDo)
+void UAbilityComponent_Player::HandlePlayerActions(const bool bCanDo)
 {
-	PlayerRef->CombatComp->bCanAttack = bCanDo;
-	PlayerRef->PlayerActionsComp->SetCanRoll(bCanDo);
+	PlayerRef->SetCanAttack(bCanDo);
+	PlayerRef->SetCanRoll(bCanDo);
 }
 
 
 bool UAbilityComponent_Player::HasEnoughMana() const 
 {
 	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>()) return false;
-
 	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(PlayerRef);
 	if (!IPlayerRef) return false;
-	
 	return IPlayerRef->HasEnoughMana(ManaCost);
 }
 
@@ -152,7 +147,7 @@ void UAbilityComponent_Player::SaveAbilityProperties(FAbilityData& Data)
 }
 
 
-void UAbilityComponent_Player::LoadAbilityProperties(FAbilityData& SavedData)
+void UAbilityComponent_Player::LoadAbilityProperties(const FAbilityData& SavedData)
 {
 	SetCurrentAbilityLevel(SavedData.CurrentLevel);
 	SetAbilityAvailability(SavedData.bIsUnlocked);

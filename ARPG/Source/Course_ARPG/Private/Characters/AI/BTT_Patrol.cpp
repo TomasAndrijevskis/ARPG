@@ -18,7 +18,9 @@ UBTT_Patrol::UBTT_Patrol()
 EBTNodeResult::Type UBTT_Patrol::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
+	if (!CharacterRef) return EBTNodeResult::Failed;
 	StartLocation = OwnerComp.GetBlackboardComponent()->GetValueAsVector(TEXT("StartLocation"));
 	PatrolForward();
 	return EBTNodeResult::InProgress;
@@ -27,7 +29,7 @@ EBTNodeResult::Type UBTT_Patrol::ExecuteTask(UBehaviorTreeComponent& OwnerComp, 
 
 void UBTT_Patrol::PatrolForward()
 {
-	if (!ControllerRef) return;
+	if (!ControllerRef || !CharacterRef) return;
 	bool bIsPatrolling = ControllerRef->GetBlackboardComponent()->GetValueAsBool(TEXT("IsPatrolling"));
 	if (!bIsPatrolling) return;
 	FVector ForwardDirection = CharacterRef->GetActorForwardVector();
@@ -53,6 +55,7 @@ void UBTT_Patrol::PatrolBackward()
 
 void UBTT_Patrol::DelayPatrol(const FVector& TargetLocation, const bool bDirectionForward) const
 {
+	if (!ControllerRef) return;
 	ControllerRef->GetBlackboardComponent()->SetValueAsVector(TEXT("TargetLocation"), TargetLocation);
 	FAIMoveRequest MoveRequest = TargetLocation;
 	MoveRequest.SetUsePathfinding(true);
@@ -72,7 +75,7 @@ void UBTT_Patrol::DelayPatrol(const FVector& TargetLocation, const bool bDirecti
 
 EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	if (IsValid(ControllerRef))
+	if (ControllerRef)
 	{
 		ControllerRef->StopMovement();
 		ControllerRef->ReceiveMoveCompleted.Remove(MoveBackwardDelegate);
@@ -93,4 +96,3 @@ float UBTT_Patrol::GetRandomPatrolDistance() const
 {
 	return FMath::RandRange(MinPatrolDistance, MaxPatrolDistance);
 }
-

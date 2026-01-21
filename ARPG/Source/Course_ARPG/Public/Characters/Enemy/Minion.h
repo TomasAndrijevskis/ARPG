@@ -6,6 +6,7 @@
 #include "Minion.generated.h"
 
 
+class UMinionHealthBar;
 class UWidgetComponent;
 
 UCLASS()

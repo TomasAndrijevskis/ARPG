@@ -68,5 +68,3 @@ void UQuickTravelButton::EnablePlayerInput()
 {
 	PlayerController->OnPlayerInputEnabledChangedDelegate.Broadcast(true);
 }
-
-

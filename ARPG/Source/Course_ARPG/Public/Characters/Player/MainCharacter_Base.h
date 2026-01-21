@@ -9,6 +9,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+struct FPlayerPersistentStats;
 class UStaminaStatsComponent;
 class UHealthStatsComponent;
 class UAbilityComponent_Player;
@@ -24,7 +25,9 @@ class ULevelingComponent;
 class UStatusEffectsComponent;
 class UPlayerAnimInstance;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBonfireInteractionFinishedSignature);
+DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinishedSignature);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnStatPointsAmountChangedSignature, const int);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsAmountChangeSignature, const int);
 
 UCLASS(Blueprintable)
 class COURSE_ARPG_API AMainCharacter_Base : public ACharacter, public IMainPlayer, public IFighter
@@ -80,7 +83,7 @@ public:
 
 	void ResetStats();
 
-	virtual void ResetAbilities();
+	void ResetAbilities();
 
 	void IncreaseUsedAbilityPoints(const int UsedPoints);
 
@@ -96,6 +99,36 @@ public:
 	
 	void ReduceHealth(const float Damage, AActor* Opponent);
 
+	void Heal(const float Health);
+	
+	void AddXP(const float NewXP);
+
+	bool IsPlayerLockedOnEnemy() const;
+
+	void EndPlayerLockOnEnemy();
+
+	void SetCanAttack(const bool bCanAttack);
+
+	void SetCanRoll(const bool bCanRoll);
+
+	int GetCurrentStatPointsAmount() const;
+	
+	int GetCurrentAbilityPointsAmount() const;
+
+	int GetUsedStatPoints() const;
+
+	void SetUsedStatPoints(int UsedStatPoints);
+	
+	void ApplyPersistentStats(const FPlayerPersistentStats& Data);
+
+	void UpgradeStat(const TEnumAsByte<EStats> Stat) const;
+
+	void FillStatDisplayData(FString& StatName, float& StatValue, const EStats& StatToImprove) const;
+
+	float GetPlayerMaxHealth() const;
+	
+	FPlayerPersistentStats SavePersistentStats() const;
+	
 	TArray<TEnumAsByte<EStats>> GetStatsArray() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
@@ -123,7 +156,11 @@ public:
 	UPlayerAnimInstance* PlayerAnimInstance;
 
 	FOnBonfireInteractionFinishedSignature FOnBonfireInteractionFinishedDelegate;
+
+	FOnStatPointsAmountChangedSignature OnStatPointsAmountChangedDelegate;
 	
+	FOnAbilityPointsAmountChangeSignature OnAbilityPointsAmountChangeDelegate;
+
 protected:
 
 	virtual void BeginPlay() override;
@@ -144,6 +181,12 @@ private:
 	
 	UFUNCTION()
 	void CreatePlayerWidget();
+
+	UFUNCTION()
+	void HandleStatPointsAmountChange(const int NewPoints);
+
+	UFUNCTION()
+	void HandleAbilityPointsAmountChange(const int NewPoints);
 	
 	UPROPERTY()
 	UPlayerWidget* PlayerWidgetRef;

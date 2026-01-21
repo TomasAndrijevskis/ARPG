@@ -21,8 +21,11 @@ UBTT_ChargeAttack::UBTT_ChargeAttack()
 EBTNodeResult::Type UBTT_ChargeAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
+	if (!CharacterRef) return EBTNodeResult::Failed;
 	BossAnimInstance = Cast<UAnimInstance_Base>(CharacterRef->GetMesh()->GetAnimInstance());
+	if (!BossAnimInstance) return EBTNodeResult::Failed;
 	Cast<UAnimInstance_Grux>(BossAnimInstance)->SetIsCharging(true);
 	OwnerComp.GetBlackboardComponent()->SetValueAsBool(TEXT("IsReadyToCharge"), false);
 	bIsFinished = false;
@@ -33,12 +36,14 @@ EBTNodeResult::Type UBTT_ChargeAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 void UBTT_ChargeAttack::ChargeAtPlayer()
 {
 	APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
-	FVector PlayerLocation = PlayerRef->GetActorLocation();
+	if (!PlayerRef) return;
+	const FVector PlayerLocation = PlayerRef->GetActorLocation();
 	
 	FAIMoveRequest MoveRequest = PlayerLocation;
 	MoveRequest.SetUsePathfinding(true);
 	MoveRequest.SetAcceptanceRadius(AcceptableRadius);
 
+	if (!ControllerRef || !CharacterRef) return;
 	ControllerRef->MoveTo(MoveRequest);
 	ControllerRef->SetFocus(PlayerRef);
 
@@ -51,6 +56,7 @@ void UBTT_ChargeAttack::ChargeAtPlayer()
 
 void UBTT_ChargeAttack::HandleMoveCompleted()
 {
+	if (!CharacterRef) return;
 	Cast<UAnimInstance_Grux>(BossAnimInstance)->SetIsCharging(false);
 	FTimerHandle AttackTimerHandle;
 	CharacterRef->GetWorldTimerManager().SetTimer(AttackTimerHandle, this, &UBTT_ChargeAttack::FinishAttackTask, 1.0f, false);
@@ -61,7 +67,6 @@ void UBTT_ChargeAttack::HandleMoveCompleted()
 void UBTT_ChargeAttack::FinishAttackTask()
 {
 	bIsFinished = true;
-	UE_LOG(LogTemp, Warning, TEXT("Task finished"));
 }
 
 
@@ -74,6 +79,7 @@ void UBTT_ChargeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 	}
 	if (!bIsFinished) return;
 	OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Melee);
+	if (!ControllerRef) return;
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveCompletedDelegate);
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 }
@@ -81,6 +87,6 @@ void UBTT_ChargeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeM
 
 EBTNodeResult::Type UBTT_ChargeAttack::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	ControllerRef->StopMovement();
+	if (ControllerRef) ControllerRef->StopMovement();
 	return Super::AbortTask(OwnerComp, NodeMemory);
 }

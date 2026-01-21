@@ -63,6 +63,3 @@ void AProjectile_Base::StartAliveTimer()
 {
 	GetWorld()->GetTimerManager().SetTimer(AliveTimerHandle, this, &AProjectile_Base::HandleDestruction, AliveTime, false);
 }
-
-
-

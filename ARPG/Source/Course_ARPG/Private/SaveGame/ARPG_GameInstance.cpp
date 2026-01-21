@@ -1,11 +1,10 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Characters/Data/EStats.h"
+#include "Characters/Data/PlayerPersistentStats.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Components/LevelingComponent.h"
-#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -28,6 +27,20 @@ void UARPG_GameInstance::InitializeGameInstance()
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	if (!PlayerRef) return;
 	UE_LOG(LogTemp, Error, TEXT("GameInstance|Init|PlayerClass: %s"), *PlayerRef->GetName());
+}
+
+
+void UARPG_GameInstance::HandleGameLoad()
+{
+	LoadStats();
+	LoadAbilities();
+	LoadBonfires();
+	LoadDefeatedBosses();
+	LoadPlayerLocation();
+	LoadUsedStatPoints();
+	LoadUsedAbilityPoints();
+	SetTeleportByDoor(false);
+	SavePlayerLocation();
 }
 
 
@@ -97,14 +110,18 @@ void UARPG_GameInstance::LoadPlayerClass()
 void UARPG_GameInstance::SaveStats()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->MaxHealth = PlayerRef->StatsComp->GetStatValue(MaxHealth);
-	SaveGameInstance->MaxMana = PlayerRef->StatsComp->GetStatValue(MaxMana);
-	SaveGameInstance->MaxStamina = PlayerRef->StatsComp->GetStatValue(MaxStamina);
-	SaveGameInstance->Strength = PlayerRef->StatsComp->GetStatValue(Strength);
-	SaveGameInstance->CurrentLevel = PlayerRef->LevelComp->GetCurrentLevel();
-	SaveGameInstance->CurrentXP = PlayerRef->LevelComp->GetCurrentXP();
-	SaveGameInstance->CurrentStatPoints = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
-	SaveGameInstance->CurrentAbilityPoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
+	const FPlayerPersistentStats Data = PlayerRef->SavePersistentStats();
+	SaveGameInstance->CurrentHealth = Data.Health;
+	SaveGameInstance->MaxHealth = Data.MaxHealth;
+	SaveGameInstance->CurrentMana = Data.Mana;
+	SaveGameInstance->MaxMana = Data.MaxMana;
+	SaveGameInstance->CurrentStamina = Data.Stamina;
+	SaveGameInstance->MaxStamina = Data.MaxStamina;
+	SaveGameInstance->Strength = Data.Strength;
+	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
+	SaveGameInstance->CurrentXP = Data.CurrentXP;
+	SaveGameInstance->CurrentStatPoints = Data.StatPoints;
+	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -112,16 +129,19 @@ void UARPG_GameInstance::SaveStats()
 void UARPG_GameInstance::LoadStats()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->StatsComp->SetStatValue(Health, SaveGameInstance->MaxHealth);
-	PlayerRef->StatsComp->SetStatValue(MaxHealth, SaveGameInstance->MaxHealth);
-	PlayerRef->StatsComp->SetStatValue(Mana, SaveGameInstance->MaxMana);
-	PlayerRef->StatsComp->SetStatValue(MaxMana, SaveGameInstance->MaxMana);
-	PlayerRef->StatsComp->SetStatValue(Strength, SaveGameInstance->Strength);
-	PlayerRef->StatsComp->SetStatValue(MaxStamina, SaveGameInstance->MaxStamina);
-	PlayerRef->LevelComp->SetLevel(SaveGameInstance->CurrentLevel);
-	PlayerRef->LevelComp->SetXP(SaveGameInstance->CurrentXP);
-	PlayerRef->LevelComp->SetStatPoints(SaveGameInstance->CurrentStatPoints);
-	PlayerRef->LevelComp->SetAbilityPoints(SaveGameInstance->CurrentAbilityPoints);
+	FPlayerPersistentStats Data;
+	Data.Health = SaveGameInstance->CurrentHealth;
+	Data.MaxHealth = SaveGameInstance->MaxHealth;
+	Data.Mana = SaveGameInstance->CurrentMana;
+	Data.MaxMana = SaveGameInstance->MaxMana;
+	Data.Stamina = SaveGameInstance->CurrentStamina;
+	Data.MaxStamina = SaveGameInstance->MaxStamina;
+	Data.Strength = SaveGameInstance->Strength;
+	Data.CurrentLevel = SaveGameInstance->CurrentLevel;
+	Data.CurrentXP = SaveGameInstance->CurrentXP;
+	Data.StatPoints = SaveGameInstance->CurrentStatPoints;
+	Data.AbilityPoints = SaveGameInstance->CurrentAbilityPoints;
+	PlayerRef->ApplyPersistentStats(Data);
 }
 
 
@@ -207,7 +227,7 @@ void UARPG_GameInstance::LoadPlayerLocation()
 void UARPG_GameInstance::SaveUsedStatPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->UsedStatPoints = PlayerRef->LevelComp->GetUsedStatPoints();
+	SaveGameInstance->UsedStatPoints = PlayerRef->GetUsedStatPoints();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -215,7 +235,7 @@ void UARPG_GameInstance::SaveUsedStatPoints()
 void UARPG_GameInstance::LoadUsedStatPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->LevelComp->SetUsedStatPoints(SaveGameInstance->UsedStatPoints);
+	PlayerRef->SetUsedStatPoints(SaveGameInstance->UsedStatPoints);
 }
 
 
@@ -223,7 +243,6 @@ void UARPG_GameInstance::SaveUsedAbilityPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	SaveGameInstance->UsedAbilityPoints = PlayerRef->GetUsedAbilityPoints();
-	UE_LOG(LogTemp, Warning, TEXT("UsedAbilityPoints: %i"),SaveGameInstance->UsedAbilityPoints);
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -232,7 +251,6 @@ void UARPG_GameInstance::LoadUsedAbilityPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	PlayerRef->SetUsedAbilityPoints(SaveGameInstance->UsedAbilityPoints);
-	UE_LOG(LogTemp, Warning, TEXT("UsedAbilityPoints: %i"),SaveGameInstance->UsedAbilityPoints);
 }
 
 

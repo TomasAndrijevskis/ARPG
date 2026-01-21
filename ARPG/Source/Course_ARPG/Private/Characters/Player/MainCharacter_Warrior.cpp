@@ -39,6 +39,7 @@ void AMainCharacter_Warrior::BeginPlay()
 	
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
 	BlockComp->OnBlockDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+	TraceComp->OnHitDelegate.AddUObject(AbilityComp_LifeStealAttack, &UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit);
 }
 
 
@@ -49,4 +50,15 @@ bool AMainCharacter_Warrior::CanTakeDamage(AActor* Opponent) const
 }
 
 
+float AMainCharacter_Warrior::GetDamageMultiplier()
+{
+	if (AbilityComp_DamageIncrease->IsAbilityActive()) return AbilityComp_DamageIncrease->GetDamageMultiplier();
+	return 1.f;
+}
 
+
+void AMainCharacter_Warrior::SetArmor(const int32 Armor)
+{
+	StatsComp->SetStatValue(EStats::Armor, Armor);
+	StatsComp->SetStatValue(EStats::MaxArmor, Armor);
+}

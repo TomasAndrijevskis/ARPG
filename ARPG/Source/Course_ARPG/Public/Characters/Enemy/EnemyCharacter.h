@@ -17,13 +17,12 @@ class UHealthStatsComponent;
 class AMainCharacter_Base;
 class USphereComponent;
 class UBehaviorTree;
-class UMinionHealthBar;
 class UNiagaraComponent;
 class UNiagaraSystem;
 class AAIController;
 class UBlackboardComponent;
 
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnEnemyDiedSignature, AEnemyCharacter, OnEnemyDiedDelegate, AEnemyCharacter*, Enemy);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnEnemyDiedSignature, AEnemyCharacter*);
 UCLASS()
 class COURSE_ARPG_API AEnemyCharacter : public ACharacter, public IEnemy, public IFighter
 {
@@ -60,6 +59,8 @@ public:
 
 	void SetInitialState(const TEnumAsByte<EEnemyStates> NewState);
 
+	void ResetAttack();
+	
 	UPROPERTY(EditAnywhere)
 	UStatsComponent* StatsComp;
 	

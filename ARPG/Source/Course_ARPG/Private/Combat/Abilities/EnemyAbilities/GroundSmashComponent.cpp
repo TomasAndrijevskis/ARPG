@@ -22,8 +22,8 @@ void UGroundSmashComponent::SpawnParticles()
 			FRotator(180, 0, 0), FVector(2,2,2), true);
 	if (GroundSmashAreaClass)
 	{
-		FVector SpawnLocation = GetParticleSpawnLocation(SpawnSocketName);
-		FRotator SpawnRotation = FRotator::ZeroRotator;
+		const FVector SpawnLocation = GetParticleSpawnLocation(SpawnSocketName);
+		const FRotator SpawnRotation = FRotator::ZeroRotator;
 		FActorSpawnParameters Params;
 		Params.Owner = GetOwner();
 		GroundSmashAreaActor = GetWorld()->SpawnActor<AGroundSmashArea>(GroundSmashAreaClass,  SpawnLocation, SpawnRotation, Params);

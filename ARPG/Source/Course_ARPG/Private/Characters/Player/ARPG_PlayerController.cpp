@@ -1,7 +1,6 @@
 
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Components/LockonComponent.h"
 #include "Gamemode/ARPG_GameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
@@ -51,7 +50,7 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
 	if (!GameMode) return;
 	GameMode->SpawnEnemies();
-	if (PlayerRef->LockonComp->IsLocked()) PlayerRef->LockonComp->EndLockon();
+	if (PlayerRef->IsPlayerLockedOnEnemy()) PlayerRef->EndPlayerLockOnEnemy();
 }
 
 
@@ -115,20 +114,8 @@ void AARPG_PlayerController::HandleGameLoad() const
 {
 	if (!GameInstanceRef) return;
 	GameInstanceRef->InitializeGameInstance();
-	FString SlotName = GameInstanceRef->GetSlotName();
-	
-	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad)
-	{
-		GameInstanceRef->LoadStats();
-		GameInstanceRef->LoadAbilities();
-		GameInstanceRef->LoadBonfires();
-		GameInstanceRef->LoadDefeatedBosses();
-		GameInstanceRef->LoadPlayerLocation();
-		GameInstanceRef->LoadUsedStatPoints();
-		GameInstanceRef->LoadUsedAbilityPoints();
-		GameInstanceRef->SetTeleportByDoor(false);
-		GameInstanceRef->SavePlayerLocation();
-	}
+	const FString SlotName = GameInstanceRef->GetSlotName();
+	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad) GameInstanceRef->HandleGameLoad();
 	else GameInstanceRef->SaveAll();
 }
 

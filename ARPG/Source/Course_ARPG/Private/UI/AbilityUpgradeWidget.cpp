@@ -2,7 +2,6 @@
 #include "UI/AbilityUpgradeWidget.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
-#include "Components/LevelingComponent.h"
 #include "Components/VerticalBox.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/AbilityUpgradeSlotWidget.h"
@@ -21,7 +20,7 @@ void UAbilityUpgradeWidget::Init()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
 	if (!PlayerRef) return;
-	const int AvailablePoints = PlayerRef->LevelComp->GetCurrentAbilityPointsAmount();
+	const int AvailablePoints = PlayerRef->GetCurrentAbilityPointsAmount();
 	CreateUpgradeInfoHeader(AvailablePoints);
 	for (const auto& Ability : PlayerRef->GetAbilitiesArray())
 	{

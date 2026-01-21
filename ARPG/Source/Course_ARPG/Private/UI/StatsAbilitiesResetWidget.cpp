@@ -3,8 +3,6 @@
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
-#include "Components/LevelingComponent.h"
-#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
 

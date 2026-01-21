@@ -9,6 +9,7 @@ bool UBlockComponent::CanBlock(const AActor* Opponent)
 	ACharacter* CharacterRef = GetOwner<ACharacter>();
 	if (!CharacterRef->Implements<UMainPlayer>()) return false;
 	IMainPlayer* PlayerRef = Cast<IMainPlayer>(CharacterRef);
+	if (!PlayerRef) return false;
 	FVector OpponentForward = Opponent->GetActorForwardVector();
 	FVector PlayerForward = CharacterRef->GetActorForwardVector();
 	double Result = FVector::DotProduct(OpponentForward, PlayerForward);
@@ -20,4 +21,3 @@ bool UBlockComponent::CanBlock(const AActor* Opponent)
 	}
 	return false;
 }
-

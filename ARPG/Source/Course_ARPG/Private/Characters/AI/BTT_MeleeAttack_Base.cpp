@@ -20,8 +20,9 @@ EBTNodeResult::Type UBTT_MeleeAttack_Base::ExecuteTask(UBehaviorTreeComponent& O
 	CachedNodeMemory = NodeMemory;
 	CachedOwnerComp = &OwnerComp;
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
-
+	if (!FighterRef) return EBTNodeResult::Failed;
 	CheckDistance();
 	return EBTNodeResult::InProgress;
 }
@@ -29,6 +30,7 @@ EBTNodeResult::Type UBTT_MeleeAttack_Base::ExecuteTask(UBehaviorTreeComponent& O
 
 void UBTT_MeleeAttack_Base::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
+	if (!FighterRef || !ControllerRef) return;
 	float Distance = CachedOwnerComp->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 	if (Distance >= FighterRef->GetMeleeRange())
 	{
@@ -45,13 +47,14 @@ void UBTT_MeleeAttack_Base::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 
 EBTNodeResult::Type UBTT_MeleeAttack_Base::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	ControllerRef->StopMovement();
+	if (ControllerRef) ControllerRef->StopMovement();
 	return Super::AbortTask(OwnerComp, NodeMemory);
 }
 
 
 void UBTT_MeleeAttack_Base::Attack()
 {
+	if (!FighterRef || !ControllerRef) return;
 	if (bCanAttack)
 	{
 		bIsAttackFinished = false;
@@ -68,6 +71,11 @@ void UBTT_MeleeAttack_Base::FinishAttack()
 {
 	bIsAttackFinished = true;
 	bCanAttack = true;
+	if (!ControllerRef)
+	{
+		FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Failed);
+		return;
+	}
 	int CurrentHitCount = ControllerRef->GetBlackboardComponent()->GetValueAsInt(TEXT("HitCount"));
 	ControllerRef->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), CurrentHitCount + 1);
 	if (!ControllerRef->GetBlackboardComponent()->GetValueAsBool(TEXT("AttackedOnce")))
@@ -80,7 +88,7 @@ void UBTT_MeleeAttack_Base::FinishAttack()
 
 void UBTT_MeleeAttack_Base::FinishMove() const
 {
-	ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
+	if (ControllerRef) ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }
 
@@ -101,12 +109,12 @@ void UBTT_MeleeAttack_Base::CheckDistance()
 void UBTT_MeleeAttack_Base::MoveToPlayer() const
 {
 	APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
+	if (!PlayerRef || !ControllerRef) return;
 	FAIMoveRequest MoveRequest = PlayerRef;
 	MoveRequest.SetUsePathfinding(true);
 	MoveRequest.SetAcceptanceRadius(AcceptableRadius);
 
 	ControllerRef->ReceiveMoveCompleted.AddUnique(MoveDelegate);
-		
 	ControllerRef->MoveTo(MoveRequest);
 	ControllerRef->SetFocus(PlayerRef);
 }

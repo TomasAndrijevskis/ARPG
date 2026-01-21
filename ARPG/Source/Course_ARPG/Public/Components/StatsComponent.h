@@ -1,8 +1,6 @@
 
 #pragma once
 
-#include <tiffio.h>
-
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "Characters/Data/EStats.h"
@@ -62,6 +60,8 @@ public:
 	UFUNCTION(BlueprintCallable)//testing
 	void ReduceHealth(const float Damage);
 
+	void UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value);
+	
 	UPROPERTY()
 	UHealthManager* HealthManager;
 

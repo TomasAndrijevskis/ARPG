@@ -1,8 +1,12 @@
 
 #include "Characters/Player/MainCharacter_Base.h"
+
+#include "VectorVMExperimental.h"
 #include "Animations/PlayerAnimInstance.h"
 #include "Characters/Data/EStats.h"
+#include "Characters/Data/PlayerPersistentStats.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Components/CombatComponent_Base.h"
 #include "Components/LevelingComponent.h"
 #include "Components/LockonComponent.h"
 #include "Components/PlayerActionsComponent.h"
@@ -40,20 +44,21 @@ void AMainCharacter_Base::BeginPlay()
 
 	CreatePlayerWidget();
 	
-	LockonComp->OnUpdatedTargetDelegate.AddUniqueDynamic(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
-	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
-	PlayerActionsComp->OnRollDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+	LockonComp->OnUpdatedTargetDelegate.AddUObject(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
+	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &ThisClass::ReduceStamina);
+	PlayerActionsComp->OnRollDelegate.AddUObject(this, &ThisClass::ReduceStamina);
 	StatsComp->OnHealthPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetHealth);
 	StatsComp->OnManaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetMana);
 	StatsComp->OnStaminaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetStamina);
-	StatsComp->OnZeroHealthDelegate.AddUObject(this, &AMainCharacter_Base::HandleDeath);
+	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::HandleDeath);
 	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SaveStats);
-	LevelComp->OnXpUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetXP);
-	LevelComp->OnLevelUpdatedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::SetLevel);
-	LevelComp->OnNewLevelDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
-	FOnBonfireInteractionFinishedDelegate.AddDynamic(StatsComp, &UStatsComponent::RestoreStats);
-	
-	OnTakeAnyDamage.AddDynamic(this, &AMainCharacter_Base::ReceiveDamage);
+	LevelComp->OnXpUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetXP);
+	LevelComp->OnLevelUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetLevel);
+	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
+	LevelComp->OnStatPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
+	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
+	FOnBonfireInteractionFinishedDelegate.AddUObject(StatsComp, &UStatsComponent::RestoreStats);
+	OnTakeAnyDamage.AddDynamic(this, &ThisClass::ReceiveDamage);
 }
 
 
@@ -158,6 +163,7 @@ void AMainCharacter_Base::ResetAbilities()
 {
 	for (auto& Ability : GetAbilitiesArray())
 	{
+		if (!IsValid(Ability)) continue;
 		Ability->ClearAbilityData();
 	}
 	GetPlayerWidget()->ClearAbilityFooterPanel();
@@ -181,6 +187,138 @@ void AMainCharacter_Base::ReduceMana(const float Mana)
 void AMainCharacter_Base::ReduceHealth(const float Damage, AActor* Opponent)
 {
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, Opponent);
+}
+
+
+void AMainCharacter_Base::Heal(const float Health)
+{
+	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
+}
+
+
+void AMainCharacter_Base::AddXP(const float NewXP)
+{
+	LevelComp->AddXP(NewXP);
+}
+
+
+bool AMainCharacter_Base::IsPlayerLockedOnEnemy() const
+{
+	return LockonComp->IsLocked();
+}
+
+
+void AMainCharacter_Base::EndPlayerLockOnEnemy()
+{
+	LockonComp->EndLockon();
+}
+
+
+void AMainCharacter_Base::SetCanAttack(const bool bCanAttack)
+{
+	CombatComp->SetCanAttack(bCanAttack);
+}
+
+
+void AMainCharacter_Base::SetCanRoll(const bool bCanRoll)
+{
+	PlayerActionsComp->SetCanRoll(bCanRoll);
+}
+
+
+int AMainCharacter_Base::GetCurrentStatPointsAmount() const
+{
+	return LevelComp->GetCurrentStatPointsAmount();
+}
+
+
+int AMainCharacter_Base::GetCurrentAbilityPointsAmount() const
+{
+	return LevelComp->GetCurrentAbilityPointsAmount();
+}
+
+
+int AMainCharacter_Base::GetUsedStatPoints() const
+{
+	return LevelComp->GetUsedStatPoints();
+}
+
+
+void AMainCharacter_Base::SetUsedStatPoints(int UsedStatPoints)
+{
+	LevelComp->SetUsedStatPoints(UsedStatPoints);
+}
+
+
+void AMainCharacter_Base::ApplyPersistentStats(const FPlayerPersistentStats& Data)
+{
+	StatsComp->SetStatValue(EStats::Health, Data.Health);
+	StatsComp->SetStatValue(EStats::MaxHealth, Data.MaxHealth);
+	StatsComp->SetStatValue(EStats::Mana, Data.Mana);
+	StatsComp->SetStatValue(EStats::MaxMana, Data.MaxMana);
+	StatsComp->SetStatValue(EStats::Stamina, Data.Stamina);
+	StatsComp->SetStatValue(EStats::MaxStamina, Data.MaxStamina);
+	StatsComp->SetStatValue(EStats::Strength, Data.Strength);
+	LevelComp->SetLevel(Data.CurrentLevel);
+	LevelComp->SetXP(Data.CurrentXP);
+	LevelComp->SetAbilityPoints(Data.AbilityPoints);
+	LevelComp->SetStatPoints(Data.StatPoints);
+}
+
+
+void AMainCharacter_Base::UpgradeStat(const TEnumAsByte<EStats> Stat) const
+{
+	int Points = LevelComp->GetCurrentStatPointsAmount();
+	if (Points <= 0) return;
+	if (Stat == Strength) StatsComp->UpgradeStat(Stat, 5);
+	else StatsComp->UpgradeStat(Stat, 10);
+	Points--;
+	LevelComp->SetStatPoints(Points);
+	LevelComp->IncreaseUsedStatPoints();
+	LevelComp->OnStatPointsUpdateDelegate.Broadcast(Points);
+}
+
+
+void AMainCharacter_Base::FillStatDisplayData(FString& StatName, float& StatValue, const EStats& StatToImprove) const
+{
+	StatName = StatsComp->GetStatName(StatToImprove);
+	StatValue = StatsComp->GetStatValue(StatToImprove);
+}
+
+
+float AMainCharacter_Base::GetPlayerMaxHealth() const
+{
+	return StatsComp->GetStatValue(EStats::MaxHealth);
+}
+
+
+FPlayerPersistentStats AMainCharacter_Base::SavePersistentStats() const
+{
+	FPlayerPersistentStats Data;
+	Data.Health = StatsComp->GetStatValue(EStats::Health);
+	Data.MaxHealth = StatsComp->GetStatValue(EStats::MaxHealth);
+	Data.Mana = StatsComp->GetStatValue(EStats::Mana);
+	Data.MaxMana = StatsComp->GetStatValue(EStats::MaxMana);
+	Data.Stamina = StatsComp->GetStatValue(EStats::Stamina);
+	Data.MaxStamina = StatsComp->GetStatValue(EStats::MaxStamina);
+	Data.Strength = StatsComp->GetStatValue(EStats::Strength);
+	Data.CurrentLevel = LevelComp->GetCurrentLevel();
+	Data.CurrentXP = LevelComp->GetCurrentXP();
+	Data.StatPoints = LevelComp->GetCurrentStatPointsAmount();
+	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
+	return Data;
+}
+
+
+void AMainCharacter_Base::HandleStatPointsAmountChange(const int NewPoints)
+{
+	OnStatPointsAmountChangedDelegate.Broadcast(NewPoints);
+}
+
+
+void AMainCharacter_Base::HandleAbilityPointsAmountChange(const int NewPoints)
+{
+	OnAbilityPointsAmountChangeDelegate.Broadcast(NewPoints);	
 }
 
 

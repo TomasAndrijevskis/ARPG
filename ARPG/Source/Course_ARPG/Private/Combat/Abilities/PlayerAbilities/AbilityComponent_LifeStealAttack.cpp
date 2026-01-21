@@ -1,9 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_LifeStealAttack.h"
-#include "Characters/Player/MainCharacter_Warrior.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
-#include "Components/StatsComponent.h"
-#include "Components/TraceComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -13,10 +11,6 @@ void UAbilityComponent_LifeStealAttack::BeginPlay()
 	Super::BeginPlay();
 	FighterRef = Cast<IFighter>(GetOwner());
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	const AMainCharacter_Warrior* PlayerWarriorRef = Cast<AMainCharacter_Warrior>(PlayerRef);
-	if (!PlayerWarriorRef) return;
-	PlayerWarriorRef->TraceComp->OnHitDelegate.AddDynamic(this, &UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit);
-	SetAbilityData(0);
 }
 
 
@@ -33,7 +27,7 @@ void UAbilityComponent_LifeStealAttack::StartAbility()
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
 				FVector3d(.5f, .5f, .5f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 		TimerDuration = GetAbilityDuration();
-		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
+		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_LifeStealAttack::FinishAbilityCast, (AnimDuration + TempDuration), false);
 	}
 }
@@ -63,7 +57,7 @@ void UAbilityComponent_LifeStealAttack::OnAbilityTimerFinished()
 void UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit()
 {
 	if (!IsAbilityActive()) return;
-	PlayerRef->StatsComp->OnAddHealthRequestDelegate.Broadcast(GetStolenHealthAmount());
+	PlayerRef->Heal(GetStolenHealthAmount());
 }
 
 

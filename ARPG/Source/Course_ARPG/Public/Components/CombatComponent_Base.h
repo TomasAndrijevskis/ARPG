@@ -20,6 +20,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)//anim instance class
 	void HandleResetAttack();
+
+	void SetCanAttack(bool CanAttack);
 	
 	FOnAttackPerformedSignature OnAttackPerformedDelegate;
 

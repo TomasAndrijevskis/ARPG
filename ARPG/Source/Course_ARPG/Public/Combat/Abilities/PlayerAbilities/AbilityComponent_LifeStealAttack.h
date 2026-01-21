@@ -4,7 +4,6 @@
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/ActorComponent.h"
-#include "SaveGame/AbilityData.h"
 #include "AbilityComponent_LifeStealAttack.generated.h"
 
 
@@ -28,6 +27,9 @@ public:
 	float GetStolenHealthPercent() const;
 
 	void SetStolenHealthPercent(const float NewStolenHealthPercent);
+
+	UFUNCTION()
+	void HandleLifeStealOnHit();
 	
 protected:
 
@@ -44,9 +46,6 @@ protected:
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
-
-	UFUNCTION()
-	void HandleLifeStealOnHit();
 	
 	UPROPERTY(VisibleAnywhere)
 	float StolenHealthPercent = 0.f;

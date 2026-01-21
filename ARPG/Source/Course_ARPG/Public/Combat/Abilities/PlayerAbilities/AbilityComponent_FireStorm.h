@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "SaveGame/AbilityData.h"
 #include "AbilityComponent_FireStorm.generated.h"
 
 
@@ -30,8 +29,6 @@ public:
 	void SetBurnDuration(float NewDuration);
 	
 protected:
-
-	virtual void BeginPlay() override;
 	
 	virtual void OnAbilityTimerFinished() override;
 	

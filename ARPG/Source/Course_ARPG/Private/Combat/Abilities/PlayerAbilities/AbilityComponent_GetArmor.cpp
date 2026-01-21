@@ -1,9 +1,8 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_GetArmor.h"
-#include "Characters/Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Characters/Player/MainCharacter_Warrior.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
-#include "Components/StatsComponent.h"
 #include "UI/PlayerWidget.h"
 
 
@@ -11,7 +10,6 @@ void UAbilityComponent_GetArmor::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	SetAbilityData(0);
 }
 
 
@@ -23,10 +21,9 @@ void UAbilityComponent_GetArmor::StartAbility()
 		SetAbilityActive(true);
 		HandlePlayerActions(false);
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		PlayerRef->StatsComp->SetStatValue(EStats::MaxArmor, Armor);
-		PlayerRef->StatsComp->SetStatValue(EStats::Armor, Armor);
+		Cast<AMainCharacter_Warrior>(PlayerRef)->SetArmor(Armor);
 		OnAbilityStartedDelegate.Broadcast();
-		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
+		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::FinishAbilityCast, AnimDuration, false);
 	}
 }
@@ -116,5 +113,3 @@ void UAbilityComponent_GetArmor::SetDamageReductionPercent(const float NewDamage
 {
 	DamageReductionPercent = NewDamageReductionPercent;
 }
-
-

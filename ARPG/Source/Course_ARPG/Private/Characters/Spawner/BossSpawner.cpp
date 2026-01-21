@@ -9,7 +9,6 @@ void ABossSpawner::CheckEnemies()
 {
 	PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 	if (!PlayerController) return;
-	
 	if (SpawnedBoss) return;
 	if (PlayerController->GetDefeatedBosses().IsEmpty())
 	{

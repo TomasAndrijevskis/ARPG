@@ -18,7 +18,9 @@ EBTNodeResult::Type UBTT_MoveToStartLocation::ExecuteTask(UBehaviorTreeComponent
 {
 	CachedOwnerComp = &OwnerComp;
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
+	if (!CharacterRef) return EBTNodeResult::Failed;
 	FVector StartLocation = OwnerComp.GetBlackboardComponent()->GetValueAsVector(TEXT("StartLocation"));
 	GoBack(StartLocation);
 	return EBTNodeResult::InProgress;
@@ -41,6 +43,7 @@ void UBTT_MoveToStartLocation::GoBack(const FVector& TargetLocation)
 
 void UBTT_MoveToStartLocation::OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result)
 {
+	if (!CharacterRef || !ControllerRef) return;
 	if (Result == EPathFollowingResult::Success)
 	{
 		CharacterRef->SetActorRotation(ControllerRef->GetBlackboardComponent()->GetValueAsRotator(TEXT("StartRotation")));
@@ -51,8 +54,10 @@ void UBTT_MoveToStartLocation::OnMoveCompleted(FAIRequestID RequestID, EPathFoll
 
 void UBTT_MoveToStartLocation::ChangeState() const
 {
-	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Patrol);
-	ControllerRef->GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);
+	if (ControllerRef)
+	{
+		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Patrol);
+		ControllerRef->GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);
+	}
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }
-

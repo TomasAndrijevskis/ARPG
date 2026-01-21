@@ -2,7 +2,6 @@
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_HealingAura.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
-#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -11,7 +10,6 @@ void UAbilityComponent_HealingAura::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	SetAbilityData(0);
 }
 
 
@@ -45,7 +43,7 @@ void UAbilityComponent_HealingAura::FinishAbilityCast()
 void UAbilityComponent_HealingAura::StartAbilityTimer()
 {
 	Super::StartAbilityTimer();
-	if (TimerDuration > 0) PlayerRef->StatsComp->OnAddHealthRequestDelegate.Broadcast(HealthRegenAmount);
+	if (TimerDuration > 0) PlayerRef->Heal(HealthRegenAmount);
 }
 
 

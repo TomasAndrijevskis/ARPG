@@ -16,11 +16,9 @@ ULockonComponent::ULockonComponent()
 void ULockonComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	
 	OwnerRef = GetOwner<ACharacter>();
 	Controller = GetWorld()->GetFirstPlayerController();
 	MovementComponent = OwnerRef->GetCharacterMovement();
-
 	SpringArmComponent = OwnerRef->FindComponentByClass<USpringArmComponent>();
 }
 
@@ -29,7 +27,7 @@ void ULockonComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	if (!IsValid(CurrentTargetActor)) return;
-	FVector CurrentLocation = OwnerRef->GetActorLocation();
+	const FVector CurrentLocation = OwnerRef->GetActorLocation();
 	FVector TargetLocation = CurrentTargetActor->GetActorLocation();
 	double TargetDistance = FVector::Distance(CurrentLocation, TargetLocation);
 	if (TargetDistance >= BreakDistance)

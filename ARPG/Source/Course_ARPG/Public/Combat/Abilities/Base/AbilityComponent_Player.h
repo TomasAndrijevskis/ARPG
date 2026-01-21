@@ -81,7 +81,7 @@ public:
 
 	void SaveAbilityProperties(FAbilityData& Data);
 
-	void LoadAbilityProperties(FAbilityData& SavedData);
+	void LoadAbilityProperties(const FAbilityData& SavedData);
 
 	void ClearAbilityData();
 	
@@ -105,7 +105,7 @@ protected:
 
 	void SetCommonAbilityProperties(const FAbilityPropertiesBaseData* Data);
 	
-	virtual void SetAbilityData(const int32 Level) {};
+	virtual void SetAbilityData(const int32 Level){};
 
 	virtual void SetDefaultAbilityData() {};
 	

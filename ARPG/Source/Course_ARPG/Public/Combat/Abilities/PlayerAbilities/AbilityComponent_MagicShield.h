@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "SaveGame/AbilityData.h"
 #include "AbilityComponent_MagicShield.generated.h"
 
 

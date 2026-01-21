@@ -3,16 +3,8 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FireStorm.h"
-#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
-
-
-void UAbilityComponent_FireStorm::BeginPlay()
-{
-	Super::BeginPlay();
-	SetAbilityData(0);
-}
 
 
 void UAbilityComponent_FireStorm::StartAbility()
@@ -24,7 +16,7 @@ void UAbilityComponent_FireStorm::StartAbility()
 		SetAbilityActive(true);
 		
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
+		PlayerRef->ReduceMana(GetManaCost());
 
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::FinishAbilityCast, AnimDuration, false);
 	}
@@ -43,11 +35,10 @@ void UAbilityComponent_FireStorm::FinishAbilityCast()
 void UAbilityComponent_FireStorm::SpawnFireStorm()
 {
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	FVector PlayerLocation = GetOwner()->GetActorLocation();
-	FVector ForwardDirection = GetOwner()->GetActorForwardVector();
-	FVector TargetLocation = PlayerLocation + ForwardDirection * 250.0f;
-
-	FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(PlayerLocation, TargetLocation);
+	const FVector PlayerLocation = GetOwner()->GetActorLocation();
+	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
+	const FVector TargetLocation = PlayerLocation + ForwardDirection * 250.0f;
+	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(PlayerLocation, TargetLocation);
 
 	FActorSpawnParameters Params;
 	Params.Owner = GetOwner();

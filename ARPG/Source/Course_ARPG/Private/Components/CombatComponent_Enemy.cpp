@@ -16,4 +16,3 @@ void UCombatComponent_Enemy::ComboAttack()
 	else ComboCounter++;
 	AnimDuration = CharacterRef->PlayAnimMontage(AttackAnimations[ComboCounter]);
 }
-

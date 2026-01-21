@@ -3,15 +3,7 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FrostBlastRange.h"
-#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
-
-
-void UAbilityComponent_FrostBlast::BeginPlay()
-{
-	Super::BeginPlay();
-	SetAbilityData(0);
-}
 
 
 void UAbilityComponent_FrostBlast::StartAbility()
@@ -22,8 +14,7 @@ void UAbilityComponent_FrostBlast::StartAbility()
 		HandlePlayerActions(false);
 		SetAbilityActive(true);
 		OnAbilityStartedDelegate.Broadcast();
-
-		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
+		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 		if (Warmup)
 		{
@@ -32,8 +23,8 @@ void UAbilityComponent_FrostBlast::StartAbility()
 		}
 		if (FrostBlastClass)
 		{
-			FVector SpawnLocation = GetOwner()->GetActorLocation();
-			FRotator SpawnRotation = FRotator::ZeroRotator;
+			const FVector SpawnLocation = GetOwner()->GetActorLocation();
+			const FRotator SpawnRotation = FRotator::ZeroRotator;
 			FActorSpawnParameters Params;
 			Params.Owner = GetOwner();
 			FrostBlastRangeActor = GetWorld()->SpawnActor<AFrostBlastRange>(FrostBlastClass, SpawnLocation, SpawnRotation, Params);
@@ -60,7 +51,7 @@ void UAbilityComponent_FrostBlast::CompleteAbility()
 	if (InitialBlast)
 		UGameplayStatics::SpawnEmitterAttached(InitialBlast, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(1, 1, 1),EAttachLocation::KeepWorldPosition,true, EPSCPoolMethod::None, true);
-	PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
+	PlayerRef->ReduceMana(GetManaCost());
 	HandlePlayerActions(true);
 	SetAbilityActive(false);
 	StartCooldown();

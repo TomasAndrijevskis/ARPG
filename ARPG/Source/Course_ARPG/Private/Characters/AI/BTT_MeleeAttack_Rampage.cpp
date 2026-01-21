@@ -11,6 +11,7 @@ EBTNodeResult::Type UBTT_MeleeAttack_Rampage::ExecuteTask(UBehaviorTreeComponent
 {
 	Super::ExecuteTask(OwnerComp, NodeMemory);
 
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	if (ControllerRef->GetBlackboardComponent()->GetValueAsBool(TEXT("AttackedOnce")))
 	{
 		double Threshold = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Threshold"));
@@ -34,7 +35,7 @@ void UBTT_MeleeAttack_Rampage::TickTask(UBehaviorTreeComponent& OwnerComp, uint8
 {
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
 
+	if (!FighterRef) return;
 	if (OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance")) >= FighterRef->GetMeleeRange())
 		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
-	
 }

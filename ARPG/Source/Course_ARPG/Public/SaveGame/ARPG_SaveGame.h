@@ -38,6 +38,9 @@ public:
 	float MaxStamina;
 
 	UPROPERTY()
+	float CurrentStamina;
+
+	UPROPERTY()
 	float CurrentXP;
 
 	UPROPERTY()

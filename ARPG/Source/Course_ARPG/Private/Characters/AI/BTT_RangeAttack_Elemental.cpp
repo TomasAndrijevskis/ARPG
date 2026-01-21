@@ -19,9 +19,11 @@ UBTT_RangeAttack_Elemental::UBTT_RangeAttack_Elemental()
 EBTNodeResult::Type UBTT_RangeAttack_Elemental::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
-	FighterRef = Cast<IFighter>(CharacterRef);
-	if (!IsValid(CharacterRef)) return EBTNodeResult::Failed;
+	if (!CharacterRef) return EBTNodeResult::Failed;
+	FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
+	if (!FighterRef) return EBTNodeResult::Failed;
 	CheckDistance();
 	Attack();
 	return EBTNodeResult::Succeeded;
@@ -30,20 +32,20 @@ EBTNodeResult::Type UBTT_RangeAttack_Elemental::ExecuteTask(UBehaviorTreeCompone
 
 EBTNodeResult::Type UBTT_RangeAttack_Elemental::AbortTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	ControllerRef->StopMovement();
+	if (ControllerRef) ControllerRef->StopMovement();
 	return Super::AbortTask(OwnerComp, NodeMemory);
 }
 
 
 void UBTT_RangeAttack_Elemental::CheckDistance()
 {
+	if (!PlayerRef || !CharacterRef || !ControllerRef || !FighterRef) return;
 	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
-	FVector PlayerLocation = PlayerRef->GetActorLocation();
+	const FVector PlayerLocation = PlayerRef->GetActorLocation();
 	AEnemyCharacter* EnemyCharacterRef = Cast<AEnemyCharacter>(CharacterRef);
-	
 	if (!EnemyCharacterRef) return;
-	float SightRadius = EnemyCharacterRef->GetSightRadius();
-	float CurrentDistance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
+	const float SightRadius = EnemyCharacterRef->GetSightRadius();
+	const float CurrentDistance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 	if (CurrentDistance >= SightRadius)
 		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
 	else
@@ -55,6 +57,7 @@ void UBTT_RangeAttack_Elemental::CheckDistance()
 
 void UBTT_RangeAttack_Elemental::Attack() const
 {
+	if (!CharacterRef || !ControllerRef) return;
 	Cast<AMinion_Elemental>(CharacterRef)->ProjectileComp->SpawnProjectile();
 	int CurrentHitCount = ControllerRef->GetBlackboardComponent()->GetValueAsInt(TEXT("HitCount"));
 	ControllerRef->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), CurrentHitCount + 1);
@@ -63,11 +66,10 @@ void UBTT_RangeAttack_Elemental::Attack() const
 
 void UBTT_RangeAttack_Elemental::MoveToPlayer(const float AcceptableDistance, const FVector& PlayerLocation) const
 {
+	if (!ControllerRef || !PlayerRef) return;
 	FAIMoveRequest MoveRequest = PlayerLocation;
 	MoveRequest.SetUsePathfinding(true);
 	MoveRequest.SetAcceptanceRadius(AcceptableDistance);
-
 	ControllerRef->MoveTo(MoveRequest);
 	ControllerRef->SetFocus(PlayerRef);
-	
 }

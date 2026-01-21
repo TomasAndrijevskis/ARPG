@@ -50,4 +50,3 @@ void UCharacterSelect::ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyl
 	BrushStyle.SetResourceObject(Image);
 	BrushStyle.TintColor = Color;
 }
-

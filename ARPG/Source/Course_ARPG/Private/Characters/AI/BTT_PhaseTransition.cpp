@@ -8,15 +8,15 @@
 
 EBTNodeResult::Type UBTT_PhaseTransition::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-
 	CachedOwnerComp = &OwnerComp;
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
+	if (!CharacterRef) return EBTNodeResult::Failed;
 	CharacterRef->GetMesh()->GetAnimInstance()->Montage_Stop(0.01f);
 
 	FTimerHandle TimerHandle;
 	float AnimDuration = CharacterRef->PlayAnimMontage(PhaseTransitionMontage);
-
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBTT_PhaseTransition::ActivateSecondPhase, AnimDuration, false);
 	return EBTNodeResult::InProgress;
 }
@@ -24,6 +24,11 @@ EBTNodeResult::Type UBTT_PhaseTransition::ExecuteTask(UBehaviorTreeComponent& Ow
 
 void UBTT_PhaseTransition::ActivateSecondPhase() const
 {
+	if (!CharacterRef)
+	{
+		FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Failed);
+		return;
+	}
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), NextState);
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsBool(TEXT("IsSecondPhase"), true);
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), 0);

@@ -2,17 +2,14 @@
 #include "Combat/Abilities/PlayerAbilities/AbilityComponent_DamageIncrease.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
-#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
-#include "SaveGame/AbilityData.h"
 
 
 void UAbilityComponent_DamageIncrease::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	SetAbilityData(0);
 }
 
 
@@ -21,7 +18,7 @@ void UAbilityComponent_DamageIncrease::StartAbility()
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
-		FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
+		const FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		
 		SetAbilityActive(true);
 		OnAbilityStartedDelegate.Broadcast();
@@ -33,7 +30,7 @@ void UAbilityComponent_DamageIncrease::StartAbility()
 		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 		
-		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
+		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::FinishAbilityCast, (AnimDuration+tempDuration), false);
 	}
 }

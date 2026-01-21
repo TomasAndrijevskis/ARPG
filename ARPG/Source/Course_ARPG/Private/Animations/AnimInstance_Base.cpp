@@ -1,7 +1,6 @@
 
 #include "Animations/AnimInstance_Base.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Components/TraceComponent.h"
 
 
 void UAnimInstance_Base::NativeBeginPlay()
@@ -28,6 +27,5 @@ void UAnimInstance_Base::UpdateSpeed()
 
 void UAnimInstance_Base::HandleResetAttack() const
 {
-	PawnRef->TraceComp->HandleResetAttack();
+	PawnRef->ResetAttack();
 }
-

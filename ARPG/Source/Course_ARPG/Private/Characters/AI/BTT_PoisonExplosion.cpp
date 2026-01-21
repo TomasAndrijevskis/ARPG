@@ -22,8 +22,11 @@ EBTNodeResult::Type UBTT_PoisonExplosion::ExecuteTask(UBehaviorTreeComponent& Ow
 	CachedNodeMemory = NodeMemory;
 	CachedOwnerComp = &OwnerComp;
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
+	if (!CharacterRef) return EBTNodeResult::Failed;
 	FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
+	if (!FighterRef) return EBTNodeResult::Failed;
 	CheckDistance();
 	return EBTNodeResult::InProgress;
 }
@@ -31,6 +34,7 @@ EBTNodeResult::Type UBTT_PoisonExplosion::ExecuteTask(UBehaviorTreeComponent& Ow
 
 void UBTT_PoisonExplosion::CheckDistance()
 {
+	if (!ControllerRef || !FighterRef) return;
 	float Distance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 	if (Distance > FighterRef->GetMeleeRange()) MoveToPlayer();
 	else StartAttack();
@@ -39,6 +43,7 @@ void UBTT_PoisonExplosion::CheckDistance()
 
 void UBTT_PoisonExplosion::StartAttack()
 {
+	if (!CharacterRef || !CastAnimMontage) return;
 	float AnimDuration = CharacterRef->PlayAnimMontage(CastAnimMontage);
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBTT_PoisonExplosion::ExplodePoison, AnimDuration, false);
@@ -47,6 +52,7 @@ void UBTT_PoisonExplosion::StartAttack()
 
 void UBTT_PoisonExplosion::ExplodePoison() 
 {
+	if (!CharacterRef || !ExplodeAnimMontage) return;
 	float AnimDuration = CharacterRef->PlayAnimMontage(ExplodeAnimMontage);
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UBTT_PoisonExplosion::FinishTask, AnimDuration, false);
@@ -55,6 +61,11 @@ void UBTT_PoisonExplosion::ExplodePoison()
 
 void UBTT_PoisonExplosion::FinishTask() const
 {
+	if (!CharacterRef || !ControllerRef)
+	{
+		FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Failed);
+		return;
+	}
 	CharacterRef->FindComponentByClass<UCharacterMovementComponent>()->MaxWalkSpeed /= SpeedMultiplier;
 	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
@@ -63,13 +74,14 @@ void UBTT_PoisonExplosion::FinishTask() const
 
 void UBTT_PoisonExplosion::MoveToPlayer() const
 {
+	if (!CharacterRef || !ControllerRef || !FighterRef) return;
 	CharacterRef->FindComponentByClass<UCharacterMovementComponent>()->MaxWalkSpeed *= SpeedMultiplier;
 	APawn* PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn();
+	if (!PlayerRef) return;
 	FAIMoveRequest MoveRequest = PlayerRef;
 	MoveRequest.SetUsePathfinding(true);
 	MoveRequest.SetAcceptanceRadius(FighterRef->GetMeleeRange() /2);
 	ControllerRef->ReceiveMoveCompleted.AddUnique(MoveDelegate);
-		
 	ControllerRef->MoveTo(MoveRequest);
 	ControllerRef->SetFocus(PlayerRef);
 }
@@ -77,8 +89,11 @@ void UBTT_PoisonExplosion::MoveToPlayer() const
 
 void UBTT_PoisonExplosion::FinishMove() const
 {
+	if (!ControllerRef)
+	{
+		FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Failed);
+		return;
+	}
 	ControllerRef->ReceiveMoveCompleted.Remove(MoveDelegate);
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }
-
-

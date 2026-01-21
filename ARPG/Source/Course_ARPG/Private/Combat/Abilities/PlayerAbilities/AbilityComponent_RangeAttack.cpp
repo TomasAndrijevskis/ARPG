@@ -4,7 +4,6 @@
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/Data/RangeAttackPropertiesData.h"
 #include "Combat/Projectiles/RangeAttackProjectile.h"
-#include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -14,7 +13,6 @@ void UAbilityComponent_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityFinishedDelegate.AddDynamic(this,&UAbilityComponent_RangeAttack::SpawnProjectile);
-	SetAbilityData(0);
 }
 
 
@@ -30,7 +28,7 @@ void UAbilityComponent_RangeAttack::StartAbility()
 		const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 		ParticleComponent = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
-		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
+		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::FinishAbilityCast, AnimDuration/2, false);
 	}
 }
@@ -120,5 +118,3 @@ void UAbilityComponent_RangeAttack::SetProjectileDamage(const float NewProjectil
 {
 	ProjectileDamage = NewProjectileDamage;
 }
-
-

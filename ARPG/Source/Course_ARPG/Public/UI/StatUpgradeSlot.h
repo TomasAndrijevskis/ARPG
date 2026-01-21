@@ -15,9 +15,8 @@ class COURSE_ARPG_API UStatUpgradeSlot : public UUserWidget
 	GENERATED_BODY()
 
 public:
-	
-	UFUNCTION()
-	void SetStatsVariables(const EStats& StatToImprove);
+
+	void Init(const EStats& StatToImprove);
 
 protected:
 	
@@ -42,6 +41,8 @@ private:
 	
 	UFUNCTION()
 	void UpdateText(FString& Name, const float Value);
+
+	void SetStatDisplayData();
 	
 	UPROPERTY()
 	class AMainCharacter_Base* PlayerRef;

@@ -43,4 +43,3 @@ void UQuickTravelMenu::RemoveWidget()
 {
 	this->RemoveFromParent();
 }
-

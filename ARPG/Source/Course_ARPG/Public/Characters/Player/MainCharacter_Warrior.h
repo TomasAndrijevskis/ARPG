@@ -19,6 +19,10 @@ class COURSE_ARPG_API AMainCharacter_Warrior : public AMainCharacter_Base
 public:
 
 	AMainCharacter_Warrior();
+
+	float GetDamageMultiplier();
+
+	void SetArmor(const int32 Armor);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UAbilityComponent_DamageIncrease* AbilityComp_DamageIncrease;

@@ -30,16 +30,14 @@ void AMinion::BeginPlay()
 void AMinion::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
 	APlayerCameraManager* CameraManager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+	if (!CameraManager) return;
 	USceneComponent* TransformComp = CameraManager->GetTransformComponent();
-	
-	FVector TargetLocation = TransformComp->GetComponentLocation();
-	FVector CurrentLocation = HealthBarWidgetComponent->GetComponentLocation();
-	FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(CurrentLocation, TargetLocation);
-	
+	if (!TransformComp) return;
+	const FVector TargetLocation = TransformComp->GetComponentLocation();
+	const FVector CurrentLocation = HealthBarWidgetComponent->GetComponentLocation();
+	const FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(CurrentLocation, TargetLocation);
 	HealthBarWidgetComponent->SetWorldRotation(NewRotation);
-
 }
 
 
@@ -76,4 +74,3 @@ UMinionHealthBar* AMinion::GetMinionWidget() const
 {
 	return HealthBarWidgetRef;
 }
-

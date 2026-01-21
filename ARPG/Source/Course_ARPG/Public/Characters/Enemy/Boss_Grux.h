@@ -15,6 +15,8 @@ public:
 	
 	ABoss_Grux();
 
+	void SpawnProjectile();
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UEnemyProjectileComponent* ProjectileComp;
 };

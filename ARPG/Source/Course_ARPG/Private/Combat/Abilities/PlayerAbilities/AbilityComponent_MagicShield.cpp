@@ -3,14 +3,12 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/MagicShield.h"
-#include "Components/StatsComponent.h"
 
 
 void UAbilityComponent_MagicShield::BeginPlay()
 {
 	Super::BeginPlay();
 	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
-	SetAbilityData(0);
 }
 
 
@@ -22,7 +20,7 @@ void UAbilityComponent_MagicShield::StartAbility()
 		SetAbilityActive(true);
 		TimerDuration = GetAbilityDuration();
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		PlayerRef->StatsComp->OnReduceManaRequestDelegate.Broadcast(GetManaCost());
+		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::FinishAbilityCast, AnimDuration, false);
 	}
 }

@@ -12,8 +12,8 @@ void AEnemySpawner::CheckEnemies()
 		{
 			if (IsValid(Enemy))
 			{
+				Enemy->OnEnemyDiedDelegate.RemoveAll(this);
 				Enemy->Destroy();
-				Enemy->OnEnemyDiedDelegate.RemoveDynamic(this, &AEnemySpawner::RemoveEnemyFromArray);
 			}
 		}
 		SpawnedEnemies.Empty();
@@ -43,7 +43,7 @@ void AEnemySpawner::SpawnEnemies()
 		{
 			SpawnedEnemy->SetInitialState(InitialState);
 			SpawnedEnemies.Add(SpawnedEnemy);
-			SpawnedEnemy->OnEnemyDiedDelegate.AddDynamic(this, &AEnemySpawner::RemoveEnemyFromArray);
+			SpawnedEnemy->OnEnemyDiedDelegate.AddUObject(this, &AEnemySpawner::RemoveEnemyFromArray);
 		}
 	}
 }

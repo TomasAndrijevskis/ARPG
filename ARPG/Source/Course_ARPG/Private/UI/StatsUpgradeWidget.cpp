@@ -1,13 +1,10 @@
 
 #include "UI/StatsUpgradeWidget.h"
-
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Components/LevelingComponent.h"
 #include "Components/VerticalBox.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
-#include "UI/PlayerWidget.h"
 #include "UI/StatUpgradeSlot.h"
 
 
@@ -22,7 +19,7 @@ void UStatsUpgradeWidget::Init()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
 	if (!PlayerRef) return;
-	const int AvailablePoints = PlayerRef->LevelComp->GetCurrentStatPointsAmount();
+	const int AvailablePoints = PlayerRef->GetCurrentStatPointsAmount();
 	CreateUpgradeInfoHeader(AvailablePoints);
 	for (const auto Stat : PlayerRef->GetStatsArray())
 	{
@@ -38,7 +35,7 @@ void UStatsUpgradeWidget::CreateStatsUpgradeScreen(const EStats& Stat)
 	UStatUpgradeSlot* StatUpgradeSlot = Cast<UStatUpgradeSlot>(CreateWidget(this, StatUpgradeSlotClass));
 	if (!StatUpgradeSlot) return;
 	VerticalBox_Slots->AddChild(StatUpgradeSlot);
-	StatUpgradeSlot->SetStatsVariables(Stat);
+	StatUpgradeSlot->Init(Stat);
 }
 
 

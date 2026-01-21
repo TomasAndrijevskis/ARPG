@@ -10,7 +10,7 @@
 void UAnimInstance_Grux::HandleProjectileSpawn() const
 {
 	if (!PawnRef) return;
-	Cast<ABoss_Grux>(PawnRef)->ProjectileComp->SpawnProjectile();
+	Cast<ABoss_Grux>(PawnRef)->SpawnProjectile();
 }
 
 

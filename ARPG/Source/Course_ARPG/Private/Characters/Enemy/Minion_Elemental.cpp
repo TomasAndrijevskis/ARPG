@@ -24,6 +24,7 @@ AMinion_Elemental::AMinion_Elemental()
 	ProjectileComp = CreateDefaultSubobject<UEnemyProjectileComponent>(TEXT("Projectile Component"));
 }
 
+
 void AMinion_Elemental::HandleDeath()
 {
 	if (GetAIController()) GetAIController()->GetBrainComponent()->StopLogic("Defeated");
@@ -33,7 +34,7 @@ void AMinion_Elemental::HandleDeath()
 	if (!MainPlayerInterfaceRef) return;
 	MainPlayerInterfaceRef->EndLockonWithActor(this);
 	GiveRewardXP();
-
+	OnEnemyDiedDelegate.Broadcast(this);
 	if (DeathParticleClass)
 		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticleClass,GetActorLocation(), FRotator::ZeroRotator, FVector3d(1.f, 1.f, 1.f), true );
 	Destroy();

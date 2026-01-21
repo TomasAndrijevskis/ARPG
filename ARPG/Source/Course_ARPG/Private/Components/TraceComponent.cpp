@@ -1,7 +1,6 @@
 
 #include "Components/TraceComponent.h"
-#include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_DamageIncrease.h"
+#include "Characters/Player/MainCharacter_Warrior.h"
 #include "Combat/Abilities/PlayerAbilities/MagicShield.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -66,11 +65,11 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	if (FighterRef)
 	{
 		CharacterDamage = FighterRef->GetCurrentDamage();
-		
-		AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
-		UAbilityComponent_DamageIncrease* AbilityRef = GetOwner()->FindComponentByClass<UAbilityComponent_DamageIncrease>();
-
-		if (PlayerRef && AbilityRef->IsAbilityActive()) CharacterDamage = CharacterDamage * (AbilityRef->GetDamageMultiplier());
+		AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
+		UE_LOG(LogTemp, Warning, TEXT("CharacterDamage: %f"), CharacterDamage);
+		UE_LOG(LogTemp, Warning, TEXT("GetDamageMultiplier: %f"), WarriorRef->GetDamageMultiplier());
+		if (WarriorRef) CharacterDamage = CharacterDamage * WarriorRef->GetDamageMultiplier();
+		UE_LOG(LogTemp, Warning, TEXT("CharacterDamage: %f"), CharacterDamage);
 	}
 
 	FDamageEvent TargetAttackedEvent{ };
@@ -92,4 +91,3 @@ void UTraceComponent::HandleResetAttack()
 {
 	TargetsToIgnore.Empty();
 }
-

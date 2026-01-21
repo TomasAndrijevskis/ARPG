@@ -18,7 +18,9 @@ EBTNodeResult::Type UBTTask_SummonMinions::ExecuteTask(UBehaviorTreeComponent& O
 {
 	CachedOwnerComp = &OwnerComp;
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
+	if (!CharacterRef) return EBTNodeResult::Failed;
 	StartSummon();
 	return EBTNodeResult::InProgress;
 }
@@ -26,8 +28,9 @@ EBTNodeResult::Type UBTTask_SummonMinions::ExecuteTask(UBehaviorTreeComponent& O
 
 void UBTTask_SummonMinions::StartSummon()
 {
+	if (!CharacterRef || !SummonAnimMontage) return;
 	Cast<ABoss_Fey>(CharacterRef)->SetCanTakeDamage(false);
-	float AnimDuration = CharacterRef->PlayAnimMontage(SummonAnimMontage);
+	const float AnimDuration = CharacterRef->PlayAnimMontage(SummonAnimMontage);
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle,this, &UBTTask_SummonMinions::FinishTask, AnimDuration, false);
 }
@@ -35,8 +38,12 @@ void UBTTask_SummonMinions::StartSummon()
 
 void UBTTask_SummonMinions::FinishTask() const
 {
+	if (!CharacterRef || !ControllerRef)
+	{
+		FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Failed);
+		return;
+	}
 	Cast<ABoss_Fey>(CharacterRef)->SetCanTakeDamage(true);
 	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }
-

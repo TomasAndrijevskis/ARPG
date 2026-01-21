@@ -76,6 +76,12 @@ void UStatsComponent::ReduceHealth(const float Damage)
 }
 
 
+void UStatsComponent::UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value)
+{
+	Stats[Stat] += Value;
+}
+
+
 float UStatsComponent::GetReducedDamage(const float Damage, AActor* Opponent)
 {
 	if (Stats[EStats::Armor] <= 0) return Damage;

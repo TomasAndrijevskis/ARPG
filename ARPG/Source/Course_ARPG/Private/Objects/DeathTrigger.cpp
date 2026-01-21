@@ -1,9 +1,7 @@
 
 #include "Objects/DeathTrigger.h"
-#include "Characters/Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/BoxComponent.h"
-#include "Components/StatsComponent.h"
 
 
 ADeathTrigger::ADeathTrigger()
@@ -24,5 +22,5 @@ void ADeathTrigger::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* 
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(OtherActor);
 	if (!PlayerRef) return;
-	PlayerRef->StatsComp->OnReduceHealthRequestDelegate.Broadcast(PlayerRef->StatsComp->GetStatValue(EStats::MaxHealth), PlayerRef, this);
+	PlayerRef->ReduceHealth(PlayerRef->GetPlayerMaxHealth(), this);
 }

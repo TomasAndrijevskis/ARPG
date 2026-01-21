@@ -21,12 +21,6 @@ public:
 
 	UFUNCTION()
 	void SetPointsAmount(const int NewAmount);
-
-	UFUNCTION()
-	void UpdateStatValue(const int NewValue);
-
-	UFUNCTION()
-	void UpdateAbilityPoints(const int NewValue);
 	
 private:
 

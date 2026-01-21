@@ -10,9 +10,11 @@
 EBTNodeResult::Type UBTT_GroundSmashAttack::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	ControllerRef = OwnerComp.GetAIOwner();
+	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
+	if (!CharacterRef) return EBTNodeResult::Failed;
 	BossAnimInstance = Cast<UAnimInstance_Base>(CharacterRef->GetMesh()->GetAnimInstance());
+	if (!BossAnimInstance) return EBTNodeResult::Failed;
 	Cast<UAnimInstance_Rampage>(BossAnimInstance)->SetIsSmashingGround(true);
 	return EBTNodeResult::Succeeded;
 }
-

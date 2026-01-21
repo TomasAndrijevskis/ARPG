@@ -8,10 +8,10 @@
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "Components/CombatComponent_Enemy.h"
-#include "Components/LevelingComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/StatsComponent.h"
 #include "Components/StatusEffectsComponent.h"
+#include "Components/TraceComponent.h"
 #include "Perception/PawnSensingComponent.h"
 
 
@@ -93,7 +93,7 @@ void AEnemyCharacter::FinishedDeathAnim()
 void AEnemyCharacter::GiveRewardXP()
 {
 	if (!PlayerRef) return;
-	PlayerRef->LevelComp->AddXP(RewardXP);
+	PlayerRef->AddXP(RewardXP);
 }
 
 
@@ -110,6 +110,11 @@ void AEnemyCharacter::Attack()
 	else CombatComp->ComboAttack();
 }
 
+
+void AEnemyCharacter::ResetAttack()
+{
+	TraceComp->HandleResetAttack();
+}
 
 
 float AEnemyCharacter::GetCurrentDamage() const

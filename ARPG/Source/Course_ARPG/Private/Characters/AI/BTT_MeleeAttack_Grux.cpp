@@ -1,17 +1,15 @@
 
 #include "Characters/AI/BTT_MeleeAttack_Grux.h"
-#include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/AI/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
-#include "GameFramework/Character.h"
 
 
 void UBTT_MeleeAttack_Grux::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
+	if (!FighterRef) return;
 	float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
-	
 	if (Distance > FighterRef->GetMeleeRange()) HandleRangeAttack(OwnerComp);
 }
 

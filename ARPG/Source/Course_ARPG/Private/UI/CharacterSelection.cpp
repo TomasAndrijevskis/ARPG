@@ -17,5 +17,3 @@ void UCharacterSelection::SetPlayerControllerProperties()
 	FInputModeGameAndUI InputMode;
 	PlayerController->SetInputMode(InputMode);
 }
-
-

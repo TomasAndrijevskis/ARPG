@@ -9,3 +9,9 @@ ABoss_Grux::ABoss_Grux()
 	ProjectileComp = CreateDefaultSubobject<UEnemyProjectileComponent>(TEXT("Projectile Component"));
 	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
 }
+
+
+void ABoss_Grux::SpawnProjectile()
+{
+	ProjectileComp->SpawnProjectile();
+}

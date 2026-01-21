@@ -24,10 +24,10 @@ void APoisonExplosionArea::CheckPlayerInRange()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetWorld()->GetFirstPlayerController()->GetPawn());
 	if (!PlayerRef) return;
-	FVector PlayerLocation = PlayerRef->GetActorLocation();
-	float Radius = PoisonArea->GetScaledSphereRadius();
-	FVector Center = GetActorLocation();
-	float DistBtwEnemyAndCenter = FVector::DistSquared(PlayerLocation, Center);
+	const FVector PlayerLocation = PlayerRef->GetActorLocation();
+	const float Radius = PoisonArea->GetScaledSphereRadius();
+	const FVector Center = GetActorLocation();
+	const float DistBtwEnemyAndCenter = FVector::DistSquared(PlayerLocation, Center);
 	FDamageEvent TargetAttackedEvent{ };
 	if (DistBtwEnemyAndCenter < Radius * Radius)
 	{

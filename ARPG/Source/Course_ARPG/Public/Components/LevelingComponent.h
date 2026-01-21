@@ -7,11 +7,11 @@
 #include "LevelingComponent.generated.h"
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnNewLevelSignature);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnLevelUpdatedSignature, ULevelingComponent, OnLevelUpdatedDelegate, int,Level);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnXpUpdatedSignature, ULevelingComponent, OnXpUpdatedDelegate, float, XP);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnStatPointsUpdateSignature, ULevelingComponent, OnStatPointsUpdateDelegate,int, Points);
-DECLARE_DYNAMIC_MULTICAST_SPARSE_DELEGATE_OneParam(FOnAbilityPointsUpdateSignature, ULevelingComponent, OnAbilityPointsUpdateDelegate,int, Points);
+DECLARE_MULTICAST_DELEGATE(FOnNewLevelSignature);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnLevelUpdatedSignature, int);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnXpUpdatedSignature, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnStatPointsUpdateSignature, int);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsUpdateSignature, int);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API ULevelingComponent : public UActorComponent
 {
@@ -51,19 +51,14 @@ public:
 
 	void IncreaseUsedStatPoints();
 	
-	UPROPERTY()
 	FOnLevelUpdatedSignature OnLevelUpdatedDelegate;
-
-	UPROPERTY()
+	
 	FOnXpUpdatedSignature OnXpUpdatedDelegate;
-
-	UPROPERTY()
+	
 	FOnStatPointsUpdateSignature OnStatPointsUpdateDelegate;
-
-	UPROPERTY()
+	
 	FOnAbilityPointsUpdateSignature OnAbilityPointsUpdateDelegate;
-
-	UPROPERTY()
+	
 	FOnNewLevelSignature OnNewLevelDelegate;
 	
 protected:

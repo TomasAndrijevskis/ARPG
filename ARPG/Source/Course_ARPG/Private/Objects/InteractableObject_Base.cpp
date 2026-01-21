@@ -39,10 +39,12 @@ void AInteractableObject_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	APlayerCameraManager* CameraManager = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0);
+	if (!CameraManager) return;
 	USceneComponent* TransformComp = CameraManager->GetTransformComponent();
-	FVector TargetLocation = TransformComp->GetComponentLocation();
-	FVector CurrentLocation = InteractionWidgetComponent->GetComponentLocation();
-	FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(CurrentLocation, TargetLocation);
+	if (!TransformComp) return;
+	const FVector TargetLocation = TransformComp->GetComponentLocation();
+	const FVector CurrentLocation = InteractionWidgetComponent->GetComponentLocation();
+	const FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(CurrentLocation, TargetLocation);
 	InteractionWidgetComponent->SetWorldRotation(NewRotation);
 }
 
