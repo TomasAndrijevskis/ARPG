@@ -17,6 +17,7 @@ void ABonfire::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor*
 	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 	if (!PlayerController) return;
 	PlayerController->SetIsInBonfireRange(true, this);
+	UE_LOG(LogTemp, Error, TEXT("Bonfire, Start Overlap"));
 }
 
 
@@ -25,6 +26,7 @@ void ABonfire::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 	if (!PlayerController) return;
 	PlayerController->SetIsInBonfireRange(false, nullptr);
+	UE_LOG(LogTemp, Error, TEXT("Bonfire, End Overlap"));
 }
 
 

@@ -82,7 +82,7 @@ public:
 	void InterruptHurtAnimation() const;
 
 	void ResetStats();
-
+	
 	void ResetAbilities();
 
 	void IncreaseUsedAbilityPoints(const int UsedPoints);
@@ -130,6 +130,15 @@ public:
 	FPlayerPersistentStats SavePersistentStats() const;
 	
 	TArray<TEnumAsByte<EStats>> GetStatsArray() const;
+
+	void CreatePauseMenu();
+
+	UFUNCTION()
+	void CreateBonfireMenu();
+
+	void CreateResetMenu();
+
+	void SetDefaultStats();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -167,9 +176,6 @@ protected:
 
 	UFUNCTION()
 	virtual void HandleDeath();
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<TEnumAsByte<EStats>> ArrStats;
 	
 private:
 
@@ -187,6 +193,9 @@ private:
 
 	UFUNCTION()
 	void HandleAbilityPointsAmountChange(const int NewPoints);
+
+	UPROPERTY(EditAnywhere)
+	TArray<TEnumAsByte<EStats>> ArrStats;
 	
 	UPROPERTY()
 	UPlayerWidget* PlayerWidgetRef;

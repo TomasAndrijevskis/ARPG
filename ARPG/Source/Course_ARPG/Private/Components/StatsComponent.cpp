@@ -33,7 +33,7 @@ void UStatsComponent::SetStatHelpers()
 void UStatsComponent::BindDelegates()
 {
 	OnStatUpdateDelegate.AddUObject(this, &ThisClass::OnStatsUpdated);
-	OnStatsRevertedToDefaultDelegate.AddUObject(this, &ThisClass::RevertStatsToDefault);
+	OnStatsRevertedToDefaultDelegate.AddUObject(this, &ThisClass::SetDefaultStats);
 	OnRegenStaminaRequestDelegate.AddUObject(StaminaManager, &UStaminaManager::RegenStamina);
 	OnReduceStaminaRequestDelegate.AddUObject(StaminaManager, &UStaminaManager::ReduceStamina);
 	OnRegenManaRequestDelegate.AddUObject(ManaManager, &UManaManager::RegenMana);
@@ -43,7 +43,7 @@ void UStatsComponent::BindDelegates()
 }
 
 
-void UStatsComponent::RevertStatsToDefault()
+void UStatsComponent::SetDefaultStats()
 {
 	if (!DefaultStatsDataAsset) return;
 	for (const auto& Stat : DefaultStatsDataAsset->DefaultStats)
@@ -54,14 +54,6 @@ void UStatsComponent::RevertStatsToDefault()
 }
 
 
-void UStatsComponent::OnStatsUpdated()
-{
-	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
-	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
-	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
-}
-
-
 void UStatsComponent::RestoreStats()
 {
 	SetStatValue(EStats::Health, Stats[EStats::MaxHealth]);
@@ -69,6 +61,15 @@ void UStatsComponent::RestoreStats()
 	SetStatValue(EStats::Mana, Stats[EStats::MaxMana]);
 	OnStatsUpdated();
 }
+
+
+void UStatsComponent::OnStatsUpdated()
+{
+	OnHealthPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Health, EStats::MaxHealth));
+	OnStaminaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
+	OnManaPercentUpdateDelegate.Broadcast(GetStatPercentage(EStats::Mana, EStats::MaxMana));
+}
+
 
 void UStatsComponent::ReduceHealth(const float Damage)
 {

@@ -26,6 +26,7 @@ void ATeleportDoor::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AA
 	if (!PlayerController) return;
 	PlayerController->SetIsInDoorRange(true);
 	PlayerController->SetMapName(DoorName);
+	UE_LOG(LogTemp, Error, TEXT("Door, Start Overlap"));
 }
 
 
@@ -34,4 +35,5 @@ void ATeleportDoor::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent,
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 	if (!PlayerController) return;
 	PlayerController->SetIsInDoorRange(false);
+	UE_LOG(LogTemp, Error, TEXT("Door, End Overlap"));
 }

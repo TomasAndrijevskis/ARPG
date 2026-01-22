@@ -20,7 +20,6 @@ DECLARE_MULTICAST_DELEGATE(FOnStatUpdateSignature);
 DECLARE_MULTICAST_DELEGATE(FOnZeroArmorSignature);
 DECLARE_MULTICAST_DELEGATE(FOnZeroHealthSignature);
 DECLARE_MULTICAST_DELEGATE(FOnStatsRevertedToDefaultSignature);
-
 DECLARE_MULTICAST_DELEGATE(FOnRegenStaminaRequestSignature);
 DECLARE_MULTICAST_DELEGATE(FOnRegenManaRequestSignature);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceManaRequestSignature, const float);
@@ -61,6 +60,8 @@ public:
 	void ReduceHealth(const float Damage);
 
 	void UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value);
+	
+	void SetDefaultStats();
 	
 	UPROPERTY()
 	UHealthManager* HealthManager;
@@ -104,8 +105,6 @@ private:
 	void BindDelegates();
 
 	void SetStatHelpers();
-	
-	void RevertStatsToDefault();
 	
 	UPROPERTY(EditAnywhere)
 	TMap<TEnumAsByte<EStats>, float> Stats;

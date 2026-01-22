@@ -6,7 +6,6 @@
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Objects/Bonfire.h"
 #include "Objects/BonfireData.h"
-#include "UI/PlayerWidget.h"
 
 
 void AARPG_PlayerController::BeginPlay()
@@ -20,14 +19,16 @@ void AARPG_PlayerController::BeginPlay()
 	HandleGameLoad();
 	OnGamePauseStateChangeRequestDelegate.AddUObject(this, &AARPG_PlayerController::HandleGamePause);
 	OnPlayerInputEnabledChangedDelegate.AddUObject(this, &AARPG_PlayerController::SetPlayerInputEnabled);
-	OnTeleportPlayerRequestDelegate.AddUObject(this, &AARPG_PlayerController::TeleportPlayer);
+	OnTeleportPlayerRequestDelegate.AddUObject(this, &AARPG_PlayerController::TeleportToLocation);
 }
 
 
 void AARPG_PlayerController::HandleBonfireInteraction()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Interact with Bonfire"));
 	if (!bIsInBonfireRange) return;
-	PlayerRef->GetPlayerWidget()->CreateBonfireMenuWidget();
+	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Bonfire"));
+	PlayerRef->CreateBonfireMenu();
 	GameInstanceRef->SaveAll();
 	HandleGamePause(true);
 	if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
@@ -56,8 +57,10 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 
 void AARPG_PlayerController::HandleMagicalCubeInteraction()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Interact with Cube"));
 	if (!bIsInMagicalCubeRange) return;
-	PlayerRef->GetPlayerWidget()->CreateResetWidget();
+	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Cube"));
+	PlayerRef->CreateResetMenu();
 	GameInstanceRef->SaveAll();
 	HandleGamePause(true);
 }
@@ -72,15 +75,16 @@ void AARPG_PlayerController::HandleResetMenuQuit()
 
 void AARPG_PlayerController::TeleportToMap()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Interact with Door"));
 	if (!bIsInDoorRange) return;
+	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Door"));
 	GameInstanceRef->SetTeleportByDoor(true);
 	UGameplayStatics::OpenLevel(this, FName(MapName));
 }
 
 
-void AARPG_PlayerController::TeleportPlayer(const FVector& Location)
+void AARPG_PlayerController::TeleportToLocation(const FVector& Location)
 {
-	if (!bIsInDoorRange) return;
 	PlayerRef->TeleportTo(Location, PlayerRef->GetActorRotation());
 }
 
@@ -116,7 +120,11 @@ void AARPG_PlayerController::HandleGameLoad() const
 	GameInstanceRef->InitializeGameInstance();
 	const FString SlotName = GameInstanceRef->GetSlotName();
 	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad) GameInstanceRef->HandleGameLoad();
-	else GameInstanceRef->SaveAll();
+	else
+	{
+		PlayerRef->SetDefaultStats();
+		GameInstanceRef->SaveAll();
+	}
 }
 
 
@@ -135,7 +143,7 @@ void AARPG_PlayerController::SaveAll() const
 void AARPG_PlayerController::CreatePauseMenu()
 {
 	HandleGamePause(true);
-	PlayerRef->GetPlayerWidget()->CreatePauseMenu();
+	PlayerRef->CreatePauseMenu();
 }
 
 

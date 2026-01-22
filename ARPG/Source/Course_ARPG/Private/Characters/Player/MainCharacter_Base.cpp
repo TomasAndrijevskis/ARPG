@@ -1,7 +1,5 @@
 
 #include "Characters/Player/MainCharacter_Base.h"
-
-#include "VectorVMExperimental.h"
 #include "Animations/PlayerAnimInstance.h"
 #include "Characters/Data/EStats.h"
 #include "Characters/Data/PlayerPersistentStats.h"
@@ -159,6 +157,7 @@ void AMainCharacter_Base::ResetStats()
 	StatsComp->OnStatsRevertedToDefaultDelegate.Broadcast();
 }
 
+
 void AMainCharacter_Base::ResetAbilities()
 {
 	for (auto& Ability : GetAbilitiesArray())
@@ -166,7 +165,7 @@ void AMainCharacter_Base::ResetAbilities()
 		if (!IsValid(Ability)) continue;
 		Ability->ClearAbilityData();
 	}
-	GetPlayerWidget()->ClearAbilityFooterPanel();
+	PlayerWidgetRef->ClearAbilityFooterPanel();
 	LevelComp->SetAbilityPoints(LevelComp->GetCurrentAbilityPointsAmount() + GetUsedAbilityPoints());
 	SetUsedAbilityPoints(0);
 }
@@ -307,6 +306,30 @@ FPlayerPersistentStats AMainCharacter_Base::SavePersistentStats() const
 	Data.StatPoints = LevelComp->GetCurrentStatPointsAmount();
 	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
 	return Data;
+}
+
+
+void AMainCharacter_Base::CreatePauseMenu()
+{
+	PlayerWidgetRef->CreatePauseMenu();
+}
+
+
+void AMainCharacter_Base::CreateBonfireMenu()
+{
+	PlayerWidgetRef->CreateBonfireMenuWidget();
+}
+
+
+void AMainCharacter_Base::CreateResetMenu()
+{
+	PlayerWidgetRef->CreateResetWidget();
+}
+
+
+void AMainCharacter_Base::SetDefaultStats()
+{
+	StatsComp->SetDefaultStats();
 }
 
 

@@ -99,7 +99,7 @@ private:
 
 	void SetPlayerInputEnabled(const bool IsEnabled);
 
-	void TeleportPlayer(const FVector& Location);
+	void TeleportToLocation(const FVector& Location);
 	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;

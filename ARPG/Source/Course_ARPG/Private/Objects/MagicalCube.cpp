@@ -17,6 +17,7 @@ void AMagicalCube::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AAc
 	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 	if (!PlayerController) return;
 	PlayerController->SetIsInMagicalCubeRange(true);
+	UE_LOG(LogTemp, Error, TEXT("Cube, Start Overlap"));
 }
 
 
@@ -24,4 +25,5 @@ void AMagicalCube::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, 
 {
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 	PlayerController->SetIsInMagicalCubeRange(false);
+	UE_LOG(LogTemp, Error, TEXT("Cube, End Overlap"));
 }

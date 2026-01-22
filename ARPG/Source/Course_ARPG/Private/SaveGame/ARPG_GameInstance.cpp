@@ -1,6 +1,5 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
-#include "Characters/Data/EStats.h"
 #include "Characters/Data/PlayerPersistentStats.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
