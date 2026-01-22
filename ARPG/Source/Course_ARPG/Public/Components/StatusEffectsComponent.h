@@ -38,8 +38,6 @@ public:
 	
 	void SlowDownEnemy(const float SlowDuration, UNiagaraSystem* FrozenEffect);
 
-	void HandleBurn(const float NewBurnDuration, const float NewBurnDamage, UNiagaraSystem* BurnEffect, const bool bNewIsOverlapping, const float NewBurnRate);
-
 	void HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, UNiagaraSystem* PoisonEffect, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon);
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -47,59 +45,45 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
+
+	UFUNCTION()
+	virtual void StopEffect(FStatusEffectData& Data) const;
+	
+	UPROPERTY()
+	USkeletalMeshComponent* SkeletalMeshComp;
+
+	UPROPERTY(EditDefaultsOnly)
+	FName SocketName;
+
+	UPROPERTY(EditDefaultsOnly)
+	FVector EffectScale;
+
+	UPROPERTY()
+	ACharacter* CharacterRef;
+	
+	bool bIsOverlapping;
 	
 private:
 	
 	UFUNCTION()
 	void StopFreeze();
-	
-	UFUNCTION()
-	void StopEffect(FStatusEffectData& Data) const;
-	
-	UFUNCTION()
-	void Burn();
 
 	UFUNCTION()
 	void Poison();
 
 	UPROPERTY()
 	UNiagaraComponent* FrozenEffectRef;
-	
-	UPROPERTY()
-	UNiagaraComponent* BurnEffectRef;
 
 	UPROPERTY()
 	UNiagaraComponent* PoisonEffectRef;
-	
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComp;
-
-	UPROPERTY()
-	ACharacter* CharacterRef;
-	
-	UPROPERTY(EditAnywhere)
-	FName SocketName;
-
-	UPROPERTY(EditAnywhere)
-	FVector EffectScale;
 
 	UPROPERTY()
 	UAbilityComponent_Base* AbilityCompRef;
 	
-	float BurnDamage;
-	
-	float BurnDuration;
-
-	float BurnRate;
-	
 	float OriginalSpeed;
-
-	bool bIsOverlapping;
 
 	FTimerHandle FreezeTimerHandle;
 	
-	FTimerHandle BurnTimerHandle;
-
 	FTimerHandle PoisonTimerHandle;
 
 	float PoisonDuration;
@@ -109,8 +93,6 @@ private:
 	float PoisonRate;
 
 	FStatusEffectData FreezeData;
-
-	FStatusEffectData BurnData;
 	
 	FStatusEffectData PoisonData;
 };

@@ -38,9 +38,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* CollisionBox;
 
-	UPROPERTY(EditAnywhere)
-	UNiagaraSystem* BurnEffect;
-
 	UPROPERTY()
 	AEnemyCharacter* OverlappedActor;
 	

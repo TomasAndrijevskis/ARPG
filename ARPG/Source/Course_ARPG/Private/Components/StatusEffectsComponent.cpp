@@ -54,39 +54,6 @@ void UStatusEffectsComponent::StopFreeze()
 }
 
 
-void UStatusEffectsComponent::HandleBurn(const float NewBurnDuration, const float NewBurnDamage, UNiagaraSystem* BurnEffect, const bool bNewIsOverlapping, const float NewBurnRate)
-{
-	BurnDamage = NewBurnDamage;
-	BurnDuration = NewBurnDuration;
-	bIsOverlapping = bNewIsOverlapping;
-	BurnRate = NewBurnRate;
-	
-	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	
-	if (BurnEffect && !BurnData.Effect)
-	{
-		BurnData.Effect = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				BurnEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
-	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-		BurnData.Type = EStatusEffects::Burn;
-		BurnData.TimerHandle = BurnTimerHandle;
-	}
-	GetWorld()->GetTimerManager().SetTimer(BurnTimerHandle, this, &UStatusEffectsComponent::Burn, BurnRate, true);
-}
-
-
-void UStatusEffectsComponent::Burn()
-{
-	if (BurnDuration > 0)
-	{
-		if (!bIsOverlapping) BurnDuration -= BurnRate;
-		FDamageEvent TargetAttackedEvent{ };
-		CharacterRef->TakeDamage(BurnDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
-	}
-	else StopEffect(BurnData);
-}
-
-
 void UStatusEffectsComponent::HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, UNiagaraSystem* PoisonEffect, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon)
 {
 	PoisonDamage = NewPoisonDamage;
@@ -105,7 +72,7 @@ void UStatusEffectsComponent::HandlePoison(const float NewPoisonDuration, const 
 		PoisonData.TimerHandle = PoisonTimerHandle;
 	}
 	Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusIconWithTimer(PoisonDuration, Icon, AbilityCompRef);
-	GetWorld()->GetTimerManager().SetTimer(BurnTimerHandle, this, &UStatusEffectsComponent::Poison, PoisonRate, true);
+	GetWorld()->GetTimerManager().SetTimer(PoisonTimerHandle, this, &UStatusEffectsComponent::Poison, PoisonRate, true);
 }
 
 
@@ -144,5 +111,4 @@ void UStatusEffectsComponent::StopEffect(FStatusEffectData& Data) const
 		case EStatusEffects::Poison:
 			break;
 	}
-	
 }

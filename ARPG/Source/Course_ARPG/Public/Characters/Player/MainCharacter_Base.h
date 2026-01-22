@@ -9,6 +9,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UFireEffectManager;
 struct FPlayerPersistentStats;
 class UStaminaStatsComponent;
 class UHealthStatsComponent;
@@ -161,6 +162,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatusEffectsComponent* StatusEffectsComp;
 
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UFireEffectManager* FireStatusEffectManager;
+	
 	UPROPERTY(BlueprintReadOnly)
 	UPlayerAnimInstance* PlayerAnimInstance;
 
@@ -194,6 +198,8 @@ private:
 	UFUNCTION()
 	void HandleAbilityPointsAmountChange(const int NewPoints);
 
+	void BindDelegates();
+	
 	UPROPERTY(EditAnywhere)
 	TArray<TEnumAsByte<EStats>> ArrStats;
 	

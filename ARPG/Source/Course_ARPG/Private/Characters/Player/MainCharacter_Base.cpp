@@ -10,6 +10,7 @@
 #include "Components/PlayerActionsComponent.h"
 #include "Components/StatsComponent.h"
 #include "Components/StatusEffectsComponent.h"
+#include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
 
@@ -23,6 +24,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
+	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	
 	ArrStats.Add(EStats::MaxHealth);
 	ArrStats.Add(EStats::MaxStamina);
@@ -34,14 +36,16 @@ AMainCharacter_Base::AMainCharacter_Base()
 void AMainCharacter_Base::BeginPlay()
 {
 	Super::BeginPlay();
-
 	PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-
 	SetSkeletalMeshComponent();
-
 	CreatePlayerWidget();
-	
+	BindDelegates();
+}
+
+
+void AMainCharacter_Base::BindDelegates()
+{
 	LockonComp->OnUpdatedTargetDelegate.AddUObject(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &ThisClass::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddUObject(this, &ThisClass::ReduceStamina);

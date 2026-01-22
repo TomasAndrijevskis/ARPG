@@ -4,6 +4,7 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/BoxComponent.h"
 #include "Components/StatusEffectsComponent.h"
+#include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
@@ -40,7 +41,7 @@ void AFireStorm::HandleOverlap(AActor* OtherActor, bool bIsOverlapping)
 	if (Cast<AEnemyCharacter>(OtherActor))
 	{
 		OverlappedActor = Cast<AEnemyCharacter>(OtherActor);
-		OverlappedActor -> StatusEffectsComp->HandleBurn(BurnDuration, BurnDamage, BurnEffect, bIsOverlapping, BurnRate);
+		OverlappedActor->FireStatusEffectManager->HandleBurn(BurnDuration, BurnDamage, bIsOverlapping, BurnRate);
 	}
 }
 
