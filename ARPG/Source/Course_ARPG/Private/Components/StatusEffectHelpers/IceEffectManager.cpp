@@ -1,7 +1,7 @@
 
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
-
 #include "NiagaraFunctionLibrary.h"
+#include "Components/StatusEffectHelpers/Data/StatusEffectsVisualData.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -14,32 +14,37 @@ void UIceEffectManager::BeginPlay()
 }
 
 
+void UIceEffectManager::SetVisualData()
+{
+	if (!StatusEffectsVisualDataAsset) return;
+	Effect = StatusEffectsVisualDataAsset->IceEffectData.Effect;
+	Icon = StatusEffectsVisualDataAsset->IceEffectData.Icon;
+}
+
+
 void UIceEffectManager::SlowDownEnemy(const float SlowDuration)
 {
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
-	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (FrozenEffectRef && !FreezeData.Effect)
+	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
+	if (Effect)
 	{
-		FreezeData.Effect = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				FrozenEffectRef,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
+		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-
-		FreezeData.Type = EStatusEffects::Slow;
-		FreezeData.TimerHandle = FreezeTimerHandle;
-		FreezeData.SavedSpeed = OriginalSpeed;
+		SavedSpeed = OriginalSpeed;
 	}
-	GetWorld()->GetTimerManager().SetTimer(FreezeTimerHandle, this,  &UIceEffectManager::StopFreeze, SlowDuration, false);
+	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopFreeze, SlowDuration, false);
 }
 
 
 void UIceEffectManager::StopFreeze()
 {
-	StopEffect(FreezeData);
+	StopEffect();
 }
 
 
-void UIceEffectManager::StopEffect(FStatusEffectData& Data) const
+void UIceEffectManager::StopEffect()
 {
-	Super::StopEffect(Data);
-	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = Data.SavedSpeed;
+	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = SavedSpeed;
+	Super::StopEffect();
 }

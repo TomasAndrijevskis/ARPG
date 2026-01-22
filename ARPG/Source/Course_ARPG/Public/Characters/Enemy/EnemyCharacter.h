@@ -9,6 +9,7 @@
 #include "EnemyCharacter.generated.h"
 
 
+class UPoisonEffectManager;
 class UIceEffectManager;
 class UFireEffectManager;
 class UStatusEffectsComponent;
@@ -80,6 +81,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UIceEffectManager* IceStatusEffectManager;
+
+	UPROPERTY(EditAnywhere)
+	UPoisonEffectManager* PoisonStatusEffectManager;
 	
 	FOnEnemyDiedSignature OnEnemyDiedDelegate;
 	

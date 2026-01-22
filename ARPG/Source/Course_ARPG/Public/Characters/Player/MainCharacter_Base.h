@@ -9,6 +9,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UPoisonEffectManager;
 class UIceEffectManager;
 class UFireEffectManager;
 struct FPlayerPersistentStats;
@@ -168,6 +169,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UIceEffectManager* IceStatusEffectManager;
+
+	UPROPERTY(EditAnywhere)
+	UPoisonEffectManager* PoisonStatusEffectManager;
 	
 	UPROPERTY(BlueprintReadOnly)
 	UPlayerAnimInstance* PlayerAnimInstance;

@@ -6,28 +6,11 @@
 #include "StatusEffectsComponent.generated.h"
 
 
-class UAbilityComponent_Base;
+class UStatusEffectsVisualData;
 class UNiagaraComponent;
+class UAbilityComponent_Base;
 class UNiagaraSystem;
-class AEnemyCharacter;
 
-
-enum EStatusEffects
-{
-	Slow,
-	Burn,
-	Poison
-};
-
-USTRUCT()
-struct FStatusEffectData
-{
-	GENERATED_BODY()
-	EStatusEffects Type;
-	UNiagaraComponent* Effect;
-	FTimerHandle TimerHandle;
-	float SavedSpeed;
-};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
@@ -36,8 +19,6 @@ class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 
 public:	
 	
-	void HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, UNiagaraSystem* PoisonEffect, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon);
-
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	
 protected:
@@ -45,40 +26,38 @@ protected:
 	virtual void BeginPlay() override;
 
 	UFUNCTION()
-	virtual void StopEffect(FStatusEffectData& Data) const;
+	virtual void StopEffect();
+
+	virtual void SetVisualData(){};
 	
+	UPROPERTY(EditDefaultsOnly)
+	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
+
 	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComp;
+	UNiagaraComponent* EffectRef;
+	
+	UPROPERTY(VisibleAnywhere)
+	UNiagaraSystem* Effect;
+	
+	UPROPERTY(VisibleAnywhere)
+	UTexture2D* Icon;
 
 	UPROPERTY(EditDefaultsOnly)
 	FName SocketName;
 
 	UPROPERTY(EditDefaultsOnly)
 	FVector EffectScale;
+	
+	UPROPERTY()
+	UAbilityComponent_Base* AbilityCompRef;
+	
+	UPROPERTY()
+	USkeletalMeshComponent* SkeletalMeshComp;
 
 	UPROPERTY()
 	ACharacter* CharacterRef;
 	
 	bool bIsOverlapping;
-	
-private:
 
-	UFUNCTION()
-	void Poison();
-
-	UPROPERTY()
-	UNiagaraComponent* PoisonEffectRef;
-
-	UPROPERTY()
-	UAbilityComponent_Base* AbilityCompRef;
-	
-	FTimerHandle PoisonTimerHandle;
-
-	float PoisonDuration;
-
-	float PoisonDamage;
-
-	float PoisonRate;
-	
-	FStatusEffectData PoisonData;
+	FTimerHandle EffectTimerHandle;
 };

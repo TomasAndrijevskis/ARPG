@@ -19,19 +19,18 @@ protected:
 
 	virtual void BeginPlay() override;
 	
-	virtual void StopEffect(FStatusEffectData& Data) const override;
-
+	virtual void StopEffect() override;
+	
+	virtual void SetVisualData() override;
+	
 private:
 	
 	UFUNCTION()
 	void StopFreeze();
 
-	UPROPERTY(EditDefaultsOnly)
-	UNiagaraSystem* FrozenEffectRef;
-
 	float OriginalSpeed;
 
 	FTimerHandle FreezeTimerHandle;
-
-	FStatusEffectData FreezeData;
+	
+	float SavedSpeed;
 };

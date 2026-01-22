@@ -16,16 +16,13 @@ public:
 	void HandleBurn(const float NewBurnDuration, const float NewBurnDamage, const bool bNewIsOverlapping, const float NewBurnRate);
 
 protected:
-	
-	//virtual void StopEffect(FStatusEffectData& Data) const override;
+
+	virtual void SetVisualData() override;
 	
 private:
 
 	UFUNCTION()
 	void Burn();
-
-	UPROPERTY(EditAnywhere)
-	UNiagaraSystem* BurnEffectRef;
 
 	float BurnDamage;
 	
@@ -35,5 +32,4 @@ private:
 
 	FTimerHandle BurnTimerHandle;
 	
-	FStatusEffectData BurnData;
 };

@@ -3,6 +3,7 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/SphereComponent.h"
 #include "Components/StatusEffectsComponent.h"
+#include "Components/StatusEffectHelpers/PoisonEffectManager.h"
 #include "Engine/DamageEvents.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -32,8 +33,8 @@ void APoisonExplosionArea::CheckPlayerInRange()
 	if (DistBtwEnemyAndCenter < Radius * Radius)
 	{
 		PlayerRef->TakeDamage(ExplosionDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
-		if (PlayerRef->FindComponentByClass<UStatusEffectsComponent>())
-			PlayerRef->FindComponentByClass<UStatusEffectsComponent>()->HandlePoison(PoisonDuration, PoisonDamage, PoisonEffect, PoisonRate, AbilityCompRef, Icon);
+		if (PlayerRef->FindComponentByClass<UPoisonEffectManager>())
+			PlayerRef->FindComponentByClass<UPoisonEffectManager>()->HandlePoison(PoisonDuration, PoisonDamage, PoisonRate, AbilityCompRef);
 	}
 	this->Destroy();
 }
@@ -49,4 +50,3 @@ void APoisonExplosionArea::SetParams(const float NewExplosionDamage, const float
 	AbilityCompRef = NewAbilityCompRef;
 	Icon = NewIcon;
 }
-

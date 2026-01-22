@@ -12,6 +12,7 @@
 #include "Components/StatusEffectsComponent.h"
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
+#include "Components/StatusEffectHelpers/PoisonEffectManager.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
 
@@ -27,6 +28,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
+	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));
 	
 	ArrStats.Add(EStats::MaxHealth);
 	ArrStats.Add(EStats::MaxStamina);

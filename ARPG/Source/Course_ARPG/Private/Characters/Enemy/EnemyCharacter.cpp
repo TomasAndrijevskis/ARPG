@@ -14,6 +14,7 @@
 #include "Components/TraceComponent.h"
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
+#include "Components/StatusEffectHelpers/PoisonEffectManager.h"
 #include "Perception/PawnSensingComponent.h"
 
 
@@ -24,6 +25,7 @@ AEnemyCharacter::AEnemyCharacter()
 	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
+	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));
 	BlockingSphere = CreateDefaultSubobject<USphereComponent>(TEXT("Blocking Sphere"));
 	BlockingSphere->SetupAttachment(GetRootComponent());
 }
