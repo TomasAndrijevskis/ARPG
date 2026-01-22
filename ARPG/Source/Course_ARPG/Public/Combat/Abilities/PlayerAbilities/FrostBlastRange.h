@@ -36,9 +36,6 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	UNiagaraComponent* RangeEffect;
 
-	UPROPERTY(EditDefaultsOnly)
-	UNiagaraSystem* FrozenEffectClass;
-
 	FTimerHandle TimerHandle;
 
 	float Damage;

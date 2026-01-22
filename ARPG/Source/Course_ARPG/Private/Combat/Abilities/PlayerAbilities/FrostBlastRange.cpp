@@ -3,7 +3,7 @@
 #include "NiagaraComponent.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Components/SphereComponent.h"
-#include "Components/StatusEffectsComponent.h"
+#include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -42,7 +42,7 @@ void AFrostBlastRange::CheckEnemiesInRange()
 		if (DistBtwEnemyAndCenter < Radius * Radius)
 		{
 			FoundEnemy->TakeDamage(Damage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
-			if (FrozenEffectClass) Cast<AEnemyCharacter>(FoundEnemy)->StatusEffectsComp->SlowDownEnemy(SlowDuration, FrozenEffectClass);
+			Cast<AEnemyCharacter>(FoundEnemy)->IceStatusEffectManager->SlowDownEnemy(SlowDuration);
 		}
 	}
 	this->Destroy();

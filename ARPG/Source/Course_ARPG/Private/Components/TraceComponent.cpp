@@ -66,10 +66,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	{
 		CharacterDamage = FighterRef->GetCurrentDamage();
 		AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
-		UE_LOG(LogTemp, Warning, TEXT("CharacterDamage: %f"), CharacterDamage);
-		UE_LOG(LogTemp, Warning, TEXT("GetDamageMultiplier: %f"), WarriorRef->GetDamageMultiplier());
 		if (WarriorRef) CharacterDamage = CharacterDamage * WarriorRef->GetDamageMultiplier();
-		UE_LOG(LogTemp, Warning, TEXT("CharacterDamage: %f"), CharacterDamage);
 	}
 
 	FDamageEvent TargetAttackedEvent{ };

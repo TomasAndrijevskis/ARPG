@@ -3,7 +3,6 @@
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/BoxComponent.h"
-#include "Components/StatusEffectsComponent.h"
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Particles/ParticleSystemComponent.h"
 

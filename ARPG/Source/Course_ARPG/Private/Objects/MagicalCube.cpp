@@ -14,6 +14,7 @@ void AMagicalCube::SetupWidget() const
 
 void AMagicalCube::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 	if (!PlayerController) return;
 	PlayerController->SetIsInMagicalCubeRange(true);
@@ -23,6 +24,7 @@ void AMagicalCube::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AAc
 
 void AMagicalCube::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	if (OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 	PlayerController->SetIsInMagicalCubeRange(false);
 	UE_LOG(LogTemp, Error, TEXT("Cube, End Overlap"));

@@ -9,6 +9,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UIceEffectManager;
 class UFireEffectManager;
 struct FPlayerPersistentStats;
 class UStaminaStatsComponent;
@@ -164,6 +165,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UFireEffectManager* FireStatusEffectManager;
+
+	UPROPERTY(EditAnywhere)
+	UIceEffectManager* IceStatusEffectManager;
 	
 	UPROPERTY(BlueprintReadOnly)
 	UPlayerAnimInstance* PlayerAnimInstance;

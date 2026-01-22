@@ -22,6 +22,7 @@ void ATeleportDoor::SetupWidget() const
 
 void ATeleportDoor::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 	if (!PlayerController) return;
 	PlayerController->SetIsInDoorRange(true);
@@ -32,6 +33,7 @@ void ATeleportDoor::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AA
 
 void ATeleportDoor::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	if (OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 	if (!PlayerController) return;
 	PlayerController->SetIsInDoorRange(false);

@@ -36,8 +36,6 @@ class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 
 public:	
 	
-	void SlowDownEnemy(const float SlowDuration, UNiagaraSystem* FrozenEffect);
-
 	void HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, UNiagaraSystem* PoisonEffect, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* Icon);
 
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
@@ -64,25 +62,15 @@ protected:
 	bool bIsOverlapping;
 	
 private:
-	
-	UFUNCTION()
-	void StopFreeze();
 
 	UFUNCTION()
 	void Poison();
-
-	UPROPERTY()
-	UNiagaraComponent* FrozenEffectRef;
 
 	UPROPERTY()
 	UNiagaraComponent* PoisonEffectRef;
 
 	UPROPERTY()
 	UAbilityComponent_Base* AbilityCompRef;
-	
-	float OriginalSpeed;
-
-	FTimerHandle FreezeTimerHandle;
 	
 	FTimerHandle PoisonTimerHandle;
 
@@ -91,8 +79,6 @@ private:
 	float PoisonDamage;
 
 	float PoisonRate;
-
-	FStatusEffectData FreezeData;
 	
 	FStatusEffectData PoisonData;
 };

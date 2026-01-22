@@ -6,7 +6,6 @@
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
 #include "Engine/DamageEvents.h"
 #include "GameFramework/Character.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "UI/PlayerWidget.h"
 
 
@@ -14,11 +13,7 @@ void UStatusEffectsComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	CharacterRef = Cast<ACharacter>(GetOwner());
-	if (CharacterRef)
-	{
-		SkeletalMeshComp = CharacterRef->GetMesh();
-		OriginalSpeed = CharacterRef->GetCharacterMovement()->MaxWalkSpeed;
-	}
+	if (CharacterRef) SkeletalMeshComp = CharacterRef->GetMesh();
 }
 
 
@@ -26,31 +21,6 @@ void UStatusEffectsComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
 	GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
-}
-
-
-void UStatusEffectsComponent::SlowDownEnemy(const float SlowDuration, UNiagaraSystem* FrozenEffect)
-{
-	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
-
-	FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (FrozenEffect && !FreezeData.Effect)
-	{
-		FreezeData.Effect = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				FrozenEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
-	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-
-		FreezeData.Type = EStatusEffects::Slow;
-		FreezeData.TimerHandle = FreezeTimerHandle;
-		FreezeData.SavedSpeed = OriginalSpeed;
-	}
-	GetWorld()->GetTimerManager().SetTimer(FreezeTimerHandle, this,  &UStatusEffectsComponent::StopFreeze, SlowDuration, false);
-}
-
-
-void UStatusEffectsComponent::StopFreeze()
-{
-	StopEffect(FreezeData);
 }
 
 
@@ -100,15 +70,5 @@ void UStatusEffectsComponent::StopEffect(FStatusEffectData& Data) const
 	{
 		Data.Effect->DestroyInstance();
 		Data.Effect = nullptr;
-	}
-	switch (Data.Type)
-	{
-		case EStatusEffects::Slow:
-			CharacterRef->GetCharacterMovement()->MaxWalkSpeed = Data.SavedSpeed;
-			break;
-		case EStatusEffects::Burn:
-			break;
-		case EStatusEffects::Poison:
-			break;
 	}
 }

@@ -11,6 +11,7 @@
 #include "Components/StatsComponent.h"
 #include "Components/StatusEffectsComponent.h"
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
+#include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
 
@@ -25,6 +26,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
+	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	
 	ArrStats.Add(EStats::MaxHealth);
 	ArrStats.Add(EStats::MaxStamina);
@@ -96,7 +98,7 @@ void AMainCharacter_Base::CreatePlayerWidget()
 void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	const float ReducedDamage = StatsComp->GetReducedDamage(Damage, DamageCauser);
-	StatsComp->OnReduceHealthRequestDelegate.Broadcast(ReducedDamage,this, DamageCauser);
+	StatsComp->OnReduceHealthRequestDelegate.Broadcast(ReducedDamage, this, DamageCauser);
 	PlayHurtAnimation();
 }
 
