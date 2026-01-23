@@ -1,39 +1,23 @@
 
 #include "UI/StatusIconWithTimer.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
-#include "Components/Image.h"
-#include "Components/PanelWidget.h"
-#include "Components/TextBlock.h"
+
 
 
 void UStatusIconWithTimer::InitializeWidget(const float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef, const FVector2d& ImageSize)
 {
 	if (!NewAbilityCompRef || !Image) return;
 	AbilityCompRef = NewAbilityCompRef;
-	SetCountdownTime(Duration);
+	SetValue(Duration);
 	SetStatusIcon(Image, ImageSize);
-	AbilityCompRef->OnAbilityTimerChangedDelegate.AddDynamic(this, &UStatusIconWithTimer::SetCountdownTime);
+	AbilityCompRef->OnAbilityTimerChangedDelegate.AddDynamic(this, &UStatusIconWithTimer::SetValue);
 	AbilityCompRef->OnAbilityFinishedDelegate.AddDynamic(this, &UStatusIconWithTimer::RemoveWidget);
 }
 
-
-void UStatusIconWithTimer::SetCountdownTime(const float TimeLeft)
-{
-	Text_Countdown->SetText(FText::AsNumber(TimeLeft));
-}
-
-
-void UStatusIconWithTimer::SetStatusIcon(UTexture2D* Icon, const FVector2d& ImageSize)
-{
-	FSlateBrush ImageStyle;
-	ImageStyle.SetResourceObject(Icon);
-	ImageStyle.SetImageSize(ImageSize);
-	Image_StatusIcon->SetBrush(ImageStyle);
-}
 
 
 void UStatusIconWithTimer::RemoveWidget()
 {
 	AbilityCompRef->OnAbilityTimerChangedDelegate.Clear();
-	if (this->GetParent()) this->GetParent()->RemoveChild(this);
+	Super::RemoveWidget();
 }

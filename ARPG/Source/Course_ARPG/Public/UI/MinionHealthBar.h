@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "EnemyHealthBar.h"
 #include "MinionHealthBar.generated.h"
 
 
@@ -12,17 +12,12 @@ class UHorizontalBox;
 class UProgressBar;
 
 UCLASS()
-class COURSE_ARPG_API UMinionHealthBar : public UUserWidget
+class COURSE_ARPG_API UMinionHealthBar : public UEnemyHealthBar
 {
 	GENERATED_BODY()
 
 public:
 
-	UFUNCTION()
-	void SetHealth(const float NewHealthPercent);
-
 private:
-
-	UPROPERTY(meta = (BindWidget))
-	UProgressBar* ProgressBar_HealthBar;
+	
 };

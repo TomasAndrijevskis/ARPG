@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "StatusIcon.h"
 #include "StatusIconWithTimer.generated.h"
 
 
@@ -12,7 +12,7 @@ class UImage;
 class UTextBlock;
 
 UCLASS()
-class COURSE_ARPG_API UStatusIconWithTimer : public UUserWidget
+class COURSE_ARPG_API UStatusIconWithTimer : public UStatusIcon
 {
 	GENERATED_BODY()
 
@@ -20,13 +20,7 @@ public:
 	
 	void InitializeWidget(const float Duration, UTexture2D* Image, UAbilityComponent_Base* NewAbilityCompRef, const FVector2d& ImageSize);
 	
-	UFUNCTION()
-	void SetCountdownTime(const float TimeLeft);
-	
-	void SetStatusIcon(UTexture2D* Icon, const FVector2d& ImageSize);
-
-	UFUNCTION()
-	void RemoveWidget();
+	virtual void RemoveWidget() override;
 	
 private:
 

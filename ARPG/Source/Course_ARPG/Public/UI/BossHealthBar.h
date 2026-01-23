@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "EnemyHealthBar.h"
 #include "BossHealthBar.generated.h"
 
 
@@ -13,21 +13,15 @@ class UTextBlock;
 class UProgressBar;
 
 UCLASS()
-class COURSE_ARPG_API UBossHealthBar : public UUserWidget
+class COURSE_ARPG_API UBossHealthBar : public UEnemyHealthBar
 {
 	GENERATED_BODY()
 
 public:
-
-	UFUNCTION()
-	void SetHealth(const float NewHealthPercent);
-
+	
 	void SetBossName(const FText& NewBossName);
 
 private:
-
-	UPROPERTY(meta = (BindWidget))
-	UProgressBar* ProgressBar_HealthBar;
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_BossName;
