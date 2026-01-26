@@ -38,6 +38,8 @@ public:
 	bool GetCanTakeDamage() const;
 
 	UBossHealthBar* GetBossWidget() const;
+
+	virtual void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef) override;
 	
 protected:
 

@@ -15,7 +15,7 @@ void UPoisonExplosionComponent::SpawnArea()
 		Params.Owner = GetOwner();
 		PoisonAreaRef = GetWorld()->SpawnActor<APoisonExplosionArea>(PoisonAreaClass, SpawnLocation, SpawnRotation, Params);
 		if (PoisonAreaRef)
-			PoisonAreaRef->SetParams(ExplosionDamage, PoisonDamage, PoisonRate, GetAbilityDuration(), PoisonEffect, this, GetIcon());
+			PoisonAreaRef->SetParams(ExplosionDamage, PoisonDamage, PoisonRate, GetAbilityDuration(), this, GetIcon());
 	}
 }
 

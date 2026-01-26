@@ -28,8 +28,10 @@ void UPoisonEffectManager::HandlePoison(const float NewPoisonDuration, const flo
 		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
-	Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusIconWithTimer(PoisonDuration, Icon, AbilityCompRef);
+	//Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusIconWithTimer(PoisonDuration, Icon, AbilityCompRef);
+	//Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusEffectIcon(Icon);
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UPoisonEffectManager::Poison, PoisonRate, true);
 }
 
@@ -41,6 +43,7 @@ void UPoisonEffectManager::Poison()
 		PoisonDuration -= PoisonRate;
 		AbilityCompRef->OnAbilityTimerChangedDelegate.Broadcast(PoisonDuration);
 		FDamageEvent TargetAttackedEvent{ };
+		UE_LOG(LogTemp, Warning, TEXT("PoisonDamage: %f"), PoisonDamage);
 		CharacterRef->TakeDamage(PoisonDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 	}
 	else

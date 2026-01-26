@@ -6,6 +6,8 @@
 #include "EnemyHealthBar.generated.h"
 
 
+class UStatusEffectsComponent;
+class UStatusEffectIcon;
 class UHorizontalBox;
 class UProgressBar;
 
@@ -19,6 +21,8 @@ public:
 	UFUNCTION()
 	void SetHealth(const float NewHealthPercent);
 
+	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
+	
 private:
 
 	UPROPERTY(meta = (BindWidget))
@@ -26,4 +30,10 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_StatusEffects;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UStatusEffectIcon> StatusEffectIconWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	FVector2D IconSize;
 };

@@ -5,9 +5,9 @@
 #include "Components/TextBlock.h"
 
 
-void UStatusIcon::SetValue(const float TimeLeft)
+void UStatusIcon::SetValue(const float Value)
 {
-	Text_Value->SetText(FText::AsNumber(TimeLeft));
+	Text_Value->SetText(FText::AsNumber(Value));
 }
 
 

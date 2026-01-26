@@ -26,12 +26,13 @@ void UIceEffectManager::SlowDownEnemy(const float SlowDuration)
 {
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (Effect)
+	if (Effect && Icon)
 	{
 		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		SavedSpeed = OriginalSpeed;
+		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopFreeze, SlowDuration, false);
 }

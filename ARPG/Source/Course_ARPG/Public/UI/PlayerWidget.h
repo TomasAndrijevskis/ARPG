@@ -6,6 +6,8 @@
 #include "PlayerWidget.generated.h"
 
 
+class UStatusEffectsComponent;
+class UStatusEffectIcon;
 class UStatsAbilitiesResetWidget;
 class UStatsUpgradeWidget;
 class UAbilityUpgradeWidget;
@@ -17,9 +19,9 @@ class UPlayerDeath;
 class UTextBlock;
 class UProgressBar;
 class UHorizontalBox;
-class UStatusIconWithTimer;
+class UAbilityIconWithTimer;
 class UAbilityFooter;
-class UStatusIconWithAmount;
+class UAbilityIconWithAmount;
 class UStatsComponent;
 class UAbilityComponent_Base;
 class UAbilityComponent_Player;
@@ -81,9 +83,12 @@ public:
 
 	UFUNCTION()
 	void CreateResetWidget();
+
+	UFUNCTION()
+	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
 	
 	UPROPERTY()
-	TMap<FString, UStatusIconWithAmount*> ActiveStatusWidget;
+	TMap<FString, UAbilityIconWithAmount*> ActiveStatusWidget;
 
 private:
 
@@ -112,11 +117,14 @@ private:
 	TSubclassOf<UAbilityFooter> AbilityFooterWidgetClass;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatusIconWithTimer> StatusIconWithTimerWidgetClass;
+	TSubclassOf<UAbilityIconWithTimer> StatusIconWithTimerWidgetClass;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatusIconWithAmount> StatusIconWithAmountWidgetClass;
+	TSubclassOf<UAbilityIconWithAmount> StatusIconWithAmountWidgetClass;
 
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UStatusEffectIcon> StatusEffectIconWidgetClass;
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPlayerDeath> PlayerDeathWidgetClass;
 	

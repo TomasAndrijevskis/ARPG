@@ -11,7 +11,8 @@ class UNiagaraComponent;
 class UAbilityComponent_Base;
 class UNiagaraSystem;
 
-
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnStatusIconCreateRequestSignature, UTexture2D*, UStatusEffectsComponent*);
+DECLARE_MULTICAST_DELEGATE(FOnStatusIconRemoveRequestSignature);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 {
@@ -20,6 +21,10 @@ class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 public:	
 	
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	FOnStatusIconCreateRequestSignature OnStatusIconCreateRequestDelegate;
+
+	FOnStatusIconRemoveRequestSignature OnStatusIconRemoveRequestDelegate;
 	
 protected:
 
@@ -60,4 +65,8 @@ protected:
 	bool bIsOverlapping;
 
 	FTimerHandle EffectTimerHandle;
+
+private:
+
+	void HandleOwner();
 };

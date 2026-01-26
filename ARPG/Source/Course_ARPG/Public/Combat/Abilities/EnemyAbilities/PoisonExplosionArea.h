@@ -20,7 +20,7 @@ public:
 
 	APoisonExplosionArea();
 
-	void SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UNiagaraSystem* NewPoisonEffect, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* NewIcon);
+	void SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* NewIcon);
 
 	FOnExplosionTriggeredSignature OnExplosionTriggeredDelegate;
 
@@ -40,9 +40,6 @@ private:
 
 	UPROPERTY()
 	UTexture2D* Icon;
-
-	UPROPERTY()
-	UNiagaraSystem* PoisonEffect;
 	
 	float ExplosionDamage;
 

@@ -11,8 +11,9 @@
 #include "UI/QuickTravelMenu.h"
 #include "UI/StatsAbilitiesResetWidget.h"
 #include "UI/StatsUpgradeWidget.h"
-#include "UI/StatusIconWithAmount.h"
-#include "UI/StatusIconWithTimer.h"
+#include "UI/AbilityIconWithAmount.h"
+#include "UI/AbilityIconWithTimer.h"
+#include "UI/StatusEffectIcon.h"
 
 
 void UPlayerWidget::CreateAbilityUpgradeScreen()
@@ -48,12 +49,24 @@ void UPlayerWidget::ClearAbilityFooterPanel()
 }
 
 
+void UPlayerWidget::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef)
+{
+	UE_LOG(LogTemp, Warning, TEXT("CreateStatusEffectIcon - Player"));
+	if (!StatusEffectIconWidgetClass) return;
+	UStatusEffectIcon* StatusEffectIconRef = Cast<UStatusEffectIcon>(CreateWidget(this, StatusEffectIconWidgetClass));
+	if (!StatusEffectIconRef) return;
+	StatusEffectIconRef->InitializeWidget(Icon, IconSize, StatusEffectsCompRef);
+	HorizontalBox_StatusEffects->AddChild(StatusEffectIconRef);
+}
+
+
 void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
 {
 	if (!StatusIconWithTimerWidgetClass) return;
-	UStatusIconWithTimer* StatusIconWithTimerWidget = Cast<UStatusIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
-	StatusIconWithTimerWidget->InitializeWidget(Duration, Image, AbilityCompRef, IconSize);
-	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerWidget);
+	UAbilityIconWithTimer* StatusIconWithTimerRef = Cast<UAbilityIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
+	if (!StatusIconWithTimerRef) return;
+	StatusIconWithTimerRef->InitializeWidget(Duration, Image, AbilityCompRef, IconSize);
+	HorizontalBox_StatusEffects->AddChild(StatusIconWithTimerRef);
 }
 
 
@@ -62,19 +75,20 @@ void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* I
 	if (!StatusIconWithAmountWidgetClass) return;
 	if (ActiveStatusWidget.Contains(Keyword))
 	{
-		UStatusIconWithAmount** FoundWiget = ActiveStatusWidget.Find(Keyword);
+		UAbilityIconWithAmount** FoundWiget = ActiveStatusWidget.Find(Keyword);
 		if (FoundWiget)
 		{
-			UStatusIconWithAmount* StatusWidget = Cast<UStatusIconWithAmount>(*FoundWiget);
-			if (StatusWidget) StatusWidget->SetAmount(Amount);
+			UAbilityIconWithAmount* StatusWidget = Cast<UAbilityIconWithAmount>(*FoundWiget);
+			if (StatusWidget) StatusWidget->SetValue(Amount);
 		}
 	}
 	else
 	{
-		UStatusIconWithAmount* StatusIconWithAmountWidget = Cast<UStatusIconWithAmount>(CreateWidget(this, StatusIconWithAmountWidgetClass));
-		StatusIconWithAmountWidget->InitializeWidget(Amount, Image, StatsCompRef, Keyword, IconSize);
-		ActiveStatusWidget.Add(Keyword, StatusIconWithAmountWidget);
-		HorizontalBox_StatusEffects->AddChild(StatusIconWithAmountWidget);
+		UAbilityIconWithAmount* StatusIconWithAmountRef = Cast<UAbilityIconWithAmount>(CreateWidget(this, StatusIconWithAmountWidgetClass));
+		if (!StatusIconWithAmountRef) return;
+		StatusIconWithAmountRef->InitializeWidget(Amount, Image, StatsCompRef, Keyword, IconSize);
+		ActiveStatusWidget.Add(Keyword, StatusIconWithAmountRef);
+		HorizontalBox_StatusEffects->AddChild(StatusIconWithAmountRef);
 	}
 }
 

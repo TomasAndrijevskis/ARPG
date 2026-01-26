@@ -9,7 +9,6 @@
 #include "Components/LockonComponent.h"
 #include "Components/PlayerActionsComponent.h"
 #include "Components/StatsComponent.h"
-#include "Components/StatusEffectsComponent.h"
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
@@ -25,7 +24,6 @@ AMainCharacter_Base::AMainCharacter_Base()
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
-	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));
@@ -338,6 +336,12 @@ void AMainCharacter_Base::CreateResetMenu()
 void AMainCharacter_Base::SetDefaultStats()
 {
 	StatsComp->SetDefaultStats();
+}
+
+
+void AMainCharacter_Base::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef)
+{
+	PlayerWidgetRef->CreateStatusEffectIcon(Icon, StatusEffectsCompRef);
 }
 
 

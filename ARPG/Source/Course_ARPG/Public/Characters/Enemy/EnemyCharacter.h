@@ -63,6 +63,10 @@ public:
 	void SetInitialState(const TEnumAsByte<EEnemyStates> NewState);
 
 	void ResetAttack();
+
+	virtual void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef){};
+
+	virtual void RemoveStatusEffectIcon(){};
 	
 	UPROPERTY(EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -72,9 +76,6 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere)
 	UTraceComponent* TraceComp;
-
-	UPROPERTY(EditAnywhere)
-	UStatusEffectsComponent* StatusEffectsComp;
 
 	UPROPERTY(EditAnywhere)
 	UFireEffectManager* FireStatusEffectManager;

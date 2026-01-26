@@ -15,9 +15,9 @@ class COURSE_ARPG_API UStatusIcon : public UUserWidget
 	GENERATED_BODY()
 	
 public:
-
+	
 	UFUNCTION()
-	void SetValue(const float TimeLeft);
+	void SetValue(const float Value);
 	
 	void SetStatusIcon(UTexture2D* Icon, const FVector2d& ImageSize);
 

@@ -22,11 +22,12 @@ void UFireEffectManager::HandleBurn(const float NewBurnDuration, const float New
 	bIsOverlapping = bNewIsOverlapping;
 	BurnRate = NewBurnRate;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (Effect)
+	if (Effect && Icon && bIsOverlapping)
 	{
 		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator, EffectScale,
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UFireEffectManager::Burn, BurnRate, true);
 }

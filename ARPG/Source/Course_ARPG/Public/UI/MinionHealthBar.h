@@ -7,7 +7,7 @@
 
 
 class UAbilityComponent_Base;
-class UStatusIconWithTimer;
+class UAbilityIconWithTimer;
 class UHorizontalBox;
 class UProgressBar;
 

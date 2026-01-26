@@ -28,6 +28,8 @@ public:
 	virtual void CreateHealthWidget() override;
 
 	UMinionHealthBar* GetMinionWidget() const;
+
+	virtual void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef) override;
 	
 protected:
 	

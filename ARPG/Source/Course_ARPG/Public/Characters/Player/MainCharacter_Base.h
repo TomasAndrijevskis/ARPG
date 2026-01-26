@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Characters/Data/EStats.h"
+#include "Components/StatusEffectsComponent.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/MainPlayer.h"
 #include "Interfaces/Fighter.h"
@@ -142,6 +143,8 @@ public:
 	void CreateResetMenu();
 
 	void SetDefaultStats();
+
+	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -160,9 +163,6 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	ULevelingComponent* LevelComp;
-
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UStatusEffectsComponent* StatusEffectsComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UFireEffectManager* FireStatusEffectManager;

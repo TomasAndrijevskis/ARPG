@@ -10,7 +10,6 @@
 #include "Components/CombatComponent_Enemy.h"
 #include "Components/SphereComponent.h"
 #include "Components/StatsComponent.h"
-#include "Components/StatusEffectsComponent.h"
 #include "Components/TraceComponent.h"
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
@@ -22,7 +21,6 @@ AEnemyCharacter::AEnemyCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
-	StatusEffectsComp = CreateDefaultSubobject<UStatusEffectsComponent>(TEXT("Status Effects Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));

@@ -82,6 +82,11 @@ void ABoss::ActivateSecondPhase()
 }
 
 
+void ABoss::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef)
+{
+	HealthBarWidgetRef->CreateStatusEffectIcon(Icon, StatusEffectsCompRef);
+}
+
 
 float ABoss::GetAttackAnimReductionTime() const
 {
