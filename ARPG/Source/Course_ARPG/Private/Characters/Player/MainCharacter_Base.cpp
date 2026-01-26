@@ -345,6 +345,12 @@ void AMainCharacter_Base::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffect
 }
 
 
+AActor* AMainCharacter_Base::GetCurrentTargetActor() const
+{
+	return LockonComp->CurrentTargetActor;
+}
+
+
 void AMainCharacter_Base::HandleStatPointsAmountChange(const int NewPoints)
 {
 	OnStatPointsAmountChangedDelegate.Broadcast(NewPoints);

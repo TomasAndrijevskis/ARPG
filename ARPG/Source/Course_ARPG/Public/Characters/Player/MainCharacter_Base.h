@@ -145,6 +145,8 @@ public:
 	void SetDefaultStats();
 
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
+
+	AActor* GetCurrentTargetActor() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

@@ -24,6 +24,7 @@ public:
 	void EndLockon();
 
 	bool IsLocked() const;
+
 	
 	UPROPERTY()
 	AActor* CurrentTargetActor;
