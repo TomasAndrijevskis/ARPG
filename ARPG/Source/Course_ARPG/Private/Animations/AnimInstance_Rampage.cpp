@@ -2,15 +2,14 @@
 #include "Animations/AnimInstance_Rampage.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Characters/Enemy/Boss_Rampage.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Combat/Abilities/EnemyAbilities/GroundSmashComponent.h"
 
 
 void UAnimInstance_Rampage::HandleSmashingGround() const
 {
 	if (!PawnRef) return;
-	if (PawnRef->FindComponentByClass<UGroundSmashComponent>())
-		PawnRef->FindComponentByClass<UGroundSmashComponent>()->SpawnParticles();
+	Cast<ABoss_Rampage>(PawnRef)->StartAbility();
 }
 
 

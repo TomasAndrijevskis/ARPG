@@ -5,10 +5,10 @@
 #include "MainCharacter_Base.h"
 #include "MainCharacter_Warrior.generated.h"
 
-class UAbilityComponent_DamageIncrease;
-class UAbilityComponent_LifeStealAttack;
-class UAbilityComponent_RangeAttack;
-class UAbilityComponent_GetArmor;
+class UAbComp_DamageIncrease;
+class UAbComp_LifeStealAttack;
+class UAbComp_RangeAttack;
+class UAbComp_GetArmor;
 class UTraceComponent;
 
 UCLASS()
@@ -25,16 +25,16 @@ public:
 	void SetArmor(const int32 Armor);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UAbilityComponent_DamageIncrease* AbilityComp_DamageIncrease;
+	UAbComp_DamageIncrease* AbilityComp_DamageIncrease;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UAbilityComponent_LifeStealAttack* AbilityComp_LifeStealAttack;
+	UAbComp_LifeStealAttack* AbilityComp_LifeStealAttack;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UAbilityComponent_RangeAttack* AbilityComp_RangeAttack;
+	UAbComp_RangeAttack* AbilityComp_RangeAttack;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UAbilityComponent_GetArmor* AbilityComp_GetArmor;
+	UAbComp_GetArmor* AbilityComp_GetArmor;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UTraceComponent* TraceComp;

@@ -1,22 +1,21 @@
 
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_RangeAttack.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_RangeAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
-#include "Combat/Abilities/Data/RangeAttackPropertiesData.h"
+#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
 #include "Combat/Projectiles/RangeAttackProjectile.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
-void UAbilityComponent_RangeAttack::BeginPlay()
+void UAbComp_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
-	OnAbilityFinishedDelegate.AddDynamic(this,&UAbilityComponent_RangeAttack::SpawnProjectile);
+	OnAbilityFinishedDelegate.AddDynamic(this,&UAbComp_RangeAttack::SpawnProjectile);
 }
 
 
-void UAbilityComponent_RangeAttack::StartAbility()
+void UAbComp_RangeAttack::StartAbility()
 {
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
@@ -26,33 +25,37 @@ void UAbilityComponent_RangeAttack::StartAbility()
 		OnAbilityStartedDelegate.Broadcast();
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-		ParticleComponent = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
+		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::FinishAbilityCast, AnimDuration/2, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_RangeAttack::FinishAbilityCast, AnimDuration/2, false);
 	}
 }
 
 
-void UAbilityComponent_RangeAttack::FinishAbilityCast()
+void UAbComp_RangeAttack::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_RangeAttack::CompleteAbilityAttack, .1, false);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_RangeAttack::CompleteAbilityAttack, .1, false);
 }
 
 
-void UAbilityComponent_RangeAttack::CompleteAbilityAttack()
+void UAbComp_RangeAttack::CompleteAbilityAttack()
 {
 	HandlePlayerActions(true);
 	SetAbilityActive(false);
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	StartCooldown();
-	if (ParticleComponent) ParticleComponent->DestroyComponent();
+	if (ParticleComp)
+	{
+		ParticleComp->DestroyComponent();
+		ParticleComp = nullptr;
+	}
 }
 
 
-void UAbilityComponent_RangeAttack::SpawnProjectile()
+void UAbComp_RangeAttack::SpawnProjectile()
 {
 	if (!GetOwner() || !ProjectileClass) return;
 	USceneComponent* SpawnPointComp = Cast<USceneComponent>(GetOwner()->GetDefaultSubobjectByName(ComponentName));
@@ -71,7 +74,7 @@ void UAbilityComponent_RangeAttack::SpawnProjectile()
 }
 
 
-void UAbilityComponent_RangeAttack::UpdateAbilityDescription()
+void UAbComp_RangeAttack::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
 	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),
@@ -79,7 +82,7 @@ void UAbilityComponent_RangeAttack::UpdateAbilityDescription()
 }
 
 
-void UAbilityComponent_RangeAttack::UpdateUpgradeDescription()
+void UAbComp_RangeAttack::UpdateUpgradeDescription()
 {
 	const FRangeAttackPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
@@ -90,7 +93,7 @@ void UAbilityComponent_RangeAttack::UpdateUpgradeDescription()
 }
 
 
-FRangeAttackPropertiesData* UAbilityComponent_RangeAttack::GetAbilityData(const int32 Level)
+FRangeAttackPropertiesData* UAbComp_RangeAttack::GetAbilityData(const int32 Level)
 {
 	if (!AbilitiesUpgradeDataAsset) return nullptr;
 	if (!AbilitiesUpgradeDataAsset->RangeAttackLevels.IsValidIndex(Level)) return nullptr;
@@ -98,7 +101,7 @@ FRangeAttackPropertiesData* UAbilityComponent_RangeAttack::GetAbilityData(const 
 }
 
 
-void UAbilityComponent_RangeAttack::SetAbilityData(const int32 Level)
+void UAbComp_RangeAttack::SetAbilityData(const int32 Level)
 {
 	const FRangeAttackPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
@@ -108,13 +111,13 @@ void UAbilityComponent_RangeAttack::SetAbilityData(const int32 Level)
 }
 
 
-float UAbilityComponent_RangeAttack::GetProjectileDamage() const
+float UAbComp_RangeAttack::GetProjectileDamage() const
 {
 	return ProjectileDamage;
 }
 
 
-void UAbilityComponent_RangeAttack::SetProjectileDamage(const float NewProjectileDamage)
+void UAbComp_RangeAttack::SetProjectileDamage(const float NewProjectileDamage)
 {
 	ProjectileDamage = NewProjectileDamage;
 }

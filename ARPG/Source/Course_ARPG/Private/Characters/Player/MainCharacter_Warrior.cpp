@@ -1,10 +1,10 @@
 
 #include "Characters/Player/MainCharacter_Warrior.h"
 #include "Animations/PlayerAnimInstance.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_DamageIncrease.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_GetArmor.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_LifeStealAttack.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_RangeAttack.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_RangeAttack.h"
 #include "Components/BlockComponent.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/StatsComponent.h"
@@ -17,10 +17,10 @@ AMainCharacter_Warrior::AMainCharacter_Warrior()
 	CombatComp = CreateDefaultSubobject<UCombatComponent_Base>(TEXT("Combat Component"));
 	BlockComp = CreateDefaultSubobject<UBlockComponent>(TEXT("Block Component"));
 	
-	AbilityComp_DamageIncrease = CreateDefaultSubobject<UAbilityComponent_DamageIncrease>(TEXT("Damage Increase"));
-	AbilityComp_RangeAttack = CreateDefaultSubobject<UAbilityComponent_RangeAttack>(TEXT("Range Attack"));
-	AbilityComp_LifeStealAttack = CreateDefaultSubobject<UAbilityComponent_LifeStealAttack>(TEXT("Life Steal Attack"));
-	AbilityComp_GetArmor = CreateDefaultSubobject<UAbilityComponent_GetArmor>(TEXT("Get Armor"));
+	AbilityComp_DamageIncrease = CreateDefaultSubobject<UAbComp_DamageIncrease>(TEXT("Damage Increase"));
+	AbilityComp_RangeAttack = CreateDefaultSubobject<UAbComp_RangeAttack>(TEXT("Range Attack"));
+	AbilityComp_LifeStealAttack = CreateDefaultSubobject<UAbComp_LifeStealAttack>(TEXT("Life Steal Attack"));
+	AbilityComp_GetArmor = CreateDefaultSubobject<UAbComp_GetArmor>(TEXT("Get Armor"));
 	
 	AddToAbilitiesArray(AbilityComp_DamageIncrease);
 	AddToAbilitiesArray(AbilityComp_RangeAttack);
@@ -39,7 +39,7 @@ void AMainCharacter_Warrior::BeginPlay()
 	
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
 	BlockComp->OnBlockDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
-	TraceComp->OnHitDelegate.AddUObject(AbilityComp_LifeStealAttack, &UAbilityComponent_LifeStealAttack::HandleLifeStealOnHit);
+	TraceComp->OnHitDelegate.AddUObject(AbilityComp_LifeStealAttack, &UAbComp_LifeStealAttack::HandleLifeStealOnHit);
 }
 
 

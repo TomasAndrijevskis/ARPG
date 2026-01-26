@@ -1,19 +1,18 @@
 
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_GetArmor.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Characters/Player/MainCharacter_Warrior.h"
-#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
-#include "UI/PlayerWidget.h"
+#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
 
 
-void UAbilityComponent_GetArmor::BeginPlay()
+void UAbComp_GetArmor::BeginPlay()
 {
 	Super::BeginPlay();
-	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
+	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Player::CreateIcon);
 }
 
 
-void UAbilityComponent_GetArmor::StartAbility()
+void UAbComp_GetArmor::StartAbility()
 {
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
@@ -24,35 +23,34 @@ void UAbilityComponent_GetArmor::StartAbility()
 		Cast<AMainCharacter_Warrior>(PlayerRef)->SetArmor(Armor);
 		OnAbilityStartedDelegate.Broadcast();
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::FinishAbilityCast, AnimDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_GetArmor::FinishAbilityCast, AnimDuration, false);
 	}
 }
 
 
-void UAbilityComponent_GetArmor::FinishAbilityCast()
+void UAbComp_GetArmor::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_GetArmor::CompleteAbility, .1, false);
+	CompleteAbility();
 }
 
 
-void UAbilityComponent_GetArmor::CreateIcon()
+void UAbComp_GetArmor::CreateIcon()
 {
-	PlayerRef->GetPlayerWidget()->CreateStatusIconWithAmount(GetArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
+	PlayerRef->CreateAbilityIconWithAmount(GetArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
 }
 
 
-void UAbilityComponent_GetArmor::CompleteAbility()
+void UAbComp_GetArmor::CompleteAbility()
 {
 	SetAbilityActive(false);
 	HandlePlayerActions(true);
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	StartCooldown();
 }
 
 
-void UAbilityComponent_GetArmor::UpdateAbilityDescription()
+void UAbComp_GetArmor::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Give yourself protection."
 	"\nCurrent level: %i\n\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"),
@@ -60,7 +58,7 @@ void UAbilityComponent_GetArmor::UpdateAbilityDescription()
 }
 
 
-void UAbilityComponent_GetArmor::UpdateUpgradeDescription()
+void UAbComp_GetArmor::UpdateUpgradeDescription()
 {
 	const FGetArmorPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
@@ -72,7 +70,7 @@ void UAbilityComponent_GetArmor::UpdateUpgradeDescription()
 }
 
 
-FGetArmorPropertiesData* UAbilityComponent_GetArmor::GetAbilityData(const int32 Level)
+FGetArmorPropertiesData* UAbComp_GetArmor::GetAbilityData(const int32 Level)
 {
 	if (!AbilitiesUpgradeDataAsset) return nullptr;
 	if (!AbilitiesUpgradeDataAsset->GetArmorLevels.IsValidIndex(Level)) return nullptr;
@@ -80,7 +78,7 @@ FGetArmorPropertiesData* UAbilityComponent_GetArmor::GetAbilityData(const int32 
 }
 
 
-void UAbilityComponent_GetArmor::SetAbilityData(const int32 Level)
+void UAbComp_GetArmor::SetAbilityData(const int32 Level)
 {
 	const FGetArmorPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
@@ -91,25 +89,25 @@ void UAbilityComponent_GetArmor::SetAbilityData(const int32 Level)
 }
 
 
-float UAbilityComponent_GetArmor::GetArmor() const
+float UAbComp_GetArmor::GetArmor() const
 {
 	return Armor;
 }
 
 
-void UAbilityComponent_GetArmor::SetArmor(const float NewArmor)
+void UAbComp_GetArmor::SetArmor(const float NewArmor)
 {
 	Armor = NewArmor;
 }
 
 
-float UAbilityComponent_GetArmor::GetDamageReductionPercent() const
+float UAbComp_GetArmor::GetDamageReductionPercent() const
 {
 	return DamageReductionPercent;
 }
 
 
-void UAbilityComponent_GetArmor::SetDamageReductionPercent(const float NewDamageReductionPercent)
+void UAbComp_GetArmor::SetDamageReductionPercent(const float NewDamageReductionPercent)
 {
 	DamageReductionPercent = NewDamageReductionPercent;
 }

@@ -3,13 +3,13 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "AbilityComponent_DamageIncrease.generated.h"
+#include "AbComp_DamageIncrease.generated.h"
 
 
 struct FDamageIncreasePropertiesData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbilityComponent_DamageIncrease : public UAbilityComponent_Player
+class COURSE_ARPG_API UAbComp_DamageIncrease : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 
@@ -22,16 +22,16 @@ public:
 	float GetDamageMultiplier() const;
 
 	void SetDamageMultiplier(float NewDamageMultiplier);
+
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 protected:
 
 	virtual void BeginPlay() override;
 
 	virtual void OnAbilityTimerFinished() override;
-
-	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
 
 	FDamageIncreasePropertiesData* GetAbilityData(const int32 Level);
 

@@ -11,16 +11,15 @@ class COURSE_ARPG_API UAbilityComponent_Enemy : public UAbilityComponent_Base
 {
 	GENERATED_BODY()
 
-protected:
-
-	virtual void BeginPlay() override;
-
-	virtual void StartAbilityTimer() override;
-
-	virtual void OnAbilityTimerFinished() override;
+public:
 
 	virtual void StartAbility() override;
 	
 	virtual void FinishAbilityCast() override;
 	
+protected:
+
+	virtual void StartAbilityTimer() override;
+
+	virtual void OnAbilityTimerFinished() override;
 };

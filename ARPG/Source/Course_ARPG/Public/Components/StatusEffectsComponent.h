@@ -41,10 +41,10 @@ protected:
 	UPROPERTY()
 	UNiagaraComponent* EffectRef;
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY()
 	UNiagaraSystem* Effect;
 	
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY()
 	UTexture2D* Icon;
 
 	UPROPERTY(EditDefaultsOnly)

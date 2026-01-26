@@ -60,7 +60,7 @@ void UPlayerWidget::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsCompo
 }
 
 
-void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
+void UPlayerWidget::CreateAbilityIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
 {
 	if (!StatusIconWithTimerWidgetClass) return;
 	UAbilityIconWithTimer* StatusIconWithTimerRef = Cast<UAbilityIconWithTimer>(CreateWidget(this, StatusIconWithTimerWidgetClass));
@@ -70,7 +70,7 @@ void UPlayerWidget::CreateStatusIconWithTimer(const float Duration, UTexture2D* 
 }
 
 
-void UPlayerWidget::CreateStatusIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword)
+void UPlayerWidget::CreateAbilityIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword)
 {
 	if (!StatusIconWithAmountWidgetClass) return;
 	if (ActiveStatusWidget.Contains(Keyword))

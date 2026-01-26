@@ -1,40 +1,38 @@
 
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_FireStorm.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_FireStorm.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
+#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FireStorm.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
-void UAbilityComponent_FireStorm::StartAbility()
+void UAbComp_FireStorm::StartAbility()
 {
 	Super::StartAbility();
-	if (!CanPlayMontage() || !IsAbilityAvailable()) return;
-	if (HasEnoughMana() && !IsAbilityActive() && !IsOnCooldown())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		SetAbilityActive(true);
 		
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
 
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::FinishAbilityCast, AnimDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FireStorm::FinishAbilityCast, AnimDuration, false);
 	}
 }
 
 
-void UAbilityComponent_FireStorm::FinishAbilityCast()
+void UAbComp_FireStorm::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::SpawnFireStorm, .1, false);
+	SpawnFireStorm();
 
 }
 
 
-void UAbilityComponent_FireStorm::SpawnFireStorm()
+void UAbComp_FireStorm::SpawnFireStorm()
 {
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	const FVector PlayerLocation = GetOwner()->GetActorLocation();
 	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
 	const FVector TargetLocation = PlayerLocation + ForwardDirection * 250.0f;
@@ -52,14 +50,12 @@ void UAbilityComponent_FireStorm::SpawnFireStorm()
 	}
 	OnAbilityStartedDelegate.Broadcast();
 	TimerDuration = GetAbilityDuration();
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_FireStorm::StartAbilityTimer, 1, true);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FireStorm::StartAbilityTimer, 1, true);
 }
 
 
-void UAbilityComponent_FireStorm::OnAbilityTimerFinished()
+void UAbComp_FireStorm::OnAbilityTimerFinished()
 {
-	Super::OnAbilityTimerFinished();
-
 	SetAbilityActive(false);
 	if (FireStormRef)
 	{
@@ -69,7 +65,7 @@ void UAbilityComponent_FireStorm::OnAbilityTimerFinished()
 }
 
 
-void UAbilityComponent_FireStorm::UpdateAbilityDescription()
+void UAbComp_FireStorm::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon fire storm which\nwill burn your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nBurn damage per tick: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nBurning duration: %.2f s"),
@@ -77,7 +73,7 @@ void UAbilityComponent_FireStorm::UpdateAbilityDescription()
 }
 
 
-void UAbilityComponent_FireStorm::UpdateUpgradeDescription()
+void UAbComp_FireStorm::UpdateUpgradeDescription()
 {
 	const FFireStormPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
@@ -90,7 +86,7 @@ void UAbilityComponent_FireStorm::UpdateUpgradeDescription()
 }
 
 
-FFireStormPropertiesData* UAbilityComponent_FireStorm::GetAbilityData(const int32 Level)
+FFireStormPropertiesData* UAbComp_FireStorm::GetAbilityData(const int32 Level)
 {
 	if (!AbilitiesUpgradeDataAsset) return nullptr;
 	if (!AbilitiesUpgradeDataAsset->FireStormLevels.IsValidIndex(Level)) return nullptr;
@@ -98,7 +94,7 @@ FFireStormPropertiesData* UAbilityComponent_FireStorm::GetAbilityData(const int3
 }
 
 
-void UAbilityComponent_FireStorm::SetAbilityData(const int32 Level)
+void UAbComp_FireStorm::SetAbilityData(const int32 Level)
 {
 	const FFireStormPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
@@ -109,25 +105,25 @@ void UAbilityComponent_FireStorm::SetAbilityData(const int32 Level)
 }
 
 
-float UAbilityComponent_FireStorm::GetBurnDamage() const
+float UAbComp_FireStorm::GetBurnDamage() const
 {
 	return BurnDamage;
 }
 
 
-void UAbilityComponent_FireStorm::SetBurnDamage(float NewDamage)
+void UAbComp_FireStorm::SetBurnDamage(float NewDamage)
 {
 	BurnDamage = NewDamage;
 }
 
 
-float UAbilityComponent_FireStorm::GetBurnDuration() const
+float UAbComp_FireStorm::GetBurnDuration() const
 {
 	return BurnDuration;
 }
 
 
-void UAbilityComponent_FireStorm::SetBurnDuration(float NewDuration)
+void UAbComp_FireStorm::SetBurnDuration(float NewDuration)
 {
 	BurnDuration = NewDuration;
 }

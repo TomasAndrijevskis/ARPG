@@ -2,8 +2,8 @@
 #include "Characters/Enemy/Boss_Fey.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/Data/EStats.h"
-#include "Combat/Abilities/EnemyAbilities/PoisonExplosionComponent.h"
-#include "Combat/Abilities/EnemyAbilities/SummonMinionsComponent.h"
+#include "Combat/Abilities/EnemyAbilities/AbComp_PoisonExplosion.h"
+#include "Combat/Abilities/EnemyAbilities/AbComp_SummonMinions.h"
 #include "Combat/Projectiles/EnemyProjectileComponent.h"
 #include "Components/StatsComponent.h"
 
@@ -11,10 +11,9 @@
 ABoss_Fey::ABoss_Fey()
 {
 	ProjectileComp = CreateDefaultSubobject<UEnemyProjectileComponent>(TEXT("Projectile Component"));
-	PoisonExplosionComp = CreateDefaultSubobject<UPoisonExplosionComponent>(TEXT("Poison Explosion"));
-	SummonMinionsComp = CreateDefaultSubobject<USummonMinionsComponent>(TEXT("Summon Minions"));
+	PoisonExplosionComp = CreateDefaultSubobject<UAbComp_PoisonExplosion>(TEXT("Poison Explosion"));
+	SummonMinionsComp = CreateDefaultSubobject<UAbComp_SummonMinions>(TEXT("Summon Minions"));
 }
-
 
 void ABoss_Fey::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType,class AController* InstigatedBy, AActor* DamageCauser)
 {
@@ -29,7 +28,7 @@ void ABoss_Fey::HandleBehaviour()
 	if (MeleeAttacksCounter < MeleeAttackHealthThresholds.Num() && CurrentHealthPercent <= MeleeAttackHealthThresholds[MeleeAttacksCounter])
 		SwitchToMeleeAttack();
 	if (SummonCounter < SummonHealthThresholds.Num() && CurrentHealthPercent <= SummonHealthThresholds[SummonCounter])
-		SummonMinions();
+		HandleSummonMinions();
 }
 
 
@@ -40,9 +39,33 @@ void ABoss_Fey::SwitchToMeleeAttack()
 }
 
 
-void ABoss_Fey::SummonMinions()
+void ABoss_Fey::HandleSummonMinions()
 {
 	GetBlackboardComp()->SetValueAsInt(TEXT("SummonTimes"), SummonCounter);
 	SummonCounter++;
 	GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Summon);
+}
+
+
+void ABoss_Fey::StartPoisonAbility()
+{
+	PoisonExplosionComp->StartAbility();
+}
+
+
+void ABoss_Fey::FinishPoisonAbility()
+{
+	PoisonExplosionComp->FinishAbilityCast();
+}
+
+
+void ABoss_Fey::StartSummonAbility()
+{
+	SummonMinionsComp->StartAbility();
+}
+
+
+void ABoss_Fey::SpawnProjectile()
+{
+	ProjectileComp->SpawnProjectile();
 }

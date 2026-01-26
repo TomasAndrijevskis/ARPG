@@ -2,24 +2,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Components/ActorComponent.h"
-#include "SummonMinionsComponent.generated.h"
+#include "Combat/Abilities/Base/AbilityComponent_Enemy.h"
+#include "AbComp_SummonMinions.generated.h"
 
 
 class AEnemyCharacter;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API USummonMinionsComponent : public UActorComponent
+class COURSE_ARPG_API UAbComp_SummonMinions : public UAbilityComponent_Enemy
 {
 	GENERATED_BODY()
 
 public:
-
-	void StartSummon();
-
-protected:
-
-	virtual void BeginPlay() override;
+	
+	virtual void StartAbility() override;
 	
 private:
 	
@@ -36,8 +32,4 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	int MaxSpawnDistance;
-
-	UPROPERTY()
-	AEnemyCharacter* CharacterRef;
-
 };

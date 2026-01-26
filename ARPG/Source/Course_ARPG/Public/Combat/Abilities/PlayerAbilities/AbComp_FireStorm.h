@@ -3,14 +3,14 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "AbilityComponent_FireStorm.generated.h"
+#include "AbComp_FireStorm.generated.h"
 
 
 struct FFireStormPropertiesData;
 class AFireStorm;
 
 UCLASS()
-class COURSE_ARPG_API UAbilityComponent_FireStorm : public UAbilityComponent_Player
+class COURSE_ARPG_API UAbComp_FireStorm : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 
@@ -27,14 +27,14 @@ public:
 	float GetBurnDuration() const;
 	
 	void SetBurnDuration(float NewDuration);
+
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 protected:
 	
 	virtual void OnAbilityTimerFinished() override;
-	
-	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
 
 	FFireStormPropertiesData* GetAbilityData(const int32 Level);
 

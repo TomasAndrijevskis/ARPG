@@ -1,19 +1,19 @@
 
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_DamageIncrease.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
+#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
-void UAbilityComponent_DamageIncrease::BeginPlay()
+void UAbComp_DamageIncrease::BeginPlay()
 {
 	Super::BeginPlay();
-	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
+	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Player::CreateIcon);
 }
 
 
-void UAbilityComponent_DamageIncrease::StartAbility()
+void UAbComp_DamageIncrease::StartAbility()
 {
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
@@ -31,20 +31,20 @@ void UAbilityComponent_DamageIncrease::StartAbility()
 			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
 		
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::FinishAbilityCast, (AnimDuration+tempDuration), false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_DamageIncrease::FinishAbilityCast, (AnimDuration+tempDuration), false);
 	}
 }
 
 
-void UAbilityComponent_DamageIncrease::FinishAbilityCast()
+void UAbComp_DamageIncrease::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_DamageIncrease::StartAbilityTimer, 1, true, 1.f);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_DamageIncrease::StartAbilityTimer, 1, true, 1.f);
 }
 
 
-void UAbilityComponent_DamageIncrease::OnAbilityTimerFinished()
+void UAbComp_DamageIncrease::OnAbilityTimerFinished()
 {
 	Super::OnAbilityTimerFinished();
 	SetAbilityActive(false);
@@ -56,7 +56,7 @@ void UAbilityComponent_DamageIncrease::OnAbilityTimerFinished()
 }
 
 
-void UAbilityComponent_DamageIncrease::UpdateAbilityDescription()
+void UAbComp_DamageIncrease::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
 	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"),
@@ -64,7 +64,7 @@ void UAbilityComponent_DamageIncrease::UpdateAbilityDescription()
 }
 
 
-void UAbilityComponent_DamageIncrease::UpdateUpgradeDescription()
+void UAbComp_DamageIncrease::UpdateUpgradeDescription()
 {
 	const FDamageIncreasePropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
@@ -76,7 +76,7 @@ void UAbilityComponent_DamageIncrease::UpdateUpgradeDescription()
 }
 
 
-FDamageIncreasePropertiesData* UAbilityComponent_DamageIncrease::GetAbilityData(const int32 Level)
+FDamageIncreasePropertiesData* UAbComp_DamageIncrease::GetAbilityData(const int32 Level)
 {
 	if (!AbilitiesUpgradeDataAsset) return nullptr;
 	if (!AbilitiesUpgradeDataAsset->DamageIncreaseLevels.IsValidIndex(Level)) return nullptr;
@@ -84,7 +84,7 @@ FDamageIncreasePropertiesData* UAbilityComponent_DamageIncrease::GetAbilityData(
 }
 
 
-void UAbilityComponent_DamageIncrease::SetAbilityData(const int32 Level)
+void UAbComp_DamageIncrease::SetAbilityData(const int32 Level)
 {
 	const FDamageIncreasePropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
@@ -94,13 +94,13 @@ void UAbilityComponent_DamageIncrease::SetAbilityData(const int32 Level)
 }
 
 
-float UAbilityComponent_DamageIncrease::GetDamageMultiplier() const
+float UAbComp_DamageIncrease::GetDamageMultiplier() const
 {
 	return DamageMultiplier;
 }
 
 
-void UAbilityComponent_DamageIncrease::SetDamageMultiplier(float NewDamageMultiplier)
+void UAbComp_DamageIncrease::SetDamageMultiplier(float NewDamageMultiplier)
 {
 	DamageMultiplier = NewDamageMultiplier;
 }

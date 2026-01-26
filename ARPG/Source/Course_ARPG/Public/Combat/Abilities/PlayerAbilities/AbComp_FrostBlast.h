@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/ActorComponent.h"
-#include "AbilityComponent_FrostBlast.generated.h"
+#include "AbComp_FrostBlast.generated.h"
 
 
 struct FFrostBlastPropertiesData;
@@ -12,7 +12,7 @@ struct FGetArmorPropertiesData;
 class AFrostBlastRange;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbilityComponent_FrostBlast : public UAbilityComponent_Player
+class COURSE_ARPG_API UAbComp_FrostBlast : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 
@@ -29,12 +29,12 @@ public:
 	void SetSlowDuration(float NewSlowDuration);
 
 	float GetSlowDuration() const;
-	
-protected:
 
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+	
+protected:
 
 	FFrostBlastPropertiesData* GetAbilityData(const int32 Level);
 
@@ -53,9 +53,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	FName SocketName; //ik_foot_root
-
-	UPROPERTY()
-	AFrostBlastRange* FrostBlastRangeActor;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> FrostBlastClass;

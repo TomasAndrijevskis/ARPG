@@ -345,6 +345,18 @@ void AMainCharacter_Base::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffect
 }
 
 
+void AMainCharacter_Base::CreateAbilityIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
+{
+	PlayerWidgetRef->CreateAbilityIconWithTimer(Duration, Image, AbilityCompRef);
+}
+
+
+void AMainCharacter_Base::CreateAbilityIconWithAmount(const float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword)
+{
+	PlayerWidgetRef->CreateAbilityIconWithAmount(Amount, Icon, StatsCompRef, Keyword);
+}
+
+
 AActor* AMainCharacter_Base::GetCurrentTargetActor() const
 {
 	return LockonComp->CurrentTargetActor;

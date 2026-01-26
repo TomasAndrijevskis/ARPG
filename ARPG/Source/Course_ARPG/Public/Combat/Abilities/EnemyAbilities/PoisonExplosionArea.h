@@ -20,7 +20,7 @@ public:
 
 	APoisonExplosionArea();
 
-	void SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UAbilityComponent_Base* NewAbilityCompRef, UTexture2D* NewIcon);
+	void SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UAbilityComponent_Base* NewAbilityCompRef);
 
 	FOnExplosionTriggeredSignature OnExplosionTriggeredDelegate;
 
@@ -37,9 +37,6 @@ private:
 
 	UPROPERTY()
 	UAbilityComponent_Base* AbilityCompRef;
-
-	UPROPERTY()
-	UTexture2D* Icon;
 	
 	float ExplosionDamage;
 

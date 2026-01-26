@@ -20,7 +20,7 @@ void UCombatComponent_Mage::ComboAttack()
 	const float AnimDuration = CharacterRef->PlayAnimMontage(AttackAnimations[ComboCounter]);
 	ComboCounter++;
 	const int MaxCombo = AttackAnimations.Num();
-	ComboCounter = UKismetMathLibrary::Wrap(ComboCounter, -1, (MaxCombo-1));
+	ComboCounter = UKismetMathLibrary::Wrap(ComboCounter, -1, MaxCombo-1);
 	GetWorld()->GetTimerManager().SetTimer(ProjectileTimerHandle, this, &UCombatComponent_Mage::SpawnProjectile, AnimDuration/3, false);
 }
 

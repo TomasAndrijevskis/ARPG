@@ -4,13 +4,13 @@
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/ActorComponent.h"
-#include "AbilityComponent_GetArmor.generated.h"
+#include "AbComp_GetArmor.generated.h"
 
 
 struct FGetArmorPropertiesData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbilityComponent_GetArmor : public UAbilityComponent_Player
+class COURSE_ARPG_API UAbComp_GetArmor : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 
@@ -27,14 +27,14 @@ public:
 	float GetDamageReductionPercent() const;
 
 	void SetDamageReductionPercent(const float NewDamageReductionPercent);
+
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 protected:
 	
 	virtual void BeginPlay() override;
-	
-	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
 	
 	virtual void CreateIcon() override;
 

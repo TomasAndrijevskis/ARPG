@@ -6,7 +6,7 @@
 #include "Minion_Rampage.generated.h"
 
 
-class UGroundSmashComponent;
+class UAbComp_GroundSmash;
 
 UCLASS()
 class COURSE_ARPG_API AMinion_Rampage : public AMinion
@@ -18,5 +18,5 @@ public:
 	AMinion_Rampage();
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UGroundSmashComponent* GroundSmashComp;
+	UAbComp_GroundSmash* GroundSmashComp;
 };

@@ -146,6 +146,10 @@ public:
 
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
 
+	void CreateAbilityIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
+
+	void CreateAbilityIconWithAmount(const float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword);
+	
 	AActor* GetCurrentTargetActor() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)

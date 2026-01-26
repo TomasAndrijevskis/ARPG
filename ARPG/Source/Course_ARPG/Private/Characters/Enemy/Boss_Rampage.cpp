@@ -1,13 +1,19 @@
 
 #include "Characters/Enemy/Boss_Rampage.h"
-#include "Combat/Abilities/EnemyAbilities/GroundSmashComponent.h"
+#include "Combat/Abilities/EnemyAbilities/AbComp_GroundSmash.h"
 #include "Components/TraceComponent.h"
 
 
 ABoss_Rampage::ABoss_Rampage()
 {
-	GroundSmashComp = CreateDefaultSubobject<UGroundSmashComponent>(TEXT("Ground Smash Component"));
+	GroundSmashComp = CreateDefaultSubobject<UAbComp_GroundSmash>(TEXT("Ground Smash Component"));
 	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
+}
+
+
+void ABoss_Rampage::StartAbility()
+{
+	GroundSmashComp->StartAbility();
 }
 
 

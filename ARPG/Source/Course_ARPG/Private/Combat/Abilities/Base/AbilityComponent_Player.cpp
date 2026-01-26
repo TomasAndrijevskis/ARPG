@@ -2,10 +2,9 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Characters/Data/AbilityUpgradeRequirements.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
+#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
 #include "Components/LevelingComponent.h"
 #include "SaveGame/AbilityData.h"
-#include "UI/PlayerWidget.h"
 
 
 void UAbilityComponent_Player::BeginPlay()
@@ -95,7 +94,7 @@ void UAbilityComponent_Player::FinishAbilityCast()
 
 void UAbilityComponent_Player::CreateIcon()
 {
-	PlayerRef->GetPlayerWidget()->CreateStatusIconWithTimer(GetAbilityDuration(), GetIcon(), this);
+	PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
 }
 
 
@@ -271,4 +270,11 @@ bool UAbilityComponent_Player::IsAbilityActive() const
 void UAbilityComponent_Player::SetAbilityActive(const bool NewIsActive)
 {
 	bIsAbilityActive = NewIsActive;
+}
+
+
+UTexture2D* UAbilityComponent_Player::GetIcon() const
+{
+	if (!Icon) return nullptr;
+	return Icon;
 }

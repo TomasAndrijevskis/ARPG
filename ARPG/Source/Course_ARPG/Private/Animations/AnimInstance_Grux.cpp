@@ -4,7 +4,6 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Characters/Enemy/Boss_Grux.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
 
 
 void UAnimInstance_Grux::HandleProjectileSpawn() const

@@ -61,10 +61,10 @@ public:
 	void ClearAbilityFooterPanel();
 	
 	UFUNCTION()
-	void CreateStatusIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
+	void CreateAbilityIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
 
 	UFUNCTION()
-	void CreateStatusIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword);
+	void CreateAbilityIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword);
 
 	UFUNCTION()
 	void CreateDeathWidget();

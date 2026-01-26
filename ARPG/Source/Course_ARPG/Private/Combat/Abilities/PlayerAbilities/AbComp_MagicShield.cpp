@@ -1,61 +1,60 @@
 
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_MagicShield.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_MagicShield.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/AbilitiesUpgradeData.h"
+#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/MagicShield.h"
 
 
-void UAbilityComponent_MagicShield::BeginPlay()
+void UAbComp_MagicShield::BeginPlay()
 {
 	Super::BeginPlay();
-	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Base::CreateIcon);
+	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Player::CreateIcon);
 }
 
 
-void UAbilityComponent_MagicShield::StartAbility()
+void UAbComp_MagicShield::StartAbility()
 {
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		SetAbilityActive(true);
 		TimerDuration = GetAbilityDuration();
-		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
+		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::FinishAbilityCast, AnimDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_MagicShield::FinishAbilityCast, AnimDuration, false);
 	}
 }
 
 
-void UAbilityComponent_MagicShield::FinishAbilityCast()
+void UAbComp_MagicShield::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::SpawnShield, .1, false);
 }
 
 
-void UAbilityComponent_MagicShield::SpawnShield()
+void UAbComp_MagicShield::SpawnShield()
 {
-	if (!ShieldClass) return;
-	FVector SpawnLocation = GetOwner()->GetActorLocation();
-	FRotator SpawnRotation = FRotator::ZeroRotator;
+	if (!ShieldClass || !PlayerRef) return;
+	const FVector SpawnLocation = GetOwner()->GetActorLocation();
+	const FRotator SpawnRotation = FRotator::ZeroRotator;
 	FActorSpawnParameters Params;
 	Params.Owner = GetOwner();
 	ShieldActor = GetWorld()->SpawnActor<AMagicShield>(ShieldClass, SpawnLocation, SpawnRotation, Params);
-	if (!PlayerRef || !ShieldActor) return;
+	if (!ShieldActor) return;
 	ShieldActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	OnAbilityStartedDelegate.Broadcast();
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbilityComponent_MagicShield::StartAbilityTimer, 1, true);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_MagicShield::StartAbilityTimer, 1, true);
 }
 
 
-void UAbilityComponent_MagicShield::StartAbilityTimer()
+void UAbComp_MagicShield::StartAbilityTimer()
 {
 	Super::StartAbilityTimer();
 }
 
 
-void UAbilityComponent_MagicShield::OnAbilityTimerFinished()
+void UAbComp_MagicShield::OnAbilityTimerFinished()
 {
 	Super::OnAbilityTimerFinished();
 	SetAbilityActive(false);
@@ -67,7 +66,7 @@ void UAbilityComponent_MagicShield::OnAbilityTimerFinished()
 }
 
 
-void UAbilityComponent_MagicShield::UpdateAbilityDescription()
+void UAbComp_MagicShield::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Get yourself fully covered\nwith magic shield"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s"),
@@ -75,7 +74,7 @@ void UAbilityComponent_MagicShield::UpdateAbilityDescription()
 }
 
 
-void UAbilityComponent_MagicShield::UpdateUpgradeDescription()
+void UAbComp_MagicShield::UpdateUpgradeDescription()
 {
 	const FMagicShieldPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
@@ -86,7 +85,7 @@ void UAbilityComponent_MagicShield::UpdateUpgradeDescription()
 }
 
 
-FMagicShieldPropertiesData* UAbilityComponent_MagicShield::GetAbilityData(const int32 Level)
+FMagicShieldPropertiesData* UAbComp_MagicShield::GetAbilityData(const int32 Level)
 {
 	if (!AbilitiesUpgradeDataAsset) return nullptr;
 	if (!AbilitiesUpgradeDataAsset->MagicShieldLevels.IsValidIndex(Level)) return nullptr;
@@ -94,7 +93,7 @@ FMagicShieldPropertiesData* UAbilityComponent_MagicShield::GetAbilityData(const 
 }
 
 
-void UAbilityComponent_MagicShield::SetAbilityData(const int32 Level)
+void UAbComp_MagicShield::SetAbilityData(const int32 Level)
 {
 	const FMagicShieldPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;

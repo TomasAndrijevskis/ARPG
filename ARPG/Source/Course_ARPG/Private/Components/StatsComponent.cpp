@@ -2,7 +2,7 @@
 #include "Components/StatsComponent.h"
 #include "Characters/Data/DefaultStatsDataAsset.h"
 #include "Characters/Data/EStats.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_GetArmor.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
 #include "Components/StatHelpers/HealthManager.h"
 #include "Components/StatHelpers/ManaManager.h"
 #include "Components/StatHelpers/StaminaManager.h"
@@ -90,7 +90,7 @@ float UStatsComponent::GetReducedDamage(const float Damage, AActor* Opponent)
 	
 	if (!FighterRef->CanTakeDamage(Opponent)) return 0;
 	
-	UAbilityComponent_GetArmor* AbilityRef = GetOwner()->FindComponentByClass<UAbilityComponent_GetArmor>();
+	UAbComp_GetArmor* AbilityRef = GetOwner()->FindComponentByClass<UAbComp_GetArmor>();
 
 	if (!AbilityRef) return Damage;
 	//на всякий случай вдруг % блокированного урона измениться

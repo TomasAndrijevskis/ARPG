@@ -35,23 +35,18 @@ public:
 	float GetAbilityDuration() const;
 
 	void SetAbilityDuration(const float NewAbilityDuration);
-	
-	UTexture2D* GetIcon() const;
-	
-	UFUNCTION()
-	virtual void CreateIcon(){};
-	
-protected:
-
-	virtual void StartAbilityTimer(){};
-
-	virtual void OnAbilityTimerFinished(){};
 
 	UFUNCTION(BlueprintCallable)
 	virtual void StartAbility(){};
 
 	UFUNCTION()
 	virtual void FinishAbilityCast(){};
+	
+protected:
+
+	virtual void StartAbilityTimer(){};
+
+	virtual void OnAbilityTimerFinished(){};
 	
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
@@ -65,8 +60,4 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	float AbilityDuration = 0.f;
-
-	UPROPERTY(EditAnywhere)
-	UTexture2D* Icon;
 };
-

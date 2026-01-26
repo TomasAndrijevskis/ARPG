@@ -3,25 +3,25 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "AbilityComponent_HealingAura.generated.h"
+#include "AbComp_MagicShield.generated.h"
 
 
-struct FHealingAuraPropertiesData;
+struct FMagicShieldPropertiesData;
+class AMagicShield;
+class USphereComponent;
+class UNiagaraSystem;
+
 
 UCLASS()
-class COURSE_ARPG_API UAbilityComponent_HealingAura : public UAbilityComponent_Player
+class COURSE_ARPG_API UAbComp_MagicShield : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 
 public:
-
+	
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	float GetHealthRegenAmount() const;
-	
-	void SetHealthRegenAmount(const float NewAmount);
 	
 protected:
 
@@ -34,22 +34,19 @@ protected:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
-
-	FHealingAuraPropertiesData* GetAbilityData(const int32 Level);
+	
+	FMagicShieldPropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 
-	UPROPERTY(VisibleAnywhere)
-	float HealthRegenAmount = 0.f;
-	
-	UPROPERTY(EditAnywhere)
-	UParticleSystem* Particle;
+	UFUNCTION()
+	void SpawnShield();
 
 	UPROPERTY()
-	UParticleSystemComponent* ParticleComp;
+	AMagicShield* ShieldActor;
 
 	UPROPERTY(EditAnywhere)
-	FName SocketName; //ik_foot_root
+	TSubclassOf<AActor> ShieldClass;
 };

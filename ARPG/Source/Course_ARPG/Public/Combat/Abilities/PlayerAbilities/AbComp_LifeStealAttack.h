@@ -4,14 +4,14 @@
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/ActorComponent.h"
-#include "AbilityComponent_LifeStealAttack.generated.h"
+#include "AbComp_LifeStealAttack.generated.h"
 
 
 struct FLifeStealAttackPropertiesData;
 class IFighter;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbilityComponent_LifeStealAttack : public UAbilityComponent_Player
+class COURSE_ARPG_API UAbComp_LifeStealAttack : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 
@@ -30,16 +30,16 @@ public:
 
 	UFUNCTION()
 	void HandleLifeStealOnHit();
-	
+
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
+
 protected:
 
 	virtual void BeginPlay() override;
 
 	virtual void OnAbilityTimerFinished() override;
-	
-	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
 
 	FLifeStealAttackPropertiesData* GetAbilityData(const int32 Level);
 

@@ -4,23 +4,19 @@
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Enemy.h"
 #include "Components/ActorComponent.h"
-#include "GroundSmashComponent.generated.h"
+#include "AbComp_GroundSmash.generated.h"
 
 
 class AGroundSmashArea;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UGroundSmashComponent : public UAbilityComponent_Enemy
+class COURSE_ARPG_API UAbComp_GroundSmash : public UAbilityComponent_Enemy
 {
 	GENERATED_BODY()
 
 public:	
-	
-	void SpawnParticles();
-	
-protected:
 
-	virtual void BeginPlay() override;
+	virtual void StartAbility() override;
 
 private:
 	
@@ -35,12 +31,6 @@ private:
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* ParticleClass;
 
-	UPROPERTY()
-	UParticleSystemComponent* ParticleRef;
-
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> GroundSmashAreaClass;
-	
-	UPROPERTY()
-	AGroundSmashArea* GroundSmashAreaActor;
 };

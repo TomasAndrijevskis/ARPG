@@ -6,8 +6,8 @@
 #include "Boss_Fey.generated.h"
 
 
-class USummonMinionsComponent;
-class UPoisonExplosionComponent;
+class UAbComp_SummonMinions;
+class UAbComp_PoisonExplosion;
 
 UCLASS()
 class COURSE_ARPG_API ABoss_Fey : public ABoss
@@ -18,14 +18,22 @@ public:
 	
 	ABoss_Fey();
 
+	void StartPoisonAbility();
+
+	void FinishPoisonAbility();
+
+	void StartSummonAbility();
+
+	void SpawnProjectile();
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UEnemyProjectileComponent* ProjectileComp;
 
 	UPROPERTY(EditAnywhere)
-	UPoisonExplosionComponent* PoisonExplosionComp;
+	UAbComp_PoisonExplosion* PoisonExplosionComp;
 
 	UPROPERTY(EditAnywhere)
-	USummonMinionsComponent* SummonMinionsComp;
+	UAbComp_SummonMinions* SummonMinionsComp;
 	
 protected:
 
@@ -35,7 +43,7 @@ private:
 
 	void HandleBehaviour();
 	
-	void SummonMinions();
+	void HandleSummonMinions();
 
 	void SwitchToMeleeAttack();
 

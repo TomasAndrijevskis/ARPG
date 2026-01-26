@@ -30,7 +30,7 @@ void UPoisonEffectManager::HandlePoison(const float NewPoisonDuration, const flo
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
-	//Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusIconWithTimer(PoisonDuration, Icon, AbilityCompRef);
+	//Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateAbilityIconWithTimer(PoisonDuration, Icon, AbilityCompRef);
 	//Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusEffectIcon(Icon);
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UPoisonEffectManager::Poison, PoisonRate, true);
 }

@@ -3,20 +3,20 @@
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "NiagaraSystem.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_FireStorm.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_FrostBlast.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_HealingAura.h"
-#include "Combat/Abilities/PlayerAbilities/AbilityComponent_MagicShield.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_FireStorm.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_FrostBlast.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_HealingAura.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_MagicShield.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_Mage.h"
 
 
 AMainCharacter_Mage::AMainCharacter_Mage()
 {
-	AbilityComp_MagicShield = CreateDefaultSubobject<UAbilityComponent_MagicShield>(TEXT("Magic Shield"));
-	AbilityComp_FrostBlast = CreateDefaultSubobject<UAbilityComponent_FrostBlast>(TEXT("Frost Blast"));
-	AbilityComp_FireStorm = CreateDefaultSubobject<UAbilityComponent_FireStorm>(TEXT("Fire Storm"));
-	AbilityComp_HealingAura = CreateDefaultSubobject<UAbilityComponent_HealingAura>(TEXT("Healing Aura"));
+	AbilityComp_MagicShield = CreateDefaultSubobject<UAbComp_MagicShield>(TEXT("Magic Shield"));
+	AbilityComp_FrostBlast = CreateDefaultSubobject<UAbComp_FrostBlast>(TEXT("Frost Blast"));
+	AbilityComp_FireStorm = CreateDefaultSubobject<UAbComp_FireStorm>(TEXT("Fire Storm"));
+	AbilityComp_HealingAura = CreateDefaultSubobject<UAbComp_HealingAura>(TEXT("Healing Aura"));
 
 	CombatComp = CreateDefaultSubobject<UCombatComponent_Mage>(TEXT("Combat Component"));
 	

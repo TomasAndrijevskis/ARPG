@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
-#include "Combat/Abilities/Data/AbilityPropertiesBaseData.h"
+#include "Combat/Abilities/Data/Player/AbilityPropertiesBaseData.h"
 #include "SaveGame/AbilityData.h"
 #include "AbilityComponent_Player.generated.h"
 
@@ -29,7 +29,8 @@ public:
 	UPROPERTY()
 	FOnAbilityCooldownFinishedSignature OnAbilityCooldownFinishedDelegate;
 
-	virtual void CreateIcon() override;
+	UFUNCTION()
+	virtual void CreateIcon();
 	
 	UFUNCTION()
 	void UpgradeAbility(int AvailablePoints);
@@ -84,6 +85,12 @@ public:
 	void LoadAbilityProperties(const FAbilityData& SavedData);
 
 	void ClearAbilityData();
+
+	UTexture2D* GetIcon() const;
+
+	virtual void StartAbility() override;
+
+	virtual void FinishAbilityCast() override;
 	
 protected:
 
@@ -98,10 +105,6 @@ protected:
 	bool HasEnoughMana() const;
 
 	virtual void StartAbilityTimer() override;
-	
-	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
 
 	void SetCommonAbilityProperties(const FAbilityPropertiesBaseData* Data);
 	
@@ -142,6 +145,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	FString ActionKey;
+	
+	UPROPERTY(EditAnywhere)
+	UTexture2D* Icon;
 	
 	FString AbilityDescription;
 
