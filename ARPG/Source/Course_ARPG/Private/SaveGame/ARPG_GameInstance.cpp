@@ -116,7 +116,16 @@ void UARPG_GameInstance::SaveStats()
 	SaveGameInstance->MaxMana = Data.MaxMana;
 	SaveGameInstance->CurrentStamina = Data.Stamina;
 	SaveGameInstance->MaxStamina = Data.MaxStamina;
+	SaveGameInstance->PhysicalStrength = Data.PhysicalStrength;
+	SaveGameInstance->MagicalStrength = Data.MagicalStrength;
+	
+	SaveGameInstance->Endurance = Data.Endurance;
+	SaveGameInstance->Intelligence = Data.Intelligence;
 	SaveGameInstance->Strength = Data.Strength;
+	SaveGameInstance->Wisdom = Data.Wisdom;
+	SaveGameInstance->Arcane = Data.Arcane;
+	SaveGameInstance->Vigor = Data.Vigor;
+	
 	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
 	SaveGameInstance->CurrentXP = Data.CurrentXP;
 	SaveGameInstance->CurrentStatPoints = Data.StatPoints;
@@ -129,13 +138,22 @@ void UARPG_GameInstance::LoadStats()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	FPlayerPersistentStats Data;
+	Data.Endurance = SaveGameInstance->Endurance;
+	Data.Intelligence = SaveGameInstance->Intelligence;
+	Data.Strength = SaveGameInstance->Strength;
+	Data.Wisdom = SaveGameInstance->Wisdom;
+	Data.Arcane = SaveGameInstance->Arcane;
+	Data.Vigor = SaveGameInstance->Vigor;
+	
 	Data.Health = SaveGameInstance->CurrentHealth;
 	Data.MaxHealth = SaveGameInstance->MaxHealth;
 	Data.Mana = SaveGameInstance->CurrentMana;
 	Data.MaxMana = SaveGameInstance->MaxMana;
 	Data.Stamina = SaveGameInstance->CurrentStamina;
 	Data.MaxStamina = SaveGameInstance->MaxStamina;
-	Data.Strength = SaveGameInstance->Strength;
+	Data.PhysicalStrength = SaveGameInstance->PhysicalStrength;
+	Data.MagicalStrength = SaveGameInstance->MagicalStrength;
+	
 	Data.CurrentLevel = SaveGameInstance->CurrentLevel;
 	Data.CurrentXP = SaveGameInstance->CurrentXP;
 	Data.StatPoints = SaveGameInstance->CurrentStatPoints;
@@ -164,7 +182,7 @@ void UARPG_GameInstance::LoadAbilities()
 	for (UAbilityComponent_Player* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability)) continue;
-		FString AbilityName = Ability->GetName();
+		const FString AbilityName = Ability->GetName();
 		if (SaveGameInstance->UnlockedAbilities.Contains(AbilityName))
 		{
 			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];

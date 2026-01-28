@@ -8,7 +8,6 @@
 #include "ARPG_SaveGame.generated.h"
 
 
-class ABoss;
 class UAbilityComponent_Base;
 class AMainCharacter_Base;
 
@@ -32,14 +31,35 @@ public:
 	float MaxMana;
 
 	UPROPERTY()
-	float Strength;
+	float PhysicalStrength;
 
+	UPROPERTY()
+	float MagicalStrength;
+	
 	UPROPERTY()
 	float MaxStamina;
 
 	UPROPERTY()
 	float CurrentStamina;
 
+	UPROPERTY()
+	int Endurance;
+
+	UPROPERTY()
+	int Intelligence;
+
+	UPROPERTY()
+	int Strength;
+
+	UPROPERTY()
+	int Arcane;
+
+	UPROPERTY()
+	int Wisdom;
+
+	UPROPERTY()
+	int Vigor;
+	
 	UPROPERTY()
 	float CurrentXP;
 

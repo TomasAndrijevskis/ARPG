@@ -32,7 +32,8 @@ AMainCharacter_Base::AMainCharacter_Base()
 	
 	ArrStats.Add(EStats::MaxHealth);
 	ArrStats.Add(EStats::MaxStamina);
-	ArrStats.Add(EStats::Strength);
+	ArrStats.Add(EStats::PhysicalStrength);
+	ArrStats.Add(EStats::MagicalStrength);
 	ArrStats.Add(EStats::MaxMana);
 }
 
@@ -265,11 +266,45 @@ void AMainCharacter_Base::ApplyPersistentStats(const FPlayerPersistentStats& Dat
 	StatsComp->SetStatValue(EStats::MaxMana, Data.MaxMana);
 	StatsComp->SetStatValue(EStats::Stamina, Data.Stamina);
 	StatsComp->SetStatValue(EStats::MaxStamina, Data.MaxStamina);
-	StatsComp->SetStatValue(EStats::Strength, Data.Strength);
+	StatsComp->SetStatValue(EStats::PhysicalStrength, Data.PhysicalStrength);
+	StatsComp->SetStatValue(EStats::MagicalStrength, Data.MagicalStrength);
+
+	AttributesComp->SetAttributeValue(EAttributes::Arcane, Data.Arcane);
+	AttributesComp->SetAttributeValue(EAttributes::Wisdom, Data.Wisdom);
+	AttributesComp->SetAttributeValue(EAttributes::Endurance, Data.Endurance);
+	AttributesComp->SetAttributeValue(EAttributes::Intelligence, Data.Intelligence);
+	AttributesComp->SetAttributeValue(EAttributes::Strength, Data.Strength);
+	
 	LevelComp->SetLevel(Data.CurrentLevel);
 	LevelComp->SetXP(Data.CurrentXP);
 	LevelComp->SetAbilityPoints(Data.AbilityPoints);
 	LevelComp->SetStatPoints(Data.StatPoints);
+}
+
+
+FPlayerPersistentStats AMainCharacter_Base::SavePersistentStats() const
+{
+	FPlayerPersistentStats Data;
+	Data.Health = StatsComp->GetStatValue(EStats::Health);
+	Data.MaxHealth = StatsComp->GetStatValue(EStats::MaxHealth);
+	Data.Mana = StatsComp->GetStatValue(EStats::Mana);
+	Data.MaxMana = StatsComp->GetStatValue(EStats::MaxMana);
+	Data.Stamina = StatsComp->GetStatValue(EStats::Stamina);
+	Data.MaxStamina = StatsComp->GetStatValue(EStats::MaxStamina);
+	Data.PhysicalStrength = StatsComp->GetStatValue(EStats::PhysicalStrength);
+	Data.MagicalStrength = StatsComp->GetStatValue(EStats::MagicalStrength);
+	
+	Data.Arcane = AttributesComp->GetAttributeValue(EAttributes::Arcane);
+	Data.Wisdom = AttributesComp->GetAttributeValue(EAttributes::Wisdom);
+	Data.Strength = AttributesComp->GetAttributeValue(EAttributes::Strength);
+	Data.Intelligence = AttributesComp->GetAttributeValue(EAttributes::Intelligence);
+	Data.Endurance = AttributesComp->GetAttributeValue(EAttributes::Endurance);
+	
+	Data.CurrentLevel = LevelComp->GetCurrentLevel();
+	Data.CurrentXP = LevelComp->GetCurrentXP();
+	Data.StatPoints = LevelComp->GetCurrentStatPointsAmount();
+	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
+	return Data;
 }
 
 
@@ -293,27 +328,17 @@ void AMainCharacter_Base::FillStatDisplayData(FString& StatName, float& StatValu
 }
 
 
-float AMainCharacter_Base::GetPlayerMaxHealth() const
+void AMainCharacter_Base::CalculateStat(const EAttributes& Attribute, const EStats& Stat) const
 {
-	return StatsComp->GetStatValue(EStats::MaxHealth);
+	const int Value = AttributesComp->GetAttributeValue(Attribute);
+	const int Coefficient = AttributesComp->GetAttributeCoefficient(Attribute);
+	StatsComp->SetStatValue(Stat, Value * Coefficient);
 }
 
 
-FPlayerPersistentStats AMainCharacter_Base::SavePersistentStats() const
+float AMainCharacter_Base::GetPlayerMaxHealth() const
 {
-	FPlayerPersistentStats Data;
-	Data.Health = StatsComp->GetStatValue(EStats::Health);
-	Data.MaxHealth = StatsComp->GetStatValue(EStats::MaxHealth);
-	Data.Mana = StatsComp->GetStatValue(EStats::Mana);
-	Data.MaxMana = StatsComp->GetStatValue(EStats::MaxMana);
-	Data.Stamina = StatsComp->GetStatValue(EStats::Stamina);
-	Data.MaxStamina = StatsComp->GetStatValue(EStats::MaxStamina);
-	Data.Strength = StatsComp->GetStatValue(EStats::Strength);
-	Data.CurrentLevel = LevelComp->GetCurrentLevel();
-	Data.CurrentXP = LevelComp->GetCurrentXP();
-	Data.StatPoints = LevelComp->GetCurrentStatPointsAmount();
-	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
-	return Data;
+	return StatsComp->GetStatValue(EStats::MaxHealth);
 }
 
 
@@ -379,7 +404,7 @@ void AMainCharacter_Base::HandleAbilityPointsAmountChange(const int NewPoints)
 
 float AMainCharacter_Base::GetCurrentDamage() const
 {
-	return StatsComp->GetStatValue(EStats::Strength);
+	return StatsComp->GetStatValue(EStats::PhysicalStrength);
 }
 
 
@@ -449,6 +474,12 @@ bool AMainCharacter_Base::CanPlayHurtAnimation() const
 TArray<TEnumAsByte<EStats>> AMainCharacter_Base::GetStatsArray() const
 {
 	return ArrStats;
+}
+
+
+TArray<TEnumAsByte<EAttributes>>& AMainCharacter_Base::GetAttributes() const
+{
+	return AttributesComp->GetAttributes();
 }
 
 

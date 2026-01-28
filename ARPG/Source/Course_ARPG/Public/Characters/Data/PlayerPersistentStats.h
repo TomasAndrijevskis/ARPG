@@ -16,8 +16,16 @@ struct FPlayerPersistentStats
 	float Mana;
 	float MaxStamina;
 	float Stamina;
-	float Strength;
+	float PhysicalStrength;
+	float MagicalStrength;
 
+	int Endurance;
+	int Intelligence;
+	int Strength;
+	int Arcane;
+	int Wisdom;
+	int Vigor;
+	
 	int32 CurrentLevel;
 	int32 CurrentXP;
 	int32 StatPoints;

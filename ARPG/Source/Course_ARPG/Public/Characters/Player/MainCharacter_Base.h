@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Characters/Data/EAttributes.h"
 #include "Characters/Data/EStats.h"
 #include "Components/StatusEffectsComponent.h"
 #include "GameFramework/Character.h"
@@ -135,6 +136,8 @@ public:
 	FPlayerPersistentStats SavePersistentStats() const;
 	
 	TArray<TEnumAsByte<EStats>> GetStatsArray() const;
+	
+	TArray<TEnumAsByte<EAttributes>>& GetAttributes() const;
 
 	void CreatePauseMenu();
 
@@ -152,6 +155,8 @@ public:
 	void CreateAbilityIconWithAmount(const float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword);
 	
 	AActor* GetCurrentTargetActor() const;
+	
+	void CalculateStat(const EAttributes& Attribute, const EStats& Stat) const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

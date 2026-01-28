@@ -123,7 +123,7 @@ void AEnemyCharacter::ResetAttack()
 
 float AEnemyCharacter::GetCurrentDamage() const
 {
-	return StatsComp->GetStatValue(EStats::Strength);
+	return StatsComp->GetStatValue(EStats::PhysicalStrength);
 }
 
 

@@ -49,6 +49,6 @@ void UCombatComponent_Mage::SpawnProjectile()
 	
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
 	if (!PlayerRef) return;
-	Projectile->SetStats(PlayerRef->StatsComp->GetStatValue(EStats::Strength)/2, AliveTime);//half damage for each hand
+	Projectile->SetStats(PlayerRef->StatsComp->GetStatValue(EStats::MagicalStrength)/2, AliveTime);//half damage for each hand
 	Projectile->StartAliveTimer();
 }

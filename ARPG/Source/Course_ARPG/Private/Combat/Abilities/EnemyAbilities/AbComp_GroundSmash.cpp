@@ -19,7 +19,7 @@ void UAbComp_GroundSmash::StartAbility()
 	FActorSpawnParameters Params;
 	Params.Owner = GetOwner();
 	AGroundSmashArea* GroundSmashAreaActor = GetWorld()->SpawnActor<AGroundSmashArea>(GroundSmashAreaClass,  SpawnLocation, SpawnRotation, Params);
-	GroundSmashAreaActor->SetParams(Cast<AEnemyCharacter>(GetOwner())->StatsComp->GetStatValue(EStats::Strength) * DamageMultiplier);
+	GroundSmashAreaActor->SetParams(Cast<AEnemyCharacter>(GetOwner())->StatsComp->GetStatValue(EStats::PhysicalStrength) * DamageMultiplier);
 }
 
 

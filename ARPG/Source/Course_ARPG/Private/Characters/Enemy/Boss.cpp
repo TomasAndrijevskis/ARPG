@@ -78,7 +78,7 @@ void ABoss::ActivateSecondPhase()
 {
 	bSecondPhase = true;
 	SetCanTakeDamage(true);
-	StatsComp->SetStatValue(EStats::Strength, StatsComp->GetStatValue(EStats::Strength) * DamageMultiplier);
+	StatsComp->SetStatValue(EStats::PhysicalStrength, StatsComp->GetStatValue(EStats::PhysicalStrength) * DamageMultiplier);
 }
 
 
