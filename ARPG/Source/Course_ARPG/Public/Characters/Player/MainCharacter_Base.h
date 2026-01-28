@@ -10,6 +10,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UAttributesComponent;
 class UPoisonEffectManager;
 class UIceEffectManager;
 class UFireEffectManager;
@@ -170,6 +171,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	ULevelingComponent* LevelComp;
 
+	UPROPERTY(EditAnywhere)
+	UAttributesComponent* AttributesComp;
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UFireEffectManager* FireStatusEffectManager;
 
