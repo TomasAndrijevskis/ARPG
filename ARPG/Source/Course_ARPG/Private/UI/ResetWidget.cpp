@@ -15,7 +15,7 @@ void UResetWidget::NativeConstruct()
 	Button_Close->OnClicked.AddUniqueDynamic(this, &UResetWidget::RemoveWidget);
 	Button_Close->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::HandleResetMenuQuit);
 	Button_ResetAbilities->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
-	Button_ResetStats->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetStatsClicked);
+	Button_ResetAttributes->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAttributesClicked);
 }
 
 
@@ -27,9 +27,9 @@ void UResetWidget::OnResetAbilitiesClicked()
 }
 
 
-void UResetWidget::OnResetStatsClicked()
+void UResetWidget::OnResetAttributesClicked()
 {
-	CurrentChoice = EResetType::ResetStats;
+	CurrentChoice = EResetType::ResetAttributes;
 	CreateConfirmationWindow();
 }
 
@@ -51,8 +51,8 @@ void UResetWidget::OnConfirmed()
 	case EResetType::ResetAbilities:
 		HandleResetAbilities();
 		break;
-	case EResetType::ResetStats:
-		HandleResetStats();
+	case EResetType::ResetAttributes:
+		HandleResetAttributes();
 		break;
 	}
 }
@@ -60,13 +60,12 @@ void UResetWidget::OnConfirmed()
 
 void UResetWidget::HandleResetAbilities()
 {
-	UE_LOG(LogTemp, Warning, TEXT("HandleResetAbilities"));
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
 		PlayerRef->ResetAbilities();
 }
 
 
-void UResetWidget::HandleResetStats()
+void UResetWidget::HandleResetAttributes()
 {
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
 		PlayerRef->ResetAttributes();

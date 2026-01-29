@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Characters/Data/EAttributes.h"
+#include "Data/EAttributes.h"
 #include "AttributeUpgradeWidget.generated.h"
 
 

@@ -8,9 +8,9 @@
 
 class AMainCharacter_Base;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityTimerChangedSignature, float, TimeLeft);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityStartedSignature);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityFinishedSignature);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityTimerChanged, float);
+DECLARE_MULTICAST_DELEGATE(FOnAbilityStarted);
+DECLARE_MULTICAST_DELEGATE(FOnAbilityFinished);
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -22,14 +22,11 @@ public:
 
 	UAbilityComponent_Base();
 	
-	UPROPERTY()
-	FOnAbilityTimerChangedSignature OnAbilityTimerChangedDelegate;
-
-	UPROPERTY()
-	FOnAbilityStartedSignature OnAbilityStartedDelegate;
+	FOnAbilityTimerChanged OnAbilityTimerChangedDelegate;
 	
-	UPROPERTY()
-	FOnAbilityFinishedSignature OnAbilityFinishedDelegate;
+	FOnAbilityStarted OnAbilityStartedDelegate;
+	
+	FOnAbilityFinished OnAbilityFinishedDelegate;
 	
 	UFUNCTION()
 	float GetAbilityDuration() const;

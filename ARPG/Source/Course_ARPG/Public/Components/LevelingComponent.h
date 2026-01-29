@@ -3,15 +3,15 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Characters/Data/XPLevels.h"
+#include "Data/XPLevels.h"
 #include "LevelingComponent.generated.h"
 
 
-DECLARE_MULTICAST_DELEGATE(FOnNewLevelSignature);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnLevelUpdatedSignature, int);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnXpUpdatedSignature, float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsUpdateSignature, int);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsUpdateSignature, int);
+DECLARE_MULTICAST_DELEGATE(FOnNewLevel);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnLevelUpdated, int);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnXpUpdated, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsUpdate, int);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsUpdate, int);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API ULevelingComponent : public UActorComponent
 {
@@ -51,15 +51,15 @@ public:
 
 	void IncreaseUsedStatPoints();
 	
-	FOnLevelUpdatedSignature OnLevelUpdatedDelegate;
+	FOnLevelUpdated OnLevelUpdatedDelegate;
 	
-	FOnXpUpdatedSignature OnXpUpdatedDelegate;
+	FOnXpUpdated OnXpUpdatedDelegate;
 	
-	FOnAttributePointsUpdateSignature OnAttributePointsUpdateDelegate;
+	FOnAttributePointsUpdate OnAttributePointsUpdateDelegate;
 	
-	FOnAbilityPointsUpdateSignature OnAbilityPointsUpdateDelegate;
+	FOnAbilityPointsUpdate OnAbilityPointsUpdateDelegate;
 	
-	FOnNewLevelSignature OnNewLevelDelegate;
+	FOnNewLevel OnNewLevelDelegate;
 	
 protected:
 

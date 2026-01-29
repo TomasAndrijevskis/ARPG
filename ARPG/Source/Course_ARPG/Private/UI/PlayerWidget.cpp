@@ -25,12 +25,12 @@ void UPlayerWidget::CreateAbilityUpgradeScreen()
 }
 
 
-void UPlayerWidget::CreateStatsUpgradeScreen()
+void UPlayerWidget::CreateAttributesUpgradeScreen()
 {
-	if (!StatsUpgradeWidgetClass) return;
-	UAttributeUpgradeWidget* StatsUpgradeWidget = Cast<UAttributeUpgradeWidget>(CreateWidget(this, StatsUpgradeWidgetClass));
-	if (!StatsUpgradeWidget) return;
-	StatsUpgradeWidget->AddToViewport(5);
+	if (!AttributesUpgradeWidgetClass) return;
+	UAttributeUpgradeWidget* AttributesUpgradeWidget = Cast<UAttributeUpgradeWidget>(CreateWidget(this, AttributesUpgradeWidgetClass));
+	if (!AttributesUpgradeWidget) return;
+	AttributesUpgradeWidget->AddToViewport(5);
 }
 
 
@@ -139,8 +139,8 @@ void UPlayerWidget::ShowLevelUpAnimation()
 
 void UPlayerWidget::CreateResetWidget()
 {
-	if (!StatsAbilitiesResetWidgetClass) return;
-	UResetWidget* ResetWidget = Cast<UResetWidget>(CreateWidget(this, StatsAbilitiesResetWidgetClass));
+	if (!ResetWidgetClass) return;
+	UResetWidget* ResetWidget = Cast<UResetWidget>(CreateWidget(this, ResetWidgetClass));
 	if (!ResetWidget) return;
 	ResetWidget->AddToViewport(5);
 }

@@ -1,13 +1,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "CharacterSelectionStruct.generated.h"
+#include "CharacterSelectionData.generated.h"
 
 
 class AMainCharacter_Base;
 
 USTRUCT(BlueprintType)
-struct COURSE_ARPG_API FCharacterSelectionStruct : public FTableRowBase
+struct COURSE_ARPG_API FCharacterSelectionData : public FTableRowBase
 {
 	GENERATED_BODY()
 

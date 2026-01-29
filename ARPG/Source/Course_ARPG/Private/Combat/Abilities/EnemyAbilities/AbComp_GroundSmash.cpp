@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/EnemyAbilities/AbComp_GroundSmash.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "Combat/Abilities/EnemyAbilities/GroundSmashArea.h"
 #include "Components/StatsComponent.h"
 #include "GameFramework/Character.h"

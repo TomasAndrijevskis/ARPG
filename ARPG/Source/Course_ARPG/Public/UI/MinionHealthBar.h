@@ -15,9 +15,4 @@ UCLASS()
 class COURSE_ARPG_API UMinionHealthBar : public UEnemyHealthBar
 {
 	GENERATED_BODY()
-
-public:
-
-private:
-	
 };

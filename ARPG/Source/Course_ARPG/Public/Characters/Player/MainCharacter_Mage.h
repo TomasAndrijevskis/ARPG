@@ -12,6 +12,7 @@ class UAbComp_MagicShield;
 class UAbComp_FrostBlast;
 class UAbComp_FireStorm;
 class UAbComp_HealingAura;
+
 UCLASS()
 class COURSE_ARPG_API AMainCharacter_Mage : public AMainCharacter_Base
 {

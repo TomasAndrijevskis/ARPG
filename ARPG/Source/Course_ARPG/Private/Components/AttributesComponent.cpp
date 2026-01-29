@@ -1,6 +1,6 @@
 
 #include "Components/AttributesComponent.h"
-#include "Characters/Data/DefaultAttributesDataAsset.h"
+#include "Data/DefaultAttributesDataAsset.h"
 
 
 void UAttributesComponent::BeginPlay()

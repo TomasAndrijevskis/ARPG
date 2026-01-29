@@ -1,8 +1,7 @@
 
 #include "Components/LevelingComponent.h"
-#include "Characters/Data/XPLevels.h"
+#include "Data/XPLevels.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "SaveGame/ARPG_GameInstance.h"
 
 
 void ULevelingComponent::BeginPlay()

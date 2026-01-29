@@ -12,7 +12,7 @@ class UButton;
 UENUM(BlueprintType)
 enum EResetType
 {
-	ResetStats,
+	ResetAttributes,
 	ResetAbilities,
 };
 
@@ -34,7 +34,7 @@ private:
 	UButton* Button_ResetAbilities;
 
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_ResetStats;
+	UButton* Button_ResetAttributes;
 
 	UPROPERTY(meta=(BindWidget))
 	UButton* Button_Close;
@@ -50,11 +50,11 @@ private:
 	void OnResetAbilitiesClicked();
 
 	UFUNCTION()
-	void OnResetStatsClicked();
+	void OnResetAttributesClicked();
 
 	void HandleResetAbilities();
 
-	void HandleResetStats();
+	void HandleResetAttributes();
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UConfirmationWindow> ConfirmationWindowClass;

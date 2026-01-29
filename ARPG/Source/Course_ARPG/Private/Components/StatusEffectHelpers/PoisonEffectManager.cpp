@@ -3,9 +3,8 @@
 #include "NiagaraFunctionLibrary.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
-#include "Components/StatusEffectHelpers/Data/StatusEffectsVisualData.h"
+#include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "Engine/DamageEvents.h"
-#include "UI/PlayerWidget.h"
 
 
 void UPoisonEffectManager::SetVisualData()
@@ -30,8 +29,6 @@ void UPoisonEffectManager::HandlePoison(const float NewPoisonDuration, const flo
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
-	//Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateAbilityIconWithTimer(PoisonDuration, Icon, AbilityCompRef);
-	//Cast<AMainCharacter_Base>(CharacterRef)->GetPlayerWidget()->CreateStatusEffectIcon(Icon);
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UPoisonEffectManager::Poison, PoisonRate, true);
 }
 
@@ -43,7 +40,6 @@ void UPoisonEffectManager::Poison()
 		PoisonDuration -= PoisonRate;
 		AbilityCompRef->OnAbilityTimerChangedDelegate.Broadcast(PoisonDuration);
 		FDamageEvent TargetAttackedEvent{ };
-		UE_LOG(LogTemp, Warning, TEXT("PoisonDamage: %f"), PoisonDamage);
 		CharacterRef->TakeDamage(PoisonDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 	}
 	else

@@ -3,28 +3,27 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "StatsComponent.generated.h"
 
 
 class UManaManager;
 class UStaminaManager;
 class UHealthManager;
-class UDefaultStatsDataAsset;
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthPercentUpdateSignature, float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnStaminaPercentUpdateSignature,float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnManaPercentUpdateSignature,float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnArmorUpdateSignature, float);
-DECLARE_MULTICAST_DELEGATE(FOnStatUpdateSignature);
-DECLARE_MULTICAST_DELEGATE(FOnZeroArmorSignature);
-DECLARE_MULTICAST_DELEGATE(FOnZeroHealthSignature);
-DECLARE_MULTICAST_DELEGATE(FOnRegenStaminaRequestSignature);
-DECLARE_MULTICAST_DELEGATE(FOnRegenManaRequestSignature);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceManaRequestSignature, const float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceStaminaRequestSignature, const float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnAddHealthRequestSignature, const float);
-DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnReduceHealthRequestSignature, const float, AActor*, AActor*);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthPercentUpdate, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnStaminaPercentUpdate,float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnManaPercentUpdate,float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnArmorUpdate, float);
+DECLARE_MULTICAST_DELEGATE(FOnStatUpdate);
+DECLARE_MULTICAST_DELEGATE(FOnZeroArmor);
+DECLARE_MULTICAST_DELEGATE(FOnZeroHealth);
+DECLARE_MULTICAST_DELEGATE(FOnRegenStaminaRequest);
+DECLARE_MULTICAST_DELEGATE(FOnRegenManaRequest);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceManaRequest, const float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceStaminaRequest, const float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAddHealthRequest, const float);
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnReduceHealthRequest, const float, AActor*, AActor*);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatsComponent : public UActorComponent
 {
@@ -69,31 +68,31 @@ public:
 	UPROPERTY()
 	UManaManager* ManaManager;
 	
-	FOnStaminaPercentUpdateSignature OnStaminaPercentUpdateDelegate;
+	FOnStaminaPercentUpdate OnStaminaPercentUpdateDelegate;
 	
-	FOnManaPercentUpdateSignature OnManaPercentUpdateDelegate;
+	FOnManaPercentUpdate OnManaPercentUpdateDelegate;
 	
-	FOnZeroArmorSignature OnZeroArmorDelegate;
+	FOnZeroArmor OnZeroArmorDelegate;
 	
-	FOnArmorUpdateSignature OnArmorUpdateDelegate;
+	FOnArmorUpdate OnArmorUpdateDelegate;
 	
-	FOnStatUpdateSignature OnStatUpdateDelegate;
+	FOnStatUpdate OnStatUpdateDelegate;
 
-	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
+	FOnHealthPercentUpdate OnHealthPercentUpdateDelegate;
 	
-	FOnZeroHealthSignature OnZeroHealthDelegate;
+	FOnZeroHealth OnZeroHealthDelegate;
 
-	FOnRegenStaminaRequestSignature OnRegenStaminaRequestDelegate;
+	FOnRegenStaminaRequest OnRegenStaminaRequestDelegate;
 
-	FOnRegenManaRequestSignature OnRegenManaRequestDelegate;
+	FOnRegenManaRequest OnRegenManaRequestDelegate;
 
-	FOnReduceManaRequestSignature OnReduceManaRequestDelegate;
+	FOnReduceManaRequest OnReduceManaRequestDelegate;
 
-	FOnReduceStaminaRequestSignature OnReduceStaminaRequestDelegate;
+	FOnReduceStaminaRequest OnReduceStaminaRequestDelegate;
 	
-	FOnAddHealthRequestSignature OnAddHealthRequestDelegate;
+	FOnAddHealthRequest OnAddHealthRequestDelegate;
 
-	FOnReduceHealthRequestSignature OnReduceHealthRequestDelegate;
+	FOnReduceHealthRequest OnReduceHealthRequestDelegate;
 	
 private:
 	

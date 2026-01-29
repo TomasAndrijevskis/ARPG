@@ -1,13 +1,12 @@
 
 #include "Characters/Enemy/Minion.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "Components/CombatComponent_Enemy.h"
 #include "Components/StatsComponent.h"
 #include "Components/WidgetComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
-#include "UI/BossHealthBar.h"
 #include "UI/MinionHealthBar.h"
 
 

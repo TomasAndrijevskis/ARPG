@@ -8,8 +8,8 @@
 
 class UButton;
 
-DECLARE_MULTICAST_DELEGATE(FOnConfirmedSignture);
-DECLARE_MULTICAST_DELEGATE(FOnCanceledSignture);
+DECLARE_MULTICAST_DELEGATE(FOnConfirmed);
+DECLARE_MULTICAST_DELEGATE(FOnCanceled);
 UCLASS()
 class COURSE_ARPG_API UConfirmationWindow : public UUserWidget
 {
@@ -19,9 +19,9 @@ public:
 
 	virtual void NativeConstruct() override;
 	
-	FOnConfirmedSignture OnConfirmedDelegate;
+	FOnConfirmed OnConfirmedDelegate;
 
-	FOnCanceledSignture OnCanceledDelegate;
+	FOnCanceled OnCanceledDelegate;
 	
 private:
 

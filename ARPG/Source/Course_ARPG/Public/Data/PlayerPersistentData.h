@@ -2,11 +2,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PlayerPersistentStats.generated.h"
+#include "PlayerPersistentData.generated.h"
 
 
 USTRUCT()
-struct FPlayerPersistentStats
+struct FPlayerPersistentData
 {
 	GENERATED_BODY()
 

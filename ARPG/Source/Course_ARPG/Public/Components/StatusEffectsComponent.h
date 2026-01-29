@@ -11,8 +11,9 @@ class UNiagaraComponent;
 class UAbilityComponent_Base;
 class UNiagaraSystem;
 
-DECLARE_MULTICAST_DELEGATE_TwoParams(FOnStatusIconCreateRequestSignature, UTexture2D*, UStatusEffectsComponent*);
-DECLARE_MULTICAST_DELEGATE(FOnStatusIconRemoveRequestSignature);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnStatusIconCreateRequest, UTexture2D*, UStatusEffectsComponent*);
+DECLARE_MULTICAST_DELEGATE(FOnStatusIconRemoveRequest);
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 {
@@ -22,9 +23,9 @@ public:
 	
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
-	FOnStatusIconCreateRequestSignature OnStatusIconCreateRequestDelegate;
+	FOnStatusIconCreateRequest OnStatusIconCreateRequestDelegate;
 
-	FOnStatusIconRemoveRequestSignature OnStatusIconRemoveRequestDelegate;
+	FOnStatusIconRemoveRequest OnStatusIconRemoveRequestDelegate;
 	
 protected:
 

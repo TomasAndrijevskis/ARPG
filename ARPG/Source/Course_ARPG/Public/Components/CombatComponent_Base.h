@@ -6,7 +6,7 @@
 #include "CombatComponent_Base.generated.h"
 
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttackPerformedSignature, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttackPerformed, float);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UCombatComponent_Base : public UActorComponent
@@ -23,7 +23,7 @@ public:
 
 	void SetCanAttack(bool CanAttack);
 	
-	FOnAttackPerformedSignature OnAttackPerformedDelegate;
+	FOnAttackPerformed OnAttackPerformedDelegate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	bool bCanAttack = true;

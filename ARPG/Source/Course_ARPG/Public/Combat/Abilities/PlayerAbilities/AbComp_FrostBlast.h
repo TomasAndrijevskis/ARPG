@@ -3,12 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/FrostBlastPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_FrostBlast.generated.h"
 
 
-struct FFrostBlastPropertiesData;
-struct FGetArmorPropertiesData;
 class AFrostBlastRange;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

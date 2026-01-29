@@ -32,10 +32,10 @@ AMainCharacter_Warrior::AMainCharacter_Warrior()
 void AMainCharacter_Warrior::BeginPlay()
 {
 	Super::BeginPlay();
-	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-	AbilityComp_LifeStealAttack->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-	AbilityComp_GetArmor->OnAbilityUnlockedDelegate.AddDynamic(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_LifeStealAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_GetArmor->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
 	BlockComp->OnBlockDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);

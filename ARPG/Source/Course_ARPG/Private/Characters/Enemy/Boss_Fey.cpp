@@ -1,7 +1,7 @@
 
 #include "Characters/Enemy/Boss_Fey.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "Combat/Abilities/EnemyAbilities/AbComp_PoisonExplosion.h"
 #include "Combat/Abilities/EnemyAbilities/AbComp_SummonMinions.h"
 #include "Combat/Projectiles/EnemyProjectileComponent.h"

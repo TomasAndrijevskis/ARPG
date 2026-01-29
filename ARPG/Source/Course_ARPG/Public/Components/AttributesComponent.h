@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/Data/EAttributes.h"
+#include "Data/EAttributes.h"
 #include "Components/ActorComponent.h"
 #include "AttributesComponent.generated.h"
 

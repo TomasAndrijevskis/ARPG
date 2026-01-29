@@ -3,10 +3,9 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/DamageIncreasePropertiesData.h"
 #include "AbComp_DamageIncrease.generated.h"
 
-
-struct FDamageIncreasePropertiesData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbComp_DamageIncrease : public UAbilityComponent_Player

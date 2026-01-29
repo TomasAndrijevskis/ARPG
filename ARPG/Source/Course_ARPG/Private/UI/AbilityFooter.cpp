@@ -9,10 +9,10 @@ void UAbilityFooter::SetAbility(UTexture2D* Image, const FString& ActionKey, UAb
 	AbilityComp_REF = AbilityComp;
 	AbilityImage = Image;
 	
-	AbilityComp_REF->OnAbilityStartedDelegate.AddDynamic(this, &UAbilityFooter::SetImageAvailability);
-	AbilityComp_REF->OnAbilityCooldownChangedDelegate.AddDynamic(this, &UAbilityFooter::SetCooldownText);
-	AbilityComp_REF->OnAbilityCooldownFinishedDelegate.AddDynamic(this, &UAbilityFooter::SetImageAvailability);
-	AbilityComp_REF->OnAbilityCooldownFinishedDelegate.AddDynamic(this, &UAbilityFooter::RemoveCooldownText);
+	AbilityComp_REF->OnAbilityStartedDelegate.AddUObject(this, &UAbilityFooter::SetImageAvailability);
+	AbilityComp_REF->OnAbilityCooldownChangedDelegate.AddUObject(this, &UAbilityFooter::SetCooldownText);
+	AbilityComp_REF->OnAbilityCooldownFinishedDelegate.AddUObject(this, &UAbilityFooter::SetImageAvailability);
+	AbilityComp_REF->OnAbilityCooldownFinishedDelegate.AddUObject(this, &UAbilityFooter::RemoveCooldownText);
 	
 	Text_ActionKey->SetText(FText::FromString(ActionKey));
 	Text_CooldownValue->SetText(FText::FromString(""));

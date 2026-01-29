@@ -1,6 +1,6 @@
 
 #include "Components/CombatComponent_Mage.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Characters/Player/MainCharacter_Mage.h"
 #include "Combat/Projectiles/Projectile_Base.h"

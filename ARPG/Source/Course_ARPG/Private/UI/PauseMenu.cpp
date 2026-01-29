@@ -5,7 +5,7 @@
 #include "Components/VerticalBox.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/ControlSlot.h"
-#include "UI/Controls.h"
+#include "Data/ControlsData.h"
 
 
 void UPauseMenu::NativeConstruct()
@@ -28,7 +28,7 @@ void UPauseMenu::CreateControlsWindows()
 	{
 		for (const FName& RowName: ControlsDataTable->GetRowNames())
 		{
-			const FControls* Row = ControlsDataTable->FindRow<FControls>(RowName, TEXT("Control slot"), true);
+			const FControlsData* Row = ControlsDataTable->FindRow<FControlsData>(RowName, TEXT("Control slot"), true);
 			if (Row) CreateControlSlot(Row->Image, Row->Description);
 		}
 	}

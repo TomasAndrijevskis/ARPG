@@ -1,8 +1,8 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
-#include "Combat/Abilities/Data/Player/LifeStealAttackPropertiesData.h"
+#include "Data/Abilities/AbilitiesUpgradeData.h"
+#include "Data/Abilities/LifeStealAttackPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -11,7 +11,7 @@ void UAbComp_LifeStealAttack::BeginPlay()
 {
 	Super::BeginPlay();
 	FighterRef = Cast<IFighter>(GetOwner());
-	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Player::CreateIcon);
+	OnAbilityStartedDelegate.AddUObject(this, &UAbilityComponent_Player::CreateIcon);
 }
 
 

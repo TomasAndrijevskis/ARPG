@@ -1,10 +1,10 @@
 
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Characters/Data/AbilityUpgradeRequirements.h"
+#include "Data/AbilityUpgradeRequirements.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
+#include "Data/Abilities//AbilitiesUpgradeData.h"
 #include "Components/LevelingComponent.h"
-#include "SaveGame/AbilityData.h"
+#include "Data/Abilities/AbilitySaveData.h"
 
 
 void UAbilityComponent_Player::BeginPlay()
@@ -139,14 +139,14 @@ bool UAbilityComponent_Player::IsAbilityMaxLevel()
 }
 
 
-void UAbilityComponent_Player::SaveAbilityProperties(FAbilityData& Data)
+void UAbilityComponent_Player::SaveAbilityProperties(FAbilitySaveData& Data)
 {
 	Data.bIsUnlocked = IsAbilityAvailable();
 	Data.CurrentLevel = GetCurrentAbilityLevel();
 }
 
 
-void UAbilityComponent_Player::LoadAbilityProperties(const FAbilityData& SavedData)
+void UAbilityComponent_Player::LoadAbilityProperties(const FAbilitySaveData& SavedData)
 {
 	SetCurrentAbilityLevel(SavedData.CurrentLevel);
 	SetAbilityAvailability(SavedData.bIsUnlocked);

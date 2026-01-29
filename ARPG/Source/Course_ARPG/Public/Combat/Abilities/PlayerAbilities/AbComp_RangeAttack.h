@@ -3,11 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/RangeAttackPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_RangeAttack.generated.h"
 
-
-struct FRangeAttackPropertiesData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbComp_RangeAttack : public UAbilityComponent_Player

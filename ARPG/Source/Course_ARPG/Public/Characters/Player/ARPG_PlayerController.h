@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "Objects/BonfireData.h"
+#include "Data/BonfireData.h"
 #include "ARPG_PlayerController.generated.h"
 
 
@@ -12,10 +12,10 @@ class ABonfire;
 class UARPG_GameInstance;
 class AMainCharacter_Base;
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnGamePauseStateChangeRequestSignature, const bool);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerInputEnabledChangedSignature, const bool);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnTeleportPlayerRequestSignature, const FVector&);
-DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleportedSignature);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnGamePauseStateChangeRequest, const bool);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerInputEnabledChanged, const bool);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnTeleportPlayerRequest, const FVector&);
+DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleported);
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
@@ -64,13 +64,13 @@ public:
 
 	ABonfire*& GetCurrentBonfire();
 
-	FOnGamePauseStateChangeRequestSignature OnGamePauseStateChangeRequestDelegate;
+	FOnGamePauseStateChangeRequest OnGamePauseStateChangeRequestDelegate;
 
-	FOnPlayerInputEnabledChangedSignature OnPlayerInputEnabledChangedDelegate;
+	FOnPlayerInputEnabledChanged OnPlayerInputEnabledChangedDelegate;
 
-	FOnTeleportPlayerRequestSignature OnTeleportPlayerRequestDelegate;
+	FOnTeleportPlayerRequest OnTeleportPlayerRequestDelegate;
 
-	FOnPlayerTeleportedSignature OnPlayerTeleportedDelegate;
+	FOnPlayerTeleported OnPlayerTeleportedDelegate;
 	
 protected:
 	

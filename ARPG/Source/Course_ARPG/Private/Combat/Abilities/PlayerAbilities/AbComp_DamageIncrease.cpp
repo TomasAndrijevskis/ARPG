@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
+#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -9,7 +9,7 @@
 void UAbComp_DamageIncrease::BeginPlay()
 {
 	Super::BeginPlay();
-	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Player::CreateIcon);
+	OnAbilityStartedDelegate.AddUObject(this, &UAbilityComponent_Player::CreateIcon);
 }
 
 

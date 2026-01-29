@@ -1,6 +1,6 @@
 
 #include "UI/CharacterSelect.h"
-#include "Characters/Data/CharacterSelectionStruct.h"
+#include "Data/CharacterSelectionData.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 
@@ -15,7 +15,7 @@ void UCharacterSelect::NativeConstruct()
 
 void UCharacterSelect::SetData()
 {
-	FCharacterSelectionStruct* CharacterRow = CharactersDataTable->FindRow<FCharacterSelectionStruct>(CharacterData.RowName, TEXT("Character class to look for"));
+	FCharacterSelectionData* CharacterRow = CharactersDataTable->FindRow<FCharacterSelectionData>(CharacterData.RowName, TEXT("Character class to look for"));
 	if (CharacterRow)
 	{
 		Text_CharacterName->SetText(CharacterRow->Description);

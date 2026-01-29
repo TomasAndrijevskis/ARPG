@@ -6,7 +6,7 @@
 #include "BlockComponent.generated.h"
 
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnBlockSignature, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnBlock, float);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UBlockComponent : public UActorComponent
 {
@@ -16,7 +16,7 @@ public:
 	
 	bool CanBlock(const AActor* Opponent);
 	
-	FOnBlockSignature OnBlockDelegate;
+	FOnBlock OnBlockDelegate;
 
 private:
 

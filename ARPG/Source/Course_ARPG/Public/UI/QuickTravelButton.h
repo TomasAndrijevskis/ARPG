@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Objects/BonfireData.h"
+#include "Data/BonfireData.h"
 #include "QuickTravelButton.generated.h"
 
 

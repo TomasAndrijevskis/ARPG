@@ -1,11 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilityData.generated.h"
+#include "AbilitySaveData.generated.h"
 
 
 USTRUCT(BlueprintType)
-struct FAbilityData
+struct FAbilitySaveData
 {
 	GENERATED_BODY()
 

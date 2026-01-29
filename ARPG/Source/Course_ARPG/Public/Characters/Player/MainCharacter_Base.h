@@ -2,8 +2,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/Data/EAttributes.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EAttributes.h"
+#include "Data/EStats.h"
+#include "Data/PlayerPersistentData.h"
 #include "Components/StatusEffectsComponent.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/MainPlayer.h"
@@ -15,7 +16,6 @@ class UAttributesComponent;
 class UPoisonEffectManager;
 class UIceEffectManager;
 class UFireEffectManager;
-struct FPlayerPersistentStats;
 class UStaminaStatsComponent;
 class UHealthStatsComponent;
 class UAbilityComponent_Player;
@@ -31,9 +31,9 @@ class ULevelingComponent;
 class UStatusEffectsComponent;
 class UPlayerAnimInstance;
 
-DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinishedSignature);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsAmountChangedSignature, const int);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsAmountChangeSignature, const int);
+DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinished);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsAmountChanged, const int);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsAmountChange, const int);
 
 UCLASS(Blueprintable)
 class COURSE_ARPG_API AMainCharacter_Base : public ACharacter, public IMainPlayer, public IFighter
@@ -122,9 +122,9 @@ public:
 
 	void SetUsedAttributePoints(int UsedStatPoints);
 	
-	void LoadPersistentData(const FPlayerPersistentStats& Data);
+	void LoadPersistentData(const FPlayerPersistentData& Data);
 
-	FPlayerPersistentStats SavePersistentData() const;
+	FPlayerPersistentData SavePersistentData() const;
 
 	void SaveData();
 	
@@ -190,11 +190,11 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	UPlayerAnimInstance* PlayerAnimInstance;
 
-	FOnBonfireInteractionFinishedSignature FOnBonfireInteractionFinishedDelegate;
+	FOnBonfireInteractionFinished FOnBonfireInteractionFinishedDelegate;
 
-	FOnAttributePointsAmountChangedSignature OnStatPointsAmountChangedDelegate;
+	FOnAttributePointsAmountChanged OnStatPointsAmountChangedDelegate;
 	
-	FOnAbilityPointsAmountChangeSignature OnAbilityPointsAmountChangeDelegate;
+	FOnAbilityPointsAmountChange OnAbilityPointsAmountChangeDelegate;
 
 protected:
 

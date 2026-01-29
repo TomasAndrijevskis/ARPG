@@ -52,7 +52,7 @@ public:
 	void CreateAbilityUpgradeScreen();
 
 	UFUNCTION()
-	void CreateStatsUpgradeScreen();
+	void CreateAttributesUpgradeScreen();
 	
 	UFUNCTION()
 	void CreateAbilityFooterPanel(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef);
@@ -144,10 +144,10 @@ private:
 	TSubclassOf<UAbilityUpgradeWidget> AbilityUpgradeWidgetClass;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAttributeUpgradeWidget> StatsUpgradeWidgetClass;
+	TSubclassOf<UAttributeUpgradeWidget> AttributesUpgradeWidgetClass;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UResetWidget> StatsAbilitiesResetWidgetClass;
+	TSubclassOf<UResetWidget> ResetWidgetClass;
 	
 	UPROPERTY(EditAnywhere)
 	FVector2D IconSize;

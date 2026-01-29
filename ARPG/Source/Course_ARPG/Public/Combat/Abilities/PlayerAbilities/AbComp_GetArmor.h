@@ -3,11 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/GetArmorPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_GetArmor.generated.h"
 
-
-struct FGetArmorPropertiesData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAbComp_GetArmor : public UAbilityComponent_Player

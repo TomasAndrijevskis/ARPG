@@ -3,10 +3,9 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/HealingAuraPropertiesData.h"
 #include "AbComp_HealingAura.generated.h"
 
-
-struct FHealingAuraPropertiesData;
 
 UCLASS()
 class COURSE_ARPG_API UAbComp_HealingAura : public UAbilityComponent_Player

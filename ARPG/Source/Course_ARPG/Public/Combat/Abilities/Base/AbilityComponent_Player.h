@@ -3,15 +3,15 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
-#include "Combat/Abilities/Data/Player/AbilityPropertiesBaseData.h"
-#include "SaveGame/AbilityData.h"
+#include "Data/Abilities/AbilityPropertiesBaseData.h"
+#include "Data/Abilities/AbilitySaveData.h"
 #include "AbilityComponent_Player.generated.h"
 
 
 class UAbilitiesUpgradeData;
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityUnlockedSignature);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAbilityCooldownFinishedSignature);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAbilityCooldownChangedSignature, float, TimeLeft);
+DECLARE_MULTICAST_DELEGATE(FOnAbilityUnlocked);
+DECLARE_MULTICAST_DELEGATE(FOnAbilityCooldownFinished);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityCooldownChanged, float);
 
 UCLASS()
 class COURSE_ARPG_API UAbilityComponent_Player : public UAbilityComponent_Base
@@ -20,14 +20,11 @@ class COURSE_ARPG_API UAbilityComponent_Player : public UAbilityComponent_Base
 
 public:
 	
-	UPROPERTY()
-	FOnAbilityUnlockedSignature OnAbilityUnlockedDelegate;
-
-	UPROPERTY()
-	FOnAbilityCooldownChangedSignature OnAbilityCooldownChangedDelegate;
+	FOnAbilityUnlocked OnAbilityUnlockedDelegate;
 	
-	UPROPERTY()
-	FOnAbilityCooldownFinishedSignature OnAbilityCooldownFinishedDelegate;
+	FOnAbilityCooldownChanged OnAbilityCooldownChangedDelegate;
+	
+	FOnAbilityCooldownFinished OnAbilityCooldownFinishedDelegate;
 
 	UFUNCTION()
 	virtual void CreateIcon();
@@ -80,9 +77,9 @@ public:
 
 	void SetAbilityActive(const bool NewIsActive);
 
-	void SaveAbilityProperties(FAbilityData& Data);
+	void SaveAbilityProperties(FAbilitySaveData& Data);
 
-	void LoadAbilityProperties(const FAbilityData& SavedData);
+	void LoadAbilityProperties(const FAbilitySaveData& SavedData);
 
 	void ClearAbilityData();
 

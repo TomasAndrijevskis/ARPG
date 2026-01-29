@@ -2,7 +2,7 @@
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "NiagaraComponentPoolMethodEnum.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Components/StatusEffectHelpers/Data/StatusEffectsVisualData.h"
+#include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "Engine/DamageEvents.h"
 #include "GameFramework/Character.h"
 

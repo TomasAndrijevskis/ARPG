@@ -10,8 +10,8 @@ void UAbilityIconWithTimer::InitializeWidget(const float Duration, UTexture2D* I
 	AbilityCompRef = NewAbilityCompRef;
 	SetValue(Duration);
 	SetStatusIcon(Icon, IconSize);
-	AbilityCompRef->OnAbilityTimerChangedDelegate.AddDynamic(this, &UAbilityIconWithTimer::SetValue);
-	AbilityCompRef->OnAbilityFinishedDelegate.AddDynamic(this, &UAbilityIconWithTimer::RemoveWidget);
+	AbilityCompRef->OnAbilityTimerChangedDelegate.AddUObject(this, &UAbilityIconWithTimer::SetValue);
+	AbilityCompRef->OnAbilityFinishedDelegate.AddUObject(this, &UAbilityIconWithTimer::RemoveWidget);
 }
 
 

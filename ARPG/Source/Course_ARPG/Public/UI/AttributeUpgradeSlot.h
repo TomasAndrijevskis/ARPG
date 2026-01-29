@@ -3,9 +3,8 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Characters/Data/EAttributes.h"
+#include "Data/EAttributes.h"
 #include "Components/Button.h"
-#include "Characters/Data/EStats.h"
 #include "Components/TextBlock.h"
 #include "AttributeUpgradeSlot.generated.h"
 

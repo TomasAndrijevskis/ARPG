@@ -2,8 +2,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilityData.h"
-#include "Objects/BonfireData.h"
+#include "Data/Abilities/AbilitySaveData.h"
+#include "Data/BonfireData.h"
 #include "GameFramework/SaveGame.h"
 #include "ARPG_SaveGame.generated.h"
 
@@ -67,7 +67,7 @@ public:
 	int CurrentLevel;
 
 	UPROPERTY()
-	int CurrentStatPoints;
+	int CurrentAttributePoints;
 
 	UPROPERTY()
 	int CurrentAbilityPoints;
@@ -85,7 +85,7 @@ public:
 	FString CurrentMap;
 	
 	UPROPERTY()
-	TMap<FString, FAbilityData> UnlockedAbilities;
+	TMap<FString, FAbilitySaveData> UnlockedAbilities;
 
 	UPROPERTY()
 	TMap<FString, FBonfireData> UnlockedBonfires;

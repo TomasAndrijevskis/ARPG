@@ -3,10 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/FireStormPropertiesData.h"
 #include "AbComp_FireStorm.generated.h"
 
 
-struct FFireStormPropertiesData;
 class AFireStorm;
 
 UCLASS()

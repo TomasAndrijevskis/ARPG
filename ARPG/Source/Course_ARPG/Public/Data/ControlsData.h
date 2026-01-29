@@ -1,11 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Controls.generated.h"
+#include "ControlsData.generated.h"
 
 
 USTRUCT(BlueprintType)
-struct COURSE_ARPG_API FControls : public FTableRowBase
+struct COURSE_ARPG_API FControlsData : public FTableRowBase
 {
 	GENERATED_BODY()
 	

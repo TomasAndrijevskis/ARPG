@@ -5,7 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Objects/Bonfire.h"
-#include "Objects/BonfireData.h"
+#include "Data/BonfireData.h"
 
 
 void AARPG_PlayerController::BeginPlay()

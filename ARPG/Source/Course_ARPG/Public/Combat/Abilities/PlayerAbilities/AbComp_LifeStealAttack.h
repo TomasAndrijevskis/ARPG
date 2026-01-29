@@ -3,11 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/LifeStealAttackPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_LifeStealAttack.generated.h"
 
 
-struct FLifeStealAttackPropertiesData;
 class IFighter;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

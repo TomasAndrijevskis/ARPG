@@ -8,7 +8,8 @@
 #include "TraceComponent.generated.h"
 
 
-DECLARE_MULTICAST_DELEGATE(FOnHitSignature);
+DECLARE_MULTICAST_DELEGATE(FOnHit);
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UTraceComponent : public UActorComponent
 {
@@ -27,7 +28,7 @@ public:
 	UPROPERTY(VisibleAnywhere)
 	bool bIsAttacking = false;
 	
-	FOnHitSignature OnHitDelegate;
+	FOnHit OnHitDelegate;
 	
 protected:
 

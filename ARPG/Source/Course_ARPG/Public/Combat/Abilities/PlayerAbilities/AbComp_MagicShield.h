@@ -3,14 +3,13 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/MagicShieldPropertiesData.h"
 #include "AbComp_MagicShield.generated.h"
 
 
-struct FMagicShieldPropertiesData;
 class AMagicShield;
 class USphereComponent;
 class UNiagaraSystem;
-
 
 UCLASS()
 class COURSE_ARPG_API UAbComp_MagicShield : public UAbilityComponent_Player

@@ -28,7 +28,7 @@ private:
 	UButton* Button_QuickTravelMenu;
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_StatsScreen;
+	UButton* Button_AttributesScreen;
 	
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_AbilitiesScreen;

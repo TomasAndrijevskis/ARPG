@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_RangeAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
+#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Combat/Projectiles/RangeAttackProjectile.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -11,7 +11,7 @@
 void UAbComp_RangeAttack::BeginPlay()
 {
 	Super::BeginPlay();
-	OnAbilityFinishedDelegate.AddDynamic(this,&UAbComp_RangeAttack::SpawnProjectile);
+	OnAbilityFinishedDelegate.AddUObject(this,&UAbComp_RangeAttack::SpawnProjectile);
 }
 
 

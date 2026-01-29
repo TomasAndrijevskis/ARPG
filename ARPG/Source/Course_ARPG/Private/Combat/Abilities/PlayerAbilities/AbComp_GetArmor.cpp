@@ -2,13 +2,13 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Characters/Player/MainCharacter_Warrior.h"
-#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
+#include "Data/Abilities/AbilitiesUpgradeData.h"
 
 
 void UAbComp_GetArmor::BeginPlay()
 {
 	Super::BeginPlay();
-	OnAbilityStartedDelegate.AddDynamic(this, &UAbilityComponent_Player::CreateIcon);
+	OnAbilityStartedDelegate.AddUObject(this, &UAbilityComponent_Player::CreateIcon);
 }
 
 

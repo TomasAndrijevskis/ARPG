@@ -10,7 +10,7 @@ class UNiagaraSystem;
 class USphereComponent;
 class UAbilityComponent_Base;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnExplosionTriggeredSignature);
+DECLARE_MULTICAST_DELEGATE(FOnExplosionTriggered);
 UCLASS()
 class COURSE_ARPG_API APoisonExplosionArea : public AActor
 {
@@ -22,7 +22,7 @@ public:
 
 	void SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UAbilityComponent_Base* NewAbilityCompRef);
 
-	FOnExplosionTriggeredSignature OnExplosionTriggeredDelegate;
+	FOnExplosionTriggered OnExplosionTriggeredDelegate;
 
 private:
 

@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_FireStorm.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
+#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FireStorm.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"

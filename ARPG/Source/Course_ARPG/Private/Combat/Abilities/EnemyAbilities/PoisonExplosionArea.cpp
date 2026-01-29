@@ -17,7 +17,7 @@ APoisonExplosionArea::APoisonExplosionArea()
 	SpawnEffect = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("SpawnEffect"));
 	SpawnEffect->SetupAttachment(PoisonArea);
 
-	OnExplosionTriggeredDelegate.AddDynamic(this, &APoisonExplosionArea::CheckPlayerInRange);
+	OnExplosionTriggeredDelegate.AddUObject(this, &APoisonExplosionArea::CheckPlayerInRange);
 }
 
 

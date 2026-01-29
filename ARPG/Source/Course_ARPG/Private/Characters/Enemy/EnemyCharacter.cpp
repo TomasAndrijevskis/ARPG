@@ -3,7 +3,7 @@
 #include "AIController.h"
 #include "BrainComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"

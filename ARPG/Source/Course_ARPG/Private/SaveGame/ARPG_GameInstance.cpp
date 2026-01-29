@@ -1,6 +1,6 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
-#include "Characters/Data/PlayerPersistentStats.h"
+#include "Data/PlayerPersistentData.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
@@ -110,7 +110,7 @@ void UARPG_GameInstance::LoadPlayerClass()
 void UARPG_GameInstance::SavePersistentData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	const FPlayerPersistentStats Data = PlayerRef->SavePersistentData();
+	const FPlayerPersistentData Data = PlayerRef->SavePersistentData();
 	SaveGameInstance->Endurance = Data.Endurance;
 	SaveGameInstance->Intelligence = Data.Intelligence;
 	SaveGameInstance->Strength = Data.Strength;
@@ -120,7 +120,7 @@ void UARPG_GameInstance::SavePersistentData()
 
 	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
 	SaveGameInstance->CurrentXP = Data.CurrentXP;
-	SaveGameInstance->CurrentStatPoints = Data.AttributePoints;
+	SaveGameInstance->CurrentAttributePoints = Data.AttributePoints;
 	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
@@ -129,7 +129,7 @@ void UARPG_GameInstance::SavePersistentData()
 void UARPG_GameInstance::LoadPersistentData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	FPlayerPersistentStats Data;
+	FPlayerPersistentData Data;
 	Data.Endurance = SaveGameInstance->Endurance;
 	Data.Intelligence = SaveGameInstance->Intelligence;
 	Data.Strength = SaveGameInstance->Strength;
@@ -139,8 +139,8 @@ void UARPG_GameInstance::LoadPersistentData()
 
 	Data.CurrentLevel = SaveGameInstance->CurrentLevel;
 	Data.CurrentXP = SaveGameInstance->CurrentXP;
-	Data.AttributePoints = SaveGameInstance->UsedAttributePoints;
-	Data.AbilityPoints = SaveGameInstance->UsedAbilityPoints;
+	Data.AttributePoints = SaveGameInstance->CurrentAttributePoints;
+	Data.AbilityPoints = SaveGameInstance->CurrentAbilityPoints;
 	PlayerRef->LoadPersistentData(Data);
 }
 
@@ -151,7 +151,7 @@ void UARPG_GameInstance::SaveAbilities()
 	for (UAbilityComponent_Player* Ability: PlayerRef->GetAbilitiesArray())
 	{
 		if (!IsValid(Ability)) continue;
-		FAbilityData Data;
+		FAbilitySaveData Data;
 		Ability->SaveAbilityProperties(Data);
 		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
 	}
@@ -168,7 +168,7 @@ void UARPG_GameInstance::LoadAbilities()
 		const FString AbilityName = Ability->GetName();
 		if (SaveGameInstance->UnlockedAbilities.Contains(AbilityName))
 		{
-			FAbilityData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
+			FAbilitySaveData SavedData = SaveGameInstance->UnlockedAbilities[AbilityName];
 			Ability->LoadAbilityProperties(SavedData);
 		}
 	}

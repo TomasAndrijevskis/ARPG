@@ -1,7 +1,7 @@
 
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Components/StatusEffectHelpers/Data/StatusEffectsVisualData.h"
+#include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 

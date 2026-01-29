@@ -9,7 +9,7 @@
 class UCharacterMovementComponent;
 class USpringArmComponent;
 
-DECLARE_MULTICAST_DELEGATE_OneParam( FOnUpdatedTargetSignature, AActor*);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnUpdatedTarget, AActor*);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API ULockonComponent : public UActorComponent
@@ -29,7 +29,7 @@ public:
 	UPROPERTY()
 	AActor* CurrentTargetActor;
 	
-	FOnUpdatedTargetSignature OnUpdatedTargetDelegate;
+	FOnUpdatedTarget OnUpdatedTargetDelegate;
 	
 protected:
 	

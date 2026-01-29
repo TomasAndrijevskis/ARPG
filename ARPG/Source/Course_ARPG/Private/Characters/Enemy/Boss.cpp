@@ -2,7 +2,7 @@
 #include "Characters/Enemy/Boss.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Blueprint/UserWidget.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/CombatComponent_Enemy.h"
 #include "Components/StatsComponent.h"

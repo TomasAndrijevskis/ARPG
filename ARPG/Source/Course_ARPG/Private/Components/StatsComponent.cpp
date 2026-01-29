@@ -1,7 +1,6 @@
 
 #include "Components/StatsComponent.h"
-#include "Characters/Data/DefaultStatsDataAsset.h"
-#include "Characters/Data/EStats.h"
+#include "Data/EStats.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
 #include "Components/StatHelpers/HealthManager.h"
 #include "Components/StatHelpers/ManaManager.h"

@@ -3,10 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "SaveSlotWidget.generated.h"
 
+
+class UButton;
 
 UCLASS()
 class COURSE_ARPG_API USaveSlotWidget : public UUserWidget

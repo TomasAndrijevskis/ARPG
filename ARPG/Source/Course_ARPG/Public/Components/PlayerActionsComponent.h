@@ -10,8 +10,8 @@ class IMainPlayer;
 class AMainCharacter_Base;
 class UCharacterMovementComponent;
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnSprintSignature, float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnRollSignature, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnSprint, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnRoll, float);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UPlayerActionsComponent : public UActorComponent
@@ -35,9 +35,9 @@ public:
 
 	bool IsRollActive() const;
 	
-	FOnSprintSignature OnSprintDelegate;
+	FOnSprint OnSprintDelegate;
 	
-	FOnRollSignature OnRollDelegate;
+	FOnRoll OnRollDelegate;
 
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* RollAnimMontage;

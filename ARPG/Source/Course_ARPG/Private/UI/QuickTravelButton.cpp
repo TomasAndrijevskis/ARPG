@@ -5,7 +5,7 @@
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
-#include "Objects/BonfireData.h"
+#include "Data//BonfireData.h"
 #include "UI/BonfireInteractionAnim.h"
 
 

@@ -1,8 +1,8 @@
 
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Animations/PlayerAnimInstance.h"
-#include "Characters/Data/EStats.h"
-#include "Characters/Data/PlayerPersistentStats.h"
+#include "Data/EStats.h"
+#include "Data/PlayerPersistentData.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/AttributesComponent.h"
 #include "Components/CombatComponent_Base.h"
@@ -58,7 +58,6 @@ void AMainCharacter_Base::BindDelegates()
 	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
-	AttributesComp->OnAttributesRevertedDelegate.AddUObject(this, &ThisClass::RecalculateAllStats);
 	FOnBonfireInteractionFinishedDelegate.AddUObject(StatsComp, &UStatsComponent::RestoreStats);
 	OnTakeAnyDamage.AddDynamic(this, &ThisClass::ReceiveDamage);
 }
@@ -159,6 +158,7 @@ void AMainCharacter_Base::ResetAttributes()
 	LevelComp->SetAttributePoints(UsedAttributePoints + AvailablePoints);
 	LevelComp->SetUsedAttributePoints(0);
 	AttributesComp->OnAttributesRevertedDelegate.Broadcast();
+	RecalculateAllStats();
 }
 
 
@@ -253,7 +253,7 @@ void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
 }
 
 
-void AMainCharacter_Base::LoadPersistentData(const FPlayerPersistentStats& Data)
+void AMainCharacter_Base::LoadPersistentData(const FPlayerPersistentData& Data)
 {
 	AttributesComp->SetAttributeValue(EAttributes::Arcane, Data.Arcane);
 	AttributesComp->SetAttributeValue(EAttributes::Wisdom, Data.Wisdom);
@@ -271,9 +271,9 @@ void AMainCharacter_Base::LoadPersistentData(const FPlayerPersistentStats& Data)
 }
 
 
-FPlayerPersistentStats AMainCharacter_Base::SavePersistentData() const
+FPlayerPersistentData AMainCharacter_Base::SavePersistentData() const
 {
-	FPlayerPersistentStats Data;
+	FPlayerPersistentData Data;
 	Data.Arcane = AttributesComp->GetAttributeValue(EAttributes::Arcane);
 	Data.Wisdom = AttributesComp->GetAttributeValue(EAttributes::Wisdom);
 	Data.Strength = AttributesComp->GetAttributeValue(EAttributes::Strength);

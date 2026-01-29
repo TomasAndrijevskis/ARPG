@@ -3,9 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Components/TextBlock.h"
 #include "DescriptionWidget.generated.h"
 
+
+class UTextBlock;
 
 UCLASS()
 class COURSE_ARPG_API UDescriptionWidget : public UUserWidget

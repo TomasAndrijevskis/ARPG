@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Characters/Data/CharacterSelectionStruct.h"
+#include "Data/CharacterSelectionData.h"
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "CharacterSelect.generated.h"

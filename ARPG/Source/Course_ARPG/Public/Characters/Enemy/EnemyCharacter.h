@@ -25,7 +25,7 @@ class UNiagaraSystem;
 class AAIController;
 class UBlackboardComponent;
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnEnemyDiedSignature, AEnemyCharacter*);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnEnemyDied, AEnemyCharacter*);
 UCLASS()
 class COURSE_ARPG_API AEnemyCharacter : public ACharacter, public IEnemy, public IFighter
 {
@@ -86,7 +86,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	UPoisonEffectManager* PoisonStatusEffectManager;
 	
-	FOnEnemyDiedSignature OnEnemyDiedDelegate;
+	FOnEnemyDied OnEnemyDiedDelegate;
 	
 protected:
 

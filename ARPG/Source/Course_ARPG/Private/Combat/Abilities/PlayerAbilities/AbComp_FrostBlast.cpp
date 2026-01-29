@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_FrostBlast.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Abilities/Data/Player/AbilitiesUpgradeData.h"
+#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FrostBlastRange.h"
 #include "Kismet/GameplayStatics.h"
 
