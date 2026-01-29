@@ -7,7 +7,9 @@
 #include "AttributesComponent.generated.h"
 
 
+class UDefaultAttributesDataAsset;
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributeUpgraded, int);
+DECLARE_MULTICAST_DELEGATE(FOnAttributesReverted);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UAttributesComponent : public UActorComponent
 {
@@ -18,17 +20,23 @@ public:
 	void SetAttributeValue(const EAttributes& Attribute, const int Value);
 
 	int GetAttributeValue(const EAttributes& Attribute) const;
-
+	
 	int GetAttributeCoefficient(const EAttributes& Attribute) const;
 	
 	void UpgradeAttribute(const EAttributes& Attribute);
 
+	void SetDefaultAttributes();
+
+	void SetDefaultCoefficients();
+	
 	FString GetAttributeName(const EAttributes& Attribute) const;
 	
 	TArray<TEnumAsByte<EAttributes>>& GetAttributes();
 	
 	FOnAttributeUpgraded OnAttributeUpgradedDelegate;
 
+	FOnAttributesReverted OnAttributesRevertedDelegate;
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -42,7 +50,7 @@ private:
 	TMap<TEnumAsByte<EAttributes>, int> AttributeCoefficients;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataAsset* DefaultAttributesDataAsset;
+	UDefaultAttributesDataAsset* DefaultAttributesDataAsset;
 
 	TArray<TEnumAsByte<EAttributes>> ArrAttributes;
 };

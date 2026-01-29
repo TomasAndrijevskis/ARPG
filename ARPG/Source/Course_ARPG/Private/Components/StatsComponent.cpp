@@ -33,24 +33,12 @@ void UStatsComponent::SetStatHelpers()
 void UStatsComponent::BindDelegates()
 {
 	OnStatUpdateDelegate.AddUObject(this, &ThisClass::OnStatsUpdated);
-	OnAttributesRevertedToDefaultDelegate.AddUObject(this, &ThisClass::SetDefaultStats);
 	OnRegenStaminaRequestDelegate.AddUObject(StaminaManager, &UStaminaManager::RegenStamina);
 	OnReduceStaminaRequestDelegate.AddUObject(StaminaManager, &UStaminaManager::ReduceStamina);
 	OnRegenManaRequestDelegate.AddUObject(ManaManager, &UManaManager::RegenMana);
 	OnReduceManaRequestDelegate.AddUObject(ManaManager, &UManaManager::ReduceMana);
 	OnAddHealthRequestDelegate.AddUObject(HealthManager, &UHealthManager::AddHealth);
 	OnReduceHealthRequestDelegate.AddUObject(HealthManager, &UHealthManager::ReduceHealth);
-}
-
-
-void UStatsComponent::SetDefaultStats()
-{
-	if (!DefaultStatsDataAsset) return;
-	for (const auto& Stat : DefaultStatsDataAsset->DefaultStats)
-	{
-		SetStatValue(Stat.Key, Stat.Value);
-	}
-	RestoreStats();
 }
 
 
@@ -134,5 +122,7 @@ FString UStatsComponent::GetStatName(const EStats Stat) const
 
 void UStatsComponent::SetStatValue(const EStats Stat, const float NewValue)
 {
+	//UE_LOG(LogTemp, Warning, TEXT("SetStatValue: %s"), *UEnum::GetValueAsString(Stat));
+	//UE_LOG(LogTemp, Warning, TEXT("SetStatValue: %f"), NewValue);
 	Stats[Stat] = NewValue;
 }

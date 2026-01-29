@@ -68,9 +68,6 @@ public:
 
 	UFUNCTION()
 	void AddToAbilitiesArray(UAbilityComponent_Player* NewAbility);
-
-	UFUNCTION()
-	void SaveLevel();
 	
 	UFUNCTION()
 	void CreateAbilitiesFooterPanel();
@@ -87,7 +84,7 @@ public:
 
 	void InterruptHurtAnimation() const;
 
-	void ResetStats();
+	void ResetAttributes();
 	
 	void ResetAbilities();
 
@@ -125,15 +122,17 @@ public:
 
 	void SetUsedAttributePoints(int UsedStatPoints);
 	
-	void ApplyPersistentStats(const FPlayerPersistentStats& Data);
+	void LoadPersistentData(const FPlayerPersistentStats& Data);
 
-	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute) const;
+	FPlayerPersistentStats SavePersistentData() const;
+
+	void SaveData();
+	
+	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute);
 	
 	void FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, const EAttributes& AttributeToImprove) const;
 
 	float GetPlayerMaxHealth() const;
-	
-	FPlayerPersistentStats SavePersistentStats() const;
 	
 	TArray<TEnumAsByte<EAttributes>>& GetAttributesArray() const;
 
@@ -143,9 +142,7 @@ public:
 	void CreateBonfireMenu();
 
 	void CreateResetMenu();
-
-	void SetDefaultStats();
-
+	
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
 
 	void CreateAbilityIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
@@ -155,6 +152,10 @@ public:
 	AActor* GetCurrentTargetActor() const;
 	
 	void CalculateStat(const EAttributes& Attribute, const EStats& Stat) const;
+
+	void RecalculateAllStats();
+
+	void HandleDefaultAttributes();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

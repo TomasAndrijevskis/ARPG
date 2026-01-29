@@ -25,10 +25,10 @@ public:
 	FString GetSlotName() const;
 	
 	UFUNCTION()
-	void SaveStats();
+	void SavePersistentData();
 
 	UFUNCTION()
-	void LoadStats();
+	void LoadPersistentData();
 
 	UFUNCTION()
 	void SaveAbilities();
@@ -38,9 +38,6 @@ public:
 	
 	UFUNCTION()
 	void SaveAll();
-
-	UFUNCTION()
-	void SaveLevel();
 	
 	UFUNCTION()
 	void SaveAllExceptPosition();

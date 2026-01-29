@@ -122,7 +122,8 @@ void AARPG_PlayerController::HandleGameLoad() const
 	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad) GameInstanceRef->HandleGameLoad();
 	else
 	{
-		PlayerRef->SetDefaultStats();
+		
+		PlayerRef->HandleDefaultAttributes();
 		GameInstanceRef->SaveAll();
 	}
 }

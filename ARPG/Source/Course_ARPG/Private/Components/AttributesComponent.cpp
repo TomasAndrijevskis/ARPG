@@ -1,5 +1,6 @@
 
 #include "Components/AttributesComponent.h"
+#include "Characters/Data/DefaultAttributesDataAsset.h"
 
 
 void UAttributesComponent::BeginPlay()
@@ -9,13 +10,34 @@ void UAttributesComponent::BeginPlay()
 	{
 		ArrAttributes.Add(Attribute.Key);
 	}
+	OnAttributesRevertedDelegate.AddUObject(this, &UAttributesComponent::SetDefaultAttributes);
 }
 
 
 void UAttributesComponent::UpgradeAttribute(const EAttributes& Attribute)
 {
-	Attributes[Attribute] ++;
+	Attributes[Attribute]++;
 	OnAttributeUpgradedDelegate.Broadcast(Attributes[Attribute]);
+}
+
+
+void UAttributesComponent::SetDefaultAttributes()
+{
+	if (!DefaultAttributesDataAsset) return;
+	for (const auto& Attribute : DefaultAttributesDataAsset->DefaultAttributes)
+	{
+		SetAttributeValue(Attribute.Key, Attribute.Value);
+	}
+}
+
+
+void UAttributesComponent::SetDefaultCoefficients()
+{
+	if (!DefaultAttributesDataAsset) return;
+	for (const auto& Attribute : DefaultAttributesDataAsset->DefaultAttributeCoefficients)
+	{
+		AttributeCoefficients[Attribute.Key] = Attribute.Value;
+	}
 }
 
 

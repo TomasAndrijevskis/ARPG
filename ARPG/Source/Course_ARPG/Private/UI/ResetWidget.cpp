@@ -69,7 +69,7 @@ void UResetWidget::HandleResetAbilities()
 void UResetWidget::HandleResetStats()
 {
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
-		PlayerRef->ResetStats();
+		PlayerRef->ResetAttributes();
 }
 
 

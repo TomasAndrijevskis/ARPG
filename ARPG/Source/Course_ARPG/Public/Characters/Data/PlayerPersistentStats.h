@@ -9,15 +9,6 @@ USTRUCT()
 struct FPlayerPersistentStats
 {
 	GENERATED_BODY()
-	
-	float MaxHealth;
-	float Health;
-	float MaxMana;
-	float Mana;
-	float MaxStamina;
-	float Stamina;
-	float PhysicalStrength;
-	float MagicalStrength;
 
 	int Endurance;
 	int Intelligence;
@@ -28,6 +19,6 @@ struct FPlayerPersistentStats
 	
 	int32 CurrentLevel;
 	int32 CurrentXP;
-	int32 StatPoints;
+	int32 AttributePoints;
 	int32 AbilityPoints;
 };

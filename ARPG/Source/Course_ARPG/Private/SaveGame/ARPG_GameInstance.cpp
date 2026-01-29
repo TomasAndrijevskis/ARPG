@@ -31,7 +31,7 @@ void UARPG_GameInstance::InitializeGameInstance()
 
 void UARPG_GameInstance::HandleGameLoad()
 {
-	LoadStats();
+	LoadPersistentData();
 	LoadAbilities();
 	LoadBonfires();
 	LoadDefeatedBosses();
@@ -54,8 +54,7 @@ void UARPG_GameInstance::SetPlayerClass(const TSubclassOf<AMainCharacter_Base>& 
 
 void UARPG_GameInstance::SaveAll()
 {
-	SaveStats();
-	SaveLevel();
+	SavePersistentData();
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
@@ -67,8 +66,7 @@ void UARPG_GameInstance::SaveAll()
 
 void UARPG_GameInstance::SaveAllExceptPosition()
 {
-	SaveStats();
-	SaveLevel();
+	SavePersistentData();
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
@@ -109,43 +107,26 @@ void UARPG_GameInstance::LoadPlayerClass()
 }
 
 
-void UARPG_GameInstance::SaveStats()
+void UARPG_GameInstance::SavePersistentData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	const FPlayerPersistentStats Data = PlayerRef->SavePersistentStats();
-	SaveGameInstance->CurrentHealth = Data.Health;
-	SaveGameInstance->MaxHealth = Data.MaxHealth;
-	SaveGameInstance->CurrentMana = Data.Mana;
-	SaveGameInstance->MaxMana = Data.MaxMana;
-	SaveGameInstance->CurrentStamina = Data.Stamina;
-	SaveGameInstance->MaxStamina = Data.MaxStamina;
-	SaveGameInstance->PhysicalStrength = Data.PhysicalStrength;
-	SaveGameInstance->MagicalStrength = Data.MagicalStrength;
-	
+	const FPlayerPersistentStats Data = PlayerRef->SavePersistentData();
 	SaveGameInstance->Endurance = Data.Endurance;
 	SaveGameInstance->Intelligence = Data.Intelligence;
 	SaveGameInstance->Strength = Data.Strength;
 	SaveGameInstance->Wisdom = Data.Wisdom;
 	SaveGameInstance->Arcane = Data.Arcane;
 	SaveGameInstance->Vigor = Data.Vigor;
-	
+
+	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
+	SaveGameInstance->CurrentXP = Data.CurrentXP;
+	SaveGameInstance->CurrentStatPoints = Data.AttributePoints;
+	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
-void UARPG_GameInstance::SaveLevel()
-{
-	if (!PlayerRef || !SaveGameInstance) return;
-	const FPlayerPersistentStats Data = PlayerRef->SavePersistentStats();
-
-	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
-	SaveGameInstance->CurrentXP = Data.CurrentXP;
-	SaveGameInstance->CurrentStatPoints = Data.StatPoints;
-	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
-}
-
-
-void UARPG_GameInstance::LoadStats()
+void UARPG_GameInstance::LoadPersistentData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	FPlayerPersistentStats Data;
@@ -155,21 +136,12 @@ void UARPG_GameInstance::LoadStats()
 	Data.Wisdom = SaveGameInstance->Wisdom;
 	Data.Arcane = SaveGameInstance->Arcane;
 	Data.Vigor = SaveGameInstance->Vigor;
-	
-	Data.Health = SaveGameInstance->CurrentHealth;
-	Data.MaxHealth = SaveGameInstance->MaxHealth;
-	Data.Mana = SaveGameInstance->CurrentMana;
-	Data.MaxMana = SaveGameInstance->MaxMana;
-	Data.Stamina = SaveGameInstance->CurrentStamina;
-	Data.MaxStamina = SaveGameInstance->MaxStamina;
-	Data.PhysicalStrength = SaveGameInstance->PhysicalStrength;
-	Data.MagicalStrength = SaveGameInstance->MagicalStrength;
-	
+
 	Data.CurrentLevel = SaveGameInstance->CurrentLevel;
 	Data.CurrentXP = SaveGameInstance->CurrentXP;
-	Data.StatPoints = SaveGameInstance->CurrentStatPoints;
-	Data.AbilityPoints = SaveGameInstance->CurrentAbilityPoints;
-	PlayerRef->ApplyPersistentStats(Data);
+	Data.AttributePoints = SaveGameInstance->UsedAttributePoints;
+	Data.AbilityPoints = SaveGameInstance->UsedAbilityPoints;
+	PlayerRef->LoadPersistentData(Data);
 }
 
 

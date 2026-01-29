@@ -19,7 +19,6 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FOnArmorUpdateSignature, float);
 DECLARE_MULTICAST_DELEGATE(FOnStatUpdateSignature);
 DECLARE_MULTICAST_DELEGATE(FOnZeroArmorSignature);
 DECLARE_MULTICAST_DELEGATE(FOnZeroHealthSignature);
-DECLARE_MULTICAST_DELEGATE(FOnAttributesRevertedToDefaultSignature);
 DECLARE_MULTICAST_DELEGATE(FOnRegenStaminaRequestSignature);
 DECLARE_MULTICAST_DELEGATE(FOnRegenManaRequestSignature);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceManaRequestSignature, const float);
@@ -61,8 +60,6 @@ public:
 
 	void UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value);
 	
-	void SetDefaultStats();
-	
 	UPROPERTY()
 	UHealthManager* HealthManager;
 
@@ -81,8 +78,6 @@ public:
 	FOnArmorUpdateSignature OnArmorUpdateDelegate;
 	
 	FOnStatUpdateSignature OnStatUpdateDelegate;
-
-	FOnAttributesRevertedToDefaultSignature OnAttributesRevertedToDefaultDelegate;
 
 	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
 	
@@ -108,9 +103,6 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	TMap<TEnumAsByte<EStats>, float> Stats;
-	
-	UPROPERTY(EditAnywhere)
-	UDefaultStatsDataAsset* DefaultStatsDataAsset;
 
 	UPROPERTY(EditDefaultsOnly)
 	double ManaRegenRate = 2.0;

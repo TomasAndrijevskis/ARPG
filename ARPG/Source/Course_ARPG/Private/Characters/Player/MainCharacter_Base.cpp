@@ -52,12 +52,13 @@ void AMainCharacter_Base::BindDelegates()
 	StatsComp->OnManaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetMana);
 	StatsComp->OnStaminaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetStamina);
 	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::HandleDeath);
-	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SaveStats);
+	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SavePersistentData);
 	LevelComp->OnXpUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnLevelUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
+	AttributesComp->OnAttributesRevertedDelegate.AddUObject(this, &ThisClass::RecalculateAllStats);
 	FOnBonfireInteractionFinishedDelegate.AddUObject(StatsComp, &UStatsComponent::RestoreStats);
 	OnTakeAnyDamage.AddDynamic(this, &ThisClass::ReceiveDamage);
 }
@@ -150,14 +151,14 @@ void AMainCharacter_Base::InterruptHurtAnimation() const
 }
 
 
-void AMainCharacter_Base::ResetStats()
+void AMainCharacter_Base::ResetAttributes()
 {
 	const int UsedAttributePoints = LevelComp->GetUsedAttributePoints();
 	if (UsedAttributePoints == 0) return;
 	const int AvailablePoints = LevelComp->GetCurrentAttributePointsAmount();
 	LevelComp->SetAttributePoints(UsedAttributePoints + AvailablePoints);
 	LevelComp->SetUsedAttributePoints(0);
-	StatsComp->OnAttributesRevertedToDefaultDelegate.Broadcast();
+	AttributesComp->OnAttributesRevertedDelegate.Broadcast();
 }
 
 
@@ -252,59 +253,49 @@ void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
 }
 
 
-void AMainCharacter_Base::ApplyPersistentStats(const FPlayerPersistentStats& Data)
+void AMainCharacter_Base::LoadPersistentData(const FPlayerPersistentStats& Data)
 {
-	StatsComp->SetStatValue(EStats::Health, Data.Health);
-	StatsComp->SetStatValue(EStats::MaxHealth, Data.MaxHealth);
-	StatsComp->SetStatValue(EStats::Mana, Data.Mana);
-	StatsComp->SetStatValue(EStats::MaxMana, Data.MaxMana);
-	StatsComp->SetStatValue(EStats::Stamina, Data.Stamina);
-	StatsComp->SetStatValue(EStats::MaxStamina, Data.MaxStamina);
-	StatsComp->SetStatValue(EStats::PhysicalStrength, Data.PhysicalStrength);
-	StatsComp->SetStatValue(EStats::MagicalStrength, Data.MagicalStrength);
-
 	AttributesComp->SetAttributeValue(EAttributes::Arcane, Data.Arcane);
 	AttributesComp->SetAttributeValue(EAttributes::Wisdom, Data.Wisdom);
 	AttributesComp->SetAttributeValue(EAttributes::Endurance, Data.Endurance);
 	AttributesComp->SetAttributeValue(EAttributes::Intelligence, Data.Intelligence);
 	AttributesComp->SetAttributeValue(EAttributes::Strength, Data.Strength);
 	AttributesComp->SetAttributeValue(EAttributes::Vigor, Data.Vigor);
+	AttributesComp->SetDefaultCoefficients();
+	RecalculateAllStats();
 	
 	LevelComp->SetLevel(Data.CurrentLevel);
 	LevelComp->SetXP(Data.CurrentXP);
 	LevelComp->SetAbilityPoints(Data.AbilityPoints);
-	LevelComp->SetAttributePoints(Data.StatPoints);
+	LevelComp->SetAttributePoints(Data.AttributePoints);
 }
 
 
-FPlayerPersistentStats AMainCharacter_Base::SavePersistentStats() const
+FPlayerPersistentStats AMainCharacter_Base::SavePersistentData() const
 {
 	FPlayerPersistentStats Data;
-	Data.Health = StatsComp->GetStatValue(EStats::Health);
-	Data.MaxHealth = StatsComp->GetStatValue(EStats::MaxHealth);
-	Data.Mana = StatsComp->GetStatValue(EStats::Mana);
-	Data.MaxMana = StatsComp->GetStatValue(EStats::MaxMana);
-	Data.Stamina = StatsComp->GetStatValue(EStats::Stamina);
-	Data.MaxStamina = StatsComp->GetStatValue(EStats::MaxStamina);
-	Data.PhysicalStrength = StatsComp->GetStatValue(EStats::PhysicalStrength);
-	Data.MagicalStrength = StatsComp->GetStatValue(EStats::MagicalStrength);
-	
 	Data.Arcane = AttributesComp->GetAttributeValue(EAttributes::Arcane);
 	Data.Wisdom = AttributesComp->GetAttributeValue(EAttributes::Wisdom);
 	Data.Strength = AttributesComp->GetAttributeValue(EAttributes::Strength);
 	Data.Intelligence = AttributesComp->GetAttributeValue(EAttributes::Intelligence);
 	Data.Endurance = AttributesComp->GetAttributeValue(EAttributes::Endurance);
 	Data.Vigor = AttributesComp->GetAttributeValue(EAttributes::Vigor);
-	
+
 	Data.CurrentLevel = LevelComp->GetCurrentLevel();
 	Data.CurrentXP = LevelComp->GetCurrentXP();
-	Data.StatPoints = LevelComp->GetCurrentAttributePointsAmount();
+	Data.AttributePoints = LevelComp->GetCurrentAttributePointsAmount();
 	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
 	return Data;
 }
 
 
-void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute) const
+void AMainCharacter_Base::SaveData()
+{
+	GameInstance->SaveAllExceptPosition();
+}
+
+
+void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute)
 {
 	int Points = LevelComp->GetCurrentAttributePointsAmount();
 	if (Points <= 0) return;
@@ -313,6 +304,7 @@ void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attrib
 	LevelComp->SetAttributePoints(Points);
 	LevelComp->IncreaseUsedStatPoints();
 	LevelComp->OnAttributePointsUpdateDelegate.Broadcast(Points);
+	RecalculateAllStats();
 }
 
 
@@ -328,6 +320,26 @@ void AMainCharacter_Base::CalculateStat(const EAttributes& Attribute, const ESta
 	const int Value = AttributesComp->GetAttributeValue(Attribute);
 	const int Coefficient = AttributesComp->GetAttributeCoefficient(Attribute);
 	StatsComp->SetStatValue(Stat, Value * Coefficient);
+}
+
+
+void AMainCharacter_Base::RecalculateAllStats()
+{
+	CalculateStat(EAttributes::Endurance, EStats::MaxStamina);
+	CalculateStat(EAttributes::Strength, EStats::PhysicalStrength);
+	CalculateStat(EAttributes::Wisdom, EStats::MagicalStrength);
+	CalculateStat(EAttributes::Intelligence, EStats::MaxMana);
+	//CalculateStat(EAttributes::Arcane, EStats::Stamina);
+	CalculateStat(EAttributes::Vigor, EStats::MaxHealth);
+	StatsComp->RestoreStats();
+}
+
+
+void AMainCharacter_Base::HandleDefaultAttributes()
+{
+	AttributesComp->SetDefaultAttributes();
+	AttributesComp->SetDefaultCoefficients();
+	RecalculateAllStats();
 }
 
 
@@ -352,12 +364,6 @@ void AMainCharacter_Base::CreateBonfireMenu()
 void AMainCharacter_Base::CreateResetMenu()
 {
 	PlayerWidgetRef->CreateResetWidget();
-}
-
-
-void AMainCharacter_Base::SetDefaultStats()
-{
-	StatsComp->SetDefaultStats();
 }
 
 
@@ -430,13 +436,6 @@ TArray<UAbilityComponent_Player*>& AMainCharacter_Base::GetAbilitiesArray()
 void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbility)
 {
 	ArrAbilities.Add(NewAbility);
-}
-
-
-void AMainCharacter_Base::SaveLevel()
-{
-	if (!GameInstance) return;
-	GameInstance->SaveLevel();
 }
 
 

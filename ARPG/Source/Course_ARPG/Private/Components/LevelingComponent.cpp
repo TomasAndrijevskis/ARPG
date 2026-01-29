@@ -24,7 +24,7 @@ void ULevelingComponent::AddXP(const float XP)
 	TryLevelUp();
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
 	if (!PlayerRef) return;
-	PlayerRef->SaveLevel();
+	PlayerRef->SaveData();
 }
 
 
