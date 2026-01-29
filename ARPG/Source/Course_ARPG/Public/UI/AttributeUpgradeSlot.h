@@ -3,21 +3,22 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Characters/Data/EAttributes.h"
 #include "Components/Button.h"
 #include "Characters/Data/EStats.h"
 #include "Components/TextBlock.h"
-#include "StatUpgradeSlot.generated.h"
+#include "AttributeUpgradeSlot.generated.h"
 
 
 UCLASS()
-class COURSE_ARPG_API UStatUpgradeSlot : public UUserWidget
+class COURSE_ARPG_API UAttributeUpgradeSlot : public UUserWidget
 {
 	GENERATED_BODY()
 
 public:
 
-	void Init(const EStats& StatToImprove);
-
+	void Init(const EAttributes& AttributeToImprove);
+	
 protected:
 	
 	virtual void NativeConstruct() override;
@@ -32,27 +33,26 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UButton* Button_ImproveStat;
-	
+
 	UFUNCTION()
-	void OnImproveStatClicked();
+	void OnImproveAttributeClicked();
 	
-	UFUNCTION()
-	void ImproveStat();
+	void ImproveAttribute();
 	
 	UFUNCTION()
 	void UpdateText(FString& Name, const float Value);
 
-	void SetStatDisplayData();
+	void SetAttributeDisplayData();
 	
 	UPROPERTY()
 	class AMainCharacter_Base* PlayerRef;
-		
-	UPROPERTY()
-	float StatValue;
 
 	UPROPERTY()
-	TEnumAsByte<EStats> Stat;
+	TEnumAsByte<EAttributes> Attribute;
 
 	UPROPERTY()
-	FString StatName;
+	FString AttributeName;
+
+	UPROPERTY()
+	int AttributeValue;
 };

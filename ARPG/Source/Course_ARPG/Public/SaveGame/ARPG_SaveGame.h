@@ -73,7 +73,7 @@ public:
 	int CurrentAbilityPoints;
 
 	UPROPERTY()
-	int UsedStatPoints;
+	int UsedAttributePoints;
 
 	UPROPERTY()
 	int UsedAbilityPoints;

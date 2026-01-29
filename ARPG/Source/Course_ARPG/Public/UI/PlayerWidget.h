@@ -8,8 +8,8 @@
 
 class UStatusEffectsComponent;
 class UStatusEffectIcon;
-class UStatsAbilitiesResetWidget;
-class UStatsUpgradeWidget;
+class UResetWidget;
+class UAttributeUpgradeWidget;
 class UAbilityUpgradeWidget;
 class ULevelUpNotification;
 class UPauseMenu;
@@ -144,10 +144,10 @@ private:
 	TSubclassOf<UAbilityUpgradeWidget> AbilityUpgradeWidgetClass;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatsUpgradeWidget> StatsUpgradeWidgetClass;
+	TSubclassOf<UAttributeUpgradeWidget> StatsUpgradeWidgetClass;
 
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatsAbilitiesResetWidget> StatsAbilitiesResetWidgetClass;
+	TSubclassOf<UResetWidget> StatsAbilitiesResetWidgetClass;
 	
 	UPROPERTY(EditAnywhere)
 	FVector2D IconSize;

@@ -3,17 +3,17 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Characters/Data/EStats.h"
-#include "StatsUpgradeWidget.generated.h"
+#include "Characters/Data/EAttributes.h"
+#include "AttributeUpgradeWidget.generated.h"
 
 
 class UVerticalBox;
 class UInfoHeader;
 class UInfoFooter;
-class UStatUpgradeSlot;
+class UAttributeUpgradeSlot;
 
 UCLASS()
-class COURSE_ARPG_API UStatsUpgradeWidget : public UUserWidget
+class COURSE_ARPG_API UAttributeUpgradeWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
@@ -31,8 +31,8 @@ private:
 	UFUNCTION()
 	void RemoveWidget();
 
-	void CreateStatsUpgradeScreen(const EStats& Stat);
-
+	void CreateAttributesUpgradeScreen(const EAttributes& Attribute);
+	
 	UFUNCTION()
 	void CreateUpgradeInfoHeader(const int Value);
 
@@ -46,8 +46,8 @@ private:
 	TSubclassOf<UInfoFooter> InfoFooterWidgetClass;
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UStatUpgradeSlot> StatUpgradeSlotClass;
+	TSubclassOf<UAttributeUpgradeSlot> StatUpgradeSlotClass;
 
 	UPROPERTY()
-	UStatUpgradeSlot* StatsScreenRef;
+	UAttributeUpgradeSlot* StatsScreenRef;
 };

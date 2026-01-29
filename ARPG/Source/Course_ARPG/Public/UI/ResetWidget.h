@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "StatsAbilitiesResetWidget.generated.h"
+#include "ResetWidget.generated.h"
 
 
 class UConfirmationWindow;
@@ -18,7 +18,7 @@ enum EResetType
 
 DECLARE_MULTICAST_DELEGATE(FOnResetWidgetClosedSignature);
 UCLASS()
-class COURSE_ARPG_API UStatsAbilitiesResetWidget : public UUserWidget
+class COURSE_ARPG_API UResetWidget : public UUserWidget
 {
 	GENERATED_BODY()
 

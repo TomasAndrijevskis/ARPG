@@ -9,8 +9,8 @@
 #include "UI/PauseMenu.h"
 #include "UI/PlayerDeath.h"
 #include "UI/QuickTravelMenu.h"
-#include "UI/StatsAbilitiesResetWidget.h"
-#include "UI/StatsUpgradeWidget.h"
+#include "UI/ResetWidget.h"
+#include "UI/AttributeUpgradeWidget.h"
 #include "UI/AbilityIconWithAmount.h"
 #include "UI/AbilityIconWithTimer.h"
 #include "UI/StatusEffectIcon.h"
@@ -28,7 +28,7 @@ void UPlayerWidget::CreateAbilityUpgradeScreen()
 void UPlayerWidget::CreateStatsUpgradeScreen()
 {
 	if (!StatsUpgradeWidgetClass) return;
-	UStatsUpgradeWidget* StatsUpgradeWidget = Cast<UStatsUpgradeWidget>(CreateWidget(this, StatsUpgradeWidgetClass));
+	UAttributeUpgradeWidget* StatsUpgradeWidget = Cast<UAttributeUpgradeWidget>(CreateWidget(this, StatsUpgradeWidgetClass));
 	if (!StatsUpgradeWidget) return;
 	StatsUpgradeWidget->AddToViewport(5);
 }
@@ -140,7 +140,7 @@ void UPlayerWidget::ShowLevelUpAnimation()
 void UPlayerWidget::CreateResetWidget()
 {
 	if (!StatsAbilitiesResetWidgetClass) return;
-	UStatsAbilitiesResetWidget* ResetWidget = Cast<UStatsAbilitiesResetWidget>(CreateWidget(this, StatsAbilitiesResetWidgetClass));
+	UResetWidget* ResetWidget = Cast<UResetWidget>(CreateWidget(this, StatsAbilitiesResetWidgetClass));
 	if (!ResetWidget) return;
 	ResetWidget->AddToViewport(5);
 }

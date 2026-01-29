@@ -23,6 +23,8 @@ public:
 	
 	void UpgradeAttribute(const EAttributes& Attribute);
 
+	FString GetAttributeName(const EAttributes& Attribute) const;
+	
 	TArray<TEnumAsByte<EAttributes>>& GetAttributes();
 	
 	FOnAttributeUpgraded OnAttributeUpgradedDelegate;

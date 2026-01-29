@@ -19,7 +19,7 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FOnArmorUpdateSignature, float);
 DECLARE_MULTICAST_DELEGATE(FOnStatUpdateSignature);
 DECLARE_MULTICAST_DELEGATE(FOnZeroArmorSignature);
 DECLARE_MULTICAST_DELEGATE(FOnZeroHealthSignature);
-DECLARE_MULTICAST_DELEGATE(FOnStatsRevertedToDefaultSignature);
+DECLARE_MULTICAST_DELEGATE(FOnAttributesRevertedToDefaultSignature);
 DECLARE_MULTICAST_DELEGATE(FOnRegenStaminaRequestSignature);
 DECLARE_MULTICAST_DELEGATE(FOnRegenManaRequestSignature);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnReduceManaRequestSignature, const float);
@@ -82,7 +82,7 @@ public:
 	
 	FOnStatUpdateSignature OnStatUpdateDelegate;
 
-	FOnStatsRevertedToDefaultSignature OnStatsRevertedToDefaultDelegate;
+	FOnAttributesRevertedToDefaultSignature OnAttributesRevertedToDefaultDelegate;
 
 	FOnHealthPercentUpdateSignature OnHealthPercentUpdateDelegate;
 	

@@ -32,7 +32,7 @@ class UStatusEffectsComponent;
 class UPlayerAnimInstance;
 
 DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinishedSignature);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnStatPointsAmountChangedSignature, const int);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsAmountChangedSignature, const int);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsAmountChangeSignature, const int);
 
 UCLASS(Blueprintable)
@@ -70,8 +70,8 @@ public:
 	void AddToAbilitiesArray(UAbilityComponent_Player* NewAbility);
 
 	UFUNCTION()
-	UARPG_GameInstance* GetGameInstanceRef() const;
-
+	void SaveLevel();
+	
 	UFUNCTION()
 	void CreateAbilitiesFooterPanel();
 
@@ -117,27 +117,25 @@ public:
 
 	void SetCanRoll(const bool bCanRoll);
 
-	int GetCurrentStatPointsAmount() const;
+	int GetCurrentAttributePointsAmount() const;
 	
 	int GetCurrentAbilityPointsAmount() const;
 
-	int GetUsedStatPoints() const;
+	int GetUsedAttributePoints() const;
 
-	void SetUsedStatPoints(int UsedStatPoints);
+	void SetUsedAttributePoints(int UsedStatPoints);
 	
 	void ApplyPersistentStats(const FPlayerPersistentStats& Data);
 
-	void UpgradeStat(const TEnumAsByte<EStats> Stat) const;
-
-	void FillStatDisplayData(FString& StatName, float& StatValue, const EStats& StatToImprove) const;
+	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute) const;
+	
+	void FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, const EAttributes& AttributeToImprove) const;
 
 	float GetPlayerMaxHealth() const;
 	
 	FPlayerPersistentStats SavePersistentStats() const;
 	
-	TArray<TEnumAsByte<EStats>> GetStatsArray() const;
-	
-	TArray<TEnumAsByte<EAttributes>>& GetAttributes() const;
+	TArray<TEnumAsByte<EAttributes>>& GetAttributesArray() const;
 
 	void CreatePauseMenu();
 
@@ -193,7 +191,7 @@ public:
 
 	FOnBonfireInteractionFinishedSignature FOnBonfireInteractionFinishedDelegate;
 
-	FOnStatPointsAmountChangedSignature OnStatPointsAmountChangedDelegate;
+	FOnAttributePointsAmountChangedSignature OnStatPointsAmountChangedDelegate;
 	
 	FOnAbilityPointsAmountChangeSignature OnAbilityPointsAmountChangeDelegate;
 
@@ -222,9 +220,6 @@ private:
 	void HandleAbilityPointsAmountChange(const int NewPoints);
 
 	void BindDelegates();
-	
-	UPROPERTY(EditAnywhere)
-	TArray<TEnumAsByte<EStats>> ArrStats;
 	
 	UPROPERTY()
 	UPlayerWidget* PlayerWidgetRef;

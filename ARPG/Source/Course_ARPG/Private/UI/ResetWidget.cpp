@@ -1,5 +1,5 @@
 
-#include "UI/StatsAbilitiesResetWidget.h"
+#include "UI/ResetWidget.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
@@ -7,44 +7,44 @@
 #include "UI/ConfirmationWindow.h"
 
 
-void UStatsAbilitiesResetWidget::NativeConstruct()
+void UResetWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
 	if (!PlayerController) return;
-	Button_Close->OnClicked.AddUniqueDynamic(this, &UStatsAbilitiesResetWidget::RemoveWidget);
+	Button_Close->OnClicked.AddUniqueDynamic(this, &UResetWidget::RemoveWidget);
 	Button_Close->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::HandleResetMenuQuit);
-	Button_ResetAbilities->OnClicked.AddUniqueDynamic(this, &UStatsAbilitiesResetWidget::OnResetAbilitiesClicked);
-	Button_ResetStats->OnClicked.AddUniqueDynamic(this, &UStatsAbilitiesResetWidget::OnResetStatsClicked);
+	Button_ResetAbilities->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
+	Button_ResetStats->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetStatsClicked);
 }
 
 
 
-void UStatsAbilitiesResetWidget::OnResetAbilitiesClicked()
+void UResetWidget::OnResetAbilitiesClicked()
 {
 	CurrentChoice = EResetType::ResetAbilities;
 	CreateConfirmationWindow();
 }
 
 
-void UStatsAbilitiesResetWidget::OnResetStatsClicked()
+void UResetWidget::OnResetStatsClicked()
 {
 	CurrentChoice = EResetType::ResetStats;
 	CreateConfirmationWindow();
 }
 
 
-void UStatsAbilitiesResetWidget::CreateConfirmationWindow()
+void UResetWidget::CreateConfirmationWindow()
 {
 	if (!ConfirmationWindowClass) return;
 	UConfirmationWindow* ConfirmationWindow = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowClass));
 	if (!ConfirmationWindow) return;
 	ConfirmationWindow->AddToViewport(7);
-	ConfirmationWindow->OnConfirmedDelegate.AddUObject(this, &UStatsAbilitiesResetWidget::OnConfirmed);
+	ConfirmationWindow->OnConfirmedDelegate.AddUObject(this, &UResetWidget::OnConfirmed);
 }
 
 
-void UStatsAbilitiesResetWidget::OnConfirmed()
+void UResetWidget::OnConfirmed()
 {
 	switch (CurrentChoice)
 	{
@@ -58,7 +58,7 @@ void UStatsAbilitiesResetWidget::OnConfirmed()
 }
 
 
-void UStatsAbilitiesResetWidget::HandleResetAbilities()
+void UResetWidget::HandleResetAbilities()
 {
 	UE_LOG(LogTemp, Warning, TEXT("HandleResetAbilities"));
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
@@ -66,14 +66,14 @@ void UStatsAbilitiesResetWidget::HandleResetAbilities()
 }
 
 
-void UStatsAbilitiesResetWidget::HandleResetStats()
+void UResetWidget::HandleResetStats()
 {
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
 		PlayerRef->ResetStats();
 }
 
 
-void UStatsAbilitiesResetWidget::RemoveWidget()
+void UResetWidget::RemoveWidget()
 {
 	this->RemoveFromParent();
 }

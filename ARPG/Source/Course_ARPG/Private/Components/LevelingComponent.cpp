@@ -22,7 +22,9 @@ void ULevelingComponent::AddXP(const float XP)
 	}
 	CurrentXP += XP;
 	TryLevelUp();
-	Cast<AMainCharacter_Base>(GetOwner())->GetGameInstanceRef()->SaveStats();
+	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
+	if (!PlayerRef) return;
+	PlayerRef->SaveLevel();
 }
 
 
@@ -38,7 +40,7 @@ void ULevelingComponent::TryLevelUp()
 		OnLevelUpdatedDelegate.Broadcast(CurrentLevel);
 		OnXpUpdatedDelegate.Broadcast(GetXPPercentage());
 
-		SetStatPoints(AvailableStatPoints + StatPointsAmountForLevel);
+		SetAttributePoints(AvailableAttributePoints + AttributePointsAmountForLevel);
 		SetAbilityPoints(AvailableAbilityPoints + AbilityUpgradePointsAmountForLevel);
 	}
 }
@@ -82,9 +84,9 @@ int ULevelingComponent::GetCurrentLevel() const
 }
 
 
-int ULevelingComponent::GetCurrentStatPointsAmount() const
+int ULevelingComponent::GetCurrentAttributePointsAmount() const
 {
-	return AvailableStatPoints;
+	return AvailableAttributePoints;
 }
 
 
@@ -106,9 +108,9 @@ void ULevelingComponent::SetLevel(const int NewLevel)
 }
 
 
-void ULevelingComponent::SetStatPoints(const int NewStatPointsAmount)
+void ULevelingComponent::SetAttributePoints(const int NewStatPointsAmount)
 {
-	AvailableStatPoints = NewStatPointsAmount;
+	AvailableAttributePoints = NewStatPointsAmount;
 }
 
 
@@ -124,19 +126,19 @@ float ULevelingComponent::GetXPPercentage() const
 }
 
 
-void ULevelingComponent::SetUsedStatPoints(const int NewUsedStatPoints)
+void ULevelingComponent::SetUsedAttributePoints(const int NewUsedStatPoints)
 {
-	UsedStatPoints = NewUsedStatPoints;
+	UsedAttributePoints = NewUsedStatPoints;
 }
 
 
-int ULevelingComponent::GetUsedStatPoints() const
+int ULevelingComponent::GetUsedAttributePoints() const
 {
-	return UsedStatPoints;
+	return UsedAttributePoints;
 }
 
 
 void ULevelingComponent::IncreaseUsedStatPoints()
 {
-	UsedStatPoints++;
+	UsedAttributePoints++;
 }

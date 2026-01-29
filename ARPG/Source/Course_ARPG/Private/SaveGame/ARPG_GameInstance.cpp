@@ -36,7 +36,7 @@ void UARPG_GameInstance::HandleGameLoad()
 	LoadBonfires();
 	LoadDefeatedBosses();
 	LoadPlayerLocation();
-	LoadUsedStatPoints();
+	LoadUsedAttributePoints();
 	LoadUsedAbilityPoints();
 	SetTeleportByDoor(false);
 	SavePlayerLocation();
@@ -55,22 +55,25 @@ void UARPG_GameInstance::SetPlayerClass(const TSubclassOf<AMainCharacter_Base>& 
 void UARPG_GameInstance::SaveAll()
 {
 	SaveStats();
+	SaveLevel();
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
 	SavePlayerLocation();
-	SaveUsedStatPoints();
+	SaveUsedAttributePoints();
 	SaveUsedAbilityPoints();
 	bIsFirstLoad = false;
 }
 
-
 void UARPG_GameInstance::SaveAllExceptPosition()
 {
 	SaveStats();
+	SaveLevel();
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
+	SaveUsedAttributePoints();
+	SaveUsedAbilityPoints();
 }
 
 
@@ -126,11 +129,19 @@ void UARPG_GameInstance::SaveStats()
 	SaveGameInstance->Arcane = Data.Arcane;
 	SaveGameInstance->Vigor = Data.Vigor;
 	
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::SaveLevel()
+{
+	if (!PlayerRef || !SaveGameInstance) return;
+	const FPlayerPersistentStats Data = PlayerRef->SavePersistentStats();
+
 	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
 	SaveGameInstance->CurrentXP = Data.CurrentXP;
 	SaveGameInstance->CurrentStatPoints = Data.StatPoints;
 	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -241,18 +252,18 @@ void UARPG_GameInstance::LoadPlayerLocation()
 }
 
 
-void UARPG_GameInstance::SaveUsedStatPoints()
+void UARPG_GameInstance::SaveUsedAttributePoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->UsedStatPoints = PlayerRef->GetUsedStatPoints();
+	SaveGameInstance->UsedAttributePoints = PlayerRef->GetUsedAttributePoints();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
-void UARPG_GameInstance::LoadUsedStatPoints()
+void UARPG_GameInstance::LoadUsedAttributePoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->SetUsedStatPoints(SaveGameInstance->UsedStatPoints);
+	PlayerRef->SetUsedAttributePoints(SaveGameInstance->UsedAttributePoints);
 }
 
 

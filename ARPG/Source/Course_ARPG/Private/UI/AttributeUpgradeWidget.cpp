@@ -1,45 +1,45 @@
 
-#include "UI/StatsUpgradeWidget.h"
+#include "UI/AttributeUpgradeWidget.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/VerticalBox.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
-#include "UI/StatUpgradeSlot.h"
+#include "UI/AttributeUpgradeSlot.h"
 
 
-void UStatsUpgradeWidget::NativeConstruct()
+void UAttributeUpgradeWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	Init();
 }
 
 
-void UStatsUpgradeWidget::Init()
+void UAttributeUpgradeWidget::Init()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
 	if (!PlayerRef) return;
-	const int AvailablePoints = PlayerRef->GetCurrentStatPointsAmount();
+	const int AvailablePoints = PlayerRef->GetCurrentAttributePointsAmount();
 	CreateUpgradeInfoHeader(AvailablePoints);
-	for (const auto Stat : PlayerRef->GetStatsArray())
+	for (const auto Attribute : PlayerRef->GetAttributesArray())
 	{
-		CreateStatsUpgradeScreen(Stat);
+		CreateAttributesUpgradeScreen(Attribute);
 	}
 	CreateUpgradeInfoFooter();
 }
 
 
-void UStatsUpgradeWidget::CreateStatsUpgradeScreen(const EStats& Stat)
+void UAttributeUpgradeWidget::CreateAttributesUpgradeScreen(const EAttributes& Attribute)
 {
 	if (!StatUpgradeSlotClass) return;
-	UStatUpgradeSlot* StatUpgradeSlot = Cast<UStatUpgradeSlot>(CreateWidget(this, StatUpgradeSlotClass));
+	UAttributeUpgradeSlot* StatUpgradeSlot = Cast<UAttributeUpgradeSlot>(CreateWidget(this, StatUpgradeSlotClass));
 	if (!StatUpgradeSlot) return;
 	VerticalBox_Slots->AddChild(StatUpgradeSlot);
-	StatUpgradeSlot->Init(Stat);
+	StatUpgradeSlot->Init(Attribute);
 }
 
 
-void UStatsUpgradeWidget::CreateUpgradeInfoHeader(const int Value)
+void UAttributeUpgradeWidget::CreateUpgradeInfoHeader(const int Value)
 {
 	if (!InfoHeaderWidgetClass) return;
 	UInfoHeader* InfoHeaderWidgetRef = Cast<UInfoHeader>(CreateWidget(this, InfoHeaderWidgetClass));
@@ -49,17 +49,17 @@ void UStatsUpgradeWidget::CreateUpgradeInfoHeader(const int Value)
 }
 
 
-void UStatsUpgradeWidget::CreateUpgradeInfoFooter()
+void UAttributeUpgradeWidget::CreateUpgradeInfoFooter()
 {
 	if (!InfoFooterWidgetClass) return;
 	UInfoFooter* InfoFooterWidgetRef = Cast<UInfoFooter>(CreateWidget(this, InfoFooterWidgetClass));
 	if (!InfoFooterWidgetRef) return;
 	VerticalBox_Slots->AddChild(InfoFooterWidgetRef);
-	InfoFooterWidgetRef->Button_Exit->OnClicked.AddUniqueDynamic(this, &UStatsUpgradeWidget::RemoveWidget);
+	InfoFooterWidgetRef->Button_Exit->OnClicked.AddUniqueDynamic(this, &UAttributeUpgradeWidget::RemoveWidget);
 }
 
 
-void UStatsUpgradeWidget::RemoveWidget()
+void UAttributeUpgradeWidget::RemoveWidget()
 {
 	this->RemoveFromParent();
 }

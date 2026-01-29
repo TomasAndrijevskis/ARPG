@@ -40,6 +40,9 @@ public:
 	void SaveAll();
 
 	UFUNCTION()
+	void SaveLevel();
+	
+	UFUNCTION()
 	void SaveAllExceptPosition();
 
 	UFUNCTION()
@@ -84,9 +87,9 @@ public:
 
 	bool GetTeleportByDoor() const;
 
-	void SaveUsedStatPoints();
+	void SaveUsedAttributePoints();
 
-	void LoadUsedStatPoints();
+	void LoadUsedAttributePoints();
 
 	void SaveUsedAbilityPoints();
 

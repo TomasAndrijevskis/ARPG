@@ -29,12 +29,6 @@ AMainCharacter_Base::AMainCharacter_Base()
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));
-	
-	ArrStats.Add(EStats::MaxHealth);
-	ArrStats.Add(EStats::MaxStamina);
-	ArrStats.Add(EStats::PhysicalStrength);
-	ArrStats.Add(EStats::MagicalStrength);
-	ArrStats.Add(EStats::MaxMana);
 }
 
 
@@ -62,7 +56,7 @@ void AMainCharacter_Base::BindDelegates()
 	LevelComp->OnXpUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnLevelUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
-	LevelComp->OnStatPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
+	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
 	FOnBonfireInteractionFinishedDelegate.AddUObject(StatsComp, &UStatsComponent::RestoreStats);
 	OnTakeAnyDamage.AddDynamic(this, &ThisClass::ReceiveDamage);
@@ -158,12 +152,12 @@ void AMainCharacter_Base::InterruptHurtAnimation() const
 
 void AMainCharacter_Base::ResetStats()
 {
-	const int UsedStatPoints = LevelComp->GetUsedStatPoints();
-	if (UsedStatPoints == 0) return;
-	const int AvailablePoints = LevelComp->GetCurrentStatPointsAmount();
-	LevelComp->SetStatPoints(UsedStatPoints + AvailablePoints);
-	LevelComp->SetUsedStatPoints(0);
-	StatsComp->OnStatsRevertedToDefaultDelegate.Broadcast();
+	const int UsedAttributePoints = LevelComp->GetUsedAttributePoints();
+	if (UsedAttributePoints == 0) return;
+	const int AvailablePoints = LevelComp->GetCurrentAttributePointsAmount();
+	LevelComp->SetAttributePoints(UsedAttributePoints + AvailablePoints);
+	LevelComp->SetUsedAttributePoints(0);
+	StatsComp->OnAttributesRevertedToDefaultDelegate.Broadcast();
 }
 
 
@@ -234,9 +228,9 @@ void AMainCharacter_Base::SetCanRoll(const bool bCanRoll)
 }
 
 
-int AMainCharacter_Base::GetCurrentStatPointsAmount() const
+int AMainCharacter_Base::GetCurrentAttributePointsAmount() const
 {
-	return LevelComp->GetCurrentStatPointsAmount();
+	return LevelComp->GetCurrentAttributePointsAmount();
 }
 
 
@@ -246,15 +240,15 @@ int AMainCharacter_Base::GetCurrentAbilityPointsAmount() const
 }
 
 
-int AMainCharacter_Base::GetUsedStatPoints() const
+int AMainCharacter_Base::GetUsedAttributePoints() const
 {
-	return LevelComp->GetUsedStatPoints();
+	return LevelComp->GetUsedAttributePoints();
 }
 
 
-void AMainCharacter_Base::SetUsedStatPoints(int UsedStatPoints)
+void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
 {
-	LevelComp->SetUsedStatPoints(UsedStatPoints);
+	LevelComp->SetUsedAttributePoints(UsedStatPoints);
 }
 
 
@@ -274,11 +268,12 @@ void AMainCharacter_Base::ApplyPersistentStats(const FPlayerPersistentStats& Dat
 	AttributesComp->SetAttributeValue(EAttributes::Endurance, Data.Endurance);
 	AttributesComp->SetAttributeValue(EAttributes::Intelligence, Data.Intelligence);
 	AttributesComp->SetAttributeValue(EAttributes::Strength, Data.Strength);
+	AttributesComp->SetAttributeValue(EAttributes::Vigor, Data.Vigor);
 	
 	LevelComp->SetLevel(Data.CurrentLevel);
 	LevelComp->SetXP(Data.CurrentXP);
 	LevelComp->SetAbilityPoints(Data.AbilityPoints);
-	LevelComp->SetStatPoints(Data.StatPoints);
+	LevelComp->SetAttributePoints(Data.StatPoints);
 }
 
 
@@ -299,32 +294,32 @@ FPlayerPersistentStats AMainCharacter_Base::SavePersistentStats() const
 	Data.Strength = AttributesComp->GetAttributeValue(EAttributes::Strength);
 	Data.Intelligence = AttributesComp->GetAttributeValue(EAttributes::Intelligence);
 	Data.Endurance = AttributesComp->GetAttributeValue(EAttributes::Endurance);
+	Data.Vigor = AttributesComp->GetAttributeValue(EAttributes::Vigor);
 	
 	Data.CurrentLevel = LevelComp->GetCurrentLevel();
 	Data.CurrentXP = LevelComp->GetCurrentXP();
-	Data.StatPoints = LevelComp->GetCurrentStatPointsAmount();
+	Data.StatPoints = LevelComp->GetCurrentAttributePointsAmount();
 	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
 	return Data;
 }
 
 
-void AMainCharacter_Base::UpgradeStat(const TEnumAsByte<EStats> Stat) const
+void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute) const
 {
-	int Points = LevelComp->GetCurrentStatPointsAmount();
+	int Points = LevelComp->GetCurrentAttributePointsAmount();
 	if (Points <= 0) return;
-	if (Stat == Strength) StatsComp->UpgradeStat(Stat, 5);
-	else StatsComp->UpgradeStat(Stat, 10);
+	AttributesComp->UpgradeAttribute(Attribute);
 	Points--;
-	LevelComp->SetStatPoints(Points);
+	LevelComp->SetAttributePoints(Points);
 	LevelComp->IncreaseUsedStatPoints();
-	LevelComp->OnStatPointsUpdateDelegate.Broadcast(Points);
+	LevelComp->OnAttributePointsUpdateDelegate.Broadcast(Points);
 }
 
 
-void AMainCharacter_Base::FillStatDisplayData(FString& StatName, float& StatValue, const EStats& StatToImprove) const
+void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue,const EAttributes& AttributeToImprove) const
 {
-	StatName = StatsComp->GetStatName(StatToImprove);
-	StatValue = StatsComp->GetStatValue(StatToImprove);
+	AttributeName = AttributesComp->GetAttributeName(AttributeToImprove);
+	AttributeValue = AttributesComp->GetAttributeValue(AttributeToImprove);
 }
 
 
@@ -438,9 +433,10 @@ void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbili
 }
 
 
-UARPG_GameInstance* AMainCharacter_Base::GetGameInstanceRef() const
+void AMainCharacter_Base::SaveLevel()
 {
-	return GameInstance;
+	if (!GameInstance) return;
+	GameInstance->SaveLevel();
 }
 
 
@@ -471,13 +467,7 @@ bool AMainCharacter_Base::CanPlayHurtAnimation() const
 }
 
 
-TArray<TEnumAsByte<EStats>> AMainCharacter_Base::GetStatsArray() const
-{
-	return ArrStats;
-}
-
-
-TArray<TEnumAsByte<EAttributes>>& AMainCharacter_Base::GetAttributes() const
+TArray<TEnumAsByte<EAttributes>>& AMainCharacter_Base::GetAttributesArray() const
 {
 	return AttributesComp->GetAttributes();
 }

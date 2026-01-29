@@ -19,6 +19,12 @@ void UAttributesComponent::UpgradeAttribute(const EAttributes& Attribute)
 }
 
 
+FString UAttributesComponent::GetAttributeName(const EAttributes& Attribute) const
+{
+	return UEnum::GetValueAsString(Attribute); 
+}
+
+
 TArray<TEnumAsByte<EAttributes>>& UAttributesComponent::GetAttributes()
 {
 	return ArrAttributes;
