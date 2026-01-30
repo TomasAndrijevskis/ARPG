@@ -379,6 +379,14 @@ FString AMainCharacter_Base::GetStatUpgradePreview(EStats Stat, int Delta) const
 }
 
 
+void AMainCharacter_Base::FillLevelData(int& CurrentLevel, float& CurrentXP, float& RequiredXP)
+{
+	CurrentLevel = LevelComp->GetCurrentLevel();
+	CurrentXP = LevelComp->GetCurrentXP();
+	RequiredXP = LevelComp->GetRequiredXP();
+}
+
+
 float AMainCharacter_Base::GetPlayerMaxHealth() const
 {
 	return StatsComp->GetStatValue(EStats::MaxHealth);

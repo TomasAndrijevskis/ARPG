@@ -50,6 +50,8 @@ public:
 	int GetUsedAttributePoints() const;
 
 	void IncreaseUsedStatPoints();
+
+	float GetRequiredXP() const;
 	
 	FOnLevelUpdated OnLevelUpdatedDelegate;
 	
@@ -68,8 +70,6 @@ protected:
 private:
 	
 	void TryLevelUp();
-
-	float GetRequiredXP() const;
 
 	bool CanAddXP() const;
 	

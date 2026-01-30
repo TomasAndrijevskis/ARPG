@@ -162,7 +162,9 @@ public:
 	FString GetAttributeUpgradePreview(EAttributes Attribute) const;
 
 	FString GetStatUpgradePreview(EStats Stat, int Delta) const;
-	
+
+	void FillLevelData(int& CurrentLevel, float& CurrentXP, float& RequiredXP);
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
 
