@@ -9,6 +9,8 @@
 #include "AttributeUpgradeSlot.generated.h"
 
 
+class UDescriptionWidget;
+
 UCLASS()
 class COURSE_ARPG_API UAttributeUpgradeSlot : public UUserWidget
 {
@@ -25,13 +27,13 @@ protected:
 private:
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_StatValue;
+	UTextBlock* Text_AttributeValue;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_StatName;
+	UTextBlock* Text_AttributeName;
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_ImproveStat;
+	UButton* Button_ImproveAttribute;
 
 	UFUNCTION()
 	void OnImproveAttributeClicked();
@@ -39,9 +41,26 @@ private:
 	void ImproveAttribute();
 	
 	UFUNCTION()
-	void UpdateText(FString& Name, const float Value);
+	void UpdateText(const FString& Name, const float Value);
 
 	void SetAttributeDisplayData();
+
+	UFUNCTION()
+	void CreateDescriptionWidget();
+
+	UFUNCTION()
+	void RemoveDescriptionWidget();
+	
+	void SetButtonsBehaviour();
+
+	UFUNCTION()
+	void UpdateDescription();
+	
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDescriptionWidget> DescriptionWidgetClass;
+
+	UPROPERTY()
+	UDescriptionWidget* DescriptionWidgetRef;
 	
 	UPROPERTY()
 	class AMainCharacter_Base* PlayerRef;
@@ -54,4 +73,7 @@ private:
 
 	UPROPERTY()
 	int AttributeValue;
+
+	UPROPERTY()
+	FString AttributeDescription;
 };

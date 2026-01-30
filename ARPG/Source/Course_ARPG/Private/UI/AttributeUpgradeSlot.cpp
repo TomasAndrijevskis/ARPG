@@ -4,6 +4,7 @@
 #include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
+#include "UI/DescriptionWidget.h"
 
 
 void UAttributeUpgradeSlot::NativeConstruct()
@@ -11,8 +12,16 @@ void UAttributeUpgradeSlot::NativeConstruct()
 	Super::NativeConstruct();
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	if (!PlayerRef) return;
-	if (Button_ImproveStat) Button_ImproveStat->OnClicked.AddDynamic(this, &UAttributeUpgradeSlot::OnImproveAttributeClicked);
+	SetButtonsBehaviour();
 }
+
+
+void UAttributeUpgradeSlot::SetButtonsBehaviour()
+{
+	Button_ImproveAttribute->OnClicked.AddUniqueDynamic(this, &UAttributeUpgradeSlot::OnImproveAttributeClicked);
+	Button_ImproveAttribute->OnHovered.AddUniqueDynamic(this, &UAttributeUpgradeSlot::CreateDescriptionWidget);
+}
+
 
 
 void UAttributeUpgradeSlot::Init(const EAttributes& AttributeToImprove)
@@ -41,14 +50,41 @@ void UAttributeUpgradeSlot::SetAttributeDisplayData()
 {
 	if (!PlayerRef) return;
 	PlayerRef->FillAttributeDisplayData(AttributeName, AttributeValue, Attribute);
+	PlayerRef->SetAttributeDescription(Attribute, AttributeDescription);
 	UpdateText(AttributeName, AttributeValue);
 }
 
 
-void UAttributeUpgradeSlot::UpdateText(FString& Name, const float Value)
+void UAttributeUpgradeSlot::UpdateDescription()
 {
-	FString Prefix = TEXT("Max");
-	if (Name.StartsWith(Prefix)) Name = Name.RightChop(Prefix.Len());
-	Text_StatName->SetText(FText::FromString(Name));
-	Text_StatValue->SetText(FText::AsNumber(Value));
+	if (!PlayerRef) return;
+	PlayerRef->SetAttributeDescription(Attribute, AttributeDescription);
+	DescriptionWidgetRef->SetDescription(AttributeDescription);
+}
+
+
+void UAttributeUpgradeSlot::CreateDescriptionWidget()
+{
+	if (!DescriptionWidgetClass) return;
+	DescriptionWidgetRef = Cast<UDescriptionWidget>(CreateWidget(this, DescriptionWidgetClass));
+	if (!DescriptionWidgetRef) return;
+	DescriptionWidgetRef->SetDescription(AttributeDescription);
+	DescriptionWidgetRef->AddToViewport(10);
+	Button_ImproveAttribute->OnUnhovered.AddUniqueDynamic(this, &ThisClass::RemoveDescriptionWidget);
+	Button_ImproveAttribute->OnClicked.AddUniqueDynamic(this, &ThisClass::UpdateDescription);
+}
+
+
+void UAttributeUpgradeSlot::RemoveDescriptionWidget()
+{
+	if (!DescriptionWidgetRef) return;
+	DescriptionWidgetRef->RemoveFromParent();
+	DescriptionWidgetRef = nullptr;
+}
+
+
+void UAttributeUpgradeSlot::UpdateText(const FString& Name, const float Value)
+{
+	Text_AttributeName->SetText(FText::FromString(Name));
+	Text_AttributeValue->SetText(FText::AsNumber(Value));
 }

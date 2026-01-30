@@ -41,6 +41,32 @@ void UAttributesComponent::SetDefaultCoefficients()
 }
 
 
+FString UAttributesComponent::GetAttributeDescription(const EAttributes& Attribute) const
+{
+	FString Result;
+	FString StatName;
+	switch (Attribute)
+	{
+		case Vigor: StatName = "health";
+			break;
+		case Endurance: StatName = "stamina";
+			break;
+		case Wisdom: StatName = "magical damage";
+			break;
+		case Intelligence: StatName = "mana";
+			break;
+		case Strength: StatName = "physical strength";
+			break;
+		case Arcane: StatName = "spells damage";
+			break;
+		default: StatName = "unknown";
+			break;
+	}
+	Result = "Your " + StatName + " will be increased by " + FString::FromInt(GetAttributeCoefficient(Attribute));
+	return Result;
+}
+
+
 FString UAttributesComponent::GetAttributeName(const EAttributes& Attribute) const
 {
 	return UEnum::GetValueAsString(Attribute); 

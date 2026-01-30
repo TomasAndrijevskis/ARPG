@@ -156,6 +156,10 @@ public:
 	void RecalculateAllStats();
 
 	void HandleDefaultAttributes();
+
+	void SetAttributeDescription(const EAttributes& AttributeToImprove, FString& AttributeDescription);
+	
+	FString GetStatNextValue(const EAttributes& Attribute) const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

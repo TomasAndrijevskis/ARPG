@@ -308,7 +308,7 @@ void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attrib
 }
 
 
-void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue,const EAttributes& AttributeToImprove) const
+void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, const EAttributes& AttributeToImprove) const
 {
 	AttributeName = AttributesComp->GetAttributeName(AttributeToImprove);
 	AttributeValue = AttributesComp->GetAttributeValue(AttributeToImprove);
@@ -340,6 +340,51 @@ void AMainCharacter_Base::HandleDefaultAttributes()
 	AttributesComp->SetDefaultAttributes();
 	AttributesComp->SetDefaultCoefficients();
 	RecalculateAllStats();
+}
+
+
+void AMainCharacter_Base::SetAttributeDescription(const EAttributes& AttributeToImprove, FString& AttributeDescription)
+{
+	AttributeDescription = AttributesComp->GetAttributeDescription(AttributeToImprove) + "\n" + GetStatNextValue(AttributeToImprove);
+}
+
+
+FString AMainCharacter_Base::GetStatNextValue(const EAttributes& Attribute) const
+{
+	const int Coefficient = AttributesComp->GetAttributeCoefficient(Attribute);
+	int NextValue;
+	FString Result;
+	switch (Attribute)
+	{
+	case Vigor:
+		NextValue = StatsComp->GetStatValue(MaxHealth) + Coefficient;
+		Result = FString::FromInt(StatsComp->GetStatValue(MaxHealth)) + " -> " + FString::FromInt(NextValue);
+			break;
+	case Endurance: 
+		NextValue = StatsComp->GetStatValue(Stamina) + Coefficient;
+		Result = FString::FromInt(StatsComp->GetStatValue(Stamina)) + " -> " + FString::FromInt(NextValue);
+			break;
+	case Wisdom:
+		NextValue = StatsComp->GetStatValue(MagicalStrength) + Coefficient;
+		Result = FString::FromInt(StatsComp->GetStatValue(MagicalStrength)) + " -> " + FString::FromInt(NextValue);
+			break;
+	case Intelligence:
+		NextValue = StatsComp->GetStatValue(MaxMana) + Coefficient;
+		Result = FString::FromInt(StatsComp->GetStatValue(MaxMana)) + " -> " + FString::FromInt(NextValue);
+			break;
+	case Strength:
+		NextValue = StatsComp->GetStatValue(PhysicalStrength) + Coefficient;
+		Result = FString::FromInt(StatsComp->GetStatValue(PhysicalStrength)) + " -> " + FString::FromInt(NextValue);
+			break;
+	case Arcane:
+		//NextValue = FString::FromInt(StatsComp->GetStatValue(Stamina)) + " -> " + StatsComp->GetStatValue(Stamina) + Coefficient;
+		NextValue = 1;
+		Result = FString::FromInt(NextValue);
+			break;
+	default: Result = "unknown";
+		break;
+	}
+	return Result;
 }
 
 
