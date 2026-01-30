@@ -63,6 +63,7 @@ FString UAttributesComponent::GetAttributeDescription(const EAttributes& Attribu
 			break;
 	}
 	Result = "Your " + StatName + " will be increased by " + FString::FromInt(GetAttributeCoefficient(Attribute));
+	if (Attribute == Arcane) Result += " %";
 	return Result;
 }
 

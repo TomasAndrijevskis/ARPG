@@ -70,6 +70,12 @@ void UStatsComponent::UpgradeStat(const TEnumAsByte<EStats> Stat, const float Va
 }
 
 
+int UStatsComponent::PreviewStatIncrease(const EStats Stat, const int Delta)
+{
+	return Stats[Stat] + Delta;
+}
+
+
 float UStatsComponent::GetReducedDamage(const float Damage, AActor* Opponent)
 {
 	if (Stats[EStats::Armor] <= 0) return Damage;

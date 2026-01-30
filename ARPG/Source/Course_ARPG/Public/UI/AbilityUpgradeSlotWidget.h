@@ -72,7 +72,7 @@ private:
 	void CreateAbilityDescriptionWidget();
 	
 	UFUNCTION()
-	void SetAbilityIconEnable();
+	void SetAbilityIconEnabled();
 	
 	UFUNCTION()
 	void SetIcon(UTexture2D* Icon);

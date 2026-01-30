@@ -50,7 +50,7 @@ void UAttributeUpgradeSlot::SetAttributeDisplayData()
 {
 	if (!PlayerRef) return;
 	PlayerRef->FillAttributeDisplayData(AttributeName, AttributeValue, Attribute);
-	PlayerRef->SetAttributeDescription(Attribute, AttributeDescription);
+	PlayerRef->BuildAttributeDescription(Attribute, AttributeDescription);
 	UpdateText(AttributeName, AttributeValue);
 }
 
@@ -58,7 +58,7 @@ void UAttributeUpgradeSlot::SetAttributeDisplayData()
 void UAttributeUpgradeSlot::UpdateDescription()
 {
 	if (!PlayerRef) return;
-	PlayerRef->SetAttributeDescription(Attribute, AttributeDescription);
+	PlayerRef->BuildAttributeDescription(Attribute, AttributeDescription);
 	DescriptionWidgetRef->SetDescription(AttributeDescription);
 }
 

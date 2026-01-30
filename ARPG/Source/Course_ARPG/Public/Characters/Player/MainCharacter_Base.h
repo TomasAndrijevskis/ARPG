@@ -46,7 +46,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 	
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 	virtual float GetCurrentDamage() const override;
 
@@ -55,10 +55,10 @@ public:
 	virtual bool CanTakeDamage(AActor* Opponent) const override;
 	
 	UFUNCTION()
-	virtual bool HasEnoughStamina(const float Stamina) const override;
+	virtual bool HasEnoughStamina(float Stamina) const override;
 
 	UFUNCTION()
-	virtual bool HasEnoughMana(const float Mana) const override;
+	virtual bool HasEnoughMana(float Mana) const override;
 	
 	UFUNCTION()
 	UPlayerWidget* GetPlayerWidget() const;
@@ -78,7 +78,7 @@ public:
 	UFUNCTION()
 	void SetSkeletalMeshComponent();
 
-	void SetCanPlayHurtAnimation(const bool bCanPlayAnim);
+	void SetCanPlayHurtAnimation(bool bCanPlayAnim);
 
 	bool CanPlayHurtAnimation() const;
 
@@ -88,31 +88,31 @@ public:
 	
 	void ResetAbilities();
 
-	void IncreaseUsedAbilityPoints(const int UsedPoints);
+	void IncreaseUsedAbilityPoints(int UsedPoints);
 
-	void SetUsedAbilityPoints(const int NewUsedPoints);
+	void SetUsedAbilityPoints(int NewUsedPoints);
 
 	int GetUsedAbilityPoints() const;
 
 	UFUNCTION()
-	void ReduceStamina(const float Stamina);
+	void ReduceStamina(float Stamina);
 
 	UFUNCTION()
-	void ReduceMana(const float Mana);
+	void ReduceMana(float Mana);
 	
-	void ReduceHealth(const float Damage, AActor* Opponent);
+	void ReduceHealth(float Damage, AActor* Opponent);
 
-	void Heal(const float Health);
+	void Heal(float Health);
 	
-	void AddXP(const float NewXP);
+	void AddXP(float NewXP);
 
 	bool IsPlayerLockedOnEnemy() const;
 
 	void EndPlayerLockOnEnemy();
 
-	void SetCanAttack(const bool bCanAttack);
+	void SetCanAttack(bool bCanAttack);
 
-	void SetCanRoll(const bool bCanRoll);
+	void SetCanRoll(bool bCanRoll);
 
 	int GetCurrentAttributePointsAmount() const;
 	
@@ -122,7 +122,7 @@ public:
 
 	void SetUsedAttributePoints(int UsedStatPoints);
 	
-	void LoadPersistentData(const FPlayerPersistentData& Data);
+	void LoadPersistentData(FPlayerPersistentData Data);
 
 	FPlayerPersistentData SavePersistentData() const;
 
@@ -130,7 +130,7 @@ public:
 	
 	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute);
 	
-	void FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, const EAttributes& AttributeToImprove) const;
+	void FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const;
 
 	float GetPlayerMaxHealth() const;
 	
@@ -145,21 +145,23 @@ public:
 	
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
 
-	void CreateAbilityIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
+	void CreateAbilityIconWithTimer(float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
 
-	void CreateAbilityIconWithAmount(const float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword);
+	void CreateAbilityIconWithAmount(float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword);
 	
 	AActor* GetCurrentTargetActor() const;
 	
-	void CalculateStat(const EAttributes& Attribute, const EStats& Stat) const;
+	void CalculateStat(EAttributes Attribute, EStats Stat) const;
 
 	void RecalculateAllStats();
 
 	void HandleDefaultAttributes();
 
-	void SetAttributeDescription(const EAttributes& AttributeToImprove, FString& AttributeDescription);
+	void BuildAttributeDescription(EAttributes AttributeToImprove, FString& AttributeDescription);
 	
-	FString GetStatNextValue(const EAttributes& Attribute) const;
+	FString GetAttributeUpgradePreview(EAttributes Attribute) const;
+
+	FString GetStatUpgradePreview(EStats Stat, int Delta) const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -210,7 +212,7 @@ protected:
 private:
 
 	UFUNCTION()
-	void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 
 	UFUNCTION()
 	void PlayHurtAnimation();

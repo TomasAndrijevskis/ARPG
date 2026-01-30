@@ -15,7 +15,7 @@ void UAbilityUpgradeSlotWidget::InitializeAbilityUpgradeSlot(UAbilityComponent_P
 	if (!AbilityComp_Ref) return;
 	SetIcon(AbilityComp_Ref->GetIcon());
 	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
-	SetAbilityIconEnable();
+	SetAbilityIconEnabled();
 	SetupButtonCallbacks();
 	SetRequiredPointsText();
 }
@@ -112,7 +112,7 @@ void UAbilityUpgradeSlotWidget::UpgradeAbility()
 	if (AvailablePoints <= 0) return;
 	AbilityComp_Ref->UpgradeAbility(AvailablePoints);
 	SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
-	SetAbilityIconEnable();
+	SetAbilityIconEnabled();
 	
 	if (AbilityComp_Ref->IsAbilityMaxLevel())
 	{
@@ -124,7 +124,7 @@ void UAbilityUpgradeSlotWidget::UpgradeAbility()
 }
 
 
-void UAbilityUpgradeSlotWidget::SetAbilityIconEnable()
+void UAbilityUpgradeSlotWidget::SetAbilityIconEnabled()
 {
 	Button_AbilityIcon->SetIsEnabled(AbilityComp_Ref->IsAbilityAvailable());
 }

@@ -92,7 +92,7 @@ void AMainCharacter_Base::CreatePlayerWidget()
 }
 
 
-void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
 	const float ReducedDamage = StatsComp->GetReducedDamage(Damage, DamageCauser);
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(ReducedDamage, this, DamageCauser);
@@ -175,31 +175,31 @@ void AMainCharacter_Base::ResetAbilities()
 }
 
 
-void AMainCharacter_Base::ReduceStamina(const float Stamina)
+void AMainCharacter_Base::ReduceStamina(float Stamina)
 {
 	StatsComp->OnReduceStaminaRequestDelegate.Broadcast(Stamina);
 }
 
 
-void AMainCharacter_Base::ReduceMana(const float Mana)
+void AMainCharacter_Base::ReduceMana(float Mana)
 {
 	StatsComp->OnReduceManaRequestDelegate.Broadcast(Mana);
 }
 
 
-void AMainCharacter_Base::ReduceHealth(const float Damage, AActor* Opponent)
+void AMainCharacter_Base::ReduceHealth(float Damage, AActor* Opponent)
 {
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, Opponent);
 }
 
 
-void AMainCharacter_Base::Heal(const float Health)
+void AMainCharacter_Base::Heal(float Health)
 {
 	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
 }
 
 
-void AMainCharacter_Base::AddXP(const float NewXP)
+void AMainCharacter_Base::AddXP(float NewXP)
 {
 	LevelComp->AddXP(NewXP);
 }
@@ -217,13 +217,13 @@ void AMainCharacter_Base::EndPlayerLockOnEnemy()
 }
 
 
-void AMainCharacter_Base::SetCanAttack(const bool bCanAttack)
+void AMainCharacter_Base::SetCanAttack(bool bCanAttack)
 {
 	CombatComp->SetCanAttack(bCanAttack);
 }
 
 
-void AMainCharacter_Base::SetCanRoll(const bool bCanRoll)
+void AMainCharacter_Base::SetCanRoll(bool bCanRoll)
 {
 	PlayerActionsComp->SetCanRoll(bCanRoll);
 }
@@ -253,7 +253,7 @@ void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
 }
 
 
-void AMainCharacter_Base::LoadPersistentData(const FPlayerPersistentData& Data)
+void AMainCharacter_Base::LoadPersistentData(FPlayerPersistentData Data)
 {
 	AttributesComp->SetAttributeValue(EAttributes::Arcane, Data.Arcane);
 	AttributesComp->SetAttributeValue(EAttributes::Wisdom, Data.Wisdom);
@@ -308,14 +308,14 @@ void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attrib
 }
 
 
-void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, const EAttributes& AttributeToImprove) const
+void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const
 {
 	AttributeName = AttributesComp->GetAttributeName(AttributeToImprove);
 	AttributeValue = AttributesComp->GetAttributeValue(AttributeToImprove);
 }
 
 
-void AMainCharacter_Base::CalculateStat(const EAttributes& Attribute, const EStats& Stat) const
+void AMainCharacter_Base::CalculateStat(EAttributes Attribute, EStats Stat) const
 {
 	const int Value = AttributesComp->GetAttributeValue(Attribute);
 	const int Coefficient = AttributesComp->GetAttributeCoefficient(Attribute);
@@ -343,48 +343,39 @@ void AMainCharacter_Base::HandleDefaultAttributes()
 }
 
 
-void AMainCharacter_Base::SetAttributeDescription(const EAttributes& AttributeToImprove, FString& AttributeDescription)
+void AMainCharacter_Base::BuildAttributeDescription(EAttributes AttributeToImprove, FString& AttributeDescription)
 {
-	AttributeDescription = AttributesComp->GetAttributeDescription(AttributeToImprove) + "\n" + GetStatNextValue(AttributeToImprove);
+	AttributeDescription = AttributesComp->GetAttributeDescription(AttributeToImprove) + "\n" + GetAttributeUpgradePreview(AttributeToImprove);
 }
 
 
-FString AMainCharacter_Base::GetStatNextValue(const EAttributes& Attribute) const
+FString AMainCharacter_Base::GetAttributeUpgradePreview(EAttributes Attribute) const
 {
-	const int Coefficient = AttributesComp->GetAttributeCoefficient(Attribute);
-	int NextValue;
-	FString Result;
+	const int Delta = AttributesComp->GetAttributeCoefficient(Attribute);
 	switch (Attribute)
 	{
 	case Vigor:
-		NextValue = StatsComp->GetStatValue(MaxHealth) + Coefficient;
-		Result = FString::FromInt(StatsComp->GetStatValue(MaxHealth)) + " -> " + FString::FromInt(NextValue);
-			break;
+		return GetStatUpgradePreview(MaxHealth, Delta);
 	case Endurance: 
-		NextValue = StatsComp->GetStatValue(Stamina) + Coefficient;
-		Result = FString::FromInt(StatsComp->GetStatValue(Stamina)) + " -> " + FString::FromInt(NextValue);
-			break;
+		return GetStatUpgradePreview(MaxStamina, Delta);
 	case Wisdom:
-		NextValue = StatsComp->GetStatValue(MagicalStrength) + Coefficient;
-		Result = FString::FromInt(StatsComp->GetStatValue(MagicalStrength)) + " -> " + FString::FromInt(NextValue);
-			break;
+		return GetStatUpgradePreview(MagicalStrength, Delta);
 	case Intelligence:
-		NextValue = StatsComp->GetStatValue(MaxMana) + Coefficient;
-		Result = FString::FromInt(StatsComp->GetStatValue(MaxMana)) + " -> " + FString::FromInt(NextValue);
-			break;
+		return GetStatUpgradePreview(MaxMana, Delta);
 	case Strength:
-		NextValue = StatsComp->GetStatValue(PhysicalStrength) + Coefficient;
-		Result = FString::FromInt(StatsComp->GetStatValue(PhysicalStrength)) + " -> " + FString::FromInt(NextValue);
-			break;
+		return GetStatUpgradePreview(PhysicalStrength, Delta);
 	case Arcane:
-		//NextValue = FString::FromInt(StatsComp->GetStatValue(Stamina)) + " -> " + StatsComp->GetStatValue(Stamina) + Coefficient;
-		NextValue = 1;
-		Result = FString::FromInt(NextValue);
-			break;
-	default: Result = "unknown";
-		break;
+		return "unknown";//Result = GetAttributeDescription(PhysicalStrength, Coefficient);
+	default:
+		return "unknown";
 	}
-	return Result;
+}
+
+
+FString AMainCharacter_Base::GetStatUpgradePreview(EStats Stat, int Delta) const
+{
+	const int NextValue = StatsComp->PreviewStatIncrease(Stat, Delta);
+	return FString::FromInt(StatsComp->GetStatValue(Stat)) + " -> " + FString::FromInt(NextValue);
 }
 
 
@@ -418,13 +409,13 @@ void AMainCharacter_Base::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffect
 }
 
 
-void AMainCharacter_Base::CreateAbilityIconWithTimer(const float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
+void AMainCharacter_Base::CreateAbilityIconWithTimer(float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef)
 {
 	PlayerWidgetRef->CreateAbilityIconWithTimer(Duration, Image, AbilityCompRef);
 }
 
 
-void AMainCharacter_Base::CreateAbilityIconWithAmount(const float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword)
+void AMainCharacter_Base::CreateAbilityIconWithAmount(float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword)
 {
 	PlayerWidgetRef->CreateAbilityIconWithAmount(Amount, Icon, StatsCompRef, Keyword);
 }

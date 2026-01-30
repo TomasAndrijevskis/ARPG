@@ -58,6 +58,8 @@ public:
 	void ReduceHealth(const float Damage);
 
 	void UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value);
+
+	int PreviewStatIncrease(const EStats Stat, const int Delta);
 	
 	UPROPERTY()
 	UHealthManager* HealthManager;
