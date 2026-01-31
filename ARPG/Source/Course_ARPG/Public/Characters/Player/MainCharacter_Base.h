@@ -163,8 +163,10 @@ public:
 
 	FString GetStatUpgradePreview(EStats Stat, int Delta) const;
 
-	void FillLevelData(int& CurrentLevel, float& CurrentXP, float& RequiredXP);
+	void FillLevelDisplayData(FString& Level, FString& XP);
 
+	void FillStatsDisplayData(FString& Health, FString& Mana, FString& Stamina, FString& PhDamage, FString& MgDamage);
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
 

@@ -19,19 +19,14 @@ public:
 private:
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_CurrentLevel;
+	UTextBlock* Text_Level;
 
 	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_CurrentExperience;
-
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_RequiredExperience;
+	UTextBlock* Text_Experience;
 
 	void SetText();
 
-	int CurrentLevel;
+	FString Level;
 	
-	float CurrentXP;
-	
-	float RequiredXP;
+	FString XP;
 };

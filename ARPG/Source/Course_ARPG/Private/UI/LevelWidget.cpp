@@ -10,14 +10,13 @@ void ULevelWidget::NativeConstruct()
 	Super::NativeConstruct();
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(this, 0));
 	if (!PlayerRef) return;
-	PlayerRef->FillLevelData(CurrentLevel, CurrentXP, RequiredXP);
+	PlayerRef->FillLevelDisplayData(Level, XP);
 	SetText();
 }
 
 
 void ULevelWidget::SetText()
 {
-	Text_CurrentLevel->SetText(FText::FromString(FString::FromInt(CurrentLevel)));
-	Text_CurrentExperience->SetText(FText::FromString(FString::FromInt(CurrentXP)));
-	Text_RequiredExperience->SetText(FText::FromString(FString::FromInt(RequiredXP)));
+	Text_Level->SetText(FText::FromString(Level));
+	Text_Experience->SetText(FText::FromString(XP));
 }

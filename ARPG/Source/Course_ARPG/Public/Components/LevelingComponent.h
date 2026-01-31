@@ -52,6 +52,8 @@ public:
 	void IncreaseUsedStatPoints();
 
 	float GetRequiredXP() const;
+
+	FString GetXPDisplayData() const;
 	
 	FOnLevelUpdated OnLevelUpdatedDelegate;
 	

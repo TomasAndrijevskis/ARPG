@@ -365,7 +365,7 @@ FString AMainCharacter_Base::GetAttributeUpgradePreview(EAttributes Attribute) c
 	case Strength:
 		return GetStatUpgradePreview(PhysicalStrength, Delta);
 	case Arcane:
-		return "unknown";//Result = GetAttributeDescription(PhysicalStrength, Coefficient);
+		return "unknown";//GetAttributeDescription(PhysicalStrength, Delta);
 	default:
 		return "unknown";
 	}
@@ -379,11 +379,20 @@ FString AMainCharacter_Base::GetStatUpgradePreview(EStats Stat, int Delta) const
 }
 
 
-void AMainCharacter_Base::FillLevelData(int& CurrentLevel, float& CurrentXP, float& RequiredXP)
+void AMainCharacter_Base::FillLevelDisplayData(FString& Level, FString& XP)
 {
-	CurrentLevel = LevelComp->GetCurrentLevel();
-	CurrentXP = LevelComp->GetCurrentXP();
-	RequiredXP = LevelComp->GetRequiredXP();
+	Level = FString::FromInt(LevelComp->GetCurrentLevel());
+	XP = LevelComp->GetXPDisplayData();
+}
+
+
+void AMainCharacter_Base::FillStatsDisplayData(FString& Health, FString& Mana, FString& Stamina, FString& PhDamage, FString& MgDamage)
+{
+	Health = StatsComp->GetStatDisplayData(EStats::Health, EStats::MaxHealth);
+	Mana = StatsComp->GetStatDisplayData(EStats::Mana, EStats::MaxMana);
+	Stamina = StatsComp->GetStatDisplayData(EStats::Stamina, EStats::MaxStamina);
+	PhDamage = StatsComp->GetStatDisplayData(EStats::PhysicalStrength);
+	MgDamage = StatsComp->GetStatDisplayData(EStats::MagicalStrength);
 }
 
 

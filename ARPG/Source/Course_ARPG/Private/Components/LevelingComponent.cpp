@@ -53,6 +53,12 @@ float ULevelingComponent::GetRequiredXP() const
 }
 
 
+FString ULevelingComponent::GetXPDisplayData() const
+{
+	return FString::FromInt(GetCurrentXP()) + " / " + FString::FromInt(GetRequiredXP());
+}
+
+
 bool ULevelingComponent::CanAddXP() const
 {
 	if (!LevelDataTable) return false;

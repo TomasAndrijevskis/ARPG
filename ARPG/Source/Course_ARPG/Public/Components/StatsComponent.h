@@ -60,6 +60,10 @@ public:
 	void UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value);
 
 	int PreviewStatIncrease(const EStats Stat, const int Delta);
+
+	FString GetStatDisplayData(const EStats Stat, const EStats MaxStat) const;
+
+	FString GetStatDisplayData(const EStats Stat) const;
 	
 	UPROPERTY()
 	UHealthManager* HealthManager;
