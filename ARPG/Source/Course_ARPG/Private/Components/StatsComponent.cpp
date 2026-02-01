@@ -76,18 +76,6 @@ int UStatsComponent::PreviewStatIncrease(const EStats Stat, const int Delta)
 }
 
 
-FString UStatsComponent::GetStatDisplayData(const EStats Stat, const EStats MaxStat) const
-{
-	return FString::FromInt(GetStatValue(Stat)) + " / " + FString::FromInt(GetStatValue(MaxStat));
-}
-
-
-FString UStatsComponent::GetStatDisplayData(const EStats Stat) const
-{
-	return FString::FromInt(GetStatValue(Stat));
-}
-
-
 float UStatsComponent::GetReducedDamage(const float Damage, AActor* Opponent)
 {
 	if (Stats[EStats::Armor] <= 0) return Damage;

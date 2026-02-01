@@ -4,8 +4,10 @@
 #include "CoreMinimal.h"
 #include "Data/EAttributes.h"
 #include "Data/EStats.h"
-#include "Data/PlayerPersistentData.h"
+#include "Data/PersistentData/PlayerAttributeData.h"
 #include "Components/StatusEffectsComponent.h"
+#include "Data/PersistentData/PlayerLevelData.h"
+#include "Data/PersistentData/PlayerStatsData.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/MainPlayer.h"
 #include "Interfaces/Fighter.h"
@@ -104,7 +106,7 @@ public:
 
 	void Heal(float Health);
 	
-	void AddXP(float NewXP);
+	void AddExperience(float NewExperience);
 
 	bool IsPlayerLockedOnEnemy() const;
 
@@ -122,10 +124,14 @@ public:
 
 	void SetUsedAttributePoints(int UsedStatPoints);
 	
-	void LoadPersistentData(FPlayerPersistentData Data);
+	void LoadAttributeData(FPlayerAttributeData Data);
 
-	FPlayerPersistentData SavePersistentData() const;
+	FPlayerAttributeData SaveAttributeData() const;
 
+	void LoadLevelData(FPlayerLevelData Data);
+
+	FPlayerLevelData SaveLevelData() const;
+	
 	void SaveData();
 	
 	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute);
@@ -163,9 +169,9 @@ public:
 
 	FString GetStatUpgradePreview(EStats Stat, int Delta) const;
 
-	void FillLevelDisplayData(FString& Level, FString& XP);
+	void FillLevelDisplayData(FPlayerLevelData& Data);
 
-	void FillStatsDisplayData(FString& Health, FString& Mana, FString& Stamina, FString& PhDamage, FString& MgDamage);
+	void FillStatsDisplayData(FPlayerStatsData& Data) const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

@@ -9,7 +9,7 @@
 
 DECLARE_MULTICAST_DELEGATE(FOnNewLevel);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnLevelUpdated, int);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnXpUpdated, float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnExperienceUpdated, float);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsUpdate, int);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsUpdate, int);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -20,10 +20,10 @@ class COURSE_ARPG_API ULevelingComponent : public UActorComponent
 public:
 
 	UFUNCTION(BlueprintCallable)
-	void AddXP(const float XP);
+	void AddExperience(const float Experience);
 	
 	UFUNCTION()
-	float GetCurrentXP() const;
+	float GetCurrentExperience() const;
 
 	UFUNCTION()
 	int GetCurrentLevel() const;
@@ -33,7 +33,7 @@ public:
 	int GetCurrentAbilityPointsAmount() const;
 
 	UFUNCTION()
-	void SetXP(const float NewXP);
+	void SetExperience(const float NewExperience);
 
 	UFUNCTION()
 	void SetLevel(const int NewLevel);
@@ -43,7 +43,7 @@ public:
 	void SetAbilityPoints(const int NewAbilityPointsAmount);
 
 	UFUNCTION()
-	float GetXPPercentage() const;
+	float GetExperiencePercentage() const;
 
 	void SetUsedAttributePoints(const int NewUsedStatPoints);
 
@@ -51,13 +51,11 @@ public:
 
 	void IncreaseUsedStatPoints();
 
-	float GetRequiredXP() const;
-
-	FString GetXPDisplayData() const;
+	float GetRequiredExperience() const;
 	
 	FOnLevelUpdated OnLevelUpdatedDelegate;
 	
-	FOnXpUpdated OnXpUpdatedDelegate;
+	FOnExperienceUpdated OnExperienceUpdatedDelegate;
 	
 	FOnAttributePointsUpdate OnAttributePointsUpdateDelegate;
 	
@@ -73,7 +71,7 @@ private:
 	
 	void TryLevelUp();
 
-	bool CanAddXP() const;
+	bool CanAddExperience() const;
 	
 	FXPLevels* GetNextLevelRow() const;
 	
@@ -84,7 +82,7 @@ private:
 	int CurrentLevel = 1;
 
 	UPROPERTY(VisibleAnywhere)
-	float CurrentXP = 0.f;
+	float CurrentExperience = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
 	int AvailableAttributePoints = 0;
@@ -98,7 +96,7 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	int AbilityUpgradePointsAmountForLevel = 5;
 
-	float RequiredXP;
+	float RequiredExperience;
 
 	int UsedAttributePoints = 0;
 };

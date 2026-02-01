@@ -2,7 +2,7 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Animations/PlayerAnimInstance.h"
 #include "Data/EStats.h"
-#include "Data/PlayerPersistentData.h"
+#include "Data/PersistentData/PlayerAttributeData.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/AttributesComponent.h"
 #include "Components/CombatComponent_Base.h"
@@ -13,6 +13,7 @@
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
+#include "Data/PersistentData/PlayerStatsData.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
 
@@ -52,8 +53,8 @@ void AMainCharacter_Base::BindDelegates()
 	StatsComp->OnManaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetMana);
 	StatsComp->OnStaminaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetStamina);
 	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::HandleDeath);
-	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SavePersistentData);
-	LevelComp->OnXpUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetXP);
+	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SaveAttributeData);
+	LevelComp->OnExperienceUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetXP);
 	LevelComp->OnLevelUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
@@ -87,7 +88,7 @@ void AMainCharacter_Base::CreatePlayerWidget()
 	PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
 	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
 	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
-	PlayerWidgetRef->SetXP(LevelComp->GetXPPercentage());
+	PlayerWidgetRef->SetXP(LevelComp->GetExperiencePercentage());
 	CreateAbilitiesFooterPanel();
 }
 
@@ -199,9 +200,9 @@ void AMainCharacter_Base::Heal(float Health)
 }
 
 
-void AMainCharacter_Base::AddXP(float NewXP)
+void AMainCharacter_Base::AddExperience(float NewExperience)
 {
-	LevelComp->AddXP(NewXP);
+	LevelComp->AddExperience(NewExperience);
 }
 
 
@@ -253,7 +254,7 @@ void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
 }
 
 
-void AMainCharacter_Base::LoadPersistentData(FPlayerPersistentData Data)
+void AMainCharacter_Base::LoadAttributeData(FPlayerAttributeData Data)
 {
 	AttributesComp->SetAttributeValue(EAttributes::Arcane, Data.Arcane);
 	AttributesComp->SetAttributeValue(EAttributes::Wisdom, Data.Wisdom);
@@ -263,26 +264,36 @@ void AMainCharacter_Base::LoadPersistentData(FPlayerPersistentData Data)
 	AttributesComp->SetAttributeValue(EAttributes::Vigor, Data.Vigor);
 	AttributesComp->SetDefaultCoefficients();
 	RecalculateAllStats();
-	
-	LevelComp->SetLevel(Data.CurrentLevel);
-	LevelComp->SetXP(Data.CurrentXP);
-	LevelComp->SetAbilityPoints(Data.AbilityPoints);
-	LevelComp->SetAttributePoints(Data.AttributePoints);
 }
 
 
-FPlayerPersistentData AMainCharacter_Base::SavePersistentData() const
+FPlayerAttributeData AMainCharacter_Base::SaveAttributeData() const
 {
-	FPlayerPersistentData Data;
+	FPlayerAttributeData Data;
 	Data.Arcane = AttributesComp->GetAttributeValue(EAttributes::Arcane);
 	Data.Wisdom = AttributesComp->GetAttributeValue(EAttributes::Wisdom);
 	Data.Strength = AttributesComp->GetAttributeValue(EAttributes::Strength);
 	Data.Intelligence = AttributesComp->GetAttributeValue(EAttributes::Intelligence);
 	Data.Endurance = AttributesComp->GetAttributeValue(EAttributes::Endurance);
 	Data.Vigor = AttributesComp->GetAttributeValue(EAttributes::Vigor);
+	return Data;
+}
 
+
+void AMainCharacter_Base::LoadLevelData(FPlayerLevelData Data)
+{
+	LevelComp->SetLevel(Data.CurrentLevel);
+	LevelComp->SetExperience(Data.CurrentExperience);
+	LevelComp->SetAbilityPoints(Data.AbilityPoints);
+	LevelComp->SetAttributePoints(Data.AttributePoints);
+}
+
+
+FPlayerLevelData AMainCharacter_Base::SaveLevelData() const
+{
+	FPlayerLevelData Data;
 	Data.CurrentLevel = LevelComp->GetCurrentLevel();
-	Data.CurrentXP = LevelComp->GetCurrentXP();
+	Data.CurrentExperience = LevelComp->GetCurrentExperience();
 	Data.AttributePoints = LevelComp->GetCurrentAttributePointsAmount();
 	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
 	return Data;
@@ -379,20 +390,24 @@ FString AMainCharacter_Base::GetStatUpgradePreview(EStats Stat, int Delta) const
 }
 
 
-void AMainCharacter_Base::FillLevelDisplayData(FString& Level, FString& XP)
+void AMainCharacter_Base::FillLevelDisplayData(FPlayerLevelData& Data)
 {
-	Level = FString::FromInt(LevelComp->GetCurrentLevel());
-	XP = LevelComp->GetXPDisplayData();
+	Data.CurrentLevel = LevelComp->GetCurrentLevel();
+	Data.CurrentExperience = LevelComp->GetCurrentExperience();
+	Data.RequiredExperience = LevelComp->GetRequiredExperience();
 }
 
 
-void AMainCharacter_Base::FillStatsDisplayData(FString& Health, FString& Mana, FString& Stamina, FString& PhDamage, FString& MgDamage)
+void AMainCharacter_Base::FillStatsDisplayData(FPlayerStatsData& Data) const
 {
-	Health = StatsComp->GetStatDisplayData(EStats::Health, EStats::MaxHealth);
-	Mana = StatsComp->GetStatDisplayData(EStats::Mana, EStats::MaxMana);
-	Stamina = StatsComp->GetStatDisplayData(EStats::Stamina, EStats::MaxStamina);
-	PhDamage = StatsComp->GetStatDisplayData(EStats::PhysicalStrength);
-	MgDamage = StatsComp->GetStatDisplayData(EStats::MagicalStrength);
+	Data.Health = StatsComp->GetStatValue(EStats::Health);
+	Data.MaxHealth = StatsComp->GetStatValue(EStats::MaxHealth);
+	Data.Mana = StatsComp->GetStatValue(EStats::Mana);
+	Data.MaxMana = StatsComp->GetStatValue(EStats::MaxMana);
+	Data.Stamina = StatsComp->GetStatValue(EStats::Stamina);
+	Data.MaxStamina = StatsComp->GetStatValue(EStats::MaxStamina);
+	Data.PhysicalStrength = StatsComp->GetStatValue(EStats::PhysicalStrength);
+	Data.MagicalStrength = StatsComp->GetStatValue(EStats::MagicalStrength);
 }
 
 

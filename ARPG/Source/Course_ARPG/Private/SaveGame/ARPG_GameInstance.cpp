@@ -1,6 +1,6 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
-#include "Data/PlayerPersistentData.h"
+#include "Data/PersistentData/PlayerAttributeData.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
@@ -31,7 +31,8 @@ void UARPG_GameInstance::InitializeGameInstance()
 
 void UARPG_GameInstance::HandleGameLoad()
 {
-	LoadPersistentData();
+	LoadAttributeData();
+	LoadLevelData();
 	LoadAbilities();
 	LoadBonfires();
 	LoadDefeatedBosses();
@@ -54,7 +55,8 @@ void UARPG_GameInstance::SetPlayerClass(const TSubclassOf<AMainCharacter_Base>& 
 
 void UARPG_GameInstance::SaveAll()
 {
-	SavePersistentData();
+	SaveAttributeData();
+	SaveLevelData();
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
@@ -66,7 +68,7 @@ void UARPG_GameInstance::SaveAll()
 
 void UARPG_GameInstance::SaveAllExceptPosition()
 {
-	SavePersistentData();
+	SaveAttributeData();
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
@@ -107,41 +109,55 @@ void UARPG_GameInstance::LoadPlayerClass()
 }
 
 
-void UARPG_GameInstance::SavePersistentData()
+void UARPG_GameInstance::SaveAttributeData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	const FPlayerPersistentData Data = PlayerRef->SavePersistentData();
+	const FPlayerAttributeData Data = PlayerRef->SaveAttributeData();
 	SaveGameInstance->Endurance = Data.Endurance;
 	SaveGameInstance->Intelligence = Data.Intelligence;
 	SaveGameInstance->Strength = Data.Strength;
 	SaveGameInstance->Wisdom = Data.Wisdom;
 	SaveGameInstance->Arcane = Data.Arcane;
 	SaveGameInstance->Vigor = Data.Vigor;
-
-	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
-	SaveGameInstance->CurrentXP = Data.CurrentXP;
-	SaveGameInstance->CurrentAttributePoints = Data.AttributePoints;
-	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
-void UARPG_GameInstance::LoadPersistentData()
+void UARPG_GameInstance::LoadAttributeData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	FPlayerPersistentData Data;
+	FPlayerAttributeData Data;
 	Data.Endurance = SaveGameInstance->Endurance;
 	Data.Intelligence = SaveGameInstance->Intelligence;
 	Data.Strength = SaveGameInstance->Strength;
 	Data.Wisdom = SaveGameInstance->Wisdom;
 	Data.Arcane = SaveGameInstance->Arcane;
 	Data.Vigor = SaveGameInstance->Vigor;
+	PlayerRef->LoadAttributeData(Data);
+}
 
+
+void UARPG_GameInstance::SaveLevelData()
+{
+	if (!PlayerRef || !SaveGameInstance) return;
+	const FPlayerLevelData Data = PlayerRef->SaveLevelData();
+	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
+	SaveGameInstance->CurrentXP = Data.CurrentExperience;
+	SaveGameInstance->CurrentAttributePoints = Data.AttributePoints;
+	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadLevelData()
+{
+	if (!PlayerRef || !SaveGameInstance) return;
+	FPlayerLevelData Data;
 	Data.CurrentLevel = SaveGameInstance->CurrentLevel;
-	Data.CurrentXP = SaveGameInstance->CurrentXP;
+	Data.CurrentExperience = SaveGameInstance->CurrentXP;
 	Data.AttributePoints = SaveGameInstance->CurrentAttributePoints;
 	Data.AbilityPoints = SaveGameInstance->CurrentAbilityPoints;
-	PlayerRef->LoadPersistentData(Data);
+	PlayerRef->LoadLevelData(Data);
 }
 
 

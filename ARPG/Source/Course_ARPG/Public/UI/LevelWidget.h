@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Data/PersistentData/PlayerLevelData.h"
 #include "LevelWidget.generated.h"
 
 class UTextBlock;
@@ -26,7 +27,10 @@ private:
 
 	void SetText();
 
-	FString Level;
+	FText GetAsText(float Value, float MaxValue);
+
+	FText GetAsText(float Value);
 	
-	FString XP;
+	UPROPERTY()
+	FPlayerLevelData Data;
 };

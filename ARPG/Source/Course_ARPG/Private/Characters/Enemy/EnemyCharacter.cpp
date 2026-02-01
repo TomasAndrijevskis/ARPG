@@ -97,7 +97,7 @@ void AEnemyCharacter::FinishedDeathAnim()
 void AEnemyCharacter::GiveRewardXP()
 {
 	if (!PlayerRef) return;
-	PlayerRef->AddXP(RewardXP);
+	PlayerRef->AddExperience(RewardXP);
 }
 
 

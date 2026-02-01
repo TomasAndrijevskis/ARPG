@@ -10,13 +10,27 @@ void ULevelWidget::NativeConstruct()
 	Super::NativeConstruct();
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(this, 0));
 	if (!PlayerRef) return;
-	PlayerRef->FillLevelDisplayData(Level, XP);
+	PlayerRef->FillLevelDisplayData(Data);
 	SetText();
 }
 
 
 void ULevelWidget::SetText()
 {
-	Text_Level->SetText(FText::FromString(Level));
-	Text_Experience->SetText(FText::FromString(XP));
+	Text_Level->SetText(GetAsText(Data.CurrentLevel));
+	if (Data.RequiredExperience == -1) Text_Experience->SetText(FText::FromString("Maxed"));
+	else Text_Experience->SetText(GetAsText(Data.CurrentExperience, Data.RequiredExperience));
+}
+
+
+FText ULevelWidget::GetAsText(float Value, float MaxValue)
+{
+	const FString Text = FString::FromInt(Value) + " / " + FString::FromInt(MaxValue);
+	return FText::FromString(Text);
+}
+
+
+FText ULevelWidget::GetAsText(float Value)
+{
+	return FText::FromString(FString::FromInt(Value));
 }

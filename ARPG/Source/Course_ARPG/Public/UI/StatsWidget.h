@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Data/PersistentData/PlayerStatsData.h"
 #include "StatsWidget.generated.h"
 
 
@@ -36,13 +37,10 @@ private:
 
 	void SetText();
 
-	FString Health;
+	FText GetAsText(float Value, float MaxValue);
 
-	FString Stamina;
-	
-	FString Mana;
-	
-	FString PhysicalDamage;
+	FText GetAsText(float Value);
 
-	FString MagicalDamage;
+	UPROPERTY()
+	FPlayerStatsData Data;
 };

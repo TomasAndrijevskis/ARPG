@@ -25,10 +25,16 @@ public:
 	FString GetSlotName() const;
 	
 	UFUNCTION()
-	void SavePersistentData();
+	void SaveAttributeData();
 
 	UFUNCTION()
-	void LoadPersistentData();
+	void LoadAttributeData();
+
+	UFUNCTION()
+	void SaveLevelData();
+
+	UFUNCTION()
+	void LoadLevelData();
 
 	UFUNCTION()
 	void SaveAbilities();
