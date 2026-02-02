@@ -27,8 +27,8 @@ void UCombatComponent_Mage::ComboAttack()
 
 void UCombatComponent_Mage::SpawnProjectile()
 {
-	if (!GetOwner()) return;
 	GetWorld()->GetTimerManager().ClearTimer(ProjectileTimerHandle);
+	if (!GetOwner() || !ProjectileClass) return;
 	OnAttackPerformedDelegate.Broadcast(AttackManaCost);
 
 	USceneComponent* SpawnPointComp = Cast<USceneComponent>(GetOwner()->GetDefaultSubobjectByName(ComponentName));
@@ -41,11 +41,8 @@ void UCombatComponent_Mage::SpawnProjectile()
 		TargetLocation = MageRef->GetCurrentTargetActor()->GetActorLocation();
 	else TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
-	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClasses[ProjectileCounter], SpawnLocation, SpawnRotation);
+	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
-	ProjectileCounter++;
-	int MaxCombo = ProjectileClasses.Num();
-	ProjectileCounter = UKismetMathLibrary::Wrap(ProjectileCounter, -1, (MaxCombo-1));
 	
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
 	if (!PlayerRef) return;

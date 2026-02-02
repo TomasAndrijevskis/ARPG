@@ -2,7 +2,6 @@
 #include "Characters/Player/MainCharacter_Mage.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
-#include "NiagaraSystem.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_FireStorm.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_FrostBlast.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealingAura.h"
@@ -44,31 +43,32 @@ void AMainCharacter_Mage::BeginPlay()
 
 void AMainCharacter_Mage::SpawnParticles()
 {
-	FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(RightHandSocketName);
-	FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(LeftHandSocketName);
+	const FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(RightHandSocketName);
+	const FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(LeftHandSocketName);
 	
-	if (ParticleFire)
-		ParticleComponentFire = UGameplayStatics::SpawnEmitterAttached(ParticleFire, GetSkeletalMeshComponent(), RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
-			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
-	if (ParticleIce)
-		ParticleComponentIce = UGameplayStatics::SpawnEmitterAttached(ParticleIce, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
-			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
+	if (!Particle) return;
+	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(Particle, GetSkeletalMeshComponent(), RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
+	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
+	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(Particle, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
+	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
 }
 
 
 void AMainCharacter_Mage::HandleDeath()
 {
 	Super::HandleDeath();
-	RemoveParticle(ParticleComponentFire);
-	RemoveParticle(ParticleComponentIce);
+	RemoveParticle();
 }
 
 
-void AMainCharacter_Mage::RemoveParticle(UParticleSystemComponent*& Particle)
+void AMainCharacter_Mage::RemoveParticle()
 {
-	if (!Particle) return;
-	Particle->DestroyComponent();
-	Particle = nullptr;
+	if (ParticleComponents.IsEmpty()) return;
+	for (auto& particle : ParticleComponents)
+	{
+		particle->DestroyComponent();
+	}
+	ParticleComponents.Empty();
 }
 
 

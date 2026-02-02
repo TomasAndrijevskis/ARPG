@@ -23,19 +23,17 @@ private:
 	UPROPERTY(EditAnywhere)
 	float AttackManaCost = 5.0f;
 	
-	UPROPERTY(EditAnywhere)
-	TArray<TSubclassOf<AActor>> ProjectileClasses;
-
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AActor> ProjectileClass;
+	
 	UPROPERTY(EditAnywhere)
 	FName ComponentName; //ProjectileSpawnLocation
 
 	UPROPERTY(EditAnywhere)
-	float AliveTime = 4.0f;
+	float AliveTime = 3.0f;
 	
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
 	
 	FTimerHandle ProjectileTimerHandle;
-	
-	int ProjectileCounter = 0;
 };

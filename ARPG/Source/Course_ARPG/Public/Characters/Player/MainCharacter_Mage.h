@@ -47,7 +47,7 @@ private:
 	UFUNCTION()
 	void SpawnParticles();
 
-	void RemoveParticle(UParticleSystemComponent*& Particle);
+	void RemoveParticle();
 	
 	UPROPERTY(EditAnywhere)
 	FName RightHandSocketName;
@@ -56,14 +56,8 @@ private:
 	FName LeftHandSocketName;
 
 	UPROPERTY()
-	UParticleSystemComponent* ParticleComponentFire;
+	TArray<UParticleSystemComponent*> ParticleComponents;
 
 	UPROPERTY(EditAnywhere)
-	UParticleSystem* ParticleFire;
-
-	UPROPERTY()
-	UParticleSystemComponent* ParticleComponentIce;
-
-	UPROPERTY(EditAnywhere)
-	UParticleSystem* ParticleIce;
+	UParticleSystem* Particle;
 };
