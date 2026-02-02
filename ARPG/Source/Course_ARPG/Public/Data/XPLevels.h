@@ -11,10 +11,10 @@ struct COURSE_ARPG_API FXPLevels: public FTableRowBase
 	GENERATED_BODY()
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	int Level;
+	int32 Level;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	float Experience;
+	int32 Experience;
 
 	//добваляя поинтеры на объекты лучше это делать через soft references -> TSoftClassPtr<...>...
 };

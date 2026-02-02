@@ -61,7 +61,7 @@ public:
 	int Vigor;
 	
 	UPROPERTY()
-	float CurrentXP;
+	int CurrentExperience;
 
 	UPROPERTY()
 	int CurrentLevel;

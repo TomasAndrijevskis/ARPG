@@ -46,7 +46,7 @@ public:
 	void SetLevel(const int CurrentLevel);
 
 	UFUNCTION()
-	void SetXP(const float CurrentXP);
+	void SetExperience(const float CurrentExperience);
 	
 	UFUNCTION()
 	void CreateAbilityUpgradeScreen();
@@ -105,7 +105,7 @@ private:
 	UProgressBar* ProgressBar_Mana;
 
 	UPROPERTY(meta = (BindWidget))
-	UProgressBar* ProgressBar_XP;
+	UProgressBar* ProgressBar_Experience;
 	
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* TextBlock_Level;

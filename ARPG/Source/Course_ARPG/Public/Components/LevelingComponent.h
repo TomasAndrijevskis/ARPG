@@ -51,7 +51,7 @@ public:
 
 	void IncreaseUsedStatPoints();
 
-	float GetRequiredExperience() const;
+	int GetRequiredExperience() const;
 	
 	FOnLevelUpdated OnLevelUpdatedDelegate;
 	
@@ -82,7 +82,7 @@ private:
 	int CurrentLevel = 1;
 
 	UPROPERTY(VisibleAnywhere)
-	float CurrentExperience = 0.f;
+	int CurrentExperience = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
 	int AvailableAttributePoints = 0;

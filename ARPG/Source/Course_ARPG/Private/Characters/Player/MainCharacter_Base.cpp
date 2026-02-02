@@ -54,7 +54,7 @@ void AMainCharacter_Base::BindDelegates()
 	StatsComp->OnStaminaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetStamina);
 	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::HandleDeath);
 	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SaveAttributeData);
-	LevelComp->OnExperienceUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetXP);
+	LevelComp->OnExperienceUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetExperience);
 	LevelComp->OnLevelUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
@@ -88,7 +88,7 @@ void AMainCharacter_Base::CreatePlayerWidget()
 	PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
 	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
 	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
-	PlayerWidgetRef->SetXP(LevelComp->GetExperiencePercentage());
+	PlayerWidgetRef->SetExperience(LevelComp->GetExperiencePercentage());
 	CreateAbilitiesFooterPanel();
 }
 

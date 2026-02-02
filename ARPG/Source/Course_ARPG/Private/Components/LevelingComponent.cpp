@@ -45,7 +45,7 @@ void ULevelingComponent::TryLevelUp()
 }
 
 
-float ULevelingComponent::GetRequiredExperience() const
+int ULevelingComponent::GetRequiredExperience() const
 {
 	if (!LevelDataTable) return -1;
 	if (GetNextLevelRow()) return GetNextLevelRow()->Experience;
@@ -121,6 +121,7 @@ void ULevelingComponent::SetAbilityPoints(const int NewAbilityPointsAmount)
 
 float ULevelingComponent::GetExperiencePercentage() const
 {
+	UE_LOG(LogTemp, Warning, TEXT("Percent %f"), CurrentExperience / RequiredExperience);
 	return CurrentExperience / RequiredExperience;
 }
 

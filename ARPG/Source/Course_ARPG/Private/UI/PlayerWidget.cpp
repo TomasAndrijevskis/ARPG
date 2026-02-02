@@ -170,7 +170,7 @@ void UPlayerWidget::SetLevel(const int CurrentLevel)
 }
 
 
-void UPlayerWidget::SetXP(const float NewXPPercent)
+void UPlayerWidget::SetExperience(const float CurrentExperience)
 {
-	ProgressBar_XP->SetPercent(NewXPPercent);
+	ProgressBar_Experience->SetPercent(CurrentExperience);
 }

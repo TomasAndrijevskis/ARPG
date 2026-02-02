@@ -142,7 +142,7 @@ void UARPG_GameInstance::SaveLevelData()
 	if (!PlayerRef || !SaveGameInstance) return;
 	const FPlayerLevelData Data = PlayerRef->SaveLevelData();
 	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
-	SaveGameInstance->CurrentXP = Data.CurrentExperience;
+	SaveGameInstance->CurrentExperience = Data.CurrentExperience;
 	SaveGameInstance->CurrentAttributePoints = Data.AttributePoints;
 	SaveGameInstance->CurrentAbilityPoints = Data.AbilityPoints;
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
@@ -154,7 +154,7 @@ void UARPG_GameInstance::LoadLevelData()
 	if (!PlayerRef || !SaveGameInstance) return;
 	FPlayerLevelData Data;
 	Data.CurrentLevel = SaveGameInstance->CurrentLevel;
-	Data.CurrentExperience = SaveGameInstance->CurrentXP;
+	Data.CurrentExperience = SaveGameInstance->CurrentExperience;
 	Data.AttributePoints = SaveGameInstance->CurrentAttributePoints;
 	Data.AbilityPoints = SaveGameInstance->CurrentAbilityPoints;
 	PlayerRef->LoadLevelData(Data);
