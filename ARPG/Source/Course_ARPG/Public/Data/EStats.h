@@ -9,15 +9,15 @@ enum EStats
 {
 	None UMETA(DisplayName = "None Selected"),
 	Health UMETA(DisplayName = "Health"),
-	MaxHealth UMETA(DisplayName = "Maximum Health"),
-	PhysicalStrength UMETA(DisplayName = "Physical Strength"),
-	MagicalStrength UMETA(DisplayName = "Magical Strength"),
+	MaxHealth UMETA(DisplayName = "Maximum health"),
+	PhysicalStrength UMETA(DisplayName = "Physical strength"),
+	MagicalStrength UMETA(DisplayName = "Magical strength"),
 	Stamina UMETA(DisplayName = "Stamina"),
-	MaxStamina UMETA(DisplayName = "Maximum Stamina"),
-	MeleeRange UMETA(DisplayName = "MeleeRange"),
-	RangeDistance UMETA(DisplayName = "Range Distance"),
+	MaxStamina UMETA(DisplayName = "Maximum stamina"),
+	MeleeRange UMETA(DisplayName = "Melee range"),
+	RangeDistance UMETA(DisplayName = "Range distance"),
 	Armor UMETA(DisplayName = "Armor"),
-	MaxArmor UMETA(DisplayName = "Maximum Armor"),
+	MaxArmor UMETA(DisplayName = "Maximum armor"),
 	Mana UMETA(DisplayName = "Mana"),
-	MaxMana UMETA(DisplayName = "Maximum Mana")
+	MaxMana UMETA(DisplayName = "Maximum mana")
 };

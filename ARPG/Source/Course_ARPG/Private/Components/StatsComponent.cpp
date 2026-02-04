@@ -70,9 +70,16 @@ void UStatsComponent::UpgradeStat(const TEnumAsByte<EStats> Stat, const float Va
 }
 
 
-int UStatsComponent::PreviewStatIncrease(const EStats Stat, const int Delta)
+int UStatsComponent::GetStatIncreasePreview(const EStats Stat, const int Delta)
 {
 	return Stats[Stat] + Delta;
+}
+
+
+FString UStatsComponent::GetStatUpgradePreview(EStats Stat, int Delta)
+{
+	const int NextValue = GetStatIncreasePreview(Stat, Delta);
+	return FString::FromInt(GetStatValue(Stat)) + " -> " + FString::FromInt(NextValue);
 }
 
 

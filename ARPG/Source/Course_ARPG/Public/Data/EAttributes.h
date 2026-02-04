@@ -8,10 +8,10 @@ UENUM(BlueprintType)
 enum EAttributes
 {
 	Nothing UMETA(DisplayName = "Nothing Selected"),
+	Vigor UMETA(DisplayName = "Vigor"),
 	Endurance UMETA(DisplayName = "Endurance"),
-	Intelligence UMETA(DisplayName = "Intelligence"),
 	Strength UMETA(DisplayName = "Strength"),
+	Intelligence UMETA(DisplayName = "Intelligence"),
 	Wisdom UMETA(DisplayName = "Wisdom"),
 	Arcane UMETA(DisplayName = "Arcane"),
-	Vigor UMETA(DisplayName = "Vigor"),
 };

@@ -161,14 +161,12 @@ public:
 
 	void RecalculateAllStats();
 
+	void RecalculateAttributeRelatedStats(EAttributes Attribute);
+	
 	void HandleDefaultAttributes();
 
 	void BuildAttributeDescription(EAttributes AttributeToImprove, FString& AttributeDescription);
 	
-	FString GetAttributeUpgradePreview(EAttributes Attribute) const;
-
-	FString GetStatUpgradePreview(EStats Stat, int Delta) const;
-
 	void FillLevelDisplayData(FPlayerLevelData& Data);
 
 	void FillStatsDisplayData(FPlayerStatsData& Data) const;

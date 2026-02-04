@@ -4,10 +4,12 @@
 #include "CoreMinimal.h"
 #include "Data/EAttributes.h"
 #include "Components/ActorComponent.h"
+#include "Data/EStats.h"
 #include "AttributesComponent.generated.h"
 
 
-class UDefaultAttributesDataAsset;
+class UAttributesData;
+class UDefaultAttributesData;
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributeUpgraded, int);
 DECLARE_MULTICAST_DELEGATE(FOnAttributesReverted);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -17,27 +19,27 @@ class COURSE_ARPG_API UAttributesComponent : public UActorComponent
 
 public:	
 	
-	void SetAttributeValue(const EAttributes& Attribute, const int Value);
+	void SetAttributeValue(EAttributes Attribute, const int Value);
 
-	int GetAttributeValue(const EAttributes& Attribute) const;
+	int GetAttributeValue(EAttributes Attribute) const;
 	
-	int GetAttributeCoefficient(const EAttributes& Attribute) const;
-	
-	void UpgradeAttribute(const EAttributes& Attribute);
+	void UpgradeAttribute(EAttributes Attribute);
 
 	void SetDefaultAttributes();
-
-	void SetDefaultCoefficients();
 	
-	FString GetAttributeName(const EAttributes& Attribute) const;
+	FString GetAttributeName(EAttributes Attribute) const;
 	
 	TArray<TEnumAsByte<EAttributes>>& GetAttributes();
 
-	FString GetAttributeDescription(const EAttributes& Attribute) const;
+	FString GetAttributeDescription(EStats Stat);
 	
 	FOnAttributeUpgraded OnAttributeUpgradedDelegate;
 
 	FOnAttributesReverted OnAttributesRevertedDelegate;
+
+	float GetStatScalingCoefficient(EStats Stat);
+
+	TArray<EStats> GetRelatedStats(EAttributes Attribute);
 	
 protected:
 
@@ -47,12 +49,12 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly)
 	TMap<TEnumAsByte<EAttributes>, int> Attributes;
-
-	UPROPERTY(EditDefaultsOnly)
-	TMap<TEnumAsByte<EAttributes>, int> AttributeCoefficients;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDefaultAttributesDataAsset* DefaultAttributesDataAsset;
+	UDefaultAttributesData* DefaultAttributesDataAsset;
 
+	UPROPERTY(EditDefaultsOnly)
+	UAttributesData* AttributesDataAsset;
+	
 	TArray<TEnumAsByte<EAttributes>> ArrAttributes;
 };

@@ -262,7 +262,6 @@ void AMainCharacter_Base::LoadAttributeData(FPlayerAttributeData Data)
 	AttributesComp->SetAttributeValue(EAttributes::Intelligence, Data.Intelligence);
 	AttributesComp->SetAttributeValue(EAttributes::Strength, Data.Strength);
 	AttributesComp->SetAttributeValue(EAttributes::Vigor, Data.Vigor);
-	AttributesComp->SetDefaultCoefficients();
 	RecalculateAllStats();
 }
 
@@ -306,6 +305,13 @@ void AMainCharacter_Base::SaveData()
 }
 
 
+void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const
+{
+	AttributeName = AttributesComp->GetAttributeName(AttributeToImprove);
+	AttributeValue = AttributesComp->GetAttributeValue(AttributeToImprove);
+}
+
+
 void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute)
 {
 	int Points = LevelComp->GetCurrentAttributePointsAmount();
@@ -315,78 +321,59 @@ void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attrib
 	LevelComp->SetAttributePoints(Points);
 	LevelComp->IncreaseUsedStatPoints();
 	LevelComp->OnAttributePointsUpdateDelegate.Broadcast(Points);
-	RecalculateAllStats();
-}
-
-
-void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const
-{
-	AttributeName = AttributesComp->GetAttributeName(AttributeToImprove);
-	AttributeValue = AttributesComp->GetAttributeValue(AttributeToImprove);
+	RecalculateAttributeRelatedStats(Attribute);
 }
 
 
 void AMainCharacter_Base::CalculateStat(EAttributes Attribute, EStats Stat) const
 {
 	const int Value = AttributesComp->GetAttributeValue(Attribute);
-	const int Coefficient = AttributesComp->GetAttributeCoefficient(Attribute);
+	const int Coefficient = AttributesComp->GetStatScalingCoefficient(Stat);
 	StatsComp->SetStatValue(Stat, Value * Coefficient);
+	StatsComp->RestoreStats();
 }
 
 
 void AMainCharacter_Base::RecalculateAllStats()
 {
-	CalculateStat(EAttributes::Endurance, EStats::MaxStamina);
-	CalculateStat(EAttributes::Strength, EStats::PhysicalStrength);
-	CalculateStat(EAttributes::Wisdom, EStats::MagicalStrength);
-	CalculateStat(EAttributes::Intelligence, EStats::MaxMana);
-	//CalculateStat(EAttributes::Arcane, EStats::Stamina);
-	CalculateStat(EAttributes::Vigor, EStats::MaxHealth);
-	StatsComp->RestoreStats();
+	RecalculateAttributeRelatedStats(Vigor);
+	RecalculateAttributeRelatedStats(Endurance);
+	RecalculateAttributeRelatedStats(Strength);
+	RecalculateAttributeRelatedStats(Intelligence);
+	RecalculateAttributeRelatedStats(Wisdom);
+	//RecalculateAttributeRelatedStats(Arcane);
+}
+
+
+void AMainCharacter_Base::RecalculateAttributeRelatedStats(EAttributes Attribute)
+{
+	for (auto Stat : AttributesComp->GetRelatedStats(Attribute))
+	{
+		CalculateStat(Attribute, Stat);
+	}
 }
 
 
 void AMainCharacter_Base::HandleDefaultAttributes()
 {
 	AttributesComp->SetDefaultAttributes();
-	AttributesComp->SetDefaultCoefficients();
 	RecalculateAllStats();
 }
 
 
 void AMainCharacter_Base::BuildAttributeDescription(EAttributes AttributeToImprove, FString& AttributeDescription)
 {
-	AttributeDescription = AttributesComp->GetAttributeDescription(AttributeToImprove) + "\n" + GetAttributeUpgradePreview(AttributeToImprove);
-}
-
-
-FString AMainCharacter_Base::GetAttributeUpgradePreview(EAttributes Attribute) const
-{
-	const int Delta = AttributesComp->GetAttributeCoefficient(Attribute);
-	switch (Attribute)
+	FString Result;
+	TArray<EStats> RelatedStats = AttributesComp->GetRelatedStats(AttributeToImprove);
+	if (RelatedStats.Num() <= 0) return;
+	for (int i = 0; i < RelatedStats.Num(); i++)
 	{
-	case Vigor:
-		return GetStatUpgradePreview(MaxHealth, Delta);
-	case Endurance: 
-		return GetStatUpgradePreview(MaxStamina, Delta);
-	case Wisdom:
-		return GetStatUpgradePreview(MagicalStrength, Delta);
-	case Intelligence:
-		return GetStatUpgradePreview(MaxMana, Delta);
-	case Strength:
-		return GetStatUpgradePreview(PhysicalStrength, Delta);
-	case Arcane:
-		return "unknown";//GetAttributeDescription(PhysicalStrength, Delta);
-	default:
-		return "unknown";
+		Result += AttributesComp->GetAttributeDescription(RelatedStats[i]);
+		const int Delta = AttributesComp->GetStatScalingCoefficient(RelatedStats[i]);
+		Result += StatsComp->GetStatUpgradePreview(RelatedStats[i], Delta);
+		if (i != RelatedStats.Num() - 1) Result += "\n";
 	}
-}
-
-
-FString AMainCharacter_Base::GetStatUpgradePreview(EStats Stat, int Delta) const
-{
-	const int NextValue = StatsComp->PreviewStatIncrease(Stat, Delta);
-	return FString::FromInt(StatsComp->GetStatValue(Stat)) + " -> " + FString::FromInt(NextValue);
+	AttributeDescription = Result;
 }
 
 

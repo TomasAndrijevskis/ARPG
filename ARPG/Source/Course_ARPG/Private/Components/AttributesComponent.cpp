@@ -1,6 +1,7 @@
 
 #include "Components/AttributesComponent.h"
-#include "Data/DefaultAttributesDataAsset.h"
+#include "Data/DefaultAttributesData.h"
+#include "Data/Attributes/AttributesData.h"
 
 
 void UAttributesComponent::BeginPlay()
@@ -14,7 +15,7 @@ void UAttributesComponent::BeginPlay()
 }
 
 
-void UAttributesComponent::UpgradeAttribute(const EAttributes& Attribute)
+void UAttributesComponent::UpgradeAttribute(EAttributes Attribute)
 {
 	Attributes[Attribute]++;
 	OnAttributeUpgradedDelegate.Broadcast(Attributes[Attribute]);
@@ -31,44 +32,47 @@ void UAttributesComponent::SetDefaultAttributes()
 }
 
 
-void UAttributesComponent::SetDefaultCoefficients()
+float UAttributesComponent::GetStatScalingCoefficient(EStats Stat)
 {
-	if (!DefaultAttributesDataAsset) return;
-	for (const auto& Attribute : DefaultAttributesDataAsset->DefaultAttributeCoefficients)
+	if (!AttributesDataAsset) return 0.f;
+	for (const auto& Attribute : AttributesDataAsset->Attribute)
 	{
-		AttributeCoefficients[Attribute.Key] = Attribute.Value;
+		for (const auto& Coefficient : Attribute.Value.StatsCoefficients)
+		{
+			if (Coefficient.Key == Stat) return Coefficient.Value;
+		}
 	}
+	return 0.f;
 }
 
 
-FString UAttributesComponent::GetAttributeDescription(const EAttributes& Attribute) const
+TArray<EStats> UAttributesComponent::GetRelatedStats(EAttributes Attribute)
 {
-	FString Result;
-	FString StatName;
-	switch (Attribute)
+	TArray<EStats> RelatedStats;
+	if (!AttributesDataAsset) return RelatedStats;
+	for (const auto& Attr : AttributesDataAsset->Attribute)
 	{
-		case Vigor: StatName = "health";
-			break;
-		case Endurance: StatName = "stamina";
-			break;
-		case Wisdom: StatName = "magical damage";
-			break;
-		case Intelligence: StatName = "mana";
-			break;
-		case Strength: StatName = "physical strength";
-			break;
-		case Arcane: StatName = "spells damage";
-			break;
-		default: StatName = "unknown";
-			break;
+		if (Attr.Key == Attribute)
+		{
+			for (const auto& Stats : Attr.Value.StatsCoefficients)
+			{
+				RelatedStats.Add(Stats.Key);
+			}
+		}
 	}
-	Result = "Your " + StatName + " will be increased by " + FString::FromInt(GetAttributeCoefficient(Attribute));
-	if (Attribute == Arcane) Result += " %";
-	return Result;
+	return RelatedStats;
 }
 
 
-FString UAttributesComponent::GetAttributeName(const EAttributes& Attribute) const
+FString UAttributesComponent::GetAttributeDescription(EStats Stat)
+{
+	const FText DisplayName = StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat);
+	const FString Coefficient = FString::FromInt(GetStatScalingCoefficient(Stat));
+	return DisplayName.ToString() + " will be increased by " + Coefficient + " \n";
+}
+
+
+FString UAttributesComponent::GetAttributeName(EAttributes Attribute) const
 {
 	return UEnum::GetValueAsString(Attribute); 
 }
@@ -80,19 +84,13 @@ TArray<TEnumAsByte<EAttributes>>& UAttributesComponent::GetAttributes()
 }
 
 
-void UAttributesComponent::SetAttributeValue(const EAttributes& Attribute, const int Value)
+void UAttributesComponent::SetAttributeValue(EAttributes Attribute, const int Value)
 {
 	Attributes[Attribute] = Value;
 }
 
 
-int UAttributesComponent::GetAttributeValue(const EAttributes& Attribute) const
+int UAttributesComponent::GetAttributeValue(EAttributes Attribute) const
 {
 	return Attributes[Attribute];
-}
-
-
-int UAttributesComponent::GetAttributeCoefficient(const EAttributes& Attribute) const
-{
-	return AttributeCoefficients[Attribute];
 }
