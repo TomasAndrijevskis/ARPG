@@ -341,7 +341,7 @@ void AMainCharacter_Base::RecalculateAllStats()
 	RecalculateAttributeRelatedStats(Strength);
 	RecalculateAttributeRelatedStats(Intelligence);
 	RecalculateAttributeRelatedStats(Wisdom);
-	//RecalculateAttributeRelatedStats(Arcane);
+	RecalculateAttributeRelatedStats(Arcane);
 }
 
 

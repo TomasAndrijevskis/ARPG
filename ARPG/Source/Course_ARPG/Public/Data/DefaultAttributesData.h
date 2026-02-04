@@ -16,7 +16,4 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly)
 	TMap<TEnumAsByte<EAttributes>, float> DefaultAttributes;
-	
-	UPROPERTY(EditDefaultsOnly)
-	TMap<TEnumAsByte<EAttributes>, float> DefaultAttributeCoefficients;
 };

@@ -19,5 +19,8 @@ enum EStats
 	Armor UMETA(DisplayName = "Armor"),
 	MaxArmor UMETA(DisplayName = "Maximum armor"),
 	Mana UMETA(DisplayName = "Mana"),
-	MaxMana UMETA(DisplayName = "Maximum mana")
+	MaxMana UMETA(DisplayName = "Maximum mana"),
+	PhysDmgResistance UMETA(DisplayName = "Physical damage resistance"),
+	MagDmgResistance UMETA(DisplayName = "Magical damage resistance"),
+	AbilityPower UMETA(DisplayName = "Ability power"),
 };
