@@ -1,8 +1,9 @@
 
 #include "Combat/Projectiles/Projectile_Base.h"
+#include "Combat/DamageTypes.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Engine/DamageEvents.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void AProjectile_Base::BeginPlay()
@@ -29,8 +30,7 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 	}
 	if (IsPlayerControlledActor(PawnRef)) return;
 	HandleDestruction();
-	FDamageEvent ProjectileAttackedEvent;
-	PawnRef->TakeDamage(Damage, ProjectileAttackedEvent, PawnRef->GetController(), this );
+	UGameplayStatics::ApplyDamage(PawnRef, Damage, PawnRef->GetController(), this, UMagicalDamageType::StaticClass());
 }
 
 

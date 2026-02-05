@@ -1,5 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Mage.h"
+
+#include "Combat/DamageTypes.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_FireStorm.h"
@@ -76,4 +78,10 @@ bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent) const
 {
 	if (AbilityComp_MagicShield->IsAbilityActive()) return false;
 	return Super::CanTakeDamage(Opponent);	
+}
+
+
+TSubclassOf<UDamageType> AMainCharacter_Mage::GetDamageType() const
+{
+	return UMagicalDamageType::StaticClass();
 }

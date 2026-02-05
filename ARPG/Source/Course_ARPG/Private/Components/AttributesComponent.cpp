@@ -67,7 +67,9 @@ TArray<EStats> UAttributesComponent::GetRelatedStats(EAttributes Attribute)
 FString UAttributesComponent::GetAttributeDescription(EStats Stat)
 {
 	const FText DisplayName = StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat);
-	const FString Coefficient = FString::FromInt(GetStatScalingCoefficient(Stat));
+	FString Coefficient;
+	if (Stat == AbilityPower || Stat == PhysDmgResistance ||Stat == MagDmgResistance) Coefficient = FString::SanitizeFloat(GetStatScalingCoefficient(Stat) * 100);
+	else Coefficient = FString::SanitizeFloat(GetStatScalingCoefficient(Stat));
 	FString Result = DisplayName.ToString() + " will be increased by " + Coefficient;
 	if (Stat == AbilityPower || Stat == PhysDmgResistance ||Stat == MagDmgResistance) Result += " %";
 	return Result += "\n";

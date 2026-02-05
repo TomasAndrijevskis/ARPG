@@ -24,6 +24,7 @@ void UHealthManager::AddHealth(const float HealthToAdd)
 
 void UHealthManager::ReduceHealth(const float Damage, AActor* Owner, AActor* Opponent)
 {
+	UE_LOG(LogTemp, Warning, TEXT("FinalDamage: %f"), Damage);
 	if (!StatsComponent) return;
 	float CurrentHealth = StatsComponent->GetStatValue(EStats::Health);
 	if (CurrentHealth <= 0) return;

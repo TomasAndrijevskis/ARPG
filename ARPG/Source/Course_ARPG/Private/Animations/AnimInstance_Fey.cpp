@@ -2,12 +2,14 @@
 #include "Animations/AnimInstance_Fey.h"
 #include "Characters/Enemy/Boss_Fey.h"
 #include "Characters/Enemy/EnemyCharacter.h"
+#include "Combat/Projectiles/EnemyProjectileComponent.h"
 
 
 void UAnimInstance_Fey::HandleProjectileSpawn() const
 {
 	if (!PawnRef) return;
-	Cast<ABoss_Fey>(PawnRef)->SpawnProjectile();
+	if (PawnRef->FindComponentByClass<UEnemyProjectileComponent>())
+		PawnRef->FindComponentByClass<UEnemyProjectileComponent>()->SpawnProjectile();
 }
 
 

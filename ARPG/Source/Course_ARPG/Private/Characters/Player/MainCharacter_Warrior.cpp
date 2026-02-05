@@ -1,6 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Warrior.h"
 #include "Animations/PlayerAnimInstance.h"
+#include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
@@ -61,4 +62,10 @@ void AMainCharacter_Warrior::SetArmor(const int32 Armor)
 {
 	StatsComp->SetStatValue(EStats::Armor, Armor);
 	StatsComp->SetStatValue(EStats::MaxArmor, Armor);
+}
+
+
+TSubclassOf<UDamageType> AMainCharacter_Warrior::GetDamageType() const
+{
+	return UPhysicalDamageType::StaticClass();
 }

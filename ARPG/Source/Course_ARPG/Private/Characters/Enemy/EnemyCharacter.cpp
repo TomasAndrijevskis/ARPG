@@ -5,6 +5,7 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/DamageTypes.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "Components/CombatComponent_Enemy.h"
@@ -104,7 +105,12 @@ void AEnemyCharacter::GiveRewardXP()
 void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
-	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, SafeCauser);
+	float FinalDamage = Damage;
+	if (DamageType && DamageType->IsA(UPhysicalDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, SafeCauser, StatsComp->GetStatValue(EStats::PhysDmgResistance));
+	else if (DamageType && DamageType->IsA(UMagicalDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, SafeCauser,  StatsComp->GetStatValue(EStats::MagDmgResistance));
+	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, SafeCauser);
 }
 
 

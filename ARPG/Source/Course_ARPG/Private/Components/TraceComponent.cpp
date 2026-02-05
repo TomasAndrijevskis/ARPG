@@ -1,6 +1,7 @@
 
 #include "Components/TraceComponent.h"
 #include "Characters/Player/MainCharacter_Warrior.h"
+#include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/MagicShield.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -68,15 +69,14 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
 		if (WarriorRef) CharacterDamage = CharacterDamage * WarriorRef->GetDamageMultiplier();
 	}
-
-	FDamageEvent TargetAttackedEvent{ };
+	
 	for (const FHitResult& Hit : AllResults)
 	{
 		AActor* TargetActor = Hit.GetActor();
 
 		if (TargetActor == Cast<AMagicShield>(Hit.GetActor())) break;
 		if (TargetsToIgnore.Contains(TargetActor)) continue;
-		TargetActor->TakeDamage(CharacterDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
+		UGameplayStatics::ApplyDamage(TargetActor, CharacterDamage, GetOwner()->GetInstigatorController(), GetOwner(), FighterRef->GetDamageType());
 		TargetsToIgnore.AddUnique(TargetActor);
 		OnHitDelegate.Broadcast();
 		if (HitParticleTemplate) UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticleTemplate, Hit.ImpactPoint);

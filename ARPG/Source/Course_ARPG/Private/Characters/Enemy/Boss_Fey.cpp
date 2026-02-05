@@ -1,6 +1,7 @@
 
 #include "Characters/Enemy/Boss_Fey.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Combat/DamageTypes.h"
 #include "Data/EStats.h"
 #include "Combat/Abilities/EnemyAbilities/AbComp_PoisonExplosion.h"
 #include "Combat/Abilities/EnemyAbilities/AbComp_SummonMinions.h"
@@ -68,4 +69,10 @@ void ABoss_Fey::StartSummonAbility()
 void ABoss_Fey::SpawnProjectile()
 {
 	ProjectileComp->SpawnProjectile();
+}
+
+
+TSubclassOf<UDamageType> ABoss_Fey::GetDamageType() const
+{
+	return UMagicalDamageType::StaticClass();
 }

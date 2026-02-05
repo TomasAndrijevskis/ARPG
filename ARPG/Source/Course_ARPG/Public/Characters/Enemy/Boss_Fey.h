@@ -25,6 +25,8 @@ public:
 	void StartSummonAbility();
 
 	void SpawnProjectile();
+
+	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UEnemyProjectileComponent* ProjectileComp;

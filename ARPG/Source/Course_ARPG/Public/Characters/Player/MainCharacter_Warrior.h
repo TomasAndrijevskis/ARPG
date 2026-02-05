@@ -23,6 +23,8 @@ public:
 	float GetDamageMultiplier();
 
 	void SetArmor(const int32 Armor);
+
+	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UAbComp_DamageIncrease* AbilityComp_DamageIncrease;

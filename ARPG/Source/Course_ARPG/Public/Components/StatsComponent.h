@@ -33,8 +33,9 @@ public:
 
 	virtual void BeginPlay() override;
 	
-	UFUNCTION()
-	float GetReducedDamage(const float Damage, AActor* Opponent);
+	float CalculateFinalReceivedDamage(const float Damage, AActor* Opponent, const float ReductionPercent);
+
+	float GetReducedDamage(const float Damage, const float ReductionPercent);
 	
 	UFUNCTION()
 	float GetStatPercentage(const EStats Current, const EStats Max) const;
@@ -59,9 +60,9 @@ public:
 
 	void UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value);
 
-	int GetStatIncreasePreview(const EStats Stat, const int Delta);
+	float GetStatIncreasePreview(const EStats Stat, const float Delta);
 
-	FString GetStatUpgradePreview(EStats Stat, int Delta);
+	FString GetStatUpgradePreview(EStats Stat, float Delta);
 	
 	UPROPERTY()
 	UHealthManager* HealthManager;

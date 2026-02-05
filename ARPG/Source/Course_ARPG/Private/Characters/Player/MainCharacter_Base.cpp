@@ -1,6 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Animations/PlayerAnimInstance.h"
+#include "Combat/DamageTypes.h"
 #include "Data/EStats.h"
 #include "Data/PersistentData/PlayerAttributeData.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
@@ -95,8 +96,12 @@ void AMainCharacter_Base::CreatePlayerWidget()
 
 void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
-	const float ReducedDamage = StatsComp->GetReducedDamage(Damage, DamageCauser);
-	StatsComp->OnReduceHealthRequestDelegate.Broadcast(ReducedDamage, this, DamageCauser);
+	float FinalDamage = Damage;
+	if (DamageType && DamageType->IsA(UPhysicalDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, DamageCauser,  StatsComp->GetStatValue(EStats::PhysDmgResistance));
+	else if (DamageType && DamageType->IsA(UMagicalDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, DamageCauser,  StatsComp->GetStatValue(EStats::MagDmgResistance));
+	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, DamageCauser);
 	PlayHurtAnimation();
 }
 
@@ -327,8 +332,8 @@ void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attrib
 
 void AMainCharacter_Base::CalculateStat(EAttributes Attribute, EStats Stat) const
 {
-	const int Value = AttributesComp->GetAttributeValue(Attribute);
-	const int Coefficient = AttributesComp->GetStatScalingCoefficient(Stat);
+	const float Value = AttributesComp->GetAttributeValue(Attribute);
+	const float Coefficient = AttributesComp->GetStatScalingCoefficient(Stat);
 	StatsComp->SetStatValue(Stat, Value * Coefficient);
 	StatsComp->RestoreStats();
 }
@@ -369,7 +374,7 @@ void AMainCharacter_Base::BuildAttributeDescription(EAttributes AttributeToImpro
 	for (int i = 0; i < RelatedStats.Num(); i++)
 	{
 		Result += AttributesComp->GetAttributeDescription(RelatedStats[i]);
-		const int Delta = AttributesComp->GetStatScalingCoefficient(RelatedStats[i]);
+		const float Delta = AttributesComp->GetStatScalingCoefficient(RelatedStats[i]);
 		Result += StatsComp->GetStatUpgradePreview(RelatedStats[i], Delta);
 		if (i != RelatedStats.Num() - 1) Result += "\n";
 	}

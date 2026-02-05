@@ -1,7 +1,6 @@
 
 #include "Components/StatsComponent.h"
 #include "Data/EStats.h"
-#include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
 #include "Components/StatHelpers/HealthManager.h"
 #include "Components/StatHelpers/ManaManager.h"
 #include "Components/StatHelpers/StaminaManager.h"
@@ -70,36 +69,30 @@ void UStatsComponent::UpgradeStat(const TEnumAsByte<EStats> Stat, const float Va
 }
 
 
-int UStatsComponent::GetStatIncreasePreview(const EStats Stat, const int Delta)
+float UStatsComponent::GetStatIncreasePreview(const EStats Stat, const float Delta)
 {
 	return Stats[Stat] + Delta;
 }
 
 
-FString UStatsComponent::GetStatUpgradePreview(EStats Stat, int Delta)
+FString UStatsComponent::GetStatUpgradePreview(EStats Stat, float Delta)
 {
-	const int NextValue = GetStatIncreasePreview(Stat, Delta);
-	return FString::FromInt(GetStatValue(Stat)) + " -> " + FString::FromInt(NextValue);
+	const float NextValue = GetStatIncreasePreview(Stat, Delta);
+	if (Stat == AbilityPower || Stat == PhysDmgResistance || Stat == MagDmgResistance)
+		return FString::Printf(TEXT("%.2f -> %.2f"), GetStatValue(Stat) * 100, NextValue * 100);
+	return FString::Printf(TEXT("%.2f -> %.2f"), GetStatValue(Stat), NextValue);
 }
 
 
-float UStatsComponent::GetReducedDamage(const float Damage, AActor* Opponent)
+float UStatsComponent::CalculateFinalReceivedDamage(const float Damage, AActor* Opponent, const float ReductionPercent)
 {
-	if (Stats[EStats::Armor] <= 0) return Damage;
+	float FinalDamage = GetReducedDamage(Damage, ReductionPercent);
+	if (!Stats.Contains(Armor) || Stats[EStats::Armor] <= 0) return FinalDamage;
 	IFighter* FighterRef = GetOwner<IFighter>();
-	
 	if (!FighterRef->CanTakeDamage(Opponent)) return 0;
-	
-	UAbComp_GetArmor* AbilityRef = GetOwner()->FindComponentByClass<UAbComp_GetArmor>();
-
-	if (!AbilityRef) return Damage;
-	//на всякий случай вдруг % блокированного урона измениться
-	float ClampedReduction = FMath::Clamp(AbilityRef->GetDamageReductionPercent(), 0.f, 1.f);
-	float BlockedDamage = Damage * ClampedReduction;
-
 	// гарантирует что блокированый урон не будет больше чем есть брони у игрока
-	float ArmorBlock = FMath::Min(BlockedDamage, Stats[EStats::Armor]);
-	float FinalDamage = Damage - ArmorBlock;
+	float ArmorBlock = FMath::Min(Damage, Stats[EStats::Armor]);
+	FinalDamage = Damage - ArmorBlock;
 	Stats[EStats::Armor] -= ArmorBlock;
 	
 	if (Stats[EStats::Armor] == 0)
@@ -110,6 +103,12 @@ float UStatsComponent::GetReducedDamage(const float Damage, AActor* Opponent)
 	
 	OnArmorUpdateDelegate.Broadcast(Stats[EStats::Armor]);
 	return FinalDamage;
+}
+
+
+float UStatsComponent::GetReducedDamage(const float Damage, const float ReductionPercent)
+{
+	return Damage - (ReductionPercent * Damage);
 }
 
 
