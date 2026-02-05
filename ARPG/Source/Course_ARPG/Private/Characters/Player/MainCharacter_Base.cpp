@@ -14,7 +14,7 @@
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
-#include "Data/PersistentData/PlayerStatsData.h"
+#include "Data/PersistentData/PlayerMainStatsData.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
 
@@ -390,7 +390,7 @@ void AMainCharacter_Base::FillLevelDisplayData(FPlayerLevelData& Data)
 }
 
 
-void AMainCharacter_Base::FillStatsDisplayData(FPlayerStatsData& Data) const
+void AMainCharacter_Base::FillMainStatsDisplayData(FPlayerMainStatsData& Data) const
 {
 	Data.Health = StatsComp->GetStatValue(EStats::Health);
 	Data.MaxHealth = StatsComp->GetStatValue(EStats::MaxHealth);
@@ -398,8 +398,16 @@ void AMainCharacter_Base::FillStatsDisplayData(FPlayerStatsData& Data) const
 	Data.MaxMana = StatsComp->GetStatValue(EStats::MaxMana);
 	Data.Stamina = StatsComp->GetStatValue(EStats::Stamina);
 	Data.MaxStamina = StatsComp->GetStatValue(EStats::MaxStamina);
+}
+
+
+void AMainCharacter_Base::FillAdditionalStatsDisplayData(FPlayerAdditionalStatsData& Data) const
+{
 	Data.PhysicalStrength = StatsComp->GetStatValue(EStats::PhysicalStrength);
 	Data.MagicalStrength = StatsComp->GetStatValue(EStats::MagicalStrength);
+	Data.MagDamageResistance = StatsComp->GetStatValue(EStats::MagDmgResistance) * 100;
+	Data.PhysDamageResistance = StatsComp->GetStatValue(EStats::PhysDmgResistance) * 100;
+	Data.AbilityPower = StatsComp->GetStatValue(EStats::AbilityPower) * 100;
 }
 
 

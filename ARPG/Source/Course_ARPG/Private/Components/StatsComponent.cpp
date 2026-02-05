@@ -137,8 +137,6 @@ FString UStatsComponent::GetStatName(const EStats Stat) const
 void UStatsComponent::SetStatValue(const EStats Stat, const float NewValue)
 {
 	if ((Stat == MagDmgResistance || Stat == PhysDmgResistance || Stat == AbilityPower) && NewValue >= PercentStatCap)
-	{
 		Stats[Stat] = PercentStatCap;
-	}
 	else Stats[Stat] = NewValue;
 }

@@ -6,8 +6,9 @@
 #include "Data/EStats.h"
 #include "Data/PersistentData/PlayerAttributeData.h"
 #include "Components/StatusEffectsComponent.h"
+#include "Data/PersistentData/PlayerAdditionalStatsData.h"
 #include "Data/PersistentData/PlayerLevelData.h"
-#include "Data/PersistentData/PlayerStatsData.h"
+#include "Data/PersistentData/PlayerMainStatsData.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/MainPlayer.h"
 #include "Interfaces/Fighter.h"
@@ -169,7 +170,9 @@ public:
 	
 	void FillLevelDisplayData(FPlayerLevelData& Data);
 
-	void FillStatsDisplayData(FPlayerStatsData& Data) const;
+	void FillMainStatsDisplayData(FPlayerMainStatsData& Data) const;
+
+	void FillAdditionalStatsDisplayData(FPlayerAdditionalStatsData& Data) const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

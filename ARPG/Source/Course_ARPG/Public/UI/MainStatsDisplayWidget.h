@@ -3,14 +3,14 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Data/PersistentData/PlayerStatsData.h"
-#include "StatsWidget.generated.h"
+#include "Data/PersistentData/PlayerMainStatsData.h"
+#include "MainStatsDisplayWidget.generated.h"
 
 
 class UTextBlock;
 
 UCLASS()
-class COURSE_ARPG_API UStatsWidget : public UUserWidget
+class COURSE_ARPG_API UMainStatsDisplayWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
@@ -29,18 +29,10 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_Mana;
 
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_PhysicalDamage;
-
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_MagicalDamage;
-
 	void SetText();
 
 	FText GetAsText(float Value, float MaxValue);
 
-	FText GetAsText(float Value);
-
 	UPROPERTY()
-	FPlayerStatsData Data;
+	FPlayerMainStatsData Data;
 };
