@@ -79,7 +79,10 @@ FString UStatsComponent::GetStatUpgradePreview(EStats Stat, float Delta)
 {
 	const float NextValue = GetStatIncreasePreview(Stat, Delta);
 	if (Stat == AbilityPower || Stat == PhysDmgResistance || Stat == MagDmgResistance)
-		return FString::Printf(TEXT("%.2f -> %.2f"), GetStatValue(Stat) * 100, NextValue * 100);
+	{
+		if (NextValue <= PercentStatCap) return FString::Printf(TEXT("%.2f %% -> %.2f %%"), GetStatValue(Stat) * 100, NextValue * 100);
+		return "Cap reached";
+	}
 	return FString::Printf(TEXT("%.2f -> %.2f"), GetStatValue(Stat), NextValue);
 }
 
@@ -133,7 +136,9 @@ FString UStatsComponent::GetStatName(const EStats Stat) const
 
 void UStatsComponent::SetStatValue(const EStats Stat, const float NewValue)
 {
-	//UE_LOG(LogTemp, Warning, TEXT("SetStatValue: %s"), *UEnum::GetValueAsString(Stat));
-	//UE_LOG(LogTemp, Warning, TEXT("SetStatValue: %f"), NewValue);
-	Stats[Stat] = NewValue;
+	if ((Stat == MagDmgResistance || Stat == PhysDmgResistance || Stat == AbilityPower) && NewValue >= PercentStatCap)
+	{
+		Stats[Stat] = PercentStatCap;
+	}
+	else Stats[Stat] = NewValue;
 }
