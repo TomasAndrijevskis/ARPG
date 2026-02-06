@@ -1,6 +1,7 @@
 
 #include "Characters/Enemy/Boss_Rampage.h"
 #include "Combat/Abilities/EnemyAbilities/AbComp_GroundSmash.h"
+#include "Components/StatsComponent.h"
 #include "Components/TraceComponent.h"
 
 
@@ -17,21 +18,9 @@ void ABoss_Rampage::StartAbility()
 }
 
 
-void ABoss_Rampage::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType,class AController* InstigatedBy, AActor* DamageCauser)
+void ABoss_Rampage::ActivateSecondPhase()
 {
-	if (IsSecondPhaseActive())
-	{
-		float FinalDamage = GetFinalDamage(Damage);
-		Super::ReceiveDamage(DamagedActor, FinalDamage, DamageType, InstigatedBy, DamageCauser);
-	}
-	else Super::ReceiveDamage(DamagedActor, Damage, DamageType, InstigatedBy, DamageCauser);
-}
-
-
-
-float ABoss_Rampage::GetFinalDamage(const float Damage) const
-{
-	float ClampedReduction = FMath::Clamp(DamageReductionPercent, 0.f, .9f);
-	float ReducedDamage = Damage * ClampedReduction;
-	return Damage - ReducedDamage;
+	Super::ActivateSecondPhase();
+	StatsComp->SetStatValue(EStats::MagDmgResistance, StatsComp->GetStatValue(MagDmgResistance) * 2);
+	StatsComp->SetStatValue(EStats::PhysDmgResistance, StatsComp->GetStatValue(PhysDmgResistance) * 2);
 }

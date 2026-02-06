@@ -1,6 +1,5 @@
 
 #include "Characters/Player/MainCharacter_Mage.h"
-
 #include "Combat/DamageTypes.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -10,6 +9,7 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_MagicShield.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_Mage.h"
+#include "Components/StatsComponent.h"
 
 
 AMainCharacter_Mage::AMainCharacter_Mage()
@@ -84,4 +84,10 @@ bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent) const
 TSubclassOf<UDamageType> AMainCharacter_Mage::GetDamageType() const
 {
 	return UMagicalDamageType::StaticClass();
+}
+
+
+float AMainCharacter_Mage::GetMagicalDamage() const
+{
+	return StatsComp->GetStatValue(EStats::MagicalStrength) / 2; //half damage for each hand
 }

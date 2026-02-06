@@ -1,10 +1,7 @@
 
 #include "Components/CombatComponent_Mage.h"
-#include "Data/EStats.h"
-#include "Characters/Player/MainCharacter_Base.h"
 #include "Characters/Player/MainCharacter_Mage.h"
 #include "Combat/Projectiles/Projectile_Base.h"
-#include "Components/StatsComponent.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/MainPlayer.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -37,15 +34,12 @@ void UCombatComponent_Mage::SpawnProjectile()
 	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
 	FVector TargetLocation;
 	const AMainCharacter_Mage* MageRef = Cast<AMainCharacter_Mage>(CharacterRef);
-	if (MageRef && MageRef->IsPlayerLockedOnEnemy() && MageRef->GetCurrentTargetActor())
-		TargetLocation = MageRef->GetCurrentTargetActor()->GetActorLocation();
+	if (!MageRef) return;
+	if (MageRef->IsPlayerLockedOnEnemy() && MageRef->GetCurrentTargetActor()) TargetLocation = MageRef->GetCurrentTargetActor()->GetActorLocation();
 	else TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
-	
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
-	if (!PlayerRef) return;
-	Projectile->SetStats(PlayerRef->StatsComp->GetStatValue(EStats::MagicalStrength)/2, AliveTime);//half damage for each hand
+	Projectile->SetStats(MageRef->GetMagicalDamage(), AliveTime);
 	Projectile->StartAliveTimer();
 }

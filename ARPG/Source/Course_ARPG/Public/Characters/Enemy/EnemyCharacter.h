@@ -38,7 +38,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState){};
 
-	virtual float GetCurrentDamage() const override;
+	virtual float GetPhysicalDamage() const override;
+
+	virtual float GetMagicalDamage() const override;
 
 	virtual void Attack() override;
 
@@ -66,7 +68,9 @@ public:
 
 	virtual void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef){};
 
-	virtual void RemoveStatusEffectIcon(){};
+	virtual void RemoveStatusEffectIcon(){}
+
+	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 	
 	UPROPERTY(EditAnywhere)
 	UStatsComponent* StatsComp;

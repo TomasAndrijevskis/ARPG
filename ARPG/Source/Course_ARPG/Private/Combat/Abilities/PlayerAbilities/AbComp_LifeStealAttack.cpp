@@ -115,5 +115,5 @@ void UAbComp_LifeStealAttack::SetStolenHealthPercent(const float NewStolenHealth
 float UAbComp_LifeStealAttack::GetStolenHealthAmount() const
 {
 	if (!FighterRef) return 0;
-	return FighterRef->GetCurrentDamage() * StolenHealthPercent;
+	return FighterRef->GetPhysicalDamage() * StolenHealthPercent;
 }

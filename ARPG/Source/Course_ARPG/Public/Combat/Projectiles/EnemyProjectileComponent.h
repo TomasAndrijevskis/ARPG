@@ -12,24 +12,20 @@ class COURSE_ARPG_API UEnemyProjectileComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-
-	UEnemyProjectileComponent();
 	
 	UFUNCTION(BlueprintCallable)
 	void SpawnProjectile();
 
 private:
 
+	float GetProjectileDamage() const;
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> ProjectileClass;
 
 	UPROPERTY(EditAnywhere)
 	FName ComponentName; //ProjectileSpawnLocation
-	
-	UPROPERTY(EditAnywhere)
-	float ProjectileDamage = 10.0f;
 
 	UPROPERTY(EditAnywhere)
 	float AliveTime = 10.0f;
-
 };

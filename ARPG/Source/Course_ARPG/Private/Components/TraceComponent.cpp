@@ -65,7 +65,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	IFighter* FighterRef = Cast<IFighter>(GetOwner());
 	if (FighterRef)
 	{
-		CharacterDamage = FighterRef->GetCurrentDamage();
+		CharacterDamage = FighterRef->GetPhysicalDamage();
 		AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
 		if (WarriorRef) CharacterDamage = CharacterDamage * WarriorRef->GetDamageMultiplier();
 	}

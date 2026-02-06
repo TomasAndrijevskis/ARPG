@@ -121,5 +121,5 @@ private:
 	float StaminaDelayDuration = 2.0f;
 
 	UPROPERTY(EditDefaultsOnly)
-	float PercentStatCap;
+	float PercentStatCap = 1;
 };

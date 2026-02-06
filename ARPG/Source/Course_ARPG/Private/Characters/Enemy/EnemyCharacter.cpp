@@ -127,9 +127,21 @@ void AEnemyCharacter::ResetAttack()
 }
 
 
-float AEnemyCharacter::GetCurrentDamage() const
+TSubclassOf<UDamageType> AEnemyCharacter::GetDamageType() const
+{
+	return UPhysicalDamageType::StaticClass();
+}
+
+
+float AEnemyCharacter::GetPhysicalDamage() const
 {
 	return StatsComp->GetStatValue(EStats::PhysicalStrength);
+}
+
+
+float AEnemyCharacter::GetMagicalDamage() const
+{
+	return StatsComp->GetStatValue(EStats::MagicalStrength);
 }
 
 

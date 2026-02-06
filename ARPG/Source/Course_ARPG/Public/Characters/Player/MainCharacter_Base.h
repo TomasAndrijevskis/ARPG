@@ -51,8 +51,10 @@ public:
 	
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
-	virtual float GetCurrentDamage() const override;
+	virtual float GetPhysicalDamage() const override;
 
+	virtual float GetMagicalDamage() const override;
+	
 	virtual void EndLockonWithActor(AActor* ActorRef) override;
 
 	virtual bool CanTakeDamage(AActor* Opponent) const override;

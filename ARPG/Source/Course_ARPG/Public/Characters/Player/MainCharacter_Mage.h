@@ -25,6 +25,8 @@ public:
 	virtual bool CanTakeDamage(AActor* Opponent) const override;
 	
 	virtual TSubclassOf<UDamageType> GetDamageType() const override;
+
+	virtual float GetMagicalDamage() const override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_MagicShield* AbilityComp_MagicShield;

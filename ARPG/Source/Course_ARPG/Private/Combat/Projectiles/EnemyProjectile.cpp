@@ -18,4 +18,3 @@ bool AEnemyProjectile::IsPlayerControlledActor(AActor* OtherActor)
 	if (!Cast<APawn>(OtherActor)->IsPlayerControlled()) return true;
 	return false;
 }
-

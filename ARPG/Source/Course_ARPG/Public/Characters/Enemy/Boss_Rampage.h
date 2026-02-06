@@ -18,18 +18,9 @@ public:
 	ABoss_Rampage();
 
 	void StartAbility();
+
+	virtual void ActivateSecondPhase() override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UAbComp_GroundSmash* GroundSmashComp;
-
-protected:
-
-	virtual void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser) override;
-
-private:
-
-	float GetFinalDamage(const float Damage) const;
-	
-	UPROPERTY(EditAnywhere)
-	float DamageReductionPercent;
 };

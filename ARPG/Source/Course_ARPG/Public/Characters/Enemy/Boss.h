@@ -29,7 +29,7 @@ public:
 
 	FText GetBossName() const;
 
-	void ActivateSecondPhase();
+	virtual void ActivateSecondPhase();
 
 	bool IsSecondPhaseActive() const;
 
