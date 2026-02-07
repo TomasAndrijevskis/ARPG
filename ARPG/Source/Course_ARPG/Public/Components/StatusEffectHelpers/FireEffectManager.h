@@ -18,12 +18,19 @@ public:
 protected:
 
 	virtual void SetVisualData() override;
+
+	virtual float GetFinalDamage(const float Damage) override;
+
+	virtual void SetDamageResistance(float NewResistance) override;
 	
 private:
 
 	UFUNCTION()
 	void Burn();
 
+	UPROPERTY(EditAnywhere)
+	float BurnDamageResistance;
+	
 	float BurnDamage;
 	
 	float BurnDuration;

@@ -23,4 +23,7 @@ enum EStats
 	PhysDmgResistance UMETA(DisplayName = "Physical damage resistance"),
 	MagDmgResistance UMETA(DisplayName = "Magical damage resistance"),
 	AbilityPower UMETA(DisplayName = "Ability power"),
+	FireDmgResistance UMETA(DisplayName = "Fire damage resistance"),
+	IceDmgResistance UMETA(DisplayName = "Ice damage resistance"),
+	PoisonDmgResistance UMETA(DisplayName = "Poison damage resistance"),
 };

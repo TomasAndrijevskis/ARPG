@@ -114,6 +114,8 @@ private:
 	
 	UFUNCTION()
 	void FinishedDeathAnim();
+
+	void SetResistances();
 	
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<EEnemyStates> InitialState;

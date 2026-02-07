@@ -13,7 +13,7 @@ class COURSE_ARPG_API UIceEffectManager : public UStatusEffectsComponent
 	
 public:	
 	
-	void SlowDownEnemy(const float SlowDuration);
+	void HandleFreeze(const float SlowDuration, const float NewDamage);
 
 protected:
 
@@ -22,15 +22,22 @@ protected:
 	virtual void StopEffect() override;
 	
 	virtual void SetVisualData() override;
+
+	virtual float GetFinalDamage(const float Damage) override;
+
+	virtual void SetDamageResistance(float NewResistance) override;
 	
 private:
 	
 	UFUNCTION()
 	void StopFreeze();
 
+	UPROPERTY(EditAnywhere)
+	float FreezeDamageResistance;
+	
 	float OriginalSpeed;
 
 	FTimerHandle FreezeTimerHandle;
-	
-	float SavedSpeed;
+
+	float FreezeDamage;
 };

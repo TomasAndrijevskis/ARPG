@@ -334,8 +334,15 @@ void AMainCharacter_Base::CalculateStat(EAttributes Attribute, EStats Stat) cons
 {
 	const float Value = AttributesComp->GetAttributeValue(Attribute);
 	const float Coefficient = AttributesComp->GetStatScalingCoefficient(Stat);
-	StatsComp->SetStatValue(Stat, Value * Coefficient);
+	const float NewValue = Value * Coefficient;
+	StatsComp->SetStatValue(Stat, NewValue);
 	StatsComp->RestoreStats();
+	if (Attribute == Intelligence)
+	{
+		IceStatusEffectManager->OnResistanceChangedDelegate.Broadcast(NewValue);
+		FireStatusEffectManager->OnResistanceChangedDelegate.Broadcast(NewValue);
+		PoisonStatusEffectManager->OnResistanceChangedDelegate.Broadcast(NewValue);
+	}
 }
 
 
@@ -373,8 +380,8 @@ void AMainCharacter_Base::BuildAttributeDescription(EAttributes AttributeToImpro
 	if (RelatedStats.Num() <= 0) return;
 	for (int i = 0; i < RelatedStats.Num(); i++)
 	{
-		Result += AttributesComp->GetAttributeDescription(RelatedStats[i]);
 		const float Delta = AttributesComp->GetStatScalingCoefficient(RelatedStats[i]);
+		Result += StatsComp->GetStatUpgradeDescription(RelatedStats[i], Delta);
 		Result += StatsComp->GetStatUpgradePreview(RelatedStats[i], Delta);
 		if (i != RelatedStats.Num() - 1) Result += "\n";
 	}

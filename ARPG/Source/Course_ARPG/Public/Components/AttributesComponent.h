@@ -30,8 +30,6 @@ public:
 	FString GetAttributeName(EAttributes Attribute) const;
 	
 	TArray<TEnumAsByte<EAttributes>>& GetAttributes();
-
-	FString GetAttributeDescription(EStats Stat);
 	
 	FOnAttributeUpgraded OnAttributeUpgradedDelegate;
 

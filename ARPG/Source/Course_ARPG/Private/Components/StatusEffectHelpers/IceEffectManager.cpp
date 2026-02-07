@@ -2,6 +2,7 @@
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
+#include "Engine/DamageEvents.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -22,8 +23,10 @@ void UIceEffectManager::SetVisualData()
 }
 
 
-void UIceEffectManager::SlowDownEnemy(const float SlowDuration)
+void UIceEffectManager::HandleFreeze(const float SlowDuration, const float NewDamage)
 {
+	if (FreezeDamageResistance == 1) return;
+	FreezeDamage = GetFinalDamage(NewDamage);
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	if (Effect && Icon)
@@ -31,9 +34,10 @@ void UIceEffectManager::SlowDownEnemy(const float SlowDuration)
 		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-		SavedSpeed = OriginalSpeed;
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
+	FDamageEvent TargetAttackedEvent{ };
+	CharacterRef->TakeDamage(FreezeDamage, TargetAttackedEvent, nullptr, nullptr);
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopFreeze, SlowDuration, false);
 }
 
@@ -46,6 +50,18 @@ void UIceEffectManager::StopFreeze()
 
 void UIceEffectManager::StopEffect()
 {
-	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = SavedSpeed;
+	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed;
 	Super::StopEffect();
+}
+
+
+float UIceEffectManager::GetFinalDamage(const float Damage)
+{
+	return Damage - (Damage * FreezeDamageResistance);
+}
+
+
+void UIceEffectManager::SetDamageResistance(float NewResistance)
+{
+	FreezeDamageResistance = NewResistance;
 }

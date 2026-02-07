@@ -4,7 +4,6 @@
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Components/SphereComponent.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
-#include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -33,17 +32,12 @@ void AFrostBlastRange::CheckEnemiesInRange()
 	float Radius = Collision->GetScaledSphereRadius();
 	FVector Center = GetActorLocation();
 	
-	FDamageEvent TargetAttackedEvent{ };
-	
 	for (AActor* FoundEnemy : FoundEnemies)
 	{
-		if (!FoundEnemy) continue;
+		if (!FoundEnemy || FoundEnemy->Implements<UIceEffectManager>()) continue;
 		float DistBtwEnemyAndCenter = FVector::DistSquared(FoundEnemy->GetActorLocation(), Center);
 		if (DistBtwEnemyAndCenter < Radius * Radius)
-		{
-			FoundEnemy->TakeDamage(Damage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
-			Cast<AEnemyCharacter>(FoundEnemy)->IceStatusEffectManager->SlowDownEnemy(SlowDuration);
-		}
+			Cast<AEnemyCharacter>(FoundEnemy)->IceStatusEffectManager->HandleFreeze(SlowDuration, Damage);
 	}
 	this->Destroy();
 }

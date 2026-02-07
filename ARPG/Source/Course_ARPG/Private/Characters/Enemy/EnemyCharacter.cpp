@@ -38,10 +38,9 @@ void AEnemyCharacter::BeginPlay()
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter::SetupAI, .1f, false);
 	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>();
 	if (PlayerRef) PlayerRef->StatsComp->OnZeroHealthDelegate.AddUObject(this, &AEnemyCharacter::HandlePlayerDeath);
-	
 	StatsComp->OnZeroHealthDelegate.AddUObject(this, &AEnemyCharacter::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter::ReceiveDamage);
-
+	SetResistances();
 	if (BlockingSphere)
 	{
 		BlockingSphere->SetCollisionResponseToAllChannels(ECR_Ignore);
@@ -124,6 +123,14 @@ void AEnemyCharacter::Attack()
 void AEnemyCharacter::ResetAttack()
 {
 	TraceComp->HandleResetAttack();
+}
+
+
+void AEnemyCharacter::SetResistances()
+{
+	FireStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(FireDmgResistance));
+	IceStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(IceDmgResistance));
+	PoisonStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(PoisonDmgResistance));
 }
 
 

@@ -35,7 +35,7 @@ void UARPG_GameInstance::HandleGameLoad()
 	LoadLevelData();
 	LoadAbilities();
 	LoadBonfires();
-	//LoadDefeatedBosses();
+	LoadDefeatedBosses();
 	LoadPlayerLocation();
 	LoadUsedAttributePoints();
 	LoadUsedAbilityPoints();
@@ -59,7 +59,7 @@ void UARPG_GameInstance::SaveAll()
 	SaveLevelData();
 	SaveAbilities();
 	SaveBonfires();
-	//SaveDefeatedBosses();
+	SaveDefeatedBosses();
 	SavePlayerLocation();
 	SaveUsedAttributePoints();
 	SaveUsedAbilityPoints();

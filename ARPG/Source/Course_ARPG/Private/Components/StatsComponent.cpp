@@ -75,13 +75,38 @@ float UStatsComponent::GetStatIncreasePreview(const EStats Stat, const float Del
 }
 
 
+FString UStatsComponent::GetStatUpgradeDescription(EStats Stat, float Delta)
+{
+	const FText DisplayName = StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat);
+	FString Coefficient;
+	for (const auto PercentageStat : PercentageStats)
+	{
+		if (Stat == PercentageStat)
+		{
+			Coefficient = FString::SanitizeFloat(Delta * 100);
+			break;
+		}
+		Coefficient = FString::SanitizeFloat(Delta);
+	}
+	FString Result = DisplayName.ToString() + " will be increased by " + Coefficient;
+	for (const auto PercentageStat : PercentageStats)
+	{
+		if (Stat == PercentageStat) Result += " %";
+	}
+	return Result += "\n";
+}
+
+
 FString UStatsComponent::GetStatUpgradePreview(EStats Stat, float Delta)
 {
 	const float NextValue = GetStatIncreasePreview(Stat, Delta);
-	if (Stat == AbilityPower || Stat == PhysDmgResistance || Stat == MagDmgResistance)
+	for (const auto PercentageStat : PercentageStats)
 	{
-		if (NextValue <= PercentStatCap) return FString::Printf(TEXT("%.2f %% -> %.2f %%"), GetStatValue(Stat) * 100, NextValue * 100);
-		return "Cap reached";
+		if (Stat == PercentageStat)
+		{
+			if (NextValue <= PercentStatCap) return FString::Printf(TEXT("%.3f %% -> %.3f %%"), GetStatValue(Stat) * 100, NextValue * 100);
+			return "Cap reached";
+		}
 	}
 	return FString::Printf(TEXT("%.2f -> %.2f"), GetStatValue(Stat), NextValue);
 }

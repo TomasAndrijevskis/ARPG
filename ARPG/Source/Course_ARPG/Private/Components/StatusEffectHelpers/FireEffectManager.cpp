@@ -17,7 +17,8 @@ void UFireEffectManager::SetVisualData()
 
 void UFireEffectManager::HandleBurn(const float NewBurnDuration, const float NewBurnDamage, const bool bNewIsOverlapping, const float NewBurnRate)
 {
-	BurnDamage = NewBurnDamage;
+	if (BurnDamageResistance == 1) return;
+	BurnDamage = GetFinalDamage(NewBurnDamage);
 	BurnDuration = NewBurnDuration;
 	bIsOverlapping = bNewIsOverlapping;
 	BurnRate = NewBurnRate;
@@ -42,4 +43,16 @@ void UFireEffectManager::Burn()
 		CharacterRef->TakeDamage(BurnDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
 	}
 	else StopEffect();
+}
+
+
+float UFireEffectManager::GetFinalDamage(const float Damage)
+{
+	return Damage - (Damage * BurnDamageResistance);
+}
+
+
+void UFireEffectManager::SetDamageResistance(float NewResistance)
+{
+	BurnDamageResistance = NewResistance;
 }

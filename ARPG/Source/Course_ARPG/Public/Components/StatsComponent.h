@@ -64,6 +64,8 @@ public:
 
 	FString GetStatUpgradePreview(EStats Stat, float Delta);
 	
+	FString GetStatUpgradeDescription(EStats Stat, float Delta);
+	
 	UPROPERTY()
 	UHealthManager* HealthManager;
 
@@ -108,6 +110,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	TMap<TEnumAsByte<EStats>, float> Stats;
 
+	UPROPERTY(EditDefaultsOnly)
+	TArray<TEnumAsByte<EStats>> PercentageStats;
+	
 	UPROPERTY(EditDefaultsOnly)
 	double ManaRegenRate = 2.0;
 

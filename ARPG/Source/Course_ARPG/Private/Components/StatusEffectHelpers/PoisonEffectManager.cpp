@@ -17,7 +17,8 @@ void UPoisonEffectManager::SetVisualData()
 
 void UPoisonEffectManager::HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef)
 {
-	PoisonDamage = NewPoisonDamage;
+	if (PoisonDamageResistance == 1) return;
+	PoisonDamage = GetFinalDamage(NewPoisonDamage);
 	PoisonDuration = NewPoisonDuration;
 	PoisonRate = NewPoisonRate;
 	AbilityCompRef = NewAbilityCompRef;
@@ -47,4 +48,16 @@ void UPoisonEffectManager::Poison()
 		AbilityCompRef->OnAbilityFinishedDelegate.Broadcast();
 		StopEffect();
 	}
+}
+
+
+float UPoisonEffectManager::GetFinalDamage(const float Damage)
+{
+	return Damage - (Damage * PoisonDamageResistance);
+}
+
+
+void UPoisonEffectManager::SetDamageResistance(float NewResistance)
+{
+	PoisonDamageResistance = NewResistance;
 }

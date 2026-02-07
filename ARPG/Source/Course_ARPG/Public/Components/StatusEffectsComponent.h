@@ -13,7 +13,7 @@ class UNiagaraSystem;
 
 DECLARE_MULTICAST_DELEGATE_TwoParams(FOnStatusIconCreateRequest, UTexture2D*, UStatusEffectsComponent*);
 DECLARE_MULTICAST_DELEGATE(FOnStatusIconRemoveRequest);
-
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnResistanceChanged, float);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 {
@@ -22,10 +22,12 @@ class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 public:	
 	
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
+	
 	FOnStatusIconCreateRequest OnStatusIconCreateRequestDelegate;
 
 	FOnStatusIconRemoveRequest OnStatusIconRemoveRequestDelegate;
+
+	FOnResistanceChanged OnResistanceChangedDelegate;
 	
 protected:
 
@@ -35,6 +37,10 @@ protected:
 	virtual void StopEffect();
 
 	virtual void SetVisualData(){};
+
+	virtual float GetFinalDamage(const float Damage) {return 0.f;}
+
+	virtual void SetDamageResistance(float NewResistance){};
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
