@@ -53,12 +53,12 @@ bool AMainCharacter_Warrior::CanTakeDamage(AActor* Opponent) const
 
 float AMainCharacter_Warrior::GetDamageMultiplier()
 {
-	if (AbilityComp_DamageIncrease->IsAbilityActive()) return AbilityComp_DamageIncrease->GetDamageMultiplier();
+	if (AbilityComp_DamageIncrease->IsAbilityActive()) return AbilityComp_DamageIncrease->GetEnhancedDamageMultiplier();
 	return 1.f;
 }
 
 
-void AMainCharacter_Warrior::SetArmor(const int32 Armor)
+void AMainCharacter_Warrior::SetArmor(const float Armor)
 {
 	StatsComp->SetStatValue(EStats::Armor, Armor);
 	StatsComp->SetStatValue(EStats::MaxArmor, Armor);

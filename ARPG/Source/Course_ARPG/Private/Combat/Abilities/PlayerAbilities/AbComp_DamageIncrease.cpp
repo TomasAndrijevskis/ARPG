@@ -59,8 +59,8 @@ void UAbComp_DamageIncrease::OnAbilityTimerFinished()
 void UAbComp_DamageIncrease::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage multiplier: x %.2f\nCooldown: %.2f s\nDuration: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetDamageMultiplier(), GetCooldownDuration(), GetAbilityDuration()));
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage multiplier: x%.2f\n\nDefault multiplier: x%.2f\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetEnhancedDamageMultiplier(), GetDefaultDamageMultiplier(), GetEnhancedDamageMultiplier() - GetDefaultDamageMultiplier()));
 }
 
 
@@ -70,7 +70,7 @@ void UAbComp_DamageIncrease::UpdateUpgradeDescription()
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage multiplier: x %.2f -> x %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
 		GetManaCost(), NextLevelData->ManaCost,
-		GetDamageMultiplier(), NextLevelData->DamageMultiplier,
+		GetDefaultDamageMultiplier(), NextLevelData->DamageMultiplier,
 		GetCooldownDuration(), NextLevelData->CooldownDuration,
 		GetAbilityDuration(), NextLevelData->AbilityDuration));
 }
@@ -90,13 +90,17 @@ void UAbComp_DamageIncrease::SetAbilityData(const int32 Level)
 	if (!Data) return;
 	SetDamageMultiplier(Data->DamageMultiplier);
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }
 
 
-float UAbComp_DamageIncrease::GetDamageMultiplier() const
+float UAbComp_DamageIncrease::GetDefaultDamageMultiplier() const
 {
 	return DamageMultiplier;
+}
+
+float UAbComp_DamageIncrease::GetEnhancedDamageMultiplier() const
+{
+	return DamageMultiplier + DamageMultiplier * PlayerRef->GetAbilityPowerPercent();;
 }
 
 

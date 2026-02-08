@@ -80,9 +80,6 @@ public:
 	UFUNCTION()
 	USkeletalMeshComponent* GetSkeletalMeshComponent() const;
 
-	UFUNCTION()
-	void SetSkeletalMeshComponent();
-
 	void SetCanPlayHurtAnimation(bool bCanPlayAnim);
 
 	bool CanPlayHurtAnimation() const;
@@ -175,6 +172,8 @@ public:
 	void FillMainStatsDisplayData(FPlayerMainStatsData& Data) const;
 
 	void FillAdditionalStatsDisplayData(FPlayerAdditionalStatsData& Data) const;
+
+	float GetAbilityPowerPercent() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

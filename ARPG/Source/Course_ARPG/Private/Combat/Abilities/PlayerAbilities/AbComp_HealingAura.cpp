@@ -43,7 +43,7 @@ void UAbComp_HealingAura::FinishAbilityCast()
 void UAbComp_HealingAura::StartAbilityTimer()
 {
 	Super::StartAbilityTimer();
-	if (TimerDuration > 0) PlayerRef->Heal(HealthRegenAmount);
+	if (TimerDuration > 0) PlayerRef->Heal(GetEnhancedHealthRegenAmount());
 }
 
 
@@ -62,8 +62,8 @@ void UAbComp_HealingAura::OnAbilityTimerFinished()
 void UAbComp_HealingAura::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon healing aura\nwhich will restore\nyour health"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per second: %.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetAbilityDuration(), GetCooldownDuration(), GetHealthRegenAmount()));
+	"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per second: %.2f\n\nDefault restored health: %.2f\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetAbilityDuration(), GetCooldownDuration(), GetEnhancedHealthRegenAmount(), GetDefaultHealthRegenAmount(), GetEnhancedHealthRegenAmount() - GetDefaultHealthRegenAmount()));
 }
 
 
@@ -75,7 +75,7 @@ void UAbComp_HealingAura::UpdateUpgradeDescription()
 		GetManaCost(), NextLevelData->ManaCost,
 		GetAbilityDuration(), NextLevelData->AbilityDuration,
 		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetHealthRegenAmount(), NextLevelData->HealthRegenAmount));
+		GetDefaultHealthRegenAmount(), NextLevelData->HealthRegenAmount));
 
 }
 
@@ -94,13 +94,18 @@ void UAbComp_HealingAura::SetAbilityData(const int32 Level)
 	if (!Data) return;
 	SetHealthRegenAmount(Data->HealthRegenAmount);
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }
 
 
-float UAbComp_HealingAura::GetHealthRegenAmount() const
+float UAbComp_HealingAura::GetDefaultHealthRegenAmount() const
 {
 	return HealthRegenAmount;
+}
+
+
+float UAbComp_HealingAura::GetEnhancedHealthRegenAmount() const
+{
+	return HealthRegenAmount + (HealthRegenAmount * PlayerRef->GetAbilityPowerPercent());
 }
 
 

@@ -26,10 +26,11 @@ void UAbComp_FrostBlast::StartAbility()
 		AFrostBlastRange* FrostBlastRangeActor = GetWorld()->SpawnActor<AFrostBlastRange>(FrostBlastClass, SpawnLocation, SpawnRotation, Params);
 		if (!FrostBlastRangeActor) return;
 		FrostBlastRangeActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-		FrostBlastRangeActor->SetParams(Damage, SlowDuration);
+		FrostBlastRangeActor->SetParams(GetEnhancedDamage(), SlowDuration);
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FrostBlast::FinishAbilityCast, AnimDuration/2, false);
 	}
 }
+
 
 void UAbComp_FrostBlast::FinishAbilityCast()
 {
@@ -55,8 +56,8 @@ void UAbComp_FrostBlast::CompleteAbility()
 void UAbComp_FrostBlast::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon blizzard which\nwill slow your enemies"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s\nSlow duration: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetDamage(), GetCooldownDuration(), GetSlowDuration()));
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nSlow duration: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetSlowDuration(), GetEnhancedDamage(), GetDefaultDamage(), GetEnhancedDamage() -  GetDefaultDamage()));
 }
 
 
@@ -66,7 +67,7 @@ void UAbComp_FrostBlast::UpdateUpgradeDescription()
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nDamage: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nSlow duration: %.2f -> %.2f s"),
 		GetManaCost(), NextLevelData->ManaCost,
-		GetDamage(), NextLevelData->Damage,
+		GetDefaultDamage(), NextLevelData->Damage,
 		GetCooldownDuration(), NextLevelData->CooldownDuration,
 		GetSlowDuration(), NextLevelData->SlowDuration));
 }
@@ -88,7 +89,6 @@ void UAbComp_FrostBlast::SetAbilityData(const int32 Level)
 	SetDamage(Data->Damage);
 	SetSlowDuration(Data->SlowDuration);
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }
 
 
@@ -98,9 +98,15 @@ void UAbComp_FrostBlast::SetDamage(float NewDamage)
 }
 
 
-float UAbComp_FrostBlast::GetDamage() const
+float UAbComp_FrostBlast::GetDefaultDamage() const
 {
 	return Damage;
+}
+
+
+float UAbComp_FrostBlast::GetEnhancedDamage() const
+{
+	return Damage + (Damage * PlayerRef->GetAbilityPowerPercent());
 }
 
 

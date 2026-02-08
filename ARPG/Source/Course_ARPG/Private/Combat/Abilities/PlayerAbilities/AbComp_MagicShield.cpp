@@ -18,7 +18,7 @@ void UAbComp_MagicShield::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		SetAbilityActive(true);
-		TimerDuration = GetAbilityDuration();
+		TimerDuration = GetEnhancedAbilityDuration();
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_MagicShield::FinishAbilityCast, AnimDuration, false);
@@ -30,6 +30,7 @@ void UAbComp_MagicShield::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	SpawnShield();
 }
 
 
@@ -69,8 +70,8 @@ void UAbComp_MagicShield::OnAbilityTimerFinished()
 void UAbComp_MagicShield::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Get yourself fully covered\nwith magic shield"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration()));
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\n\n Default duration: %.2f s\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetEnhancedAbilityDuration(), GetAbilityDuration(), GetEnhancedAbilityDuration() - GetAbilityDuration()));
 }
 
 
@@ -82,6 +83,18 @@ void UAbComp_MagicShield::UpdateUpgradeDescription()
 		GetManaCost(), NextLevelData->ManaCost,
 		GetCooldownDuration(), NextLevelData->CooldownDuration,
 		GetAbilityDuration(), NextLevelData->AbilityDuration));
+}
+
+
+void UAbComp_MagicShield::CreateIcon()
+{
+	PlayerRef->CreateAbilityIconWithTimer(GetEnhancedAbilityDuration(), GetIcon(), this);
+}
+
+
+float UAbComp_MagicShield::GetEnhancedAbilityDuration() const
+{
+	return GetAbilityDuration() + (GetAbilityDuration() * PlayerRef->GetAbilityPowerPercent());
 }
 
 
@@ -98,5 +111,4 @@ void UAbComp_MagicShield::SetAbilityData(const int32 Level)
 	const FMagicShieldPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }

@@ -18,7 +18,9 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 
-	float GetHealthRegenAmount() const;
+	float GetDefaultHealthRegenAmount() const;
+
+	float GetEnhancedHealthRegenAmount() const;
 	
 	void SetHealthRegenAmount(const float NewAmount);
 

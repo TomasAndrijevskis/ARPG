@@ -13,7 +13,4 @@ struct COURSE_ARPG_API FGetArmorPropertiesData: public FAbilityPropertiesBaseDat
 	
 	UPROPERTY(EditDefaultsOnly)
 	float Armor = 0;
-
-	UPROPERTY(EditDefaultsOnly)
-	float DamageReductionPercent = 0;
 };

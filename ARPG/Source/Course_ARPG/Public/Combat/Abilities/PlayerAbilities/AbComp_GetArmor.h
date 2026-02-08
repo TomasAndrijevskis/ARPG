@@ -19,13 +19,11 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 
-	float GetArmor() const;
+	float GetDefaultArmor() const;
 
+	float GetEnhancedArmor() const;
+	
 	void SetArmor(const float NewArmor);
-
-	float GetDamageReductionPercent() const;
-
-	void SetDamageReductionPercent(const float NewDamageReductionPercent);
 
 	virtual void StartAbility() override;
 
@@ -50,7 +48,4 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	float Armor = 0.f;
-
-	UPROPERTY(VisibleAnywhere)
-	float DamageReductionPercent = 0.f;
 };

@@ -68,7 +68,7 @@ void UAbComp_RangeAttack::SpawnProjectile()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (Projectile)
 	{
-		Projectile->SetStats(GetProjectileDamage(), AliveTime);
+		Projectile->SetStats(GetEnhancedProjectileDamage(), AliveTime);
 		Projectile->StartAliveTimer();
 	}
 }
@@ -77,8 +77,8 @@ void UAbComp_RangeAttack::SpawnProjectile()
 void UAbComp_RangeAttack::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball in your enemies."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDamage: %.2f\nCooldown: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetProjectileDamage(), GetCooldownDuration()));
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetEnhancedProjectileDamage(), GetDefaultProjectileDamage(), GetEnhancedProjectileDamage() - GetDefaultProjectileDamage()));
 }
 
 
@@ -88,7 +88,7 @@ void UAbComp_RangeAttack::UpdateUpgradeDescription()
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
 		GetManaCost(), NextLevelData->ManaCost,
-		GetProjectileDamage(), NextLevelData->ProjectileDamage,
+		GetDefaultProjectileDamage(), NextLevelData->ProjectileDamage,
 		GetCooldownDuration(), NextLevelData->CooldownDuration));
 }
 
@@ -107,13 +107,18 @@ void UAbComp_RangeAttack::SetAbilityData(const int32 Level)
 	if (!Data) return;
 	SetProjectileDamage(Data->ProjectileDamage);
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }
 
 
-float UAbComp_RangeAttack::GetProjectileDamage() const
+float UAbComp_RangeAttack::GetDefaultProjectileDamage() const
 {
 	return ProjectileDamage;
+}
+
+
+float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const
+{
+	return ProjectileDamage + (ProjectileDamage * PlayerRef->GetAbilityPowerPercent());
 }
 
 

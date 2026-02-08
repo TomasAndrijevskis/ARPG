@@ -13,10 +13,8 @@ void UAbComp_FireStorm::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
 	{
 		SetAbilityActive(true);
-		
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FireStorm::FinishAbilityCast, AnimDuration, false);
 	}
 }
@@ -45,7 +43,7 @@ void UAbComp_FireStorm::SpawnFireStorm()
 
 	if (FireStormRef)
 	{
-		FireStormRef->SetProperties(BurnDuration, BurnDamage, BurnRate);
+		FireStormRef->SetProperties(BurnDuration, GetEnhancedBurnDamage(), BurnRate);
 		UGameplayStatics::FinishSpawningActor(FireStormRef, SpawnTransform);
 	}
 	OnAbilityStartedDelegate.Broadcast();
@@ -68,8 +66,8 @@ void UAbComp_FireStorm::OnAbilityTimerFinished()
 void UAbComp_FireStorm::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon fire storm which\nwill burn your enemies"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nBurn damage per tick: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nBurning duration: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetBurnDamage(), GetCooldownDuration(), GetAbilityDuration(), GetBurnDuration()));
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nBurning duration: %.2f s\nBurn damage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetBurnDuration(), GetEnhancedBurnDamage(), GetDefaultBurnDamage(), GetEnhancedBurnDamage() - GetDefaultBurnDamage()));
 }
 
 
@@ -77,9 +75,9 @@ void UAbComp_FireStorm::UpdateUpgradeDescription()
 {
 	const FFireStormPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
-	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nBurn damage per tick: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nAbility duration: %.2f -> %.2f s\nBurn duration: %.2f -> %.2f s"),
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nBurn damage: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nAbility duration: %.2f -> %.2f s\nBurn duration: %.2f -> %.2f s"),
 		GetManaCost(), NextLevelData->ManaCost,
-		GetBurnDamage(), NextLevelData->BurnDamage,
+		GetDefaultBurnDamage(), NextLevelData->BurnDamage,
 		GetCooldownDuration(), NextLevelData->CooldownDuration,
 		GetAbilityDuration(), NextLevelData->AbilityDuration,
 		GetBurnDuration(), NextLevelData->BurnDuration));
@@ -101,13 +99,18 @@ void UAbComp_FireStorm::SetAbilityData(const int32 Level)
 	SetBurnDuration(Data->BurnDuration);
 	SetBurnDamage(Data->BurnDamage);
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }
 
 
-float UAbComp_FireStorm::GetBurnDamage() const
+float UAbComp_FireStorm::GetDefaultBurnDamage() const
 {
 	return BurnDamage;
+}
+
+
+float UAbComp_FireStorm::GetEnhancedBurnDamage() const
+{
+	return BurnDamage + (BurnDamage * PlayerRef->GetAbilityPowerPercent());
 }
 
 

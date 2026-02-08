@@ -20,7 +20,9 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 
-	float GetBurnDamage() const;
+	float GetDefaultBurnDamage() const;
+	
+	float GetEnhancedBurnDamage() const;
 	
 	void SetBurnDamage(float NewDamage);
 

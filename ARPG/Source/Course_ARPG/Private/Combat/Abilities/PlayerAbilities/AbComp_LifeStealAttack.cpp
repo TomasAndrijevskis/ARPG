@@ -65,8 +65,8 @@ void UAbComp_LifeStealAttack::HandleLifeStealOnHit()
 void UAbComp_LifeStealAttack::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nStolen health: %.2f%% \nCooldown: %.2f s\nDuration: %.2f s"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetStolenHealthPercent() * 100, GetCooldownDuration(), GetAbilityDuration()));
+	"\nCurrent level: %i\n\nMana cost: %.2f \nCooldown: %.2f s\nDuration: %.2f s\nStolen health: %.2f%%\n\nDefault stolen health: %.2f%%\nAP modifier: +%.2f%%"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetEnhancedStolenHealthPercent() * 100, GetDefaultStolenHealthPercent() * 100, GetEnhancedStolenHealthPercent() * 100 - GetDefaultStolenHealthPercent() * 100));
 }
 
 
@@ -76,7 +76,7 @@ void UAbComp_LifeStealAttack::UpdateUpgradeDescription()
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nStolen health: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
 		GetManaCost(), NextLevelData->ManaCost,
-		GetStolenHealthPercent() * 100, NextLevelData->StolenHealthPercent * 100,
+		GetDefaultStolenHealthPercent() * 100, NextLevelData->StolenHealthPercent * 100,
 		GetCooldownDuration(), NextLevelData->CooldownDuration,
 		GetAbilityDuration(), NextLevelData->AbilityDuration));
 }
@@ -96,13 +96,18 @@ void UAbComp_LifeStealAttack::SetAbilityData(const int32 Level)
 	if (!Data) return;
 	SetStolenHealthPercent(Data->StolenHealthPercent);
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }
 
 
-float UAbComp_LifeStealAttack::GetStolenHealthPercent() const
+float UAbComp_LifeStealAttack::GetDefaultStolenHealthPercent() const
 {
 	return StolenHealthPercent;
+}
+
+
+float UAbComp_LifeStealAttack::GetEnhancedStolenHealthPercent() const
+{
+	return StolenHealthPercent + (StolenHealthPercent * PlayerRef->GetAbilityPowerPercent());
 }
 
 
@@ -115,5 +120,5 @@ void UAbComp_LifeStealAttack::SetStolenHealthPercent(const float NewStolenHealth
 float UAbComp_LifeStealAttack::GetStolenHealthAmount() const
 {
 	if (!FighterRef) return 0;
-	return FighterRef->GetPhysicalDamage() * StolenHealthPercent;
+	return FighterRef->GetPhysicalDamage() * GetEnhancedStolenHealthPercent();
 }

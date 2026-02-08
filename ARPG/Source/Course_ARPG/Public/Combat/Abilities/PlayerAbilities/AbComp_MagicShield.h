@@ -22,6 +22,8 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 	
+	virtual void CreateIcon() override;
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -43,6 +45,8 @@ private:
 	UFUNCTION()
 	void SpawnShield();
 
+	float GetEnhancedAbilityDuration() const;
+	
 	UPROPERTY()
 	AMagicShield* ShieldActor;
 

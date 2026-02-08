@@ -39,13 +39,13 @@ public:
 
 	bool IsAbilityMaxLevel();
 	
-	FString GetAbilityDescription() const;
+	FString GetAbilityDescription();
 
 	void SetAbilityDescription(const FString& NewDescription);
 
 	virtual void UpdateAbilityDescription() {};
 
-	FString GetUpgradeDescription() const;
+	FString GetUpgradeDescription();
 
 	void SetUpgradeDescription(const FString& NewDescription);
 

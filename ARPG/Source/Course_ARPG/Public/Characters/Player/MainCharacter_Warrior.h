@@ -22,7 +22,7 @@ public:
 
 	float GetDamageMultiplier();
 
-	void SetArmor(const int32 Armor);
+	void SetArmor(const float Armor);
 
 	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 	

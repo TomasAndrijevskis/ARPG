@@ -30,8 +30,6 @@ protected:
 	UFUNCTION()
 	void SpawnProjectile();
 
-	float GetProjectileDamage() const;
-
 	void SetProjectileDamage(const float NewProjectileDamage);
 
 	FRangeAttackPropertiesData* GetAbilityData(const int32 Level);
@@ -42,6 +40,10 @@ private:
 	
 	void CompleteAbilityAttack();
 
+	float GetDefaultProjectileDamage() const;
+
+	float GetEnhancedProjectileDamage() const;
+	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* Particle;
 

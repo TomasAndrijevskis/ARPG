@@ -37,9 +37,9 @@ AMainCharacter_Base::AMainCharacter_Base()
 void AMainCharacter_Base::BeginPlay()
 {
 	Super::BeginPlay();
+	SkeletalMeshComp = GetMesh();
 	PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	SetSkeletalMeshComponent();
 	CreatePlayerWidget();
 	BindDelegates();
 }
@@ -418,6 +418,12 @@ void AMainCharacter_Base::FillAdditionalStatsDisplayData(FPlayerAdditionalStatsD
 }
 
 
+float AMainCharacter_Base::GetAbilityPowerPercent() const
+{
+	return StatsComp->GetStatValue(EStats::AbilityPower);
+}
+
+
 float AMainCharacter_Base::GetPlayerMaxHealth() const
 {
 	return StatsComp->GetStatValue(EStats::MaxHealth);
@@ -523,15 +529,6 @@ void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbili
 USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent() const
 {
 	return SkeletalMeshComp;
-}
-
-
-void AMainCharacter_Base::SetSkeletalMeshComponent()
-{
-	APlayerController* PlayerController = Cast<APlayerController>(GetOwner());
-	if (!PlayerController) return;
-	APawn* Pawn = PlayerController->GetPawn();
-	if (ACharacter* Character = Cast<ACharacter>(Pawn)) SkeletalMeshComp = Character->GetMesh();
 }
 
 

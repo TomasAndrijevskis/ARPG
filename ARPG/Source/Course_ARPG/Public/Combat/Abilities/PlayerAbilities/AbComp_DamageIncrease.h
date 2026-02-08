@@ -18,8 +18,10 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 	
-	float GetDamageMultiplier() const;
+	float GetDefaultDamageMultiplier() const;
 
+	float GetEnhancedDamageMultiplier() const;
+	
 	void SetDamageMultiplier(float NewDamageMultiplier);
 
 	virtual void StartAbility() override;

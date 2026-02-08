@@ -20,7 +20,7 @@ void UAbComp_GetArmor::StartAbility()
 		SetAbilityActive(true);
 		HandlePlayerActions(false);
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		Cast<AMainCharacter_Warrior>(PlayerRef)->SetArmor(Armor);
+		Cast<AMainCharacter_Warrior>(PlayerRef)->SetArmor(GetEnhancedArmor());
 		OnAbilityStartedDelegate.Broadcast();
 		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_GetArmor::FinishAbilityCast, AnimDuration, false);
@@ -38,7 +38,7 @@ void UAbComp_GetArmor::FinishAbilityCast()
 
 void UAbComp_GetArmor::CreateIcon()
 {
-	PlayerRef->CreateAbilityIconWithAmount(GetArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
+	PlayerRef->CreateAbilityIconWithAmount(GetEnhancedArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
 }
 
 
@@ -52,9 +52,9 @@ void UAbComp_GetArmor::CompleteAbility()
 
 void UAbComp_GetArmor::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Give yourself protection."
-	"\nCurrent level: %i\n\nMana cost: %.2f\nArmor: %.2f\nDamage reduction: %.2f%%\nCooldown: %.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetArmor(), GetDamageReductionPercent()*100, GetCooldownDuration()));
+	SetAbilityDescription(FString::Printf(TEXT("Make yourself invincible."
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f\nArmor: %.2f\n\nDefault armor: %.2f\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetEnhancedArmor(), GetDefaultArmor(), GetEnhancedArmor() - GetDefaultArmor()));
 }
 
 
@@ -62,10 +62,9 @@ void UAbComp_GetArmor::UpdateUpgradeDescription()
 {
 	const FGetArmorPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
-	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nDamage reduction: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s"),
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
 		GetManaCost(), NextLevelData->ManaCost,
-		GetArmor(), NextLevelData->Armor,
-		GetDamageReductionPercent() * 100, NextLevelData->DamageReductionPercent * 100,
+		GetDefaultArmor(), NextLevelData->Armor,
 		GetCooldownDuration(), NextLevelData->CooldownDuration));
 }
 
@@ -83,31 +82,23 @@ void UAbComp_GetArmor::SetAbilityData(const int32 Level)
 	const FGetArmorPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
 	SetArmor(Data->Armor);
-	SetDamageReductionPercent(Data->DamageReductionPercent);
 	SetCommonAbilityProperties(Data);
-	UpdateAbilityDescription();
 }
 
 
-float UAbComp_GetArmor::GetArmor() const
+float UAbComp_GetArmor::GetDefaultArmor() const
 {
 	return Armor;
+}
+
+
+float UAbComp_GetArmor::GetEnhancedArmor() const
+{
+	return Armor + (Armor * PlayerRef->GetAbilityPowerPercent());
 }
 
 
 void UAbComp_GetArmor::SetArmor(const float NewArmor)
 {
 	Armor = NewArmor;
-}
-
-
-float UAbComp_GetArmor::GetDamageReductionPercent() const
-{
-	return DamageReductionPercent;
-}
-
-
-void UAbComp_GetArmor::SetDamageReductionPercent(const float NewDamageReductionPercent)
-{
-	DamageReductionPercent = NewDamageReductionPercent;
 }

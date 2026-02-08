@@ -12,9 +12,6 @@ void UAbilityComponent_Player::BeginPlay()
 	Super::BeginPlay();
 	if (CurrentAbilityLevel == 0) SetAbilityData(0);
 	PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
-	SkeletalMeshComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
-	UpdateAbilityDescription();
-	UpdateUpgradeDescription();
 }
 
 
@@ -80,6 +77,7 @@ void UAbilityComponent_Player::StartAbilityTimer()
 void UAbilityComponent_Player::StartAbility()
 {
 	if (!PlayerRef) return;
+	SkeletalMeshComp = PlayerRef->GetSkeletalMeshComponent();
 	PlayerRef->SetCanPlayHurtAnimation(false);
 	PlayerRef->InterruptHurtAnimation();
 }
@@ -190,14 +188,16 @@ void UAbilityComponent_Player::SetCurrentAbilityLevel(const int NewLevel)
 }
 
 
-FString UAbilityComponent_Player::GetAbilityDescription() const
+FString UAbilityComponent_Player::GetAbilityDescription()
 {
+	UpdateAbilityDescription();
 	return AbilityDescription;
 }
 
 
-FString UAbilityComponent_Player::GetUpgradeDescription() const
+FString UAbilityComponent_Player::GetUpgradeDescription()
 {
+	UpdateUpgradeDescription();
 	return UpgradeDescription;
 }
 

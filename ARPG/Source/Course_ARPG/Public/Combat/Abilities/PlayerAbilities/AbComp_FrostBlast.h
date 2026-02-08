@@ -23,8 +23,10 @@ public:
 
 	void SetDamage(float NewDamage);
 
-	float GetDamage() const;
+	float GetDefaultDamage() const;
 
+	float GetEnhancedDamage() const;
+	
 	void SetSlowDuration(float NewSlowDuration);
 
 	float GetSlowDuration() const;

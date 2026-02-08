@@ -24,8 +24,10 @@ public:
 	UFUNCTION()
 	float GetStolenHealthAmount() const;
 
-	float GetStolenHealthPercent() const;
-
+	float GetDefaultStolenHealthPercent() const;
+	
+	float GetEnhancedStolenHealthPercent() const;
+	
 	void SetStolenHealthPercent(const float NewStolenHealthPercent);
 
 	UFUNCTION()
