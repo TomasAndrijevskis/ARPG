@@ -1,9 +1,7 @@
 
 #include "Combat/Abilities/EnemyAbilities/AbComp_GroundSmash.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Data/EStats.h"
 #include "Combat/Abilities/EnemyAbilities/GroundSmashArea.h"
-#include "Components/StatsComponent.h"
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -19,7 +17,7 @@ void UAbComp_GroundSmash::StartAbility()
 	FActorSpawnParameters Params;
 	Params.Owner = GetOwner();
 	AGroundSmashArea* GroundSmashAreaActor = GetWorld()->SpawnActor<AGroundSmashArea>(GroundSmashAreaClass,  SpawnLocation, SpawnRotation, Params);
-	GroundSmashAreaActor->SetParams(Cast<AEnemyCharacter>(GetOwner())->StatsComp->GetStatValue(EStats::PhysicalStrength) * DamageMultiplier);
+	GroundSmashAreaActor->SetParams(Cast<AEnemyCharacter>(GetOwner())->GetPhysicalDamage() * DamageMultiplier);
 }
 
 

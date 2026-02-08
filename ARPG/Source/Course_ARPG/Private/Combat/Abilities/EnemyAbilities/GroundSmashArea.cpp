@@ -2,8 +2,10 @@
 #include "Combat/Abilities/EnemyAbilities/GroundSmashArea.h"
 #include "NiagaraComponent.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/DamageTypes.h"
 #include "Components/SphereComponent.h"
 #include "Engine/DamageEvents.h"
+#include "Kismet/GameplayStatics.h"
 
 
 AGroundSmashArea::AGroundSmashArea()
@@ -41,6 +43,6 @@ void AGroundSmashArea::CheckPlayerInRange()
 	const float DistBtwEnemyAndCenter = FVector::DistSquared(PlayerLocation, Center);
 	FDamageEvent TargetAttackedEvent{ };
 	if (DistBtwEnemyAndCenter < Radius * Radius)
-		PlayerRef->TakeDamage(Damage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
+		UGameplayStatics::ApplyDamage(PlayerRef, Damage, GetOwner()->GetInstigatorController(), GetOwner(), UPhysicalDamageType::StaticClass());
 	this->Destroy();
 }

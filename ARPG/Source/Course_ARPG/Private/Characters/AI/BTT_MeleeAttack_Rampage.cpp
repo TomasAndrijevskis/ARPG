@@ -18,14 +18,12 @@ EBTNodeResult::Type UBTT_MeleeAttack_Rampage::ExecuteTask(UBehaviorTreeComponent
 		double RandomValue = UKismetMathLibrary::RandomFloat();
 		if (RandomValue > Threshold)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Random Value : %f"), RandomValue);
+			//UE_LOG(LogTemp, Warning, TEXT("Random Value : %f"), RandomValue);
 			OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::SpecialAttack);
 			OwnerComp.GetBlackboardComponent()->SetValueAsFloat(TEXT("Threshold"), OriginalThreshold);
 		}
 		else
-		{
 			OwnerComp.GetBlackboardComponent()->SetValueAsFloat(TEXT("Threshold"), Threshold -= .05);
-		}
 	}
 	return EBTNodeResult::InProgress;
 }
