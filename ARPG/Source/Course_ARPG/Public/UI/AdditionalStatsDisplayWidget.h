@@ -35,6 +35,9 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_AbilityPower;
 
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_ElementalResistance;
+	
 	void SetText();
 
 	FText GetAsText(float Value);

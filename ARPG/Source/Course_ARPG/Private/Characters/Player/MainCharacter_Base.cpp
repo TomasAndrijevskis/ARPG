@@ -415,6 +415,7 @@ void AMainCharacter_Base::FillAdditionalStatsDisplayData(FPlayerAdditionalStatsD
 	Data.MagDamageResistance = StatsComp->GetStatValue(EStats::MagDmgResistance) * 100;
 	Data.PhysDamageResistance = StatsComp->GetStatValue(EStats::PhysDmgResistance) * 100;
 	Data.AbilityPower = StatsComp->GetStatValue(EStats::AbilityPower) * 100;
+	Data.ElementalResistance = StatsComp->GetStatValue(EStats::FireDmgResistance) * 100;// all same
 }
 
 

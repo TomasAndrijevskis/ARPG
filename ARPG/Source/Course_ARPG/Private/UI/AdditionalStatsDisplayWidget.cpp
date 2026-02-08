@@ -21,6 +21,7 @@ void UAdditionalStatsDisplayWidget::SetText()
 	Text_PhysicalStrength->SetText(GetAsText(Data.PhysicalStrength));
 	Text_MagDmgResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.MagDamageResistance)));
 	Text_PhysDmgResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.PhysDamageResistance)));
+	Text_ElementalResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.ElementalResistance)));
 	Text_AbilityPower->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.AbilityPower)));
 }
 

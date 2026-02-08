@@ -15,4 +15,5 @@ struct FPlayerAdditionalStatsData
 	float PhysDamageResistance;
 	float MagDamageResistance;
 	float AbilityPower;
+	float ElementalResistance;
 };
