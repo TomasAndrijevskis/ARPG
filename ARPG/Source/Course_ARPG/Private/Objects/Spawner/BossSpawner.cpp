@@ -1,5 +1,5 @@
 
-#include "Characters/Spawner/BossSpawner.h"
+#include "Objects/Spawner/BossSpawner.h"
 #include "Characters/Enemy/Boss.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Characters/Player/ARPG_PlayerController.h"

@@ -1,5 +1,5 @@
 
-#include "Characters/Spawner/Spawner.h"
+#include "Objects/Spawner/Spawner.h"
 
 
 void ASpawner::BeginPlay()

@@ -1,5 +1,5 @@
 
-#include "Characters/Spawner/EnemySpawner.h"
+#include "Objects/Spawner/EnemySpawner.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 
 

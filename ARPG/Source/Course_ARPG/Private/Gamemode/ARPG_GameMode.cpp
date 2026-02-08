@@ -2,7 +2,7 @@
 #include "Gamemode/ARPG_GameMode.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Characters/Spawner/EnemySpawner.h"
+#include "Objects/Spawner/EnemySpawner.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
