@@ -8,7 +8,7 @@
 class UAbComp_DamageIncrease;
 class UAbComp_LifeStealAttack;
 class UAbComp_RangeAttack;
-class UAbComp_GetArmor;
+class UAbComp_Invincibility;
 class UTraceComponent;
 
 UCLASS()
@@ -36,7 +36,7 @@ public:
 	UAbComp_RangeAttack* AbilityComp_RangeAttack;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UAbComp_GetArmor* AbilityComp_GetArmor;
+	UAbComp_Invincibility* AbilityComp_Invincibility;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UTraceComponent* TraceComp;

@@ -3,7 +3,7 @@
 #include "Animations/PlayerAnimInstance.h"
 #include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
-#include "Combat/Abilities/PlayerAbilities/AbComp_GetArmor.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_Invincibility.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_RangeAttack.h"
 #include "Components/BlockComponent.h"
@@ -21,12 +21,12 @@ AMainCharacter_Warrior::AMainCharacter_Warrior()
 	AbilityComp_DamageIncrease = CreateDefaultSubobject<UAbComp_DamageIncrease>(TEXT("Damage Increase"));
 	AbilityComp_RangeAttack = CreateDefaultSubobject<UAbComp_RangeAttack>(TEXT("Range Attack"));
 	AbilityComp_LifeStealAttack = CreateDefaultSubobject<UAbComp_LifeStealAttack>(TEXT("Life Steal Attack"));
-	AbilityComp_GetArmor = CreateDefaultSubobject<UAbComp_GetArmor>(TEXT("Get Armor"));
+	AbilityComp_Invincibility = CreateDefaultSubobject<UAbComp_Invincibility>(TEXT("Invincibility"));
 	
 	AddToAbilitiesArray(AbilityComp_DamageIncrease);
 	AddToAbilitiesArray(AbilityComp_RangeAttack);
 	AddToAbilitiesArray(AbilityComp_LifeStealAttack);
-	AddToAbilitiesArray(AbilityComp_GetArmor);
+	AddToAbilitiesArray(AbilityComp_Invincibility);
 }
 
 
@@ -36,7 +36,7 @@ void AMainCharacter_Warrior::BeginPlay()
 	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_LifeStealAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-	AbilityComp_GetArmor->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	AbilityComp_Invincibility->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
 	BlockComp->OnBlockDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);

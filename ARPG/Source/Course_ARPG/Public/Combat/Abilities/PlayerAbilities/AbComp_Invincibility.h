@@ -5,11 +5,11 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Data/Abilities/GetArmorPropertiesData.h"
 #include "Components/ActorComponent.h"
-#include "AbComp_GetArmor.generated.h"
+#include "AbComp_Invincibility.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class COURSE_ARPG_API UAbComp_GetArmor : public UAbilityComponent_Player
+class COURSE_ARPG_API UAbComp_Invincibility : public UAbilityComponent_Player
 {
 	GENERATED_BODY()
 
