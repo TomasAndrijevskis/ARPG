@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Interfaces/Fighter.h"
+#include "Kismet/GameplayStatics.h"
 #include "Navigation/PathFollowingComponent.h"
 
 
@@ -21,6 +22,7 @@ EBTNodeResult::Type UBTT_RangeAttack_Fey::ExecuteTask(UBehaviorTreeComponent& Ow
 	if (!CharacterRef) return EBTNodeResult::Failed;
 	FighterRef = Cast<IFighter>(ControllerRef->GetCharacter());
 	if (!FighterRef) return EBTNodeResult::Failed;
+	PlayerRef = UGameplayStatics::GetPlayerPawn(this, 0);
 	Attack();
 	CheckDistance();
 	return EBTNodeResult::Succeeded;
