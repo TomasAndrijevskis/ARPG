@@ -79,7 +79,7 @@ public:
 	void CreatePauseMenu();
 	
 	UFUNCTION()
-	void ShowLevelUpAnimation();
+	void ShowLevelUpAnimation(int32 AbilityPoints, int32 AttributePoints);
 
 	UFUNCTION()
 	void CreateResetWidget();

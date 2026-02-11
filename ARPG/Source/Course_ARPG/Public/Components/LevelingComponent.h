@@ -7,7 +7,7 @@
 #include "LevelingComponent.generated.h"
 
 
-DECLARE_MULTICAST_DELEGATE(FOnNewLevel);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnNewLevel, int32, int32);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnLevelUpdated, int);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnExperienceUpdated, float);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsUpdate, int);
@@ -74,6 +74,10 @@ private:
 	bool CanAddExperience() const;
 	
 	FXPLevels* GetNextLevelRow() const;
+
+	int GetAttributePointsForLevel() const;
+	
+	int GetAbilityPointsForLevel() const;
 	
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* LevelDataTable;
@@ -89,12 +93,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	int AvailableAbilityPoints = 0;
-
-	UPROPERTY(EditDefaultsOnly)
-	int AttributePointsAmountForLevel = 10;
-
-	UPROPERTY(EditDefaultsOnly)
-	int AbilityUpgradePointsAmountForLevel = 5;
 
 	float RequiredExperience;
 

@@ -33,9 +33,11 @@ void ULevelingComponent::TryLevelUp()
 	OnExperienceUpdatedDelegate.Broadcast(GetExperiencePercentage());
 	if (CurrentExperience >= RequiredExperience && RequiredExperience != -1)
 	{
+		int32 AttributePointsAmountForLevel = GetAttributePointsForLevel();
+		int32 AbilityUpgradePointsAmountForLevel = GetAbilityPointsForLevel();
 		CurrentLevel++;
 		CurrentExperience -= RequiredExperience;
-		OnNewLevelDelegate.Broadcast();
+		OnNewLevelDelegate.Broadcast(AbilityUpgradePointsAmountForLevel, AttributePointsAmountForLevel);
 		OnLevelUpdatedDelegate.Broadcast(CurrentLevel);
 		OnExperienceUpdatedDelegate.Broadcast(GetExperiencePercentage());
 
@@ -68,6 +70,18 @@ FXPLevels* ULevelingComponent::GetNextLevelRow() const
 	FXPLevels* LevelRow = LevelDataTable->FindRow<FXPLevels>(RowName, TEXT("Find Next Level Row"));
 	if (!LevelRow) return nullptr;
 	return LevelRow;
+}
+
+
+int ULevelingComponent::GetAttributePointsForLevel() const
+{
+	return GetNextLevelRow()->AttributePointsPerLevel;
+}
+
+
+int ULevelingComponent::GetAbilityPointsForLevel() const
+{
+	return GetNextLevelRow()->AbilityPointsPerLevel;
 }
 
 

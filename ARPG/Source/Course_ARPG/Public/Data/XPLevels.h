@@ -16,5 +16,9 @@ struct COURSE_ARPG_API FXPLevels: public FTableRowBase
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int32 Experience;
 
-	//добваляя поинтеры на объекты лучше это делать через soft references -> TSoftClassPtr<...>...
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int32 AbilityPointsPerLevel;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	int32 AttributePointsPerLevel;
 };

@@ -130,10 +130,13 @@ void UPlayerWidget::CreatePauseMenu()
 }
 
 
-void UPlayerWidget::ShowLevelUpAnimation()
+void UPlayerWidget::ShowLevelUpAnimation(int32 AbilityPoints, int32 AttributePoints)
 {
 	if (!LevelUpNotificationClass) return;
-	Cast<ULevelUpNotification>(CreateWidget(this, LevelUpNotificationClass))->AddToViewport(10);
+	ULevelUpNotification* LevelUpWidget = Cast<ULevelUpNotification>(CreateWidget(this, LevelUpNotificationClass));
+	if (!LevelUpWidget) return;
+	LevelUpWidget->SetPoints(AbilityPoints, AttributePoints);
+	LevelUpWidget->AddToViewport(10);
 }
 
 
