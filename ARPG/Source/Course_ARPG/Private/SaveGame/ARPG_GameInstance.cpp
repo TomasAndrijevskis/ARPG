@@ -35,7 +35,7 @@ void UARPG_GameInstance::HandleGameLoad()
 	LoadLevelData();
 	LoadAbilities();
 	LoadBonfires();
-	LoadDefeatedBosses();
+	//LoadDefeatedBosses();
 	LoadPlayerLocation();
 	LoadUsedAttributePoints();
 	LoadUsedAbilityPoints();

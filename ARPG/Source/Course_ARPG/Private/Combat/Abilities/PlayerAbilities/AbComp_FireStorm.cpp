@@ -67,7 +67,9 @@ void UAbComp_FireStorm::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon fire storm which\nwill burn your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nBurning duration: %.2f s\nBurn damage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetBurnDuration(), GetEnhancedBurnDamage(), GetDefaultBurnDamage(), GetEnhancedBurnDamage() - GetDefaultBurnDamage()));
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetBurnDuration(),
+	GetEnhancedBurnDamage(), GetDefaultBurnDamage(),
+	GetEnhancedBurnDamage() - GetDefaultBurnDamage()));
 }
 
 

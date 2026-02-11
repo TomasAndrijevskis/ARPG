@@ -63,7 +63,9 @@ void UAbComp_HealingAura::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon healing aura\nwhich will restore\nyour health"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per second: %.2f\n\nDefault restored health: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetAbilityDuration(), GetCooldownDuration(), GetEnhancedHealthRegenAmount(), GetDefaultHealthRegenAmount(), GetEnhancedHealthRegenAmount() - GetDefaultHealthRegenAmount()));
+	GetCurrentAbilityLevel(), GetManaCost(), GetAbilityDuration(), GetCooldownDuration(),
+	GetEnhancedHealthRegenAmount(), GetDefaultHealthRegenAmount(),
+	GetEnhancedHealthRegenAmount() - GetDefaultHealthRegenAmount()));
 }
 
 

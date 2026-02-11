@@ -57,7 +57,9 @@ void UAbComp_FrostBlast::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon blizzard which\nwill slow your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nSlow duration: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetSlowDuration(), GetEnhancedDamage(), GetDefaultDamage(), GetEnhancedDamage() -  GetDefaultDamage()));
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetSlowDuration(),
+	GetEnhancedDamage(), GetDefaultDamage(),
+	GetEnhancedDamage() - GetDefaultDamage()));
 }
 
 

@@ -23,6 +23,10 @@ public:
 	virtual void UpdateUpgradeDescription() override;
 	
 	virtual void CreateIcon() override;
+
+	void ReflectAttack(AActor* Opponent, float Damage, const UDamageType* DamageType);
+
+	void SetReflectionPercent(float NewReflectionPercent);
 	
 protected:
 
@@ -41,15 +45,18 @@ protected:
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
-
-	UFUNCTION()
+	
 	void SpawnShield();
 
-	float GetEnhancedAbilityDuration() const;
+	float GetDefaultDamageReflectionPercent() const;
+
+	float GetEnhancedDamageReflectionPercent() const;
 	
 	UPROPERTY()
 	AMagicShield* ShieldActor;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> ShieldClass;
+
+	float DamageReflectionPercent = .2f;
 };

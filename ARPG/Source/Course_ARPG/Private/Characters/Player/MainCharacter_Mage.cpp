@@ -38,7 +38,7 @@ void AMainCharacter_Mage::BeginPlay()
 	AbilityComp_HealingAura->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
-	
+	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
 	if (GetSkeletalMeshComponent()) SpawnParticles();
 }
 
@@ -74,10 +74,14 @@ void AMainCharacter_Mage::RemoveParticle()
 }
 
 
-bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent) const
+bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const
 {
-	if (AbilityComp_MagicShield->IsAbilityActive()) return false;
-	return Super::CanTakeDamage(Opponent);	
+	if (AbilityComp_MagicShield->IsAbilityActive())
+	{
+		OnAttackReflectRequestDelegate.Broadcast(Opponent, Damage, DamageType);
+		return false;
+	}
+	return Super::CanTakeDamage(Opponent, Damage, DamageType);	
 }
 
 

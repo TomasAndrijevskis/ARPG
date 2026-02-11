@@ -60,7 +60,9 @@ void UAbComp_DamageIncrease::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\n for a certain period of time\n to slay your enemies faster."
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage multiplier: x%.2f\n\nDefault multiplier: x%.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetEnhancedDamageMultiplier(), GetDefaultDamageMultiplier(), GetEnhancedDamageMultiplier() - GetDefaultDamageMultiplier()));
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(),
+	GetEnhancedDamageMultiplier(), GetDefaultDamageMultiplier(),
+	GetEnhancedDamageMultiplier() - GetDefaultDamageMultiplier()));
 }
 
 

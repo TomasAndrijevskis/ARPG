@@ -45,5 +45,5 @@ protected:
 
 	virtual void BeginPlay() override;
 
-	virtual bool CanTakeDamage(AActor* Opponent) const override;
+	virtual bool CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const override;
 };

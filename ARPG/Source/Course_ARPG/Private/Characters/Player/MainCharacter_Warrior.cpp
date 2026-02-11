@@ -44,10 +44,10 @@ void AMainCharacter_Warrior::BeginPlay()
 }
 
 
-bool AMainCharacter_Warrior::CanTakeDamage(AActor* Opponent) const
+bool AMainCharacter_Warrior::CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const
 {
 	if (PlayerAnimInstance->bIsBlocking) return !BlockComp->CanBlock(Opponent);
-	return Super::CanTakeDamage(Opponent);
+	return Super::CanTakeDamage(Opponent, Damage, DamageType);
 }
 
 

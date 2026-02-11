@@ -11,6 +11,7 @@ void UPlayerActionsComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	PlayerRef = GetOwner<AMainCharacter_Base>();
+	if (!PlayerRef) return;
 	MovementComp = PlayerRef->GetCharacterMovement();
 	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>()) return;
 	IPlayerRef = Cast<IMainPlayer>(PlayerRef);
@@ -38,7 +39,7 @@ void UPlayerActionsComponent::Walk() const
 
 void UPlayerActionsComponent::Roll()
 {
-	if (!PlayerRef || IPlayerRef) return;
+	if (!PlayerRef || !IPlayerRef) return;
 	if (bIsRollActive || !IPlayerRef->HasEnoughStamina(RollCost) || !bCanRoll) return;
 	PlayerRef->SetCanAttack(false);
 	bIsRollActive = true;

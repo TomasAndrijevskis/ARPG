@@ -116,8 +116,8 @@ float UStatsComponent::CalculateFinalReceivedDamage(const float Damage, AActor* 
 {
 	float FinalDamage = GetReducedDamage(Damage, ReductionPercent);
 	if (!Stats.Contains(Armor) || Stats[EStats::Armor] <= 0) return FinalDamage;
-	IFighter* FighterRef = GetOwner<IFighter>();
-	if (!FighterRef->CanTakeDamage(Opponent)) return 0;
+	//IFighter* FighterRef = GetOwner<IFighter>();
+	//if (!FighterRef->CanTakeDamage(Opponent)) return 0;
 	// гарантирует что блокированый урон не будет больше чем есть брони у игрока
 	float ArmorBlock = FMath::Min(Damage, Stats[EStats::Armor]);
 	FinalDamage = Damage - ArmorBlock;

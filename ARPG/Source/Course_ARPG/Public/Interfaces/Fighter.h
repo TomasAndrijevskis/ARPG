@@ -33,7 +33,7 @@ public:
 
 	virtual float GetRangeDistance() const { return 0.0f; };
 
-	virtual bool CanTakeDamage(AActor* Opponent) const {return true;};
+	virtual bool CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const {return true;};
 	
 	virtual float GetAttackAnimReductionTime() const { return 0.0f; };
 	

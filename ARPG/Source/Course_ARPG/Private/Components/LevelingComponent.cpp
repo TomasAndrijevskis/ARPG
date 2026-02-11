@@ -135,7 +135,6 @@ void ULevelingComponent::SetAbilityPoints(const int NewAbilityPointsAmount)
 
 float ULevelingComponent::GetExperiencePercentage() const
 {
-	UE_LOG(LogTemp, Warning, TEXT("Percent %f"), CurrentExperience / RequiredExperience);
 	return CurrentExperience / RequiredExperience;
 }
 

@@ -74,7 +74,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	{
 		AActor* TargetActor = Hit.GetActor();
 
-		if (TargetActor == Cast<AMagicShield>(Hit.GetActor())) break;
+		//if (TargetActor == Cast<AMagicShield>(Hit.GetActor())) break;
 		if (TargetsToIgnore.Contains(TargetActor)) continue;
 		UGameplayStatics::ApplyDamage(TargetActor, CharacterDamage, GetOwner()->GetInstigatorController(), GetOwner(), FighterRef->GetDamageType());
 		TargetsToIgnore.AddUnique(TargetActor);

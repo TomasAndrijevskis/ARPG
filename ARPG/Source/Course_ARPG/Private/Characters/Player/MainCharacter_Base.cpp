@@ -96,6 +96,7 @@ void AMainCharacter_Base::CreatePlayerWidget()
 
 void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
+	if (!CanTakeDamage(DamageCauser, Damage, DamageType)) return;
 	float FinalDamage = Damage;
 	if (DamageType && DamageType->IsA(UPhysicalDamageType::StaticClass()))
 		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, DamageCauser,  StatsComp->GetStatValue(EStats::PhysDmgResistance));
@@ -133,7 +134,7 @@ void AMainCharacter_Base::EndLockonWithActor(AActor* ActorRef)
 }
 
 
-bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent) const
+bool AMainCharacter_Base::CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const
 {
 	if (PlayerActionsComp->IsRollActive()) return false;
 	if (PlayerAnimInstance->bIsBlocking) return false;

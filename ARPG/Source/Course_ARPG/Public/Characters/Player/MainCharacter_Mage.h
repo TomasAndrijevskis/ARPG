@@ -13,6 +13,7 @@ class UAbComp_FrostBlast;
 class UAbComp_FireStorm;
 class UAbComp_HealingAura;
 
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FOnAttackReflectRequest, AActor*, float, const UDamageType*);
 UCLASS()
 class COURSE_ARPG_API AMainCharacter_Mage : public AMainCharacter_Base
 {
@@ -22,7 +23,7 @@ public:
 	
 	AMainCharacter_Mage();
 
-	virtual bool CanTakeDamage(AActor* Opponent) const override;
+	virtual bool CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const override;
 	
 	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 
@@ -39,6 +40,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_HealingAura* AbilityComp_HealingAura;
+
+	FOnAttackReflectRequest OnAttackReflectRequestDelegate;
 	
 protected:
 
