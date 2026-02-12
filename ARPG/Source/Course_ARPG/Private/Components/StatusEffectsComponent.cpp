@@ -12,7 +12,6 @@ void UStatusEffectsComponent::BeginPlay()
 	OnResistanceChangedDelegate.AddUObject(this, &UStatusEffectsComponent::SetDamageResistance);
 	CharacterRef = Cast<ACharacter>(GetOwner());
 	if (CharacterRef) SkeletalMeshComp = CharacterRef->GetMesh();
-	SetVisualData();
 	HandleOwner();
 }
 

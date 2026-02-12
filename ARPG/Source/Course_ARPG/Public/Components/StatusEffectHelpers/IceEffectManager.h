@@ -21,7 +21,7 @@ protected:
 	
 	virtual void StopEffect() override;
 	
-	virtual void SetVisualData() override;
+	virtual void SetVisualData(EEffects StatusEffect) override;
 
 	virtual float GetFinalDamage(const float Damage) override;
 

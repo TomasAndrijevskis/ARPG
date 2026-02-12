@@ -12,14 +12,15 @@ void UIceEffectManager::BeginPlay()
 	Super::BeginPlay();
 	if (!CharacterRef) return;
 	OriginalSpeed = CharacterRef->GetCharacterMovement()->MaxWalkSpeed;
+	SetVisualData(EEffects::Ice);
 }
 
 
-void UIceEffectManager::SetVisualData()
+void UIceEffectManager::SetVisualData(EEffects StatusEffect)
 {
 	if (!StatusEffectsVisualDataAsset) return;
-	Effect = StatusEffectsVisualDataAsset->IceEffectData.Effect;
-	Icon = StatusEffectsVisualDataAsset->IceEffectData.Icon;
+	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
+	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
 }
 
 
@@ -29,10 +30,10 @@ void UIceEffectManager::HandleFreeze(const float SlowDuration, const float NewDa
 	FreezeDamage = GetFinalDamage(NewDamage);
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (Effect && Icon)
+	if (VisualEffect && Icon)
 	{
 		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
+				VisualEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}

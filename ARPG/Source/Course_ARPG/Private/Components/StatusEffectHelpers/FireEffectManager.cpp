@@ -7,11 +7,18 @@
 #include "GameFramework/Character.h"
 
 
-void UFireEffectManager::SetVisualData()
+void UFireEffectManager::BeginPlay()
+{
+	Super::BeginPlay();
+	SetVisualData(EEffects::Fire);
+}
+
+
+void UFireEffectManager::SetVisualData(EEffects StatusEffect)
 {
 	if (!StatusEffectsVisualDataAsset) return;
-	Effect = StatusEffectsVisualDataAsset->FireEffectData.Effect;
-	Icon = StatusEffectsVisualDataAsset->FireEffectData.Icon;
+	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
+	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
 }
 
 
@@ -23,18 +30,18 @@ void UFireEffectManager::HandleBurn(const float NewBurnDuration, const float New
 	bIsOverlapping = bNewIsOverlapping;
 	BurnRate = NewBurnRate;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (Effect && Icon && bIsOverlapping)
+	if (VisualEffect && Icon && bIsOverlapping)
 	{
 		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator, EffectScale,
+				VisualEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator, EffectScale,
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
-	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UFireEffectManager::Burn, BurnRate, true);
+	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UFireEffectManager::ApplyBurn, BurnRate, true);
 }
 
 
-void UFireEffectManager::Burn()
+void UFireEffectManager::ApplyBurn()
 {
 	if (BurnDuration > 0)
 	{

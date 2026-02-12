@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Data/EEffects.h"
 #include "StatusEffectsComponent.generated.h"
 
 
@@ -36,7 +37,7 @@ protected:
 	UFUNCTION()
 	virtual void StopEffect();
 
-	virtual void SetVisualData(){};
+	virtual void SetVisualData(EEffects StatusEffect){};
 
 	virtual float GetFinalDamage(const float Damage) {return 0.f;}
 
@@ -49,7 +50,7 @@ protected:
 	UNiagaraComponent* EffectRef;
 	
 	UPROPERTY()
-	UNiagaraSystem* Effect;
+	UNiagaraSystem* VisualEffect;
 	
 	UPROPERTY()
 	UTexture2D* Icon;

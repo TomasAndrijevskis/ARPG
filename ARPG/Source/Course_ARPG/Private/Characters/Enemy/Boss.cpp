@@ -47,9 +47,8 @@ void ABoss::HandleDeath()
 {
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 	if (!PlayerController) return;
-	TArray<AActor*> FoundActors;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ABossLocationDoor::StaticClass(), FoundActors);
-	if (FoundActors.Num() > 0) Cast<ABossLocationDoor>(FoundActors.Last())->OnBossDiedDelegate.Broadcast();
+	AActor* BossDoor = UGameplayStatics::GetActorOfClass(GetWorld(), ABossLocationDoor::StaticClass());
+	if (BossDoor) Cast<ABossLocationDoor>(BossDoor)->OnBossDiedDelegate.Broadcast();
 	PlayerController->AddDefeatedBoss(FName(*GetClass()->GetName()));
 	PlayerController->SaveAll();
 	Super::HandleDeath();

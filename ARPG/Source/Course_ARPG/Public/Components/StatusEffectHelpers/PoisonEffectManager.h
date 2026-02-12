@@ -19,14 +19,16 @@ public:
 	
 protected:
 
-	virtual void SetVisualData() override;
+	virtual void BeginPlay() override;
+	
+	virtual void SetVisualData(EEffects StatusEffect) override;
 
 	virtual void SetDamageResistance(float NewResistance) override;
 	
 private:
 
 	UFUNCTION()
-	void Poison();
+	void ApplyPoison();
 
 	UPROPERTY(EditAnywhere)
 	float PoisonDamageResistance;

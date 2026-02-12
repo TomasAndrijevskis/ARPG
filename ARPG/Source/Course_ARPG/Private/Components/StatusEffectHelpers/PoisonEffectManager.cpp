@@ -7,11 +7,18 @@
 #include "Engine/DamageEvents.h"
 
 
-void UPoisonEffectManager::SetVisualData()
+void UPoisonEffectManager::BeginPlay()
+{
+	Super::BeginPlay();
+	SetVisualData(EEffects::Poison);
+}
+
+
+void UPoisonEffectManager::SetVisualData(EEffects StatusEffect)
 {
 	if (!StatusEffectsVisualDataAsset) return;
-	Effect = StatusEffectsVisualDataAsset->PoisonEffectData.Effect;
-	Icon = StatusEffectsVisualDataAsset->PoisonEffectData.Icon;
+	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
+	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
 }
 
 
@@ -23,18 +30,18 @@ void UPoisonEffectManager::HandlePoison(const float NewPoisonDuration, const flo
 	PoisonRate = NewPoisonRate;
 	AbilityCompRef = NewAbilityCompRef;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (Effect && Icon)
+	if (VisualEffect && Icon)
 	{
 		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				Effect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
+				VisualEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
-	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UPoisonEffectManager::Poison, PoisonRate, true);
+	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UPoisonEffectManager::ApplyPoison, PoisonRate, true);
 }
 
 
-void UPoisonEffectManager::Poison()
+void UPoisonEffectManager::ApplyPoison()
 {
 	if (PoisonDuration > 0)
 	{

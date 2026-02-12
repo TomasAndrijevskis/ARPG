@@ -13,7 +13,7 @@ struct COURSE_ARPG_API FStatusEffectData
 	GENERATED_BODY()
 	
 	UPROPERTY(EditDefaultsOnly)
-	UNiagaraSystem* Effect;
+	UNiagaraSystem* VisualEffect;
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* Icon;

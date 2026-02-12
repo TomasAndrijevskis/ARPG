@@ -17,7 +17,9 @@ public:
 
 protected:
 
-	virtual void SetVisualData() override;
+	virtual void BeginPlay() override;
+	
+	virtual void SetVisualData(EEffects StatusEffect) override;
 
 	virtual float GetFinalDamage(const float Damage) override;
 
@@ -26,7 +28,7 @@ protected:
 private:
 
 	UFUNCTION()
-	void Burn();
+	void ApplyBurn();
 
 	UPROPERTY(EditAnywhere)
 	float BurnDamageResistance;
