@@ -39,6 +39,9 @@ private:
 	UFUNCTION()
 	void RemoveWidget();
 
+	UFUNCTION()
+	void RequestToRemoveWidget();
+	
 	UPROPERTY()
 	UPlayerWidget* PlayerWidgetRef;
 };

@@ -2,7 +2,6 @@
 #include "UI/BonfireMenu.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/Button.h"
-#include "Kismet/GameplayStatics.h"
 #include "UI/PlayerWidget.h"
 
 
@@ -16,6 +15,7 @@ void UBonfireMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 	if (!PlayerWidgetRef) return;
+	Button_QuitBonfire->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RequestToRemoveWidget);
 	Button_AbilitiesScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
 	Button_AttributesScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAttributesUpgradeScreen);
 	Button_QuickTravelMenu->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateQuickTravelMenuWidget);
@@ -28,8 +28,13 @@ void UBonfireMenu::NativeConstruct()
 
 void UBonfireMenu::RemoveWidget()
 {
+	this->RemoveFromParent();
+}
+
+
+void UBonfireMenu::RequestToRemoveWidget()
+{
 	AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 	if (!PC) return;
 	PC->HandleBonfireMenuQuit();
-	this->RemoveFromParent();
 }
