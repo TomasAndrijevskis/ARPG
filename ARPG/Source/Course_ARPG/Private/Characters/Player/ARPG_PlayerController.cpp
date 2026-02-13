@@ -73,8 +73,11 @@ void AARPG_PlayerController::HandleResetMenuQuit()
 }
 
 
-void AARPG_PlayerController::HandleEnchantmentCubeInteraction()
+void AARPG_PlayerController::HandleEnchantmentSphereInteraction()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Interact with Sphere"));
+	if (!bIsInMagicalSphereRange) return;
+	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Sphere"));
 	PlayerRef->CreateEnchantmentMenu();
 	GameInstanceRef->SaveAll();
 	HandleGamePause(true);
@@ -192,6 +195,12 @@ void AARPG_PlayerController::SetIsInBonfireRange(const bool bNewIsInBonfireRange
 void AARPG_PlayerController::SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange)
 {
 	bIsInMagicalCubeRange = bNewIsInMagicalCubeRange;
+}
+
+
+void AARPG_PlayerController::SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange)
+{
+	bIsInMagicalSphereRange = bNewIsInMagicalSphereRange;
 }
 
 

@@ -15,7 +15,7 @@ AInteractableObject_Base::AInteractableObject_Base()
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	ObjectMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ObjectMesh"));
 	ObjectMesh -> SetupAttachment(RootComponent);
-	ObjectCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("BonfireCollision"));
+	ObjectCollision = CreateDefaultSubobject<UBoxComponent>(TEXT("ObjectCollision"));
 	ObjectCollision -> SetupAttachment(ObjectMesh);
 	InteractionRange = CreateDefaultSubobject<USphereComponent>(TEXT("InteractionRangeCollision"));
 	InteractionRange -> SetupAttachment(ObjectMesh);

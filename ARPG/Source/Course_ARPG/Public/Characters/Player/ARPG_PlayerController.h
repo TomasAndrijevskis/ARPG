@@ -23,25 +23,20 @@ class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 
 public:
 	
-	UFUNCTION()
 	void HandleBonfireMenuQuit();
-
-	UFUNCTION()
+	
 	void HandleResetMenuQuit();
-
-	UFUNCTION()
+	
 	void HandleEnchantmentMenuQuit();
 	
-	UFUNCTION()
 	void SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
-
-	UFUNCTION()
-	void SetIsInDoorRange(const bool bNewIsInDoorRange);
-
-	UFUNCTION()
-	void SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange);
 	
-	UFUNCTION()
+	void SetIsInDoorRange(const bool bNewIsInDoorRange);
+	
+	void SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange);
+
+	void SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange);
+	
 	void SetMapName(const FString& NewMapName);
 	
 	UFUNCTION()
@@ -89,7 +84,7 @@ protected:
 	void TeleportToMap();
 
 	UFUNCTION(BlueprintCallable)
-	void HandleEnchantmentCubeInteraction();
+	void HandleEnchantmentSphereInteraction();
 	
 private:
 	
@@ -130,6 +125,8 @@ private:
 	bool bIsInDoorRange = false;
 
 	bool bIsInMagicalCubeRange = false;
+
+	bool bIsInMagicalSphereRange = false;
 	
 	FString MapName;
 };
