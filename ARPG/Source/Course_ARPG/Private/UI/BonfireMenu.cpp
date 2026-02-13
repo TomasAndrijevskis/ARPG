@@ -15,11 +15,9 @@ void UBonfireMenu::Init(UPlayerWidget* PlayerWidget)
 void UBonfireMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
-	if (!PlayerController || !PlayerWidgetRef) return;
+	if (!PlayerWidgetRef) return;
 	Button_AbilitiesScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
 	Button_AttributesScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAttributesUpgradeScreen);
-	Button_QuitBonfire->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::HandleBonfireMenuQuit);
 	Button_QuickTravelMenu->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateQuickTravelMenuWidget);
 	Button_QuitBonfire->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
 	Button_QuickTravelMenu->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
@@ -30,5 +28,8 @@ void UBonfireMenu::NativeConstruct()
 
 void UBonfireMenu::RemoveWidget()
 {
+	AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
+	if (!PC) return;
+	PC->HandleBonfireMenuQuit();
 	this->RemoveFromParent();
 }

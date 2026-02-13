@@ -13,6 +13,7 @@
 #include "UI/AttributeUpgradeWidget.h"
 #include "UI/AbilityIconWithAmount.h"
 #include "UI/AbilityIconWithTimer.h"
+#include "UI/EnchantmentMenuWidget.h"
 #include "UI/StatusEffectIcon.h"
 
 
@@ -57,6 +58,15 @@ void UPlayerWidget::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsCompo
 	if (!StatusEffectIconRef) return;
 	StatusEffectIconRef->InitializeWidget(Icon, IconSize, StatusEffectsCompRef);
 	HorizontalBox_StatusEffects->AddChild(StatusEffectIconRef);
+}
+
+
+void UPlayerWidget::CreateEnchantmentMenuWidget()
+{
+	if (!EnchantmentMenuClass) return;
+	UEnchantmentMenuWidget* EnchantmentMenuRef = Cast<UEnchantmentMenuWidget>(CreateWidget(this, EnchantmentMenuClass));
+	if (!EnchantmentMenuRef) return;
+	EnchantmentMenuRef->AddToViewport(5);
 }
 
 

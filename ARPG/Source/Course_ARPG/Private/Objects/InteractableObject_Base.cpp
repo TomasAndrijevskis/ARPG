@@ -27,7 +27,7 @@ AInteractableObject_Base::AInteractableObject_Base()
 void AInteractableObject_Base::BeginPlay()
 {
 	Super::BeginPlay();
-	PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(GetWorld(), 0));
+	PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 	if (!PlayerController) return;
 	InteractionRange->OnComponentBeginOverlap.AddDynamic(this, &AInteractableObject_Base::OnSphereBeginOverlap);
 	InteractionRange->OnComponentEndOverlap.AddDynamic(this, &AInteractableObject_Base::OnSphereEndOverlap);

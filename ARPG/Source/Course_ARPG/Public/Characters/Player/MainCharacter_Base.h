@@ -147,6 +147,8 @@ public:
 	UFUNCTION()
 	void CreateBonfireMenu();
 
+	void CreateEnchantmentMenu();
+	
 	void CreateResetMenu();
 	
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);

@@ -6,6 +6,7 @@
 #include "PlayerWidget.generated.h"
 
 
+class UEnchantmentMenuWidget;
 class UStatusEffectsComponent;
 class UStatusEffectIcon;
 class UResetWidget;
@@ -86,6 +87,8 @@ public:
 
 	UFUNCTION()
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
+
+	void CreateEnchantmentMenuWidget();
 	
 	UPROPERTY()
 	TMap<FString, UAbilityIconWithAmount*> ActiveStatusWidget;
@@ -148,6 +151,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UResetWidget> ResetWidgetClass;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UEnchantmentMenuWidget> EnchantmentMenuClass;
 	
 	UPROPERTY(EditAnywhere)
 	FVector2D IconSize;

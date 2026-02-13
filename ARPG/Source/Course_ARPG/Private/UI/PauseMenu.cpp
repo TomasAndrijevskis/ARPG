@@ -11,7 +11,7 @@
 void UPauseMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
+	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 	if (!PlayerController) return;
 	Button_Resume->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::RemovePauseMenu);
 	Button_Resume->OnClicked.AddUniqueDynamic(this, &UPauseMenu::RemoveWidget);

@@ -21,13 +21,25 @@ public:
 private:
 
 	UPROPERTY(meta=(BindWidget))
-	UHorizontalBox* HorizontalBox;
+	UHorizontalBox* HorizontalBox_Elements;
+
+	UPROPERTY(meta=(BindWidget))
+	UButton* Button_Close;
 	
 	void CreateButtons();
 
-	//UButton* CreateButton(UTexture2D* Image);
+	void ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle, TEnumAsByte<ESlateBrushDrawType::Type> DrawType);
+	
+	UButton* CreateButton(UTexture2D* Image);
+
+	UFUNCTION()
+	void RemoveWidget();
+	
+	void SetButtonAlignment(UButton* Button);
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
-	
+
+	UPROPERTY(EditDefaultsOnly)
+	FVector2D ImageSize;
 };

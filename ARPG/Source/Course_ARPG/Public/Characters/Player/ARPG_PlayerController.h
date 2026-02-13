@@ -28,6 +28,9 @@ public:
 
 	UFUNCTION()
 	void HandleResetMenuQuit();
+
+	UFUNCTION()
+	void HandleEnchantmentMenuQuit();
 	
 	UFUNCTION()
 	void SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
@@ -84,6 +87,9 @@ protected:
 	
 	UFUNCTION(BlueprintCallable)
 	void TeleportToMap();
+
+	UFUNCTION(BlueprintCallable)
+	void HandleEnchantmentCubeInteraction();
 	
 private:
 	

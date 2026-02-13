@@ -10,10 +10,7 @@
 void UResetWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0));
-	if (!PlayerController) return;
 	Button_Close->OnClicked.AddUniqueDynamic(this, &UResetWidget::RemoveWidget);
-	Button_Close->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::HandleResetMenuQuit);
 	Button_ResetAbilities->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
 	Button_ResetAttributes->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAttributesClicked);
 }
@@ -74,5 +71,8 @@ void UResetWidget::HandleResetAttributes()
 
 void UResetWidget::RemoveWidget()
 {
+	AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
+	if (!PC) return;
+	PC->HandleResetMenuQuit();
 	this->RemoveFromParent();
 }

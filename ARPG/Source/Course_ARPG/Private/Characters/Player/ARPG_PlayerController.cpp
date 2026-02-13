@@ -30,6 +30,7 @@ void AARPG_PlayerController::HandleBonfireInteraction()
 	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Bonfire"));
 	PlayerRef->CreateBonfireMenu();
 	GameInstanceRef->SaveAll();
+	if (PlayerRef->IsPlayerLockedOnEnemy()) PlayerRef->EndPlayerLockOnEnemy();
 	HandleGamePause(true);
 	if (!UnlockedBonfires.Contains(BonfireRef->GetBonfireName()))
 	{
@@ -51,7 +52,6 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
 	if (!GameMode) return;
 	GameMode->SpawnEnemies();
-	if (PlayerRef->IsPlayerLockedOnEnemy()) PlayerRef->EndPlayerLockOnEnemy();
 }
 
 
@@ -67,6 +67,21 @@ void AARPG_PlayerController::HandleMagicalCubeInteraction()
 
 
 void AARPG_PlayerController::HandleResetMenuQuit()
+{
+	HandleGamePause(false);
+	GameInstanceRef->SaveAll();
+}
+
+
+void AARPG_PlayerController::HandleEnchantmentCubeInteraction()
+{
+	PlayerRef->CreateEnchantmentMenu();
+	GameInstanceRef->SaveAll();
+	HandleGamePause(true);
+}
+
+
+void AARPG_PlayerController::HandleEnchantmentMenuQuit()
 {
 	HandleGamePause(false);
 	GameInstanceRef->SaveAll();

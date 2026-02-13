@@ -444,6 +444,12 @@ void AMainCharacter_Base::CreateBonfireMenu()
 }
 
 
+void AMainCharacter_Base::CreateEnchantmentMenu()
+{
+	PlayerWidgetRef->CreateEnchantmentMenuWidget();
+}
+
+
 void AMainCharacter_Base::CreateResetMenu()
 {
 	PlayerWidgetRef->CreateResetWidget();
