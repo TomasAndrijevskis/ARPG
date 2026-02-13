@@ -6,6 +6,7 @@
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "EnchantmentMenuWidget.generated.h"
 
+class UEnchantmentButton;
 class UHorizontalBox;
 class UButton;
 
@@ -27,19 +28,17 @@ private:
 	UButton* Button_Close;
 	
 	void CreateButtons();
-
-	void ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle, TEnumAsByte<ESlateBrushDrawType::Type> DrawType);
 	
-	UButton* CreateButton(UTexture2D* Image);
-
+	UEnchantmentButton* CreateButton(UTexture2D* Image, EEffects Effect);
+	
 	UFUNCTION()
 	void RemoveWidget();
 	
-	void SetButtonAlignment(UButton* Button);
+	void SetButtonAlignment(UEnchantmentButton* Button);
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
 
 	UPROPERTY(EditDefaultsOnly)
-	FVector2D ImageSize;
+	TSubclassOf<UUserWidget> EnchantmentButtonClass;
 };

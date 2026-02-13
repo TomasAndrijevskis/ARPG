@@ -5,6 +5,7 @@
 #include "Components/Button.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
+#include "UI/EnchantmentButton.h"
 
 
 void UEnchantmentMenuWidget::NativeConstruct()
@@ -20,40 +21,28 @@ void UEnchantmentMenuWidget::CreateButtons()
 	if (!StatusEffectsVisualDataAsset) return;
 	for (const auto& StatusEffect : StatusEffectsVisualDataAsset->StatusEffects)
 	{
-		if (StatusEffect.Value.Icon) SetButtonAlignment(CreateButton(StatusEffect.Value.Icon));
+		if (StatusEffect.Value.Icon) SetButtonAlignment(CreateButton(StatusEffect.Value.Icon, StatusEffect.Key));
 	}
 }
 
 
-UButton* UEnchantmentMenuWidget::CreateButton(UTexture2D* Image)
+UEnchantmentButton* UEnchantmentMenuWidget::CreateButton(UTexture2D* Image, EEffects Effect)
 {
-	UButton* NewButton = WidgetTree->ConstructWidget<UButton>(UButton::StaticClass());
+	if (!EnchantmentButtonClass) return nullptr;
+	UEnchantmentButton* NewButton = Cast<UEnchantmentButton>(CreateWidget(this, EnchantmentButtonClass));
 	if (!NewButton) return nullptr;
-	FButtonStyle CustomStyle;
-	ApplyImageStyle(Image, CustomStyle.Normal, ESlateBrushDrawType::Image);
-	ApplyImageStyle(Image, CustomStyle.Hovered, ESlateBrushDrawType::RoundedBox);
-	ApplyImageStyle(Image, CustomStyle.Pressed, ESlateBrushDrawType::RoundedBox);
-	ApplyImageStyle(Image, CustomStyle.Disabled, ESlateBrushDrawType::Image);
-	NewButton->SetStyle(CustomStyle);
+	NewButton->SetImage(Image);
+	NewButton->SetEffect(Effect);
 	return NewButton;
 }
 
 
-void UEnchantmentMenuWidget::ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle,TEnumAsByte<ESlateBrushDrawType::Type> DrawType)
-{
-	BrushStyle.SetResourceObject(Image);
-	BrushStyle.Tiling = ESlateBrushTileType::NoTile;
-	BrushStyle.DrawAs = DrawType;
-	BrushStyle.ImageSize = ImageSize;
-}
-
-
-void UEnchantmentMenuWidget::SetButtonAlignment(UButton* Button)
+void UEnchantmentMenuWidget::SetButtonAlignment(UEnchantmentButton* Button)
 {
 	UHorizontalBoxSlot* HBSlot = HorizontalBox_Elements->AddChildToHorizontalBox(Button);
 	if (HBSlot)
 	{
-		HBSlot->SetPadding(FMargin(10.f, 5.f));
+		HBSlot->SetPadding(FMargin(10.f, 10.f));
 		HBSlot->SetHorizontalAlignment(HAlign_Fill);
 		HBSlot->SetVerticalAlignment(VAlign_Center);
 	}

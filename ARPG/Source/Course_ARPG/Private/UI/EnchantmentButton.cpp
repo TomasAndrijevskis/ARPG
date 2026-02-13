@@ -1,0 +1,43 @@
+
+#include "UI/EnchantmentButton.h"
+#include "Components/Button.h"
+
+
+void UEnchantmentButton::NativeConstruct()
+{
+	Super::NativeConstruct();
+	Button_Element->OnClicked.AddUniqueDynamic(this, &UEnchantmentButton::Test);
+}
+
+
+void UEnchantmentButton::Test()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Effect: %s"), *UEnum::GetValueAsString(Effect));
+}
+
+
+void UEnchantmentButton::SetEffect(EEffects NewEffect)
+{
+	Effect = NewEffect;
+}
+
+
+void UEnchantmentButton::SetImage(UTexture2D* Image)
+{
+	if (!Image) return;
+	FButtonStyle CustomStyle;
+	ApplyImageStyle(Image, CustomStyle.Normal, ESlateBrushDrawType::Image);
+	ApplyImageStyle(Image, CustomStyle.Hovered, ESlateBrushDrawType::RoundedBox);
+	ApplyImageStyle(Image, CustomStyle.Pressed, ESlateBrushDrawType::RoundedBox);
+	ApplyImageStyle(Image, CustomStyle.Disabled, ESlateBrushDrawType::Image);
+	Button_Element->SetStyle(CustomStyle);
+}
+
+
+void UEnchantmentButton::ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle,TEnumAsByte<ESlateBrushDrawType::Type> DrawType)
+{
+	BrushStyle.SetResourceObject(Image);
+	BrushStyle.Tiling = ESlateBrushTileType::NoTile;
+	BrushStyle.DrawAs = DrawType;
+	BrushStyle.ImageSize = ImageSize;
+}
