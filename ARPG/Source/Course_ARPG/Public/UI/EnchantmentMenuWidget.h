@@ -40,5 +40,5 @@ private:
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UUserWidget> EnchantmentButtonClass;
+	TSubclassOf<UEnchantmentButton> EnchantmentButtonClass;
 };

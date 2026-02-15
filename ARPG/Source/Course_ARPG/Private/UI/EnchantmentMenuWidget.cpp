@@ -33,6 +33,7 @@ UEnchantmentButton* UEnchantmentMenuWidget::CreateButton(UTexture2D* Image, EEff
 	if (!NewButton) return nullptr;
 	NewButton->SetImage(Image);
 	NewButton->SetEffect(Effect);
+	NewButton->OnEnchantmentConfirmedDelegate.AddUObject(this, &UEnchantmentMenuWidget::RemoveWidget);
 	return NewButton;
 }
 

@@ -34,10 +34,10 @@ void UResetWidget::OnResetAttributesClicked()
 void UResetWidget::CreateConfirmationWindow()
 {
 	if (!ConfirmationWindowClass) return;
-	UConfirmationWindow* ConfirmationWindow = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowClass));
-	if (!ConfirmationWindow) return;
-	ConfirmationWindow->AddToViewport(7);
-	ConfirmationWindow->OnConfirmedDelegate.AddUObject(this, &UResetWidget::OnConfirmed);
+	UConfirmationWindow* ConfirmationWindowRef = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowClass));
+	if (!ConfirmationWindowRef) return;
+	ConfirmationWindowRef->AddToViewport(10);
+	ConfirmationWindowRef->OnConfirmedDelegate.AddUObject(this, &UResetWidget::OnConfirmed);
 }
 
 

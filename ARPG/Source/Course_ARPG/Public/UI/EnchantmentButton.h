@@ -7,8 +7,10 @@
 #include "EnchantmentButton.generated.h"
 
 
+class UConfirmationWindow;
 class UButton;
 
+DECLARE_MULTICAST_DELEGATE(FOnEnchantmentConfirmed);
 UCLASS()
 class COURSE_ARPG_API UEnchantmentButton : public UUserWidget
 {
@@ -21,9 +23,8 @@ public:
 	void SetImage(UTexture2D* Image);
 
 	void SetEffect(EEffects NewEffect);
-	
-	UFUNCTION()
-	void Test();
+
+	FOnEnchantmentConfirmed OnEnchantmentConfirmedDelegate;
 	
 private:
 	
@@ -31,6 +32,15 @@ private:
 	UButton* Button_Element;
 
 	void ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle, TEnumAsByte<ESlateBrushDrawType::Type> DrawType);
+
+	UFUNCTION()
+	void CreateConfirmationWindow();
+
+	UFUNCTION()
+	void OnConfirmed();
+	
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UConfirmationWindow> ConfirmationWindowWidgetClass;
 	
 	UPROPERTY(EditDefaultsOnly)
 	FVector2D ImageSize;

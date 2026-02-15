@@ -1,18 +1,13 @@
 
 #include "UI/EnchantmentButton.h"
 #include "Components/Button.h"
+#include "UI/ConfirmationWindow.h"
 
 
 void UEnchantmentButton::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_Element->OnClicked.AddUniqueDynamic(this, &UEnchantmentButton::Test);
-}
-
-
-void UEnchantmentButton::Test()
-{
-	UE_LOG(LogTemp, Warning, TEXT("Effect: %s"), *UEnum::GetValueAsString(Effect));
+	Button_Element->OnClicked.AddUniqueDynamic(this, &UEnchantmentButton::CreateConfirmationWindow);
 }
 
 
@@ -40,4 +35,21 @@ void UEnchantmentButton::ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushSt
 	BrushStyle.Tiling = ESlateBrushTileType::NoTile;
 	BrushStyle.DrawAs = DrawType;
 	BrushStyle.ImageSize = ImageSize;
+}
+
+
+void UEnchantmentButton::CreateConfirmationWindow()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Effect: %s"), *UEnum::GetValueAsString(Effect));
+	if (!ConfirmationWindowWidgetClass) return;
+	UConfirmationWindow* ConfirmationWindowRef = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowWidgetClass));
+	if (!ConfirmationWindowRef) return;
+	ConfirmationWindowRef->AddToViewport(10);
+	ConfirmationWindowRef->OnConfirmedDelegate.AddUObject(this, &UEnchantmentButton::OnConfirmed);
+}
+
+
+void UEnchantmentButton::OnConfirmed()
+{
+	OnEnchantmentConfirmedDelegate.Broadcast();
 }
