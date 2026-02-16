@@ -22,7 +22,7 @@ public:
 	
 	void SetImage(UTexture2D* Image);
 
-	void SetEffect(EEffects NewEffect);
+	void SetEffect(EEffects NewEffect) {Effect = NewEffect;}
 
 	FOnEnchantmentConfirmed OnEnchantmentConfirmedDelegate;
 	

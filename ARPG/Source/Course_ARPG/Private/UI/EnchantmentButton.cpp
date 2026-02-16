@@ -1,6 +1,8 @@
 
 #include "UI/EnchantmentButton.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
+#include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
 
 
@@ -8,12 +10,6 @@ void UEnchantmentButton::NativeConstruct()
 {
 	Super::NativeConstruct();
 	Button_Element->OnClicked.AddUniqueDynamic(this, &UEnchantmentButton::CreateConfirmationWindow);
-}
-
-
-void UEnchantmentButton::SetEffect(EEffects NewEffect)
-{
-	Effect = NewEffect;
 }
 
 
@@ -52,4 +48,7 @@ void UEnchantmentButton::CreateConfirmationWindow()
 void UEnchantmentButton::OnConfirmed()
 {
 	OnEnchantmentConfirmedDelegate.Broadcast();
+	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	if (!PlayerRef) return;
+	PlayerRef->HandleEffectChange(Effect);
 }

@@ -176,6 +176,8 @@ public:
 	void FillAdditionalStatsDisplayData(FPlayerAdditionalStatsData& Data) const;
 
 	float GetAbilityPowerPercent() const;
+
+	virtual void HandleEffectChange(EEffects NewEffect){};
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -222,6 +224,11 @@ protected:
 
 	UFUNCTION()
 	virtual void HandleDeath();
+
+	EEffects CurrentEffect;
+
+	UPROPERTY(EditDefaultsOnly)
+	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
 	
 private:
 
@@ -261,7 +268,7 @@ private:
 
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
-
+	
 	bool bCanPlayHurtAnim = true;
 
 	bool bIsInFight = false;

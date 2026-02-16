@@ -25,6 +25,8 @@ public:
 	void SetArmor(const float Armor);
 
 	virtual TSubclassOf<UDamageType> GetDamageType() const override;
+
+	virtual void HandleEffectChange(EEffects NewEffect) override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UAbComp_DamageIncrease* AbilityComp_DamageIncrease;
@@ -46,4 +48,17 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual bool CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const override;
+
+private:
+
+	void RemoveParticle();
+	
+	UPROPERTY()
+	UNiagaraComponent* WeaponEffect;
+
+	UPROPERTY(EditDefaultsOnly)
+	UNiagaraSystem* WeaponEffectSystem;
+
+	UPROPERTY(EditDefaultsOnly)
+	FName SocketName; //FX_Sword_Bottom
 };

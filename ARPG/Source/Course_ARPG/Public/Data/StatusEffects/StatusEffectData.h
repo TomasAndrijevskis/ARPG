@@ -17,4 +17,10 @@ struct COURSE_ARPG_API FStatusEffectData
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* Icon;
+
+	UPROPERTY(EditDefaultsOnly)
+	UNiagaraSystem* WeaponEffect_N;
+
+	UPROPERTY(EditDefaultsOnly)
+	UParticleSystem* WeaponEffect_P;
 };

@@ -28,6 +28,8 @@ public:
 	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 
 	virtual float GetMagicalDamage() const override;
+
+	virtual void HandleEffectChange(EEffects NewEffect) override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_MagicShield* AbilityComp_MagicShield;

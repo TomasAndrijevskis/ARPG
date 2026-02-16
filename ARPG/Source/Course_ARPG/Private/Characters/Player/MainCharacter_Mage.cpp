@@ -10,6 +10,7 @@
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_Mage.h"
 #include "Components/StatsComponent.h"
+#include "Data/StatusEffects/StatusEffectsVisualData.h"
 
 
 AMainCharacter_Mage::AMainCharacter_Mage()
@@ -94,4 +95,17 @@ TSubclassOf<UDamageType> AMainCharacter_Mage::GetDamageType() const
 float AMainCharacter_Mage::GetMagicalDamage() const
 {
 	return StatsComp->GetStatValue(EStats::MagicalStrength) / 2; //half damage for each hand
+}
+
+
+void AMainCharacter_Mage::HandleEffectChange(EEffects NewEffect)
+{
+	CurrentEffect = NewEffect;
+	if (!StatusEffectsVisualDataAsset) return;
+	for (const auto& Element : StatusEffectsVisualDataAsset->StatusEffects)
+	{
+		if (CurrentEffect == Element.Key) Particle = Element.Value.WeaponEffect_P;
+	}
+	RemoveParticle();
+	SpawnParticles();
 }

@@ -1,5 +1,8 @@
 
 #include "Characters/Player/MainCharacter_Warrior.h"
+
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Animations/PlayerAnimInstance.h"
 #include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
@@ -10,6 +13,7 @@
 #include "Components/CombatComponent_Base.h"
 #include "Components/StatsComponent.h"
 #include "Components/TraceComponent.h"
+#include "Data/StatusEffects/StatusEffectsVisualData.h"
 
 
 AMainCharacter_Warrior::AMainCharacter_Warrior()
@@ -68,4 +72,30 @@ void AMainCharacter_Warrior::SetArmor(const float Armor)
 TSubclassOf<UDamageType> AMainCharacter_Warrior::GetDamageType() const
 {
 	return UPhysicalDamageType::StaticClass();
+}
+
+
+void AMainCharacter_Warrior::RemoveParticle()
+{
+	if (!WeaponEffect) return;
+	WeaponEffect -> DestroyComponent();
+	WeaponEffect = nullptr;
+}
+
+
+void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
+{
+	RemoveParticle();
+	CurrentEffect = NewEffect;
+	if (!StatusEffectsVisualDataAsset) return;
+	for (const auto& Element : StatusEffectsVisualDataAsset->StatusEffects)
+	{
+		if (CurrentEffect == Element.Key) WeaponEffectSystem = Element.Value.WeaponEffect_N;
+	}
+	
+	const FVector SocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketName);
+	const FRotator SocketRotation = GetSkeletalMeshComponent()->GetSocketRotation(SocketName);
+	WeaponEffect = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				WeaponEffectSystem, GetSkeletalMeshComponent(), SocketName,SocketLocation, SocketRotation, FVector(1, 1,1),
+				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 }
