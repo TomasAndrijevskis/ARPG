@@ -52,6 +52,8 @@ protected:
 private:
 
 	void RemoveParticle();
+
+	void SpawnParticle();
 	
 	UPROPERTY()
 	UNiagaraComponent* WeaponEffectComp;

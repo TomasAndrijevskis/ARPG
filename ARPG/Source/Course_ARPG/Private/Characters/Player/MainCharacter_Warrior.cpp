@@ -83,19 +83,23 @@ void AMainCharacter_Warrior::RemoveParticle()
 }
 
 
-void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
+void AMainCharacter_Warrior::SpawnParticle()
 {
-	RemoveParticle();
-	CurrentEffect = NewEffect;
-	if (!StatusEffectsVisualDataAsset) return;
-	for (const auto& Element : StatusEffectsVisualDataAsset->StatusEffects)
-	{
-		if (CurrentEffect == Element.Key) WeaponEffect = Element.Value.WeaponEffect_N;
-	}
-	
 	const FVector SocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketName);
 	const FRotator SocketRotation = GetSkeletalMeshComponent()->GetSocketRotation(SocketName);
 	WeaponEffectComp = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				WeaponEffect, GetSkeletalMeshComponent(), SocketName,SocketLocation, SocketRotation, FVector(1, 1,1),
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+}
+
+
+void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
+{
+	if (CurrentEffect == NewEffect) return;
+	RemoveParticle();
+	CurrentEffect = NewEffect;
+	if (NewEffect == EEffects::Empty) return;
+	if (!StatusEffectsVisualDataAsset) return;
+	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect)) WeaponEffect = Data->WeaponEffect_N;
+	SpawnParticle();
 }

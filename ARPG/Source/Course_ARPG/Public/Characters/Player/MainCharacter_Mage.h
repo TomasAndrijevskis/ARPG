@@ -54,7 +54,7 @@ protected:
 private:
 
 	UFUNCTION()
-	void SpawnParticles();
+	void SpawnParticles(UParticleSystem* ParticleEffect);
 
 	void RemoveParticle();
 	
@@ -68,5 +68,5 @@ private:
 	TArray<UParticleSystemComponent*> ParticleComponents;
 
 	UPROPERTY(EditAnywhere)
-	UParticleSystem* Particle;
+	UParticleSystem* BaseParticle;
 };

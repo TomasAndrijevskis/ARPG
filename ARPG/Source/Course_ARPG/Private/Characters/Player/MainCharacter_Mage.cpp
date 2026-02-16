@@ -44,15 +44,15 @@ void AMainCharacter_Mage::BeginPlay()
 }
 
 
-void AMainCharacter_Mage::SpawnParticles()
+void AMainCharacter_Mage::SpawnParticles(UParticleSystem* ParticleEffect)
 {
+	if (!ParticleEffect) return;
 	const FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(RightHandSocketName);
 	const FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(LeftHandSocketName);
 	
-	if (!Particle) return;
-	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(Particle, GetSkeletalMeshComponent(), RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
+	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
 	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
-	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(Particle, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
+	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
 	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
 }
 
@@ -100,12 +100,14 @@ float AMainCharacter_Mage::GetMagicalDamage() const
 
 void AMainCharacter_Mage::HandleEffectChange(EEffects NewEffect)
 {
-	CurrentEffect = NewEffect;
-	if (!StatusEffectsVisualDataAsset) return;
-	for (const auto& Element : StatusEffectsVisualDataAsset->StatusEffects)
-	{
-		if (CurrentEffect == Element.Key) Particle = Element.Value.WeaponEffect_P;
-	}
+	if (CurrentEffect == NewEffect) return;
 	RemoveParticle();
-	SpawnParticles();
+	CurrentEffect = NewEffect;
+	if (NewEffect == EEffects::Empty)
+	{
+		SpawnParticles(BaseParticle);
+		return;
+	}
+	if (!StatusEffectsVisualDataAsset) return;
+	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect)) SpawnParticles(Data->WeaponEffect_P);
 }

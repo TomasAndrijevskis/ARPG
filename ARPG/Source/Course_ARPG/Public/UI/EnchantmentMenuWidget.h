@@ -6,6 +6,7 @@
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "EnchantmentMenuWidget.generated.h"
 
+class UConfirmationWindow;
 class UEnchantmentButton;
 class UHorizontalBox;
 class UButton;
@@ -26,6 +27,9 @@ private:
 
 	UPROPERTY(meta=(BindWidget))
 	UButton* Button_Close;
+
+	UPROPERTY(meta=(BindWidget))
+	UButton* Button_RemoveEnchantment;
 	
 	void CreateButtons();
 	
@@ -35,10 +39,19 @@ private:
 	void RemoveWidget();
 	
 	void SetButtonAlignment(UEnchantmentButton* Button);
+
+	UFUNCTION()
+	void RemoveEnchantment();
+
+	UFUNCTION()
+	void CreateConfirmationWindow();
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UEnchantmentButton> EnchantmentButtonClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UConfirmationWindow> ConfirmationWindowWidgetClass;
 };

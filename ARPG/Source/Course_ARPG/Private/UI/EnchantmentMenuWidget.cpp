@@ -2,9 +2,12 @@
 #include "UI/EnchantmentMenuWidget.h"
 #include "Blueprint/WidgetTree.h"
 #include "Characters/Player/ARPG_PlayerController.h"
+#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
+#include "Kismet/GameplayStatics.h"
+#include "UI/ConfirmationWindow.h"
 #include "UI/EnchantmentButton.h"
 
 
@@ -13,6 +16,7 @@ void UEnchantmentMenuWidget::NativeConstruct()
 	Super::NativeConstruct();
 	CreateButtons();
 	Button_Close->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::RemoveWidget);
+	Button_RemoveEnchantment->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::CreateConfirmationWindow);
 }
 
 
@@ -47,6 +51,25 @@ void UEnchantmentMenuWidget::SetButtonAlignment(UEnchantmentButton* Button)
 		HBSlot->SetHorizontalAlignment(HAlign_Fill);
 		HBSlot->SetVerticalAlignment(VAlign_Center);
 	}
+}
+
+
+void UEnchantmentMenuWidget::CreateConfirmationWindow()
+{
+	if (!ConfirmationWindowWidgetClass) return;
+	UConfirmationWindow* ConfirmationWindowRef = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowWidgetClass));
+	if (!ConfirmationWindowRef) return;
+	ConfirmationWindowRef->AddToViewport(10);
+	ConfirmationWindowRef->OnConfirmedDelegate.AddUObject(this, &UEnchantmentMenuWidget::RemoveEnchantment);
+}
+
+
+void UEnchantmentMenuWidget::RemoveEnchantment()
+{
+	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+	if (!PlayerRef) return;
+	PlayerRef->HandleEffectChange(EEffects::Empty);
+	RemoveWidget();
 }
 
 
