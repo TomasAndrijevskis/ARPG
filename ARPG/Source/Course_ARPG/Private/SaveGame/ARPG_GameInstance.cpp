@@ -60,20 +60,23 @@ void UARPG_GameInstance::SaveAll()
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
-	SavePlayerLocation();
 	SaveUsedAttributePoints();
 	SaveUsedAbilityPoints();
+	SaveCurrentEffect();
 	bIsFirstLoad = false;
+	SavePlayerLocation();
 }
 
 void UARPG_GameInstance::SaveAllExceptPosition()
 {
 	SaveAttributeData();
+	SaveLevelData();
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
 	SaveUsedAttributePoints();
 	SaveUsedAbilityPoints();
+	SaveCurrentEffect();
 }
 
 
@@ -263,6 +266,21 @@ void UARPG_GameInstance::SaveUsedAbilityPoints()
 }
 
 
+void UARPG_GameInstance::SaveCurrentEffect()
+{
+	if (!PlayerRef || !SaveGameInstance) return;
+	SaveGameInstance->Effect = PlayerRef->GetCurrentEffects();
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+}
+
+
+void UARPG_GameInstance::LoadCurrentEffect()
+{
+	if (!PlayerRef || !SaveGameInstance) return;
+	PlayerRef->HandleEffectChange(SaveGameInstance->Effect);
+}
+
+
 void UARPG_GameInstance::LoadUsedAbilityPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
@@ -292,22 +310,4 @@ void UARPG_GameInstance::SetSlotName(const FString& NewSlotName)
 {
 	SlotName = NewSlotName;
 	HandleSaveGame();
-}
-
-
-FString UARPG_GameInstance::GetSlotName() const
-{
-	return SlotName;
-}
-
-
-void UARPG_GameInstance::SetTeleportByDoor(const bool bNewTeleportByDoor)
-{
-	bTeleportByDoor = bNewTeleportByDoor;
-}
-
-
-bool UARPG_GameInstance::GetTeleportByDoor() const
-{
-	return bTeleportByDoor;
 }

@@ -40,7 +40,7 @@ void AMainCharacter_Mage::BeginPlay()
 	
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
 	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
-	if (GetSkeletalMeshComponent()) SpawnParticles();
+	//if (GetSkeletalMeshComponent()) SpawnParticles();
 }
 
 

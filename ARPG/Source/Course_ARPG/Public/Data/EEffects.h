@@ -5,7 +5,7 @@
 
 
 UENUM(BlueprintType)
-enum EEffects
+enum class EEffects : uint8
 {
 	Empty UMETA(DisplayName = "None Selected"),
 	Fire UMETA(DisplayName = "Fire"),

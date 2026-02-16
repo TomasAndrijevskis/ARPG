@@ -77,9 +77,9 @@ TSubclassOf<UDamageType> AMainCharacter_Warrior::GetDamageType() const
 
 void AMainCharacter_Warrior::RemoveParticle()
 {
-	if (!WeaponEffect) return;
-	WeaponEffect -> DestroyComponent();
-	WeaponEffect = nullptr;
+	if (!WeaponEffectComp) return;
+	WeaponEffectComp -> DestroyComponent();
+	WeaponEffectComp = nullptr;
 }
 
 
@@ -90,12 +90,12 @@ void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
 	if (!StatusEffectsVisualDataAsset) return;
 	for (const auto& Element : StatusEffectsVisualDataAsset->StatusEffects)
 	{
-		if (CurrentEffect == Element.Key) WeaponEffectSystem = Element.Value.WeaponEffect_N;
+		if (CurrentEffect == Element.Key) WeaponEffect = Element.Value.WeaponEffect_N;
 	}
 	
 	const FVector SocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketName);
 	const FRotator SocketRotation = GetSkeletalMeshComponent()->GetSocketRotation(SocketName);
-	WeaponEffect = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				WeaponEffectSystem, GetSkeletalMeshComponent(), SocketName,SocketLocation, SocketRotation, FVector(1, 1,1),
+	WeaponEffectComp = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				WeaponEffect, GetSkeletalMeshComponent(), SocketName,SocketLocation, SocketRotation, FVector(1, 1,1),
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 }

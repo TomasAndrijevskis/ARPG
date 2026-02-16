@@ -178,6 +178,8 @@ public:
 	float GetAbilityPowerPercent() const;
 
 	virtual void HandleEffectChange(EEffects NewEffect){};
+
+	EEffects GetCurrentEffects() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

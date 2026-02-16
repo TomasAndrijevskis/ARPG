@@ -17,30 +17,15 @@ class COURSE_ARPG_API UARPG_GameInstance : public UGameInstance
 public:
 
 	virtual void Init() override;
+
+	UFUNCTION()
+	void InitializeGameInstance();
 	
 	UFUNCTION()
 	void SetSlotName(const FString& NewSlotName);
 
 	UFUNCTION()
-	FString GetSlotName() const;
-	
-	UFUNCTION()
-	void SaveAttributeData();
-
-	UFUNCTION()
-	void LoadAttributeData();
-
-	UFUNCTION()
-	void SaveLevelData();
-
-	UFUNCTION()
-	void LoadLevelData();
-
-	UFUNCTION()
-	void SaveAbilities();
-
-	UFUNCTION()
-	void LoadAbilities();
+	FString GetSlotName() const {return SlotName;} 
 	
 	UFUNCTION()
 	void SaveAll();
@@ -50,27 +35,12 @@ public:
 
 	UFUNCTION()
 	void SaveBonfires();
-
-	UFUNCTION()
-	void LoadBonfires();
 	
 	UFUNCTION()
-	void InitializeGameInstance();
-
-	UFUNCTION()
 	bool CheckSlot(const FString& SlotNameToCheck) const;
-
-	UFUNCTION()
-	void LoadPlayerClass();
 	
 	UFUNCTION()
 	void SetPlayerClass(const TSubclassOf<AMainCharacter_Base>& PlayerClass, const bool bFirstLoad);
-
-	UFUNCTION()
-	void SaveDefeatedBosses();
-
-	UFUNCTION()
-	void LoadDefeatedBosses();
 
 	UFUNCTION()
 	void SavePlayerLocation();
@@ -86,9 +56,39 @@ public:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacterClass;
 
-	void SetTeleportByDoor(const bool bNewTeleportByDoor);
+	void SetTeleportByDoor(const bool bNewTeleportByDoor) {bTeleportByDoor = bNewTeleportByDoor;};
 
-	bool GetTeleportByDoor() const;
+	bool GetTeleportByDoor() const {return bTeleportByDoor;}
+
+	void HandleGameLoad();
+
+	void LoadCurrentEffect();
+	
+	bool bIsFirstLoad;
+	
+private:
+
+	void HandleSaveGame();
+	
+	void LoadPlayerClass();
+	
+	void SaveAttributeData();
+	
+	void LoadAttributeData();
+	
+	void SaveLevelData();
+	
+	void LoadLevelData();
+	
+	void SaveAbilities();
+
+	void LoadAbilities();
+	
+	void LoadBonfires();
+	
+	void SaveDefeatedBosses();
+	
+	void LoadDefeatedBosses();
 
 	void SaveUsedAttributePoints();
 
@@ -98,14 +98,8 @@ public:
 
 	void LoadUsedAbilityPoints();
 
-	void HandleGameLoad();
+	void SaveCurrentEffect();
 	
-	bool bIsFirstLoad;
-	
-private:
-
-	void HandleSaveGame();
-
 	UPROPERTY()
 	UARPG_SaveGame* SaveGameInstance;
 	

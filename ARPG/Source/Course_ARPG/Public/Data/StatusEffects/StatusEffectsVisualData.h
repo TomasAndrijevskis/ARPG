@@ -16,5 +16,5 @@ class COURSE_ARPG_API UStatusEffectsVisualData : public UDataAsset
 public:
 
 	UPROPERTY(EditDefaultsOnly)
-	TMap<TEnumAsByte<EEffects>, FStatusEffectData> StatusEffects;
+	TMap<EEffects, FStatusEffectData> StatusEffects;
 };

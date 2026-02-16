@@ -5,6 +5,7 @@
 #include "Data/Abilities/AbilitySaveData.h"
 #include "Data/BonfireData.h"
 #include "GameFramework/SaveGame.h"
+#include "Data/EEffects.h"
 #include "ARPG_SaveGame.generated.h"
 
 
@@ -17,30 +18,6 @@ class COURSE_ARPG_API UARPG_SaveGame : public USaveGame
 	GENERATED_BODY()
 
 public:
-
-	UPROPERTY()
-	float CurrentHealth;
-
-	UPROPERTY()
-	float MaxHealth;
-
-	UPROPERTY()
-	float CurrentMana;
-
-	UPROPERTY()
-	float MaxMana;
-
-	UPROPERTY()
-	float PhysicalStrength;
-
-	UPROPERTY()
-	float MagicalStrength;
-	
-	UPROPERTY()
-	float MaxStamina;
-
-	UPROPERTY()
-	float CurrentStamina;
 
 	UPROPERTY()
 	int Endurance;
@@ -95,4 +72,7 @@ public:
 
 	UPROPERTY()
 	TArray<FName> DefeatedBosses;
+
+	UPROPERTY()
+	EEffects Effect;
 };

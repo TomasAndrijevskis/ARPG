@@ -54,10 +54,10 @@ private:
 	void RemoveParticle();
 	
 	UPROPERTY()
-	UNiagaraComponent* WeaponEffect;
+	UNiagaraComponent* WeaponEffectComp;
 
 	UPROPERTY(EditDefaultsOnly)
-	UNiagaraSystem* WeaponEffectSystem;
+	UNiagaraSystem* WeaponEffect;
 
 	UPROPERTY(EditDefaultsOnly)
 	FName SocketName; //FX_Sword_Bottom

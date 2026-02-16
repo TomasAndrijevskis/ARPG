@@ -40,6 +40,7 @@ void AMainCharacter_Base::BeginPlay()
 	SkeletalMeshComp = GetMesh();
 	PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
+	if (GameInstance) GameInstance->LoadCurrentEffect();
 	CreatePlayerWidget();
 	BindDelegates();
 }
@@ -54,7 +55,6 @@ void AMainCharacter_Base::BindDelegates()
 	StatsComp->OnManaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetMana);
 	StatsComp->OnStaminaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetStamina);
 	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::HandleDeath);
-	StatsComp->OnStatUpdateDelegate.AddUObject(GameInstance, &UARPG_GameInstance::SaveAttributeData);
 	LevelComp->OnExperienceUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetExperience);
 	LevelComp->OnLevelUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetLevel);
 	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
@@ -423,6 +423,12 @@ void AMainCharacter_Base::FillAdditionalStatsDisplayData(FPlayerAdditionalStatsD
 float AMainCharacter_Base::GetAbilityPowerPercent() const
 {
 	return StatsComp->GetStatValue(EStats::AbilityPower);
+}
+
+
+EEffects AMainCharacter_Base::GetCurrentEffects() const
+{
+	return CurrentEffect;
 }
 
 
