@@ -41,14 +41,14 @@ void UEnchantmentButton::CreateConfirmationWindow()
 	UConfirmationWindow* ConfirmationWindowRef = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowWidgetClass));
 	if (!ConfirmationWindowRef) return;
 	ConfirmationWindowRef->AddToViewport(10);
-	ConfirmationWindowRef->OnConfirmedDelegate.AddUObject(this, &UEnchantmentButton::OnConfirmed);
+	ConfirmationWindowRef->OnConfirmedDelegate.AddUObject(this, &UEnchantmentButton::OnEnchantmentConfirmed);
 }
 
 
-void UEnchantmentButton::OnConfirmed()
+void UEnchantmentButton::OnEnchantmentConfirmed()
 {
-	OnEnchantmentConfirmedDelegate.Broadcast();
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 	if (!PlayerRef) return;
 	PlayerRef->HandleEffectChange(Effect);
+	OnEnchantmentConfirmedDelegate.Broadcast();
 }

@@ -37,7 +37,7 @@ private:
 	void CreateConfirmationWindow();
 
 	UFUNCTION()
-	void OnConfirmed();
+	void OnEnchantmentConfirmed();
 	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UConfirmationWindow> ConfirmationWindowWidgetClass;

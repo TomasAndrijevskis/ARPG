@@ -183,7 +183,6 @@ int UAbilityComponent_Player::GetCurrentAbilityLevel()
 
 void UAbilityComponent_Player::SetCurrentAbilityLevel(const int NewLevel)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Current level: %d"), NewLevel);
 	CurrentAbilityLevel = NewLevel;
 }
 

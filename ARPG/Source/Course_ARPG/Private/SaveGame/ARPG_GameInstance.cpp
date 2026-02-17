@@ -55,6 +55,7 @@ void UARPG_GameInstance::SetPlayerClass(const TSubclassOf<AMainCharacter_Base>& 
 
 void UARPG_GameInstance::SaveAll()
 {
+	UE_LOG(LogTemp, Warning, TEXT("SaveAll"));
 	SaveAttributeData();
 	SaveLevelData();
 	SaveAbilities();
@@ -269,7 +270,7 @@ void UARPG_GameInstance::SaveUsedAbilityPoints()
 void UARPG_GameInstance::SaveCurrentEffect()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->Effect = PlayerRef->GetCurrentEffects();
+	SaveGameInstance->Effect = PlayerRef->GetCurrentEnchantmentEffect();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 

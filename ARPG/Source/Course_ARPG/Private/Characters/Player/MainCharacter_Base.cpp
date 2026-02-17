@@ -426,7 +426,7 @@ float AMainCharacter_Base::GetAbilityPowerPercent() const
 }
 
 
-EEffects AMainCharacter_Base::GetCurrentEffects() const
+EEffects AMainCharacter_Base::GetCurrentEnchantmentEffect() const
 {
 	return CurrentEffect;
 }

@@ -179,7 +179,7 @@ public:
 
 	virtual void HandleEffectChange(EEffects NewEffect){};
 
-	EEffects GetCurrentEffects() const;
+	EEffects GetCurrentEnchantmentEffect() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
