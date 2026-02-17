@@ -39,9 +39,11 @@ protected:
 
 	virtual void SetVisualData(EEffects StatusEffect){};
 
-	virtual float GetFinalDamage(const float Damage) {return 0.f;}
-
 	virtual void SetDamageResistance(float NewResistance){};
+
+	virtual void ApplyDamage(float Damage) {};
+	
+	virtual void ApplyProlongedDamage() {};
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;

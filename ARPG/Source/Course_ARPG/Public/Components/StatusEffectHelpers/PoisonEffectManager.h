@@ -14,8 +14,6 @@ class COURSE_ARPG_API UPoisonEffectManager : public UStatusEffectsComponent
 public:
 
 	void HandlePoison(const float NewPoisonDuration, const float NewPoisonDamage, const float NewPoisonRate, UAbilityComponent_Base* NewAbilityCompRef);
-
-	virtual float GetFinalDamage(const float Damage) override;
 	
 protected:
 
@@ -24,11 +22,14 @@ protected:
 	virtual void SetVisualData(EEffects StatusEffect) override;
 
 	virtual void SetDamageResistance(float NewResistance) override;
-	
-private:
 
 	UFUNCTION()
-	void ApplyPoison();
+	virtual void ApplyDamage(float Damage) override;
+
+	UFUNCTION()
+	virtual void ApplyProlongedDamage() override;
+	
+private:
 
 	UPROPERTY(EditAnywhere)
 	float PoisonDamageResistance;

@@ -13,7 +13,7 @@ class COURSE_ARPG_API UFireEffectManager : public UStatusEffectsComponent
 
 public:
 
-	void HandleBurn(const float NewBurnDuration, const float NewBurnDamage, const bool bNewIsOverlapping, const float NewBurnRate);
+	void HandleBurn(const float NewFireDuration, const float NewFireDamage, const bool bNewIsOverlapping, const float NewFireRate);
 
 protected:
 
@@ -21,23 +21,24 @@ protected:
 	
 	virtual void SetVisualData(EEffects StatusEffect) override;
 
-	virtual float GetFinalDamage(const float Damage) override;
-
 	virtual void SetDamageResistance(float NewResistance) override;
-	
-private:
 
 	UFUNCTION()
-	void ApplyBurn();
+	virtual void ApplyDamage(float Damage) override;
 
+	UFUNCTION()
+	virtual void ApplyProlongedDamage() override;
+	
+private:
+	
 	UPROPERTY(EditAnywhere)
-	float BurnDamageResistance;
+	float FireDamageResistance;
 	
-	float BurnDamage;
+	float FireDamage;
 	
-	float BurnDuration;
+	float FireDuration;
 
-	float BurnRate;
+	float FireRate;
 
-	FTimerHandle BurnTimerHandle;
+	FTimerHandle FireTimerHandle;
 };

@@ -98,10 +98,17 @@ void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, cons
 {
 	if (!CanTakeDamage(DamageCauser, Damage, DamageType)) return;
 	float FinalDamage = Damage;
-	if (DamageType && DamageType->IsA(UPhysicalDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, DamageCauser,  StatsComp->GetStatValue(EStats::PhysDmgResistance));
-	else if (DamageType && DamageType->IsA(UMagicalDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, DamageCauser,  StatsComp->GetStatValue(EStats::MagDmgResistance));
+	if (!DamageType) return;
+	if (DamageType->IsA(UPhysicalDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,StatsComp->GetStatValue(EStats::PhysDmgResistance));
+	else if (DamageType->IsA(UMagicalDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::MagDmgResistance));
+	else if (DamageType->IsA(UFireDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::FireDmgResistance));
+	else if (DamageType->IsA(UPoisonDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::PoisonDmgResistance));
+	else if (DamageType->IsA(UIceDamageType::StaticClass()))
+		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::IceDmgResistance));
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, DamageCauser);
 	PlayHurtAnimation();
 }

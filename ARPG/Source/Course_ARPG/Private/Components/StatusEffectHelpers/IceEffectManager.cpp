@@ -1,10 +1,11 @@
 
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Combat/DamageTypes.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
-#include "Engine/DamageEvents.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void UIceEffectManager::BeginPlay()
@@ -26,21 +27,26 @@ void UIceEffectManager::SetVisualData(EEffects StatusEffect)
 
 void UIceEffectManager::HandleFreeze(const float SlowDuration, const float NewDamage)
 {
-	if (FreezeDamageResistance == 1) return;
-	FreezeDamage = GetFinalDamage(NewDamage);
-	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
+	if (!VisualEffect || !Icon || IceDamageResistance == 1) return;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (VisualEffect && Icon)
-	{
-		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
+	EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				VisualEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
 	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
-	}
-	FDamageEvent TargetAttackedEvent{ };
-	CharacterRef->TakeDamage(FreezeDamage, TargetAttackedEvent, nullptr, nullptr);
+	OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
+	IceDamage = NewDamage;
+	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
+	ApplyDamage(IceDamage);
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopFreeze, SlowDuration, false);
 }
+
+
+void UIceEffectManager::ApplyDamage(float Damage)
+{
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage, nullptr, nullptr, UIceDamageType::StaticClass());
+}
+
+
+void UIceEffectManager::ApplyProlongedDamage(){}
 
 
 void UIceEffectManager::StopFreeze()
@@ -56,13 +62,7 @@ void UIceEffectManager::StopEffect()
 }
 
 
-float UIceEffectManager::GetFinalDamage(const float Damage)
-{
-	return Damage - (Damage * FreezeDamageResistance);
-}
-
-
 void UIceEffectManager::SetDamageResistance(float NewResistance)
 {
-	FreezeDamageResistance = NewResistance;
+	IceDamageResistance = NewResistance;
 }

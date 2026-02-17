@@ -2,9 +2,10 @@
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "NiagaraComponentPoolMethodEnum.h"
 #include "NiagaraFunctionLibrary.h"
+#include "Combat/DamageTypes.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
-#include "Engine/DamageEvents.h"
 #include "GameFramework/Character.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void UFireEffectManager::BeginPlay()
@@ -22,44 +23,40 @@ void UFireEffectManager::SetVisualData(EEffects StatusEffect)
 }
 
 
-void UFireEffectManager::HandleBurn(const float NewBurnDuration, const float NewBurnDamage, const bool bNewIsOverlapping, const float NewBurnRate)
+void UFireEffectManager::HandleBurn(const float NewFireDuration, const float NewFireDamage, const bool bNewIsOverlapping, const float NewFireRate)
 {
-	if (BurnDamageResistance == 1) return;
-	BurnDamage = GetFinalDamage(NewBurnDamage);
-	BurnDuration = NewBurnDuration;
-	bIsOverlapping = bNewIsOverlapping;
-	BurnRate = NewBurnRate;
+	if (!VisualEffect || !Icon || !bIsOverlapping || FireDamageResistance == 1) return;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	if (VisualEffect && Icon && bIsOverlapping)
-	{
-		EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
+	EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				VisualEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator, EffectScale,
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
-	}
-	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UFireEffectManager::ApplyBurn, BurnRate, true);
+	FireDamage = NewFireDamage;
+	FireDuration = NewFireDuration;
+	bIsOverlapping = bNewIsOverlapping;
+	FireRate = NewFireRate;
+	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UFireEffectManager::ApplyProlongedDamage, FireRate, true);
 }
 
 
-void UFireEffectManager::ApplyBurn()
+void UFireEffectManager::ApplyDamage(float Damage)
 {
-	if (BurnDuration > 0)
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage, nullptr, nullptr, UFireDamageType::StaticClass());
+}
+
+
+void UFireEffectManager::ApplyProlongedDamage()
+{
+	if (FireDuration > 0)
 	{
-		if (!bIsOverlapping) BurnDuration -= BurnRate;
-		FDamageEvent TargetAttackedEvent{ };
-		CharacterRef->TakeDamage(BurnDamage, TargetAttackedEvent, GetOwner()->GetInstigatorController(), GetOwner());
+		if (!bIsOverlapping) FireDuration -= FireRate;
+		ApplyDamage(FireDamage);
 	}
 	else StopEffect();
 }
 
 
-float UFireEffectManager::GetFinalDamage(const float Damage)
-{
-	return Damage - (Damage * BurnDamageResistance);
-}
-
-
 void UFireEffectManager::SetDamageResistance(float NewResistance)
 {
-	BurnDamageResistance = NewResistance;
+	FireDamageResistance = NewResistance;
 }

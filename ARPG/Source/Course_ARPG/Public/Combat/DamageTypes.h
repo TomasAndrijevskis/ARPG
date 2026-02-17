@@ -18,3 +18,21 @@ class UMagicalDamageType : public UDamageType
 {
 	GENERATED_BODY()
 };
+
+UCLASS()
+class UFireDamageType : public UDamageType
+{
+	GENERATED_BODY()
+};
+
+UCLASS()
+class UPoisonDamageType : public UDamageType
+{
+	GENERATED_BODY()
+};
+
+UCLASS()
+class UIceDamageType : public UDamageType
+{
+	GENERATED_BODY()
+};

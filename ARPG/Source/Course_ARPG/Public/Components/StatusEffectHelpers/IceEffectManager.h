@@ -23,9 +23,13 @@ protected:
 	
 	virtual void SetVisualData(EEffects StatusEffect) override;
 
-	virtual float GetFinalDamage(const float Damage) override;
-
 	virtual void SetDamageResistance(float NewResistance) override;
+
+	UFUNCTION()
+	virtual void ApplyDamage(float Damage) override;
+
+	UFUNCTION()
+	virtual void ApplyProlongedDamage() override;
 	
 private:
 	
@@ -33,11 +37,11 @@ private:
 	void StopFreeze();
 
 	UPROPERTY(EditAnywhere)
-	float FreezeDamageResistance;
+	float IceDamageResistance;
 	
 	float OriginalSpeed;
 
-	FTimerHandle FreezeTimerHandle;
+	FTimerHandle IceTimerHandle;
 
-	float FreezeDamage;
+	float IceDamage;
 };

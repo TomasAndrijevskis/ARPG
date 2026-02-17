@@ -33,7 +33,7 @@ public:
 
 	virtual void BeginPlay() override;
 	
-	float CalculateFinalReceivedDamage(const float Damage, AActor* Opponent, const float ReductionPercent);
+	float CalculateFinalReceivedDamage(const float Damage, const float ReductionPercent);
 
 	float GetReducedDamage(const float Damage, const float ReductionPercent);
 	
