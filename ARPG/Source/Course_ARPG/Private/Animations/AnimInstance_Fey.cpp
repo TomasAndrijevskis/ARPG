@@ -2,7 +2,7 @@
 #include "Animations/AnimInstance_Fey.h"
 #include "Characters/Enemy/Boss_Fey.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
+#include "Components/EnemyProjectileComponent.h"
 
 
 void UAnimInstance_Fey::HandleProjectileSpawn() const

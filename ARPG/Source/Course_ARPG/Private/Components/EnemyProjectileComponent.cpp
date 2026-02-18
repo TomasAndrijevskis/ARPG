@@ -1,5 +1,5 @@
 
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
+#include "Components/EnemyProjectileComponent.h"
 #include "Combat/Projectiles/Projectile_Base.h"
 #include "Interfaces/Fighter.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -15,6 +15,7 @@ void UEnemyProjectileComponent::SpawnProjectile()
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, PlayerLocation);
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
+	Projectile->SetOwner(GetOwner());
 	Projectile->SetStats(ProjectileDamage, AliveTime);
 	Projectile->StartAliveTimer();
 }

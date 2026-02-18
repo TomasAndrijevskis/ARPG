@@ -3,7 +3,7 @@
 #include "AIController.h"
 #include "BrainComponent.h"
 #include "NiagaraComponent.h"
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
+#include "Components/EnemyProjectileComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "Kismet/GameplayStatics.h"

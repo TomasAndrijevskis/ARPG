@@ -1,6 +1,6 @@
 
 #include "Characters/Enemy/Boss_Grux.h"
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
+#include "Components/EnemyProjectileComponent.h"
 #include "Components/TraceComponent.h"
 
 

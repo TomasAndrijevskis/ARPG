@@ -1,10 +1,11 @@
 
-#include "Combat/Projectiles/EnemyProjectile.h"
-#include "Particles/ParticleSystemComponent.h"
+#include "Combat/Projectiles/Projectile_Lightning.h"
+#include "Combat/DamageTypes.h"
 #include "Components/SphereComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
 
-AEnemyProjectile::AEnemyProjectile()
+AProjectile_Lightning::AProjectile_Lightning()
 {
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollision"));
 	RootComponent = CollisionComponent;
@@ -13,8 +14,7 @@ AEnemyProjectile::AEnemyProjectile()
 }
 
 
-bool AEnemyProjectile::IsPlayerControlledActor(AActor* OtherActor)
+TSubclassOf<UDamageType> AProjectile_Lightning::GetDamageType() const
 {
-	if (!Cast<APawn>(OtherActor)->IsPlayerControlled()) return true;
-	return false;
+	return UMagicalDamageType::StaticClass();
 }

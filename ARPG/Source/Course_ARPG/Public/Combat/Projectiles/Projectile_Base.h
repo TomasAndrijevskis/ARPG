@@ -19,17 +19,18 @@ public:
 	void SetStats(const float NewDamage, const float NewAliveTime);
 
 	void StartAliveTimer();
-
+	
+	void SetOwner(AActor* NewProjectileOwner);
 	
 protected:
-
-	virtual bool IsPlayerControlledActor(AActor* OtherActor) {return false;};
 
 	virtual void BeginPlay() override;
 	
 	UFUNCTION()
 	void OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const FHitResult& SweepResult);
 
+	virtual TSubclassOf<UDamageType> GetDamageType() const {return nullptr;}
+	
 	UPROPERTY(EditAnywhere)
 	UPrimitiveComponent* CollisionComponent;
 	
@@ -42,9 +43,14 @@ private:
 	void HandleBeginOverlap(AActor* OtherActor);
 	
 	void HandleDestruction();
+
+	bool IsOpponentHit(AActor* OtherActor);
 	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* HitTemplate;
+
+	UPROPERTY()
+	AActor* ProjectileOwner;
 	
 	float AliveTime;
 	

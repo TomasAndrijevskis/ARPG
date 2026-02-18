@@ -52,6 +52,7 @@ void UCombatComponent_Mage::SpawnProjectile()
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(CurrentProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
+	Projectile->SetOwner(GetOwner());
 	Projectile->SetStats(MageRef->GetMagicalDamage(), AliveTime);
 	Projectile->StartAliveTimer();
 }

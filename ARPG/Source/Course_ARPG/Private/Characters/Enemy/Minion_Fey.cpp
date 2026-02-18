@@ -1,6 +1,6 @@
 
 #include "Characters/Enemy/Minion_Fey.h"
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
+#include "Components/EnemyProjectileComponent.h"
 
 
 AMinion_Fey::AMinion_Fey()

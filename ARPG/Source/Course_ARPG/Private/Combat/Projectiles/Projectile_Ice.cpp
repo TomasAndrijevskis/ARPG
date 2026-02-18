@@ -1,10 +1,11 @@
 
-#include "Combat/Projectiles/RangeAttackProjectile_Ice.h"
+#include "Combat/Projectiles/Projectile_Ice.h"
 #include "NiagaraComponent.h"
+#include "Combat/DamageTypes.h"
 #include "Components/BoxComponent.h"
 
 
-ARangeAttackProjectile_Ice::ARangeAttackProjectile_Ice()
+AProjectile_Ice::AProjectile_Ice()
 {
 	CollisionComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
 	RootComponent = CollisionComponent;
@@ -21,8 +22,7 @@ ARangeAttackProjectile_Ice::ARangeAttackProjectile_Ice()
 }
 
 
-bool ARangeAttackProjectile_Ice::IsPlayerControlledActor(AActor* OtherActor)
+TSubclassOf<UDamageType> AProjectile_Ice::GetDamageType() const
 {
-	if (Cast<APawn>(OtherActor)->IsPlayerControlled()) return true;
-	return false;
+	return UIceDamageType::StaticClass();
 }

@@ -5,7 +5,7 @@
 #include "Data/EStats.h"
 #include "Combat/Abilities/EnemyAbilities/AbComp_PoisonExplosion.h"
 #include "Combat/Abilities/EnemyAbilities/AbComp_SummonMinions.h"
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
+#include "Components/EnemyProjectileComponent.h"
 #include "Components/StatsComponent.h"
 
 

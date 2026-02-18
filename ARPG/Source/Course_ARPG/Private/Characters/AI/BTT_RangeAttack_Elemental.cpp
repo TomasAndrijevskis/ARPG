@@ -5,7 +5,7 @@
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Characters/Enemy/Minion_Elemental.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/Projectiles/EnemyProjectileComponent.h"
+#include "Components/EnemyProjectileComponent.h"
 #include "Navigation/PathFollowingComponent.h"
 
 

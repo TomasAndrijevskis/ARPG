@@ -1,10 +1,11 @@
 
-#include "Combat/Projectiles/RangeAttackProjectile.h"
+#include "Combat/Projectiles/Projectile_Wind.h"
+#include "Combat/DamageTypes.h"
 #include "Components/SphereComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
-ARangeAttackProjectile::ARangeAttackProjectile()
+AProjectile_Wind::AProjectile_Wind()
 {
 	CollisionComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollision"));
 	RootComponent = CollisionComponent;
@@ -13,8 +14,7 @@ ARangeAttackProjectile::ARangeAttackProjectile()
 }
 
 
-bool ARangeAttackProjectile::IsPlayerControlledActor(AActor* OtherActor)
+TSubclassOf<UDamageType> AProjectile_Wind::GetDamageType() const
 {
-	if (Cast<APawn>(OtherActor)->IsPlayerControlled()) return true;
-	return false;
+	return UMagicalDamageType::StaticClass();
 }
