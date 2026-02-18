@@ -23,4 +23,7 @@ struct COURSE_ARPG_API FStatusEffectData
 
 	UPROPERTY(EditDefaultsOnly)
 	UParticleSystem* WeaponEffect_P;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AActor> Projectile;
 };

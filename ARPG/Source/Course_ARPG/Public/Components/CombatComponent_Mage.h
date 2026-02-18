@@ -15,6 +15,10 @@ public:
 
 	virtual void ComboAttack() override;
 
+	void ChangeProjectileClass(TSubclassOf<AActor> &NewProjectileClass);
+
+	void RevertBaseProjectileClass();
+	
 private:
 
 	UFUNCTION()
@@ -24,7 +28,10 @@ private:
 	float AttackManaCost = 5.0f;
 	
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AActor> ProjectileClass;
+	TSubclassOf<AActor> BaseProjectileClass;
+
+	UPROPERTY()
+	TSubclassOf<AActor> CurrentProjectileClass;
 	
 	UPROPERTY(EditAnywhere)
 	FName ComponentName; //ProjectileSpawnLocation

@@ -40,7 +40,6 @@ void AMainCharacter_Mage::BeginPlay()
 	
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
 	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
-	//if (GetSkeletalMeshComponent()) SpawnParticles();
 }
 
 
@@ -100,14 +99,19 @@ float AMainCharacter_Mage::GetMagicalDamage() const
 
 void AMainCharacter_Mage::HandleEffectChange(EEffects NewEffect)
 {
-	if (CurrentEffect == NewEffect) return;
+	if (CurrentEffect == NewEffect && NewEffect != EEffects::Empty) return;
 	RemoveParticle();
 	CurrentEffect = NewEffect;
 	if (NewEffect == EEffects::Empty)
 	{
 		SpawnParticles(BaseParticle);
+		Cast<UCombatComponent_Mage>(CombatComp)->RevertBaseProjectileClass();
 		return;
 	}
 	if (!StatusEffectsVisualDataAsset) return;
-	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect)) SpawnParticles(Data->WeaponEffect_P);
+	if (FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
+	{
+		SpawnParticles(Data->WeaponEffect_P);
+		Cast<UCombatComponent_Mage>(CombatComp)->ChangeProjectileClass(Data->Projectile);
+	}
 }

@@ -308,6 +308,7 @@ FPlayerLevelData AMainCharacter_Base::SaveLevelData() const
 	Data.CurrentExperience = LevelComp->GetCurrentExperience();
 	Data.AttributePoints = LevelComp->GetCurrentAttributePointsAmount();
 	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
+	Data.RequiredExperience = 0;
 	return Data;
 }
 

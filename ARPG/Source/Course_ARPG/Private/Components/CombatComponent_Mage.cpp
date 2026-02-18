@@ -22,10 +22,22 @@ void UCombatComponent_Mage::ComboAttack()
 }
 
 
+void UCombatComponent_Mage::ChangeProjectileClass(TSubclassOf<AActor> &NewProjectileClass)
+{
+	CurrentProjectileClass = NewProjectileClass;
+}
+
+
+void UCombatComponent_Mage::RevertBaseProjectileClass()
+{
+	CurrentProjectileClass = BaseProjectileClass;
+}
+
+
 void UCombatComponent_Mage::SpawnProjectile()
 {
 	GetWorld()->GetTimerManager().ClearTimer(ProjectileTimerHandle);
-	if (!GetOwner() || !ProjectileClass) return;
+	if (!GetOwner() || !CurrentProjectileClass) return;
 	OnAttackPerformedDelegate.Broadcast(AttackManaCost);
 
 	USceneComponent* SpawnPointComp = Cast<USceneComponent>(GetOwner()->GetDefaultSubobjectByName(ComponentName));
@@ -38,7 +50,7 @@ void UCombatComponent_Mage::SpawnProjectile()
 	if (MageRef->IsPlayerLockedOnEnemy() && MageRef->GetCurrentTargetActor()) TargetLocation = MageRef->GetCurrentTargetActor()->GetActorLocation();
 	else TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
-	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
+	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(CurrentProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
 	Projectile->SetStats(MageRef->GetMagicalDamage(), AliveTime);
 	Projectile->StartAliveTimer();
