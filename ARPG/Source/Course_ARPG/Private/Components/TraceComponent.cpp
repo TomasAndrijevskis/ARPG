@@ -1,12 +1,9 @@
 
 #include "Components/TraceComponent.h"
 #include "Characters/Player/MainCharacter_Warrior.h"
-#include "Combat/DamageTypes.h"
-#include "Combat/Abilities/PlayerAbilities/MagicShield.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Interfaces/Fighter.h"
-#include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -63,20 +60,22 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 	if (AllResults.Num() == 0) return;
 	float CharacterDamage = 0.0f;
 	IFighter* FighterRef = Cast<IFighter>(GetOwner());
+	AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
 	if (FighterRef)
 	{
 		CharacterDamage = FighterRef->GetPhysicalDamage();
-		AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
 		if (WarriorRef) CharacterDamage = CharacterDamage * WarriorRef->GetDamageMultiplier();
 	}
 	
 	for (const FHitResult& Hit : AllResults)
 	{
 		AActor* TargetActor = Hit.GetActor();
-
-		//if (TargetActor == Cast<AMagicShield>(Hit.GetActor())) break;
 		if (TargetsToIgnore.Contains(TargetActor)) continue;
 		UGameplayStatics::ApplyDamage(TargetActor, CharacterDamage, GetOwner()->GetInstigatorController(), GetOwner(), FighterRef->GetDamageType());
+		if (WarriorRef && WarriorRef->IsWeaponEnchanted())
+		{
+			UGameplayStatics::ApplyDamage(TargetActor, CharacterDamage * .1, GetOwner()->GetInstigatorController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
+		}
 		TargetsToIgnore.AddUnique(TargetActor);
 		OnHitDelegate.Broadcast();
 		if (HitParticleTemplate) UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticleTemplate, Hit.ImpactPoint);

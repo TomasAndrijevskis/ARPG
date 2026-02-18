@@ -26,7 +26,11 @@ public:
 
 	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 
+	TSubclassOf<UDamageType> GetEnchantmentDamageType() const;
+	
 	virtual void HandleEffectChange(EEffects NewEffect) override;
+
+	bool IsWeaponEnchanted() const;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UAbComp_DamageIncrease* AbilityComp_DamageIncrease;

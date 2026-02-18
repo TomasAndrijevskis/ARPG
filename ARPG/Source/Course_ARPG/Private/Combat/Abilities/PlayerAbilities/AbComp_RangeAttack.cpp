@@ -37,7 +37,7 @@ void UAbComp_RangeAttack::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_RangeAttack::CompleteAbilityAttack, .1, false);
+	CompleteAbilityAttack();
 }
 
 
@@ -62,12 +62,14 @@ void UAbComp_RangeAttack::SpawnProjectile()
 	if (!SpawnPointComp) return;
 	const FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
 	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
-	const FVector TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
+	FVector TargetLocation;
+	if (PlayerRef->IsPlayerLockedOnEnemy() && PlayerRef->GetCurrentTargetActor()) TargetLocation = PlayerRef->GetCurrentTargetActor()->GetActorLocation();
+	else TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
-	
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (Projectile)
 	{
+		Projectile->SetOwner(GetOwner());
 		Projectile->SetStats(GetEnhancedProjectileDamage(), AliveTime);
 		Projectile->StartAliveTimer();
 	}

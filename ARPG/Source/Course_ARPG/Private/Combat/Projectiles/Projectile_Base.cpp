@@ -38,7 +38,8 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 	}
 	if (!IsOpponentHit(OtherActor)) return;
 	HandleDestruction();
-	UGameplayStatics::ApplyDamage(PawnRef, Damage, PawnRef->GetController(), this, GetDamageType());
+	UGameplayStatics::ApplyDamage(PawnRef, Damage, PawnRef->GetController(), this, UMagicalDamageType::StaticClass());
+	UGameplayStatics::ApplyDamage(PawnRef, Damage * .1, PawnRef->GetController(), this, GetDamageType());
 }
 
 

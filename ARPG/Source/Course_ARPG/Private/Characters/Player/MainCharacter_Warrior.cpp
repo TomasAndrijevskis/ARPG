@@ -75,6 +75,24 @@ TSubclassOf<UDamageType> AMainCharacter_Warrior::GetDamageType() const
 }
 
 
+TSubclassOf<UDamageType> AMainCharacter_Warrior::GetEnchantmentDamageType() const
+{
+	switch (CurrentEffect)
+	{
+		case EEffects::Fire:
+			return UFireDamageType::StaticClass();
+		case EEffects::Ice:
+			return UIceDamageType::StaticClass();
+		case EEffects::Poison:
+			return UPoisonDamageType::StaticClass();
+		case EEffects::Empty:
+			return nullptr;
+		default:
+			return nullptr;
+	}
+}
+
+
 void AMainCharacter_Warrior::RemoveParticle()
 {
 	if (!WeaponEffectComp) return;
@@ -102,4 +120,11 @@ void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
 	if (!StatusEffectsVisualDataAsset) return;
 	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect)) WeaponEffect = Data->WeaponEffect_N;
 	SpawnParticle();
+}
+
+
+bool AMainCharacter_Warrior::IsWeaponEnchanted() const
+{
+	if (CurrentEffect == EEffects::Empty) return false;
+	return true;
 }
