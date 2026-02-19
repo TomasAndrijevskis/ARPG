@@ -4,7 +4,6 @@
 #include "CoreMinimal.h"
 #include "Data/EAttributes.h"
 #include "Data/EStats.h"
-#include "Data/PersistentData/PlayerAttributeData.h"
 #include "Components/StatusEffectsComponent.h"
 #include "Data/PersistentData/PlayerAdditionalStatsData.h"
 #include "Data/PersistentData/PlayerLevelData.h"
@@ -124,15 +123,15 @@ public:
 
 	void SetUsedAttributePoints(int UsedStatPoints);
 
-	void LoadAttributeData(TMap<EAttributes, int32> Data);
+	void LoadAttributeData(TMap<TEnumAsByte<EAttributes>, int32> Data);
 	
-	TMap<EAttributes, int32> SaveAttributeData() const;
+	TMap<TEnumAsByte<EAttributes>, int32> SaveAttributeData() const;
 
 	void LoadLevelData(FPlayerLevelData Data);
 	
 	FPlayerLevelData SaveLevelData() const;
 	
-	void SaveData();
+	void SaveAllExceptPosition();
 	
 	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute);
 	

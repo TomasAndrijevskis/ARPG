@@ -222,6 +222,12 @@ TArray<FName> AARPG_PlayerController::GetDefeatedBosses() const
 }
 
 
+void AARPG_PlayerController::SetDefeatedBosses(const TArray<FName>& Bosses)
+{
+	DefeatedBosses = Bosses;
+}
+
+
 void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss)
 {
 	DefeatedBosses.AddUnique(Boss);
@@ -231,6 +237,12 @@ void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss)
 TMap<FString, FBonfireData>& AARPG_PlayerController::GetUnlockedBonfires()
 {
 	return UnlockedBonfires;
+}
+
+
+void AARPG_PlayerController::SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires)
+{
+	UnlockedBonfires = NewUnlockedBonfires;
 }
 
 

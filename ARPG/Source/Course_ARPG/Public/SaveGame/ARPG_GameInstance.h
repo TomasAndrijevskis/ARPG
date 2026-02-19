@@ -89,15 +89,11 @@ private:
 	void SaveDefeatedBosses();
 	
 	void LoadDefeatedBosses();
-
-	void SaveUsedAttributePoints();
-
-	void LoadUsedAttributePoints();
-
-	void SaveUsedAbilityPoints();
-
-	void LoadUsedAbilityPoints();
-
+	
+	void SaveUsedPoints();
+	
+	void LoadUsedPoints();
+	
 	void SaveCurrentEffect();
 	
 	UPROPERTY()

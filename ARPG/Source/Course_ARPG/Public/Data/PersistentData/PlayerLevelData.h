@@ -5,14 +5,19 @@
 #include "PlayerLevelData.generated.h"
 
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FPlayerLevelData
 {
 	GENERATED_BODY()
-	
-	int32 CurrentLevel;
-	int32 CurrentExperience;
-	int32 RequiredExperience;
-	int32 CurrentAttributePoints;
-	int32 CurrentAbilityPoints;
+
+	UPROPERTY()
+	int32 CurrentLevel = 1;
+	UPROPERTY()
+	int32 CurrentExperience = 0;
+	UPROPERTY()
+	int32 RequiredExperience = 0;
+	UPROPERTY()
+	int32 CurrentAttributePoints = 0;
+	UPROPERTY()
+	int32 CurrentAbilityPoints = 0;
 };

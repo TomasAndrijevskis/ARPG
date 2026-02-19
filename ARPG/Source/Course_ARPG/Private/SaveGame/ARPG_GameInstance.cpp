@@ -36,8 +36,7 @@ void UARPG_GameInstance::HandleGameLoad()
 	LoadBonfires();
 	//LoadDefeatedBosses();
 	LoadPlayerLocation();
-	LoadUsedAttributePoints();
-	LoadUsedAbilityPoints();
+	LoadUsedPoints();
 	SetTeleportByDoor(false);
 	SavePlayerLocation();
 }
@@ -60,8 +59,7 @@ void UARPG_GameInstance::SaveAll()
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
-	SaveUsedAttributePoints();
-	SaveUsedAbilityPoints();
+	SaveUsedPoints();
 	SaveCurrentEffect();
 	bIsFirstLoad = false;
 	SavePlayerLocation();
@@ -74,8 +72,7 @@ void UARPG_GameInstance::SaveAllExceptPosition()
 	SaveAbilities();
 	SaveBonfires();
 	SaveDefeatedBosses();
-	SaveUsedAttributePoints();
-	SaveUsedAbilityPoints();
+	SaveUsedPoints();
 	SaveCurrentEffect();
 }
 
@@ -85,10 +82,7 @@ void UARPG_GameInstance::SaveBonfires()
 	if (!SaveGameInstance) return;
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
 	if (!PlayerController) return;
-	for (const auto& Bonfire: PlayerController->GetUnlockedBonfires())
-	{
-		SaveGameInstance->UnlockedBonfires.Add(Bonfire.Key, Bonfire.Value);
-	}
+	SaveGameInstance->UnlockedBonfires = PlayerController->GetUnlockedBonfires();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -98,10 +92,7 @@ void UARPG_GameInstance::LoadBonfires()
 	if (!SaveGameInstance) return;
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
 	if (!PlayerController) return;
-	for (const auto& Bonfire: SaveGameInstance->UnlockedBonfires)
-	{
-		PlayerController->GetUnlockedBonfires().Add(Bonfire.Key, Bonfire.Value);
-	}
+	PlayerController->SetUnlockedBonfires(SaveGameInstance->UnlockedBonfires);
 }
 
 
@@ -115,11 +106,7 @@ void UARPG_GameInstance::LoadPlayerClass()
 void UARPG_GameInstance::SaveAttributeData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	TMap<EAttributes, int32> Data = PlayerRef->SaveAttributeData();
-	for (const auto& Element : Data)
-	{
-		SaveGameInstance->Attributes.Add(Element.Key, Element.Value);
-	}
+	SaveGameInstance->Attributes = PlayerRef->SaveAttributeData();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -127,23 +114,14 @@ void UARPG_GameInstance::SaveAttributeData()
 void UARPG_GameInstance::LoadAttributeData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	TMap<EAttributes, int32> Data;
-	for (const auto& Element : SaveGameInstance->Attributes)
-	{
-		Data.Add(Element.Key, Element.Value);
-	}
-	PlayerRef->LoadAttributeData(Data);
+	PlayerRef->LoadAttributeData(SaveGameInstance->Attributes);
 }
 
 
 void UARPG_GameInstance::SaveLevelData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	const FPlayerLevelData Data = PlayerRef->SaveLevelData();
-	SaveGameInstance->CurrentLevel = Data.CurrentLevel;
-	SaveGameInstance->CurrentExperience = Data.CurrentExperience;
-	SaveGameInstance->CurrentAttributePoints = Data.CurrentAttributePoints;
-	SaveGameInstance->CurrentAbilityPoints = Data.CurrentAbilityPoints;
+	SaveGameInstance->LevelData = PlayerRef->SaveLevelData();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -151,12 +129,7 @@ void UARPG_GameInstance::SaveLevelData()
 void UARPG_GameInstance::LoadLevelData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	FPlayerLevelData Data;
-	Data.CurrentLevel = SaveGameInstance->CurrentLevel;
-	Data.CurrentExperience = SaveGameInstance->CurrentExperience;
-	Data.CurrentAttributePoints = SaveGameInstance->CurrentAttributePoints;
-	Data.CurrentAbilityPoints = SaveGameInstance->CurrentAbilityPoints;
-	PlayerRef->LoadLevelData(Data);
+	PlayerRef->LoadLevelData(SaveGameInstance->LevelData);
 }
 
 
@@ -194,10 +167,7 @@ void UARPG_GameInstance::SaveDefeatedBosses()
 {
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
 	if (!PlayerRef || !SaveGameInstance || !PlayerController) return;
-	for (auto Boss : PlayerController->GetDefeatedBosses())
-	{
-		SaveGameInstance->DefeatedBosses.AddUnique(Boss);
-	}
+	SaveGameInstance->DefeatedBosses = PlayerController->GetDefeatedBosses();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -206,10 +176,7 @@ void UARPG_GameInstance::LoadDefeatedBosses()
 {
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
 	if (!PlayerRef || !SaveGameInstance || !PlayerController) return;
-	for (auto Boss : SaveGameInstance->DefeatedBosses)
-	{
-		PlayerController->AddDefeatedBoss(Boss);
-	}
+	PlayerController->SetDefeatedBosses(SaveGameInstance->DefeatedBosses);
 }
 
 
@@ -239,26 +206,20 @@ void UARPG_GameInstance::LoadPlayerLocation()
 }
 
 
-void UARPG_GameInstance::SaveUsedAttributePoints()
+void UARPG_GameInstance::SaveUsedPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
+	SaveGameInstance->UsedAbilityPoints = PlayerRef->GetUsedAbilityPoints();
 	SaveGameInstance->UsedAttributePoints = PlayerRef->GetUsedAttributePoints();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
-void UARPG_GameInstance::LoadUsedAttributePoints()
+void UARPG_GameInstance::LoadUsedPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	PlayerRef->SetUsedAttributePoints(SaveGameInstance->UsedAttributePoints);
-}
-
-
-void UARPG_GameInstance::SaveUsedAbilityPoints()
-{
-	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->UsedAbilityPoints = PlayerRef->GetUsedAbilityPoints();
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+	PlayerRef->SetUsedAbilityPoints(SaveGameInstance->UsedAbilityPoints);
 }
 
 
@@ -274,13 +235,6 @@ void UARPG_GameInstance::LoadCurrentEffect()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	PlayerRef->HandleEffectChange(SaveGameInstance->Effect);
-}
-
-
-void UARPG_GameInstance::LoadUsedAbilityPoints()
-{
-	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->SetUsedAbilityPoints(SaveGameInstance->UsedAbilityPoints);
 }
 
 

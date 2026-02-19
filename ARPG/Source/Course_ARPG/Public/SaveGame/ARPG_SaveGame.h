@@ -7,6 +7,7 @@
 #include "GameFramework/SaveGame.h"
 #include "Data/EEffects.h"
 #include "Data/EAttributes.h"
+#include "Data/PersistentData/PlayerLevelData.h"
 #include "ARPG_SaveGame.generated.h"
 
 
@@ -22,18 +23,9 @@ public:
 
 	UPROPERTY()
 	TMap<TEnumAsByte<EAttributes>, int32> Attributes;
-	
-	UPROPERTY()
-	int CurrentExperience;
 
-	UPROPERTY()
-	int CurrentLevel;
-
-	UPROPERTY()
-	int CurrentAttributePoints;
-
-	UPROPERTY()
-	int CurrentAbilityPoints;
+	UPROPERTY(SaveGame)
+	FPlayerLevelData LevelData;
 
 	UPROPERTY()
 	int UsedAttributePoints;

@@ -56,10 +56,14 @@ public:
 	
 	TArray<FName> GetDefeatedBosses() const;
 
+	void SetDefeatedBosses(const TArray<FName>& Bosses);
+
 	void AddDefeatedBoss(const FName& Boss);
 
 	TMap<FString, FBonfireData>& GetUnlockedBonfires();
 
+	void SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires);
+	
 	ABonfire*& GetCurrentBonfire();
 
 	FOnGamePauseStateChangeRequest OnGamePauseStateChangeRequestDelegate;

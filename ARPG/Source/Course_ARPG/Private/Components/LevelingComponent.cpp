@@ -23,7 +23,7 @@ void ULevelingComponent::AddExperience(const float Experience)
 	TryLevelUp();
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
 	if (!PlayerRef) return;
-	PlayerRef->SaveData();
+	PlayerRef->SaveAllExceptPosition();
 }
 
 

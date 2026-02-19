@@ -3,7 +3,6 @@
 #include "Animations/PlayerAnimInstance.h"
 #include "Combat/DamageTypes.h"
 #include "Data/EStats.h"
-#include "Data/PersistentData/PlayerAttributeData.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/AttributesComponent.h"
 #include "Components/CombatComponent_Base.h"
@@ -267,7 +266,7 @@ void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
 }
 
 
-void AMainCharacter_Base::LoadAttributeData(TMap<EAttributes, int32> Data)
+void AMainCharacter_Base::LoadAttributeData(TMap<TEnumAsByte<EAttributes>, int32> Data)
 {
 	for (const auto& Element : Data)
 	{
@@ -277,9 +276,9 @@ void AMainCharacter_Base::LoadAttributeData(TMap<EAttributes, int32> Data)
 }
 
 
-TMap<EAttributes, int32> AMainCharacter_Base::SaveAttributeData() const
+TMap<TEnumAsByte<EAttributes>, int32>AMainCharacter_Base::SaveAttributeData() const
 {
-	TMap<EAttributes, int32> Data;
+	TMap<TEnumAsByte<EAttributes>, int32> Data;
 	for (auto Element : GetAttributesArray())
 	{
 		Data.Add(Element, AttributesComp->GetAttributeValue(Element));
@@ -309,7 +308,7 @@ FPlayerLevelData AMainCharacter_Base::SaveLevelData() const
 }
 
 
-void AMainCharacter_Base::SaveData()
+void AMainCharacter_Base::SaveAllExceptPosition()
 {
 	GameInstance->SaveAllExceptPosition();
 }
