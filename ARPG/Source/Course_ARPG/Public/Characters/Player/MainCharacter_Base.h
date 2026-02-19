@@ -123,13 +123,13 @@ public:
 	int GetUsedAttributePoints() const;
 
 	void SetUsedAttributePoints(int UsedStatPoints);
-	
-	void LoadAttributeData(FPlayerAttributeData Data);
 
-	FPlayerAttributeData SaveAttributeData() const;
+	void LoadAttributeData(TMap<EAttributes, int32> Data);
+	
+	TMap<EAttributes, int32> SaveAttributeData() const;
 
 	void LoadLevelData(FPlayerLevelData Data);
-
+	
 	FPlayerLevelData SaveLevelData() const;
 	
 	void SaveData();

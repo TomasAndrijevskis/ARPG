@@ -267,27 +267,23 @@ void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
 }
 
 
-void AMainCharacter_Base::LoadAttributeData(FPlayerAttributeData Data)
+void AMainCharacter_Base::LoadAttributeData(TMap<EAttributes, int32> Data)
 {
-	AttributesComp->SetAttributeValue(EAttributes::Arcane, Data.Arcane);
-	AttributesComp->SetAttributeValue(EAttributes::Wisdom, Data.Wisdom);
-	AttributesComp->SetAttributeValue(EAttributes::Endurance, Data.Endurance);
-	AttributesComp->SetAttributeValue(EAttributes::Intelligence, Data.Intelligence);
-	AttributesComp->SetAttributeValue(EAttributes::Strength, Data.Strength);
-	AttributesComp->SetAttributeValue(EAttributes::Vigor, Data.Vigor);
+	for (const auto& Element : Data)
+	{
+		AttributesComp->SetAttributeValue(Element.Key, Element.Value);
+	}
 	RecalculateAllStats();
 }
 
 
-FPlayerAttributeData AMainCharacter_Base::SaveAttributeData() const
+TMap<EAttributes, int32> AMainCharacter_Base::SaveAttributeData() const
 {
-	FPlayerAttributeData Data;
-	Data.Arcane = AttributesComp->GetAttributeValue(EAttributes::Arcane);
-	Data.Wisdom = AttributesComp->GetAttributeValue(EAttributes::Wisdom);
-	Data.Strength = AttributesComp->GetAttributeValue(EAttributes::Strength);
-	Data.Intelligence = AttributesComp->GetAttributeValue(EAttributes::Intelligence);
-	Data.Endurance = AttributesComp->GetAttributeValue(EAttributes::Endurance);
-	Data.Vigor = AttributesComp->GetAttributeValue(EAttributes::Vigor);
+	TMap<EAttributes, int32> Data;
+	for (auto Element : GetAttributesArray())
+	{
+		Data.Add(Element, AttributesComp->GetAttributeValue(Element));
+	}
 	return Data;
 }
 
@@ -296,8 +292,8 @@ void AMainCharacter_Base::LoadLevelData(FPlayerLevelData Data)
 {
 	LevelComp->SetLevel(Data.CurrentLevel);
 	LevelComp->SetExperience(Data.CurrentExperience);
-	LevelComp->SetAbilityPoints(Data.AbilityPoints);
-	LevelComp->SetAttributePoints(Data.AttributePoints);
+	LevelComp->SetAbilityPoints(Data.CurrentAbilityPoints);
+	LevelComp->SetAttributePoints(Data.CurrentAttributePoints);
 }
 
 
@@ -306,8 +302,8 @@ FPlayerLevelData AMainCharacter_Base::SaveLevelData() const
 	FPlayerLevelData Data;
 	Data.CurrentLevel = LevelComp->GetCurrentLevel();
 	Data.CurrentExperience = LevelComp->GetCurrentExperience();
-	Data.AttributePoints = LevelComp->GetCurrentAttributePointsAmount();
-	Data.AbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
+	Data.CurrentAttributePoints = LevelComp->GetCurrentAttributePointsAmount();
+	Data.CurrentAbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
 	Data.RequiredExperience = 0;
 	return Data;
 }
@@ -346,7 +342,7 @@ void AMainCharacter_Base::CalculateStat(EAttributes Attribute, EStats Stat) cons
 	const float NewValue = Value * Coefficient;
 	StatsComp->SetStatValue(Stat, NewValue);
 	StatsComp->RestoreStats();
-	if (Attribute == Intelligence)
+	if (Attribute == EAttributes::Intelligence)
 	{
 		IceStatusEffectManager->OnResistanceChangedDelegate.Broadcast(NewValue);
 		FireStatusEffectManager->OnResistanceChangedDelegate.Broadcast(NewValue);
@@ -357,12 +353,12 @@ void AMainCharacter_Base::CalculateStat(EAttributes Attribute, EStats Stat) cons
 
 void AMainCharacter_Base::RecalculateAllStats()
 {
-	RecalculateAttributeRelatedStats(Vigor);
-	RecalculateAttributeRelatedStats(Endurance);
-	RecalculateAttributeRelatedStats(Strength);
-	RecalculateAttributeRelatedStats(Intelligence);
-	RecalculateAttributeRelatedStats(Wisdom);
-	RecalculateAttributeRelatedStats(Arcane);
+	RecalculateAttributeRelatedStats(EAttributes::Vigor);
+	RecalculateAttributeRelatedStats(EAttributes::Endurance);
+	RecalculateAttributeRelatedStats(EAttributes::Strength);
+	RecalculateAttributeRelatedStats(EAttributes::Intelligence);
+	RecalculateAttributeRelatedStats(EAttributes::Wisdom);
+	RecalculateAttributeRelatedStats(EAttributes::Arcane);
 }
 
 

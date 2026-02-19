@@ -6,6 +6,7 @@
 #include "Data/BonfireData.h"
 #include "GameFramework/SaveGame.h"
 #include "Data/EEffects.h"
+#include "Data/EAttributes.h"
 #include "ARPG_SaveGame.generated.h"
 
 
@@ -19,6 +20,9 @@ class COURSE_ARPG_API UARPG_SaveGame : public USaveGame
 
 public:
 
+	UPROPERTY()
+	TMap<TEnumAsByte<EAttributes>, int32> Attributes;
+	
 	UPROPERTY()
 	int Endurance;
 

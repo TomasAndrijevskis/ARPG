@@ -13,6 +13,6 @@ struct FPlayerLevelData
 	int32 CurrentLevel;
 	int32 CurrentExperience;
 	int32 RequiredExperience;
-	int32 AttributePoints;
-	int32 AbilityPoints;
+	int32 CurrentAttributePoints;
+	int32 CurrentAbilityPoints;
 };
