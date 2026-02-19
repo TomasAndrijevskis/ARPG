@@ -24,24 +24,6 @@ public:
 	TMap<TEnumAsByte<EAttributes>, int32> Attributes;
 	
 	UPROPERTY()
-	int Endurance;
-
-	UPROPERTY()
-	int Intelligence;
-
-	UPROPERTY()
-	int Strength;
-
-	UPROPERTY()
-	int Arcane;
-
-	UPROPERTY()
-	int Wisdom;
-
-	UPROPERTY()
-	int Vigor;
-	
-	UPROPERTY()
 	int CurrentExperience;
 
 	UPROPERTY()
