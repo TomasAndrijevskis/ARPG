@@ -8,6 +8,7 @@
 #include "TraceComponent.generated.h"
 
 
+class IFighter;
 DECLARE_MULTICAST_DELEGATE(FOnHit);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -36,6 +37,18 @@ protected:
 
 private:
 
+	void DrawDebugBox(bool bHasFoundTargets, FVector StartSocketLocation, FVector EndSocketLocation, FQuat ShapeRotation, FCollisionShape Box);
+
+	float GetDamage(IFighter* FighterRef);
+
+	bool CanHit(AActor* TargetActor);
+
+	void ApplyDamage(AActor* TargetActor, float Damage,  TSubclassOf<UDamageType> DamageType);
+
+	void DetectHitTargets(TArray<FHitResult>& Results);
+
+	FVector GetWeaponHitBox(const FVector& Start, const FVector& End) const;
+	
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalComp;
 
