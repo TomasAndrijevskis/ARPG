@@ -36,7 +36,7 @@ void UIceEffectManager::HandleFreeze(const float SlowDuration, const float NewDa
 	IceDamage = NewDamage;
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 	ApplyDamage(IceDamage);
-	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopFreeze, SlowDuration, false);
+	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopEffect, SlowDuration, false);
 }
 
 
@@ -47,12 +47,6 @@ void UIceEffectManager::ApplyDamage(float Damage)
 
 
 void UIceEffectManager::ApplyProlongedDamage(){}
-
-
-void UIceEffectManager::StopFreeze()
-{
-	StopEffect();
-}
 
 
 void UIceEffectManager::StopEffect()

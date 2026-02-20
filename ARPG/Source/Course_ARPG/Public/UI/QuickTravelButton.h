@@ -7,7 +7,7 @@
 #include "QuickTravelButton.generated.h"
 
 
-class UBonfireInteractionAnim;
+class UTransitionAnim;
 class AARPG_PlayerController;
 class UTextBlock;
 class AMainCharacter_Base;
@@ -35,21 +35,7 @@ private:
 	UFUNCTION()
 	void TeleportPlayer();
 
-	UFUNCTION()
-	void ShowAnimBeforeTeleport();
-	
-	UFUNCTION()
-	void EnablePlayerInput();
-
-	UPROPERTY()
-	AARPG_PlayerController* PlayerController;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UBonfireInteractionAnim> BonfireInteractionAnimClass;
-
 	FVector TravelLocation;
 
 	FString TravelMapName;
-	
-	float AnimDuration;
 };

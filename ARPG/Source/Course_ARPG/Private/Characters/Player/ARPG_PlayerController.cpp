@@ -6,6 +6,7 @@
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Objects/Bonfire.h"
 #include "Data/BonfireData.h"
+#include "UI/TransitionAnim.h"
 
 
 void AARPG_PlayerController::BeginPlay()
@@ -14,12 +15,10 @@ void AARPG_PlayerController::BeginPlay()
 	SetPlayerControllerSettings();
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
 	if (!PlayerRef) return;
+	PlayFadeAnim(FadeOut);
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
 	if (!GameInstanceRef) return;
 	HandleGameLoad();
-	OnGamePauseStateChangeRequestDelegate.AddUObject(this, &AARPG_PlayerController::HandleGamePause);
-	OnPlayerInputEnabledChangedDelegate.AddUObject(this, &AARPG_PlayerController::SetPlayerInputEnabled);
-	OnTeleportPlayerRequestDelegate.AddUObject(this, &AARPG_PlayerController::TeleportToLocation);
 }
 
 
@@ -91,13 +90,82 @@ void AARPG_PlayerController::HandleEnchantmentMenuQuit()
 }
 
 
-void AARPG_PlayerController::TeleportToMap()
+void AARPG_PlayerController::StartTransitionAnim(EAnimTypes AnimType, float& AnimDuration)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact with Door"));
-	if (!bIsInDoorRange) return;
-	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Door"));
-	GameInstanceRef->SetTeleportByDoor(true);
-	UGameplayStatics::OpenLevel(this, FName(MapName));
+	if (!TransitionAnimClass) return;
+	UTransitionAnim* TransitionAnimRef = Cast<UTransitionAnim>(CreateWidget(this, TransitionAnimClass));
+	if (!TransitionAnimRef) return;
+	TransitionAnimRef->AddToViewport(6);
+	TransitionAnimRef->PlayAnim(AnimType);
+	AnimDuration = TransitionAnimRef->GetAnimDuration(AnimType);
+}
+
+
+void AARPG_PlayerController::PlayFadeAnim(EAnimTypes AnimType)
+{
+	float AnimDuration;
+	StartTransitionAnim(AnimType, AnimDuration);
+	SetPlayerInputEnabled(false);
+	FTimerDelegate InputDelegate;
+	InputDelegate.BindUObject(this, &AARPG_PlayerController::SetPlayerInputEnabled, true);
+	HandleTeleportTimers(AnimDuration, InputDelegate);
+}
+
+
+void AARPG_PlayerController::HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName)
+{
+	float AnimDuration;
+	StartTransitionAnim(FullFade, AnimDuration);
+	SetPlayerInputEnabled(false);
+	HandleGamePause(false);
+	OnPlayerTeleportRequestDelegate.Broadcast();
+	FTimerDelegate TeleportDelegate;
+	FTimerDelegate InputDelegate;
+	TeleportDelegate.BindUObject(this, &AARPG_PlayerController::HandleTeleportDestination, TravelLocation, TravelMapName);
+	InputDelegate.BindUObject(this, &AARPG_PlayerController::SetPlayerInputEnabled, true);
+	HandleTeleportTimers(AnimDuration/2, TeleportDelegate);
+	HandleTeleportTimers(AnimDuration, InputDelegate);
+}
+
+
+void AARPG_PlayerController::HandleTeleportDestination(FVector TravelLocation, FString TravelMapName)
+{
+	if (!GameInstanceRef) return;
+	FString CurrentMapName = UGameplayStatics::GetCurrentLevelName(GetWorld());
+	if (CurrentMapName == TravelMapName) TeleportToLocation(TravelLocation);
+	else TeleportToMap(TravelLocation, TravelMapName);
+}
+
+
+void AARPG_PlayerController::TeleportToMap(FVector TravelLocation, FString TravelMapName)
+{
+	if (!bIsInDoorRange)
+	{
+		FString MapPath = "/Game/Maps/" + TravelMapName;
+		if (FPackageName::DoesPackageExist(MapPath))
+		{
+			GameInstanceRef->SavePlayerLocation(TravelLocation);
+			OpenRequiredLevel(FName(*TravelMapName));
+		}
+	}
+	else
+	{
+		GameInstanceRef->SetTeleportByDoor(true);
+		OpenRequiredLevel(FName(MapName));
+	}
+}
+
+
+void AARPG_PlayerController::HandleTeleportTimers(float AnimDuration, const FTimerDelegate& Delegate)
+{
+	FTimerHandle TimerHandle;
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, Delegate, AnimDuration, false);
+}
+
+
+void AARPG_PlayerController::OpenRequiredLevel(FName NextMapName)
+{
+	UGameplayStatics::OpenLevel(this, NextMapName);
 }
 
 
@@ -124,6 +192,7 @@ void AARPG_PlayerController::SetPlayerControllerSettings()
 
 void AARPG_PlayerController::HandleGamePause(const bool bIsGamePaused)
 {
+	UE_LOG(LogTemp, Error, TEXT("Pause: %hs"), bIsGamePaused ? "true" : "false");
 	SetShowMouseCursor(bIsGamePaused);
 	bEnableClickEvents = bIsGamePaused;
 	bEnableMouseOverEvents = bIsGamePaused;

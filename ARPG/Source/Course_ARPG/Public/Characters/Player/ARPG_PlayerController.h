@@ -4,18 +4,17 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Data/BonfireData.h"
+#include "Data/EAnimTypes.h"
 #include "ARPG_PlayerController.generated.h"
 
 
+class UTransitionAnim;
 class ABoss;
 class ABonfire;
 class UARPG_GameInstance;
 class AMainCharacter_Base;
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnGamePauseStateChangeRequest, const bool);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerInputEnabledChanged, const bool);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnTeleportPlayerRequest, const FVector&);
-DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleported);
+DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleportRequest);
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
@@ -45,9 +44,6 @@ public:
 	UFUNCTION()
 	void SaveAll() const;
 
-	UFUNCTION(BlueprintCallable)
-	void CreatePauseMenu();
-
 	UFUNCTION()
 	void RemovePauseMenu();
 
@@ -63,16 +59,13 @@ public:
 	TMap<FString, FBonfireData>& GetUnlockedBonfires();
 
 	void SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires);
+
+	UFUNCTION(BlueprintCallable)
+	void HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName);
 	
 	ABonfire*& GetCurrentBonfire();
 
-	FOnGamePauseStateChangeRequest OnGamePauseStateChangeRequestDelegate;
-
-	FOnPlayerInputEnabledChanged OnPlayerInputEnabledChangedDelegate;
-
-	FOnTeleportPlayerRequest OnTeleportPlayerRequestDelegate;
-
-	FOnPlayerTeleported OnPlayerTeleportedDelegate;
+	FOnPlayerTeleportRequest OnPlayerTeleportRequestDelegate;
 	
 protected:
 	
@@ -84,8 +77,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void HandleMagicalCubeInteraction();
 	
-	UFUNCTION(BlueprintCallable)
-	void TeleportToMap();
+	void TeleportToMap(FVector TravelLocation, FString TravelMapName);
 
 	UFUNCTION(BlueprintCallable)
 	void HandleEnchantmentSphereInteraction();
@@ -105,6 +97,19 @@ private:
 	void SetPlayerInputEnabled(const bool IsEnabled);
 
 	void TeleportToLocation(const FVector& Location);
+
+	void StartTransitionAnim(EAnimTypes AnimType, float& AnimDuration);
+
+	void HandleTeleportDestination(FVector TravelLocation, FString TravelMapName);
+
+	void HandleTeleportTimers(float AnimDuration, const FTimerDelegate& Delegate);
+
+	void PlayFadeAnim(EAnimTypes AnimType);
+
+	void OpenRequiredLevel(FName NextMapName);
+
+	UFUNCTION(BlueprintCallable)
+	void CreatePauseMenu();
 	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
@@ -118,6 +123,9 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	TArray<FName> DefeatedBosses;
 
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UTransitionAnim> TransitionAnimClass;
+	
 	TMap<FString, FBonfireData> UnlockedBonfires;
 	
 	bool bIsAbilityScreenOpened = false;

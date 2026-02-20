@@ -32,9 +32,6 @@ protected:
 	virtual void ApplyProlongedDamage() override;
 	
 private:
-	
-	UFUNCTION()
-	void StopFreeze();
 
 	UPROPERTY(EditAnywhere)
 	float IceDamageResistance;

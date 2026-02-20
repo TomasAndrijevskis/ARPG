@@ -23,7 +23,7 @@ void UQuickTravelMenu::SetBonfires()
 	if (!PlayerController) return;
 	Bonfires = PlayerController->GetUnlockedBonfires();
 	BonfireName = PlayerController->GetCurrentBonfire()->GetBonfireName();
-	PlayerController->OnPlayerTeleportedDelegate.AddUObject(this, &UQuickTravelMenu::RemoveWidget);
+	PlayerController->OnPlayerTeleportRequestDelegate.AddUObject(this, &UQuickTravelMenu::RemoveWidget);
 }
 
 
