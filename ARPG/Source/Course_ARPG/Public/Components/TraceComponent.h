@@ -37,13 +37,13 @@ protected:
 
 private:
 
-	void DrawDebugBox(bool bHasFoundTargets, FVector StartSocketLocation, FVector EndSocketLocation, FQuat ShapeRotation, FCollisionShape Box);
+	void DrawDebugBox(bool bHasFoundTargets, const FVector& StartSocketLocation, const FVector& EndSocketLocation, const FQuat& ShapeRotation, const FCollisionShape& Box) const;
 
-	float GetDamage(IFighter* FighterRef);
+	float GetDamage() const;
 
 	bool CanHit(AActor* TargetActor);
 
-	void ApplyDamage(AActor* TargetActor, float Damage,  TSubclassOf<UDamageType> DamageType);
+	void ApplyDamage(AActor* TargetActor, TSubclassOf<UDamageType> DamageType);
 
 	void DetectHitTargets(TArray<FHitResult>& Results);
 
@@ -66,4 +66,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* HitParticleTemplate;
+	
+	IFighter* FighterRef;
 };

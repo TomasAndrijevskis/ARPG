@@ -50,7 +50,7 @@ public:
 	
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
-	virtual float GetPhysicalDamage() const override;
+	virtual float GetPhysicalDamage() override;
 
 	virtual float GetMagicalDamage() const override;
 	

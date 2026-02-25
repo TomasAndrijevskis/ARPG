@@ -147,7 +147,7 @@ TSubclassOf<UDamageType> AEnemyCharacter::GetDamageType() const
 }
 
 
-float AEnemyCharacter::GetPhysicalDamage() const
+float AEnemyCharacter::GetPhysicalDamage()
 {
 	return StatsComp->GetStatValue(EStats::PhysicalStrength);
 }

@@ -38,7 +38,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates NewEnemyState){};
 
-	virtual float GetPhysicalDamage() const override;
+	virtual float GetPhysicalDamage() override;
 
 	virtual float GetMagicalDamage() const override;
 

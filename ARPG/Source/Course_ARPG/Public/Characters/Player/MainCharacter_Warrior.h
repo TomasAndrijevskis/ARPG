@@ -31,6 +31,8 @@ public:
 	virtual void HandleEffectChange(EEffects NewEffect) override;
 
 	bool IsWeaponEnchanted() const;
+
+	virtual float GetPhysicalDamage() override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UAbComp_DamageIncrease* AbilityComp_DamageIncrease;

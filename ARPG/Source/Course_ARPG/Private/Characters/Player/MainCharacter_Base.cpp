@@ -501,7 +501,7 @@ void AMainCharacter_Base::HandleAbilityPointsAmountChange(const int NewPoints)
 }
 
 
-float AMainCharacter_Base::GetPhysicalDamage() const
+float AMainCharacter_Base::GetPhysicalDamage()
 {
 	return StatsComp->GetStatValue(EStats::PhysicalStrength);
 }

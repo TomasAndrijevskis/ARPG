@@ -17,25 +17,24 @@ void UTraceComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	SkeletalComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
+	FighterRef = Cast<IFighter>(GetOwner());
 }
 
 
 void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if (!FighterRef) return;
 	if (!bIsAttacking) return;
 	TArray<FHitResult> AllResults;
 	DetectHitTargets(AllResults);
 	if (AllResults.Num() == 0) return;
-	IFighter* FighterRef = Cast<IFighter>(GetOwner());
-	if (!FighterRef) return;
-	float CharacterDamage = GetDamage(FighterRef);
 	for (FHitResult& Hit : AllResults)
 	{
 		AActor* TargetActor = Hit.GetActor();
 		if (CanHit(TargetActor))
 		{
-			ApplyDamage(TargetActor, CharacterDamage, FighterRef->GetDamageType());
+			ApplyDamage(TargetActor, FighterRef->GetDamageType());
 			OnHitDelegate.Broadcast();
 			if (HitParticleTemplate) UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticleTemplate, Hit.ImpactPoint);
 		}
@@ -45,7 +44,8 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 void UTraceComponent::DetectHitTargets(TArray<FHitResult>& OutHits)
 {
-	for (const FTraceSockets Socket : Sockets)
+	if (!ensure(SkeletalComp)) return;
+	for (const FTraceSockets& Socket : Sockets)
 	{
 		FVector StartSocketLocation = SkeletalComp->GetSocketLocation(Socket.StartSocket);
 		FVector EndSocketLocation = SkeletalComp->GetSocketLocation(Socket.EndSocket);
@@ -79,21 +79,18 @@ bool UTraceComponent::CanHit(AActor* TargetActor)
 }
 
 
-void UTraceComponent::ApplyDamage(AActor* TargetActor, float Damage, TSubclassOf<UDamageType> DamageType)
+void UTraceComponent::ApplyDamage(AActor* TargetActor, TSubclassOf<UDamageType> DamageType)
 {
-	UGameplayStatics::ApplyDamage(TargetActor, Damage, GetOwner()->GetInstigatorController(), GetOwner(), DamageType);
+	UGameplayStatics::ApplyDamage(TargetActor, GetDamage(), GetOwner()->GetInstigatorController(), GetOwner(), DamageType);
 	AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
 	if (WarriorRef && WarriorRef->IsWeaponEnchanted())
-		UGameplayStatics::ApplyDamage(TargetActor, Damage * .1, GetOwner()->GetInstigatorController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
+		UGameplayStatics::ApplyDamage(TargetActor, GetDamage() * .1, GetOwner()->GetInstigatorController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
 }
 
 
-float UTraceComponent::GetDamage(IFighter* FighterRef)
+float UTraceComponent::GetDamage() const
 {
-	AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
-	float Damage = FighterRef->GetPhysicalDamage();
-	if (WarriorRef) Damage = Damage * WarriorRef->GetDamageMultiplier();
-	return Damage;
+	return FighterRef->GetPhysicalDamage();
 }
 
 
@@ -103,7 +100,7 @@ void UTraceComponent::HandleResetAttack()
 }
 
 
-void UTraceComponent::DrawDebugBox(bool bHasFoundTargets, FVector StartSocketLocation, FVector EndSocketLocation, FQuat ShapeRotation, FCollisionShape Box)
+void UTraceComponent::DrawDebugBox(bool bHasFoundTargets, const FVector& StartSocketLocation, const FVector& EndSocketLocation, const FQuat& ShapeRotation, const FCollisionShape& Box) const
 {
 	FLinearColor DebugColor = FColor::Red;
 	if (bHasFoundTargets) DebugColor = FColor::Green;

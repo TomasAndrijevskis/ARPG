@@ -21,7 +21,7 @@ class COURSE_ARPG_API IFighter
 
 public:
 
-	virtual float GetPhysicalDamage() const { return 0.0f; }
+	virtual float GetPhysicalDamage() { return 0.0f; }
 
 	virtual float GetMagicalDamage() const { return 0.0f; }
 

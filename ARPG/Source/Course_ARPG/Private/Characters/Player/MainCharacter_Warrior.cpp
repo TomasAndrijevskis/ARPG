@@ -128,3 +128,9 @@ bool AMainCharacter_Warrior::IsWeaponEnchanted() const
 	if (CurrentEffect == EEffects::Empty) return false;
 	return true;
 }
+
+
+float AMainCharacter_Warrior::GetPhysicalDamage()
+{
+	return StatsComp->GetStatValue(PhysicalStrength) * GetDamageMultiplier();
+}
