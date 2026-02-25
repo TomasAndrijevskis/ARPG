@@ -4,7 +4,6 @@
 #include "Components/StatHelpers/HealthManager.h"
 #include "Components/StatHelpers/ManaManager.h"
 #include "Components/StatHelpers/StaminaManager.h"
-#include "Interfaces/Fighter.h"
 
 
 void UStatsComponent::BeginPlay()
@@ -160,7 +159,7 @@ FString UStatsComponent::GetStatName(const EStats Stat) const
 
 void UStatsComponent::SetStatValue(const EStats Stat, const float NewValue)
 {
-	if ((Stat == MagDmgResistance || Stat == PhysDmgResistance || Stat == AbilityPower) && NewValue >= PercentStatCap)
+	if (PercentageStats.Contains(Stat) && NewValue >= PercentStatCap)
 		Stats[Stat] = PercentStatCap;
 	else Stats[Stat] = NewValue;
 }

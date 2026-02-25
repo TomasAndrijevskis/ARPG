@@ -26,4 +26,5 @@ enum EStats
 	FireDmgResistance UMETA(DisplayName = "Fire damage resistance"),
 	IceDmgResistance UMETA(DisplayName = "Ice damage resistance"),
 	PoisonDmgResistance UMETA(DisplayName = "Poison damage resistance"),
+	ElementalDamageModificator UMETA(DisplayName = "Elemental damage modificator"),
 };

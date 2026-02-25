@@ -5,6 +5,13 @@
 #include "Kismet/KismetMathLibrary.h"
 
 
+void UEnemyProjectileComponent::BeginPlay()
+{
+	Super::BeginPlay();
+	FighterRef = Cast<IFighter>(GetOwner());
+}
+
+
 void UEnemyProjectileComponent::SpawnProjectile()
 {
 	float ProjectileDamage = GetProjectileDamage();
@@ -16,16 +23,20 @@ void UEnemyProjectileComponent::SpawnProjectile()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
 	Projectile->SetOwner(GetOwner());
-	Projectile->SetStats(ProjectileDamage, AliveTime);
+	Projectile->SetStats(ProjectileDamage, AliveTime, GetElementalDamageModificator());
 	Projectile->StartAliveTimer();
 }
 
 
 float UEnemyProjectileComponent::GetProjectileDamage() const
 {
-	APawn* PawnRef = Cast<APawn>(GetOwner());
-	if (!PawnRef) return 0.f;
-	IFighter* FighterRef = Cast<IFighter>(PawnRef);
 	if (!FighterRef) return 0.f;
 	return FighterRef->GetMagicalDamage();
+}
+
+
+float UEnemyProjectileComponent::GetElementalDamageModificator() const
+{
+	if (!FighterRef) return 0.f;
+	return FighterRef->GetElementalDamageModificator();
 }

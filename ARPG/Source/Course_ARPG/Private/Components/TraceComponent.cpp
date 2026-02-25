@@ -84,7 +84,7 @@ void UTraceComponent::ApplyDamage(AActor* TargetActor, TSubclassOf<UDamageType> 
 	UGameplayStatics::ApplyDamage(TargetActor, GetDamage(), GetOwner()->GetInstigatorController(), GetOwner(), DamageType);
 	AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
 	if (WarriorRef && WarriorRef->IsWeaponEnchanted())
-		UGameplayStatics::ApplyDamage(TargetActor, GetDamage() * .1, GetOwner()->GetInstigatorController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
+		UGameplayStatics::ApplyDamage(TargetActor, GetDamage() * WarriorRef->GetElementalDamageModificator(), GetOwner()->GetInstigatorController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
 }
 
 

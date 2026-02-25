@@ -37,6 +37,9 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_ElementalResistance;
+
+	UPROPERTY(meta = (BindWidget))
+	UTextBlock* Text_ElementalDamageModificator;
 	
 	void SetText();
 

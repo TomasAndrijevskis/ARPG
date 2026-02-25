@@ -39,7 +39,7 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 	if (!IsOpponentHit(OtherActor)) return;
 	HandleDestruction();
 	UGameplayStatics::ApplyDamage(PawnRef, Damage, PawnRef->GetController(), this, UMagicalDamageType::StaticClass());
-	UGameplayStatics::ApplyDamage(PawnRef, Damage * .1, PawnRef->GetController(), this, GetDamageType());
+	UGameplayStatics::ApplyDamage(PawnRef, Damage * ElementalDamageModificator, PawnRef->GetController(), this, GetDamageType());
 }
 
 
@@ -69,10 +69,11 @@ void AProjectile_Base::DestroyProjectile()
 }
 
 
-void AProjectile_Base::SetStats(const float NewDamage, const float NewAliveTime)
+void AProjectile_Base::SetStats(const float NewDamage, const float NewAliveTime, const float NewModificator)
 {
 	Damage = NewDamage;
 	AliveTime = NewAliveTime;
+	ElementalDamageModificator = NewModificator;
 }
 
 

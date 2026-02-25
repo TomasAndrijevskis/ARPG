@@ -16,7 +16,7 @@ public:
 	UFUNCTION()
 	void DestroyProjectile();
 
-	void SetStats(const float NewDamage, const float NewAliveTime);
+	void SetStats(const float NewDamage, const float NewAliveTime, const float NewModificator);
 
 	void StartAliveTimer();
 	
@@ -56,5 +56,7 @@ private:
 	
 	float Damage;
 
+	float ElementalDamageModificator;
+	
 	FTimerHandle AliveTimerHandle;
 };

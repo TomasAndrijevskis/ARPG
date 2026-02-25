@@ -49,6 +49,8 @@ public:
 	virtual float GetMeleeRange() const override;
 
 	virtual float GetRangeDistance() const override;
+
+	virtual float GetElementalDamageModificator() const override;
 	
 	UFUNCTION(BlueprintCallable)
 	virtual void CreateHealthWidget(){};

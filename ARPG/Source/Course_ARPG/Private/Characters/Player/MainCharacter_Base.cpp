@@ -420,6 +420,7 @@ void AMainCharacter_Base::FillAdditionalStatsDisplayData(FPlayerAdditionalStatsD
 	Data.PhysDamageResistance = StatsComp->GetStatValue(EStats::PhysDmgResistance) * 100;
 	Data.AbilityPower = StatsComp->GetStatValue(EStats::AbilityPower) * 100;
 	Data.ElementalResistance = StatsComp->GetStatValue(EStats::FireDmgResistance) * 100;// all same
+	Data.ElementalDamageModificator = StatsComp->GetStatValue(EStats::ElementalDamageModificator) * 100;
 }
 
 
@@ -432,6 +433,12 @@ float AMainCharacter_Base::GetAbilityPowerPercent() const
 EEffects AMainCharacter_Base::GetCurrentEnchantmentEffect() const
 {
 	return CurrentEffect;
+}
+
+
+float AMainCharacter_Base::GetElementalDamageModificator() const
+{
+	return StatsComp->GetStatValue(EStats::ElementalDamageModificator);
 }
 
 

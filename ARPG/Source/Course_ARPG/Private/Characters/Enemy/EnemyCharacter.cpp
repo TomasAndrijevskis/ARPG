@@ -177,6 +177,12 @@ float AEnemyCharacter::GetRangeDistance() const
 }
 
 
+float AEnemyCharacter::GetElementalDamageModificator() const
+{
+	return StatsComp->GetStatValue(ElementalDamageModificator);
+}
+
+
 AAIController* AEnemyCharacter::GetAIController() const
 {
 	return ControllerRef;

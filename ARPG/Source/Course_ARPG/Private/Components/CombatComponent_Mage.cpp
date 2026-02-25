@@ -2,6 +2,7 @@
 #include "Components/CombatComponent_Mage.h"
 #include "Characters/Player/MainCharacter_Mage.h"
 #include "Combat/Projectiles/Projectile_Base.h"
+#include "Components/StatsComponent.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/MainPlayer.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -53,6 +54,6 @@ void UCombatComponent_Mage::SpawnProjectile()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(CurrentProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
 	Projectile->SetOwner(GetOwner());
-	Projectile->SetStats(MageRef->GetMagicalDamage(), AliveTime);
+	Projectile->SetStats(MageRef->GetMagicalDamage(), AliveTime, MageRef->StatsComp->GetStatValue(ElementalDamageModificator));
 	Projectile->StartAliveTimer();
 }

@@ -179,6 +179,8 @@ public:
 	virtual void HandleEffectChange(EEffects NewEffect){};
 
 	EEffects GetCurrentEnchantmentEffect() const;
+
+	virtual float GetElementalDamageModificator() const override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

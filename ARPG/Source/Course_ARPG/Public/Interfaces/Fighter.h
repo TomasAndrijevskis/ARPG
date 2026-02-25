@@ -25,6 +25,8 @@ public:
 
 	virtual float GetMagicalDamage() const { return 0.0f; }
 
+	virtual float GetElementalDamageModificator() const { return 0.0f; }
+	
 	virtual void Attack() {};
 
 	virtual float GetAnimDuration() const { return 0.0f; };
