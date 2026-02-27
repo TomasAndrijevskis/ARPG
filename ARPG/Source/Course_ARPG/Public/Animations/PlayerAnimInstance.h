@@ -35,6 +35,7 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float CurrentDirection = 0.0f;
-
-
+	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool bIsMoving = false;
 };

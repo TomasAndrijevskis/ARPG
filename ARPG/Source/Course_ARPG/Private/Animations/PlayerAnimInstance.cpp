@@ -23,4 +23,6 @@ void UPlayerAnimInstance::UpdateSpeed()
 	if (!IsValid(PlayerRef)) return;
 	FVector Velocity = PlayerRef->GetVelocity();
 	CurrentSpeed = static_cast<float>(Velocity.Length()); // double->float
+	if (CurrentSpeed > 0.0f) bIsMoving = true;
+	else bIsMoving = false;
 }
