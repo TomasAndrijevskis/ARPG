@@ -14,18 +14,20 @@ void UCombatComponent_Base::BeginPlay()
 
 void UCombatComponent_Base::ComboAttack()
 {
-	if (CharacterRef->Implements<UMainPlayer>())
-	{
-		IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);
-		if (IPlayerRef && !IPlayerRef->HasEnoughStamina(AttackStaminaCost)) return;
-	}
-	if (!bCanAttack) return;
 	bCanAttack = false;
-	CharacterRef->PlayAnimMontage(AttackAnimations[ComboCounter]);
 	ComboCounter++;
 	int MaxCombo = AttackAnimations.Num();
 	ComboCounter = UKismetMathLibrary::Wrap(ComboCounter, -1, (MaxCombo-1));
-	OnAttackPerformedDelegate.Broadcast(AttackStaminaCost);
+}
+
+
+bool UCombatComponent_Base::HasEnoughResource()
+{
+	if (!CharacterRef->Implements<UMainPlayer>()) return false;
+	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(CharacterRef);
+	if (!IPlayerRef) return false;
+	if (IsResourceMana) return IPlayerRef->HasEnoughMana(AttackCost);
+	return IPlayerRef->HasEnoughStamina(AttackCost);
 }
 
 

@@ -3,11 +3,13 @@
 
 #include "CoreMinimal.h"
 #include "CombatComponent_Base.h"
-#include "CombatComponent_Mage.generated.h"
+#include "CombatComponent_LongRange.generated.h"
 
+
+class AMainCharacter_Base;
 
 UCLASS()
-class COURSE_ARPG_API UCombatComponent_Mage : public UCombatComponent_Base
+class COURSE_ARPG_API UCombatComponent_LongRange : public UCombatComponent_Base
 {
 	GENERATED_BODY()
 
@@ -23,9 +25,8 @@ private:
 
 	UFUNCTION()
 	void SpawnProjectile();
-	
-	UPROPERTY(EditAnywhere)
-	float AttackManaCost = 5.0f;
+
+	void GetLocations(FVector& SpawnLocation, FVector& TargetLocation, const AMainCharacter_Base* PlayerRef);
 	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> BaseProjectileClass;
@@ -41,6 +42,9 @@ private:
 	
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
+
+	UPROPERTY(EditDefaultsOnly)
+	float AnimDurationReducer;
 	
 	FTimerHandle ProjectileTimerHandle;
 };

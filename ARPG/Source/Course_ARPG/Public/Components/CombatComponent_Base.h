@@ -32,6 +32,8 @@ protected:
 	
 	virtual void BeginPlay() override;
 
+	bool HasEnoughResource();
+	
 	UPROPERTY(EditAnywhere)
 	TArray<UAnimMontage*> AttackAnimations;
 
@@ -41,8 +43,9 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	int ComboCounter = 0;
 	
-private:
+	UPROPERTY(EditAnywhere)
+	float AttackCost = 5.0f;
 
 	UPROPERTY(EditAnywhere)
-	float AttackStaminaCost = 5.0f;
+	bool IsResourceMana;
 };
