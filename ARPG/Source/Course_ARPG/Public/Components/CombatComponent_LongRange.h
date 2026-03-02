@@ -21,10 +21,9 @@ public:
 
 	void RevertBaseProjectileClass();
 	
+	virtual void SpawnProjectile() override;
+	
 private:
-
-	UFUNCTION()
-	void SpawnProjectile();
 
 	void GetLocations(FVector& SpawnLocation, FVector& TargetLocation, const AMainCharacter_Base* PlayerRef);
 	
@@ -42,9 +41,6 @@ private:
 	
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
-
-	UPROPERTY(EditDefaultsOnly)
-	float AnimDurationReducer;
 	
 	FTimerHandle ProjectileTimerHandle;
 };

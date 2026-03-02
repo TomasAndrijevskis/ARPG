@@ -8,7 +8,7 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealingAura.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_MagicShield.h"
 #include "Components/CombatComponent_Base.h"
-#include "Components/CombatComponent_Mage.h"
+#include "Components/CombatComponent_LongRange.h"
 #include "Components/StatsComponent.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 
@@ -20,7 +20,7 @@ AMainCharacter_Mage::AMainCharacter_Mage()
 	AbilityComp_FireStorm = CreateDefaultSubobject<UAbComp_FireStorm>(TEXT("Fire Storm"));
 	AbilityComp_HealingAura = CreateDefaultSubobject<UAbComp_HealingAura>(TEXT("Healing Aura"));
 
-	CombatComp = CreateDefaultSubobject<UCombatComponent_Mage>(TEXT("Combat Component"));
+	CombatComp = CreateDefaultSubobject<UCombatComponent_LongRange>(TEXT("Combat Component"));
 	
 	AddToAbilitiesArray(AbilityComp_MagicShield);
 	AddToAbilitiesArray(AbilityComp_FrostBlast);
@@ -105,13 +105,13 @@ void AMainCharacter_Mage::HandleEffectChange(EEffects NewEffect)
 	if (NewEffect == EEffects::Empty)
 	{
 		SpawnParticles(BaseParticle);
-		Cast<UCombatComponent_Mage>(CombatComp)->RevertBaseProjectileClass();
+		Cast<UCombatComponent_LongRange>(CombatComp)->RevertBaseProjectileClass();
 		return;
 	}
 	if (!StatusEffectsVisualDataAsset) return;
 	if (FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
 	{
 		SpawnParticles(Data->WeaponEffect_P);
-		Cast<UCombatComponent_Mage>(CombatComp)->ChangeProjectileClass(Data->Projectile);
+		Cast<UCombatComponent_LongRange>(CombatComp)->ChangeProjectileClass(Data->Projectile);
 	}
 }

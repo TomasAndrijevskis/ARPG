@@ -1,6 +1,5 @@
 
 #include "Characters/Player/MainCharacter_Warrior.h"
-
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Animations/PlayerAnimInstance.h"
@@ -10,7 +9,7 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_RangeAttack.h"
 #include "Components/BlockComponent.h"
-#include "Components/CombatComponent_Base.h"
+#include "Components/CombatComponent_CloseRange.h"
 #include "Components/StatsComponent.h"
 #include "Components/TraceComponent.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
@@ -19,7 +18,7 @@
 AMainCharacter_Warrior::AMainCharacter_Warrior()
 {
 	TraceComp = CreateDefaultSubobject<UTraceComponent>(TEXT("Trace Component"));
-	CombatComp = CreateDefaultSubobject<UCombatComponent_Base>(TEXT("Combat Component"));
+	CombatComp = CreateDefaultSubobject<UCombatComponent_CloseRange>(TEXT("Combat Component"));
 	BlockComp = CreateDefaultSubobject<UBlockComponent>(TEXT("Block Component"));
 	
 	AbilityComp_DamageIncrease = CreateDefaultSubobject<UAbComp_DamageIncrease>(TEXT("Damage Increase"));

@@ -10,8 +10,7 @@ void UCombatComponent_LongRange::ComboAttack()
 {
 	if (!HasEnoughResource() || !bCanAttack) return;
 	Super::ComboAttack();
-	const float AnimDuration = CharacterRef->PlayAnimMontage(AttackAnimations[ComboCounter]);
-	GetWorld()->GetTimerManager().SetTimer(ProjectileTimerHandle, this, &UCombatComponent_LongRange::SpawnProjectile, AnimDuration / AnimDurationReducer, false);
+	CharacterRef->PlayAnimMontage(AttackAnimations[ComboCounter]);
 }
 
 
@@ -29,7 +28,6 @@ void UCombatComponent_LongRange::RevertBaseProjectileClass()
 
 void UCombatComponent_LongRange::SpawnProjectile()
 {
-	GetWorld()->GetTimerManager().ClearTimer(ProjectileTimerHandle);
 	const AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
 	if (!PlayerRef || !GetOwner() || !CurrentProjectileClass) return;
 	OnAttackPerformedDelegate.Broadcast(AttackCost);
