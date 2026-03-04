@@ -74,25 +74,9 @@ float UStatsComponent::GetStatIncreasePreview(const EStats Stat, const float Del
 }
 
 
-FString UStatsComponent::GetStatUpgradeDescription(EStats Stat, float Delta)
+FString UStatsComponent::GetStatUpgradeDescription(EStats Stat)
 {
-	const FText DisplayName = StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat);
-	FString Coefficient;
-	for (const auto PercentageStat : PercentageStats)
-	{
-		if (Stat == PercentageStat)
-		{
-			Coefficient = FString::SanitizeFloat(Delta * 100);
-			break;
-		}
-		Coefficient = FString::SanitizeFloat(Delta);
-	}
-	FString Result = DisplayName.ToString() + " will be increased by " + Coefficient;
-	for (const auto PercentageStat : PercentageStats)
-	{
-		if (Stat == PercentageStat) Result += " %";
-	}
-	return Result += "\n";
+	return (StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat)).ToString();
 }
 
 

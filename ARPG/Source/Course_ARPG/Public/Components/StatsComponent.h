@@ -63,8 +63,8 @@ public:
 	float GetStatIncreasePreview(const EStats Stat, const float Delta);
 
 	FString GetStatUpgradePreview(EStats Stat, float Delta);
-	
-	FString GetStatUpgradeDescription(EStats Stat, float Delta);
+
+	FString GetStatUpgradeDescription(EStats Stat);
 	
 	UPROPERTY()
 	UHealthManager* HealthManager;

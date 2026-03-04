@@ -385,7 +385,8 @@ void AMainCharacter_Base::BuildAttributeDescription(EAttributes AttributeToImpro
 	for (int i = 0; i < RelatedStats.Num(); i++)
 	{
 		const float Delta = AttributesComp->GetStatScalingCoefficient(RelatedStats[i]);
-		Result += StatsComp->GetStatUpgradeDescription(RelatedStats[i], Delta);
+		Result += StatsComp->GetStatUpgradeDescription(RelatedStats[i]);
+		Result += ": ";
 		Result += StatsComp->GetStatUpgradePreview(RelatedStats[i], Delta);
 		if (i != RelatedStats.Num() - 1) Result += "\n";
 	}
