@@ -181,6 +181,8 @@ public:
 	EEffects GetCurrentEnchantmentEffect() const;
 
 	virtual float GetElementalDamageModificator() const override;
+
+	FVector GetTargetLocation(float DefaultSpawnDistance);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

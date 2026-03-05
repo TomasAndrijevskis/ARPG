@@ -10,7 +10,7 @@
 AFireStorm::AFireStorm(const FObjectInitializer& ObjectInitializer): Super(ObjectInitializer)
 {
 	CollisionBox = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, TEXT("Collision"));
-	CollisionBox->SetupAttachment(RootComponent);
+	RootComponent = CollisionBox;
 	
 	FireStormEffect = ObjectInitializer.CreateDefaultSubobject<UParticleSystemComponent>(this,TEXT("FireStorm"));
 	FireStormEffect->SetupAttachment(CollisionBox);

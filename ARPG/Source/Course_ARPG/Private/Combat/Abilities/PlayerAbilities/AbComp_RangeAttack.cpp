@@ -57,14 +57,11 @@ void UAbComp_RangeAttack::CompleteAbilityAttack()
 
 void UAbComp_RangeAttack::SpawnProjectile()
 {
-	if (!GetOwner() || !ProjectileClass) return;
+	if (!PlayerRef || !ProjectileClass) return;
 	USceneComponent* SpawnPointComp = Cast<USceneComponent>(GetOwner()->GetDefaultSubobjectByName(ComponentName));
 	if (!SpawnPointComp) return;
 	const FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
-	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
-	FVector TargetLocation;
-	if (PlayerRef->IsPlayerLockedOnEnemy() && PlayerRef->GetCurrentTargetActor()) TargetLocation = PlayerRef->GetCurrentTargetActor()->GetActorLocation();
-	else TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
+	FVector TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (Projectile)

@@ -25,7 +25,7 @@ public:
 	
 private:
 
-	void GetLocations(FVector& SpawnLocation, FVector& TargetLocation, const AMainCharacter_Base* PlayerRef);
+	void GetLocations(FVector& SpawnLocation, FVector& TargetLocation, AMainCharacter_Base* PlayerRef);
 	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> BaseProjectileClass;

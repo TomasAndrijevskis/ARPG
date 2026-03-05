@@ -443,6 +443,15 @@ float AMainCharacter_Base::GetElementalDamageModificator() const
 }
 
 
+FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
+{
+	if (IsPlayerLockedOnEnemy() && GetCurrentTargetActor()) return GetCurrentTargetActor()->GetActorLocation();
+	const FVector PlayerLocation = GetActorLocation();
+	const FVector ForwardDirection = GetActorForwardVector();
+	return PlayerLocation + ForwardDirection * DefaultSpawnDistance;
+}
+
+
 float AMainCharacter_Base::GetPlayerMaxHealth() const
 {
 	return StatsComp->GetStatValue(EStats::MaxHealth);

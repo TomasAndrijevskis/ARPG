@@ -114,6 +114,7 @@ void AARPG_PlayerController::PlayFadeAnim(EAnimTypes AnimType)
 
 void AARPG_PlayerController::HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName)
 {
+	if (!bIsInDoorRange) return;
 	float AnimDuration;
 	StartTransitionAnim(FullFade, AnimDuration);
 	SetPlayerInputEnabled(false);
@@ -192,7 +193,6 @@ void AARPG_PlayerController::SetPlayerControllerSettings()
 
 void AARPG_PlayerController::HandleGamePause(const bool bIsGamePaused)
 {
-	UE_LOG(LogTemp, Error, TEXT("Pause: %hs"), bIsGamePaused ? "true" : "false");
 	SetShowMouseCursor(bIsGamePaused);
 	bEnableClickEvents = bIsGamePaused;
 	bEnableMouseOverEvents = bIsGamePaused;

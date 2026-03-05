@@ -28,7 +28,7 @@ void UCombatComponent_LongRange::RevertBaseProjectileClass()
 
 void UCombatComponent_LongRange::SpawnProjectile()
 {
-	const AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
+	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
 	if (!PlayerRef || !GetOwner() || !CurrentProjectileClass) return;
 	OnAttackPerformedDelegate.Broadcast(AttackCost);
 	FVector SpawnLocation;
@@ -43,13 +43,11 @@ void UCombatComponent_LongRange::SpawnProjectile()
 }
 
 
-void UCombatComponent_LongRange::GetLocations(FVector& SpawnLocation, FVector& TargetLocation, const AMainCharacter_Base* PlayerRef)
+void UCombatComponent_LongRange::GetLocations(FVector& SpawnLocation, FVector& TargetLocation, AMainCharacter_Base* PlayerRef)
 {
 	if (!PlayerRef) return;
 	USceneComponent* SpawnPointComp = Cast<USceneComponent>(GetOwner()->GetDefaultSubobjectByName(ComponentName));
 	if (!SpawnPointComp) return;
 	SpawnLocation = SpawnPointComp->GetComponentLocation();
-	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
-	if (PlayerRef->IsPlayerLockedOnEnemy() && PlayerRef->GetCurrentTargetActor()) TargetLocation = PlayerRef->GetCurrentTargetActor()->GetActorLocation();
-	TargetLocation = SpawnLocation + ForwardDirection * 1000.0f;
+	TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 }

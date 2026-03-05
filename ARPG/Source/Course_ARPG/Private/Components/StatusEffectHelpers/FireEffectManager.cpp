@@ -25,15 +25,15 @@ void UFireEffectManager::SetVisualData(EEffects StatusEffect)
 
 void UFireEffectManager::HandleBurn(const float NewFireDuration, const float NewFireDamage, const bool bNewIsOverlapping, const float NewFireRate)
 {
+	bIsOverlapping = bNewIsOverlapping;
 	if (!VisualEffect || !Icon || !bIsOverlapping || FireDamageResistance == 1) return;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
 				VisualEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator, EffectScale,
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
+	OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	FireDamage = NewFireDamage;
 	FireDuration = NewFireDuration;
-	bIsOverlapping = bNewIsOverlapping;
 	FireRate = NewFireRate;
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UFireEffectManager::ApplyProlongedDamage, FireRate, true);
 }

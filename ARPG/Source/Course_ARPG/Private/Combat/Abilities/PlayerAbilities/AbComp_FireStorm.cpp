@@ -25,27 +25,21 @@ void UAbComp_FireStorm::FinishAbilityCast()
 	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	SpawnFireStorm();
-
 }
 
 
 void UAbComp_FireStorm::SpawnFireStorm()
 {
+	if (!PlayerRef) return;
 	const FVector PlayerLocation = GetOwner()->GetActorLocation();
-	const FVector ForwardDirection = GetOwner()->GetActorForwardVector();
-	const FVector TargetLocation = PlayerLocation + ForwardDirection * 250.0f;
+	const FVector TargetLocation = PlayerRef->GetTargetLocation(250.f);
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(PlayerLocation, TargetLocation);
-
 	FActorSpawnParameters Params;
 	Params.Owner = GetOwner();
 	FTransform SpawnTransform(SpawnRotation, TargetLocation);
 	FireStormRef = GetWorld()->SpawnActorDeferred<AFireStorm>(FireStormClass, SpawnTransform);
-
-	if (FireStormRef)
-	{
-		FireStormRef->SetProperties(BurnDuration, GetEnhancedBurnDamage(), BurnRate);
-		UGameplayStatics::FinishSpawningActor(FireStormRef, SpawnTransform);
-	}
+	FireStormRef->SetProperties(BurnDuration, GetEnhancedBurnDamage(), BurnRate);
+	UGameplayStatics::FinishSpawningActor(FireStormRef, SpawnTransform);
 	OnAbilityStartedDelegate.Broadcast();
 	TimerDuration = GetAbilityDuration();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FireStorm::StartAbilityTimer, 1, true);
@@ -57,7 +51,7 @@ void UAbComp_FireStorm::OnAbilityTimerFinished()
 	SetAbilityActive(false);
 	if (FireStormRef)
 	{
-		FireStormRef -> Destroy();
+		FireStormRef->Destroy();
 		FireStormRef = nullptr;
 	}
 }
