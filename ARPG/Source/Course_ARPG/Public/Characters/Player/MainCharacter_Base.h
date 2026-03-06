@@ -103,7 +103,7 @@ public:
 	
 	void ReduceHealth(float Damage, AActor* Opponent);
 
-	void Heal(float Health);
+	void HealPlayer(float Health);
 	
 	void AddExperience(float NewExperience);
 
@@ -230,15 +230,15 @@ protected:
 	UFUNCTION()
 	virtual void HandleDeath();
 
+	UFUNCTION()
+	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
+	
 	EEffects CurrentEffect;
 
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
 	
 private:
-
-	UFUNCTION()
-	void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 
 	UFUNCTION()
 	void PlayHurtAnimation();

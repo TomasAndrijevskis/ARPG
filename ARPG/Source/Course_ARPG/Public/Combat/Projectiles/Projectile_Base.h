@@ -32,6 +32,10 @@ protected:
 	virtual TSubclassOf<UDamageType> GetDamageType() const {return nullptr;}
 
 	virtual void HandleDestruction();
+
+	virtual void HandleBeginOverlap(AActor* OtherActor);
+
+	bool IsOpponentHit(AActor* OtherActor);
 	
 	UPROPERTY(EditAnywhere)
 	UPrimitiveComponent* CollisionComponent;
@@ -40,11 +44,6 @@ protected:
 	UParticleSystem* HitTemplate;
 	
 private:
-
-	UFUNCTION()
-	void HandleBeginOverlap(AActor* OtherActor);
-
-	bool IsOpponentHit(AActor* OtherActor);
 
 	UPROPERTY()
 	AActor* ProjectileOwner;

@@ -14,6 +14,10 @@ class COURSE_ARPG_API AProjectile_HealingArrow : public AProjectile_Arrow
 public:
 
 	AProjectile_HealingArrow();
+
+protected:
+
+	virtual void HandleBeginOverlap(AActor* OtherActor) override;
 	
 private:
 

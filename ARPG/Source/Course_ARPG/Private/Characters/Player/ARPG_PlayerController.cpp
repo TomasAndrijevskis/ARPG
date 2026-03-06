@@ -112,9 +112,15 @@ void AARPG_PlayerController::PlayFadeAnim(EAnimTypes AnimType)
 }
 
 
-void AARPG_PlayerController::HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName)
+void AARPG_PlayerController::CallTeleportRequest()
 {
 	if (!bIsInDoorRange) return;
+	HandlePlayerTeleport(FVector::ZeroVector, "");
+}
+
+
+void AARPG_PlayerController::HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName)
+{
 	float AnimDuration;
 	StartTransitionAnim(FullFade, AnimDuration);
 	SetPlayerInputEnabled(false);
@@ -140,6 +146,7 @@ void AARPG_PlayerController::HandleTeleportDestination(FVector TravelLocation, F
 
 void AARPG_PlayerController::TeleportToMap(FVector TravelLocation, FString TravelMapName)
 {
+	if (!GameInstanceRef) return;
 	if (!bIsInDoorRange)
 	{
 		FString MapPath = "/Game/Maps/" + TravelMapName;

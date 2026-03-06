@@ -58,7 +58,7 @@ void UAbComp_LifeStealAttack::OnAbilityTimerFinished()
 void UAbComp_LifeStealAttack::HandleLifeStealOnHit()
 {
 	if (!IsAbilityActive()) return;
-	PlayerRef->Heal(GetStolenHealthAmount());
+	PlayerRef->HealPlayer(GetStolenHealthAmount());
 }
 
 

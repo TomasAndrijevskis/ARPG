@@ -30,16 +30,16 @@ void AProjectile_Base::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedCo
 void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 {
 	if (!OtherActor || OtherActor == this) return;
-	APawn* PawnRef = Cast<APawn>(OtherActor);
-	if (!PawnRef)
+	ACharacter* CharacterRef = Cast<ACharacter>(OtherActor);
+	if (!CharacterRef)
 	{
 		HandleDestruction();
 		return;
 	}
 	if (!IsOpponentHit(OtherActor)) return;
 	HandleDestruction();
-	UGameplayStatics::ApplyDamage(PawnRef, Damage, PawnRef->GetController(), this, UMagicalDamageType::StaticClass());
-	UGameplayStatics::ApplyDamage(PawnRef, Damage * ElementalDamageModificator, PawnRef->GetController(), this, GetDamageType());
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage, CharacterRef->GetController(), this, UMagicalDamageType::StaticClass());
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage * ElementalDamageModificator, CharacterRef->GetController(), this, GetDamageType());
 }
 
 

@@ -12,8 +12,6 @@ class COURSE_ARPG_API AProjectile_Elemental : public AProjectile_Base
 	GENERATED_BODY()
 
 public:
-
-	AProjectile_Elemental();
 	
 	virtual void DestroyProjectile() override;
 	

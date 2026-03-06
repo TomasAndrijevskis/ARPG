@@ -1,5 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Archer.h"
+
+#include "Characters/Enemy/EnemyCharacter.h"
 #include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealArrow.h"
 #include "Components/CombatComponent_Base.h"
@@ -40,4 +42,13 @@ float AMainCharacter_Archer::GetPhysicalDamage()
 TSubclassOf<UDamageType> AMainCharacter_Archer::GetDamageType() const
 {
 	return UPhysicalDamageType::StaticClass();
+}
+
+
+void AMainCharacter_Archer::ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType,AController* InstigatedBy, AActor* DamageCauser)
+{
+	AEnemyCharacter* EnemyRef = Cast<AEnemyCharacter>(DamageCauser);
+	if (!EnemyRef) return;
+	if (EnemyRef->bCanApplyDamage) Super::ReceiveDamage(DamagedActor, Damage, DamageType, InstigatedBy, DamageCauser);
+	else HealPlayer(Damage / 2);
 }

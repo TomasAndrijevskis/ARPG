@@ -43,7 +43,7 @@ void UAbComp_HealingAura::FinishAbilityCast()
 void UAbComp_HealingAura::StartAbilityTimer()
 {
 	Super::StartAbilityTimer();
-	if (TimerDuration > 0) PlayerRef->Heal(GetEnhancedHealthRegenAmount());
+	if (TimerDuration > 0) PlayerRef->HealPlayer(GetEnhancedHealthRegenAmount());
 }
 
 

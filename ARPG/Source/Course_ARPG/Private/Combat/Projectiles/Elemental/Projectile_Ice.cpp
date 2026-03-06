@@ -13,6 +13,8 @@ AProjectile_Ice::AProjectile_Ice()
 	Mesh->SetupAttachment(CollisionComponent);
 	NiagaraEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraEffect"));
 	NiagaraEffect->SetupAttachment(CollisionComponent);
+	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
+	Particle->SetupAttachment(CollisionComponent);
 }
 
 

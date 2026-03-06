@@ -206,7 +206,7 @@ void AMainCharacter_Base::ReduceHealth(float Damage, AActor* Opponent)
 }
 
 
-void AMainCharacter_Base::Heal(float Health)
+void AMainCharacter_Base::HealPlayer(float Health)
 {
 	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
 }

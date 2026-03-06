@@ -93,6 +93,8 @@ public:
 	UPoisonEffectManager* PoisonStatusEffectManager;
 	
 	FOnEnemyDied OnEnemyDiedDelegate;
+
+	bool bCanApplyDamage = true;
 	
 protected:
 

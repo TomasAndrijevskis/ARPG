@@ -59,8 +59,7 @@ public:
 	TMap<FString, FBonfireData>& GetUnlockedBonfires();
 
 	void SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires);
-
-	UFUNCTION(BlueprintCallable)
+	
 	void HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName);
 	
 	ABonfire*& GetCurrentBonfire();
@@ -81,7 +80,10 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void HandleEnchantmentSphereInteraction();
-	
+
+	UFUNCTION(BlueprintCallable)
+	void CallTeleportRequest();
+
 private:
 	
 	void QuitGame() const;

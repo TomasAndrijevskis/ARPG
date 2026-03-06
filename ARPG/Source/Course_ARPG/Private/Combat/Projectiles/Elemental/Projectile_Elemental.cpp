@@ -1,13 +1,9 @@
 
 #include "Combat/Projectiles/Elemental/Projectile_Elemental.h"
+
+#include "Components/SphereComponent.h"
 #include "Particles/ParticleSystemComponent.h"
 
-
-AProjectile_Elemental::AProjectile_Elemental()
-{
-	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
-	Particle->SetupAttachment(CollisionComponent);
-}
 
 
 void AProjectile_Elemental::DestroyProjectile()

@@ -23,6 +23,8 @@ public:
 
 	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 
+	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser) override;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_HealArrow* AbilityComp_HealArrow;
 
