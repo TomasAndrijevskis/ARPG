@@ -16,7 +16,7 @@ void UAbComp_HealingAura::BeginPlay()
 void UAbComp_HealingAura::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
 		OnAbilityStartedDelegate.Broadcast();

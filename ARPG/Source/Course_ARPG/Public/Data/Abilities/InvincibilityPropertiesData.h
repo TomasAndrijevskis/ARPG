@@ -3,11 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "AbilityPropertiesBaseData.h"
-#include "GetArmorPropertiesData.generated.h"
+#include "InvincibilityPropertiesData.generated.h"
 
 
 USTRUCT(BlueprintType)
-struct COURSE_ARPG_API FGetArmorPropertiesData: public FAbilityPropertiesBaseData
+struct COURSE_ARPG_API FInvincibilityPropertiesData: public FAbilityPropertiesBaseData
 {
 	GENERATED_BODY()
 	

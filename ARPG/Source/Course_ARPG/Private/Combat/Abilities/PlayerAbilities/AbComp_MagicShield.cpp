@@ -16,7 +16,7 @@ void UAbComp_MagicShield::BeginPlay()
 void UAbComp_MagicShield::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
 		TimerDuration = GetAbilityDuration();

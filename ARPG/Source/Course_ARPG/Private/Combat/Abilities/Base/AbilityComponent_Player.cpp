@@ -44,6 +44,7 @@ void UAbilityComponent_Player::StartCooldownTimer()
 
 void UAbilityComponent_Player::HandlePlayerActions(const bool bCanDo)
 {
+	if (!PlayerRef) return;
 	PlayerRef->SetCanAttack(bCanDo);
 	PlayerRef->SetCanRoll(bCanDo);
 }

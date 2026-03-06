@@ -15,7 +15,7 @@ void UAbComp_Invincibility::BeginPlay()
 void UAbComp_Invincibility::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
 		HandlePlayerActions(false);
@@ -62,7 +62,7 @@ void UAbComp_Invincibility::UpdateAbilityDescription()
 
 void UAbComp_Invincibility::UpdateUpgradeDescription()
 {
-	const FGetArmorPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FInvincibilityPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
 		GetManaCost(), NextLevelData->ManaCost,
@@ -71,17 +71,17 @@ void UAbComp_Invincibility::UpdateUpgradeDescription()
 }
 
 
-FGetArmorPropertiesData* UAbComp_Invincibility::GetAbilityData(const int32 Level)
+FInvincibilityPropertiesData* UAbComp_Invincibility::GetAbilityData(const int32 Level)
 {
 	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->GetArmorLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->GetArmorLevels[Level];
+	if (!AbilitiesUpgradeDataAsset->InvincibilityLevels.IsValidIndex(Level)) return nullptr;
+	return &AbilitiesUpgradeDataAsset->InvincibilityLevels[Level];
 }
 
 
 void UAbComp_Invincibility::SetAbilityData(const int32 Level)
 {
-	const FGetArmorPropertiesData* Data = GetAbilityData(Level);
+	const FInvincibilityPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
 	SetArmor(Data->Armor);
 	SetCommonAbilityProperties(Data);

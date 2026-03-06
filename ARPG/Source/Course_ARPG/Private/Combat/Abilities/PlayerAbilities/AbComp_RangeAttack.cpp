@@ -18,7 +18,7 @@ void UAbComp_RangeAttack::BeginPlay()
 void UAbComp_RangeAttack::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		HandlePlayerActions(false);
 		SetAbilityActive(true);

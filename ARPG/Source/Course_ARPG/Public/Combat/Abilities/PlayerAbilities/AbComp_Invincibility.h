@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/GetArmorPropertiesData.h"
+#include "Data/Abilities/InvincibilityPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_Invincibility.generated.h"
 
@@ -35,7 +35,7 @@ protected:
 	
 	virtual void CreateIcon() override;
 
-	FGetArmorPropertiesData* GetAbilityData(const int32 Level);
+	FInvincibilityPropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 	

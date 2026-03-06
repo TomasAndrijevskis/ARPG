@@ -5,8 +5,9 @@
 #include "DamageIncreasePropertiesData.h"
 #include "FireStormPropertiesData.h"
 #include "FrostBlastPropertiesData.h"
-#include "GetArmorPropertiesData.h"
+#include "HealArrowPropertiesData.h"
 #include "HealingAuraPropertiesData.h"
+#include "InvincibilityPropertiesData.h"
 #include "LifeStealAttackPropertiesData.h"
 #include "MagicShieldPropertiesData.h"
 #include "RangeAttackPropertiesData.h"
@@ -34,7 +35,7 @@ public:
 	TArray<FFrostBlastPropertiesData> FrostBlastLevels;
 	
 	UPROPERTY(EditAnywhere)
-	TArray<FGetArmorPropertiesData> GetArmorLevels;
+	TArray<FInvincibilityPropertiesData> InvincibilityLevels;
 
 	UPROPERTY(EditAnywhere)
 	TArray<FHealingAuraPropertiesData> HealingAuraLevels;
@@ -44,4 +45,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TArray<FMagicShieldPropertiesData> MagicShieldLevels;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FHealArrowPropertiesData> HealArrowLevels;
 };

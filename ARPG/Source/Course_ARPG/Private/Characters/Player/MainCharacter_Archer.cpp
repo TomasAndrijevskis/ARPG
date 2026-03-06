@@ -1,6 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Archer.h"
 #include "Combat/DamageTypes.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_HealArrow.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_LongRange.h"
 #include "Components/StatsComponent.h"
@@ -9,6 +10,9 @@
 AMainCharacter_Archer::AMainCharacter_Archer()
 {
 	CombatComp = CreateDefaultSubobject<UCombatComponent_LongRange>(TEXT("Combat Component"));
+	AbilityComp_HealArrow = CreateDefaultSubobject<UAbComp_HealArrow>(TEXT("Healing Arrow"));
+
+	AddToAbilitiesArray(AbilityComp_HealArrow);
 }
 
 
@@ -16,6 +20,7 @@ void AMainCharacter_Archer::BeginPlay()
 {
 	Super::BeginPlay();
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+	AbilityComp_HealArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 }
 
 

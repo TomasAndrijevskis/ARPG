@@ -18,7 +18,7 @@ void UAbComp_LifeStealAttack::BeginPlay()
 void UAbComp_LifeStealAttack::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana())
+	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		const FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
