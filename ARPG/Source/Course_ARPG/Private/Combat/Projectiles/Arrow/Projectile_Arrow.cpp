@@ -1,5 +1,5 @@
 
-#include "Combat/Projectiles/Projectile_Arrow.h"
+#include "Combat/Projectiles/Arrow/Projectile_Arrow.h"
 #include "Components/BoxComponent.h"
 
 
@@ -7,7 +7,6 @@ AProjectile_Arrow::AProjectile_Arrow()
 {
 	CollisionComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxCollision"));
 	RootComponent = CollisionComponent;
-
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Arrow"));
 	Mesh->SetupAttachment(CollisionComponent);
 }

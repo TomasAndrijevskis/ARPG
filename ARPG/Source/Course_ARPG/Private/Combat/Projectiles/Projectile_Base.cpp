@@ -45,7 +45,6 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 
 void AProjectile_Base::HandleDestruction()
 {
-	if (HitTemplate && Particle) Particle->SetTemplate(HitTemplate);
 	FindComponentByClass<UProjectileMovementComponent>()->StopMovementImmediately();
 	FTimerHandle DeathTimerHandle;
 	GetWorldTimerManager().SetTimer(DeathTimerHandle, this, &AProjectile_Base::DestroyProjectile, 0.5f);
@@ -64,7 +63,6 @@ bool AProjectile_Base::IsOpponentHit(AActor* OtherActor)
 void AProjectile_Base::DestroyProjectile()
 {
 	HitTemplate = nullptr;
-	Particle = nullptr;
 	Destroy();
 }
 

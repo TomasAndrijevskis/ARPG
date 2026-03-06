@@ -2,7 +2,7 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_RangeAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Data/Abilities/AbilitiesUpgradeData.h"
-#include "Combat/Projectiles/Projectile_Lightning.h"
+#include "Combat/Projectiles/Elemental/Projectile_Lightning.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"

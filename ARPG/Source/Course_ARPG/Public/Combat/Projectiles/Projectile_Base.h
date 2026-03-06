@@ -14,7 +14,7 @@ class COURSE_ARPG_API AProjectile_Base : public AActor
 public:	
 
 	UFUNCTION()
-	void DestroyProjectile();
+	virtual void DestroyProjectile();
 
 	void SetStats(const float NewDamage, const float NewAliveTime, const float NewModificator);
 
@@ -30,24 +30,21 @@ protected:
 	void OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const FHitResult& SweepResult);
 
 	virtual TSubclassOf<UDamageType> GetDamageType() const {return nullptr;}
+
+	virtual void HandleDestruction();
 	
 	UPROPERTY(EditAnywhere)
 	UPrimitiveComponent* CollisionComponent;
-	
+
 	UPROPERTY(EditAnywhere)
-	UParticleSystemComponent* Particle;
+	UParticleSystem* HitTemplate;
 	
 private:
 
 	UFUNCTION()
 	void HandleBeginOverlap(AActor* OtherActor);
-	
-	void HandleDestruction();
 
 	bool IsOpponentHit(AActor* OtherActor);
-	
-	UPROPERTY(EditAnywhere)
-	UParticleSystem* HitTemplate;
 
 	UPROPERTY()
 	AActor* ProjectileOwner;
