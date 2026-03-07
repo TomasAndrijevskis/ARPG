@@ -20,7 +20,7 @@ AFrostBlastRange::AFrostBlastRange()
 void AFrostBlastRange::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AFrostBlastRange::CheckEnemiesInRange, 1, false);
+	//GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AFrostBlastRange::CheckEnemiesInRange, 1, false);
 }
 
 

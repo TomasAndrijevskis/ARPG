@@ -21,14 +21,13 @@ public:
 
 	void SetParams(const float NewDamage, const float NewDuration);
 	
+	void CheckEnemiesInRange();
+	
 protected:
 
 	virtual void BeginPlay() override;
 	
 private:
-
-	UFUNCTION()
-	void CheckEnemiesInRange();
 	
 	UPROPERTY(EditDefaultsOnly)
 	USphereComponent* Collision;

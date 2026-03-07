@@ -38,7 +38,7 @@ void UCombatComponent_LongRange::SpawnProjectile()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(CurrentProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
 	Projectile->SetOwner(GetOwner());
-	Projectile->SetStats(PlayerRef->GetMagicalDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
+	Projectile->SetParams(PlayerRef->GetMagicalDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
 	Projectile->StartAliveTimer();
 }
 

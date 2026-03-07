@@ -46,7 +46,7 @@ void UAbComp_HealArrow::SpawnArrow()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ArrowClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
 	Projectile->SetOwner(GetOwner());
-	Projectile->SetStats(0, AliveTime, 0);
+	Projectile->SetParams(0, AliveTime, 0);
 	Projectile->StartAliveTimer();
 }
 

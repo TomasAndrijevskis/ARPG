@@ -12,5 +12,5 @@ void UAnimInstance_Archer::HandleLongRangeAttack()
 
 void UAnimInstance_Archer::FireHealingArrow()
 {
-	OnHealingArrowFireRequested.Broadcast();
+	OnHealingArrowFireRequest.Broadcast();
 }

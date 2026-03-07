@@ -23,7 +23,7 @@ void UEnemyProjectileComponent::SpawnProjectile()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
 	Projectile->SetOwner(GetOwner());
-	Projectile->SetStats(ProjectileDamage, AliveTime, GetElementalDamageModificator());
+	Projectile->SetParams(ProjectileDamage, AliveTime, GetElementalDamageModificator());
 	Projectile->StartAliveTimer();
 }
 

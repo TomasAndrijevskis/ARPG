@@ -11,45 +11,49 @@ void UAbComp_FrostBlast::StartAbility()
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
+		if (!Warmup || !FrostBlastClass) return;
 		HandlePlayerActions(false);
 		SetAbilityActive(true);
 		OnAbilityStartedDelegate.Broadcast();
-		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-		if (!Warmup || !FrostBlastClass || !PlayerRef) return;
-		UGameplayStatics::SpawnEmitterAttached(Warmup, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
-		FVector3d(1, 1, 1),EAttachLocation::KeepWorldPosition,true, EPSCPoolMethod::None, true);
-		const FVector SpawnLocation = GetOwner()->GetActorLocation();
-		const FRotator SpawnRotation = FRotator::ZeroRotator;
-		FActorSpawnParameters Params;
-		Params.Owner = GetOwner();
-		AFrostBlastRange* FrostBlastRangeActor = GetWorld()->SpawnActor<AFrostBlastRange>(FrostBlastClass, SpawnLocation, SpawnRotation, Params);
-		if (!FrostBlastRangeActor) return;
-		FrostBlastRangeActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-		FrostBlastRangeActor->SetParams(GetEnhancedDamage(), SlowDuration);
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FrostBlast::FinishAbilityCast, AnimDuration/2, false);
+		SpawnEffect(Warmup);
+		PlayerRef->PlayAnimMontage(AnimMontage);
 	}
 }
 
 
-void UAbComp_FrostBlast::FinishAbilityCast()
+void UAbComp_FrostBlast::SpawnFrostBlast()
 {
-	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	const FVector SpawnLocation = GetOwner()->GetActorLocation();
+	const FRotator SpawnRotation = FRotator::ZeroRotator;
+	FActorSpawnParameters Params;
+	Params.Owner = GetOwner();
+	AFrostBlastRange* FrostBlastRangeActor = GetWorld()->SpawnActor<AFrostBlastRange>(FrostBlastClass, SpawnLocation, SpawnRotation, Params);
+	if (!FrostBlastRangeActor) return;
+	FrostBlastRangeActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	FrostBlastRangeActor->SetParams(GetEnhancedDamage(), SlowDuration);
+	FrostBlastRangeActor->CheckEnemiesInRange();
 	CompleteAbility();
 }
 
 
 void UAbComp_FrostBlast::CompleteAbility()
 {
-	SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
+	FinishAbilityCast();
+	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
 	if (!InitialBlast) return;
-	UGameplayStatics::SpawnEmitterAttached(InitialBlast, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
-	FVector3d(1, 1, 1),EAttachLocation::KeepWorldPosition,true, EPSCPoolMethod::None, true);
+	SpawnEffect(InitialBlast);
 	PlayerRef->ReduceMana(GetManaCost());
 	HandlePlayerActions(true);
 	SetAbilityActive(false);
 	StartCooldown();
+}
+
+
+void UAbComp_FrostBlast::SpawnEffect(UParticleSystem* VisualEffect) const
+{
+	UGameplayStatics::SpawnEmitterAttached(VisualEffect, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
+	FVector3d(1, 1, 1),EAttachLocation::KeepWorldPosition,true, EPSCPoolMethod::None, true);
 }
 
 
@@ -94,31 +98,8 @@ void UAbComp_FrostBlast::SetAbilityData(const int32 Level)
 }
 
 
-void UAbComp_FrostBlast::SetDamage(float NewDamage)
-{
-	Damage = NewDamage;
-}
-
-
-float UAbComp_FrostBlast::GetDefaultDamage() const
-{
-	return Damage;
-}
-
-
-float UAbComp_FrostBlast::GetEnhancedDamage() const
-{
-	return Damage + (Damage * PlayerRef->GetAbilityPowerPercent());
-}
-
-
-void UAbComp_FrostBlast::SetSlowDuration(float NewSlowDuration)
-{
-	SlowDuration = NewSlowDuration;
-}
-
-
-float UAbComp_FrostBlast::GetSlowDuration() const
-{
-	return SlowDuration;
-}
+void UAbComp_FrostBlast::SetDamage(float NewDamage){Damage = NewDamage;}
+void UAbComp_FrostBlast::SetSlowDuration(float NewSlowDuration){SlowDuration = NewSlowDuration;}
+float UAbComp_FrostBlast::GetDefaultDamage() const{return Damage;}
+float UAbComp_FrostBlast::GetEnhancedDamage() const{return Damage + Damage * PlayerRef->GetAbilityPowerPercent();}
+float UAbComp_FrostBlast::GetSlowDuration() const{return SlowDuration;}

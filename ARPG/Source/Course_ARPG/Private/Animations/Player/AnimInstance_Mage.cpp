@@ -8,3 +8,9 @@ void UAnimInstance_Mage::HandleLongRangeAttack()
 	if (!PlayerRef) return;
 	PlayerRef->SpawnProjectile();
 }
+
+
+void UAnimInstance_Mage::SpawnFrostBlast()
+{
+	OnFrostBlastUnleashRequest.Broadcast();
+}

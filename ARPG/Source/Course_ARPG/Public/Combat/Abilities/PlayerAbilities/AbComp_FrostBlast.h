@@ -32,8 +32,10 @@ public:
 	float GetSlowDuration() const;
 
 	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
+	
+	void SpawnFrostBlast();
+	
+	void CompleteAbility();
 	
 protected:
 
@@ -43,8 +45,7 @@ protected:
 	
 private:
 
-	UFUNCTION()
-	void CompleteAbility();
+	void SpawnEffect(UParticleSystem* VisualEffect) const;
 	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* InitialBlast;

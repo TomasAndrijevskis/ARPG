@@ -67,7 +67,7 @@ void UAbComp_RangeAttack::SpawnProjectile()
 	if (Projectile)
 	{
 		Projectile->SetOwner(GetOwner());
-		Projectile->SetStats(GetEnhancedProjectileDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
+		Projectile->SetParams(GetEnhancedProjectileDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
 		Projectile->StartAliveTimer();
 	}
 }

@@ -5,7 +5,7 @@
 #include "AnimInstance_Player.h"
 #include "AnimInstance_Archer.generated.h"
 
-DECLARE_MULTICAST_DELEGATE(FOnHealingArrowFireRequestedDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnHealingArrowFireRequestDelegate);
 UCLASS()
 class COURSE_ARPG_API UAnimInstance_Archer : public UAnimInstance_Player
 {
@@ -13,7 +13,7 @@ class COURSE_ARPG_API UAnimInstance_Archer : public UAnimInstance_Player
 
 public:
 
-	FOnHealingArrowFireRequestedDelegate OnHealingArrowFireRequested;
+	FOnHealingArrowFireRequestDelegate OnHealingArrowFireRequest;
 	
 protected:
 
