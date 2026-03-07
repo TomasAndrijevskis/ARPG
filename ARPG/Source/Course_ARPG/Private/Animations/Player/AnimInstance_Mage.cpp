@@ -14,3 +14,9 @@ void UAnimInstance_Mage::SpawnFrostBlast()
 {
 	OnFrostBlastUnleashRequest.Broadcast();
 }
+
+
+void UAnimInstance_Mage::SpawnFireStorm()
+{
+	OnFireStormSpawnRequest.Broadcast();
+}

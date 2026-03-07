@@ -13,23 +13,15 @@ void UAbComp_FireStorm::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
-		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
+		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FireStorm::FinishAbilityCast, AnimDuration, false);
 	}
-}
-
-
-void UAbComp_FireStorm::FinishAbilityCast()
-{
-	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	SpawnFireStorm();
 }
 
 
 void UAbComp_FireStorm::SpawnFireStorm()
 {
+	FinishAbilityCast();
 	if (!PlayerRef) return;
 	const FVector PlayerLocation = GetOwner()->GetActorLocation();
 	const FVector TargetLocation = PlayerRef->GetTargetLocation(250.f);

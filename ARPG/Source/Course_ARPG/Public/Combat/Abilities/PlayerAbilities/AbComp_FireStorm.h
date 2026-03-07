@@ -31,8 +31,8 @@ public:
 	void SetBurnDuration(float NewDuration);
 
 	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
+	
+	void SpawnFireStorm();
 	
 protected:
 	
@@ -43,9 +43,6 @@ protected:
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
-	
-	UFUNCTION()
-	void SpawnFireStorm();
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AFireStorm> FireStormClass;

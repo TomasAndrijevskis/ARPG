@@ -6,7 +6,8 @@
 #include "AnimInstance_Mage.generated.h"
 
 
-DECLARE_MULTICAST_DELEGATE(FOnFrostBlastUnleashRequestDelegate)
+DECLARE_MULTICAST_DELEGATE(FOnFrostBlastUnleashRequestDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnFireStormSpawnRequestDelegate);
 UCLASS()
 class COURSE_ARPG_API UAnimInstance_Mage : public UAnimInstance_Player
 {
@@ -15,6 +16,8 @@ class COURSE_ARPG_API UAnimInstance_Mage : public UAnimInstance_Player
 public:
 
 	FOnFrostBlastUnleashRequestDelegate OnFrostBlastUnleashRequest;
+
+	FOnFireStormSpawnRequestDelegate OnFireStormSpawnRequest;
 	
 protected:
 
@@ -24,4 +27,7 @@ private:
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void SpawnFrostBlast();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void SpawnFireStorm();
 };

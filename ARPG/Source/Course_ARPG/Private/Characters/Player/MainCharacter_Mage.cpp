@@ -1,6 +1,5 @@
 
 #include "Characters/Player/MainCharacter_Mage.h"
-
 #include "Animations/Player/AnimInstance_Mage.h"
 #include "Combat/DamageTypes.h"
 #include "Kismet/GameplayStatics.h"
@@ -41,6 +40,7 @@ void AMainCharacter_Mage::BeginPlay()
 	AbilityComp_HealingAura->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 
 	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFrostBlastUnleashRequest.AddUObject(AbilityComp_FrostBlast, &UAbComp_FrostBlast::SpawnFrostBlast);
+	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFireStormSpawnRequest.AddUObject(AbilityComp_FireStorm, &UAbComp_FireStorm::SpawnFireStorm);
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
 	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
 }
