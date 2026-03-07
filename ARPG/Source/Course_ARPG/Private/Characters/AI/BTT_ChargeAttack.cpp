@@ -1,7 +1,7 @@
 
 #include "Characters/AI/BTT_ChargeAttack.h"
 #include "AIController.h"
-#include "Animations/AnimInstance_Base.h"
+#include "Animations/AnimInstance_Enemy.h"
 #include "Animations/AnimInstance_Grux.h"
 #include "GameFramework/Character.h"
 #include "BehaviorTree/BlackboardComponent.h"
@@ -24,7 +24,7 @@ EBTNodeResult::Type UBTT_ChargeAttack::ExecuteTask(UBehaviorTreeComponent& Owner
 	if (!ControllerRef) return EBTNodeResult::Failed;
 	CharacterRef = ControllerRef->GetCharacter();
 	if (!CharacterRef) return EBTNodeResult::Failed;
-	BossAnimInstance = Cast<UAnimInstance_Base>(CharacterRef->GetMesh()->GetAnimInstance());
+	BossAnimInstance = Cast<UAnimInstance_Enemy>(CharacterRef->GetMesh()->GetAnimInstance());
 	if (!BossAnimInstance) return EBTNodeResult::Failed;
 	Cast<UAnimInstance_Grux>(BossAnimInstance)->SetIsCharging(true);
 	OwnerComp.GetBlackboardComponent()->SetValueAsBool(TEXT("IsReadyToCharge"), false);

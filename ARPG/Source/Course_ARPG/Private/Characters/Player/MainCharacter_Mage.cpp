@@ -63,6 +63,12 @@ void AMainCharacter_Mage::HandleDeath()
 }
 
 
+void AMainCharacter_Mage::SpawnProjectile()
+{
+	CombatComp->SpawnProjectile();
+}
+
+
 void AMainCharacter_Mage::RemoveParticle()
 {
 	if (ParticleComponents.IsEmpty()) return;

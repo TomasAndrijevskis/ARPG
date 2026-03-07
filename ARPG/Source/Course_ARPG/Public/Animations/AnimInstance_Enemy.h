@@ -3,13 +3,13 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
-#include "AnimInstance_Base.generated.h"
+#include "AnimInstance_Enemy.generated.h"
 
 
 class AEnemyCharacter;
 
 UCLASS()
-class COURSE_ARPG_API UAnimInstance_Base : public UAnimInstance
+class COURSE_ARPG_API UAnimInstance_Enemy : public UAnimInstance
 {
 	GENERATED_BODY()
 

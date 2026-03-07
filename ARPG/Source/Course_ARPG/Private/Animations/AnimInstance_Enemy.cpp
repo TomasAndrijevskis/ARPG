@@ -1,23 +1,23 @@
 
-#include "Animations/AnimInstance_Base.h"
+#include "Animations/AnimInstance_Enemy.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 
 
-void UAnimInstance_Base::NativeBeginPlay()
+void UAnimInstance_Enemy::NativeBeginPlay()
 {
 	Super::NativeBeginPlay();
 	PawnRef = Cast<AEnemyCharacter>(TryGetPawnOwner());
 }
 
 
-void UAnimInstance_Base::NativeUpdateAnimation(const float DeltaSeconds)
+void UAnimInstance_Enemy::NativeUpdateAnimation(const float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
 	UpdateSpeed();
 }
 
 
-void UAnimInstance_Base::UpdateSpeed()
+void UAnimInstance_Enemy::UpdateSpeed()
 {
 	if (!IsValid(PawnRef)) return;
 	FVector Velocity = TryGetPawnOwner()->GetVelocity();
@@ -25,7 +25,7 @@ void UAnimInstance_Base::UpdateSpeed()
 }
 
 
-void UAnimInstance_Base::HandleResetAttack() const
+void UAnimInstance_Enemy::HandleResetAttack() const
 {
 	PawnRef->ResetAttack();
 }

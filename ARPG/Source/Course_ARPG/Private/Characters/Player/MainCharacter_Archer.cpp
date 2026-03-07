@@ -1,6 +1,5 @@
 
 #include "Characters/Player/MainCharacter_Archer.h"
-
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealArrow.h"
@@ -30,6 +29,12 @@ void AMainCharacter_Archer::HandleEffectChange(EEffects NewEffect)
 {
 	//Super::HandleEffectChange(NewEffect);
 	Cast<UCombatComponent_LongRange>(CombatComp)->RevertBaseProjectileClass();
+}
+
+
+void AMainCharacter_Archer::SpawnProjectile()
+{
+	CombatComp->SpawnProjectile();
 }
 
 

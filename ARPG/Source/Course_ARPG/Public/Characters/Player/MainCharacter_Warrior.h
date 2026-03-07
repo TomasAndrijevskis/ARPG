@@ -34,6 +34,8 @@ public:
 
 	virtual float GetPhysicalDamage() override;
 	
+	virtual void HandleResetAttack() override;
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UAbComp_DamageIncrease* AbilityComp_DamageIncrease;
 	

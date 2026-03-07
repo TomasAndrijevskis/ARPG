@@ -22,8 +22,7 @@ public:
 	void HandleResetAttack();
 
 	void SetCanAttack(bool CanAttack);
-
-	UFUNCTION(BlueprintCallable)
+	
 	virtual void SpawnProjectile(){};
 	
 	FOnAttackPerformed OnAttackPerformedDelegate;

@@ -31,7 +31,7 @@ class UPlayerActionsComponent;
 class UCombatComponent_Base;
 class ULevelingComponent;
 class UStatusEffectsComponent;
-class UPlayerAnimInstance;
+class UAnimInstance_Player;
 
 DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinished);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsAmountChanged, const int);
@@ -184,6 +184,10 @@ public:
 
 	FVector GetTargetLocation(float DefaultSpawnDistance);
 	
+	virtual void HandleResetAttack();
+
+	virtual void SpawnProjectile(){};
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
 
@@ -215,7 +219,7 @@ public:
 	UPoisonEffectManager* PoisonStatusEffectManager;
 	
 	UPROPERTY(BlueprintReadOnly)
-	UPlayerAnimInstance* PlayerAnimInstance;
+	UAnimInstance_Player* PlayerAnimInstance;
 
 	FOnBonfireInteractionFinished FOnBonfireInteractionFinishedDelegate;
 

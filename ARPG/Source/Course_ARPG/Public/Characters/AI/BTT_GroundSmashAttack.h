@@ -6,7 +6,7 @@
 #include "BTT_GroundSmashAttack.generated.h"
 
 
-class UAnimInstance_Base;
+class UAnimInstance_Enemy;
 UCLASS()
 class COURSE_ARPG_API UBTT_GroundSmashAttack : public UBTTaskNode
 {
@@ -25,6 +25,6 @@ private:
 	ACharacter* CharacterRef;
 
 	UPROPERTY()
-	UAnimInstance_Base* BossAnimInstance;
+	UAnimInstance_Enemy* BossAnimInstance;
 	
 };

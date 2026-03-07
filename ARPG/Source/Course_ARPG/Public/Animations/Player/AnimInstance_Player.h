@@ -3,11 +3,13 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
-#include "PlayerAnimInstance.generated.h"
+#include "AnimInstance_Player.generated.h"
 
+
+class AMainCharacter_Base;
 
 UCLASS()
-class COURSE_ARPG_API UPlayerAnimInstance : public UAnimInstance
+class COURSE_ARPG_API UAnimInstance_Player : public UAnimInstance
 {
 	GENERATED_BODY()
 
@@ -16,16 +18,15 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void HandleUpdatedTarget(AActor* NewTargetActorRef);
 
-	UFUNCTION(BlueprintCallable)
-	void UpdateDirection();
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bIsBlocking = false;
 	
 protected:
+	
+	virtual void NativeBeginPlay() override;
 
 	UFUNCTION(BlueprintCallable)
-	void UpdateSpeed();
+	virtual void HandleLongRangeAttack(){};
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	float CurrentSpeed = 0.0f ;
@@ -38,4 +39,18 @@ protected:
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMoving = false;
+
+	UPROPERTY()
+	AMainCharacter_Base* PlayerRef;
+	
+private:
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void UpdateSpeed();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void HandleResetAttack() const;
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void UpdateDirection();
 };

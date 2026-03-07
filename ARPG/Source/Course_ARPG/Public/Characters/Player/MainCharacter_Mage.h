@@ -30,6 +30,8 @@ public:
 	virtual float GetMagicalDamage() const override;
 
 	virtual void HandleEffectChange(EEffects NewEffect) override;
+
+	virtual void SpawnProjectile() override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_MagicShield* AbilityComp_MagicShield;

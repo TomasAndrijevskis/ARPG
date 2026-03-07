@@ -6,7 +6,7 @@
 #include "BTT_ChargeAttack.generated.h"
 
 
-class UAnimInstance_Base;
+class UAnimInstance_Enemy;
 
 UCLASS()
 
@@ -43,7 +43,7 @@ private:
 	ACharacter* CharacterRef;
 
 	UPROPERTY()
-	UAnimInstance_Base* BossAnimInstance;
+	UAnimInstance_Enemy* BossAnimInstance;
 	
 	UPROPERTY(EditAnywhere)
 	float AcceptableRadius = 100.0f;

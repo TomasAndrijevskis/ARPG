@@ -2,7 +2,7 @@
 #include "Characters/Player/MainCharacter_Warrior.h"
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Animations/PlayerAnimInstance.h"
+#include "Animations/Player/AnimInstance_Player.h"
 #include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_Invincibility.h"
@@ -132,4 +132,11 @@ bool AMainCharacter_Warrior::IsWeaponEnchanted() const
 float AMainCharacter_Warrior::GetPhysicalDamage()
 {
 	return StatsComp->GetStatValue(PhysicalStrength) * GetDamageMultiplier();
+}
+
+
+void AMainCharacter_Warrior::HandleResetAttack()
+{
+	Super::HandleResetAttack();
+	TraceComp->HandleResetAttack();
 }

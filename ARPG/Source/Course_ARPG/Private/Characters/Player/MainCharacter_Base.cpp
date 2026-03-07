@@ -1,6 +1,6 @@
 
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Animations/PlayerAnimInstance.h"
+#include "Animations/Player/AnimInstance_Player.h"
 #include "Combat/DamageTypes.h"
 #include "Data/EStats.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
@@ -37,7 +37,7 @@ void AMainCharacter_Base::BeginPlay()
 {
 	Super::BeginPlay();
 	SkeletalMeshComp = GetMesh();
-	PlayerAnimInstance = Cast<UPlayerAnimInstance>(GetMesh()->GetAnimInstance());
+	PlayerAnimInstance = Cast<UAnimInstance_Player>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	if (GameInstance) GameInstance->LoadCurrentEffect();
 	CreatePlayerWidget();
@@ -47,7 +47,7 @@ void AMainCharacter_Base::BeginPlay()
 
 void AMainCharacter_Base::BindDelegates()
 {
-	LockonComp->OnUpdatedTargetDelegate.AddUObject(PlayerAnimInstance, &UPlayerAnimInstance::HandleUpdatedTarget);
+	LockonComp->OnUpdatedTargetDelegate.AddUObject(PlayerAnimInstance, &UAnimInstance_Player::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &ThisClass::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddUObject(this, &ThisClass::ReduceStamina);
 	StatsComp->OnHealthPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetHealth);
@@ -449,6 +449,12 @@ FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 	const FVector PlayerLocation = GetActorLocation();
 	const FVector ForwardDirection = GetActorForwardVector();
 	return PlayerLocation + ForwardDirection * DefaultSpawnDistance;
+}
+
+
+void AMainCharacter_Base::HandleResetAttack()
+{
+	CombatComp->HandleResetAttack();
 }
 
 

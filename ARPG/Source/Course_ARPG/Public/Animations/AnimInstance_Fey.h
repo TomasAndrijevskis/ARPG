@@ -2,12 +2,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Animations/AnimInstance_Base.h"
+#include "Animations/AnimInstance_Enemy.h"
 #include "AnimInstance_Fey.generated.h"
 
 
 UCLASS()
-class COURSE_ARPG_API UAnimInstance_Fey : public UAnimInstance_Base
+class COURSE_ARPG_API UAnimInstance_Fey : public UAnimInstance_Enemy
 {
 	GENERATED_BODY()
 
