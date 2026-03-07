@@ -8,3 +8,9 @@ void UAnimInstance_Archer::HandleLongRangeAttack()
 	if (!PlayerRef) return;
 	PlayerRef->SpawnProjectile();
 }
+
+
+void UAnimInstance_Archer::FireHealingArrow()
+{
+	OnHealingArrowFireRequested.Broadcast();
+}

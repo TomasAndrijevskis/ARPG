@@ -1,5 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Archer.h"
+
+#include "Animations/Player/AnimInstance_Archer.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealArrow.h"
@@ -22,6 +24,7 @@ void AMainCharacter_Archer::BeginPlay()
 	Super::BeginPlay();
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
 	AbilityComp_HealArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	Cast<UAnimInstance_Archer>(PlayerAnimInstance)->OnHealingArrowFireRequested.AddUObject(AbilityComp_HealArrow, &UAbComp_HealArrow::SpawnArrow);
 }
 
 

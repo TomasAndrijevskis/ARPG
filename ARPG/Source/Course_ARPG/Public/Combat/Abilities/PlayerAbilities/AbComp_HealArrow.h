@@ -19,6 +19,8 @@ public:
 
 	virtual void FinishAbilityCast() override;
 
+	void SpawnArrow();
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -32,4 +34,10 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> ArrowClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	FName ComponentName;
+
+	UPROPERTY(EditDefaultsOnly)
+	float AliveTime = 10.0f;
 };
