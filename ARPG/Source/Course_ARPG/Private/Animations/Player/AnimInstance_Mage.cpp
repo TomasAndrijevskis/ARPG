@@ -12,11 +12,23 @@ void UAnimInstance_Mage::HandleLongRangeAttack()
 
 void UAnimInstance_Mage::SpawnFrostBlast()
 {
-	OnFrostBlastUnleashRequest.Broadcast();
+	OnFrostBlastSummoned.Broadcast();
 }
 
 
 void UAnimInstance_Mage::SpawnFireStorm()
 {
-	OnFireStormSpawnRequest.Broadcast();
+	OnFireStormSummoned.Broadcast();
+}
+
+
+void UAnimInstance_Mage::SpawnHealingAura()
+{
+	OnHealingAuraSummoned.Broadcast();
+}
+
+
+void UAnimInstance_Mage::SpawnMagicShield()
+{
+	OnMagicShieldSummoned.Broadcast();
 }

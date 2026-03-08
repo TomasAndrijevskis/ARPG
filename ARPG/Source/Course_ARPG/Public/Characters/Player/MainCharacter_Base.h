@@ -236,6 +236,8 @@ protected:
 
 	UFUNCTION()
 	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
+
+	virtual void BindAbilityDelegates(){};
 	
 	EEffects CurrentEffect;
 

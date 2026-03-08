@@ -34,8 +34,8 @@ public:
 	virtual void StartAbility() override;
 	
 	void SpawnFrostBlast();
-	
-	void CompleteAbility();
+
+	virtual void FinishAbilityCast() override;
 	
 protected:
 
@@ -45,7 +45,7 @@ protected:
 	
 private:
 
-	void SpawnEffect(UParticleSystem* VisualEffect) const;
+	void SpawnEffect(UParticleSystem* VisualEffect);
 	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* InitialBlast;

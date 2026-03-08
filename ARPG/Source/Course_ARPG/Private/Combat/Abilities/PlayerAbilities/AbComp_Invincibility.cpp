@@ -18,35 +18,30 @@ void UAbComp_Invincibility::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
-		HandlePlayerActions(false);
-		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		Cast<AMainCharacter_Warrior>(PlayerRef)->SetArmor(GetEnhancedArmor());
-		OnAbilityStartedDelegate.Broadcast();
+		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_Invincibility::FinishAbilityCast, AnimDuration, false);
 	}
+}
+
+
+void UAbComp_Invincibility::ApplyInvincibility()
+{
+	Cast<AMainCharacter_Warrior>(PlayerRef)->SetArmor(GetEnhancedArmor());
+	FinishAbilityCast();
 }
 
 
 void UAbComp_Invincibility::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	CompleteAbility();
+	SetAbilityActive(false);
+	StartCooldown();
 }
 
 
 void UAbComp_Invincibility::CreateIcon()
 {
 	PlayerRef->CreateAbilityIconWithAmount(GetEnhancedArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
-}
-
-
-void UAbComp_Invincibility::CompleteAbility()
-{
-	SetAbilityActive(false);
-	HandlePlayerActions(true);
-	StartCooldown();
 }
 
 
@@ -88,19 +83,6 @@ void UAbComp_Invincibility::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_Invincibility::GetDefaultArmor() const
-{
-	return Armor;
-}
-
-
-float UAbComp_Invincibility::GetEnhancedArmor() const
-{
-	return Armor + (Armor * PlayerRef->GetAbilityPowerPercent());
-}
-
-
-void UAbComp_Invincibility::SetArmor(const float NewArmor)
-{
-	Armor = NewArmor;
-}
+float UAbComp_Invincibility::GetDefaultArmor() const{return Armor;}
+float UAbComp_Invincibility::GetEnhancedArmor() const{return Armor + (Armor * PlayerRef->GetAbilityPowerPercent());}
+void UAbComp_Invincibility::SetArmor(const float NewArmor){Armor = NewArmor;}

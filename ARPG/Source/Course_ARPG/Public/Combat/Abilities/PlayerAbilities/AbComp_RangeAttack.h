@@ -23,13 +23,10 @@ public:
 
 	virtual void FinishAbilityCast() override;
 	
-protected:
-
-	virtual void BeginPlay() override;
-	
-	UFUNCTION()
 	void SpawnProjectile();
-
+	
+protected:
+	
 	void SetProjectileDamage(const float NewProjectileDamage);
 
 	FRangeAttackPropertiesData* GetAbilityData(const int32 Level);
@@ -38,7 +35,7 @@ protected:
 	
 private:
 	
-	void CompleteAbilityAttack();
+	void SpawnParticle();
 
 	float GetDefaultProjectileDamage() const;
 

@@ -21,7 +21,6 @@ void UAbComp_FireStorm::StartAbility()
 
 void UAbComp_FireStorm::SpawnFireStorm()
 {
-	FinishAbilityCast();
 	if (!PlayerRef) return;
 	const FVector PlayerLocation = GetOwner()->GetActorLocation();
 	const FVector TargetLocation = PlayerRef->GetTargetLocation(250.f);
@@ -32,7 +31,13 @@ void UAbComp_FireStorm::SpawnFireStorm()
 	FireStormRef = GetWorld()->SpawnActorDeferred<AFireStorm>(FireStormClass, SpawnTransform);
 	FireStormRef->SetProperties(BurnDuration, GetEnhancedBurnDamage(), BurnRate);
 	UGameplayStatics::FinishSpawningActor(FireStormRef, SpawnTransform);
-	OnAbilityStartedDelegate.Broadcast();
+	FinishAbilityCast();
+}
+
+
+void UAbComp_FireStorm::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
 	TimerDuration = GetAbilityDuration();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_FireStorm::StartAbilityTimer, 1, true);
 }
@@ -90,31 +95,8 @@ void UAbComp_FireStorm::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_FireStorm::GetDefaultBurnDamage() const
-{
-	return BurnDamage;
-}
-
-
-float UAbComp_FireStorm::GetEnhancedBurnDamage() const
-{
-	return BurnDamage + (BurnDamage * PlayerRef->GetAbilityPowerPercent());
-}
-
-
-void UAbComp_FireStorm::SetBurnDamage(float NewDamage)
-{
-	BurnDamage = NewDamage;
-}
-
-
-float UAbComp_FireStorm::GetBurnDuration() const
-{
-	return BurnDuration;
-}
-
-
-void UAbComp_FireStorm::SetBurnDuration(float NewDuration)
-{
-	BurnDuration = NewDuration;
-}
+float UAbComp_FireStorm::GetDefaultBurnDamage() const{return BurnDamage;}
+float UAbComp_FireStorm::GetEnhancedBurnDamage() const{return BurnDamage + (BurnDamage * PlayerRef->GetAbilityPowerPercent());}
+float UAbComp_FireStorm::GetBurnDuration() const{return BurnDuration;}
+void UAbComp_FireStorm::SetBurnDamage(float NewDamage){BurnDamage = NewDamage;}
+void UAbComp_FireStorm::SetBurnDuration(float NewDuration){BurnDuration = NewDuration;}

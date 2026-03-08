@@ -27,12 +27,12 @@ public:
 	void ReflectAttack(AActor* Opponent, float Damage, const UDamageType* DamageType);
 
 	void SetReflectionPercent(float NewReflectionPercent);
+
+	void SpawnShield();
 	
 protected:
 
 	virtual void BeginPlay() override;
-
-	virtual void StartAbilityTimer() override;
 
 	virtual void OnAbilityTimerFinished() override;
 	
@@ -45,8 +45,6 @@ protected:
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
-	
-	void SpawnShield();
 
 	float GetDefaultDamageReflectionPercent() const;
 

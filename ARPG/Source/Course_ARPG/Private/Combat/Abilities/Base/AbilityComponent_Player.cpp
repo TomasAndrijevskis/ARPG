@@ -81,6 +81,7 @@ void UAbilityComponent_Player::StartAbility()
 	SkeletalMeshComp = PlayerRef->GetSkeletalMeshComponent();
 	PlayerRef->SetCanPlayHurtAnimation(false);
 	PlayerRef->InterruptHurtAnimation();
+	HandlePlayerActions(false);
 }
 
 
@@ -88,6 +89,8 @@ void UAbilityComponent_Player::FinishAbilityCast()
 {
 	if (!PlayerRef) return;
 	PlayerRef->SetCanPlayHurtAnimation(true);
+	HandlePlayerActions(true);
+	OnAbilityStartedDelegate.Broadcast();
 }
 
 
@@ -170,24 +173,6 @@ void UAbilityComponent_Player::SetCommonAbilityProperties(const FAbilityProperti
 }
 
 
-bool UAbilityComponent_Player::CanPlayMontage() const
-{
-	return AnimMontage && PlayerRef && !PlayerRef->GetCurrentMontage();
-}
-
-
-int UAbilityComponent_Player::GetCurrentAbilityLevel()
-{
-	return CurrentAbilityLevel;
-}
-
-
-void UAbilityComponent_Player::SetCurrentAbilityLevel(const int NewLevel)
-{
-	CurrentAbilityLevel = NewLevel;
-}
-
-
 FString UAbilityComponent_Player::GetAbilityDescription()
 {
 	UpdateAbilityDescription();
@@ -201,80 +186,25 @@ FString UAbilityComponent_Player::GetUpgradeDescription()
 	return UpgradeDescription;
 }
 
-void UAbilityComponent_Player::SetUpgradeDescription(const FString& NewDescription)
-{
-	UpgradeDescription = NewDescription;
-}
-
-void UAbilityComponent_Player::SetAbilityDescription(const FString& NewDescription)
-{
-	AbilityDescription = NewDescription;
-}
-
-
-bool UAbilityComponent_Player::IsAbilityAvailable() const
-{
-	return bIsAbilityAvailable;
-}
-
-
-void UAbilityComponent_Player::SetAbilityAvailability(const bool NewAvailability)
-{
-	bIsAbilityAvailable = NewAvailability;
-}
-
-
-float UAbilityComponent_Player::GetManaCost() const
-{
-	return ManaCost;
-}
-
-
-void UAbilityComponent_Player::SetManaCost(const float NewManaCost)
-{
-	ManaCost = NewManaCost;
-}
-
-
-float UAbilityComponent_Player::GetCooldownDuration() const
-{
-	return CooldownDuration;
-}
-
-
-void UAbilityComponent_Player::SetCooldownDuration(const float NewCooldownDuration)
-{
-	CooldownDuration = NewCooldownDuration;
-}
-
-
-
-FString UAbilityComponent_Player::GetActionKey() const
-{
-	return ActionKey;
-}
-
-
-bool UAbilityComponent_Player::IsOnCooldown() const
-{
-	return bIsOnCooldown;
-}
-
-
-bool UAbilityComponent_Player::IsAbilityActive() const
-{
-	return bIsAbilityActive;
-}
-
-
-void UAbilityComponent_Player::SetAbilityActive(const bool NewIsActive)
-{
-	bIsAbilityActive = NewIsActive;
-}
-
 
 UTexture2D* UAbilityComponent_Player::GetIcon() const
 {
 	if (!Icon) return nullptr;
 	return Icon;
 }
+
+bool UAbilityComponent_Player::CanPlayMontage() const{return AnimMontage && PlayerRef && !PlayerRef->GetCurrentMontage();}
+int UAbilityComponent_Player::GetCurrentAbilityLevel(){return CurrentAbilityLevel;}
+bool UAbilityComponent_Player::IsAbilityAvailable() const{return bIsAbilityAvailable;}
+float UAbilityComponent_Player::GetManaCost() const{return ManaCost;}
+float UAbilityComponent_Player::GetCooldownDuration() const{return CooldownDuration;}
+FString UAbilityComponent_Player::GetActionKey() const{return ActionKey;}
+bool UAbilityComponent_Player::IsOnCooldown() const{return bIsOnCooldown;}
+bool UAbilityComponent_Player::IsAbilityActive() const{return bIsAbilityActive;}
+void UAbilityComponent_Player::SetAbilityActive(const bool NewIsActive){bIsAbilityActive = NewIsActive;}
+void UAbilityComponent_Player::SetCurrentAbilityLevel(const int NewLevel){CurrentAbilityLevel = NewLevel;}
+void UAbilityComponent_Player::SetUpgradeDescription(const FString& NewDescription){UpgradeDescription = NewDescription;}
+void UAbilityComponent_Player::SetAbilityDescription(const FString& NewDescription){AbilityDescription = NewDescription;}
+void UAbilityComponent_Player::SetAbilityAvailability(const bool NewAvailability){bIsAbilityAvailable = NewAvailability;}
+void UAbilityComponent_Player::SetManaCost(const float NewManaCost){ManaCost = NewManaCost;}
+void UAbilityComponent_Player::SetCooldownDuration(const float NewCooldownDuration){CooldownDuration = NewCooldownDuration;}

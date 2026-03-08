@@ -57,6 +57,8 @@ protected:
 
 	virtual bool CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const override;
 
+	virtual void BindAbilityDelegates() override;
+	
 private:
 
 	void RemoveParticle();

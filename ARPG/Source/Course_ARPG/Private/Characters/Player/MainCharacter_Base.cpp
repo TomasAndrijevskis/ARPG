@@ -42,6 +42,7 @@ void AMainCharacter_Base::BeginPlay()
 	if (GameInstance) GameInstance->LoadCurrentEffect();
 	CreatePlayerWidget();
 	BindDelegates();
+	BindAbilityDelegates();
 }
 
 

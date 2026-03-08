@@ -33,16 +33,22 @@ AMainCharacter_Mage::AMainCharacter_Mage()
 void AMainCharacter_Mage::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
+	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
+}
+
+
+void AMainCharacter_Mage::BindAbilityDelegates()
+{
 	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_FrostBlast->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_FireStorm->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_HealingAura->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 
-	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFrostBlastUnleashRequest.AddUObject(AbilityComp_FrostBlast, &UAbComp_FrostBlast::SpawnFrostBlast);
-	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFireStormSpawnRequest.AddUObject(AbilityComp_FireStorm, &UAbComp_FireStorm::SpawnFireStorm);
-	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
-	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
+	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFrostBlastSummoned.AddUObject(AbilityComp_FrostBlast, &UAbComp_FrostBlast::SpawnFrostBlast);
+	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFireStormSummoned.AddUObject(AbilityComp_FireStorm, &UAbComp_FireStorm::SpawnFireStorm);
+	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnHealingAuraSummoned.AddUObject(AbilityComp_HealingAura, &UAbComp_HealingAura::SpawnHealingAura);
+	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnMagicShieldSummoned.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::SpawnShield);
 }
 
 

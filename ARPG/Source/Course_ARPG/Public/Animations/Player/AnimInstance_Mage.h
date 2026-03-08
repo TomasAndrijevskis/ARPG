@@ -6,8 +6,10 @@
 #include "AnimInstance_Mage.generated.h"
 
 
-DECLARE_MULTICAST_DELEGATE(FOnFrostBlastUnleashRequestDelegate);
-DECLARE_MULTICAST_DELEGATE(FOnFireStormSpawnRequestDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnFrostBlastSummonedDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnFireStormSummonedDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnHealingAuraSummonedDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnMagicShieldSummonedDelegate);
 UCLASS()
 class COURSE_ARPG_API UAnimInstance_Mage : public UAnimInstance_Player
 {
@@ -15,9 +17,13 @@ class COURSE_ARPG_API UAnimInstance_Mage : public UAnimInstance_Player
 
 public:
 
-	FOnFrostBlastUnleashRequestDelegate OnFrostBlastUnleashRequest;
+	FOnFrostBlastSummonedDelegate OnFrostBlastSummoned;
 
-	FOnFireStormSpawnRequestDelegate OnFireStormSpawnRequest;
+	FOnFireStormSummonedDelegate OnFireStormSummoned;
+	
+	FOnHealingAuraSummonedDelegate OnHealingAuraSummoned;
+
+	FOnMagicShieldSummonedDelegate OnMagicShieldSummoned;
 	
 protected:
 
@@ -30,4 +36,10 @@ private:
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void SpawnFireStorm();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void SpawnHealingAura();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void SpawnMagicShield();
 };

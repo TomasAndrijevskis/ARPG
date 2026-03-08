@@ -33,6 +33,8 @@ public:
 	virtual void StartAbility() override;
 	
 	void SpawnFireStorm();
+
+	virtual void FinishAbilityCast() override;
 	
 protected:
 	

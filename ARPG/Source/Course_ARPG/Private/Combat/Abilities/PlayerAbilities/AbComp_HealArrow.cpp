@@ -18,20 +18,16 @@ void UAbComp_HealArrow::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
-		HandlePlayerActions(false);
-		OnAbilityStartedDelegate.Broadcast();
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::FinishAbilityCast, AnimDuration, false);
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::FinishAnimation, AnimDuration, false);
 	}
 }
 
 
-void UAbComp_HealArrow::FinishAbilityCast()
+void UAbComp_HealArrow::FinishAnimation()
 {
-	Super::FinishAbilityCast();
 	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	float AnimDuration = PlayerRef->PlayAnimMontage(ShootMontage);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::CompleteAbility, AnimDuration, false);
+	PlayerRef->PlayAnimMontage(ShootMontage);
 }
 
 
@@ -48,18 +44,20 @@ void UAbComp_HealArrow::SpawnArrow()
 	Projectile->SetOwner(GetOwner());
 	Projectile->SetParams(0, AliveTime, 0);
 	Projectile->StartAliveTimer();
+	FinishAbilityCast();
 }
 
 
-void UAbComp_HealArrow::CompleteAbility()
+void UAbComp_HealArrow::FinishAbilityCast()
 {
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	Super::FinishAbilityCast();
 	SetAbilityActive(false);
-	HandlePlayerActions(true);
 	StartCooldown();
 }
+
 
 void UAbComp_HealArrow::CreateIcon()
 {
 	//PlayerRef->CreateAbilityIconWithAmount();
+	UE_LOG(LogTemp, Warning, TEXT("Should be icon"));
 }

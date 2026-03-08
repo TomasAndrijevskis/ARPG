@@ -28,6 +28,8 @@ public:
 
 	virtual void FinishAbilityCast() override;
 
+	void SpawnHealingAura();
+	
 protected:
 
 	virtual void BeginPlay() override;

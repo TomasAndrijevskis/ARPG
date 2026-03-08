@@ -12,9 +12,8 @@
 
 AMainCharacter_Archer::AMainCharacter_Archer()
 {
-	CombatComp = CreateDefaultSubobject<UCombatComponent_LongRange>(TEXT("Combat Component"));
 	AbilityComp_HealArrow = CreateDefaultSubobject<UAbComp_HealArrow>(TEXT("Healing Arrow"));
-
+	CombatComp = CreateDefaultSubobject<UCombatComponent_LongRange>(TEXT("Combat Component"));
 	AddToAbilitiesArray(AbilityComp_HealArrow);
 }
 
@@ -23,7 +22,12 @@ void AMainCharacter_Archer::BeginPlay()
 {
 	Super::BeginPlay();
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+}
+
+void AMainCharacter_Archer::BindAbilityDelegates()
+{
 	AbilityComp_HealArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+
 	Cast<UAnimInstance_Archer>(PlayerAnimInstance)->OnHealingArrowFireRequest.AddUObject(AbilityComp_HealArrow, &UAbComp_HealArrow::SpawnArrow);
 }
 

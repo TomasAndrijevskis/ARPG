@@ -37,6 +37,8 @@ public:
 
 	virtual void FinishAbilityCast() override;
 
+	void SpawnParticle();
+	
 protected:
 
 	virtual void BeginPlay() override;

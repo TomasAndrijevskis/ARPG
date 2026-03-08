@@ -20,24 +20,26 @@ void UAbComp_LifeStealAttack::StartAbility()
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
-		const FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
-		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		const float TempDuration = 1 - AnimDuration;
 		SetAbilityActive(true);
-		OnAbilityStartedDelegate.Broadcast();
-		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
-				FVector3d(.5f, .5f, .5f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
-		TimerDuration = GetAbilityDuration();
+		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_LifeStealAttack::FinishAbilityCast, (AnimDuration + TempDuration), false);
 	}
+}
+
+
+void UAbComp_LifeStealAttack::SpawnParticle()
+{
+	const FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
+	ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
+				FVector3d(.5f, .5f, .5f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
+	FinishAbilityCast();
 }
 
 
 void UAbComp_LifeStealAttack::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	TimerDuration = GetAbilityDuration();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_LifeStealAttack::StartAbilityTimer, 1, true, 1);
 }
 
@@ -45,7 +47,6 @@ void UAbComp_LifeStealAttack::FinishAbilityCast()
 void UAbComp_LifeStealAttack::OnAbilityTimerFinished()
 {
 	Super::OnAbilityTimerFinished();
-
 	SetAbilityActive(false);
 	if (ParticleComp)
 	{

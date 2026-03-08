@@ -19,10 +19,8 @@ void UAbComp_MagicShield::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
-		TimerDuration = GetAbilityDuration();
-		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
+		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_MagicShield::FinishAbilityCast, AnimDuration, false);
 	}
 }
 
@@ -30,8 +28,8 @@ void UAbComp_MagicShield::StartAbility()
 void UAbComp_MagicShield::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	SpawnShield();
+	TimerDuration = GetAbilityDuration();
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_MagicShield::StartAbilityTimer, 1, true);
 }
 
 
@@ -45,14 +43,7 @@ void UAbComp_MagicShield::SpawnShield()
 	ShieldActor = GetWorld()->SpawnActor<AMagicShield>(ShieldClass, SpawnLocation, SpawnRotation, Params);
 	if (!ShieldActor) return;
 	ShieldActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-	OnAbilityStartedDelegate.Broadcast();
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_MagicShield::StartAbilityTimer, 1, true);
-}
-
-
-void UAbComp_MagicShield::StartAbilityTimer()
-{
-	Super::StartAbilityTimer();
+	FinishAbilityCast();
 }
 
 
@@ -121,19 +112,6 @@ void UAbComp_MagicShield::SetAbilityData(const int32 Level)
 }
 
 
-void UAbComp_MagicShield::SetReflectionPercent(float NewReflectionPercent)
-{
-	DamageReflectionPercent = NewReflectionPercent;
-}
-
-
-float UAbComp_MagicShield::GetDefaultDamageReflectionPercent() const
-{
-	return DamageReflectionPercent;
-}
-
-
-float UAbComp_MagicShield::GetEnhancedDamageReflectionPercent() const
-{
-	return DamageReflectionPercent + (DamageReflectionPercent * PlayerRef->GetAbilityPowerPercent());
-}
+void UAbComp_MagicShield::SetReflectionPercent(float NewReflectionPercent){DamageReflectionPercent = NewReflectionPercent;}
+float UAbComp_MagicShield::GetDefaultDamageReflectionPercent() const{return DamageReflectionPercent;}
+float UAbComp_MagicShield::GetEnhancedDamageReflectionPercent() const{return DamageReflectionPercent + (DamageReflectionPercent * PlayerRef->GetAbilityPowerPercent());}

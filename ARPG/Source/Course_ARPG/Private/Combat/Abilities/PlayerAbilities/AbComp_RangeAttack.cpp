@@ -8,50 +8,24 @@
 #include "Particles/ParticleSystemComponent.h"
 
 
-void UAbComp_RangeAttack::BeginPlay()
-{
-	Super::BeginPlay();
-	OnAbilityFinishedDelegate.AddUObject(this,&UAbComp_RangeAttack::SpawnProjectile);
-}
-
-
 void UAbComp_RangeAttack::StartAbility()
 {
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
-		HandlePlayerActions(false);
 		SetAbilityActive(true);
-		OnAbilityStartedDelegate.Broadcast();
-		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
-			FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
+		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_RangeAttack::FinishAbilityCast, AnimDuration/2, false);
+		SpawnParticle();
 	}
 }
 
 
-void UAbComp_RangeAttack::FinishAbilityCast()
+void UAbComp_RangeAttack::SpawnParticle()
 {
-	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	CompleteAbilityAttack();
-}
-
-
-void UAbComp_RangeAttack::CompleteAbilityAttack()
-{
-	HandlePlayerActions(true);
-	SetAbilityActive(false);
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
-	StartCooldown();
-	if (ParticleComp)
-	{
-		ParticleComp->DestroyComponent();
-		ParticleComp = nullptr;
-	}
+	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
+	ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
+		FVector3d(.4f, .4f, .4f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
 }
 
 
@@ -69,6 +43,20 @@ void UAbComp_RangeAttack::SpawnProjectile()
 		Projectile->SetOwner(GetOwner());
 		Projectile->SetParams(GetEnhancedProjectileDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
 		Projectile->StartAliveTimer();
+	}
+	FinishAbilityCast();
+}
+
+
+void UAbComp_RangeAttack::FinishAbilityCast()
+{
+	Super::FinishAbilityCast();
+	SetAbilityActive(false);
+	StartCooldown();
+	if (ParticleComp)
+	{
+		ParticleComp->DestroyComponent();
+		ParticleComp = nullptr;
 	}
 }
 
@@ -111,19 +99,6 @@ void UAbComp_RangeAttack::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_RangeAttack::GetDefaultProjectileDamage() const
-{
-	return ProjectileDamage;
-}
-
-
-float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const
-{
-	return ProjectileDamage + (ProjectileDamage * PlayerRef->GetAbilityPowerPercent());
-}
-
-
-void UAbComp_RangeAttack::SetProjectileDamage(const float NewProjectileDamage)
-{
-	ProjectileDamage = NewProjectileDamage;
-}
+float UAbComp_RangeAttack::GetDefaultProjectileDamage() const{return ProjectileDamage;}
+float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const{return ProjectileDamage + (ProjectileDamage * PlayerRef->GetAbilityPowerPercent());}
+void UAbComp_RangeAttack::SetProjectileDamage(const float NewProjectileDamage){ProjectileDamage = NewProjectileDamage;}

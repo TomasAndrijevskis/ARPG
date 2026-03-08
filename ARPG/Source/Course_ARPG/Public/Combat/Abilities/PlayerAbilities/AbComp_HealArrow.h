@@ -27,7 +27,8 @@ protected:
 	
 private:
 
-	void CompleteAbility();
+	UFUNCTION()
+	void FinishAnimation();
 	
 	UPROPERTY(EditDefaultsOnly)
 	UAnimMontage* ShootMontage;

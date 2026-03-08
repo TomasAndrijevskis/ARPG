@@ -12,12 +12,10 @@ void UAbComp_FrostBlast::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		if (!Warmup || !FrostBlastClass) return;
-		HandlePlayerActions(false);
 		SetAbilityActive(true);
-		OnAbilityStartedDelegate.Broadcast();
-		SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 		SpawnEffect(Warmup);
 		PlayerRef->PlayAnimMontage(AnimMontage);
+		PlayerRef->ReduceMana(GetManaCost());
 	}
 }
 
@@ -33,25 +31,23 @@ void UAbComp_FrostBlast::SpawnFrostBlast()
 	FrostBlastRangeActor->AttachToComponent(PlayerRef->GetRootComponent(),FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 	FrostBlastRangeActor->SetParams(GetEnhancedDamage(), SlowDuration);
 	FrostBlastRangeActor->CheckEnemiesInRange();
-	CompleteAbility();
+	FinishAbilityCast();
 }
 
 
-void UAbComp_FrostBlast::CompleteAbility()
+void UAbComp_FrostBlast::FinishAbilityCast()
 {
-	FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	Super::FinishAbilityCast();
 	if (!InitialBlast) return;
 	SpawnEffect(InitialBlast);
-	PlayerRef->ReduceMana(GetManaCost());
-	HandlePlayerActions(true);
 	SetAbilityActive(false);
 	StartCooldown();
 }
 
 
-void UAbComp_FrostBlast::SpawnEffect(UParticleSystem* VisualEffect) const
+void UAbComp_FrostBlast::SpawnEffect(UParticleSystem* VisualEffect)
 {
+	SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	UGameplayStatics::SpawnEmitterAttached(VisualEffect, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
 	FVector3d(1, 1, 1),EAttachLocation::KeepWorldPosition,true, EPSCPoolMethod::None, true);
 }

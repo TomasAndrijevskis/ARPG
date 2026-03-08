@@ -3,6 +3,7 @@
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Animations/Player/AnimInstance_Player.h"
+#include "Animations/Player/AnimInstance_Warrior.h"
 #include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_Invincibility.h"
@@ -36,14 +37,23 @@ AMainCharacter_Warrior::AMainCharacter_Warrior()
 void AMainCharacter_Warrior::BeginPlay()
 {
 	Super::BeginPlay();
+	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+	BlockComp->OnBlockDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
+	TraceComp->OnHitDelegate.AddUObject(AbilityComp_LifeStealAttack, &UAbComp_LifeStealAttack::HandleLifeStealOnHit);
+}
+
+
+void AMainCharacter_Warrior::BindAbilityDelegates()
+{
 	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_LifeStealAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_Invincibility->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-	
-	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
-	BlockComp->OnBlockDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
-	TraceComp->OnHitDelegate.AddUObject(AbilityComp_LifeStealAttack, &UAbComp_LifeStealAttack::HandleLifeStealOnHit);
+
+	Cast<UAnimInstance_Warrior>(PlayerAnimInstance)->OnDamageIncreaseRequested.AddUObject(AbilityComp_DamageIncrease, &UAbComp_DamageIncrease::SpawnParticle);
+	Cast<UAnimInstance_Warrior>(PlayerAnimInstance)->OnStealLifeRequested.AddUObject(AbilityComp_LifeStealAttack, &UAbComp_LifeStealAttack::SpawnParticle);
+	Cast<UAnimInstance_Warrior>(PlayerAnimInstance)->OnLightningBallSummoned.AddUObject(AbilityComp_RangeAttack, &UAbComp_RangeAttack::SpawnProjectile);
+	Cast<UAnimInstance_Warrior>(PlayerAnimInstance)->OnInvincibilityRequested.AddUObject(AbilityComp_Invincibility, &UAbComp_Invincibility::ApplyInvincibility);
 }
 
 

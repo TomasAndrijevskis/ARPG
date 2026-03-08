@@ -28,6 +28,8 @@ public:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	void ApplyInvincibility();
 	
 protected:
 	
@@ -40,9 +42,7 @@ protected:
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
-
-	void CompleteAbility();
-
+	
 	UPROPERTY(EditAnywhere)
 	FString Keyword = "Armor";
 	

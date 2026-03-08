@@ -18,28 +18,26 @@ void UAbComp_DamageIncrease::StartAbility()
 	Super::StartAbility();
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
-		const FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
-		
 		SetAbilityActive(true);
-		OnAbilityStartedDelegate.Broadcast();
-		
-		TimerDuration = GetAbilityDuration();
-		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		float tempDuration = 1.0f - AnimDuration;//анимация не длится 1 секунду, а переделать ее я не могу. это чтобы таймер срабатывал каждую секунду
-		
-		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
-			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
-		
+		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_DamageIncrease::FinishAbilityCast, (AnimDuration+tempDuration), false);
 	}
+}
+
+
+void UAbComp_DamageIncrease::SpawnParticle()
+{
+	const FVector AbilitySocketLocation = SkeletalMeshComp->GetSocketLocation(ParticleSpawnSocketName);
+	ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, ParticleSpawnSocketName, AbilitySocketLocation, FRotator::ZeroRotator,
+			FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
+	FinishAbilityCast();
 }
 
 
 void UAbComp_DamageIncrease::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	TimerDuration = GetAbilityDuration();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_DamageIncrease::StartAbilityTimer, 1, true, 1.f);
 }
 
@@ -95,18 +93,6 @@ void UAbComp_DamageIncrease::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_DamageIncrease::GetDefaultDamageMultiplier() const
-{
-	return DamageMultiplier;
-}
-
-float UAbComp_DamageIncrease::GetEnhancedDamageMultiplier() const
-{
-	return DamageMultiplier + DamageMultiplier * PlayerRef->GetAbilityPowerPercent();;
-}
-
-
-void UAbComp_DamageIncrease::SetDamageMultiplier(float NewDamageMultiplier)
-{
-	DamageMultiplier = NewDamageMultiplier;
-}
+float UAbComp_DamageIncrease::GetDefaultDamageMultiplier() const{return DamageMultiplier;}
+float UAbComp_DamageIncrease::GetEnhancedDamageMultiplier() const{return DamageMultiplier + DamageMultiplier * PlayerRef->GetAbilityPowerPercent();;}
+void UAbComp_DamageIncrease::SetDamageMultiplier(float NewDamageMultiplier){DamageMultiplier = NewDamageMultiplier;}

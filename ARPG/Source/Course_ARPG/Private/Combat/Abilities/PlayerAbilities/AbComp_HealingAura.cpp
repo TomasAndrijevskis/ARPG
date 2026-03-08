@@ -19,23 +19,26 @@ void UAbComp_HealingAura::StartAbility()
 	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
 	{
 		SetAbilityActive(true);
-		OnAbilityStartedDelegate.Broadcast();
-		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
-		const float TempDuration = 1 - AnimDuration;
-		const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-		ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
-			FVector3d(.5f, .5f, 1.f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
-		
-		TimerDuration = GetAbilityDuration();
-		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealingAura::FinishAbilityCast, AnimDuration+TempDuration, false);
+		PlayerRef->PlayAnimMontage(AnimMontage);
+		PlayerRef->ReduceMana(GetManaCost());
 	}
+}
+
+
+void UAbComp_HealingAura::SpawnHealingAura()
+{
+	if (!SkeletalMeshComp) return;
+	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
+	ParticleComp = UGameplayStatics::SpawnEmitterAttached(Particle, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
+		FVector3d(.5f, .5f, 1.f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true );
+	FinishAbilityCast();
 }
 
 
 void UAbComp_HealingAura::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
-	GetWorld()->GetTimerManager().ClearTimer(TimerHandle);
+	TimerDuration = GetAbilityDuration();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealingAura::StartAbilityTimer, 1, true, 1);
 }
 
@@ -99,19 +102,6 @@ void UAbComp_HealingAura::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_HealingAura::GetDefaultHealthRegenAmount() const
-{
-	return HealthRegenAmount;
-}
-
-
-float UAbComp_HealingAura::GetEnhancedHealthRegenAmount() const
-{
-	return HealthRegenAmount + (HealthRegenAmount * PlayerRef->GetAbilityPowerPercent());
-}
-
-
-void UAbComp_HealingAura::SetHealthRegenAmount(const float NewAmount)
-{
-	HealthRegenAmount = NewAmount;
-}
+float UAbComp_HealingAura::GetDefaultHealthRegenAmount() const{return HealthRegenAmount;}
+float UAbComp_HealingAura::GetEnhancedHealthRegenAmount() const{return HealthRegenAmount + (HealthRegenAmount * PlayerRef->GetAbilityPowerPercent());}
+void UAbComp_HealingAura::SetHealthRegenAmount(const float NewAmount){HealthRegenAmount = NewAmount;}

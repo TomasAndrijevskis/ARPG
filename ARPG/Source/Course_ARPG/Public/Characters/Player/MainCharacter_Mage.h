@@ -52,6 +52,8 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void HandleDeath() override;
+
+	virtual void BindAbilityDelegates() override;
 	
 private:
 

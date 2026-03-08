@@ -27,6 +27,8 @@ public:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	void SpawnParticle();
 	
 protected:
 
@@ -39,7 +41,7 @@ protected:
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
-
+	
 	UPROPERTY(EditAnywhere)
 	FName ParticleSpawnSocketName; //FX_Sword_Bottom
 
