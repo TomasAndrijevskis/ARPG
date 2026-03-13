@@ -14,6 +14,4 @@ class COURSE_ARPG_API AMinion_Grux : public AMinion
 public:
 
 	AMinion_Grux();
-
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 };

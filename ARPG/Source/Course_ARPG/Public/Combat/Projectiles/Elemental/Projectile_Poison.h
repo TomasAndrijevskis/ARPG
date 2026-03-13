@@ -14,8 +14,4 @@ class COURSE_ARPG_API AProjectile_Poison : public AProjectile_Elemental
 public:
 
 	AProjectile_Poison();
-
-protected:
-
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 };

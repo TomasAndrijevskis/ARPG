@@ -16,10 +16,6 @@ class COURSE_ARPG_API AProjectile_Ice : public AProjectile_Elemental
 public:
 	
 	AProjectile_Ice();
-
-protected:
-
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 	
 private:
 

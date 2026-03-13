@@ -40,7 +40,7 @@ void UAbComp_RangeAttack::SpawnProjectile()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (Projectile)
 	{
-		Projectile->SetOwner(GetOwner());
+		Projectile->SetProjectileOwner(GetOwner());
 		Projectile->SetParams(GetEnhancedProjectileDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
 		Projectile->StartAliveTimer();
 	}

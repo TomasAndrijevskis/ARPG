@@ -94,21 +94,14 @@ void AMainCharacter_Base::CreatePlayerWidget()
 }
 
 
-void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (!CanTakeDamage(DamageCauser, Damage, DamageType)) return;
-	float FinalDamage = Damage;
 	if (!DamageType) return;
-	if (DamageType->IsA(UPhysicalDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,StatsComp->GetStatValue(EStats::PhysDmgResistance));
-	else if (DamageType->IsA(UMagicalDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::MagDmgResistance));
-	else if (DamageType->IsA(UFireDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::FireDmgResistance));
-	else if (DamageType->IsA(UPoisonDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::PoisonDmgResistance));
-	else if (DamageType->IsA(UIceDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::IceDmgResistance));
+	const UDamageTypeBase* DT = Cast<UDamageTypeBase>(DamageType);
+	if (!DT) return;
+	EStats ResistanceStat = DT->GetResistanceStat();
+	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,StatsComp->GetStatValue(ResistanceStat));
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, DamageCauser);
 	PlayHurtAnimation();
 }
@@ -438,6 +431,12 @@ EEffects AMainCharacter_Base::GetCurrentEnchantmentEffect() const
 }
 
 
+TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetEnchantmentDamageType() const
+{
+	return CurrentEnchantmentDamageType;
+}
+
+
 float AMainCharacter_Base::GetElementalDamageModificator() const
 {
 	return StatsComp->GetStatValue(EStats::ElementalDamageModificator);
@@ -606,4 +605,10 @@ void AMainCharacter_Base::SetUsedAbilityPoints(const int NewUsedPoints)
 int AMainCharacter_Base::GetUsedAbilityPoints() const
 {
 	return UsedAbilityPoints;
+}
+
+
+TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetDamageType() const
+{
+	return BaseAttackDamageType;
 }

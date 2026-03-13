@@ -105,18 +105,13 @@ void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, const float Damage, co
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
 	if (Cast<AEnemyCharacter>(SafeCauser)) return;
-	float FinalDamage = Damage;
 	if (!DamageType) return;
-	if (DamageType->IsA(UPhysicalDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,StatsComp->GetStatValue(EStats::PhysDmgResistance));
-	else if (DamageType->IsA(UMagicalDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::MagDmgResistance));
-	else if (DamageType->IsA(UFireDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::FireDmgResistance));
-	else if (DamageType->IsA(UPoisonDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::PoisonDmgResistance));
-	else if (DamageType->IsA(UIceDamageType::StaticClass()))
-		FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage, StatsComp->GetStatValue(EStats::IceDmgResistance));
+	const UDamageTypeBase* DT = Cast<UDamageTypeBase>(DamageType);
+	if (!DT) return;
+	UE_LOG(LogTemp, Error, TEXT("UDamageTypeBase: %s"), *DT->GetName());
+	EStats ResistanceStat = DT->GetResistanceStat();
+	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,StatsComp->GetStatValue(ResistanceStat));
+	UE_LOG(LogTemp, Warning, TEXT("FinalDamage: %f"), FinalDamage);
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, SafeCauser);
 }
 
@@ -142,9 +137,9 @@ void AEnemyCharacter::SetResistances()
 }
 
 
-TSubclassOf<UDamageType> AEnemyCharacter::GetDamageType() const
+TSubclassOf<UDamageTypeBase> AEnemyCharacter::GetDamageType() const
 {
-	return UPhysicalDamageType::StaticClass();
+	return BaseAttackDamageType;
 }
 
 

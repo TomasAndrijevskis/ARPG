@@ -22,7 +22,7 @@ void UEnemyProjectileComponent::SpawnProjectile()
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, PlayerLocation);
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
-	Projectile->SetOwner(GetOwner());
+	Projectile->SetProjectileOwner(GetOwner());
 	Projectile->SetParams(ProjectileDamage, AliveTime, GetElementalDamageModificator());
 	Projectile->StartAliveTimer();
 }

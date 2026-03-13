@@ -38,7 +38,7 @@ void UAbComp_HealArrow::SpawnArrow()
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	AProjectile_HealingArrow* Projectile = GetWorld()->SpawnActor<AProjectile_HealingArrow>(ArrowClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
-	Projectile->SetOwner(GetOwner());
+	Projectile->SetProjectileOwner(GetOwner());
 	Projectile->SetParams(0, AliveTime, 0);
 	Projectile->StartAliveTimer();
 	Projectile->OnHitEnemy.AddUObject(this, &UAbComp_HealArrow::OnHitEnemy);

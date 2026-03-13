@@ -1,7 +1,6 @@
 
 #include "Combat/Projectiles/Elemental/Projectile_Ice.h"
 #include "NiagaraComponent.h"
-#include "Combat/DamageTypes.h"
 #include "Components/BoxComponent.h"
 
 
@@ -15,10 +14,4 @@ AProjectile_Ice::AProjectile_Ice()
 	NiagaraEffect->SetupAttachment(CollisionComponent);
 	Particle = CreateDefaultSubobject<UParticleSystemComponent>(TEXT("Particle"));
 	Particle->SetupAttachment(CollisionComponent);
-}
-
-
-TSubclassOf<UDamageType> AProjectile_Ice::GetDamageType() const
-{
-	return UIceDamageType::StaticClass();
 }

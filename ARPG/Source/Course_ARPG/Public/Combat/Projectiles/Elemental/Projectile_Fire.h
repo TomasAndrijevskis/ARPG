@@ -16,7 +16,4 @@ public:
 
 	AProjectile_Fire();
 	
-protected:
-
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 };

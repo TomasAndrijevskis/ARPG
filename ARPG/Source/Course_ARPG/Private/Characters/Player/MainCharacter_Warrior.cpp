@@ -4,7 +4,6 @@
 #include "NiagaraFunctionLibrary.h"
 #include "Animations/Player/AnimInstance_Player.h"
 #include "Animations/Player/AnimInstance_Warrior.h"
-#include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_Invincibility.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
@@ -77,14 +76,8 @@ void AMainCharacter_Warrior::SetArmor(const float Armor)
 	StatsComp->SetStatValue(EStats::MaxArmor, Armor);
 }
 
-
-TSubclassOf<UDamageType> AMainCharacter_Warrior::GetDamageType() const
-{
-	return UPhysicalDamageType::StaticClass();
-}
-
-
-TSubclassOf<UDamageType> AMainCharacter_Warrior::GetEnchantmentDamageType() const
+/*
+TSubclassOf<UDamageTypeBase> AMainCharacter_Warrior::GetEnchantmentDamageType() const
 {
 	switch (CurrentEffect)
 	{
@@ -99,7 +92,7 @@ TSubclassOf<UDamageType> AMainCharacter_Warrior::GetEnchantmentDamageType() cons
 		default:
 			return nullptr;
 	}
-}
+}*/
 
 
 void AMainCharacter_Warrior::RemoveParticle()
@@ -127,7 +120,11 @@ void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
 	CurrentEffect = NewEffect;
 	if (NewEffect == EEffects::Empty) return;
 	if (!StatusEffectsVisualDataAsset) return;
-	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect)) WeaponEffect = Data->WeaponEffect_N;
+	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
+	{
+		WeaponEffect = Data->WeaponEffect_N;
+		CurrentEnchantmentDamageType = Data->DamageType;
+	}
 	SpawnParticle();
 }
 

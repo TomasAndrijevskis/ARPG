@@ -37,7 +37,7 @@ void UCombatComponent_LongRange::SpawnProjectile()
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(CurrentProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
-	Projectile->SetOwner(GetOwner());
+	Projectile->SetProjectileOwner(GetOwner());
 	Projectile->SetParams(PlayerRef->GetMagicalDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
 	Projectile->StartAliveTimer();
 }

@@ -6,6 +6,8 @@
 #include "Projectile_Base.generated.h"
 
 
+class UDamageTypeBase;
+
 UCLASS()
 class COURSE_ARPG_API AProjectile_Base : public AActor
 {
@@ -20,7 +22,7 @@ public:
 
 	void StartAliveTimer();
 	
-	void SetOwner(AActor* NewProjectileOwner);
+	void SetProjectileOwner(AActor* NewProjectileOwner);
 	
 protected:
 
@@ -29,13 +31,13 @@ protected:
 	UFUNCTION()
 	void OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,bool bFromSweep, const FHitResult& SweepResult);
 
-	virtual TSubclassOf<UDamageType> GetDamageType() const {return nullptr;}
-
 	virtual void HandleDestruction();
 
 	virtual void HandleBeginOverlap(AActor* OtherActor);
 
 	bool IsOpponentHit(AActor* OtherActor);
+
+	bool WasCorrectlyOverlapped(AActor* OtherActor);
 	
 	UPROPERTY(EditAnywhere)
 	UPrimitiveComponent* CollisionComponent;
@@ -55,4 +57,7 @@ private:
 	float ElementalDamageModificator;
 	
 	FTimerHandle AliveTimerHandle;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTypeBase> DamageType;
 };

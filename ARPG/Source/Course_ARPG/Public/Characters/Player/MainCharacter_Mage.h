@@ -24,13 +24,11 @@ public:
 	AMainCharacter_Mage();
 
 	virtual bool CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const override;
-	
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 
 	virtual float GetMagicalDamage() const override;
 
 	virtual void HandleEffectChange(EEffects NewEffect) override;
-
+	
 	virtual void SpawnProjectile() override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

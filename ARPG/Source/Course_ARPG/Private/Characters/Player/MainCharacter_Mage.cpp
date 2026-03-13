@@ -100,12 +100,6 @@ bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent, float Damage, const UD
 }
 
 
-TSubclassOf<UDamageType> AMainCharacter_Mage::GetDamageType() const
-{
-	return UMagicalDamageType::StaticClass();
-}
-
-
 float AMainCharacter_Mage::GetMagicalDamage() const
 {
 	return StatsComp->GetStatValue(EStats::MagicalStrength) / 2; //half damage for each hand
@@ -128,5 +122,6 @@ void AMainCharacter_Mage::HandleEffectChange(EEffects NewEffect)
 	{
 		SpawnParticles(Data->WeaponEffect_P);
 		Cast<UCombatComponent_LongRange>(CombatComp)->ChangeProjectileClass(Data->Projectile);
+		CurrentEnchantmentDamageType = Data->DamageType;
 	}
 }

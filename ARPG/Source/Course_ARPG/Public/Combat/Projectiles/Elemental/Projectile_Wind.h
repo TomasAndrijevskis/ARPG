@@ -14,9 +14,4 @@ class COURSE_ARPG_API AProjectile_Wind : public AProjectile_Elemental
 public:
 	
 	AProjectile_Wind();
-
-protected:
-
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
-	
 };

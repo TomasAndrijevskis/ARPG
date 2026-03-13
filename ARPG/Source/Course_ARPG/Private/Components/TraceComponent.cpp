@@ -81,10 +81,12 @@ bool UTraceComponent::CanHit(AActor* TargetActor)
 
 void UTraceComponent::ApplyDamage(AActor* TargetActor, TSubclassOf<UDamageType> DamageType)
 {
-	UGameplayStatics::ApplyDamage(TargetActor, GetDamage(), GetOwner()->GetInstigatorController(), GetOwner(), DamageType);
+	
 	AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
 	if (WarriorRef && WarriorRef->IsWeaponEnchanted())
-		UGameplayStatics::ApplyDamage(TargetActor, GetDamage() * WarriorRef->GetElementalDamageModificator(), GetOwner()->GetInstigatorController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
+		UGameplayStatics::ApplyDamage(TargetActor, GetDamage() + GetDamage() * WarriorRef->GetElementalDamageModificator(),
+			GetOwner()->GetInstigatorController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
+	else UGameplayStatics::ApplyDamage(TargetActor, GetDamage(), GetOwner()->GetInstigatorController(), GetOwner(), DamageType);
 }
 
 

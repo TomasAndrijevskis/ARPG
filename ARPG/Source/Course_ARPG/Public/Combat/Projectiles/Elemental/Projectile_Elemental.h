@@ -17,8 +17,6 @@ public:
 	
 protected:
 
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
-
 	virtual void HandleDestruction() override;
 
 	UPROPERTY(EditAnywhere)

@@ -1,8 +1,8 @@
 
-
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Combat/DamageTypes.h"
 #include "UObject/Interface.h"
 #include "Fighter.generated.h"
 
@@ -39,5 +39,5 @@ public:
 	
 	virtual float GetAttackAnimReductionTime() const { return 0.0f; };
 	
-	virtual TSubclassOf<UDamageType> GetDamageType() const {return UDamageType::StaticClass();}
+	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const {return UDamageTypeBase::StaticClass();}
 };

@@ -72,7 +72,7 @@ public:
 
 	virtual void RemoveStatusEffectIcon(){}
 
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
+	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 	
 	UPROPERTY(EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -155,4 +155,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	bool bCanApplyDamage = true;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTypeBase> BaseAttackDamageType;
 };

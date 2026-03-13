@@ -70,9 +70,3 @@ void ABoss_Fey::SpawnProjectile()
 {
 	ProjectileComp->SpawnProjectile();
 }
-
-
-TSubclassOf<UDamageType> ABoss_Fey::GetDamageType() const
-{
-	return UMagicalDamageType::StaticClass();
-}

@@ -178,8 +178,12 @@ public:
 
 	virtual void HandleEffectChange(EEffects NewEffect){};
 
-	EEffects GetCurrentEnchantmentEffect() const;
+	virtual void HandleEffectChange(TSubclassOf<UDamageTypeBase> NewEnchantmentType){};
 
+	EEffects GetCurrentEnchantmentEffect() const;
+	
+	TSubclassOf<UDamageTypeBase> GetEnchantmentDamageType() const;
+	
 	virtual float GetElementalDamageModificator() const override;
 
 	FVector GetTargetLocation(float DefaultSpawnDistance);
@@ -187,6 +191,8 @@ public:
 	virtual void HandleResetAttack();
 
 	virtual void SpawnProjectile(){};
+
+	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -235,11 +241,14 @@ protected:
 	virtual void HandleDeath();
 
 	UFUNCTION()
-	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
+	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 
 	virtual void BindAbilityDelegates(){};
 	
 	EEffects CurrentEffect;
+
+	UPROPERTY()
+	TSubclassOf<UDamageTypeBase> CurrentEnchantmentDamageType;
 
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
@@ -279,6 +288,9 @@ private:
 
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMeshComp;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTypeBase> BaseAttackDamageType;
 	
 	bool bCanPlayHurtAnim = true;
 

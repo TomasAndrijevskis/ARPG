@@ -15,8 +15,4 @@ class COURSE_ARPG_API AProjectile_Lightning : public AProjectile_Elemental
 public:	
 
 	AProjectile_Lightning();
-
-protected:
-	
-	virtual TSubclassOf<UDamageType> GetDamageType() const override;
 };

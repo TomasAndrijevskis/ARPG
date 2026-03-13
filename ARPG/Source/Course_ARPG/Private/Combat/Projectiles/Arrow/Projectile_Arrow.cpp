@@ -10,9 +10,3 @@ AProjectile_Arrow::AProjectile_Arrow()
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Arrow"));
 	Mesh->SetupAttachment(CollisionComponent);
 }
-
-
-TSubclassOf<UDamageType> AProjectile_Arrow::GetDamageType() const
-{
-	return Super::GetDamageType();
-}

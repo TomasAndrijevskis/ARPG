@@ -15,13 +15,13 @@ void AProjectile_Base::BeginPlay()
 }
 
 
-void AProjectile_Base::SetOwner(AActor* NewProjectileOwner)
+void AProjectile_Base::SetProjectileOwner(AActor* NewProjectileOwner)
 {
 	ProjectileOwner = NewProjectileOwner;
 }
 
 
-void AProjectile_Base::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AProjectile_Base::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	HandleBeginOverlap(OtherActor);
 }
@@ -37,9 +37,8 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 		return;
 	}
 	if (!IsOpponentHit(OtherActor)) return;
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage + Damage * ElementalDamageModificator, CharacterRef->GetController(), this, DamageType);
 	HandleDestruction();
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage, CharacterRef->GetController(), this, UMagicalDamageType::StaticClass());
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage * ElementalDamageModificator, CharacterRef->GetController(), this, GetDamageType());
 }
 
 
@@ -57,6 +56,13 @@ bool AProjectile_Base::IsOpponentHit(AActor* OtherActor)
 	if (Cast<AMainCharacter_Base>(ProjectileOwner) && Cast<AEnemyCharacter>(OtherActor)) return true;
 	if (Cast<AEnemyCharacter>(ProjectileOwner) && Cast<AMainCharacter_Base>(OtherActor)) return true;
 	return false;
+}
+
+
+bool AProjectile_Base::WasCorrectlyOverlapped(AActor* OtherActor)
+{
+	
+	return true;
 }
 
 

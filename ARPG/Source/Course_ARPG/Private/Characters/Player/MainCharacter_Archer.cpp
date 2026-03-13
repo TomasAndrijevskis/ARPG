@@ -1,9 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Archer.h"
-
 #include "Animations/Player/AnimInstance_Archer.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Combat/DamageTypes.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealArrow.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_LongRange.h"
@@ -48,12 +46,6 @@ void AMainCharacter_Archer::SpawnProjectile()
 float AMainCharacter_Archer::GetPhysicalDamage()
 {
 	return StatsComp->GetStatValue(EStats::PhysicalStrength);
-}
-
-
-TSubclassOf<UDamageType> AMainCharacter_Archer::GetDamageType() const
-{
-	return UPhysicalDamageType::StaticClass();
 }
 
 
