@@ -18,10 +18,24 @@ void AProjectile_HealingArrow::HandleBeginOverlap(AActor* OtherActor)
 	ACharacter* CharacterRef = Cast<ACharacter>(OtherActor);
 	if (!CharacterRef)
 	{
+		bHitEnemy = false;
 		HandleDestruction();
 		return;
 	}
 	if (!IsOpponentHit(OtherActor)) return;
-	if (AEnemyCharacter* EnemyRef = Cast<AEnemyCharacter>(OtherActor)) EnemyRef->bCanApplyDamage = false; 
-	HandleDestruction();
+	EnemyRef = Cast<AEnemyCharacter>(OtherActor);
+	if (EnemyRef)
+	{
+		EnemyRef->SetCanApplyDamage(false);
+		bHitEnemy = true;
+		HandleDestruction();
+	}
+}
+
+
+void AProjectile_HealingArrow::HandleDestruction()
+{
+	if (bHitEnemy) OnHitEnemy.Broadcast(EnemyRef);
+	else OnHitNothing.Broadcast();
+	Super::HandleDestruction();
 }

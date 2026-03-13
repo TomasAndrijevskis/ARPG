@@ -3,8 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Data/Abilities/HealArrowPropertiesData.h"
 #include "AbComp_HealArrow.generated.h"
 
+
+class AEnemyCharacter;
 
 UCLASS()
 class COURSE_ARPG_API UAbComp_HealArrow : public UAbilityComponent_Player
@@ -20,10 +23,20 @@ public:
 	virtual void FinishAbilityCast() override;
 
 	void SpawnArrow();
+
+	void HandleEnemyHit(float Damage);
 	
 protected:
 
-	virtual void BeginPlay() override;
+	void OnHitEnemy(AEnemyCharacter* NewEnemyRef);
+
+	void OnHitNothing();
+
+	FHealArrowPropertiesData* GetAbilityData(const int32 Level);
+
+	virtual void SetAbilityData(const int32 Level) override;
+
+	virtual void StartAbilityTimer() override;
 	
 private:
 
@@ -41,4 +54,16 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	float AliveTime = 10.0f;
+
+	UPROPERTY(VisibleAnywhere)
+	float HealCap = 20;
+
+	UPROPERTY(VisibleAnywhere)
+	float HealPercent = .5;
+
+	UPROPERTY(VisibleAnywhere)
+	float HealedAmount = 0;
+
+	UPROPERTY()
+	AEnemyCharacter* EnemyRef;
 };

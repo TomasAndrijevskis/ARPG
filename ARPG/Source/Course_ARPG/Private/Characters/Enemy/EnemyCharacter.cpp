@@ -104,6 +104,7 @@ void AEnemyCharacter::GiveRewardXP()
 void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
+	if (Cast<AEnemyCharacter>(SafeCauser)) return;
 	float FinalDamage = Damage;
 	if (!DamageType) return;
 	if (DamageType->IsA(UPhysicalDamageType::StaticClass()))
@@ -212,4 +213,16 @@ TEnumAsByte<EEnemyStates> AEnemyCharacter::GetInitialState() const
 void AEnemyCharacter::SetInitialState(const TEnumAsByte<EEnemyStates> NewState)
 {
 	InitialState = NewState;
+}
+
+
+bool AEnemyCharacter::CanApplyDamage()
+{
+	return bCanApplyDamage;
+}
+
+
+void AEnemyCharacter::SetCanApplyDamage(bool NewCanApplyDamage)
+{
+	bCanApplyDamage = NewCanApplyDamage;
 }

@@ -61,6 +61,6 @@ void AMainCharacter_Archer::ReceiveDamage(AActor* DamagedActor, float Damage, co
 {
 	AEnemyCharacter* EnemyRef = Cast<AEnemyCharacter>(DamageCauser);
 	if (!EnemyRef) return;
-	if (EnemyRef->bCanApplyDamage) Super::ReceiveDamage(DamagedActor, Damage, DamageType, InstigatedBy, DamageCauser);
-	else HealPlayer(Damage / 2);
+	if (EnemyRef->CanApplyDamage()) Super::ReceiveDamage(DamagedActor, Damage, DamageType, InstigatedBy, DamageCauser);
+	else AbilityComp_HealArrow->HandleEnemyHit(Damage);
 }

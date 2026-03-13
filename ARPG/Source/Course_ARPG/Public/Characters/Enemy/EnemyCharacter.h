@@ -94,7 +94,9 @@ public:
 	
 	FOnEnemyDied OnEnemyDiedDelegate;
 
-	bool bCanApplyDamage = true;
+	bool CanApplyDamage();
+
+	void SetCanApplyDamage(bool NewCanApplyDamage);
 	
 protected:
 
@@ -150,4 +152,7 @@ private:
 
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bCanApplyDamage = true;
 };

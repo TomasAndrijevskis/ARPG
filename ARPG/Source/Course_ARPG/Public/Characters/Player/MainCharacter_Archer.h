@@ -35,4 +35,5 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void BindAbilityDelegates() override;
+	
 };
