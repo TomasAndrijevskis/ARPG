@@ -37,7 +37,7 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 		return;
 	}
 	if (!IsOpponentHit(OtherActor)) return;
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage + Damage * ElementalDamageModificator, CharacterRef->GetController(), this, DamageType);
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage + Damage * ElementalDamageModificator, Cast<ACharacter>(ProjectileOwner)->GetController(), this, DamageType);
 	HandleDestruction();
 }
 

@@ -21,7 +21,7 @@ public:
 
 	virtual float GetPhysicalDamage() override;
 
-	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser) override;
+	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* DamageInstigator, AActor* DamageCauser) override;
 
 	virtual void SpawnProjectile() override;
 	

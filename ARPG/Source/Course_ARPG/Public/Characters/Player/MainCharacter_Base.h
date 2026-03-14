@@ -247,6 +247,8 @@ protected:
 	
 	EEffects CurrentEffect;
 
+	float GetResistanceStatValue(const UDamageType* DamageType) const;
+	
 	UPROPERTY()
 	TSubclassOf<UDamageTypeBase> CurrentEnchantmentDamageType;
 

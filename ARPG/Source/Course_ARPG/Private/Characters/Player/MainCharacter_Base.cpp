@@ -97,13 +97,18 @@ void AMainCharacter_Base::CreatePlayerWidget()
 void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (!CanTakeDamage(DamageCauser, Damage, DamageType)) return;
-	if (!DamageType) return;
-	const UDamageTypeBase* DT = Cast<UDamageTypeBase>(DamageType);
-	if (!DT) return;
-	EStats ResistanceStat = DT->GetResistanceStat();
-	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,StatsComp->GetStatValue(ResistanceStat));
+	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,GetResistanceStatValue(DamageType));
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, DamageCauser);
 	PlayHurtAnimation();
+}
+
+
+float AMainCharacter_Base::GetResistanceStatValue(const UDamageType* DamageType) const
+{
+	if (!DamageType) return 0;
+	const UDamageTypeBase* DT = Cast<UDamageTypeBase>(DamageType);
+	if (!DT) return 0;
+	return StatsComp->GetStatValue(DT->GetResistanceStat());
 }
 
 
