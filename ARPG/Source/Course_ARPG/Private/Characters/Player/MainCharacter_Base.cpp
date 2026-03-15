@@ -207,6 +207,7 @@ void AMainCharacter_Base::ReduceHealth(float Damage, AActor* Opponent)
 
 void AMainCharacter_Base::HealPlayer(float Health)
 {
+	UE_LOG(LogTemp, Warning, TEXT("\n\nHealPlayer: %f \n\n"), Health);
 	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
 }
 

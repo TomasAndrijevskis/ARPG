@@ -6,6 +6,7 @@
 #include "PoisonExplosionArea.generated.h"
 
 
+class UDamageTypeBase;
 class UNiagaraSystem;
 class USphereComponent;
 class UAbilityComponent_Base;
@@ -37,6 +38,9 @@ private:
 
 	UPROPERTY()
 	UAbilityComponent_Base* AbilityCompRef;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTypeBase> DamageType;
 	
 	float ExplosionDamage;
 

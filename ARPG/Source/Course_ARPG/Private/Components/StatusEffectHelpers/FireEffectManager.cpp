@@ -2,7 +2,6 @@
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "NiagaraComponentPoolMethodEnum.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Combat/DamageTypes.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
@@ -12,14 +11,6 @@ void UFireEffectManager::BeginPlay()
 {
 	Super::BeginPlay();
 	SetVisualData(EEffects::Fire);
-}
-
-
-void UFireEffectManager::SetVisualData(EEffects StatusEffect)
-{
-	if (!StatusEffectsVisualDataAsset) return;
-	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
-	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
 }
 
 
@@ -41,7 +32,7 @@ void UFireEffectManager::HandleBurn(const float NewFireDuration, const float New
 
 void UFireEffectManager::ApplyDamage(float Damage)
 {
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage, nullptr, nullptr, UFireDamageType::StaticClass());
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage, Cast<ACharacter>(GetOwner())->GetController(), nullptr, DamageType);
 }
 
 

@@ -1,12 +1,19 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealArrow.h"
-
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Projectiles/Projectile_Base.h"
 #include "Combat/Projectiles/Arrow/Projectile_HealingArrow.h"
 #include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Kismet/KismetMathLibrary.h"
+
+
+
+void UAbComp_HealArrow::BeginPlay()
+{
+	Super::BeginPlay();
+	OnAbilityFinishedDelegate.AddUObject(this, &UAbComp_HealArrow::OnAbilityFinished);
+}
 
 
 void UAbComp_HealArrow::StartAbility()
@@ -75,10 +82,65 @@ void UAbComp_HealArrow::StartAbilityTimer()
 }
 
 
+void UAbComp_HealArrow::HandleEnemyHit(float Damage)
+{
+	float HealthToAdd = Damage * HealPercent;
+	if (HealthToAdd <= HealCap)
+	{
+		PlayerRef->HealPlayer(HealthToAdd);
+		HealCap -= HealthToAdd;
+	}
+	else
+	{
+		float RemainingHealAmount = HealCap;
+		float RemainingDamage = HealthToAdd - HealCap;
+		PlayerRef->HealPlayer(RemainingHealAmount);
+		PlayerRef->ReduceHealth(RemainingDamage, EnemyRef);
+		OnAbilityFinishedDelegate.Broadcast();
+	}
+}
+
+
+void UAbComp_HealArrow::OnAbilityFinished()
+{
+	EnemyRef->SetCanApplyDamage(true);
+	HealCap = MaxHealCap;
+	InterruptAbilityTimer();
+}
+
+
+void UAbComp_HealArrow::InterruptAbilityTimer()
+{
+	TimerDuration = 0;
+}
+
+
 void UAbComp_HealArrow::CreateIcon()
 {
 	PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
-	//UE_LOG(LogTemp, Warning, TEXT("Should be icon"));
+}
+
+
+void UAbComp_HealArrow::UpdateAbilityDescription()
+{
+	SetAbilityDescription(FString::Printf(TEXT("Mark an enemy and\nheal from their attacks"
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nMax heal amount: %.2f\nHeal percent: %.2f\n\nDefault : %.2f%%\nAP modifier: +%.2f%%"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetHealCap(), GetHealPercent(),
+	1.f,
+	1.f));
+}
+
+
+void UAbComp_HealArrow::UpdateUpgradeDescription()
+{
+	const FHealArrowPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	if (!NextLevelData) return;
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nAbility duration: %.2f -> %.2f s\nMax heal amount: %.2f -> %.2f\nHeal percent: %.2f%% -> %.2f%%"),
+		GetManaCost(), NextLevelData->ManaCost,
+		GetCooldownDuration(), NextLevelData->CooldownDuration,
+		GetAbilityDuration(), NextLevelData->AbilityDuration,
+		GetHealCap(), NextLevelData->HealCap,
+		GetHealPercent(), NextLevelData->HealPercent));
 }
 
 
@@ -94,23 +156,13 @@ void UAbComp_HealArrow::SetAbilityData(const int32 Level)
 {
 	const FHealArrowPropertiesData* Data = GetAbilityData(Level);
 	if (!Data) return;
+	SetHealCap(Data->HealCap);
+	SetHealPercent(Data->HealPercent);
 	SetCommonAbilityProperties(Data);
 }
 
 
-void UAbComp_HealArrow::HandleEnemyHit(float Damage)
-{
-	float HealthToAdd = Damage * HealPercent;
-	UE_LOG(LogTemp, Error, TEXT("Enemy: %s"), *EnemyRef->GetName());
-	UE_LOG(LogTemp, Error, TEXT("HealthToAdd %f"), HealthToAdd);
-	HealedAmount += HealthToAdd;
-	if (HealCap <= HealedAmount)
-	{
-		float NewHealth = FMath::Min(HealedAmount, HealCap);
-		PlayerRef->HealPlayer(NewHealth);
-		OnAbilityFinishedDelegate.Broadcast();
-		HealedAmount = 0;
-		EnemyRef->SetCanApplyDamage(true);
-	}
-	else PlayerRef->HealPlayer(HealthToAdd);
-}
+void UAbComp_HealArrow::SetHealCap(float NewHealCap){MaxHealCap = NewHealCap; HealCap = MaxHealCap;}
+void UAbComp_HealArrow::SetHealPercent(float NewHealPercent){HealPercent = NewHealPercent;}
+float UAbComp_HealArrow::GetHealCap() const{return MaxHealCap;}
+float UAbComp_HealArrow::GetHealPercent() const{return HealPercent;}

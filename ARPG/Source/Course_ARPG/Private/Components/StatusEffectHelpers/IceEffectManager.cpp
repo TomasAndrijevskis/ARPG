@@ -1,7 +1,6 @@
 
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Combat/DamageTypes.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -14,14 +13,6 @@ void UIceEffectManager::BeginPlay()
 	if (!CharacterRef) return;
 	OriginalSpeed = CharacterRef->GetCharacterMovement()->MaxWalkSpeed;
 	SetVisualData(EEffects::Ice);
-}
-
-
-void UIceEffectManager::SetVisualData(EEffects StatusEffect)
-{
-	if (!StatusEffectsVisualDataAsset) return;
-	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
-	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
 }
 
 
@@ -42,7 +33,7 @@ void UIceEffectManager::HandleFreeze(const float SlowDuration, const float NewDa
 
 void UIceEffectManager::ApplyDamage(float Damage)
 {
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage, nullptr, nullptr, UIceDamageType::StaticClass());
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage, Cast<ACharacter>(GetOwner())->GetController(), nullptr, DamageType);
 }
 
 

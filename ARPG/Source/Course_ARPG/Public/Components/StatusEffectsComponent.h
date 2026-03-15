@@ -7,6 +7,7 @@
 #include "StatusEffectsComponent.generated.h"
 
 
+class UDamageTypeBase;
 class UStatusEffectsVisualData;
 class UNiagaraComponent;
 class UAbilityComponent_Base;
@@ -37,7 +38,7 @@ protected:
 	UFUNCTION()
 	virtual void StopEffect();
 
-	virtual void SetVisualData(EEffects StatusEffect){};
+	void SetVisualData(EEffects StatusEffect);
 
 	virtual void SetDamageResistance(float NewResistance){};
 
@@ -56,6 +57,9 @@ protected:
 	
 	UPROPERTY()
 	UTexture2D* Icon;
+
+	UPROPERTY()
+	TSubclassOf<UDamageTypeBase> DamageType;
 
 	UPROPERTY(EditDefaultsOnly)
 	FName SocketName;

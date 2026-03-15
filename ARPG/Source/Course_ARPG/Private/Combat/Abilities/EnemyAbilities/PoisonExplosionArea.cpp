@@ -1,11 +1,8 @@
 
 #include "Combat/Abilities/EnemyAbilities/PoisonExplosionArea.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/DamageTypes.h"
 #include "Components/SphereComponent.h"
-#include "Components/StatusEffectsComponent.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
-#include "Engine/DamageEvents.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -33,7 +30,7 @@ void APoisonExplosionArea::CheckPlayerInRange()
 	const float DistBtwEnemyAndCenter = FVector::DistSquared(PlayerLocation, Center);
 	if (DistBtwEnemyAndCenter < Radius * Radius)
 	{
-		UGameplayStatics::ApplyDamage(PlayerRef, ExplosionDamage, GetOwner()->GetInstigatorController(), GetOwner(), UMagicalDamageType::StaticClass());
+		UGameplayStatics::ApplyDamage(PlayerRef, ExplosionDamage, Cast<ACharacter>(GetOwner())->GetController(), this, DamageType);
 		if (PlayerRef->FindComponentByClass<UPoisonEffectManager>())
 			PlayerRef->FindComponentByClass<UPoisonEffectManager>()->HandlePoison(PoisonDuration, PoisonDamage, PoisonRate, AbilityCompRef);
 	}

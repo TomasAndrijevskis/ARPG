@@ -2,7 +2,6 @@
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/DamageTypes.h"
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "Kismet/GameplayStatics.h"
@@ -12,14 +11,6 @@ void UPoisonEffectManager::BeginPlay()
 {
 	Super::BeginPlay();
 	SetVisualData(EEffects::Poison);
-}
-
-
-void UPoisonEffectManager::SetVisualData(EEffects StatusEffect)
-{
-	if (!StatusEffectsVisualDataAsset) return;
-	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
-	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
 }
 
 
@@ -41,7 +32,7 @@ void UPoisonEffectManager::HandlePoison(const float NewPoisonDuration, const flo
 
 void UPoisonEffectManager::ApplyDamage(float Damage)
 {
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage, nullptr, nullptr, UPoisonDamageType::StaticClass());
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage, Cast<ACharacter>(GetOwner())->GetController(), nullptr, DamageType);
 }
 
 

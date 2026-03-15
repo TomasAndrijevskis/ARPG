@@ -65,6 +65,7 @@ void UAbilityComponent_Player::StartAbilityTimer()
 	{
 		TimerDuration--;
 		OnAbilityTimerChangedDelegate.Broadcast(TimerDuration);
+		UE_LOG(LogTemp, Warning, TEXT("TimerDuration: %f"), TimerDuration);
 	}
 	else
 	{

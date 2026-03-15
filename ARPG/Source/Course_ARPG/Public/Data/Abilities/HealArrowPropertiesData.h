@@ -11,5 +11,9 @@ struct COURSE_ARPG_API FHealArrowPropertiesData: public FAbilityPropertiesBaseDa
 {
 	GENERATED_BODY()
 	
-	
+	UPROPERTY(EditDefaultsOnly)
+	float HealCap = 0;
+
+	UPROPERTY(EditDefaultsOnly)
+	float HealPercent = 0;
 };

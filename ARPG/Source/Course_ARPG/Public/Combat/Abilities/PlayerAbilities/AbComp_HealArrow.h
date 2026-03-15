@@ -15,6 +15,10 @@ class COURSE_ARPG_API UAbComp_HealArrow : public UAbilityComponent_Player
 	GENERATED_BODY()
 
 public:
+
+	virtual void UpdateAbilityDescription() override;
+
+	virtual void UpdateUpgradeDescription() override;
 	
 	virtual void CreateIcon() override;
 
@@ -25,9 +29,19 @@ public:
 	void SpawnArrow();
 
 	void HandleEnemyHit(float Damage);
+
+	void SetHealCap(float NewHealCap);
+
+	float GetHealCap() const;
+
+	void SetHealPercent(float NewHealPercent);
+	
+	float GetHealPercent() const;
 	
 protected:
 
+	virtual void BeginPlay() override;
+	
 	void OnHitEnemy(AEnemyCharacter* NewEnemyRef);
 
 	void OnHitNothing();
@@ -42,6 +56,10 @@ private:
 
 	UFUNCTION()
 	void FinishAnimation();
+
+	void OnAbilityFinished();
+
+	void InterruptAbilityTimer();
 	
 	UPROPERTY(EditDefaultsOnly)
 	UAnimMontage* ShootMontage;
@@ -53,17 +71,17 @@ private:
 	FName ComponentName;
 
 	UPROPERTY(EditDefaultsOnly)
-	float AliveTime = 10.0f;
+	float AliveTime = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	float HealCap = 20;
+	float MaxHealCap = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	float HealPercent = .5;
+	float HealPercent = 0.f;
 
-	UPROPERTY(VisibleAnywhere)
-	float HealedAmount = 0;
-
+	UPROPERTY(visibleAnywhere)
+	float HealCap;
+	
 	UPROPERTY()
 	AEnemyCharacter* EnemyRef;
 };

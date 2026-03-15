@@ -6,6 +6,7 @@
 #include "GroundSmashArea.generated.h"
 
 
+class UDamageTypeBase;
 class UNiagaraComponent;
 class USphereComponent;
 
@@ -34,6 +35,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	UNiagaraComponent* RangeEffect;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTypeBase> DamageType;
 	
 	FVector SpawnLocation;
 	

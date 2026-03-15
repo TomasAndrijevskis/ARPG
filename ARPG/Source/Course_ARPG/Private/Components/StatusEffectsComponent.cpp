@@ -3,6 +3,7 @@
 #include "NiagaraComponent.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "GameFramework/Character.h"
 
 
@@ -13,6 +14,15 @@ void UStatusEffectsComponent::BeginPlay()
 	CharacterRef = Cast<ACharacter>(GetOwner());
 	if (CharacterRef) SkeletalMeshComp = CharacterRef->GetMesh();
 	HandleOwner();
+}
+
+
+void UStatusEffectsComponent::SetVisualData(EEffects StatusEffect)
+{
+	if (!StatusEffectsVisualDataAsset) return;
+	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
+	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
+	DamageType = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].DamageType;
 }
 
 

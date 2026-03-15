@@ -105,12 +105,7 @@ void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, const float Damage, co
 {
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
 	if (Cast<AEnemyCharacter>(SafeCauser)) return;
-	if (!DamageType) return;
-	const UDamageTypeBase* DT = Cast<UDamageTypeBase>(DamageType);
-	if (!DT) return;
-	UE_LOG(LogTemp, Error, TEXT("UDamageTypeBase: %s"), *DT->GetName());
-	EStats ResistanceStat = DT->GetResistanceStat();
-	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,StatsComp->GetStatValue(ResistanceStat));
+	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,GetResistanceStatValue(DamageType));
 	UE_LOG(LogTemp, Warning, TEXT("FinalDamage: %f"), FinalDamage);
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, SafeCauser);
 }
@@ -220,4 +215,13 @@ bool AEnemyCharacter::CanApplyDamage()
 void AEnemyCharacter::SetCanApplyDamage(bool NewCanApplyDamage)
 {
 	bCanApplyDamage = NewCanApplyDamage;
+}
+
+
+float AEnemyCharacter::GetResistanceStatValue(const UDamageType* DamageType)
+{
+	if (!DamageType) return 0;
+	const UDamageTypeBase* DT = Cast<UDamageTypeBase>(DamageType);
+	if (!DT) return 0;
+	return StatsComp->GetStatValue(DT->GetResistanceStat());
 }

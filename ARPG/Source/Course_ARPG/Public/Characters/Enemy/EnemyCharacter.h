@@ -97,6 +97,8 @@ public:
 	bool CanApplyDamage();
 
 	void SetCanApplyDamage(bool NewCanApplyDamage);
+
+	float GetResistanceStatValue(const UDamageType* DamageType);
 	
 protected:
 
