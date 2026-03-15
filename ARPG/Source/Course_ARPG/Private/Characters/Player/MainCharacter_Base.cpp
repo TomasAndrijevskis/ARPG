@@ -187,85 +187,6 @@ void AMainCharacter_Base::ResetAbilities()
 }
 
 
-void AMainCharacter_Base::ReduceStamina(float Stamina)
-{
-	StatsComp->OnReduceStaminaRequestDelegate.Broadcast(Stamina);
-}
-
-
-void AMainCharacter_Base::ReduceMana(float Mana)
-{
-	StatsComp->OnReduceManaRequestDelegate.Broadcast(Mana);
-}
-
-
-void AMainCharacter_Base::ReduceHealth(float Damage, AActor* Opponent)
-{
-	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, Opponent);
-}
-
-
-void AMainCharacter_Base::HealPlayer(float Health)
-{
-	UE_LOG(LogTemp, Warning, TEXT("\n\nHealPlayer: %f \n\n"), Health);
-	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
-}
-
-
-void AMainCharacter_Base::AddExperience(float NewExperience)
-{
-	LevelComp->AddExperience(NewExperience);
-}
-
-
-bool AMainCharacter_Base::IsPlayerLockedOnEnemy() const
-{
-	return LockonComp->IsLocked();
-}
-
-
-void AMainCharacter_Base::EndPlayerLockOnEnemy()
-{
-	LockonComp->EndLockon();
-}
-
-
-void AMainCharacter_Base::SetCanAttack(bool bCanAttack)
-{
-	CombatComp->SetCanAttack(bCanAttack);
-}
-
-
-void AMainCharacter_Base::SetCanRoll(bool bCanRoll)
-{
-	PlayerActionsComp->SetCanRoll(bCanRoll);
-}
-
-
-int AMainCharacter_Base::GetCurrentAttributePointsAmount() const
-{
-	return LevelComp->GetCurrentAttributePointsAmount();
-}
-
-
-int AMainCharacter_Base::GetCurrentAbilityPointsAmount() const
-{
-	return LevelComp->GetCurrentAbilityPointsAmount();
-}
-
-
-int AMainCharacter_Base::GetUsedAttributePoints() const
-{
-	return LevelComp->GetUsedAttributePoints();
-}
-
-
-void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints)
-{
-	LevelComp->SetUsedAttributePoints(UsedStatPoints);
-}
-
-
 void AMainCharacter_Base::LoadAttributeData(TMap<TEnumAsByte<EAttributes>, int32> Data)
 {
 	for (const auto& Element : Data)
@@ -307,11 +228,6 @@ FPlayerLevelData AMainCharacter_Base::SaveLevelData() const
 	return Data;
 }
 
-
-void AMainCharacter_Base::SaveAllExceptPosition()
-{
-	GameInstance->SaveAllExceptPosition();
-}
 
 
 void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const
@@ -425,30 +341,6 @@ void AMainCharacter_Base::FillAdditionalStatsDisplayData(FPlayerAdditionalStatsD
 }
 
 
-float AMainCharacter_Base::GetAbilityPowerPercent() const
-{
-	return StatsComp->GetStatValue(EStats::AbilityPower);
-}
-
-
-EEffects AMainCharacter_Base::GetCurrentEnchantmentEffect() const
-{
-	return CurrentEffect;
-}
-
-
-TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetEnchantmentDamageType() const
-{
-	return CurrentEnchantmentDamageType;
-}
-
-
-float AMainCharacter_Base::GetElementalDamageModificator() const
-{
-	return StatsComp->GetStatValue(EStats::ElementalDamageModificator);
-}
-
-
 FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 {
 	if (IsPlayerLockedOnEnemy() && GetCurrentTargetActor()) return GetCurrentTargetActor()->GetActorLocation();
@@ -458,15 +350,15 @@ FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 }
 
 
-void AMainCharacter_Base::HandleResetAttack()
+void AMainCharacter_Base::SaveAllExceptPosition()
 {
-	CombatComp->HandleResetAttack();
+	GameInstance->SaveAllExceptPosition();
 }
 
 
-float AMainCharacter_Base::GetPlayerMaxHealth() const
+void AMainCharacter_Base::HandleResetAttack()
 {
-	return StatsComp->GetStatValue(EStats::MaxHealth);
+	CombatComp->HandleResetAttack();
 }
 
 
@@ -512,11 +404,6 @@ void AMainCharacter_Base::CreateAbilityIconWithAmount(float Amount, UTexture2D* 
 }
 
 
-AActor* AMainCharacter_Base::GetCurrentTargetActor() const
-{
-	return LockonComp->CurrentTargetActor;
-}
-
 
 void AMainCharacter_Base::HandleStatPointsAmountChange(const int NewPoints)
 {
@@ -530,91 +417,95 @@ void AMainCharacter_Base::HandleAbilityPointsAmountChange(const int NewPoints)
 }
 
 
-float AMainCharacter_Base::GetPhysicalDamage()
+
+void AMainCharacter_Base::ReduceStamina(float Stamina)
 {
-	return StatsComp->GetStatValue(EStats::PhysicalStrength);
+	StatsComp->OnReduceStaminaRequestDelegate.Broadcast(Stamina);
 }
 
 
-float AMainCharacter_Base::GetMagicalDamage() const
+void AMainCharacter_Base::ReduceMana(float Mana)
 {
-	return StatsComp->GetStatValue(EStats::MagicalStrength);
+	StatsComp->OnReduceManaRequestDelegate.Broadcast(Mana);
 }
 
 
-bool AMainCharacter_Base::HasEnoughStamina(const float Stamina) const
+void AMainCharacter_Base::ReduceHealth(float Damage, AActor* Opponent)
 {
-	return StatsComp->GetStatValue(EStats::Stamina) >= Stamina;
+	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, Opponent);
 }
 
 
-bool AMainCharacter_Base::HasEnoughMana(const float Mana) const
+void AMainCharacter_Base::HealPlayer(float Health)
 {
-	return StatsComp->GetStatValue(EStats::Mana) >= Mana;
+	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
 }
 
 
-UPlayerWidget* AMainCharacter_Base::GetPlayerWidget() const
+void AMainCharacter_Base::AddExperience(float NewExperience)
 {
-	return PlayerWidgetRef;
+	LevelComp->AddExperience(NewExperience);
 }
 
 
-TArray<UAbilityComponent_Player*>& AMainCharacter_Base::GetAbilitiesArray()
+void AMainCharacter_Base::EndPlayerLockOnEnemy()
 {
-	return ArrAbilities;
+	LockonComp->EndLockon();
 }
 
 
-void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbility)
-{
-	ArrAbilities.Add(NewAbility);
-}
+void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbility){ArrAbilities.Add(NewAbility);}
 
+void AMainCharacter_Base::SetCanPlayHurtAnimation(const bool bCanPlayAnim){bCanPlayHurtAnim = bCanPlayAnim;}
 
-USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent() const
-{
-	return SkeletalMeshComp;
-}
+void AMainCharacter_Base::IncreaseUsedAbilityPoints(const int UsedPoints){UsedAbilityPoints += UsedPoints;}
 
+void AMainCharacter_Base::SetUsedAbilityPoints(const int NewUsedPoints){UsedAbilityPoints = NewUsedPoints;}
 
-void AMainCharacter_Base::SetCanPlayHurtAnimation(const bool bCanPlayAnim)
-{
-	bCanPlayHurtAnim = bCanPlayAnim;
-}
+void AMainCharacter_Base::SetCanAttack(bool bCanAttack){CombatComp->SetCanAttack(bCanAttack);}
 
+void AMainCharacter_Base::SetCanRoll(bool bCanRoll){PlayerActionsComp->SetCanRoll(bCanRoll);}
 
-bool AMainCharacter_Base::CanPlayHurtAnimation() const
-{
-	return bCanPlayHurtAnim;
-}
+void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints){LevelComp->SetUsedAttributePoints(UsedStatPoints);}
 
+float AMainCharacter_Base::GetPhysicalDamage(){return StatsComp->GetStatValue(EStats::PhysicalStrength);}
 
-TArray<TEnumAsByte<EAttributes>>& AMainCharacter_Base::GetAttributesArray() const
-{
-	return AttributesComp->GetAttributes();
-}
+float AMainCharacter_Base::GetMagicalDamage() const{return StatsComp->GetStatValue(EStats::MagicalStrength);}
 
+float AMainCharacter_Base::GetAbilityPowerPercent() const{return StatsComp->GetStatValue(EStats::AbilityPower);}
 
-void AMainCharacter_Base::IncreaseUsedAbilityPoints(const int UsedPoints)
-{
-	UsedAbilityPoints += UsedPoints;
-}
+float AMainCharacter_Base::GetElementalDamageModificator() const{return StatsComp->GetStatValue(EStats::ElementalDamageModificator);}
 
+float AMainCharacter_Base::GetPlayerMaxHealth() const{return StatsComp->GetStatValue(EStats::MaxHealth);}
 
-void AMainCharacter_Base::SetUsedAbilityPoints(const int NewUsedPoints)
-{
-	UsedAbilityPoints = NewUsedPoints;
-}
+int AMainCharacter_Base::GetCurrentAttributePointsAmount() const{return LevelComp->GetCurrentAttributePointsAmount();}
 
+int AMainCharacter_Base::GetCurrentAbilityPointsAmount() const{return LevelComp->GetCurrentAbilityPointsAmount();}
 
-int AMainCharacter_Base::GetUsedAbilityPoints() const
-{
-	return UsedAbilityPoints;
-}
+int AMainCharacter_Base::GetUsedAttributePoints() const{return LevelComp->GetUsedAttributePoints();}
 
+int AMainCharacter_Base::GetUsedAbilityPoints() const{return UsedAbilityPoints;}
 
-TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetDamageType() const
-{
-	return BaseAttackDamageType;
-}
+AActor* AMainCharacter_Base::GetCurrentTargetActor() const{return LockonComp->CurrentTargetActor;}
+
+bool AMainCharacter_Base::CanPlayHurtAnimation() const{return bCanPlayHurtAnim;}
+
+bool AMainCharacter_Base::HasEnoughStamina(const float Stamina) const{return StatsComp->GetStatValue(EStats::Stamina) >= Stamina;}
+
+bool AMainCharacter_Base::HasEnoughMana(const float Mana) const{return StatsComp->GetStatValue(EStats::Mana) >= Mana;}
+
+bool AMainCharacter_Base::IsPlayerLockedOnEnemy() const{return LockonComp->IsLocked();}
+
+UPlayerWidget* AMainCharacter_Base::GetPlayerWidget() const{return PlayerWidgetRef;}
+
+USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent() const{return SkeletalMeshComp;}
+
+TArray<TEnumAsByte<EAttributes>>& AMainCharacter_Base::GetAttributesArray() const{return AttributesComp->GetAttributes();}
+
+TArray<UAbilityComponent_Player*>& AMainCharacter_Base::GetAbilitiesArray(){return ArrAbilities;}
+
+TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetDamageType() const{return BaseAttackDamageType;}
+
+TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetEnchantmentDamageType() const{return CurrentEnchantmentDamageType;}
+
+EEffects AMainCharacter_Base::GetCurrentEnchantmentEffect() const{return CurrentEffect;}

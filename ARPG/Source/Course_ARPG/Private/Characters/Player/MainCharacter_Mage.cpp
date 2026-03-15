@@ -1,7 +1,6 @@
 
 #include "Characters/Player/MainCharacter_Mage.h"
 #include "Animations/Player/AnimInstance_Mage.h"
-#include "Combat/DamageTypes.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_FireStorm.h"

@@ -83,6 +83,8 @@ void UAbComp_Invincibility::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_Invincibility::GetDefaultArmor() const{return Armor;}
-float UAbComp_Invincibility::GetEnhancedArmor() const{return Armor + (Armor * PlayerRef->GetAbilityPowerPercent());}
 void UAbComp_Invincibility::SetArmor(const float NewArmor){Armor = NewArmor;}
+
+float UAbComp_Invincibility::GetDefaultArmor() const{return Armor;}
+
+float UAbComp_Invincibility::GetEnhancedArmor() const{return Armor + (Armor * PlayerRef->GetAbilityPowerPercent());}

@@ -29,8 +29,4 @@ FText ULevelWidget::GetAsText(float Value, float MaxValue)
 	return FText::FromString(Text);
 }
 
-
-FText ULevelWidget::GetAsText(float Value)
-{
-	return FText::FromString(FString::FromInt(Value));
-}
+FText ULevelWidget::GetAsText(float Value){return FText::FromString(FString::FromInt(Value));}

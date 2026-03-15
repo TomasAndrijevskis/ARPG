@@ -256,8 +256,4 @@ bool UARPG_GameInstance::CheckSlot(const FString& SlotNameToCheck) const
 }
 
 
-void UARPG_GameInstance::SetSlotName(const FString& NewSlotName)
-{
-	SlotName = NewSlotName;
-	HandleSaveGame();
-}
+void UARPG_GameInstance::SetSlotName(const FString& NewSlotName){SlotName = NewSlotName;HandleSaveGame();}

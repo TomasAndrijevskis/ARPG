@@ -40,13 +40,6 @@ void UAbilityFooter::SetImageAvailability()
 }
 
 
-void UAbilityFooter::SetCooldownText(const float TimeLeft)
-{
-	Text_CooldownValue->SetText(FText::AsNumber(TimeLeft));
-}
+void UAbilityFooter::RemoveCooldownText(){Text_CooldownValue->SetText(FText::FromString(""));}
 
-
-void UAbilityFooter::RemoveCooldownText()
-{
-	Text_CooldownValue->SetText(FText::FromString(""));
-}
+void UAbilityFooter::SetCooldownText(const float TimeLeft){Text_CooldownValue->SetText(FText::AsNumber(TimeLeft));}

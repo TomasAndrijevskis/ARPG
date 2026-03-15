@@ -45,9 +45,4 @@ void AFireStorm::HandleOverlap(AActor* OtherActor, bool bIsOverlapping)
 }
 
 
-void AFireStorm::SetProperties(const float NewDuration, const float NewDamage, const float NewBurnRate)
-{
-	BurnDuration = NewDuration;
-	BurnDamage = NewDamage;
-	BurnRate = NewBurnRate;
-}
+void AFireStorm::SetProperties(const float NewDuration, const float NewDamage, const float NewBurnRate){BurnDuration = NewDuration;BurnDamage = NewDamage;BurnRate = NewBurnRate;}

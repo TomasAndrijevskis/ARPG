@@ -47,7 +47,4 @@ void UIceEffectManager::StopEffect()
 }
 
 
-void UIceEffectManager::SetDamageResistance(float NewResistance)
-{
-	IceDamageResistance = NewResistance;
-}
+void UIceEffectManager::SetDamageResistance(float NewResistance){IceDamageResistance = NewResistance;}

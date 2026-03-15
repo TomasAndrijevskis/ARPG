@@ -27,7 +27,4 @@ void UAdditionalStatsDisplayWidget::SetText()
 }
 
 
-FText UAdditionalStatsDisplayWidget::GetAsText(float Value)
-{
-	return FText::FromString(FString::Printf(TEXT("%.2f"),Value));
-}
+FText UAdditionalStatsDisplayWidget::GetAsText(float Value){return FText::FromString(FString::Printf(TEXT("%.2f"),Value));}

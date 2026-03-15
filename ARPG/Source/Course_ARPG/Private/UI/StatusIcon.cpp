@@ -5,12 +5,6 @@
 #include "Components/TextBlock.h"
 
 
-void UStatusIcon::SetValue(const float Value)
-{
-	Text_Value->SetText(FText::AsNumber(Value));
-}
-
-
 void UStatusIcon::SetStatusIcon(UTexture2D* Icon, const FVector2d& ImageSize)
 {
 	FSlateBrush ImageStyle;
@@ -24,3 +18,6 @@ void UStatusIcon::RemoveWidget()
 {
 	if (this->GetParent()) this->GetParent()->RemoveChild(this);
 }
+
+
+void UStatusIcon::SetValue(const float Value){Text_Value->SetText(FText::AsNumber(Value));}

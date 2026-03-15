@@ -95,7 +95,11 @@ void UAbComp_FrostBlast::SetAbilityData(const int32 Level)
 
 
 void UAbComp_FrostBlast::SetDamage(float NewDamage){Damage = NewDamage;}
+
 void UAbComp_FrostBlast::SetSlowDuration(float NewSlowDuration){SlowDuration = NewSlowDuration;}
+
 float UAbComp_FrostBlast::GetDefaultDamage() const{return Damage;}
+
 float UAbComp_FrostBlast::GetEnhancedDamage() const{return Damage + Damage * PlayerRef->GetAbilityPowerPercent();}
+
 float UAbComp_FrostBlast::GetSlowDuration() const{return SlowDuration;}

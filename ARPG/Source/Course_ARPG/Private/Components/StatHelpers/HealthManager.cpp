@@ -27,8 +27,6 @@ void UHealthManager::ReduceHealth(const float Damage, AActor* Owner, AActor* Opp
 	if (!StatsComponent) return;
 	float CurrentHealth = StatsComponent->GetStatValue(EStats::Health);
 	if (CurrentHealth <= 0) return;
-	//IFighter* FighterRef = Cast<IFighter>(Owner);
-	//if (!FighterRef || !FighterRef->CanTakeDamage(Opponent)) return;
 	CurrentHealth -= Damage;
 	CurrentHealth = UKismetMathLibrary::FClamp(CurrentHealth, 0, StatsComponent->GetStatValue(EStats::MaxHealth));
 	StatsComponent->SetStatValue(EStats::Health, CurrentHealth);

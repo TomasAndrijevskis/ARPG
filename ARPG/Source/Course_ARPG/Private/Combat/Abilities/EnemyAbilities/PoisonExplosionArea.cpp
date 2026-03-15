@@ -39,10 +39,4 @@ void APoisonExplosionArea::CheckPlayerInRange()
 
 
 void APoisonExplosionArea::SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UAbilityComponent_Base* NewAbilityCompRef)
-{
-	ExplosionDamage = NewExplosionDamage;
-	PoisonDamage = NewPoisonDamage;
-	PoisonRate = NewPoisonRate;
-	PoisonDuration = NewPoisonDuration;
-	AbilityCompRef = NewAbilityCompRef;
-}
+{ExplosionDamage = NewExplosionDamage;PoisonDamage = NewPoisonDamage;PoisonRate = NewPoisonRate;PoisonDuration = NewPoisonDuration;AbilityCompRef = NewAbilityCompRef;}

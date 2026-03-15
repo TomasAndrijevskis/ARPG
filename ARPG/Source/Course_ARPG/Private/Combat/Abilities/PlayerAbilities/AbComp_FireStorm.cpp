@@ -95,8 +95,12 @@ void UAbComp_FireStorm::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_FireStorm::GetDefaultBurnDamage() const{return BurnDamage;}
-float UAbComp_FireStorm::GetEnhancedBurnDamage() const{return BurnDamage + (BurnDamage * PlayerRef->GetAbilityPowerPercent());}
-float UAbComp_FireStorm::GetBurnDuration() const{return BurnDuration;}
 void UAbComp_FireStorm::SetBurnDamage(float NewDamage){BurnDamage = NewDamage;}
+
 void UAbComp_FireStorm::SetBurnDuration(float NewDuration){BurnDuration = NewDuration;}
+
+float UAbComp_FireStorm::GetDefaultBurnDamage() const{return BurnDamage;}
+
+float UAbComp_FireStorm::GetEnhancedBurnDamage() const{return BurnDamage + BurnDamage * PlayerRef->GetAbilityPowerPercent();}
+
+float UAbComp_FireStorm::GetBurnDuration() const{return BurnDuration;}

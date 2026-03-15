@@ -113,5 +113,7 @@ void UAbComp_MagicShield::SetAbilityData(const int32 Level)
 
 
 void UAbComp_MagicShield::SetReflectionPercent(float NewReflectionPercent){DamageReflectionPercent = NewReflectionPercent;}
+
 float UAbComp_MagicShield::GetDefaultDamageReflectionPercent() const{return DamageReflectionPercent;}
+
 float UAbComp_MagicShield::GetEnhancedDamageReflectionPercent() const{return DamageReflectionPercent + (DamageReflectionPercent * PlayerRef->GetAbilityPowerPercent());}

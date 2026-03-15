@@ -37,7 +37,4 @@ void UCombatComponent_Base::HandleResetAttack()
 }
 
 
-void UCombatComponent_Base::SetCanAttack(bool CanAttack)
-{
-	bCanAttack = CanAttack;
-}
+void UCombatComponent_Base::SetCanAttack(bool CanAttack){bCanAttack = CanAttack;}

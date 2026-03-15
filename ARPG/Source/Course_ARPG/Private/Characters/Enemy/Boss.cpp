@@ -94,31 +94,12 @@ float ABoss::GetAttackAnimReductionTime() const
 }
 
 
-bool ABoss::IsSecondPhaseActive() const
-{
-	return bSecondPhase;
-}
+void ABoss::SetCanTakeDamage(const bool CanTakeDamage){bCanTakeDamage = CanTakeDamage;}
 
+bool ABoss::IsSecondPhaseActive() const{return bSecondPhase;}
 
-FText ABoss::GetBossName() const
-{
-	return BossName;
-}
+bool ABoss::GetCanTakeDamage() const{return bCanTakeDamage;}
 
+FText ABoss::GetBossName() const{return BossName;}
 
-void ABoss::SetCanTakeDamage(const bool CanTakeDamage)
-{
-	bCanTakeDamage = CanTakeDamage;
-}
-
-
-bool ABoss::GetCanTakeDamage() const
-{
-	return bCanTakeDamage;
-}
-
-
-UBossHealthBar* ABoss::GetBossWidget() const
-{
-	return HealthBarWidgetRef;
-}
+UBossHealthBar* ABoss::GetBossWidget() const{return HealthBarWidgetRef;}

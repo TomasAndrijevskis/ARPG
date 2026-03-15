@@ -52,7 +52,4 @@ void UPoisonEffectManager::ApplyProlongedDamage()
 }
 
 
-void UPoisonEffectManager::SetDamageResistance(float NewResistance)
-{
-	PoisonDamageResistance = NewResistance;
-}
+void UPoisonEffectManager::SetDamageResistance(float NewResistance){PoisonDamageResistance = NewResistance;}

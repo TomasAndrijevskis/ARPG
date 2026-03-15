@@ -36,8 +36,6 @@ protected:
 	virtual void HandleBeginOverlap(AActor* OtherActor);
 
 	bool IsOpponentHit(AActor* OtherActor);
-
-	bool WasCorrectlyOverlapped(AActor* OtherActor);
 	
 	UPROPERTY(EditAnywhere)
 	UPrimitiveComponent* CollisionComponent;

@@ -90,12 +90,6 @@ void UTraceComponent::ApplyDamage(AActor* TargetActor, TSubclassOf<UDamageType> 
 }
 
 
-float UTraceComponent::GetDamage() const
-{
-	return FighterRef->GetPhysicalDamage();
-}
-
-
 void UTraceComponent::HandleResetAttack()
 {
 	TargetsToIgnore.Empty();
@@ -109,3 +103,6 @@ void UTraceComponent::DrawDebugBox(bool bHasFoundTargets, const FVector& StartSo
 	FVector CenterPoint = UKismetMathLibrary::VLerp(StartSocketLocation, EndSocketLocation, 0.5f);
 	UKismetSystemLibrary::DrawDebugBox(GetWorld(),CenterPoint ,Box.GetExtent(), DebugColor, ShapeRotation.Rotator(), 1.0f, 2.0f );
 }
+
+
+float UTraceComponent::GetDamage() const{return FighterRef->GetPhysicalDamage();}

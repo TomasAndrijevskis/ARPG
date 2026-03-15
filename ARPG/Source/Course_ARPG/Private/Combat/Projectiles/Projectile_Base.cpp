@@ -15,12 +15,6 @@ void AProjectile_Base::BeginPlay()
 }
 
 
-void AProjectile_Base::SetProjectileOwner(AActor* NewProjectileOwner)
-{
-	ProjectileOwner = NewProjectileOwner;
-}
-
-
 void AProjectile_Base::OnComponentBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	HandleBeginOverlap(OtherActor);
@@ -59,13 +53,6 @@ bool AProjectile_Base::IsOpponentHit(AActor* OtherActor)
 }
 
 
-bool AProjectile_Base::WasCorrectlyOverlapped(AActor* OtherActor)
-{
-	
-	return true;
-}
-
-
 void AProjectile_Base::DestroyProjectile()
 {
 	HitTemplate = nullptr;
@@ -73,15 +60,12 @@ void AProjectile_Base::DestroyProjectile()
 }
 
 
-void AProjectile_Base::SetParams(const float NewDamage, const float NewAliveTime, const float NewModificator)
-{
-	Damage = NewDamage;
-	AliveTime = NewAliveTime;
-	ElementalDamageModificator = NewModificator;
-}
-
-
 void AProjectile_Base::StartAliveTimer()
 {
 	GetWorld()->GetTimerManager().SetTimer(AliveTimerHandle, this, &AProjectile_Base::HandleDestruction, AliveTime, false);
 }
+
+
+void AProjectile_Base::SetProjectileOwner(AActor* NewProjectileOwner){ProjectileOwner = NewProjectileOwner;}
+
+void AProjectile_Base::SetParams(const float NewDamage, const float NewAliveTime, const float NewModificator){Damage = NewDamage;AliveTime = NewAliveTime;ElementalDamageModificator = NewModificator;}

@@ -260,69 +260,24 @@ void AARPG_PlayerController::QuitGame() const
 }
 
 
+void AARPG_PlayerController::SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange){bIsInBonfireRange = bNewIsInBonfireRange;BonfireRef = BonfireInRange;}
 
-void AARPG_PlayerController::SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange)
-{
-	bIsInBonfireRange = bNewIsInBonfireRange;
-	BonfireRef = BonfireInRange;
-}
+void AARPG_PlayerController::SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange){bIsInMagicalCubeRange = bNewIsInMagicalCubeRange;}
 
+void AARPG_PlayerController::SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange){bIsInMagicalSphereRange = bNewIsInMagicalSphereRange;}
 
-void AARPG_PlayerController::SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange)
-{
-	bIsInMagicalCubeRange = bNewIsInMagicalCubeRange;
-}
+void AARPG_PlayerController::SetIsInDoorRange(const bool bNewIsInDoorRange){bIsInDoorRange = bNewIsInDoorRange;}
 
+void AARPG_PlayerController::SetMapName(const FString& NewMapName){MapName = NewMapName;}
 
-void AARPG_PlayerController::SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange)
-{
-	bIsInMagicalSphereRange = bNewIsInMagicalSphereRange;
-}
+void AARPG_PlayerController::SetDefeatedBosses(const TArray<FName>& Bosses){DefeatedBosses = Bosses;}
 
+void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss){DefeatedBosses.AddUnique(Boss);}
 
-void AARPG_PlayerController::SetIsInDoorRange(const bool bNewIsInDoorRange)
-{
-	bIsInDoorRange = bNewIsInDoorRange;
-}
+void AARPG_PlayerController::SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires){UnlockedBonfires = NewUnlockedBonfires;}
 
+ABonfire*& AARPG_PlayerController::GetCurrentBonfire(){return BonfireRef;}
 
-void AARPG_PlayerController::SetMapName(const FString& NewMapName)
-{
-	MapName = NewMapName;
-}
+TMap<FString, FBonfireData>& AARPG_PlayerController::GetUnlockedBonfires(){return UnlockedBonfires;}
 
-
-TArray<FName> AARPG_PlayerController::GetDefeatedBosses() const
-{
-	return DefeatedBosses;
-}
-
-
-void AARPG_PlayerController::SetDefeatedBosses(const TArray<FName>& Bosses)
-{
-	DefeatedBosses = Bosses;
-}
-
-
-void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss)
-{
-	DefeatedBosses.AddUnique(Boss);
-}
-
-
-TMap<FString, FBonfireData>& AARPG_PlayerController::GetUnlockedBonfires()
-{
-	return UnlockedBonfires;
-}
-
-
-void AARPG_PlayerController::SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires)
-{
-	UnlockedBonfires = NewUnlockedBonfires;
-}
-
-
-ABonfire*& AARPG_PlayerController::GetCurrentBonfire()
-{
-	return BonfireRef;
-}
+TArray<FName> AARPG_PlayerController::GetDefeatedBosses() const{return DefeatedBosses;}

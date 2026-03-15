@@ -99,6 +99,8 @@ void UAbComp_RangeAttack::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_RangeAttack::GetDefaultProjectileDamage() const{return ProjectileDamage;}
-float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const{return ProjectileDamage + (ProjectileDamage * PlayerRef->GetAbilityPowerPercent());}
 void UAbComp_RangeAttack::SetProjectileDamage(const float NewProjectileDamage){ProjectileDamage = NewProjectileDamage;}
+
+float UAbComp_RangeAttack::GetDefaultProjectileDamage() const{return ProjectileDamage;}
+
+float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const{return ProjectileDamage + (ProjectileDamage * PlayerRef->GetAbilityPowerPercent());}

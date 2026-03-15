@@ -20,7 +20,6 @@ AFrostBlastRange::AFrostBlastRange()
 void AFrostBlastRange::BeginPlay()
 {
 	Super::BeginPlay();
-	//GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AFrostBlastRange::CheckEnemiesInRange, 1, false);
 }
 
 
@@ -43,8 +42,4 @@ void AFrostBlastRange::CheckEnemiesInRange()
 }
 
 
-void AFrostBlastRange::SetParams(const float NewDamage, const float NewDuration)
-{
-	Damage = NewDamage;
-	SlowDuration = NewDuration;
-}
+void AFrostBlastRange::SetParams(const float NewDamage, const float NewDuration){Damage = NewDamage;SlowDuration = NewDuration;}

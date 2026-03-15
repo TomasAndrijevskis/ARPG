@@ -163,6 +163,9 @@ void UAbComp_HealArrow::SetAbilityData(const int32 Level)
 
 
 void UAbComp_HealArrow::SetHealCap(float NewHealCap){MaxHealCap = NewHealCap; HealCap = MaxHealCap;}
+
 void UAbComp_HealArrow::SetHealPercent(float NewHealPercent){HealPercent = NewHealPercent;}
+
 float UAbComp_HealArrow::GetHealCap() const{return MaxHealCap;}
+
 float UAbComp_HealArrow::GetHealPercent() const{return HealPercent;}

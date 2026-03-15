@@ -14,25 +14,6 @@ void USaveSlotWidget::NativeConstruct()
 }
 
 
-void USaveSlotWidget::SetSlotName(const FString& NewSlotName)
-{
-	SlotName = NewSlotName;
-	Text_SaveSlotName->SetText(FText::FromString(SlotName));
-}
-
-
-void USaveSlotWidget::SetSlotStatus(const FText& NewText)
-{
-	Text_SaveSlotStatus->SetText(NewText);
-}
-
-
-void USaveSlotWidget::SetMapName(const FName& NewMapName)
-{
-	MapName = NewMapName;
-}
-
-
 void USaveSlotWidget::OnButtonClicked()
 {
 	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
@@ -45,8 +26,14 @@ void USaveSlotWidget::OnButtonClicked()
 }
 
 
-
-FString USaveSlotWidget::GetSlotName() const
+void USaveSlotWidget::SetSlotName(const FString& NewSlotName)
 {
-	return SlotName;
+	SlotName = NewSlotName;
+	Text_SaveSlotName->SetText(FText::FromString(SlotName));
 }
+
+void USaveSlotWidget::SetSlotStatus(const FText& NewText){Text_SaveSlotStatus->SetText(NewText);}
+
+void USaveSlotWidget::SetMapName(const FName& NewMapName){MapName = NewMapName;}
+
+FString USaveSlotWidget::GetSlotName() const{return SlotName;}

@@ -94,8 +94,4 @@ void ULockonComponent::ToggleLockon(const float Radius)
 }
 
 
-
-bool ULockonComponent::IsLocked() const
-{
-	return bIsLocked;
-}
+bool ULockonComponent::IsLocked() const{return bIsLocked;}

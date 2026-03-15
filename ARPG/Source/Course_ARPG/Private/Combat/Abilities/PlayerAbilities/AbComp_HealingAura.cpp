@@ -102,6 +102,8 @@ void UAbComp_HealingAura::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_HealingAura::GetDefaultHealthRegenAmount() const{return HealthRegenAmount;}
-float UAbComp_HealingAura::GetEnhancedHealthRegenAmount() const{return HealthRegenAmount + (HealthRegenAmount * PlayerRef->GetAbilityPowerPercent());}
 void UAbComp_HealingAura::SetHealthRegenAmount(const float NewAmount){HealthRegenAmount = NewAmount;}
+
+float UAbComp_HealingAura::GetDefaultHealthRegenAmount() const{return HealthRegenAmount;}
+
+float UAbComp_HealingAura::GetEnhancedHealthRegenAmount() const{return HealthRegenAmount + (HealthRegenAmount * PlayerRef->GetAbilityPowerPercent());}

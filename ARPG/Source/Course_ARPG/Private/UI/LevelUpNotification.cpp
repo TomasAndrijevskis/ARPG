@@ -17,20 +17,16 @@ void ULevelUpNotification::OnAnimationFinished_Implementation(const UWidgetAnima
 }
 
 
+void ULevelUpNotification::RemoveWidget()
+{
+	this->RemoveFromParent();
+}
+
+
 void ULevelUpNotification::SetPoints(int32 AbilityPoints, int32 AttributePoints)
 {
 	Text_NewAbilityPoints->SetText(FText::Format(FText::FromString("+{0} Ability points"), GetAsText(AbilityPoints)));
 	Text_NewAttributePoints->SetText(FText::Format(FText::FromString("+{0} Attribute points"), GetAsText(AttributePoints)));
 }
 
-
-FText ULevelUpNotification::GetAsText(int32 Value)
-{
-	return FText::FromString(FString::FromInt(Value));
-}
-
-
-void ULevelUpNotification::RemoveWidget()
-{
-	this->RemoveFromParent();
-}
+FText ULevelUpNotification::GetAsText(int32 Value){return FText::FromString(FString::FromInt(Value));}

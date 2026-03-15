@@ -73,85 +73,30 @@ FXPLevels* ULevelingComponent::GetNextLevelRow() const
 }
 
 
-int ULevelingComponent::GetAttributePointsForLevel() const
-{
-	return GetNextLevelRow()->AttributePointsPerLevel;
-}
+void ULevelingComponent::SetExperience(const float NewExperience){CurrentExperience = NewExperience;}
 
+void ULevelingComponent::SetLevel(const int NewLevel){CurrentLevel = NewLevel;}
 
-int ULevelingComponent::GetAbilityPointsForLevel() const
-{
-	return GetNextLevelRow()->AbilityPointsPerLevel;
-}
+void ULevelingComponent::SetAttributePoints(const int NewStatPointsAmount){AvailableAttributePoints = NewStatPointsAmount;}
 
+void ULevelingComponent::SetAbilityPoints(const int NewAbilityPointsAmount){AvailableAbilityPoints = NewAbilityPointsAmount;}
 
-float ULevelingComponent::GetCurrentExperience() const
-{
-	return CurrentExperience;
-}
+void ULevelingComponent::SetUsedAttributePoints(const int NewUsedStatPoints){UsedAttributePoints = NewUsedStatPoints;}
 
+void ULevelingComponent::IncreaseUsedStatPoints(){UsedAttributePoints++;}
 
-int ULevelingComponent::GetCurrentLevel() const
-{
-	return  CurrentLevel;
-}
+int ULevelingComponent::GetAttributePointsForLevel() const{return GetNextLevelRow()->AttributePointsPerLevel;}
 
+int ULevelingComponent::GetAbilityPointsForLevel() const{return GetNextLevelRow()->AbilityPointsPerLevel;}
 
-int ULevelingComponent::GetCurrentAttributePointsAmount() const
-{
-	return AvailableAttributePoints;
-}
+int ULevelingComponent::GetUsedAttributePoints() const{return UsedAttributePoints;}
 
+int ULevelingComponent::GetCurrentLevel() const{return  CurrentLevel;}
 
-int ULevelingComponent::GetCurrentAbilityPointsAmount() const
-{
-	return AvailableAbilityPoints;
-}
+int ULevelingComponent::GetCurrentAttributePointsAmount() const{return AvailableAttributePoints;}
 
+int ULevelingComponent::GetCurrentAbilityPointsAmount() const{return AvailableAbilityPoints;}
 
-void ULevelingComponent::SetExperience(const float NewExperience)
-{
-	CurrentExperience = NewExperience;
-}
+float ULevelingComponent::GetExperiencePercentage() const{return CurrentExperience / RequiredExperience;}
 
-
-void ULevelingComponent::SetLevel(const int NewLevel)
-{
-	CurrentLevel = NewLevel;
-}
-
-
-void ULevelingComponent::SetAttributePoints(const int NewStatPointsAmount)
-{
-	AvailableAttributePoints = NewStatPointsAmount;
-}
-
-
-void ULevelingComponent::SetAbilityPoints(const int NewAbilityPointsAmount)
-{
-	AvailableAbilityPoints = NewAbilityPointsAmount;
-}
-
-
-float ULevelingComponent::GetExperiencePercentage() const
-{
-	return CurrentExperience / RequiredExperience;
-}
-
-
-void ULevelingComponent::SetUsedAttributePoints(const int NewUsedStatPoints)
-{
-	UsedAttributePoints = NewUsedStatPoints;
-}
-
-
-int ULevelingComponent::GetUsedAttributePoints() const
-{
-	return UsedAttributePoints;
-}
-
-
-void ULevelingComponent::IncreaseUsedStatPoints()
-{
-	UsedAttributePoints++;
-}
+float ULevelingComponent::GetCurrentExperience() const{return CurrentExperience;}

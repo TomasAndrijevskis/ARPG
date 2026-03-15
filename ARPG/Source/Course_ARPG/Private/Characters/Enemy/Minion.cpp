@@ -74,7 +74,4 @@ void AMinion::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* 
 }
 
 
-UMinionHealthBar* AMinion::GetMinionWidget() const
-{
-	return HealthBarWidgetRef;
-}
+UMinionHealthBar* AMinion::GetMinionWidget() const{return HealthBarWidgetRef;}

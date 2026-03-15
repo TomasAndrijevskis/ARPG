@@ -85,14 +85,5 @@ EBTNodeResult::Type UBTT_Patrol::AbortTask(UBehaviorTreeComponent& OwnerComp, ui
 }
 
 
-
-float UBTT_Patrol::GetRandomWaitDuration() const
-{
-	return FMath::RandRange(MinWaitDuration, MaxWaitDuration);
-}
-
-
-float UBTT_Patrol::GetRandomPatrolDistance() const
-{
-	return FMath::RandRange(MinPatrolDistance, MaxPatrolDistance);
-}
+float UBTT_Patrol::GetRandomWaitDuration() const{return FMath::RandRange(MinWaitDuration, MaxWaitDuration);}
+float UBTT_Patrol::GetRandomPatrolDistance() const{return FMath::RandRange(MinPatrolDistance, MaxPatrolDistance);}

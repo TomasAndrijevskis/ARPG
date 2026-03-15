@@ -124,12 +124,6 @@ void UAbilityUpgradeSlotWidget::UpgradeAbility()
 }
 
 
-void UAbilityUpgradeSlotWidget::SetAbilityIconEnabled()
-{
-	Button_AbilityIcon->SetIsEnabled(AbilityComp_Ref->IsAbilityAvailable());
-}
-
-
 void UAbilityUpgradeSlotWidget::SetIcon(UTexture2D* Icon)
 {
 	if (!Icon) return;
@@ -176,3 +170,6 @@ void UAbilityUpgradeSlotWidget::RemoveUpgradeDescriptionWidget()
 {
 	RemoveDescriptionWidget();
 }
+
+
+void UAbilityUpgradeSlotWidget::SetAbilityIconEnabled(){Button_AbilityIcon->SetIsEnabled(AbilityComp_Ref->IsAbilityAvailable());}

@@ -8,13 +8,6 @@ UAbilityComponent_Base::UAbilityComponent_Base()
 }
 
 
-float UAbilityComponent_Base::GetAbilityDuration() const
-{
-	return AbilityDuration;
-}
+void UAbilityComponent_Base::SetAbilityDuration(const float NewAbilityDuration){AbilityDuration = NewAbilityDuration;}
 
-
-void UAbilityComponent_Base::SetAbilityDuration(const float NewAbilityDuration)
-{
-	AbilityDuration = NewAbilityDuration;
-}
+float UAbilityComponent_Base::GetAbilityDuration() const{return AbilityDuration;}

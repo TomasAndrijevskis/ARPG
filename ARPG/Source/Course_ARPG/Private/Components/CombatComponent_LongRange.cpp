@@ -14,18 +14,6 @@ void UCombatComponent_LongRange::ComboAttack()
 }
 
 
-void UCombatComponent_LongRange::ChangeProjectileClass(TSubclassOf<AActor> &NewProjectileClass)
-{
-	CurrentProjectileClass = NewProjectileClass;
-}
-
-
-void UCombatComponent_LongRange::RevertBaseProjectileClass()
-{
-	CurrentProjectileClass = BaseProjectileClass;
-}
-
-
 void UCombatComponent_LongRange::SpawnProjectile()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
@@ -51,3 +39,8 @@ void UCombatComponent_LongRange::GetLocations(FVector& SpawnLocation, FVector& T
 	SpawnLocation = SpawnPointComp->GetComponentLocation();
 	TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 }
+
+
+void UCombatComponent_LongRange::ChangeProjectileClass(TSubclassOf<AActor> &NewProjectileClass){CurrentProjectileClass = NewProjectileClass;}
+
+void UCombatComponent_LongRange::RevertBaseProjectileClass(){CurrentProjectileClass = BaseProjectileClass;}

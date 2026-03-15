@@ -62,24 +62,6 @@ void UStatsComponent::ReduceHealth(const float Damage)
 }
 
 
-void UStatsComponent::UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value)
-{
-	Stats[Stat] += Value;
-}
-
-
-float UStatsComponent::GetStatIncreasePreview(const EStats Stat, const float Delta)
-{
-	return Stats[Stat] + Delta;
-}
-
-
-FString UStatsComponent::GetStatUpgradeDescription(EStats Stat)
-{
-	return (StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat)).ToString();
-}
-
-
 FString UStatsComponent::GetStatUpgradePreview(EStats Stat, float Delta)
 {
 	const float NextValue = GetStatIncreasePreview(Stat, Delta);
@@ -116,34 +98,25 @@ float UStatsComponent::CalculateFinalReceivedDamage(const float Damage, const fl
 }
 
 
-float UStatsComponent::GetReducedDamage(const float Damage, const float ReductionPercent)
-{
-	return Damage - (ReductionPercent * Damage);
-}
-
-
-float UStatsComponent::GetStatPercentage(const EStats Current, const EStats Max) const
-{
-	return Stats[Current] / Stats[Max];
-}
-
-
-float UStatsComponent::GetStatValue(const EStats Stat) const
-{
-	return Stats[Stat];
-}
-
-
-FString UStatsComponent::GetStatName(const EStats Stat) const
-{
-	FString Name = UEnum::GetValueAsString(Stat); 
-	return Name;
-}
-
-
 void UStatsComponent::SetStatValue(const EStats Stat, const float NewValue)
 {
 	if (PercentageStats.Contains(Stat) && NewValue >= PercentStatCap)
 		Stats[Stat] = PercentStatCap;
 	else Stats[Stat] = NewValue;
 }
+
+
+
+void UStatsComponent::UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value){Stats[Stat] += Value;}
+
+float UStatsComponent::GetStatIncreasePreview(const EStats Stat, const float Delta){return Stats[Stat] + Delta;}
+
+float UStatsComponent::GetReducedDamage(const float Damage, const float ReductionPercent){return Damage - (ReductionPercent * Damage);}
+
+float UStatsComponent::GetStatPercentage(const EStats Current, const EStats Max) const{return Stats[Current] / Stats[Max];}
+
+float UStatsComponent::GetStatValue(const EStats Stat) const{return Stats[Stat];}
+
+FString UStatsComponent::GetStatName(const EStats Stat) const{return UEnum::GetValueAsString(Stat);}
+
+FString UStatsComponent::GetStatUpgradeDescription(EStats Stat){return (StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat)).ToString();}

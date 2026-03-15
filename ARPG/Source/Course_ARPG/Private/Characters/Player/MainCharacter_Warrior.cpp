@@ -70,31 +70,6 @@ float AMainCharacter_Warrior::GetDamageMultiplier()
 }
 
 
-void AMainCharacter_Warrior::SetArmor(const float Armor)
-{
-	StatsComp->SetStatValue(EStats::Armor, Armor);
-	StatsComp->SetStatValue(EStats::MaxArmor, Armor);
-}
-
-/*
-TSubclassOf<UDamageTypeBase> AMainCharacter_Warrior::GetEnchantmentDamageType() const
-{
-	switch (CurrentEffect)
-	{
-		case EEffects::Fire:
-			return UFireDamageType::StaticClass();
-		case EEffects::Ice:
-			return UIceDamageType::StaticClass();
-		case EEffects::Poison:
-			return UPoisonDamageType::StaticClass();
-		case EEffects::Empty:
-			return nullptr;
-		default:
-			return nullptr;
-	}
-}*/
-
-
 void AMainCharacter_Warrior::RemoveParticle()
 {
 	if (!WeaponEffectComp) return;
@@ -129,21 +104,20 @@ void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
 }
 
 
+void AMainCharacter_Warrior::HandleResetAttack()
+{
+	Super::HandleResetAttack();
+	TraceComp->HandleResetAttack();
+}
+
+
+
+void AMainCharacter_Warrior::SetArmor(const float Armor){StatsComp->SetStatValue(EStats::Armor, Armor);StatsComp->SetStatValue(EStats::MaxArmor, Armor);}
+
 bool AMainCharacter_Warrior::IsWeaponEnchanted() const
 {
 	if (CurrentEffect == EEffects::Empty) return false;
 	return true;
 }
 
-
-float AMainCharacter_Warrior::GetPhysicalDamage()
-{
-	return StatsComp->GetStatValue(PhysicalStrength) * GetDamageMultiplier();
-}
-
-
-void AMainCharacter_Warrior::HandleResetAttack()
-{
-	Super::HandleResetAttack();
-	TraceComp->HandleResetAttack();
-}
+float AMainCharacter_Warrior::GetPhysicalDamage(){return StatsComp->GetStatValue(PhysicalStrength) * GetDamageMultiplier();}

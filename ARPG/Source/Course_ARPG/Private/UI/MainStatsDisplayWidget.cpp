@@ -24,7 +24,4 @@ void UMainStatsDisplayWidget::SetText()
 }
 
 
-FText UMainStatsDisplayWidget::GetAsText(float Value, float MaxValue)
-{
-	return FText::FromString(FString::SanitizeFloat(Value) + " / " + FString::SanitizeFloat(MaxValue));
-}
+FText UMainStatsDisplayWidget::GetAsText(float Value, float MaxValue){return FText::FromString(FString::SanitizeFloat(Value) + " / " + FString::SanitizeFloat(MaxValue));}

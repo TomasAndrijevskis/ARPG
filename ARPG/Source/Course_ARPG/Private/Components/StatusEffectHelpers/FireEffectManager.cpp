@@ -47,7 +47,4 @@ void UFireEffectManager::ApplyProlongedDamage()
 }
 
 
-void UFireEffectManager::SetDamageResistance(float NewResistance)
-{
-	FireDamageResistance = NewResistance;
-}
+void UFireEffectManager::SetDamageResistance(float NewResistance){FireDamageResistance = NewResistance;}

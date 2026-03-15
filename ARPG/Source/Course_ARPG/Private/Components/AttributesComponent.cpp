@@ -64,25 +64,10 @@ TArray<EStats> UAttributesComponent::GetRelatedStats(EAttributes Attribute)
 }
 
 
-FString UAttributesComponent::GetAttributeName(EAttributes Attribute) const
-{
-	return UEnum::GetValueAsString(Attribute); 
-}
+void UAttributesComponent::SetAttributeValue(EAttributes Attribute, const int Value){	Attributes[Attribute] = Value;}
 
+FString UAttributesComponent::GetAttributeName(EAttributes Attribute) const{return UEnum::GetValueAsString(Attribute); }
 
-TArray<TEnumAsByte<EAttributes>>& UAttributesComponent::GetAttributes()
-{
-	return ArrAttributes;
-}
+TArray<TEnumAsByte<EAttributes>>& UAttributesComponent::GetAttributes(){return ArrAttributes;}
 
-
-void UAttributesComponent::SetAttributeValue(EAttributes Attribute, const int Value)
-{
-	Attributes[Attribute] = Value;
-}
-
-
-int UAttributesComponent::GetAttributeValue(EAttributes Attribute) const
-{
-	return Attributes[Attribute];
-}
+int UAttributesComponent::GetAttributeValue(EAttributes Attribute) const{return Attributes[Attribute];}

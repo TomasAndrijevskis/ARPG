@@ -24,7 +24,4 @@ void UAbComp_SummonMinions::StartAbility()
 }
 
 
-int UAbComp_SummonMinions::GetRandomSpawnDistance() const
-{
-	return FMath::RandRange(MinSpawnDistance, MaxSpawnDistance) * 100;
-}
+int UAbComp_SummonMinions::GetRandomSpawnDistance() const{return FMath::RandRange(MinSpawnDistance, MaxSpawnDistance) * 100;}

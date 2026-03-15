@@ -159,31 +159,12 @@ void UPlayerWidget::CreateResetWidget()
 }
 
 
-void UPlayerWidget::SetHealth(const float NewHealthPercent)
-{
-	ProgressBar_Health->SetPercent(NewHealthPercent);
-}
+void UPlayerWidget::SetHealth(const float NewHealthPercent){ProgressBar_Health->SetPercent(NewHealthPercent);}
 
+void UPlayerWidget::SetStamina(const float NewStaminaPercent){ProgressBar_Stamina->SetPercent(NewStaminaPercent);}
 
-void UPlayerWidget::SetStamina(const float NewStaminaPercent)
-{
-	ProgressBar_Stamina->SetPercent(NewStaminaPercent);
-}
+void UPlayerWidget::SetMana(const float NewManaPercent){ProgressBar_Mana->SetPercent(NewManaPercent);}
 
+void UPlayerWidget::SetLevel(const int CurrentLevel){TextBlock_Level->SetText(FText::AsNumber(CurrentLevel));}
 
-void UPlayerWidget::SetMana(const float NewManaPercent)
-{
-	ProgressBar_Mana->SetPercent(NewManaPercent);
-}
-
-
-void UPlayerWidget::SetLevel(const int CurrentLevel)
-{
-	TextBlock_Level->SetText(FText::AsNumber(CurrentLevel));
-}
-
-
-void UPlayerWidget::SetExperience(const float CurrentExperience)
-{
-	ProgressBar_Experience->SetPercent(CurrentExperience);
-}
+void UPlayerWidget::SetExperience(const float CurrentExperience){ProgressBar_Experience->SetPercent(CurrentExperience);}

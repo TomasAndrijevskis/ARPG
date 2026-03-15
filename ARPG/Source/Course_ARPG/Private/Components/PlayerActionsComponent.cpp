@@ -62,19 +62,8 @@ void UPlayerActionsComponent::FinishRollAnim()
 }
 
 
+void UPlayerActionsComponent::SetCanRoll(const bool CanRoll){bCanRoll = CanRoll;}
 
-bool UPlayerActionsComponent::CanRoll() const
-{
-	return bCanRoll;
-}
+bool UPlayerActionsComponent::CanRoll() const{return bCanRoll;}
 
-void UPlayerActionsComponent::SetCanRoll(const bool CanRoll)
-{
-	bCanRoll = CanRoll;
-}
-
-
-bool UPlayerActionsComponent::IsRollActive() const
-{
-	return bIsRollActive;
-}
+bool UPlayerActionsComponent::IsRollActive() const{return bIsRollActive;}

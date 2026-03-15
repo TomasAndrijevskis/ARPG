@@ -64,12 +64,6 @@ void UBTT_ChargeAttack::HandleMoveCompleted()
 }
 
 
-void UBTT_ChargeAttack::FinishAttackTask()
-{
-	bIsFinished = true;
-}
-
-
 void UBTT_ChargeAttack::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	if (OwnerComp.GetBlackboardComponent()->GetValueAsBool(TEXT("IsReadyToCharge")))
@@ -90,3 +84,6 @@ EBTNodeResult::Type UBTT_ChargeAttack::AbortTask(UBehaviorTreeComponent& OwnerCo
 	if (ControllerRef) ControllerRef->StopMovement();
 	return Super::AbortTask(OwnerComp, NodeMemory);
 }
+
+
+void UBTT_ChargeAttack::FinishAttackTask(){bIsFinished = true;}

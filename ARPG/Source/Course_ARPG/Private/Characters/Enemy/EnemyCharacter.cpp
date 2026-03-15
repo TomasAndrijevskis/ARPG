@@ -132,89 +132,11 @@ void AEnemyCharacter::SetResistances()
 }
 
 
-TSubclassOf<UDamageTypeBase> AEnemyCharacter::GetDamageType() const
-{
-	return BaseAttackDamageType;
-}
-
-
-float AEnemyCharacter::GetPhysicalDamage()
-{
-	return StatsComp->GetStatValue(EStats::PhysicalStrength);
-}
-
-
-float AEnemyCharacter::GetMagicalDamage() const
-{
-	return StatsComp->GetStatValue(EStats::MagicalStrength);
-}
-
-
-float AEnemyCharacter::GetAnimDuration() const
-{
-	return CombatComp->AnimDuration;
-}
-
-
-float AEnemyCharacter::GetMeleeRange() const
-{
-	return StatsComp->GetStatValue(EStats::MeleeRange);
-}
-
-
-float AEnemyCharacter::GetRangeDistance() const
-{
-	return StatsComp->GetStatValue(EStats::RangeDistance);
-}
-
-
-float AEnemyCharacter::GetElementalDamageModificator() const
-{
-	return StatsComp->GetStatValue(ElementalDamageModificator);
-}
-
-
-AAIController* AEnemyCharacter::GetAIController() const
-{
-	return ControllerRef;
-}
-
-
 float AEnemyCharacter::GetSightRadius() const
 {
 	UPawnSensingComponent* SensingComp = FindComponentByClass<UPawnSensingComponent>();
 	if (SensingComp) return SensingComp->SightRadius;
 	return 0;
-}
-
-
-UBlackboardComponent* AEnemyCharacter::GetBlackboardComp() const
-{
-	return BlackboardComp;
-}
-
-
-TEnumAsByte<EEnemyStates> AEnemyCharacter::GetInitialState() const
-{
-	return InitialState;
-}
-
-
-void AEnemyCharacter::SetInitialState(const TEnumAsByte<EEnemyStates> NewState)
-{
-	InitialState = NewState;
-}
-
-
-bool AEnemyCharacter::CanApplyDamage()
-{
-	return bCanApplyDamage;
-}
-
-
-void AEnemyCharacter::SetCanApplyDamage(bool NewCanApplyDamage)
-{
-	bCanApplyDamage = NewCanApplyDamage;
 }
 
 
@@ -225,3 +147,30 @@ float AEnemyCharacter::GetResistanceStatValue(const UDamageType* DamageType)
 	if (!DT) return 0;
 	return StatsComp->GetStatValue(DT->GetResistanceStat());
 }
+
+
+void AEnemyCharacter::SetInitialState(const TEnumAsByte<EEnemyStates> NewState){InitialState = NewState;}
+
+void AEnemyCharacter::SetCanApplyDamage(bool NewCanApplyDamage){bCanApplyDamage = NewCanApplyDamage;}
+
+UBlackboardComponent* AEnemyCharacter::GetBlackboardComp() const{return BlackboardComp;}
+
+TEnumAsByte<EEnemyStates> AEnemyCharacter::GetInitialState() const{return InitialState;}
+
+bool AEnemyCharacter::CanApplyDamage(){return bCanApplyDamage;}
+
+TSubclassOf<UDamageTypeBase> AEnemyCharacter::GetDamageType() const{return BaseAttackDamageType;}
+
+float AEnemyCharacter::GetPhysicalDamage(){return StatsComp->GetStatValue(EStats::PhysicalStrength);}
+
+float AEnemyCharacter::GetMagicalDamage() const{return StatsComp->GetStatValue(EStats::MagicalStrength);}
+
+float AEnemyCharacter::GetAnimDuration() const{return CombatComp->AnimDuration;}
+
+float AEnemyCharacter::GetMeleeRange() const{return StatsComp->GetStatValue(EStats::MeleeRange);}
+
+float AEnemyCharacter::GetRangeDistance() const{return StatsComp->GetStatValue(EStats::RangeDistance);}
+
+float AEnemyCharacter::GetElementalDamageModificator() const{return StatsComp->GetStatValue(ElementalDamageModificator);}
+
+AAIController* AEnemyCharacter::GetAIController() const{return ControllerRef;}

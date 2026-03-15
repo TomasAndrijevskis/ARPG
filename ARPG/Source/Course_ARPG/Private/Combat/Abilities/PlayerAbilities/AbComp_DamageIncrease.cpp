@@ -93,6 +93,8 @@ void UAbComp_DamageIncrease::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_DamageIncrease::GetDefaultDamageMultiplier() const{return DamageMultiplier;}
-float UAbComp_DamageIncrease::GetEnhancedDamageMultiplier() const{return DamageMultiplier + DamageMultiplier * PlayerRef->GetAbilityPowerPercent();;}
 void UAbComp_DamageIncrease::SetDamageMultiplier(float NewDamageMultiplier){DamageMultiplier = NewDamageMultiplier;}
+
+float UAbComp_DamageIncrease::GetDefaultDamageMultiplier() const{return DamageMultiplier;}
+
+float UAbComp_DamageIncrease::GetEnhancedDamageMultiplier() const{return DamageMultiplier + DamageMultiplier * PlayerRef->GetAbilityPowerPercent();;}

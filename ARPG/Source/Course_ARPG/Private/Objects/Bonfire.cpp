@@ -32,25 +32,10 @@ void ABonfire::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AAct
 }
 
 
-FString ABonfire::GetBonfireName() const
-{
-	return BonfireName;
-}
+void ABonfire::SetIsFirstTimeUsed(const bool NewIsFirstTimeUsed){bIsFirstTimeUsed = NewIsFirstTimeUsed;}
 
+FString ABonfire::GetBonfireName() const{return BonfireName;}
 
-FString ABonfire::GetMapName() const
-{
-	return MapName;
-}
+FString ABonfire::GetMapName() const{return MapName;}
 
-
-bool ABonfire::IsFirstTimeUsed() const
-{
-	return bIsFirstTimeUsed;
-}
-
-
-void ABonfire::SetIsFirstTimeUsed(const bool NewIsFirstTimeUsed)
-{
-	bIsFirstTimeUsed = NewIsFirstTimeUsed;
-}
+bool ABonfire::IsFirstTimeUsed() const{return bIsFirstTimeUsed;}

@@ -51,16 +51,12 @@ float AMainCharacter_Archer::GetPhysicalDamage()
 
 void AMainCharacter_Archer::ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* DamageInstigator, AActor* DamageCauser)
 {
-	UE_LOG(LogTemp, Warning, TEXT("ReceiveDamage"));
 	AEnemyCharacter* EnemyRef = nullptr;
 	if (DamageInstigator) EnemyRef = Cast<AEnemyCharacter>(DamageInstigator->GetPawn());
 	if (!EnemyRef) return;
-	UE_LOG(LogTemp, Warning, TEXT("EnemyRef"));
-	UE_LOG(LogTemp, Warning, TEXT("Damage: %f"), Damage);
 	if (EnemyRef->CanApplyDamage()) Super::ReceiveDamage(DamagedActor, Damage, DamageType, DamageInstigator, DamageCauser);
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("CantApplyDamage"));
 		float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,GetResistanceStatValue(DamageType));
 		AbilityComp_HealArrow->HandleEnemyHit(FinalDamage);
 	}

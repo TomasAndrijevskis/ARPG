@@ -25,12 +25,6 @@ void AGroundSmashArea::BeginPlay()
 }
 
 
-void AGroundSmashArea::SetParams(const float NewDamage)
-{
-	Damage = NewDamage;
-}
-
-
 void AGroundSmashArea::CheckPlayerInRange()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetWorld()->GetFirstPlayerController()->GetPawn());
@@ -44,3 +38,6 @@ void AGroundSmashArea::CheckPlayerInRange()
 		UGameplayStatics::ApplyDamage(PlayerRef, Damage, Cast<ACharacter>(GetOwner())->GetController(), this, DamageType);
 	this->Destroy();
 }
+
+
+void AGroundSmashArea::SetParams(const float NewDamage){Damage = NewDamage;}
