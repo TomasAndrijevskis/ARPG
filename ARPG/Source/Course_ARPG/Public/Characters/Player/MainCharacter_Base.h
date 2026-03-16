@@ -121,7 +121,7 @@ public:
 
 	int GetUsedAttributePoints() const;
 
-	void SetUsedAttributePoints(int UsedStatPoints);
+	void SetUsedAttributePoints(int UsedStatPoints) const;
 
 	void LoadAttributeData(TMap<TEnumAsByte<EAttributes>, int32> Data);
 	
@@ -193,6 +193,8 @@ public:
 	virtual void SpawnProjectile(){};
 
 	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
+
+	void SetCanMove(bool CanMove);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -270,6 +272,12 @@ private:
 	void HandleAbilityPointsAmountChange(const int NewPoints);
 
 	void BindDelegates();
+
+	UFUNCTION(BlueprintCallable)
+	void HandleSideMovementInput(float ScaleValue);
+
+	UFUNCTION(BlueprintCallable)
+	void HandleForwardMovementInput(float ScaleValue);
 	
 	UPROPERTY()
 	UPlayerWidget* PlayerWidgetRef;
@@ -299,4 +307,6 @@ private:
 	bool bIsInFight = false;
 	
 	int UsedAbilityPoints = 0;
+
+	bool bCanMove = true;
 };

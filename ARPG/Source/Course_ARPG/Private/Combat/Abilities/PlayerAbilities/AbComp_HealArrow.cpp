@@ -24,6 +24,7 @@ void UAbComp_HealArrow::StartAbility()
 		SetAbilityActive(true);
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::FinishAnimation, AnimDuration, false);
+		HandlePlayerActions(false, false, false);
 	}
 }
 
@@ -57,6 +58,7 @@ void UAbComp_HealArrow::SpawnArrow()
 void UAbComp_HealArrow::OnHitEnemy(AEnemyCharacter* NewEnemyRef)
 {
 	EnemyRef = NewEnemyRef;
+	EnemyRef->OnEnemyDiedDelegate.AddUObject(this, &UAbComp_HealArrow::OnEnemyDied);
 	TimerDuration = GetAbilityDuration();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::StartAbilityTimer, 1, true, 1);
 	CreateIcon();
@@ -65,6 +67,7 @@ void UAbComp_HealArrow::OnHitEnemy(AEnemyCharacter* NewEnemyRef)
 
 void UAbComp_HealArrow::OnHitNothing()
 {
+	
 	StartCooldown();
 }
 
@@ -97,21 +100,29 @@ void UAbComp_HealArrow::HandleEnemyHit(float Damage)
 		PlayerRef->HealPlayer(RemainingHealAmount);
 		PlayerRef->ReduceHealth(RemainingDamage, EnemyRef);
 		OnAbilityFinishedDelegate.Broadcast();
+		InterruptAbilityTimer();
 	}
 }
 
 
 void UAbComp_HealArrow::OnAbilityFinished()
 {
-	EnemyRef->SetCanApplyDamage(true);
+	if (EnemyRef) EnemyRef->SetCanApplyDamage(true);
+	EnemyRef = nullptr;
 	HealCap = MaxHealCap;
-	InterruptAbilityTimer();
 }
 
 
 void UAbComp_HealArrow::InterruptAbilityTimer()
 {
 	TimerDuration = 0;
+}
+
+
+void UAbComp_HealArrow::OnEnemyDied(AEnemyCharacter* Enemy)
+{
+	OnAbilityFinishedDelegate.Broadcast();
+	InterruptAbilityTimer();
 }
 
 

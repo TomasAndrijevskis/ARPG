@@ -16,6 +16,7 @@ void UAbComp_FrostBlast::StartAbility()
 		SpawnEffect(Warmup);
 		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
+		HandlePlayerActions(false, false, false);
 	}
 }
 

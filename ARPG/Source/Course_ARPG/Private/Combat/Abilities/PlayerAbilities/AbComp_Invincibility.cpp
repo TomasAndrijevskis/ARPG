@@ -20,6 +20,7 @@ void UAbComp_Invincibility::StartAbility()
 		SetAbilityActive(true);
 		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
+		HandlePlayerActions(false, false, true);
 	}
 }
 

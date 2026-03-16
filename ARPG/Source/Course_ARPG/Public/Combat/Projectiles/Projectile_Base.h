@@ -23,6 +23,8 @@ public:
 	void StartAliveTimer();
 	
 	void SetProjectileOwner(AActor* NewProjectileOwner);
+
+	AActor* GetProjectileOwner() const;
 	
 protected:
 

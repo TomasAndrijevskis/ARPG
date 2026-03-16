@@ -14,6 +14,7 @@
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
 #include "Data/PersistentData/PlayerMainStatsData.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/PlayerWidget.h"
 
@@ -62,6 +63,24 @@ void AMainCharacter_Base::BindDelegates()
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
 	FOnBonfireInteractionFinishedDelegate.AddUObject(StatsComp, &UStatsComponent::RestoreStats);
 	OnTakeAnyDamage.AddDynamic(this, &ThisClass::ReceiveDamage);
+}
+
+
+void AMainCharacter_Base::HandleSideMovementInput(float ScaleValue)
+{
+	if (!bCanMove) return;
+	FRotator ControllerRotation = this->GetControlRotation();
+	FRotator Rotation = FRotator(0, ControllerRotation.Yaw, ControllerRotation.Roll);
+	AddMovementInput(UKismetMathLibrary::GetRightVector(Rotation), ScaleValue);
+}
+
+
+void AMainCharacter_Base::HandleForwardMovementInput(float ScaleValue)
+{
+	if (!bCanMove) return;
+	FRotator ControllerRotation = this->GetControlRotation();
+	FRotator Rotation = FRotator(0, ControllerRotation.Yaw, 0);
+	AddMovementInput(UKismetMathLibrary::GetForwardVector(Rotation), ScaleValue);
 }
 
 
@@ -417,7 +436,6 @@ void AMainCharacter_Base::HandleAbilityPointsAmountChange(const int NewPoints)
 }
 
 
-
 void AMainCharacter_Base::ReduceStamina(float Stamina)
 {
 	StatsComp->OnReduceStaminaRequestDelegate.Broadcast(Stamina);
@@ -466,7 +484,9 @@ void AMainCharacter_Base::SetCanAttack(bool bCanAttack){CombatComp->SetCanAttack
 
 void AMainCharacter_Base::SetCanRoll(bool bCanRoll){PlayerActionsComp->SetCanRoll(bCanRoll);}
 
-void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints){LevelComp->SetUsedAttributePoints(UsedStatPoints);}
+void AMainCharacter_Base::SetCanMove(bool CanMove){ bCanMove = CanMove;}
+
+void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints) const{LevelComp->SetUsedAttributePoints(UsedStatPoints);}
 
 float AMainCharacter_Base::GetPhysicalDamage(){return StatsComp->GetStatValue(EStats::PhysicalStrength);}
 
@@ -486,8 +506,6 @@ int AMainCharacter_Base::GetUsedAttributePoints() const{return LevelComp->GetUse
 
 int AMainCharacter_Base::GetUsedAbilityPoints() const{return UsedAbilityPoints;}
 
-AActor* AMainCharacter_Base::GetCurrentTargetActor() const{return LockonComp->CurrentTargetActor;}
-
 bool AMainCharacter_Base::CanPlayHurtAnimation() const{return bCanPlayHurtAnim;}
 
 bool AMainCharacter_Base::HasEnoughStamina(const float Stamina) const{return StatsComp->GetStatValue(EStats::Stamina) >= Stamina;}
@@ -495,6 +513,8 @@ bool AMainCharacter_Base::HasEnoughStamina(const float Stamina) const{return Sta
 bool AMainCharacter_Base::HasEnoughMana(const float Mana) const{return StatsComp->GetStatValue(EStats::Mana) >= Mana;}
 
 bool AMainCharacter_Base::IsPlayerLockedOnEnemy() const{return LockonComp->IsLocked();}
+
+AActor* AMainCharacter_Base::GetCurrentTargetActor() const{return LockonComp->CurrentTargetActor;}
 
 UPlayerWidget* AMainCharacter_Base::GetPlayerWidget() const{return PlayerWidgetRef;}
 

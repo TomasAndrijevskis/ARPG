@@ -37,6 +37,8 @@ public:
 	void SetHealPercent(float NewHealPercent);
 	
 	float GetHealPercent() const;
+
+	void OnEnemyDied(AEnemyCharacter* Enemy);
 	
 protected:
 

@@ -17,6 +17,7 @@ void UAbComp_RangeAttack::StartAbility()
 		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
 		SpawnParticle();
+		HandlePlayerActions(false, false, false);
 	}
 }
 

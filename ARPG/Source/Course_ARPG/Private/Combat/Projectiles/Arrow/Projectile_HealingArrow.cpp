@@ -14,20 +14,22 @@ AProjectile_HealingArrow::AProjectile_HealingArrow()
 
 void AProjectile_HealingArrow::HandleBeginOverlap(AActor* OtherActor)
 {
-	if (!OtherActor || OtherActor == this) return;
-	ACharacter* CharacterRef = Cast<ACharacter>(OtherActor);
-	if (!CharacterRef)
+	if (!OtherActor || OtherActor == this || OtherActor == GetProjectileOwner() || !IsOpponentHit(OtherActor))
 	{
 		bHitEnemy = false;
 		HandleDestruction();
 		return;
 	}
-	if (!IsOpponentHit(OtherActor)) return;
 	EnemyRef = Cast<AEnemyCharacter>(OtherActor);
-	if (EnemyRef)
+	if (EnemyRef != nullptr)
 	{
 		EnemyRef->SetCanApplyDamage(false);
 		bHitEnemy = true;
+		HandleDestruction();
+	}
+	else
+	{
+		bHitEnemy = false;
 		HandleDestruction();
 	}
 }

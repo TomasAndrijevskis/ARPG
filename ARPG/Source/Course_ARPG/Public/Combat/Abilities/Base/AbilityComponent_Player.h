@@ -97,7 +97,7 @@ protected:
 
 	bool CanPlayMontage() const;
 
-	void HandlePlayerActions(const bool bCanDo);
+	void HandlePlayerActions(const bool bCanAttack, const bool bCanRoll, const bool bCanMove);
 
 	bool HasEnoughMana() const;
 

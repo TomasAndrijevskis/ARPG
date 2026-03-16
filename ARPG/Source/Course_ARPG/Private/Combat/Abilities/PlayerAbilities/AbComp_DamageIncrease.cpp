@@ -21,6 +21,7 @@ void UAbComp_DamageIncrease::StartAbility()
 		SetAbilityActive(true);
 		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
+		HandlePlayerActions(false, false, true);
 	}
 }
 

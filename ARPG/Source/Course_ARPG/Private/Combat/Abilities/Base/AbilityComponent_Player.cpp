@@ -42,20 +42,19 @@ void UAbilityComponent_Player::StartCooldownTimer()
 }
 
 
-void UAbilityComponent_Player::HandlePlayerActions(const bool bCanDo)
+void UAbilityComponent_Player::HandlePlayerActions(const bool bCanAttack, const bool bCanRoll, const bool bCanMove)
 {
 	if (!PlayerRef) return;
-	PlayerRef->SetCanAttack(bCanDo);
-	PlayerRef->SetCanRoll(bCanDo);
+	PlayerRef->SetCanAttack(bCanAttack);
+	PlayerRef->SetCanRoll(bCanRoll);
+	PlayerRef->SetCanMove(bCanMove);
 }
 
 
 bool UAbilityComponent_Player::HasEnoughMana() const 
 {
-	if (!PlayerRef || !PlayerRef -> Implements<UMainPlayer>()) return false;
-	IMainPlayer* IPlayerRef = Cast<IMainPlayer>(PlayerRef);
-	if (!IPlayerRef) return false;
-	return IPlayerRef->HasEnoughMana(ManaCost);
+	if (!PlayerRef) return false;
+	return PlayerRef->HasEnoughMana(ManaCost);
 }
 
 
@@ -65,7 +64,6 @@ void UAbilityComponent_Player::StartAbilityTimer()
 	{
 		TimerDuration--;
 		OnAbilityTimerChangedDelegate.Broadcast(TimerDuration);
-		UE_LOG(LogTemp, Warning, TEXT("TimerDuration: %f"), TimerDuration);
 	}
 	else
 	{
@@ -82,7 +80,6 @@ void UAbilityComponent_Player::StartAbility()
 	SkeletalMeshComp = PlayerRef->GetSkeletalMeshComponent();
 	PlayerRef->SetCanPlayHurtAnimation(false);
 	PlayerRef->InterruptHurtAnimation();
-	HandlePlayerActions(false);
 }
 
 
@@ -90,7 +87,7 @@ void UAbilityComponent_Player::FinishAbilityCast()
 {
 	if (!PlayerRef) return;
 	PlayerRef->SetCanPlayHurtAnimation(true);
-	HandlePlayerActions(true);
+	HandlePlayerActions(true, true, true);
 	OnAbilityStartedDelegate.Broadcast();
 }
 

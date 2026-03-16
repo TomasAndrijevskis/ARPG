@@ -69,3 +69,5 @@ void AProjectile_Base::StartAliveTimer()
 void AProjectile_Base::SetProjectileOwner(AActor* NewProjectileOwner){ProjectileOwner = NewProjectileOwner;}
 
 void AProjectile_Base::SetParams(const float NewDamage, const float NewAliveTime, const float NewModificator){Damage = NewDamage;AliveTime = NewAliveTime;ElementalDamageModificator = NewModificator;}
+
+AActor* AProjectile_Base::GetProjectileOwner() const{return ProjectileOwner;}
