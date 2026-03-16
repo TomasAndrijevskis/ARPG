@@ -2,7 +2,6 @@
 #include "Combat/Projectiles/Projectile_Base.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Combat/DamageTypes.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
@@ -39,9 +38,9 @@ void AProjectile_Base::HandleBeginOverlap(AActor* OtherActor)
 void AProjectile_Base::HandleDestruction()
 {
 	FindComponentByClass<UProjectileMovementComponent>()->StopMovementImmediately();
+	FindComponentByClass<UPrimitiveComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	FTimerHandle DeathTimerHandle;
 	GetWorldTimerManager().SetTimer(DeathTimerHandle, this, &AProjectile_Base::DestroyProjectile, 0.5f);
-	FindComponentByClass<UPrimitiveComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 

@@ -1,7 +1,6 @@
 
 #include "Combat/Projectiles/Arrow/Projectile_HealingArrow.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "GameFramework/Character.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
@@ -37,7 +36,7 @@ void AProjectile_HealingArrow::HandleBeginOverlap(AActor* OtherActor)
 
 void AProjectile_HealingArrow::HandleDestruction()
 {
-	if (bHitEnemy) OnHitEnemy.Broadcast(EnemyRef);
+	if (bHitEnemy && EnemyRef != nullptr) OnHitEnemy.Broadcast(EnemyRef);
 	else OnHitNothing.Broadcast();
 	Super::HandleDestruction();
 }

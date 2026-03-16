@@ -24,8 +24,6 @@ public:
 
 	virtual void StartAbility() override;
 
-	virtual void FinishAbilityCast() override;
-
 	void SpawnArrow();
 
 	void HandleEnemyHit(float Damage);
@@ -36,8 +34,10 @@ public:
 
 	void SetHealPercent(float NewHealPercent);
 	
-	float GetHealPercent() const;
+	float GetDefaultHealPercent() const;
 
+	float GetEnhancedHealPercent() const;
+	
 	void OnEnemyDied(AEnemyCharacter* Enemy);
 	
 protected:

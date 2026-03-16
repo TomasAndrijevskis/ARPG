@@ -57,6 +57,7 @@ void UAbComp_HealArrow::SpawnArrow()
 
 void UAbComp_HealArrow::OnHitEnemy(AEnemyCharacter* NewEnemyRef)
 {
+	SetAbilityActive(false);
 	EnemyRef = NewEnemyRef;
 	EnemyRef->OnEnemyDiedDelegate.AddUObject(this, &UAbComp_HealArrow::OnEnemyDied);
 	TimerDuration = GetAbilityDuration();
@@ -67,15 +68,8 @@ void UAbComp_HealArrow::OnHitEnemy(AEnemyCharacter* NewEnemyRef)
 
 void UAbComp_HealArrow::OnHitNothing()
 {
-	
-	StartCooldown();
-}
-
-
-void UAbComp_HealArrow::FinishAbilityCast()
-{
-	Super::FinishAbilityCast();
 	SetAbilityActive(false);
+	StartCooldown();
 }
 
 
@@ -135,10 +129,10 @@ void UAbComp_HealArrow::CreateIcon()
 void UAbComp_HealArrow::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Mark an enemy and\nheal from their attacks"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nMax heal amount: %.2f\nHeal percent: %.2f\n\nDefault : %.2f%%\nAP modifier: +%.2f%%"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetHealCap(), GetHealPercent(),
-	1.f,
-	1.f));
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nMax heal amount: %.2f\nHeal percent: %.2f\n\nDefault heal percent: %.2f%%\nAP modifier: +%.2f%%"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetHealCap(),
+	GetEnhancedHealPercent(), GetDefaultHealPercent(),
+	GetEnhancedHealPercent() - GetDefaultHealPercent()));
 }
 
 
@@ -151,7 +145,7 @@ void UAbComp_HealArrow::UpdateUpgradeDescription()
 		GetCooldownDuration(), NextLevelData->CooldownDuration,
 		GetAbilityDuration(), NextLevelData->AbilityDuration,
 		GetHealCap(), NextLevelData->HealCap,
-		GetHealPercent(), NextLevelData->HealPercent));
+		GetDefaultHealPercent(), NextLevelData->HealPercent));
 }
 
 
@@ -179,4 +173,6 @@ void UAbComp_HealArrow::SetHealPercent(float NewHealPercent){HealPercent = NewHe
 
 float UAbComp_HealArrow::GetHealCap() const{return MaxHealCap;}
 
-float UAbComp_HealArrow::GetHealPercent() const{return HealPercent;}
+float UAbComp_HealArrow::GetDefaultHealPercent() const{return HealPercent;}
+
+float UAbComp_HealArrow::GetEnhancedHealPercent() const{ return HealPercent + HealPercent * PlayerRef->GetAbilityPowerPercent(); }
