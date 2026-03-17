@@ -28,6 +28,8 @@ public:
 
 	void HandleEnemyHit(float Damage);
 
+	void OnEnemyDied(AEnemyCharacter* Enemy);
+	
 	void SetHealCap(float NewHealCap);
 
 	float GetHealCap() const;
@@ -37,8 +39,7 @@ public:
 	float GetDefaultHealPercent() const;
 
 	float GetEnhancedHealPercent() const;
-	
-	void OnEnemyDied(AEnemyCharacter* Enemy);
+
 	
 protected:
 

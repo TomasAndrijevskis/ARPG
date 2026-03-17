@@ -6,6 +6,7 @@
 #include "AnimInstance_Archer.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(FOnHealingArrowFireRequestDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnArrowBarrageSpawnRequestDelegate);
 UCLASS()
 class COURSE_ARPG_API UAnimInstance_Archer : public UAnimInstance_Player
 {
@@ -14,6 +15,8 @@ class COURSE_ARPG_API UAnimInstance_Archer : public UAnimInstance_Player
 public:
 
 	FOnHealingArrowFireRequestDelegate OnHealingArrowFireRequest;
+
+	FOnArrowBarrageSpawnRequestDelegate OnArrowBarrageSpawnRequest;
 	
 protected:
 
@@ -23,4 +26,7 @@ private:
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void FireHealingArrow();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void SpawnArrowBarrage();
 };

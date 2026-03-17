@@ -23,6 +23,7 @@ void UAbComp_HealArrow::StartAbility()
 	{
 		SetAbilityActive(true);
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
+		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::FinishAnimation, AnimDuration, false);
 		HandlePlayerActions(false, false, false);
 	}

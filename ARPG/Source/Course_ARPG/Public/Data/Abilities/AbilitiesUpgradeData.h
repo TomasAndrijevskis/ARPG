@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ArrowBarragePropertiesData.h"
 #include "DamageIncreasePropertiesData.h"
 #include "FireStormPropertiesData.h"
 #include "FrostBlastPropertiesData.h"
@@ -48,4 +49,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TArray<FHealArrowPropertiesData> HealArrowLevels;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FArrowBarragePropertiesData> ArrowBarrageLevels;
 };

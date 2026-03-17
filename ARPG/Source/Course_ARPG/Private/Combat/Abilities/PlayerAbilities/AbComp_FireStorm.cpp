@@ -4,7 +4,6 @@
 #include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FireStorm.h"
 #include "Kismet/GameplayStatics.h"
-#include "Kismet/KismetMathLibrary.h"
 
 
 void UAbComp_FireStorm::StartAbility()
@@ -23,14 +22,9 @@ void UAbComp_FireStorm::StartAbility()
 void UAbComp_FireStorm::SpawnFireStorm()
 {
 	if (!PlayerRef) return;
-	const FVector PlayerLocation = GetOwner()->GetActorLocation();
-	const FVector TargetLocation = PlayerRef->GetTargetLocation(250.f);
-	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(PlayerLocation, TargetLocation);
-	FActorSpawnParameters Params;
-	Params.Owner = GetOwner();
-	FTransform SpawnTransform(SpawnRotation, TargetLocation);
+	FTransform SpawnTransform = GetSpawnTransform(250.f);
 	FireStormRef = GetWorld()->SpawnActorDeferred<AFireStorm>(FireStormClass, SpawnTransform);
-	FireStormRef->SetProperties(BurnDuration, GetEnhancedBurnDamage(), BurnRate);
+	FireStormRef->SetParams(BurnDuration, GetEnhancedBurnDamage(), BurnRate);
 	UGameplayStatics::FinishSpawningActor(FireStormRef, SpawnTransform);
 	FinishAbilityCast();
 }

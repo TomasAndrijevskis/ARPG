@@ -6,6 +6,7 @@
 #include "MainCharacter_Archer.generated.h"
 
 
+class UAbComp_ArrowBarrage;
 class UAbComp_HealArrow;
 
 UCLASS()
@@ -27,6 +28,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_HealArrow* AbilityComp_HealArrow;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAbComp_ArrowBarrage* AbilityComp_ArrowBarrage;
 
 protected:
 

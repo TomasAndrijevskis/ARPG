@@ -14,3 +14,9 @@ void UAnimInstance_Archer::FireHealingArrow()
 {
 	OnHealingArrowFireRequest.Broadcast();
 }
+
+
+void UAnimInstance_Archer::SpawnArrowBarrage()
+{
+	OnArrowBarrageSpawnRequest.Broadcast();
+}

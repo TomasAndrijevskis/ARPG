@@ -59,5 +59,5 @@ private:
 	float BurnDamage = 0.f;
 
 	UPROPERTY(EditAnywhere)
-	float BurnRate = .2f;
+	float BurnRate;
 };

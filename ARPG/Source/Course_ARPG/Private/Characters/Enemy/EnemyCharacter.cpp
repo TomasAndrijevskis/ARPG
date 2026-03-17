@@ -106,7 +106,7 @@ void AEnemyCharacter::ReceiveDamage(AActor* DamagedActor, const float Damage, co
 	AActor* SafeCauser = IsValid(DamageCauser) ? DamageCauser : nullptr;
 	if (Cast<AEnemyCharacter>(SafeCauser)) return;
 	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,GetResistanceStatValue(DamageType));
-	UE_LOG(LogTemp, Warning, TEXT("FinalDamage: %f"), FinalDamage);
+	UE_LOG(LogTemp, Warning, TEXT("Enemy received: %f"), FinalDamage);
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, SafeCauser);
 }
 

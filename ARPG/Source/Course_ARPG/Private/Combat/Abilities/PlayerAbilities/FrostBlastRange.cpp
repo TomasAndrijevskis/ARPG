@@ -17,11 +17,6 @@ AFrostBlastRange::AFrostBlastRange()
 	RangeEffect->SetupAttachment(Collision);
 }
 
-void AFrostBlastRange::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
 
 void AFrostBlastRange::CheckEnemiesInRange()
 {

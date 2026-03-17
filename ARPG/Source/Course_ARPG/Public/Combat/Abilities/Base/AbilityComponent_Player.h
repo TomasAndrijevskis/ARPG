@@ -88,6 +88,8 @@ public:
 	virtual void StartAbility() override;
 
 	virtual void FinishAbilityCast() override;
+
+	FTransform GetSpawnTransform(float DefaultSpawnDistance) const;
 	
 protected:
 

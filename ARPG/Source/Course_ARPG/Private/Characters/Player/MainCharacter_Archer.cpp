@@ -2,6 +2,7 @@
 #include "Characters/Player/MainCharacter_Archer.h"
 #include "Animations/Player/AnimInstance_Archer.h"
 #include "Characters/Enemy/EnemyCharacter.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_ArrowBarrage.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealArrow.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_LongRange.h"
@@ -11,8 +12,10 @@
 AMainCharacter_Archer::AMainCharacter_Archer()
 {
 	AbilityComp_HealArrow = CreateDefaultSubobject<UAbComp_HealArrow>(TEXT("Healing Arrow"));
+	AbilityComp_ArrowBarrage = CreateDefaultSubobject<UAbComp_ArrowBarrage>(TEXT("Arrow Barrage"));
 	CombatComp = CreateDefaultSubobject<UCombatComponent_LongRange>(TEXT("Combat Component"));
 	AddToAbilitiesArray(AbilityComp_HealArrow);
+	AddToAbilitiesArray(AbilityComp_ArrowBarrage);
 }
 
 
@@ -22,11 +25,14 @@ void AMainCharacter_Archer::BeginPlay()
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceStamina);
 }
 
+
 void AMainCharacter_Archer::BindAbilityDelegates()
 {
 	AbilityComp_HealArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-
+	AbilityComp_ArrowBarrage->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	
 	Cast<UAnimInstance_Archer>(PlayerAnimInstance)->OnHealingArrowFireRequest.AddUObject(AbilityComp_HealArrow, &UAbComp_HealArrow::SpawnArrow);
+	Cast<UAnimInstance_Archer>(PlayerAnimInstance)->OnArrowBarrageSpawnRequest.AddUObject(AbilityComp_ArrowBarrage, &UAbComp_ArrowBarrage::SpawnArrowBarrage);
 }
 
 

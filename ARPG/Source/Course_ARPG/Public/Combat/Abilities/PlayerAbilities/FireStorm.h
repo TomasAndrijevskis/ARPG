@@ -6,7 +6,6 @@
 #include "FireStorm.generated.h"
 
 
-class AEnemyCharacter;
 class UNiagaraSystem;
 class UBoxComponent;
 
@@ -26,7 +25,7 @@ public:
 	void OnComponentEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	
-	void SetProperties(const float NewDuration, const float NewDamage, const float NewBurnRate);
+	void SetParams(const float NewDuration, const float NewDamage, const float NewBurnRate);
 
 private:
 
@@ -37,9 +36,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	UBoxComponent* CollisionBox;
-
-	UPROPERTY()
-	AEnemyCharacter* OverlappedActor;
 	
 	float BurnDuration;
 	

@@ -23,10 +23,6 @@ public:
 	
 	void CheckEnemiesInRange();
 	
-protected:
-
-	virtual void BeginPlay() override;
-	
 private:
 	
 	UPROPERTY(EditDefaultsOnly)

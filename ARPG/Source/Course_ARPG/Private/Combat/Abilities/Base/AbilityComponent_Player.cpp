@@ -5,6 +5,7 @@
 #include "Data/Abilities//AbilitiesUpgradeData.h"
 #include "Components/LevelingComponent.h"
 #include "Data/Abilities/AbilitySaveData.h"
+#include "Kismet/KismetMathLibrary.h"
 
 
 void UAbilityComponent_Player::BeginPlay()
@@ -189,6 +190,17 @@ UTexture2D* UAbilityComponent_Player::GetIcon() const
 {
 	if (!Icon) return nullptr;
 	return Icon;
+}
+
+
+
+FTransform UAbilityComponent_Player::GetSpawnTransform(float DefaultSpawnDistance) const
+{
+	const FVector PlayerLocation = GetOwner()->GetActorLocation();
+	const FVector TargetLocation = PlayerRef->GetTargetLocation(DefaultSpawnDistance);
+	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(PlayerLocation, TargetLocation);
+	FTransform SpawnTransform(SpawnRotation, TargetLocation);
+	return SpawnTransform;
 }
 
 
