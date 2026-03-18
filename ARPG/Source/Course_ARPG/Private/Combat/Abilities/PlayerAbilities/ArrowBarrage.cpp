@@ -31,7 +31,6 @@ void AArrowBarrage::BeginPlay()
 void AArrowBarrage::DeactivateParticle()
 {
 	Particle->DeactivateSystem();
-	UE_LOG(LogTemp, Warning, TEXT("OnParticleFinished"));
 	OnParticleFinishedDelegate.Broadcast();
 	this->Destroy();
 }

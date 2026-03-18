@@ -13,7 +13,4 @@ struct COURSE_ARPG_API FArrowBarragePropertiesData: public FAbilityPropertiesBas
 	
 	UPROPERTY(EditDefaultsOnly)
 	float Damage = 0;
-
-	UPROPERTY(EditDefaultsOnly)
-	float Duration = 0;
 };
