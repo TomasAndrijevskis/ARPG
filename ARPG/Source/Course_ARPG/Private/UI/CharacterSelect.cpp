@@ -1,6 +1,5 @@
 
 #include "UI/CharacterSelect.h"
-#include "Data/CharacterSelectionData.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 
@@ -8,20 +7,16 @@
 void UCharacterSelect::NativeConstruct()
 {
 	Super::NativeConstruct();
-	SetData();
 	Button_SelectCharacter->OnClicked.AddDynamic(this, &UCharacterSelect::SetCharacterClass);
 }
 
 
-void UCharacterSelect::SetData()
+void UCharacterSelect::SetCharacterData(const FCharacterSelectionData* Data)
 {
-	FCharacterSelectionData* CharacterRow = CharactersDataTable->FindRow<FCharacterSelectionData>(CharacterData.RowName, TEXT("Character class to look for"));
-	if (CharacterRow)
-	{
-		Text_CharacterName->SetText(CharacterRow->Description);
-		SetButtonStyle(CharacterRow->Image);
-		CharacterClass = CharacterRow->SelectedCharacterClass;
-	}
+	if (!Data) return;
+	SetButtonStyle(Data->Image);
+	SetText(Data->Name);
+	CharacterClass = Data->SelectedCharacterClass;
 }
 
 
@@ -49,4 +44,10 @@ void UCharacterSelect::ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyl
 {
 	BrushStyle.SetResourceObject(Image);
 	BrushStyle.TintColor = Color;
+}
+
+
+void UCharacterSelect::SetText(const FText& CharacterName)
+{
+	Text_CharacterName->SetText(CharacterName);
 }

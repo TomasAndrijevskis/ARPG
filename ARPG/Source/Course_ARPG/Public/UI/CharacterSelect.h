@@ -20,6 +20,8 @@ public:
 
 	virtual void NativeConstruct() override;
 
+	void SetCharacterData(const FCharacterSelectionData* Data);
+	
 protected:
 
 	UPROPERTY(EditAnywhere)
@@ -32,18 +34,15 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_CharacterName;
-	
-	void SetData();
 
 	void SetButtonStyle(UTexture2D* Image);
 
 	void ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushStyle, const FSlateColor& Color);
+
+	void SetText(const FText& CharacterName);
 	
 	UFUNCTION()
 	void SetCharacterClass();
-
-	UPROPERTY(EditAnywhere)
-	FDataTableRowHandle CharacterData;
 
 	TSubclassOf<AMainCharacter_Base> CharacterClass;
 };

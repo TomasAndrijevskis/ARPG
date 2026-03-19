@@ -7,16 +7,16 @@
 class AMainCharacter_Base;
 
 USTRUCT(BlueprintType)
-struct COURSE_ARPG_API FCharacterSelectionData : public FTableRowBase
+struct COURSE_ARPG_API FCharacterSelectionData
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AMainCharacter_Base> SelectedCharacterClass;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	FText Description;
+	UPROPERTY(EditDefaultsOnly)
+	FText Name;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* Image;
 };
