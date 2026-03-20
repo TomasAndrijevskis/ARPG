@@ -9,7 +9,7 @@
 class UConfirmationWindow;
 class UEnchantmentButton;
 class UHorizontalBox;
-class UButton;
+class UMenuButtonBase;
 
 UCLASS()
 class COURSE_ARPG_API UEnchantmentMenuWidget : public UUserWidget
@@ -26,10 +26,10 @@ private:
 	UHorizontalBox* HorizontalBox_Elements;
 
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_Close;
+	UMenuButtonBase* Button_Close;
 
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_RemoveEnchantment;
+	UMenuButtonBase* Button_RemoveEnchantment;
 	
 	void CreateButtons();
 	

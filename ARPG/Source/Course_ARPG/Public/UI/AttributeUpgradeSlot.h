@@ -9,6 +9,7 @@
 #include "AttributeUpgradeSlot.generated.h"
 
 
+class UMenuButtonBase;
 class UDescriptionWidget;
 
 UCLASS()
@@ -33,8 +34,8 @@ private:
 	UTextBlock* Text_AttributeName;
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_ImproveAttribute;
-
+	UMenuButtonBase* Button_ImproveAttribute;
+	
 	UFUNCTION()
 	void OnImproveAttributeClicked();
 	

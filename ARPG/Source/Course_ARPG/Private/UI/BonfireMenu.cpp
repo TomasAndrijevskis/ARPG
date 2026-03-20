@@ -3,6 +3,7 @@
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/Button.h"
 #include "UI/PlayerWidget.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UBonfireMenu::Init(UPlayerWidget* PlayerWidget)
@@ -15,14 +16,15 @@ void UBonfireMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 	if (!PlayerWidgetRef) return;
-	Button_QuitBonfire->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RequestToRemoveWidget);
-	Button_AbilitiesScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
-	Button_AttributesScreen->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAttributesUpgradeScreen);
-	Button_QuickTravelMenu->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateQuickTravelMenuWidget);
-	Button_QuitBonfire->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_QuickTravelMenu->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_AbilitiesScreen->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_AttributesScreen->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_QuitBonfire->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RequestToRemoveWidget);
+	Button_AbilitiesScreen->Button->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
+	Button_AttributesScreen->Button->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAttributesUpgradeScreen);
+	Button_QuickTravelMenu->Button->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateQuickTravelMenuWidget);
+	
+	Button_QuitBonfire->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_QuickTravelMenu->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_AbilitiesScreen->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_AttributesScreen->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
 }
 
 

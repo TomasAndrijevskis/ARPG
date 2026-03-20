@@ -5,13 +5,14 @@
 #include "Components/TextBlock.h"
 #include "Data//BonfireData.h"
 #include "UI/TransitionAnim.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UQuickTravelButton::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_QuickTravel->OnClicked.Clear();
-	Button_QuickTravel->OnClicked.AddDynamic(this, &UQuickTravelButton::TeleportPlayer);
+	Button_QuickTravel->Button->OnClicked.Clear();
+	Button_QuickTravel->Button->OnClicked.AddDynamic(this, &UQuickTravelButton::TeleportPlayer);
 }
 
 
@@ -19,8 +20,8 @@ void UQuickTravelButton::InitializeButton(const FString& NewTravelLocationName, 
 {
 	TravelMapName = BonfireData.MapName;
 	TravelLocation = BonfireData.Location;
-	Text_QuickTravelLocation->SetText(FText::FromString(NewTravelLocationName));
-	if (CurrentBonfireName == NewTravelLocationName) Button_QuickTravel->SetIsEnabled(false);
+	Button_QuickTravel->ChangeText(NewTravelLocationName);
+	if (CurrentBonfireName == NewTravelLocationName) Button_QuickTravel->Button->SetIsEnabled(false);
 }
 
 

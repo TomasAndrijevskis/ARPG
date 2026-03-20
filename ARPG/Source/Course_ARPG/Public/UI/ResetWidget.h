@@ -7,7 +7,7 @@
 
 
 class UConfirmationWindow;
-class UButton;
+class UMenuButtonBase;
 
 UENUM(BlueprintType)
 enum EResetType
@@ -31,13 +31,13 @@ public:
 private:
 
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_ResetAbilities;
+	UMenuButtonBase* Button_ResetAbilities;
 
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_ResetAttributes;
+	UMenuButtonBase* Button_ResetAttributes;
 
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_Close;
+	UMenuButtonBase* Button_Close;
 
 	UFUNCTION()
 	void RemoveWidget();

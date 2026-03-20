@@ -7,8 +7,8 @@
 
 
 class UControlSlot;
-class UButton;
 class UVerticalBox;
+class UMenuButtonBase;
 
 UCLASS()
 class COURSE_ARPG_API UPauseMenu : public UUserWidget
@@ -24,13 +24,13 @@ public:
 private:
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_Resume;
+	UMenuButtonBase* Button_Resume;
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_MainMenu;
+	UMenuButtonBase* Button_MainMenu;
 	
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_QuitGame;
+	UMenuButtonBase* Button_QuitGame;
 	
 	UPROPERTY(meta = (BindWidget))
 	UVerticalBox* VerticalBox_Controls;

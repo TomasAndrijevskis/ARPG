@@ -6,7 +6,7 @@
 #include "ConfirmationWindow.generated.h"
 
 
-class UButton;
+class UMenuButtonBase;
 
 DECLARE_MULTICAST_DELEGATE(FOnConfirmed);
 DECLARE_MULTICAST_DELEGATE(FOnCanceled);
@@ -25,11 +25,11 @@ public:
 	
 private:
 
-	UPROPERTY(meta=(BindWidget))
-	UButton* Button_Confirm;
+	UPROPERTY(meta = (BindWidget))
+	UMenuButtonBase* Button_Confirm;
 
-	UPROPERTY(meta=(BindWidget))
-	UButton* Button_Cancel;
+	UPROPERTY(meta = (BindWidget))
+	UMenuButtonBase* Button_Cancel;
 
 	UFUNCTION()
 	void OnConfirmed();

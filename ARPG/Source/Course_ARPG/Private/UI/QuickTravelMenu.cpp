@@ -6,12 +6,13 @@
 #include "Objects/Bonfire.h"
 #include "UI/PlayerWidget.h"
 #include "UI/QuickTravelButton.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UQuickTravelMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_Exit->OnClicked.AddDynamic(this, &UQuickTravelMenu::RemoveWidget);
+	Button_Exit->Button->OnClicked.AddDynamic(this, &UQuickTravelMenu::RemoveWidget);
 	SetBonfires();
 	CreateTravelMenu();
 }

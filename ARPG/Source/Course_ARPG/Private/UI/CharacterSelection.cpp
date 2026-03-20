@@ -2,6 +2,7 @@
 #include "UI/CharacterSelection.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/CharacterSelect.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UCharacterSelection::NativeConstruct()
@@ -11,7 +12,7 @@ void UCharacterSelection::NativeConstruct()
 	AmountOfCharacters = GetAmountOfCharacters();
 	Button_Left->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::DecreaseIndex);
 	Button_Right->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::IncreaseIndex);
-	Button_ExitToSaveSelectionMenu->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::ExitToSaveSelectionMenu);
+	Button_ExitToSaveSelectionMenu->Button->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::ExitToSaveSelectionMenu);
 	OnIndexChangedDelegate.AddUObject(this, &UCharacterSelection::OnIndexChanged);
 	CreateCharacterSelectWidget();
 }

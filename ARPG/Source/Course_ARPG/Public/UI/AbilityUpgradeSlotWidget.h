@@ -7,10 +7,10 @@
 #include "AbilityUpgradeSlotWidget.generated.h"
 
 
+class UMenuButtonBase;
 class UDescriptionWidget;
 class UTextBlock;
 class UHorizontalBox;
-class UButton;
 class AMainCharacter_Base;
 
 UCLASS()
@@ -39,19 +39,16 @@ protected:
 private:
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_AbilityIcon;
+	UMenuButtonBase* Button_UpgradeAbility;
 	
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_UpgradeAbility;
+	UButton* Button_AbilityIcon;
 
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_AbilityDescription;
 
 	UPROPERTY(meta = (BindWidget))
 	UHorizontalBox* HorizontalBox_UpgradeDescription;
-
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_Upgrade;
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_RequiredPoints;

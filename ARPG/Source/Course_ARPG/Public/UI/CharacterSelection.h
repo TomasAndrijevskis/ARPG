@@ -8,7 +8,7 @@
 #include "CharacterSelection.generated.h"
 
 
-class UButton;
+class UMenuButtonBase;
 class UCharacterSelect;
 
 DECLARE_MULTICAST_DELEGATE(FOnIndexChanged);
@@ -34,7 +34,7 @@ private:
 	UButton* Button_Right;
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_ExitToSaveSelectionMenu;
+	UMenuButtonBase* Button_ExitToSaveSelectionMenu;
 	
 	UFUNCTION()
 	void DecreaseIndex();

@@ -5,14 +5,15 @@
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UResetWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_Close->OnClicked.AddUniqueDynamic(this, &UResetWidget::RemoveWidget);
-	Button_ResetAbilities->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
-	Button_ResetAttributes->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAttributesClicked);
+	Button_Close->Button->OnClicked.AddUniqueDynamic(this, &UResetWidget::RemoveWidget);
+	Button_ResetAbilities->Button->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
+	Button_ResetAttributes->Button->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAttributesClicked);
 }
 
 

@@ -6,7 +6,7 @@
 #include "MainMenu.generated.h"
 
 
-class UButton;
+class UMenuButtonBase;
 
 UCLASS()
 class COURSE_ARPG_API UMainMenu : public UUserWidget
@@ -20,10 +20,10 @@ public:
 private:
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_StartGame;
+	UMenuButtonBase* Button_StartGame;
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_QuitGame;
+	UMenuButtonBase* Button_QuitGame;
 	
 	UFUNCTION()
 	void OpenSaveSelectionMenu();

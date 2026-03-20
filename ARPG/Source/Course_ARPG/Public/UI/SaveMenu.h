@@ -7,7 +7,7 @@
 #include "SaveMenu.generated.h"
 
 
-class UButton;
+class UMenuButtonBase;
 class USaveSlotWidget;
 class UARPG_GameInstance;
 
@@ -33,7 +33,7 @@ private:
 	UVerticalBox* VerticalBox_SaveSlots;
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_ExitToMainMenu;
+	UMenuButtonBase* Button_ExitToMainMenu;
 
 	UPROPERTY()
 	APlayerController* PlayerController;

@@ -7,11 +7,11 @@
 #include "QuickTravelButton.generated.h"
 
 
+class UMenuButtonBase;
 class UTransitionAnim;
 class AARPG_PlayerController;
 class UTextBlock;
 class AMainCharacter_Base;
-class UButton;
 
 UCLASS()
 class COURSE_ARPG_API UQuickTravelButton : public UUserWidget
@@ -27,10 +27,7 @@ public:
 private:
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_QuickTravel;
-
-	UPROPERTY(meta = (BindWidget))
-	UTextBlock* Text_QuickTravelLocation;
+	UMenuButtonBase* Button_QuickTravel;
 	
 	UFUNCTION()
 	void TeleportPlayer();

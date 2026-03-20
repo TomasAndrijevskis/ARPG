@@ -9,14 +9,15 @@
 #include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
 #include "UI/EnchantmentButton.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UEnchantmentMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	CreateButtons();
-	Button_Close->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::RemoveWidget);
-	Button_RemoveEnchantment->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::CreateConfirmationWindow);
+	Button_Close->Button->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::RemoveWidget);
+	Button_RemoveEnchantment->Button->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::CreateConfirmationWindow);
 }
 
 

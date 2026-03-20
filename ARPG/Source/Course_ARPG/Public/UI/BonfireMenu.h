@@ -7,6 +7,7 @@
 #include "BonfireMenu.generated.h"
 
 
+class UMenuButtonBase;
 class UPlayerWidget;
 class ABonfire;
 class AARPG_PlayerController;
@@ -23,19 +24,19 @@ public:
 	void Init(UPlayerWidget* PlayerWidget);
 	
 private:
+
+	UPROPERTY(meta = (BindWidget))
+	UMenuButtonBase* Button_QuickTravelMenu;
+
+	UPROPERTY(meta = (BindWidget))
+	UMenuButtonBase* Button_AttributesScreen;
+
+	UPROPERTY(meta = (BindWidget))
+	UMenuButtonBase* Button_AbilitiesScreen;
+
+	UPROPERTY(meta = (BindWidget))
+	UMenuButtonBase* Button_QuitBonfire;
 	
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_QuickTravelMenu;
-
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_AttributesScreen;
-	
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_AbilitiesScreen;
-
-	UPROPERTY(meta = (BindWidget))
-	UButton* Button_QuitBonfire;
-
 	UFUNCTION()
 	void RemoveWidget();
 

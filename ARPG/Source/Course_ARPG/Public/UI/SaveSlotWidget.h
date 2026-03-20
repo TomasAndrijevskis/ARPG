@@ -7,7 +7,7 @@
 #include "SaveSlotWidget.generated.h"
 
 
-class UButton;
+class UMenuButtonBase;
 
 UCLASS()
 class COURSE_ARPG_API USaveSlotWidget : public UUserWidget
@@ -31,13 +31,10 @@ public:
 private:
 	
 	UPROPERTY(meta=(BindWidget))
-	UButton* Button_ManageSaveSlot;
+	UMenuButtonBase* Button_ManageSaveSlot;
 
 	UPROPERTY(meta=(BindWidget))
 	UTextBlock* Text_SaveSlotName;
-
-	UPROPERTY(meta=(BindWidget))
-	UTextBlock* Text_SaveSlotStatus;
 	
 	UFUNCTION()
 	void OnButtonClicked();

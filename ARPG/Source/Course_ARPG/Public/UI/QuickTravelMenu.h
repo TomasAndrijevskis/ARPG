@@ -10,7 +10,7 @@
 class UVerticalBox;
 class UQuickTravelButton;
 class AMainCharacter_Base;
-class UButton;
+class UMenuButtonBase;
 
 UCLASS()
 class COURSE_ARPG_API UQuickTravelMenu : public UUserWidget
@@ -24,7 +24,7 @@ public:
 	void SetBonfires();
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_Exit;
+	UMenuButtonBase* Button_Exit;
 	
 private:
 
