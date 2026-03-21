@@ -6,6 +6,7 @@
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
 #include "UI/AttributeUpgradeSlot.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UAttributeUpgradeWidget::NativeConstruct()
@@ -55,7 +56,7 @@ void UAttributeUpgradeWidget::CreateUpgradeInfoFooter()
 	UInfoFooter* InfoFooterWidgetRef = Cast<UInfoFooter>(CreateWidget(this, InfoFooterWidgetClass));
 	if (!InfoFooterWidgetRef) return;
 	VerticalBox_Slots->AddChild(InfoFooterWidgetRef);
-	InfoFooterWidgetRef->Button_Exit->OnClicked.AddUniqueDynamic(this, &UAttributeUpgradeWidget::RemoveWidget);
+	InfoFooterWidgetRef->Button_Close->OnButtonClickedDelegate.AddUniqueDynamic(this, &UAttributeUpgradeWidget::RemoveWidget);
 }
 
 

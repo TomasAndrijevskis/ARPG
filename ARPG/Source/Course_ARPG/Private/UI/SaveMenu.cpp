@@ -1,6 +1,5 @@
 
 #include "UI/SaveMenu.h"
-
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
@@ -23,7 +22,7 @@ void USaveMenu::NativeConstruct()
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	if (!GameInstance) return;
 	CreateSlots(SaveSlotWidgetClass);
-	Button_ExitToMainMenu->Button->OnClicked.AddDynamic(this, &USaveMenu::BackToMainMenu);
+	Button_ExitToMainMenu->OnButtonClickedDelegate.AddDynamic(this, &USaveMenu::BackToMainMenu);
 }
 
 

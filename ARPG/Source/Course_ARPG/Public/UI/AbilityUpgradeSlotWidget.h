@@ -12,6 +12,7 @@ class UDescriptionWidget;
 class UTextBlock;
 class UHorizontalBox;
 class AMainCharacter_Base;
+class UButton;
 
 UCLASS()
 class COURSE_ARPG_API UAbilityUpgradeSlotWidget : public UUserWidget

@@ -1,7 +1,6 @@
 
 #include "UI/QuickTravelButton.h"
 #include "Characters/Player/ARPG_PlayerController.h"
-#include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Data//BonfireData.h"
 #include "UI/TransitionAnim.h"
@@ -11,8 +10,8 @@
 void UQuickTravelButton::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_QuickTravel->Button->OnClicked.Clear();
-	Button_QuickTravel->Button->OnClicked.AddDynamic(this, &UQuickTravelButton::TeleportPlayer);
+	Button_QuickTravel->OnButtonClickedDelegate.Clear();
+	Button_QuickTravel->OnButtonClickedDelegate.AddDynamic(this, &UQuickTravelButton::TeleportPlayer);
 }
 
 
@@ -21,7 +20,7 @@ void UQuickTravelButton::InitializeButton(const FString& NewTravelLocationName, 
 	TravelMapName = BonfireData.MapName;
 	TravelLocation = BonfireData.Location;
 	Button_QuickTravel->ChangeText(NewTravelLocationName);
-	if (CurrentBonfireName == NewTravelLocationName) Button_QuickTravel->Button->SetIsEnabled(false);
+	if (CurrentBonfireName == NewTravelLocationName) Button_QuickTravel->SetIsEnabled(false);
 }
 
 

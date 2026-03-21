@@ -2,7 +2,6 @@
 #include "UI/ResetWidget.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
 #include "UI/Buttons/MenuButtonBase.h"
@@ -11,9 +10,9 @@
 void UResetWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_Close->Button->OnClicked.AddUniqueDynamic(this, &UResetWidget::RemoveWidget);
-	Button_ResetAbilities->Button->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
-	Button_ResetAttributes->Button->OnClicked.AddUniqueDynamic(this, &UResetWidget::OnResetAttributesClicked);
+	Button_Close->OnButtonClickedDelegate.AddUniqueDynamic(this, &UResetWidget::RemoveWidget);
+	Button_ResetAbilities->OnButtonClickedDelegate.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
+	Button_ResetAttributes->OnButtonClickedDelegate.AddUniqueDynamic(this, &UResetWidget::OnResetAttributesClicked);
 }
 
 

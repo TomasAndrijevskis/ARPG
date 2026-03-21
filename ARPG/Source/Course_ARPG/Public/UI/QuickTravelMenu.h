@@ -22,24 +22,25 @@ public:
 	virtual void NativeConstruct() override;
 
 	void SetBonfires();
-
-	UPROPERTY(meta = (BindWidget))
-	UMenuButtonBase* Button_Exit;
 	
 private:
 
 	UPROPERTY(meta = (BindWidget))
 	UVerticalBox* VB_QuickTravelContainer;
+
+	UPROPERTY(meta = (BindWidget))
+	UMenuButtonBase* Button_Close;
 	
 	void CreateTravelMenu();
 
 	UFUNCTION()
 	void RemoveWidget();
 
+	void BindButton();
+	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UQuickTravelButton> QuickTravelButtonClass;
 	
-
 	TMap<FString, FBonfireData> Bonfires;
 	
 	FString BonfireName;

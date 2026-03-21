@@ -6,8 +6,8 @@
 #include "InfoFooter.generated.h"
 
 
+class UMenuButtonBase;
 class AMainCharacter_Base;
-class UButton;
 
 UCLASS()
 class COURSE_ARPG_API UInfoFooter : public UUserWidget
@@ -17,7 +17,7 @@ class COURSE_ARPG_API UInfoFooter : public UUserWidget
 public:
 
 	UPROPERTY(meta = (BindWidget))
-	UButton* Button_Exit;
+	UMenuButtonBase* Button_Close;
 
 protected:
 

@@ -8,6 +8,7 @@
 #include "CharacterSelection.generated.h"
 
 
+class UButton;
 class UMenuButtonBase;
 class UCharacterSelect;
 

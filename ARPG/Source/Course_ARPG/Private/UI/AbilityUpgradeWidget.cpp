@@ -1,12 +1,12 @@
 
 #include "UI/AbilityUpgradeWidget.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Components/Button.h"
 #include "Components/VerticalBox.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/AbilityUpgradeSlotWidget.h"
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
+#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UAbilityUpgradeWidget::NativeConstruct()
@@ -56,7 +56,7 @@ void UAbilityUpgradeWidget::CreateUpgradeInfoFooter()
 	UInfoFooter* InfoFooterWidgetRef = Cast<UInfoFooter>(CreateWidget(this, InfoFooterWidgetClass));
 	if (!InfoFooterWidgetRef) return;
 	VerticalBox_Slots->AddChild(InfoFooterWidgetRef);
-	InfoFooterWidgetRef->Button_Exit->OnClicked.AddUniqueDynamic(this, &UAbilityUpgradeWidget::RemoveWidget);
+	InfoFooterWidgetRef->Button_Close->OnButtonClickedDelegate.AddUniqueDynamic(this, &UAbilityUpgradeWidget::RemoveWidget);
 }
 
 

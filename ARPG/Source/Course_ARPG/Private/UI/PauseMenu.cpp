@@ -1,9 +1,7 @@
 
 #include "UI/PauseMenu.h"
 #include "Characters/Player/ARPG_PlayerController.h"
-#include "Components/Button.h"
 #include "Components/VerticalBox.h"
-#include "Kismet/GameplayStatics.h"
 #include "UI/ControlSlot.h"
 #include "Data/ControlsData.h"
 #include "UI/Buttons/MenuButtonBase.h"
@@ -14,10 +12,10 @@ void UPauseMenu::NativeConstruct()
 	Super::NativeConstruct();
 	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 	if (!PlayerController) return;
-	Button_Resume->Button->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::RemovePauseMenu);
-	Button_Resume->Button->OnClicked.AddUniqueDynamic(this, &UPauseMenu::RemoveWidget);
-	Button_MainMenu->Button->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::LoadToMainMenu);
-	Button_QuitGame->Button->OnClicked.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::SaveBeforeQuit);
+	Button_Resume->OnButtonClickedDelegate.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::RemovePauseMenu);
+	Button_Resume->OnButtonClickedDelegate.AddUniqueDynamic(this, &UPauseMenu::RemoveWidget);
+	Button_MainMenu->OnButtonClickedDelegate.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::LoadToMainMenu);
+	Button_QuitGame->OnButtonClickedDelegate.AddUniqueDynamic(PlayerController, &AARPG_PlayerController::SaveBeforeQuit);
 
 	CreateControlsWindows();
 }

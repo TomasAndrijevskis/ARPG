@@ -3,7 +3,6 @@
 #include "Blueprint/WidgetTree.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Components/Button.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
 #include "Kismet/GameplayStatics.h"
@@ -16,8 +15,8 @@ void UEnchantmentMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	CreateButtons();
-	Button_Close->Button->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::RemoveWidget);
-	Button_RemoveEnchantment->Button->OnClicked.AddUniqueDynamic(this, &UEnchantmentMenuWidget::CreateConfirmationWindow);
+	Button_Close->OnButtonClickedDelegate.AddUniqueDynamic(this, &UEnchantmentMenuWidget::RemoveWidget);
+	Button_RemoveEnchantment->OnButtonClickedDelegate.AddUniqueDynamic(this, &UEnchantmentMenuWidget::CreateConfirmationWindow);
 }
 
 

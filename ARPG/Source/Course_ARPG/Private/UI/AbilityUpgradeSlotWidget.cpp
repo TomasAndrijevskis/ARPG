@@ -33,9 +33,9 @@ void UAbilityUpgradeSlotWidget::SetupButtonCallbacks()
 {
 	if (Button_UpgradeAbility)
 	{
-		Button_UpgradeAbility->Button->OnClicked.AddDynamic(this, &UAbilityUpgradeSlotWidget::UpgradeAbility);
+		Button_UpgradeAbility->OnButtonClickedDelegate.AddDynamic(this, &UAbilityUpgradeSlotWidget::UpgradeAbility);
 		HandleUpgradeButtonActions();
-		if (AbilityComp_Ref->IsAbilityMaxLevel()) Button_UpgradeAbility->Button->SetIsEnabled(false);
+		if (AbilityComp_Ref->IsAbilityMaxLevel()) Button_UpgradeAbility->SetIsEnabled(false);
 	}
 	if (Button_AbilityIcon)
 	{
@@ -51,17 +51,17 @@ void UAbilityUpgradeSlotWidget::HandleUpgradeButtonActions()
 	RemoveUpgradeDescriptionWidget();
 	if (AbilityComp_Ref->IsAbilityAvailable())
 	{
-		Button_UpgradeAbility->Button->OnHovered.Clear();
-		Button_UpgradeAbility->Button->OnUnhovered.Clear();
-		Button_UpgradeAbility->Button->OnHovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateUpgradeDescriptionWidget);
-		Button_UpgradeAbility->Button->OnUnhovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveUpgradeDescriptionWidget);
+		Button_UpgradeAbility->OnButtonHoveredDelegate.Clear();
+		Button_UpgradeAbility->OnButtonUnhoveredDelegate.Clear();
+		Button_UpgradeAbility->OnButtonHoveredDelegate.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateUpgradeDescriptionWidget);
+		Button_UpgradeAbility->OnButtonUnhoveredDelegate.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveUpgradeDescriptionWidget);
 	}
 	else
 	{
-		Button_UpgradeAbility->Button->OnHovered.Clear();
-		Button_UpgradeAbility->Button->OnUnhovered.Clear();
-		Button_UpgradeAbility->Button->OnHovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateAbilityDescriptionWidget);
-		Button_UpgradeAbility->Button->OnUnhovered.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveAbilityDescriptionWidget);
+		Button_UpgradeAbility->OnButtonHoveredDelegate.Clear();
+		Button_UpgradeAbility->OnButtonUnhoveredDelegate.Clear();
+		Button_UpgradeAbility->OnButtonHoveredDelegate.AddDynamic(this, &UAbilityUpgradeSlotWidget::CreateAbilityDescriptionWidget);
+		Button_UpgradeAbility->OnButtonUnhoveredDelegate.AddDynamic(this, &UAbilityUpgradeSlotWidget::RemoveAbilityDescriptionWidget);
 	}
 }
 
@@ -117,7 +117,7 @@ void UAbilityUpgradeSlotWidget::UpgradeAbility()
 	
 	if (AbilityComp_Ref->IsAbilityMaxLevel())
 	{
-		Button_UpgradeAbility->Button->SetIsEnabled(false);
+		Button_UpgradeAbility->SetIsEnabled(false);
 		SetUpgradeButtonText(AbilityComp_Ref->IsAbilityMaxLevel());
 	}
 	HandleUpgradeButtonActions();

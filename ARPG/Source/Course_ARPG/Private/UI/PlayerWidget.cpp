@@ -15,7 +15,6 @@
 #include "UI/AbilityIconWithTimer.h"
 #include "UI/EnchantmentMenuWidget.h"
 #include "UI/StatusEffectIcon.h"
-#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UPlayerWidget::CreateAbilityUpgradeScreen()
@@ -53,7 +52,6 @@ void UPlayerWidget::ClearAbilityFooterPanel()
 
 void UPlayerWidget::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef)
 {
-	UE_LOG(LogTemp, Warning, TEXT("CreateStatusEffectIcon - Player"));
 	if (!StatusEffectIconWidgetClass) return;
 	UStatusEffectIcon* StatusEffectIconRef = Cast<UStatusEffectIcon>(CreateWidget(this, StatusEffectIconWidgetClass));
 	if (!StatusEffectIconRef) return;
@@ -127,8 +125,7 @@ void UPlayerWidget::CreateQuickTravelMenuWidget()
 {
 	if (!QuickTravelMenuWidgetClass) return;
 	UQuickTravelMenu* QuickTravelMenuWidget = Cast<UQuickTravelMenu>(CreateWidget(this, QuickTravelMenuWidgetClass));
-	QuickTravelMenuWidget -> AddToViewport(5);
-	QuickTravelMenuWidget->Button_Exit->Button->OnClicked.AddUniqueDynamic(this, &UPlayerWidget::CreateBonfireMenuWidget);
+	QuickTravelMenuWidget->AddToViewport(5);
 }
 
 

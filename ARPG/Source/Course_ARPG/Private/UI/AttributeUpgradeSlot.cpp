@@ -1,7 +1,6 @@
 
 #include "UI/AttributeUpgradeSlot.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/DescriptionWidget.h"
@@ -19,8 +18,8 @@ void UAttributeUpgradeSlot::NativeConstruct()
 
 void UAttributeUpgradeSlot::SetButtonsBehaviour()
 {
-	Button_ImproveAttribute->Button->OnClicked.AddUniqueDynamic(this, &UAttributeUpgradeSlot::OnImproveAttributeClicked);
-	Button_ImproveAttribute->Button->OnHovered.AddUniqueDynamic(this, &UAttributeUpgradeSlot::CreateDescriptionWidget);
+	Button_ImproveAttribute->OnButtonClickedDelegate.AddUniqueDynamic(this, &UAttributeUpgradeSlot::OnImproveAttributeClicked);
+	Button_ImproveAttribute->OnButtonHoveredDelegate.AddUniqueDynamic(this, &UAttributeUpgradeSlot::CreateDescriptionWidget);
 }
 
 
@@ -70,8 +69,8 @@ void UAttributeUpgradeSlot::CreateDescriptionWidget()
 	if (!DescriptionWidgetRef) return;
 	DescriptionWidgetRef->SetDescription(AttributeDescription);
 	DescriptionWidgetRef->AddToViewport(10);
-	Button_ImproveAttribute->Button->OnUnhovered.AddUniqueDynamic(this, &ThisClass::RemoveDescriptionWidget);
-	Button_ImproveAttribute->Button->OnClicked.AddUniqueDynamic(this, &ThisClass::UpdateDescription);
+	Button_ImproveAttribute->OnButtonUnhoveredDelegate.AddUniqueDynamic(this, &ThisClass::RemoveDescriptionWidget);
+	Button_ImproveAttribute->OnButtonClickedDelegate.AddUniqueDynamic(this, &ThisClass::UpdateDescription);
 }
 
 

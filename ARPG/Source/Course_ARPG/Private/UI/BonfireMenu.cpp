@@ -1,7 +1,6 @@
 
 #include "UI/BonfireMenu.h"
 #include "Characters/Player/ARPG_PlayerController.h"
-#include "Components/Button.h"
 #include "UI/PlayerWidget.h"
 #include "UI/Buttons/MenuButtonBase.h"
 
@@ -16,15 +15,15 @@ void UBonfireMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 	if (!PlayerWidgetRef) return;
-	Button_QuitBonfire->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RequestToRemoveWidget);
-	Button_AbilitiesScreen->Button->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
-	Button_AttributesScreen->Button->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAttributesUpgradeScreen);
-	Button_QuickTravelMenu->Button->OnClicked.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateQuickTravelMenuWidget);
+	Button_QuitBonfire->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RequestToRemoveWidget);
+	Button_AbilitiesScreen->OnButtonClickedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
+	Button_AttributesScreen->OnButtonClickedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAttributesUpgradeScreen);
+	Button_QuickTravelMenu->OnButtonClickedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateQuickTravelMenuWidget);
 	
-	Button_QuitBonfire->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_QuickTravelMenu->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_AbilitiesScreen->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_AttributesScreen->Button->OnClicked.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_QuitBonfire->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_QuickTravelMenu->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_AbilitiesScreen->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	Button_AttributesScreen->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
 }
 
 

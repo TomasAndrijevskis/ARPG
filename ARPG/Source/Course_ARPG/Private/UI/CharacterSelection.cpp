@@ -12,7 +12,7 @@ void UCharacterSelection::NativeConstruct()
 	AmountOfCharacters = GetAmountOfCharacters();
 	Button_Left->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::DecreaseIndex);
 	Button_Right->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::IncreaseIndex);
-	Button_ExitToSaveSelectionMenu->Button->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::ExitToSaveSelectionMenu);
+	Button_ExitToSaveSelectionMenu->OnButtonClickedDelegate.AddUniqueDynamic(this, &UCharacterSelection::ExitToSaveSelectionMenu);
 	OnIndexChangedDelegate.AddUObject(this, &UCharacterSelection::OnIndexChanged);
 	CreateCharacterSelectWidget();
 }

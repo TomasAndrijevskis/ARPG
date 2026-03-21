@@ -1,6 +1,5 @@
 
 #include "UI/SaveSlotWidget.h"
-#include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/Buttons/MenuButtonBase.h"
@@ -9,7 +8,7 @@
 void USaveSlotWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_ManageSaveSlot->Button->OnClicked.AddDynamic(this, &USaveSlotWidget::OnButtonClicked);
+	Button_ManageSaveSlot->OnButtonClickedDelegate.AddDynamic(this, &USaveSlotWidget::OnButtonClicked);
 	PlayerController = GetWorld()->GetFirstPlayerController();
 }
 
