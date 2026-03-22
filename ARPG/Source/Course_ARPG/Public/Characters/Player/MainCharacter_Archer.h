@@ -3,11 +3,13 @@
 
 #include "CoreMinimal.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Combat/Abilities/PlayerAbilities/AbComp_AllElementsArrow.h"
 #include "MainCharacter_Archer.generated.h"
 
 
 class UAbComp_ArrowBarrage;
 class UAbComp_HealArrow;
+class UAbComp_AllElementsArrow;
 
 UCLASS()
 class COURSE_ARPG_API AMainCharacter_Archer : public AMainCharacter_Base
@@ -32,6 +34,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_ArrowBarrage* AbilityComp_ArrowBarrage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAbComp_AllElementsArrow* AbilityComp_AllElementsArrow;
+	
 protected:
 
 	virtual void BeginPlay() override;

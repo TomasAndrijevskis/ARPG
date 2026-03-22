@@ -18,7 +18,7 @@ public:
 	UFUNCTION()
 	virtual void DestroyProjectile();
 
-	void SetParams(const float NewDamage, const float NewAliveTime, const float NewModificator);
+	void SetParams(const float NewDamage, const float NewAliveTime, const float NewElementalDamageModificator);
 
 	void StartAliveTimer();
 	

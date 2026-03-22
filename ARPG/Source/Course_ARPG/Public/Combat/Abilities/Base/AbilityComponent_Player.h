@@ -25,9 +25,6 @@ public:
 	FOnAbilityCooldownChanged OnAbilityCooldownChangedDelegate;
 	
 	FOnAbilityCooldownFinished OnAbilityCooldownFinishedDelegate;
-
-	UFUNCTION()
-	virtual void CreateIcon();
 	
 	UFUNCTION()
 	void UpgradeAbility(int AvailablePoints);
@@ -83,11 +80,10 @@ public:
 
 	void ClearAbilityData();
 
+	UFUNCTION()
+	virtual void CreateIcon();
+	
 	UTexture2D* GetIcon() const;
-
-	virtual void StartAbility() override;
-
-	virtual void FinishAbilityCast() override;
 
 	FTransform GetSpawnTransform(float DefaultSpawnDistance) const;
 	
@@ -110,6 +106,10 @@ protected:
 	virtual void SetAbilityData(const int32 Level){};
 
 	virtual void SetDefaultAbilityData() {};
+
+	virtual void FinishAbilityCast() override;
+	
+	virtual void StartAbility() override;
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* AnimMontage;

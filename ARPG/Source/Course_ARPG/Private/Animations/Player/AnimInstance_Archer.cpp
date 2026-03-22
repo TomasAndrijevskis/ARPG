@@ -20,3 +20,9 @@ void UAnimInstance_Archer::SpawnArrowBarrage()
 {
 	OnArrowBarrageSpawnRequest.Broadcast();
 }
+
+
+void UAnimInstance_Archer::SpawnAllElementsArrow()
+{
+	OnAllElementsArrowSpawnRequest.Broadcast();
+}
