@@ -13,10 +13,10 @@ void UIceEffectManager::BeginPlay()
 }
 
 
-void UIceEffectManager::HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage)
+void UIceEffectManager::HandleEffect()
 {
 	if (!VisualEffectComponent || !Icon || Resistance == 1) return;
-	Super::HandleEffect(NewDuration, NewDamage, NewDamageRate, NewIsTakingDamage);
+	Super::HandleEffect();
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 	ApplyDamage();
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopEffect, Duration, false);

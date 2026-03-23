@@ -4,10 +4,10 @@
 #include "Characters/Player/MainCharacter_Base.h"
 
 
-void UPoisonEffectManager::HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage)
+void UPoisonEffectManager::HandleEffect()
 {
 	if (!VisualEffectComponent || !Icon || Resistance == 1) return;
-	Super::HandleEffect(NewDuration, NewDamage, NewDamageRate, NewIsTakingDamage);
+	Super::HandleEffect();
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UPoisonEffectManager::ApplyProlongedDamage, DamageRate, true);
 }
 

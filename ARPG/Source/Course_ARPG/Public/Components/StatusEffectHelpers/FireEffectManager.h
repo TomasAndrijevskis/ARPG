@@ -13,7 +13,7 @@ class COURSE_ARPG_API UFireEffectManager : public UStatusEffectsComponent
 
 public:
 	
-	virtual void HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage) override;
+	virtual void HandleEffect() override;
 	
 protected:
 

@@ -39,9 +39,8 @@ void UStatusEffectsComponent::HandleOwner()
 }
 
 
-void UStatusEffectsComponent::HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage)
+void UStatusEffectsComponent::HandleEffect()
 {
-	SetParams(NewDamage, NewDuration, NewDamageRate, NewIsTakingDamage);
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	if (VisualEffectRef == nullptr)
 	{
@@ -70,7 +69,7 @@ void UStatusEffectsComponent::ApplyProlongedDamage()
 {
 	if (Duration > 0)
 	{
-		if (!bIsTakingDamage) Duration -= DamageRate;
+		if (!bIsAffected) Duration -= DamageRate;
 		ApplyDamage();
 	}
 	else StopEffect();
@@ -91,4 +90,4 @@ void UStatusEffectsComponent::StopEffect()
 
 void UStatusEffectsComponent::SetDamageResistance(float NewResistance){Resistance = NewResistance;}
 
-void UStatusEffectsComponent::SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsTakingDamage){Damage = NewDamage;Duration = NewDuration;DamageRate = NewDamageRate; bIsTakingDamage = NewIsTakingDamage;}
+void UStatusEffectsComponent::SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsAffected){Damage = NewDamage;Duration = NewDuration;DamageRate = NewDamageRate; bIsAffected = NewIsAffected;}

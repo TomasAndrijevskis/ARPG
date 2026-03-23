@@ -3,10 +3,10 @@
 #include "NiagaraFunctionLibrary.h"
 
 
-void UFireEffectManager::HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage)
+void UFireEffectManager::HandleEffect()
 {
 	if (!VisualEffectComponent || !Icon || Resistance == 1) return;
-	Super::HandleEffect(NewDuration, NewDamage, NewDamageRate, NewIsTakingDamage);
+	Super::HandleEffect();
 	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UFireEffectManager::ApplyProlongedDamage, DamageRate, true);
 }
 
