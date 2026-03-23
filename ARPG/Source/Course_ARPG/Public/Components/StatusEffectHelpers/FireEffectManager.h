@@ -12,31 +12,11 @@ class COURSE_ARPG_API UFireEffectManager : public UStatusEffectsComponent
 	GENERATED_BODY()
 
 public:
-
-	void HandleBurn(const float NewFireDuration, const float NewFireDamage, const bool bNewIsOverlapping, const float NewFireRate);
-
+	
+	virtual void HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage) override;
+	
 protected:
 
-	virtual void BeginPlay() override;
-
-	virtual void SetDamageResistance(float NewResistance) override;
-
-	UFUNCTION()
-	virtual void ApplyDamage(float Damage) override;
-
-	UFUNCTION()
-	virtual void ApplyProlongedDamage() override;
+	virtual void SetEffectType() override;
 	
-private:
-	
-	UPROPERTY(EditAnywhere)
-	float FireDamageResistance;
-	
-	float FireDamage;
-	
-	float FireDuration;
-
-	float FireRate;
-
-	FTimerHandle FireTimerHandle;
 };

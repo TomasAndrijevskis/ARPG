@@ -40,7 +40,7 @@ void AFireStorm::HandleOverlap(AActor* OtherActor, bool bIsOverlapping)
 	if (Cast<AEnemyCharacter>(OtherActor))
 	{
 		AEnemyCharacter* OverlappedActor = Cast<AEnemyCharacter>(OtherActor);
-		OverlappedActor->FireStatusEffectManager->HandleBurn(BurnDuration, BurnDamage, bIsOverlapping, BurnRate);
+		OverlappedActor->FireStatusEffectManager->HandleEffect(BurnDuration, BurnDamage, BurnRate, bIsOverlapping);
 	}
 }
 

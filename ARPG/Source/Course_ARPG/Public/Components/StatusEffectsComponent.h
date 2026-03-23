@@ -24,6 +24,12 @@ class COURSE_ARPG_API UStatusEffectsComponent : public UActorComponent
 public:	
 	
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	void SetDamageResistance(float NewResistance);
+
+	void SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsTakingDamage);
+
+	virtual void HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage);
 	
 	FOnStatusIconCreateRequest OnStatusIconCreateRequestDelegate;
 
@@ -38,22 +44,22 @@ protected:
 	UFUNCTION()
 	virtual void StopEffect();
 
-	void SetVisualData(EEffects StatusEffect);
+	void SetVisualData();
 
-	virtual void SetDamageResistance(float NewResistance){};
-
-	virtual void ApplyDamage(float Damage) {};
+	virtual void ApplyDamage();
 	
-	virtual void ApplyProlongedDamage() {};
+	virtual void ApplyProlongedDamage();
+
+	virtual void SetEffectType(){};
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
 
 	UPROPERTY()
-	UNiagaraComponent* EffectRef;
+	UNiagaraComponent* VisualEffectRef;
 	
 	UPROPERTY()
-	UNiagaraSystem* VisualEffect;
+	UNiagaraSystem* VisualEffectComponent;
 	
 	UPROPERTY()
 	UTexture2D* Icon;
@@ -65,7 +71,7 @@ protected:
 	FName SocketName;
 
 	UPROPERTY(EditDefaultsOnly)
-	FVector EffectScale;
+	FVector VisualEffectScale;
 	
 	UPROPERTY()
 	UAbilityComponent_Base* AbilityCompRef;
@@ -75,9 +81,25 @@ protected:
 
 	UPROPERTY()
 	ACharacter* CharacterRef;
-	
-	bool bIsOverlapping;
 
+	UPROPERTY(VisibleAnywhere)
+	EEffects EffectType;
+
+	UPROPERTY(VisibleAnywhere)
+	float Damage;
+
+	UPROPERTY(VisibleAnywhere)
+	float DamageRate;
+
+	UPROPERTY(VisibleAnywhere)
+	float Duration;
+
+	UPROPERTY(VisibleAnywhere)
+	float Resistance;
+
+	UPROPERTY(visibleAnywhere)
+	bool bIsTakingDamage = false;
+	
 	FTimerHandle EffectTimerHandle;
 
 private:

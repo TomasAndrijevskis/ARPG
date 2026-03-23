@@ -31,7 +31,7 @@ void AFrostBlastRange::CheckEnemiesInRange()
 		if (!FoundEnemy || FoundEnemy->Implements<UIceEffectManager>()) continue;
 		float DistBtwEnemyAndCenter = FVector::DistSquared(FoundEnemy->GetActorLocation(), Center);
 		if (DistBtwEnemyAndCenter < Radius * Radius)
-			Cast<AEnemyCharacter>(FoundEnemy)->IceStatusEffectManager->HandleFreeze(SlowDuration, Damage);
+			Cast<AEnemyCharacter>(FoundEnemy)->IceStatusEffectManager->HandleEffect(SlowDuration, Damage, 0, false);
 	}
 	this->Destroy();
 }

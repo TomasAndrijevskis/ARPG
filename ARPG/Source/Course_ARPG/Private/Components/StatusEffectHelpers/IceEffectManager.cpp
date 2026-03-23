@@ -1,10 +1,8 @@
 
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
-#include "Kismet/GameplayStatics.h"
 
 
 void UIceEffectManager::BeginPlay()
@@ -12,32 +10,17 @@ void UIceEffectManager::BeginPlay()
 	Super::BeginPlay();
 	if (!CharacterRef) return;
 	OriginalSpeed = CharacterRef->GetCharacterMovement()->MaxWalkSpeed;
-	SetVisualData(EEffects::Ice);
 }
 
 
-void UIceEffectManager::HandleFreeze(const float SlowDuration, const float NewDamage)
+void UIceEffectManager::HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage)
 {
-	if (!VisualEffect || !Icon || IceDamageResistance == 1) return;
-	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
-	EffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				VisualEffect,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator,EffectScale,
-	EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-	OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
-	IceDamage = NewDamage;
+	if (!VisualEffectComponent || !Icon || Resistance == 1) return;
+	Super::HandleEffect(NewDuration, NewDamage, NewDamageRate, NewIsTakingDamage);
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
-	ApplyDamage(IceDamage);
-	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopEffect, SlowDuration, false);
+	ApplyDamage();
+	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopEffect, Duration, false);
 }
-
-
-void UIceEffectManager::ApplyDamage(float Damage)
-{
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage, Cast<ACharacter>(GetOwner())->GetController(), nullptr, DamageType);
-}
-
-
-void UIceEffectManager::ApplyProlongedDamage(){}
 
 
 void UIceEffectManager::StopEffect()
@@ -47,4 +30,4 @@ void UIceEffectManager::StopEffect()
 }
 
 
-void UIceEffectManager::SetDamageResistance(float NewResistance){IceDamageResistance = NewResistance;}
+void UIceEffectManager::SetEffectType(){EffectType = EEffects::Ice;}

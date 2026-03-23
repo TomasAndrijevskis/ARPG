@@ -12,31 +12,18 @@ class COURSE_ARPG_API UIceEffectManager : public UStatusEffectsComponent
 	GENERATED_BODY()
 	
 public:	
-	
-	void HandleFreeze(const float SlowDuration, const float NewDamage);
 
+	virtual void HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage) override;
+	
 protected:
 
 	virtual void BeginPlay() override;
 	
 	virtual void StopEffect() override;
 
-	virtual void SetDamageResistance(float NewResistance) override;
-
-	UFUNCTION()
-	virtual void ApplyDamage(float Damage) override;
-
-	UFUNCTION()
-	virtual void ApplyProlongedDamage() override;
+	virtual void SetEffectType() override;
 	
 private:
-
-	UPROPERTY(EditAnywhere)
-	float IceDamageResistance;
 	
 	float OriginalSpeed;
-
-	FTimerHandle IceTimerHandle;
-
-	float IceDamage;
 };

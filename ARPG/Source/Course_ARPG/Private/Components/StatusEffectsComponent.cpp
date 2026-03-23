@@ -1,10 +1,12 @@
 
 #include "Components/StatusEffectsComponent.h"
 #include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Characters/Enemy/EnemyCharacter.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "GameFramework/Character.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void UStatusEffectsComponent::BeginPlay()
@@ -14,15 +16,17 @@ void UStatusEffectsComponent::BeginPlay()
 	CharacterRef = Cast<ACharacter>(GetOwner());
 	if (CharacterRef) SkeletalMeshComp = CharacterRef->GetMesh();
 	HandleOwner();
+	SetEffectType();
+	SetVisualData();
 }
 
 
-void UStatusEffectsComponent::SetVisualData(EEffects StatusEffect)
+void UStatusEffectsComponent::SetVisualData()
 {
-	if (!StatusEffectsVisualDataAsset) return;
-	VisualEffect = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].VisualEffect;
-	Icon = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].Icon;
-	DamageType = StatusEffectsVisualDataAsset->StatusEffects[StatusEffect].DamageType;
+	if (!StatusEffectsVisualDataAsset || EffectType == EEffects::Empty) return;
+	VisualEffectComponent = StatusEffectsVisualDataAsset->StatusEffects[EffectType].VisualEffect;
+	Icon = StatusEffectsVisualDataAsset->StatusEffects[EffectType].Icon;
+	DamageType = StatusEffectsVisualDataAsset->StatusEffects[EffectType].DamageType;
 }
 
 
@@ -35,6 +39,20 @@ void UStatusEffectsComponent::HandleOwner()
 }
 
 
+void UStatusEffectsComponent::HandleEffect(float NewDuration, float NewDamage, float NewDamageRate, bool NewIsTakingDamage)
+{
+	SetParams(NewDamage, NewDuration, NewDamageRate, NewIsTakingDamage);
+	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
+	if (VisualEffectRef == nullptr)
+	{
+		VisualEffectRef = UNiagaraFunctionLibrary::SpawnSystemAttached(
+				VisualEffectComponent,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator, VisualEffectScale,
+				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
+		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
+	}
+}
+
+
 void UStatusEffectsComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
 	Super::EndPlay(EndPlayReason);
@@ -42,13 +60,35 @@ void UStatusEffectsComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 }
 
 
+void UStatusEffectsComponent::ApplyDamage()
+{
+	UGameplayStatics::ApplyDamage(CharacterRef, Damage, Cast<ACharacter>(GetOwner())->GetController(), nullptr, DamageType);
+}
+
+
+void UStatusEffectsComponent::ApplyProlongedDamage()
+{
+	if (Duration > 0)
+	{
+		if (!bIsTakingDamage) Duration -= DamageRate;
+		ApplyDamage();
+	}
+	else StopEffect();
+}
+
+
 void UStatusEffectsComponent::StopEffect()
 {
 	GetWorld()->GetTimerManager().ClearTimer(EffectTimerHandle);
 	OnStatusIconRemoveRequestDelegate.Broadcast();
-	if (EffectRef)
+	if (VisualEffectRef)
 	{
-		EffectRef->DestroyComponent();
-		EffectRef = nullptr;
+		VisualEffectRef->DestroyComponent();
+		VisualEffectRef = nullptr;
 	}
 }
+
+
+void UStatusEffectsComponent::SetDamageResistance(float NewResistance){Resistance = NewResistance;}
+
+void UStatusEffectsComponent::SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsTakingDamage){Damage = NewDamage;Duration = NewDuration;DamageRate = NewDamageRate; bIsTakingDamage = NewIsTakingDamage;}

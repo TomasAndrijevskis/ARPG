@@ -21,7 +21,7 @@ public:
 
 	APoisonExplosionArea();
 
-	void SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration, UAbilityComponent_Base* NewAbilityCompRef);
+	void SetParams(const float NewExplosionDamage, const float NewPoisonDamage, const float NewPoisonRate, const float NewPoisonDuration);
 
 	FOnExplosionTriggered OnExplosionTriggeredDelegate;
 
