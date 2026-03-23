@@ -46,6 +46,7 @@ void AProjectile_Base::HandleDestruction()
 
 bool AProjectile_Base::IsOpponentHit(AActor* OtherActor)
 {
+	if (!OtherActor || !ProjectileOwner) return false;
 	if (Cast<AMainCharacter_Base>(ProjectileOwner) && Cast<AEnemyCharacter>(OtherActor)) return true;
 	if (Cast<AEnemyCharacter>(ProjectileOwner) && Cast<AMainCharacter_Base>(OtherActor)) return true;
 	return false;

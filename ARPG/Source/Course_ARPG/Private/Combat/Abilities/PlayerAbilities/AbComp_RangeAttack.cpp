@@ -64,7 +64,7 @@ void UAbComp_RangeAttack::FinishAbilityCast()
 
 void UAbComp_RangeAttack::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball\nin your enemies."
+	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball\nin your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
 	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(),
 	GetEnhancedProjectileDamage(), GetDefaultProjectileDamage(),

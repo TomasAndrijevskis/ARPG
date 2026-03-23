@@ -66,7 +66,7 @@ void UAbComp_LifeStealAttack::HandleLifeStealOnHit()
 
 void UAbComp_LifeStealAttack::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal health\nfrom your enemies."
+	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal\nhealth from your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f \nCooldown: %.2f s\nDuration: %.2f s\nStolen health: %.2f%%\n\nDefault stolen health: %.2f%%\nAP modifier: +%.2f%%"),
 	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(),
 	GetEnhancedStolenHealthPercent() * 100, GetDefaultStolenHealthPercent() * 100,

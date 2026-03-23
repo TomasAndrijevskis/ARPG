@@ -12,8 +12,5 @@ struct COURSE_ARPG_API FAllElementsArrowPropertiesData: public FAbilityPropertie
 	GENERATED_BODY()
 	
 	UPROPERTY(EditDefaultsOnly)
-	float ProjectileDamage = 0;
-
-	UPROPERTY(EditDefaultsOnly)
-	float EffectsDuration = 0;
+	float EffectDamage = 0;
 };

@@ -13,19 +13,25 @@ class COURSE_ARPG_API UAbComp_AllElementsArrow : public UAbilityComponent_Player
 
 public:
 
-	//virtual void UpdateAbilityDescription() override;
+	virtual void UpdateAbilityDescription() override;
 
-	//virtual void UpdateUpgradeDescription() override;
+	virtual void UpdateUpgradeDescription() override;
 	
 	virtual void StartAbility() override;
 
 	void SpawnArrow();
+
+	void SetEffectDamage(float NewEffectDamage);
+
+	float GetDefaultEffectDamage() const;
+
+	float GetEnhancedEffectDamage() const;
 	
 protected:
 	
-	//FAllElementsArrowPropertiesData* GetAbilityData(const int32 Level);
+	FAllElementsArrowPropertiesData* GetAbilityData(const int32 Level);
 
-	//virtual void SetAbilityData(const int32 Level) override;
+	virtual void SetAbilityData(const int32 Level) override;
 
 	virtual void FinishAbilityCast() override;
 	
@@ -43,10 +49,11 @@ private:
 	UAnimMontage* ShootMontage;
 	
 	UPROPERTY(VisibleAnywhere)
-	float Damage;
+	float EffectDamage = 1;
 
+	UPROPERTY(VisibleAnywhere)
+	float DamageRate = .5;
+	
 	UPROPERTY(EditDefaultsOnly)
 	float AliveTime;
-
-	
 };

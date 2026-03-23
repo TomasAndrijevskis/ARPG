@@ -44,20 +44,23 @@ protected:
 
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* HitTemplate;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UDamageTypeBase> DamageType;
 	
-private:
+	UPROPERTY(VisibleAnywhere)
+	float Damage;
+
+	UPROPERTY(VisibleAnywhere)
+	float ElementalDamageModificator;
 
 	UPROPERTY()
 	AActor* ProjectileOwner;
 	
+private:
+	
+	UPROPERTY(VisibleAnywhere)
 	float AliveTime;
 	
-	float Damage;
-
-	float ElementalDamageModificator;
-	
 	FTimerHandle AliveTimerHandle;
-
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UDamageTypeBase> DamageType;
 };

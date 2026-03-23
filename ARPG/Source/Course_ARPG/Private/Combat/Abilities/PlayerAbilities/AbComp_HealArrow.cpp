@@ -131,7 +131,7 @@ void UAbComp_HealArrow::CreateIcon()
 
 void UAbComp_HealArrow::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Mark an enemy and\nheal from their attacks"
+	SetAbilityDescription(FString::Printf(TEXT("Mark an enemy to\nheal from their attacks"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nMax heal amount: %.2f\nHeal percent: %.2f\n\nDefault heal percent: %.2f%%\nAP modifier: +%.2f%%"),
 	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetHealCap(),
 	GetEnhancedHealPercent(), GetDefaultHealPercent(),

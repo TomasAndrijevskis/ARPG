@@ -48,7 +48,7 @@ void UAbComp_Invincibility::CreateIcon()
 
 void UAbComp_Invincibility::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Make yourself invincible."
+	SetAbilityDescription(FString::Printf(TEXT("Make yourself invincible"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f\nArmor: %.2f\n\nDefault armor: %.2f\nAP modifier: +%.2f"),
 	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(),
 	GetEnhancedArmor(), GetDefaultArmor(),
