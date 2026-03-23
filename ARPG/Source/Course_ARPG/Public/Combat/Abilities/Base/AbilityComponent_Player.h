@@ -30,7 +30,7 @@ public:
 	void UpgradeAbility(int AvailablePoints);
 
 	UFUNCTION()
-	int GetCurrentAbilityLevel();
+	int GetCurrentAbilityLevel() const;
 	
 	void SetCurrentAbilityLevel(const int32 NewLevel);
 
@@ -110,6 +110,8 @@ protected:
 	virtual void FinishAbilityCast() override;
 	
 	virtual void StartAbility() override;
+
+	bool CanUseAbility() const;
 	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* AnimMontage;

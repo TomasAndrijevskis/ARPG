@@ -12,8 +12,21 @@ class COURSE_ARPG_API AProjectile_AllElementsArrow : public AProjectile_Arrow
 
 public:
 
+	AProjectile_AllElementsArrow();
 
 private:
-
 	
+	UPROPERTY(EditAnywhere)
+	USceneComponent* EffectSpawnComponent;
+
+	//FRotator GetRandomRotation();
+	
+	UPROPERTY(EditAnywhere)
+	TArray<UParticleSystem*> Particles;
+
+	UPROPERTY(EditDefaultsOnly)
+	FVector EffectSize;
+	
+	UPROPERTY(EditDefaultsOnly)
+	FName ComponentName;
 };

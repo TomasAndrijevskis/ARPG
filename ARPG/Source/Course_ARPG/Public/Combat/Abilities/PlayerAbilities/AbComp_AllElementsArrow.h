@@ -31,13 +31,17 @@ protected:
 	
 private:
 
+	void FinishAnimation();
+	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> ArrowClass;
 
 	UPROPERTY(EditDefaultsOnly)
 	FName ComponentName;
 
-
+	UPROPERTY(EditDefaultsOnly)
+	UAnimMontage* ShootMontage;
+	
 	UPROPERTY(VisibleAnywhere)
 	float Damage;
 

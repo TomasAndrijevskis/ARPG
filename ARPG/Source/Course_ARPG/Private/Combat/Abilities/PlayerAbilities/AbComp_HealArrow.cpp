@@ -19,7 +19,7 @@ void UAbComp_HealArrow::BeginPlay()
 void UAbComp_HealArrow::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
+	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
@@ -46,12 +46,14 @@ void UAbComp_HealArrow::SpawnArrow()
 	FVector TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
 	AProjectile_HealingArrow* Projectile = GetWorld()->SpawnActor<AProjectile_HealingArrow>(ArrowClass, SpawnLocation, SpawnRotation);
-	if (!Projectile) return;
-	Projectile->SetProjectileOwner(GetOwner());
-	Projectile->SetParams(0, AliveTime, 0);
-	Projectile->StartAliveTimer();
-	Projectile->OnHitEnemy.AddUObject(this, &UAbComp_HealArrow::OnHitEnemy);
-	Projectile->OnHitNothing.AddUObject(this, &UAbComp_HealArrow::OnHitNothing);
+	if (Projectile)
+	{
+		Projectile->SetProjectileOwner(GetOwner());
+		Projectile->SetParams(0, AliveTime, 0);
+		Projectile->StartAliveTimer();
+		Projectile->OnHitEnemy.AddUObject(this, &UAbComp_HealArrow::OnHitEnemy);
+		Projectile->OnHitNothing.AddUObject(this, &UAbComp_HealArrow::OnHitNothing);
+	}
 	FinishAbilityCast();
 }
 

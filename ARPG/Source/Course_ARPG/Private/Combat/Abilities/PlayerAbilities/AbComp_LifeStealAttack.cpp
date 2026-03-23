@@ -18,7 +18,7 @@ void UAbComp_LifeStealAttack::BeginPlay()
 void UAbComp_LifeStealAttack::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
+	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
 		PlayerRef->PlayAnimMontage(AnimMontage);

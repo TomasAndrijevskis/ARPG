@@ -16,7 +16,7 @@ void UAbComp_MagicShield::BeginPlay()
 void UAbComp_MagicShield::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
+	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
 		PlayerRef->PlayAnimMontage(AnimMontage);

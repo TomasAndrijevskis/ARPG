@@ -226,7 +226,9 @@ bool UAbilityComponent_Player::IsOnCooldown() const{return bIsOnCooldown;}
 
 bool UAbilityComponent_Player::IsAbilityActive() const{return bIsAbilityActive;}
 
-int UAbilityComponent_Player::GetCurrentAbilityLevel(){return CurrentAbilityLevel;}
+bool UAbilityComponent_Player::CanUseAbility() const{return CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef;}
+
+int UAbilityComponent_Player::GetCurrentAbilityLevel() const{return CurrentAbilityLevel;}
 
 float UAbilityComponent_Player::GetManaCost() const{return ManaCost;}
 

@@ -15,7 +15,7 @@ void UAbComp_Invincibility::BeginPlay()
 void UAbComp_Invincibility::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
+	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
 		PlayerRef->PlayAnimMontage(AnimMontage);

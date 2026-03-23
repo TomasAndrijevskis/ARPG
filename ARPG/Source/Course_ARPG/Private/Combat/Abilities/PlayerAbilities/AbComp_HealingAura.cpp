@@ -16,7 +16,7 @@ void UAbComp_HealingAura::BeginPlay()
 void UAbComp_HealingAura::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
+	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
 		PlayerRef->PlayAnimMontage(AnimMontage);

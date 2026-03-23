@@ -9,7 +9,7 @@
 void UAbComp_FrostBlast::StartAbility()
 {
 	Super::StartAbility();
-	if (CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef)
+	if (CanUseAbility())
 	{
 		if (!Warmup || !FrostBlastClass) return;
 		SetAbilityActive(true);
