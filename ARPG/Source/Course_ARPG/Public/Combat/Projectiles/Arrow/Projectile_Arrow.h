@@ -22,7 +22,7 @@ public:
 
 	FOnHitNothingDelegate OnHitNothing;
 	
-private:
+protected:
 
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* Mesh;
