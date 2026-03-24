@@ -29,7 +29,7 @@ public:
 
 	void SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsAffected);
 
-	virtual void HandleEffect();
+	virtual void HandleEffect(bool bIsProlongedDamage);
 	
 	FOnStatusIconCreateRequest OnStatusIconCreateRequestDelegate;
 
@@ -98,7 +98,7 @@ protected:
 	float Resistance;
 
 	UPROPERTY(visibleAnywhere)
-	bool bIsAffected = false;
+	bool bIsStillAffected = false;
 	
 	FTimerHandle EffectTimerHandle;
 

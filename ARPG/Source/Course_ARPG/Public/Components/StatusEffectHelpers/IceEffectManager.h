@@ -13,7 +13,7 @@ class COURSE_ARPG_API UIceEffectManager : public UStatusEffectsComponent
 	
 public:	
 
-	virtual void HandleEffect() override;
+	virtual void HandleEffect(bool bIsProlongedDamage) override;
 	
 protected:
 

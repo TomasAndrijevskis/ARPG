@@ -10,10 +10,6 @@ UCLASS()
 class COURSE_ARPG_API UFireEffectManager : public UStatusEffectsComponent
 {
 	GENERATED_BODY()
-
-public:
-	
-	virtual void HandleEffect() override;
 	
 protected:
 

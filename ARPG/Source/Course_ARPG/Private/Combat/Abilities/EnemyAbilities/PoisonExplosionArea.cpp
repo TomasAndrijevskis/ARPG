@@ -33,8 +33,8 @@ void APoisonExplosionArea::CheckPlayerInRange()
 		UGameplayStatics::ApplyDamage(PlayerRef, ExplosionDamage, Cast<ACharacter>(GetOwner())->GetController(), this, DamageType);
 		if (PlayerRef->FindComponentByClass<UPoisonEffectManager>())
 		{
-			PlayerRef->FindComponentByClass<UPoisonEffectManager>()->SetParams(PoisonDuration, PoisonDamage, PoisonRate, false);
-			PlayerRef->FindComponentByClass<UPoisonEffectManager>()->HandleEffect();
+			PlayerRef->FindComponentByClass<UPoisonEffectManager>()->SetParams(PoisonDamage, PoisonDuration, PoisonRate, false);
+			PlayerRef->FindComponentByClass<UPoisonEffectManager>()->HandleEffect(true);
 		}
 	}
 	this->Destroy();

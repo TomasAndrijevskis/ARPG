@@ -117,6 +117,7 @@ void AMainCharacter_Base::ReceiveDamage(AActor* DamagedActor, float Damage, cons
 {
 	if (!CanTakeDamage(DamageCauser, Damage, DamageType)) return;
 	float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,GetResistanceStatValue(DamageType));
+	UE_LOG(LogTemp, Warning, TEXT("Player received: %f"), FinalDamage);
 	StatsComp->OnReduceHealthRequestDelegate.Broadcast(FinalDamage, this, DamageCauser);
 	PlayHurtAnimation();
 }

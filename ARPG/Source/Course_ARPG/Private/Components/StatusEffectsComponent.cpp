@@ -39,8 +39,9 @@ void UStatusEffectsComponent::HandleOwner()
 }
 
 
-void UStatusEffectsComponent::HandleEffect()
+void UStatusEffectsComponent::HandleEffect(bool bIsProlongedDamage)
 {
+	if (!VisualEffectComponent || !Icon || Resistance == 1) return;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	if (VisualEffectRef == nullptr)
 	{
@@ -48,6 +49,12 @@ void UStatusEffectsComponent::HandleEffect()
 				VisualEffectComponent,SkeletalMeshComp,SocketName,SocketLocation,FRotator::ZeroRotator, VisualEffectScale,
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
+	}
+	if (bIsProlongedDamage) GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UStatusEffectsComponent::ApplyProlongedDamage, DamageRate, true);
+	else
+	{
+		GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UStatusEffectsComponent::StopEffect, Duration, true);
+		ApplyDamage();
 	}
 }
 
@@ -69,7 +76,7 @@ void UStatusEffectsComponent::ApplyProlongedDamage()
 {
 	if (Duration > 0)
 	{
-		if (!bIsAffected) Duration -= DamageRate;
+		if (!bIsStillAffected) Duration -= DamageRate;
 		ApplyDamage();
 	}
 	else StopEffect();
@@ -90,4 +97,4 @@ void UStatusEffectsComponent::StopEffect()
 
 void UStatusEffectsComponent::SetDamageResistance(float NewResistance){Resistance = NewResistance;}
 
-void UStatusEffectsComponent::SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsAffected){Damage = NewDamage;Duration = NewDuration;DamageRate = NewDamageRate; bIsAffected = NewIsAffected;}
+void UStatusEffectsComponent::SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsAffected){Damage = NewDamage;Duration = NewDuration;DamageRate = NewDamageRate;bIsStillAffected = NewIsAffected;}

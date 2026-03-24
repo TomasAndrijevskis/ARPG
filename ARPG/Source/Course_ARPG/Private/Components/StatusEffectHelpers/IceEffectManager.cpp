@@ -1,6 +1,5 @@
 
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
-#include "NiagaraFunctionLibrary.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -13,13 +12,10 @@ void UIceEffectManager::BeginPlay()
 }
 
 
-void UIceEffectManager::HandleEffect()
+void UIceEffectManager::HandleEffect(bool bIsProlongedDamage)
 {
-	if (!VisualEffectComponent || !Icon || Resistance == 1) return;
-	Super::HandleEffect();
+	Super::HandleEffect(bIsProlongedDamage);
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
-	ApplyDamage();
-	GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this,  &UIceEffectManager::StopEffect, Duration, false);
 }
 
 
