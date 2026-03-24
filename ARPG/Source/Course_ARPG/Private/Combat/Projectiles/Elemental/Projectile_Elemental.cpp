@@ -3,7 +3,6 @@
 #include "Particles/ParticleSystemComponent.h"
 
 
-
 void AProjectile_Elemental::DestroyProjectile()
 {
 	Particle = nullptr;
