@@ -6,6 +6,7 @@
 #include "Projectile_Base.generated.h"
 
 
+class UProjectileMovementComponent;
 class UDamageTypeBase;
 
 UCLASS()
@@ -15,6 +16,8 @@ class COURSE_ARPG_API AProjectile_Base : public AActor
 	
 public:	
 
+	AProjectile_Base();
+	
 	UFUNCTION()
 	virtual void DestroyProjectile();
 
@@ -58,6 +61,9 @@ protected:
 	AActor* ProjectileOwner;
 	
 private:
+
+	UPROPERTY(EditAnywhere)
+	UProjectileMovementComponent* MovementComponent;
 	
 	UPROPERTY(VisibleAnywhere)
 	float AliveTime;

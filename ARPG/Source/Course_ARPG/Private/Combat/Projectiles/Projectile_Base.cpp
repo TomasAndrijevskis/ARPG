@@ -7,6 +7,12 @@
 #include "Kismet/GameplayStatics.h"
 
 
+AProjectile_Base::AProjectile_Base()
+{
+	MovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("MovementComponent"));
+}
+
+
 void AProjectile_Base::BeginPlay()
 {
 	Super::BeginPlay();
