@@ -42,8 +42,22 @@ void UAbComp_AllElementsArrow::SpawnArrow()
 		Projectile->SetEffectsParams(GetAbilityDuration(), DamageRate);
 		Projectile->SetParams(EffectDamage, AliveTime, 0);
 		Projectile->StartAliveTimer();
+		Projectile->OnHitEnemy.AddUObject(this, &UAbComp_AllElementsArrow::OnHitEnemy);
+		Projectile->OnHitNothing.AddUObject(this, &UAbComp_AllElementsArrow::OnHitNothing);
 	}
 	FinishAbilityCast();
+}
+
+
+void UAbComp_AllElementsArrow::OnHitEnemy(AEnemyCharacter* EnemyRef)
+{
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_AllElementsArrow::StartCooldown, GetAbilityDuration(), false);
+}
+
+
+void UAbComp_AllElementsArrow::OnHitNothing()
+{
+	StartCooldown();
 }
 
 
@@ -51,7 +65,6 @@ void UAbComp_AllElementsArrow::FinishAbilityCast()
 {
 	Super::FinishAbilityCast();
 	SetAbilityActive(false);
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_AllElementsArrow::StartCooldown, GetAbilityDuration(), false);
 }
 
 

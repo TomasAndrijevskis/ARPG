@@ -6,9 +6,6 @@
 #include "Projectile_HealingArrow.generated.h"
 
 
-class AEnemyCharacter;
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnHitEnemyDelegate, AEnemyCharacter*);
-DECLARE_MULTICAST_DELEGATE(FOnHitNothingDelegate);
 UCLASS()
 class COURSE_ARPG_API AProjectile_HealingArrow : public AProjectile_Arrow
 {
@@ -17,10 +14,6 @@ class COURSE_ARPG_API AProjectile_HealingArrow : public AProjectile_Arrow
 public:
 
 	AProjectile_HealingArrow();
-
-	FOnHitEnemyDelegate OnHitEnemy;
-
-	FOnHitNothingDelegate OnHitNothing;
 	
 protected:
 

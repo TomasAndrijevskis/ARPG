@@ -6,6 +6,8 @@
 #include "Data/Abilities/AllElementsArrowPropertiesData.h"
 #include "AbComp_AllElementsArrow.generated.h"
 
+class AEnemyCharacter;
+
 UCLASS()
 class COURSE_ARPG_API UAbComp_AllElementsArrow : public UAbilityComponent_Player
 {
@@ -38,6 +40,10 @@ protected:
 private:
 
 	void FinishAnimation();
+
+	void OnHitEnemy(AEnemyCharacter* EnemyRef);
+
+	void OnHitNothing();
 	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> ArrowClass;
