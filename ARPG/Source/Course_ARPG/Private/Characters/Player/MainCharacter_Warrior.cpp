@@ -97,7 +97,7 @@ void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
 	if (!StatusEffectsVisualDataAsset) return;
 	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
 	{
-		WeaponEffect = Data->WeaponEffect_N;
+		WeaponEffect = Data->WarriorEnchantmentData.WeaponEffect;
 		CurrentEnchantmentDamageType = Data->DamageType;
 	}
 	SpawnParticle();

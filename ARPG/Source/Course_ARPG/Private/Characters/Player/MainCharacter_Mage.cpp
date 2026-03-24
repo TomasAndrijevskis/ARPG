@@ -119,8 +119,8 @@ void AMainCharacter_Mage::HandleEffectChange(EEffects NewEffect)
 	if (!StatusEffectsVisualDataAsset) return;
 	if (FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
 	{
-		SpawnParticles(Data->WeaponEffect_P);
-		Cast<UCombatComponent_LongRange>(CombatComp)->ChangeProjectileClass(Data->Projectile);
+		SpawnParticles(Data->MageEnchantmentData.WeaponEffect);
+		Cast<UCombatComponent_LongRange>(CombatComp)->ChangeProjectileClass(Data->MageEnchantmentData.Projectile);
 		CurrentEnchantmentDamageType = Data->DamageType;
 	}
 }
