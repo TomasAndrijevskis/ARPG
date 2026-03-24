@@ -42,5 +42,14 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void BindAbilityDelegates() override;
+
+	void SpawnParticle(UParticleSystem* ParticleEffect);
+
+	void RemoveParticle();
 	
+	UPROPERTY(EditDefaultsOnly)
+	FName EffectSocketName;
+
+	UPROPERTY()
+	UParticleSystemComponent* ParticleRef;
 };

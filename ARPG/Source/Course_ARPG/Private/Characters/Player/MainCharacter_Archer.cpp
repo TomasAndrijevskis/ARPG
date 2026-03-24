@@ -7,6 +7,10 @@
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_LongRange.h"
 #include "Components/StatsComponent.h"
+#include "Data/StatusEffects/StatusEffectData.h"
+#include "Data/StatusEffects/StatusEffectsVisualData.h"
+#include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 
 AMainCharacter_Archer::AMainCharacter_Archer()
@@ -40,10 +44,40 @@ void AMainCharacter_Archer::BindAbilityDelegates()
 }
 
 
+void AMainCharacter_Archer::SpawnParticle(UParticleSystem* ParticleEffect)
+{
+	if (!ParticleEffect) return;
+	const FVector SpawnLocation = GetSkeletalMeshComponent()->GetSocketLocation(EffectSocketName);
+	ParticleRef = UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), EffectSocketName, SpawnLocation, FRotator::ZeroRotator,
+	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);
+}
+
+
+void AMainCharacter_Archer::RemoveParticle()
+{
+	if (!ParticleRef) return;
+	ParticleRef->DestroyComponent();
+	ParticleRef = nullptr;
+}
+
+
 void AMainCharacter_Archer::HandleEffectChange(EEffects NewEffect)
 {
-	//Super::HandleEffectChange(NewEffect);
-	Cast<UCombatComponent_LongRange>(CombatComp)->RevertBaseProjectileClass();
+	if (CurrentEffect == NewEffect && NewEffect != EEffects::Empty) return;
+	RemoveParticle();
+	CurrentEffect = NewEffect;
+	if (NewEffect == EEffects::Empty)
+	{
+		Cast<UCombatComponent_LongRange>(CombatComp)->RevertBaseProjectileClass();
+		return;
+	}
+	if (!StatusEffectsVisualDataAsset) return;
+	if (FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
+	{
+		SpawnParticle(Data->ArcherEnchantmentData.WeaponEffect);
+		Cast<UCombatComponent_LongRange>(CombatComp)->ChangeProjectileClass(Data->ArcherEnchantmentData.Projectile);
+		CurrentEnchantmentDamageType = Data->DamageType;
+	}
 }
 
 

@@ -5,13 +5,14 @@
 #include "ArcherEnchantmentData.generated.h"
 
 
-class UNiagaraSystem;
-
 USTRUCT(BlueprintType)
 struct COURSE_ARPG_API FArcherEnchantmentData
 {
 	GENERATED_BODY()
 	
 	UPROPERTY(EditDefaultsOnly)
-	UNiagaraSystem* WeaponEffect;
+	UParticleSystem* WeaponEffect;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AActor> Projectile;
 };
