@@ -3,17 +3,17 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Projectiles/Arrow/Projectile_Arrow.h"
-#include "Projectile_FireArrow.generated.h"
+#include "Projectile_IceArrow.generated.h"
 
 
 UCLASS()
-class COURSE_ARPG_API AProjectile_FireArrow : public AProjectile_Arrow
+class COURSE_ARPG_API AProjectile_IceArrow : public AProjectile_Arrow
 {
 	GENERATED_BODY()
 
 public:
 
-	AProjectile_FireArrow();
+	AProjectile_IceArrow();
 
 protected:
 
@@ -22,5 +22,6 @@ protected:
 private:
 
 	UPROPERTY(EditAnywhere)
-	UParticleSystemComponent* FireParticle;
+	UParticleSystemComponent* IceParticle;
+	
 };
