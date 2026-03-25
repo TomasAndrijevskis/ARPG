@@ -81,6 +81,7 @@ void UAbilityComponent_Player::StartAbility()
 	SkeletalMeshComp = PlayerRef->GetSkeletalMeshComponent();
 	PlayerRef->SetCanPlayHurtAnimation(false);
 	PlayerRef->InterruptHurtAnimation();
+	OnAbilityStartedDelegate.Broadcast();
 }
 
 
@@ -89,7 +90,6 @@ void UAbilityComponent_Player::FinishAbilityCast()
 	if (!PlayerRef) return;
 	PlayerRef->SetCanPlayHurtAnimation(true);
 	HandlePlayerActions(true, true, true);
-	OnAbilityStartedDelegate.Broadcast();
 }
 
 

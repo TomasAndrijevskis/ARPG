@@ -7,6 +7,7 @@
 #include "MainCharacter_Archer.generated.h"
 
 
+class UAbComp_ExplosiveArrow;
 class UAbComp_ArrowBarrage;
 class UAbComp_HealArrow;
 class UAbComp_AllElementsArrow;
@@ -36,6 +37,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_AllElementsArrow* AbilityComp_AllElementsArrow;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAbComp_ExplosiveArrow* AbilityComp_ExplosiveArrow;
 	
 protected:
 

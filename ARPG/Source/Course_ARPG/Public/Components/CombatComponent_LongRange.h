@@ -26,6 +26,8 @@ public:
 private:
 
 	void GetLocations(FVector& SpawnLocation, FVector& TargetLocation, AMainCharacter_Base* PlayerRef);
+
+	float GetDamage();
 	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> BaseProjectileClass;

@@ -26,3 +26,9 @@ void UAnimInstance_Archer::SpawnAllElementsArrow()
 {
 	OnAllElementsArrowSpawnRequest.Broadcast();
 }
+
+
+void UAnimInstance_Archer::SpawnExplosiveArrow()
+{
+	OnExplosiveArrowSpawnRequest.Broadcast();
+}

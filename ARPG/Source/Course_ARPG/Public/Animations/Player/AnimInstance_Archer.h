@@ -8,6 +8,7 @@
 DECLARE_MULTICAST_DELEGATE(FOnHealingArrowFireRequestDelegate);
 DECLARE_MULTICAST_DELEGATE(FOnArrowBarrageSpawnRequestDelegate);
 DECLARE_MULTICAST_DELEGATE(FOnAllElementsArrowSpawnRequestDelegate);
+DECLARE_MULTICAST_DELEGATE(FOnExplosiveArrowSpawnRequestDelegate);
 UCLASS()
 class COURSE_ARPG_API UAnimInstance_Archer : public UAnimInstance_Player
 {
@@ -20,6 +21,8 @@ public:
 	FOnArrowBarrageSpawnRequestDelegate OnArrowBarrageSpawnRequest;
 
 	FOnAllElementsArrowSpawnRequestDelegate OnAllElementsArrowSpawnRequest;
+
+	FOnExplosiveArrowSpawnRequestDelegate OnExplosiveArrowSpawnRequest;
 	
 protected:
 
@@ -35,4 +38,7 @@ private:
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void SpawnAllElementsArrow();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void SpawnExplosiveArrow();
 };

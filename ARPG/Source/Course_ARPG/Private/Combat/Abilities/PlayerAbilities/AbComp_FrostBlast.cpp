@@ -8,10 +8,10 @@
 
 void UAbComp_FrostBlast::StartAbility()
 {
-	Super::StartAbility();
 	if (CanUseAbility())
 	{
 		if (!Warmup || !FrostBlastClass) return;
+		Super::StartAbility();
 		SetAbilityActive(true);
 		SpawnEffect(Warmup);
 		PlayerRef->PlayAnimMontage(AnimMontage);

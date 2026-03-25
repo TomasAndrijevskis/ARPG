@@ -18,10 +18,10 @@ void UAbComp_HealArrow::BeginPlay()
 
 void UAbComp_HealArrow::StartAbility()
 {
-	Super::StartAbility();
 	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
+		Super::StartAbility();
 		const float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
 		GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::FinishAnimation, AnimDuration, false);

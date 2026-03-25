@@ -8,10 +8,10 @@
 
 void UAbComp_AllElementsArrow::StartAbility()
 {
-	Super::StartAbility();
 	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
+		Super::StartAbility();
 		PlayerRef->ReduceMana(GetManaCost());
 		float AnimDuration = PlayerRef->PlayAnimMontage(AnimMontage);
 		HandlePlayerActions(false,false,false);

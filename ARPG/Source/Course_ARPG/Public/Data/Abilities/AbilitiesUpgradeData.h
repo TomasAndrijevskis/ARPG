@@ -5,6 +5,7 @@
 #include "AllElementsArrowPropertiesData.h"
 #include "ArrowBarragePropertiesData.h"
 #include "DamageIncreasePropertiesData.h"
+#include "ExplosiveArrowPropertiesData.h"
 #include "FireStormPropertiesData.h"
 #include "FrostBlastPropertiesData.h"
 #include "HealArrowPropertiesData.h"
@@ -56,4 +57,7 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TArray<FAllElementsArrowPropertiesData> AllElementsArrowLevels;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FExplosiveArrowPropertiesData> ExplosiveArrowLevels;
 };

@@ -120,4 +120,5 @@ bool AMainCharacter_Warrior::IsWeaponEnchanted() const
 	return true;
 }
 
+
 float AMainCharacter_Warrior::GetPhysicalDamage(){return StatsComp->GetStatValue(PhysicalStrength) * GetDamageMultiplier();}

@@ -8,10 +8,10 @@
 
 void UAbComp_FireStorm::StartAbility()
 {
-	Super::StartAbility();
 	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
+		Super::StartAbility();
 		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
 		HandlePlayerActions(false, false, false);

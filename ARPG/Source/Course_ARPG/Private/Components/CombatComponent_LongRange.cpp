@@ -26,7 +26,7 @@ void UCombatComponent_LongRange::SpawnProjectile()
 	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(CurrentProjectileClass, SpawnLocation, SpawnRotation);
 	if (!Projectile) return;
 	Projectile->SetProjectileOwner(GetOwner());
-	Projectile->SetParams(PlayerRef->GetMagicalDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
+	Projectile->SetParams(GetDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
 	Projectile->StartAliveTimer();
 }
 
@@ -38,6 +38,16 @@ void UCombatComponent_LongRange::GetLocations(FVector& SpawnLocation, FVector& T
 	if (!SpawnPointComp) return;
 	SpawnLocation = SpawnPointComp->GetComponentLocation();
 	TargetLocation = PlayerRef->GetTargetLocation(1000.f);
+}
+
+
+float UCombatComponent_LongRange::GetDamage()
+{
+	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(CharacterRef);
+	if (!PlayerRef) return 0;
+	TSubclassOf<UDamageTypeBase> DamageType = PlayerRef->GetDamageType();
+	if (DamageType == UPhysicalDamageType::StaticClass()) return PlayerRef->GetPhysicalDamage();
+	return PlayerRef->GetMagicalDamage();
 }
 
 

@@ -15,10 +15,10 @@ void UAbComp_DamageIncrease::BeginPlay()
 
 void UAbComp_DamageIncrease::StartAbility()
 {
-	Super::StartAbility();
 	if (CanUseAbility())
 	{
 		SetAbilityActive(true);
+		Super::StartAbility();
 		PlayerRef->PlayAnimMontage(AnimMontage);
 		PlayerRef->ReduceMana(GetManaCost());
 		HandlePlayerActions(false, false, true);
