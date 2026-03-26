@@ -12,9 +12,9 @@ void UIceEffectManager::BeginPlay()
 }
 
 
-void UIceEffectManager::HandleEffect(bool bIsProlongedDamage)
+void UIceEffectManager::HandleEffect()
 {
-	Super::HandleEffect(bIsProlongedDamage);
+	Super::HandleEffect();
 	CharacterRef->GetCharacterMovement()->MaxWalkSpeed = OriginalSpeed / 3;
 }
 

@@ -27,9 +27,9 @@ public:
 
 	void SetDamageResistance(float NewResistance);
 
-	void SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsAffected);
+	void SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsProlongedDamage, bool NewIsOverlapping);
 
-	virtual void HandleEffect(bool bIsProlongedDamage);
+	virtual void HandleEffect();
 	
 	FOnStatusIconCreateRequest OnStatusIconCreateRequestDelegate;
 
@@ -51,6 +51,8 @@ protected:
 	virtual void ApplyProlongedDamage();
 
 	virtual void SetEffectType(){};
+
+	virtual void HandleDamageApplication();
 	
 	UPROPERTY(EditDefaultsOnly)
 	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
@@ -98,11 +100,13 @@ protected:
 	float Resistance;
 
 	UPROPERTY(visibleAnywhere)
-	bool bIsStillAffected = false;
+	bool bIsProlongedDamage = false;
 	
 	FTimerHandle EffectTimerHandle;
 
 private:
 
 	void HandleOwner();
+
+	bool bIsOverlapping = false;
 };

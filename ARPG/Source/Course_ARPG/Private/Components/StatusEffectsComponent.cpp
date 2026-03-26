@@ -39,7 +39,7 @@ void UStatusEffectsComponent::HandleOwner()
 }
 
 
-void UStatusEffectsComponent::HandleEffect(bool bIsProlongedDamage)
+void UStatusEffectsComponent::HandleEffect()
 {
 	if (!VisualEffectComponent || !Icon || Resistance == 1) return;
 	const FVector SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
@@ -50,6 +50,12 @@ void UStatusEffectsComponent::HandleEffect(bool bIsProlongedDamage)
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 		OnStatusIconCreateRequestDelegate.Broadcast(Icon, this);
 	}
+	HandleDamageApplication();
+}
+
+
+void UStatusEffectsComponent::HandleDamageApplication()
+{
 	if (bIsProlongedDamage) GetWorld()->GetTimerManager().SetTimer(EffectTimerHandle, this, &UStatusEffectsComponent::ApplyProlongedDamage, DamageRate, true);
 	else
 	{
@@ -76,7 +82,7 @@ void UStatusEffectsComponent::ApplyProlongedDamage()
 {
 	if (Duration > 0)
 	{
-		if (!bIsStillAffected) Duration -= DamageRate;
+		if (!bIsOverlapping) Duration -= DamageRate;
 		ApplyDamage();
 	}
 	else StopEffect();
@@ -97,4 +103,4 @@ void UStatusEffectsComponent::StopEffect()
 
 void UStatusEffectsComponent::SetDamageResistance(float NewResistance){Resistance = NewResistance;}
 
-void UStatusEffectsComponent::SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsAffected){Damage = NewDamage;Duration = NewDuration;DamageRate = NewDamageRate;bIsStillAffected = NewIsAffected;}
+void UStatusEffectsComponent::SetParams(float NewDamage, float NewDuration, float NewDamageRate, bool NewIsProlongedDamage, bool NewIsOverlapping){Damage = NewDamage;Duration = NewDuration;DamageRate = NewDamageRate;bIsProlongedDamage = NewIsProlongedDamage;bIsOverlapping = NewIsOverlapping;}

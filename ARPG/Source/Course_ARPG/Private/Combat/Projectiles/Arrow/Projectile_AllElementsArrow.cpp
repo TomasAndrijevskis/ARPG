@@ -40,12 +40,12 @@ void AProjectile_AllElementsArrow::HandleBeginOverlap(AActor* OtherActor)
 	if (AEnemyCharacter* EnemyRef = Cast<AEnemyCharacter>(CharacterRef))
 	{
 		OnHitEnemy.Broadcast(EnemyRef);
-		EnemyRef->IceStatusEffectManager->SetParams(Damage, EffectDuration, DamageRate, false);
-		EnemyRef->IceStatusEffectManager->HandleEffect(true);
-		EnemyRef->FireStatusEffectManager->SetParams(Damage, EffectDuration, DamageRate, false);
-		EnemyRef->FireStatusEffectManager->HandleEffect(true);
-		EnemyRef->PoisonStatusEffectManager->SetParams(Damage, EffectDuration, DamageRate, false);
-		EnemyRef->PoisonStatusEffectManager->HandleEffect(true);
+		EnemyRef->IceStatusEffectManager->SetParams(Damage, EffectDuration, DamageRate, true, false);
+		EnemyRef->IceStatusEffectManager->HandleEffect();
+		EnemyRef->FireStatusEffectManager->SetParams(Damage, EffectDuration, DamageRate, true, false);
+		EnemyRef->FireStatusEffectManager->HandleEffect();
+		EnemyRef->PoisonStatusEffectManager->SetParams(Damage, EffectDuration, DamageRate, true, false);
+		EnemyRef->PoisonStatusEffectManager->HandleEffect();
 	}
 	HandleDestruction();
 }

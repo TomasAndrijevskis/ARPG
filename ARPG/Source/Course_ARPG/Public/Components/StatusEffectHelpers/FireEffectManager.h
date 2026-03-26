@@ -14,5 +14,4 @@ class COURSE_ARPG_API UFireEffectManager : public UStatusEffectsComponent
 protected:
 
 	virtual void SetEffectType() override;
-	
 };
