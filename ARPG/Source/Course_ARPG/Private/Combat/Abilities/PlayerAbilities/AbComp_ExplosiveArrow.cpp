@@ -61,6 +61,28 @@ void UAbComp_ExplosiveArrow::FinishAbilityCast()
 }
 
 
+void UAbComp_ExplosiveArrow::UpdateAbilityDescription()
+{
+	SetAbilityDescription(FString::Printf(TEXT("Shoot explosive arrow"
+	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nNumbers of shots: %i\nExplosion damage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetNumberOfShots(),
+	GetEnhancedDamage(), GetDefaultDamage(),
+	GetEnhancedDamage() - GetDefaultDamage()));
+}
+
+
+void UAbComp_ExplosiveArrow::UpdateUpgradeDescription()
+{
+	const FExplosiveArrowPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	if (!NextLevelData) return;
+	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nNumber of shots: %i -> %i\nExplosion damage: %.2f -> %.2f"),
+		GetManaCost(), NextLevelData->ManaCost,
+		GetCooldownDuration(), NextLevelData->CooldownDuration,
+		GetNumberOfShots(), NextLevelData->NumberOfShots,
+		GetDefaultDamage(), NextLevelData->ExplosionDamage));
+}
+
+
 FExplosiveArrowPropertiesData* UAbComp_ExplosiveArrow::GetAbilityData(const int32 Level)
 {
 	if (!AbilitiesUpgradeDataAsset) return nullptr;

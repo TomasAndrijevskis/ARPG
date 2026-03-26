@@ -14,9 +14,9 @@ class COURSE_ARPG_API UAbComp_ExplosiveArrow : public UAbilityComponent_Player
 
 public:
 
-	//virtual void UpdateAbilityDescription() override;
+	virtual void UpdateAbilityDescription() override;
 
-	//virtual void UpdateUpgradeDescription() override;
+	virtual void UpdateUpgradeDescription() override;
 
 	virtual void StartAbility() override;
 
