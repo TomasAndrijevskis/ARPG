@@ -1,5 +1,7 @@
 
 #include "Combat/Projectiles/Arrow/Projectile_ExplosiveArrow.h"
+#include "Combat/Abilities/PlayerAbilities/ExplosionArea.h"
+#include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
 
@@ -12,19 +14,17 @@ AProjectile_ExplosiveArrow::AProjectile_ExplosiveArrow()
 
 void AProjectile_ExplosiveArrow::HandleBeginOverlap(AActor* OtherActor)
 {
-	HandleDestruction();
-	if (ExplosionRangeClassRef) return;
-	//Super::HandleBeginOverlap(OtherActor);
-	/*if (!OtherActor || OtherActor == this) return;
-	ACharacter* CharacterRef = Cast<ACharacter>(OtherActor);
-	if (!CharacterRef)
+	if (!ExplosionRangeClass)
 	{
 		HandleDestruction();
 		return;
 	}
-	if (!IsOpponentHit(OtherActor)) return;
-	UGameplayStatics::ApplyDamage(CharacterRef, Damage + Damage * ElementalDamageModificator, Cast<ACharacter>(ProjectileOwner)->GetController(), this, DamageType);
-	HandleDestruction();*/
+	FVector HitLocation = this->GetActorLocation();
+	HandleDestruction();
+	FTransform SpawnTransform(FRotator::ZeroRotator, HitLocation);
+	AExplosionArea* Projectile = GetWorld()->SpawnActorDeferred<AExplosionArea>(ExplosionRangeClass, SpawnTransform);
+	Projectile->SetParams(Damage, DamageType);
+	UGameplayStatics::FinishSpawningActor(Projectile, SpawnTransform);
 }
 
 

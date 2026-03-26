@@ -26,5 +26,5 @@ private:
 	UParticleSystemComponent* Particle;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AActor> ExplosionRangeClassRef;
+	TSubclassOf<AActor> ExplosionRangeClass;
 };
