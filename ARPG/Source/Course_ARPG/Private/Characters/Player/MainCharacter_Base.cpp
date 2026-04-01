@@ -6,6 +6,7 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/AttributesComponent.h"
 #include "Components/CombatComponent_Base.h"
+#include "Components/InventoryComponent.h"
 #include "Components/LevelingComponent.h"
 #include "Components/LockonComponent.h"
 #include "Components/PlayerActionsComponent.h"
@@ -28,6 +29,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 	AttributesComp = CreateDefaultSubobject<UAttributesComponent>(TEXT("Attributes Component"));
+	InventoryComp = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inventory Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));

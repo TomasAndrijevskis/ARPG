@@ -14,6 +14,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UInventoryComponent;
 class UAttributesComponent;
 class UPoisonEffectManager;
 class UIceEffectManager;
@@ -211,6 +212,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UCombatComponent_Base* CombatComp;
 
+	UPROPERTY(blueprintReadWrite, EditAnywhere)
+	UInventoryComponent* InventoryComp;
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	ULevelingComponent* LevelComp;
 
