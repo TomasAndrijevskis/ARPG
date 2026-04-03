@@ -475,6 +475,31 @@ void AMainCharacter_Base::EndPlayerLockOnEnemy()
 }
 
 
+void AMainCharacter_Base::CreateInventory()
+{
+	InventoryComp->CreateInventoryWidget();
+}
+
+
+void AMainCharacter_Base::RemoveInventory()
+{
+	InventoryComp->RemoveInventoryWidget();
+}
+
+
+void AMainCharacter_Base::PickUpItem(int ItemID)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Pick up item"));
+	InventoryComp->AddItemToInventory(ItemID);
+}
+
+
+void AMainCharacter_Base::DropItem(int ItemID)
+{
+	InventoryComp->RemoveItemFromInventory(ItemID);
+}
+
+
 void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbility){ArrAbilities.Add(NewAbility);}
 
 void AMainCharacter_Base::SetCanPlayHurtAnimation(const bool bCanPlayAnim){bCanPlayHurtAnim = bCanPlayAnim;}

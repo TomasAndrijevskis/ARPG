@@ -9,3 +9,10 @@ void UObjectInteractionText::InitializeText(const FString& InteractionObject, co
 	Text_InteractionText_Upper->SetText(FText::FromString(InteractionObjectName));
 	Text_InteractionText_Lower->SetText(FText::FromString(InteractionMessage));
 }
+
+
+void UObjectInteractionText::InitializeText(const FString& InteractionKey, const FString& InteractionObjectName)
+{
+	const FString InteractionMessage = InteractionKey+ " Pick up " + InteractionObjectName;
+	Text_InteractionText_Lower->SetText(FText::FromString(InteractionMessage));
+}

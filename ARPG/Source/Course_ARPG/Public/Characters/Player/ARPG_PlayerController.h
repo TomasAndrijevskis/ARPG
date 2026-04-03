@@ -15,6 +15,7 @@ class UARPG_GameInstance;
 class AMainCharacter_Base;
 
 DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleportRequest);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnGamePauseRequest, bool);
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
@@ -37,6 +38,8 @@ public:
 	void SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange);
 	
 	void SetMapName(const FString& NewMapName);
+
+	void SetItemId(int NewItemId, bool bNewIsItemOverlapped);
 	
 	UFUNCTION()
 	void LoadToMainMenu();
@@ -63,28 +66,33 @@ public:
 	void HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName);
 	
 	ABonfire*& GetCurrentBonfire();
-
+	
 	FOnPlayerTeleportRequest OnPlayerTeleportRequestDelegate;
+
+	FOnGamePauseRequest OnGamePauseRequestDelegate;
 	
 protected:
 	
 	virtual void BeginPlay() override;
-
-	UFUNCTION(BlueprintCallable)
-	void HandleBonfireInteraction();
-
-	UFUNCTION(BlueprintCallable)
-	void HandleMagicalCubeInteraction();
 	
 	void TeleportToMap(FVector TravelLocation, FString TravelMapName);
 
-	UFUNCTION(BlueprintCallable)
+private:
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void HandleBonfireInteraction();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void HandleMagicalCubeInteraction();
+
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void HandleEnchantmentSphereInteraction();
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void CallTeleportRequest();
 
-private:
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
+	void HandleItemPickup();
 	
 	void QuitGame() const;
 	
@@ -129,6 +137,8 @@ private:
 	TSubclassOf<UTransitionAnim> TransitionAnimClass;
 	
 	TMap<FString, FBonfireData> UnlockedBonfires;
+
+	int ItemID;
 	
 	bool bIsAbilityScreenOpened = false;
 	
@@ -141,6 +151,8 @@ private:
 	bool bIsInMagicalCubeRange = false;
 
 	bool bIsInMagicalSphereRange = false;
+
+	bool bIsItemOverlapped = false;
 	
 	FString MapName;
 };

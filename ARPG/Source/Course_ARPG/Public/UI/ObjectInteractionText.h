@@ -16,6 +16,8 @@ class COURSE_ARPG_API UObjectInteractionText : public UUserWidget
 public:
 	
 	void InitializeText(const FString& InteractionObject, const FString& InteractionObjectName,  const FString& InteractionKey);
+
+	void InitializeText(const FString& InteractionKey, const FString& InteractionObjectName);
 	
 private:
 

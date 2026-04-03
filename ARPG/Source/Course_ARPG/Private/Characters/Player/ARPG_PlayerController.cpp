@@ -13,6 +13,7 @@ void AARPG_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	SetPlayerControllerSettings();
+	OnGamePauseRequestDelegate.AddUObject(this, &AARPG_PlayerController::HandleGamePause);
 	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
 	if (!PlayerRef) return;
 	PlayFadeAnim(FadeOut);
@@ -51,6 +52,13 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
 	if (!GameMode) return;
 	GameMode->SpawnEnemies();
+}
+
+
+void AARPG_PlayerController::HandleItemPickup()
+{
+	if (!bIsItemOverlapped || !PlayerRef) return;
+	PlayerRef->PickUpItem(ItemID);
 }
 
 
@@ -203,8 +211,8 @@ void AARPG_PlayerController::HandleGamePause(const bool bIsGamePaused)
 	SetShowMouseCursor(bIsGamePaused);
 	bEnableClickEvents = bIsGamePaused;
 	bEnableMouseOverEvents = bIsGamePaused;
-	UGameplayStatics::SetGamePaused(GetWorld(), bIsGamePaused);
 	bIsGamePaused ? SetInputMode(FInputModeGameAndUI()) : SetInputMode(FInputModeGameOnly());
+	UGameplayStatics::SetGamePaused(GetWorld(), bIsGamePaused);
 }
 
 
@@ -275,6 +283,8 @@ void AARPG_PlayerController::SetDefeatedBosses(const TArray<FName>& Bosses){Defe
 void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss){DefeatedBosses.AddUnique(Boss);}
 
 void AARPG_PlayerController::SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires){UnlockedBonfires = NewUnlockedBonfires;}
+
+void AARPG_PlayerController::SetItemId(int NewItemId, bool bNewIsItemOverlapped){ItemID = NewItemId; bIsItemOverlapped = bNewIsItemOverlapped;}
 
 ABonfire*& AARPG_PlayerController::GetCurrentBonfire(){return BonfireRef;}
 

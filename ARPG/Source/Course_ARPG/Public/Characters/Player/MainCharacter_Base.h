@@ -196,6 +196,16 @@ public:
 	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 
 	void SetCanMove(bool CanMove);
+
+	UFUNCTION(BlueprintCallable)
+	void CreateInventory();
+
+	UFUNCTION(BlueprintCallable)
+	void RemoveInventory();
+
+	void PickUpItem(int ItemID);
+
+	void DropItem(int ItemID);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
