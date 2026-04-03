@@ -1,6 +1,5 @@
 
 #include "Items/PickableItem_Base.h"
-
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/BoxComponent.h"
 #include "Components/SphereComponent.h"
@@ -14,9 +13,9 @@ APickableItem_Base::APickableItem_Base()
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(ObjectCollision);
 	InteractionRange = CreateDefaultSubobject<USphereComponent>(TEXT("InteractionRange"));
-	InteractionRange->SetupAttachment(ObjectCollision);
+	InteractionRange->SetupAttachment(Mesh);
 	InteractionWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("InteractionWidget"));
-	InteractionWidget->SetupAttachment(ObjectCollision);
+	InteractionWidget->SetupAttachment(Mesh);
 }
 
 
@@ -34,7 +33,7 @@ void APickableItem_Base::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedCom
 {
 	UE_LOG(LogTemp, Warning, TEXT("On item overlap"));
 	if (!PlayerController) return;
-	PlayerController->SetItemId(ID, true);
+	PlayerController->SetItemData(ID, true, this);
 }
 
 
@@ -42,7 +41,7 @@ void APickableItem_Base::OnSphereEndOverlap(UPrimitiveComponent* OverlappedCompo
 {
 	UE_LOG(LogTemp, Warning, TEXT("On item stop overlap"));
 	if (!PlayerController) return;
-	PlayerController->SetItemId(0, false);
+	PlayerController->SetItemData(0, false, nullptr);
 }
 
 

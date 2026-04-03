@@ -8,6 +8,7 @@
 #include "ARPG_PlayerController.generated.h"
 
 
+class APickableItem_Base;
 class UTransitionAnim;
 class ABoss;
 class ABonfire;
@@ -39,7 +40,7 @@ public:
 	
 	void SetMapName(const FString& NewMapName);
 
-	void SetItemId(int NewItemId, bool bNewIsItemOverlapped);
+	void SetItemData(int NewItemId, bool bNewIsItemOverlapped, APickableItem_Base* NewItemRef);
 	
 	UFUNCTION()
 	void LoadToMainMenu();
@@ -129,6 +130,9 @@ private:
 	
 	UPROPERTY()
 	ABonfire* BonfireRef;
+
+	UPROPERTY()
+	APickableItem_Base* ItemRef;
 	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FName> DefeatedBosses;

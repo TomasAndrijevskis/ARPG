@@ -14,6 +14,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class APickableItem_Base;
 class UInventoryComponent;
 class UAttributesComponent;
 class UPoisonEffectManager;
@@ -203,7 +204,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void RemoveInventory();
 
-	void PickUpItem(int ItemID);
+	void PickUpItem(int ItemID, APickableItem_Base* ItemRef);
 
 	void DropItem(int ItemID);
 	

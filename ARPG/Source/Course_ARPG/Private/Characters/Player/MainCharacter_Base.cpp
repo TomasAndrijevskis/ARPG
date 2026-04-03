@@ -487,10 +487,10 @@ void AMainCharacter_Base::RemoveInventory()
 }
 
 
-void AMainCharacter_Base::PickUpItem(int ItemID)
+void AMainCharacter_Base::PickUpItem(int ItemID, APickableItem_Base* ItemRef)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Pick up item"));
-	InventoryComp->AddItemToInventory(ItemID);
+	InventoryComp->AddItemToInventory(ItemID, ItemRef);
 }
 
 

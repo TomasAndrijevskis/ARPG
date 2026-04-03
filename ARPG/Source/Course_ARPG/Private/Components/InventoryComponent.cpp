@@ -33,14 +33,15 @@ void UInventoryComponent::RemoveInventoryWidget()
 }
 
 
-void UInventoryComponent::AddItemToInventory(int ItemID)
+void UInventoryComponent::AddItemToInventory(int ItemID, APickableItem_Base* ItemRef)
 {
-	if (ItemID == 0) return;
+	if (ItemID == 0 || !ItemRef) return;
 	if (Items.Num() < SlotsAmount)
 	{
 		const FPickableItems* Item = FindItemByID(ItemID);
 		if (!Item || !Item->ItemClass) return;
 		Items.Add(Item->ItemClass);
+		ItemRef->OnPickItemRequestDelegate.Broadcast();
 	}
 }
 

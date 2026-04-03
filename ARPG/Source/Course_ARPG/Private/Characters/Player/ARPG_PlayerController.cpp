@@ -58,7 +58,7 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 void AARPG_PlayerController::HandleItemPickup()
 {
 	if (!bIsItemOverlapped || !PlayerRef) return;
-	PlayerRef->PickUpItem(ItemID);
+	PlayerRef->PickUpItem(ItemID, ItemRef);
 }
 
 
@@ -284,7 +284,7 @@ void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss){DefeatedBosses.A
 
 void AARPG_PlayerController::SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires){UnlockedBonfires = NewUnlockedBonfires;}
 
-void AARPG_PlayerController::SetItemId(int NewItemId, bool bNewIsItemOverlapped){ItemID = NewItemId; bIsItemOverlapped = bNewIsItemOverlapped;}
+void AARPG_PlayerController::SetItemData(int NewItemId, bool bNewIsItemOverlapped, APickableItem_Base* NewItemRef){ItemID = NewItemId; bIsItemOverlapped = bNewIsItemOverlapped; ItemRef = NewItemRef;}
 
 ABonfire*& AARPG_PlayerController::GetCurrentBonfire(){return BonfireRef;}
 

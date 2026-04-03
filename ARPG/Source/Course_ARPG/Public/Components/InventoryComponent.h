@@ -22,7 +22,7 @@ public:
 	
 	void RemoveInventoryWidget();
 
-	void AddItemToInventory(int ItemID);
+	void AddItemToInventory(int ItemID, APickableItem_Base* ItemRef);
 
 	void RemoveItemFromInventory(int ItemID);
 	
