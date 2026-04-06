@@ -25,7 +25,7 @@ public:
 
 	void AddItemToInventory(int ItemID, APickableItem_Base* ItemRef);
 
-	//void RemoveItemFromInventory(int ItemID);
+	void RemoveItemFromInventory(int ItemID);
 	
 protected:
 	

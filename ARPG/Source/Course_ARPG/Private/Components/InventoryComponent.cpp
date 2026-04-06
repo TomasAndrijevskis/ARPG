@@ -50,14 +50,22 @@ void UInventoryComponent::AddItemToInventory(int ItemID, APickableItem_Base* Ite
 	}
 }
 
-/*
+
 void UInventoryComponent::RemoveItemFromInventory(int ItemID)
 {
 	if (ItemID == 0) return;
 	const FPickableItems* Item = FindItemByID(ItemID);
 	if (!Item || !Item->ItemClass) return;
+	for (int i = 0; i < Items.Num(); i++)
+	{
+		if (Items[i].ID == ItemID)
+		{
+			Items.RemoveAt(i);
+			break;
+		}
+	}
 }
-*/
+
 
 const FPickableItems* UInventoryComponent::FindItemByID(int ItemID) const
 {
