@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Data/ItemsData.h"
 #include "Data/PickableItems.h"
 #include "InventoryComponent.generated.h"
 
@@ -24,7 +25,7 @@ public:
 
 	void AddItemToInventory(int ItemID, APickableItem_Base* ItemRef);
 
-	void RemoveItemFromInventory(int ItemID);
+	//void RemoveItemFromInventory(int ItemID);
 	
 protected:
 	
@@ -38,7 +39,7 @@ private:
 	TSubclassOf<UInventoryWidget> InventoryWidgetClass;
 
 	UPROPERTY(VisibleAnywhere)
-	TArray<TSubclassOf<APickableItem_Base>> Items;
+	TArray<FItemsData> Items;
 	
 	UPROPERTY()
 	UInventoryWidget* InventoryWidgetRef;

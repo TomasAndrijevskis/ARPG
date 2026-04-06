@@ -3,9 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Data/ItemsData.h"
 #include "InventoryWidget.generated.h"
 
 
+class APickableItem_Base;
 class UWrapBox;
 class UInventorySlot;
 class UHorizontalBox;
@@ -20,6 +22,8 @@ public:
 	virtual void NativeConstruct() override;
 	
 	void SetSlotsAmount(int Amount);
+
+	void SetItems(const TArray<FItemsData>& AvailableItems);
 	
 private:
 
@@ -28,10 +32,17 @@ private:
 
 	UPROPERTY(meta=(BindWidget))
 	UWrapBox* WrapBox_Inventory;
+
+	void HandleSlotsCreation();
 	
-	UInventorySlot* CreateInventorySlot();
+	UInventorySlot* CreateInventorySlot(UTexture2D* Icon);
 	
-	void CreateSlots();
+	void CreateEmptySlots();
+
+	void CreateTakenSlot(UTexture2D* Icon);
+	
+	UPROPERTY()
+	TArray<FItemsData> Items;
 	
 	int SlotsAmount;
 };

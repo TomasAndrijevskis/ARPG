@@ -205,8 +205,6 @@ public:
 	void RemoveInventory();
 
 	void PickUpItem(int ItemID, APickableItem_Base* ItemRef);
-
-	void DropItem(int ItemID);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;

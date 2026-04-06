@@ -47,6 +47,8 @@ void APickableItem_Base::OnSphereEndOverlap(UPrimitiveComponent* OverlappedCompo
 
 void APickableItem_Base::DestroyItem()
 {
+	InteractionRange->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	ObjectCollision->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	this->Destroy();
 }
 

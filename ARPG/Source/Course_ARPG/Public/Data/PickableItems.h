@@ -20,7 +20,4 @@ struct COURSE_ARPG_API FPickableItems: public FTableRowBase
 
 	UPROPERTY(EditDefaultsOnly)
 	UTexture2D* Image;
-
-	UPROPERTY(EditDefaultsOnly)
-	bool IsStackable;
 };

@@ -18,6 +18,7 @@ void UInventoryComponent::CreateInventoryWidget()
 	if (!InventoryWidgetClass || !PC || InventoryWidgetRef) return;
 	InventoryWidgetRef = Cast<UInventoryWidget>(CreateWidget(PC, InventoryWidgetClass));
 	if (!InventoryWidgetRef) return;
+	InventoryWidgetRef->SetItems(Items);
 	InventoryWidgetRef->SetSlotsAmount(SlotsAmount);
 	InventoryWidgetRef->AddToViewport(5);
 	PC->OnGamePauseRequestDelegate.Broadcast(true);
@@ -40,20 +41,23 @@ void UInventoryComponent::AddItemToInventory(int ItemID, APickableItem_Base* Ite
 	{
 		const FPickableItems* Item = FindItemByID(ItemID);
 		if (!Item || !Item->ItemClass) return;
-		Items.Add(Item->ItemClass);
+		FItemsData NewData;
+		NewData.ID = ItemID;
+		NewData.Image = Item->Image;
+		NewData.ItemClass = ItemRef;
+		Items.Add(NewData);
 		ItemRef->OnPickItemRequestDelegate.Broadcast();
 	}
 }
 
-
+/*
 void UInventoryComponent::RemoveItemFromInventory(int ItemID)
 {
 	if (ItemID == 0) return;
 	const FPickableItems* Item = FindItemByID(ItemID);
 	if (!Item || !Item->ItemClass) return;
-	Items.Remove(Item->ItemClass);
 }
-
+*/
 
 const FPickableItems* UInventoryComponent::FindItemByID(int ItemID) const
 {

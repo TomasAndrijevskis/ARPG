@@ -38,4 +38,10 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	FVector2D IconSize;
+
+	UPROPERTY(EditDefaultsOnly)
+	FLinearColor OriginalHealthBarColor;
+
+	UPROPERTY(EditDefaultsOnly)
+	FLinearColor MarkedHealthBarColor;
 };

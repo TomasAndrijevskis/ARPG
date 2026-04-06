@@ -24,6 +24,6 @@ void UEnemyHealthBar::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsCom
 void UEnemyHealthBar::SetHealthBarColor(bool IsMarked)
 {
 	FLinearColor InColor;
-	IsMarked ? InColor = FLinearColor::Yellow : InColor = FColor::FromHex(TEXT("B70000FF"));
+	IsMarked ? InColor = MarkedHealthBarColor : InColor = OriginalHealthBarColor;
 	ProgressBar_HealthBar->SetFillColorAndOpacity(InColor);
 }

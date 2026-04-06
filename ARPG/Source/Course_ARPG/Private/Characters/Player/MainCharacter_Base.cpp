@@ -494,12 +494,6 @@ void AMainCharacter_Base::PickUpItem(int ItemID, APickableItem_Base* ItemRef)
 }
 
 
-void AMainCharacter_Base::DropItem(int ItemID)
-{
-	InventoryComp->RemoveItemFromInventory(ItemID);
-}
-
-
 void AMainCharacter_Base::AddToAbilitiesArray(UAbilityComponent_Player* NewAbility){ArrAbilities.Add(NewAbility);}
 
 void AMainCharacter_Base::SetCanPlayHurtAnimation(const bool bCanPlayAnim){bCanPlayHurtAnim = bCanPlayAnim;}
