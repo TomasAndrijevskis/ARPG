@@ -72,6 +72,8 @@ public:
 
 	virtual void RemoveStatusEffectIcon(){}
 
+	virtual void ChangeHealthBarColor(bool IsMarked){};
+	
 	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 	
 	UPROPERTY(EditAnywhere)

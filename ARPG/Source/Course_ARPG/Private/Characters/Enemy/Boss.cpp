@@ -87,6 +87,12 @@ void ABoss::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* St
 }
 
 
+void ABoss::ChangeHealthBarColor(bool IsMarked)
+{
+	HealthBarWidgetRef->SetHealthBarColor(IsMarked);
+}
+
+
 float ABoss::GetAttackAnimReductionTime() const
 {
 	if (!bSecondPhase) return 0;

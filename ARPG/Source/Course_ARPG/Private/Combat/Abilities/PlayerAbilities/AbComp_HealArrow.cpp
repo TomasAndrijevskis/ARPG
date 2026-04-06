@@ -63,6 +63,7 @@ void UAbComp_HealArrow::OnHitEnemy(AEnemyCharacter* NewEnemyRef)
 	SetAbilityActive(false);
 	EnemyRef = NewEnemyRef;
 	EnemyRef->OnEnemyDiedDelegate.AddUObject(this, &UAbComp_HealArrow::OnEnemyDied);
+	EnemyRef->ChangeHealthBarColor(true);
 	TimerDuration = GetAbilityDuration();
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &UAbComp_HealArrow::StartAbilityTimer, 1, true, 1);
 	CreateIcon();
@@ -104,7 +105,11 @@ void UAbComp_HealArrow::HandleEnemyHit(float Damage)
 
 void UAbComp_HealArrow::OnAbilityFinished()
 {
-	if (EnemyRef) EnemyRef->SetCanApplyDamage(true);
+	if (EnemyRef)
+	{
+		EnemyRef->ChangeHealthBarColor(false);
+		EnemyRef->SetCanApplyDamage(true);
+	}
 	EnemyRef = nullptr;
 	HealCap = MaxHealCap;
 }

@@ -19,3 +19,11 @@ void UEnemyHealthBar::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsCom
 	StatusEffectIconRef->InitializeWidget(Icon, IconSize, StatusEffectsCompRef);
 	HorizontalBox_StatusEffects->AddChild(StatusEffectIconRef);
 }
+
+
+void UEnemyHealthBar::SetHealthBarColor(bool IsMarked)
+{
+	FLinearColor InColor;
+	IsMarked ? InColor = FLinearColor::Yellow : InColor = FColor::FromHex(TEXT("B70000FF"));
+	ProgressBar_HealthBar->SetFillColorAndOpacity(InColor);
+}

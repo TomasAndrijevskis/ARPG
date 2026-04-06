@@ -22,6 +22,8 @@ public:
 	void SetHealth(const float NewHealthPercent);
 
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
+
+	void SetHealthBarColor(bool IsMarked);
 	
 private:
 

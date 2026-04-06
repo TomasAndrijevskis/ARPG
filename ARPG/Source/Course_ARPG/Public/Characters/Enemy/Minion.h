@@ -30,6 +30,8 @@ public:
 	UMinionHealthBar* GetMinionWidget() const;
 
 	virtual void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef) override;
+
+	virtual void ChangeHealthBarColor(bool IsMarked) override;
 	
 protected:
 	

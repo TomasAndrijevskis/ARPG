@@ -74,4 +74,10 @@ void AMinion::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* 
 }
 
 
+void AMinion::ChangeHealthBarColor(bool IsMarked)
+{
+	HealthBarWidgetRef->SetHealthBarColor(IsMarked);
+}
+
+
 UMinionHealthBar* AMinion::GetMinionWidget() const{return HealthBarWidgetRef;}
