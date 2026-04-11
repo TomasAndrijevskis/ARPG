@@ -201,9 +201,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void CreateInventory();
 
-	UFUNCTION(BlueprintCallable)
-	void RemoveInventory();
-
 	void PickUpItem(int ItemID, APickableItem_Base* ItemRef);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)

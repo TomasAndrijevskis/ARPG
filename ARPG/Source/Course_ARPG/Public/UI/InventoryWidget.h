@@ -7,6 +7,7 @@
 #include "InventoryWidget.generated.h"
 
 
+class UButton;
 class UGridPanel;
 class APickableItem_Base;
 class UWrapBox;
@@ -20,6 +21,9 @@ class COURSE_ARPG_API UInventoryWidget : public UUserWidget
 
 public:
 
+	UPROPERTY(meta=(BindWidget))
+	UButton* Button_Close;
+	
 	virtual void NativeConstruct() override;
 	
 	void SetSlotsAmount(int Amount);
@@ -39,6 +43,9 @@ private:
 	UInventorySlot* CreateInventorySlot(UTexture2D* Icon);
 
 	void CreateSlot(UTexture2D* Icon);
+
+	UFUNCTION()
+	void RemoveInventory();
 	
 	UPROPERTY()
 	TArray<FItemsData> Items;

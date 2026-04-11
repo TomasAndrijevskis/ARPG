@@ -1,6 +1,7 @@
 
 #include "Components/InventoryComponent.h"
 #include "Characters/Player/ARPG_PlayerController.h"
+#include "Components/Button.h"
 #include "Data/PickableItems.h"
 #include "Items/PickableItem_Base.h"
 #include "UI/InventoryWidget.h"
@@ -9,28 +10,26 @@
 void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
+	PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
 }
 
 
 void UInventoryComponent::CreateInventoryWidget()
 {
-	if (!InventoryWidgetClass || !PC || InventoryWidgetRef) return;
-	InventoryWidgetRef = Cast<UInventoryWidget>(CreateWidget(PC, InventoryWidgetClass));
+	if (!InventoryWidgetClass || !PlayerController ) return;
+	UInventoryWidget* InventoryWidgetRef = Cast<UInventoryWidget>(CreateWidget(PlayerController, InventoryWidgetClass));
 	if (!InventoryWidgetRef) return;
 	InventoryWidgetRef->SetItems(Items);
 	InventoryWidgetRef->SetSlotsAmount(SlotsAmount);
+	InventoryWidgetRef->Button_Close->OnClicked.AddUniqueDynamic(this, &UInventoryComponent::OnInventoryRemoved);
 	InventoryWidgetRef->AddToViewport(5);
-	PC->OnGamePauseRequestDelegate.Broadcast(true);
+	PlayerController->OnGamePauseRequestDelegate.Broadcast(true);
 }
 
 
-void UInventoryComponent::RemoveInventoryWidget()
+void UInventoryComponent::OnInventoryRemoved()
 {
-	if (!InventoryWidgetRef || !PC) return;
-	InventoryWidgetRef->RemoveFromParent();
-	InventoryWidgetRef = nullptr;
-	PC->OnGamePauseRequestDelegate.Broadcast(false);
+	if (PlayerController) PlayerController->OnGamePauseRequestDelegate.Broadcast(false);
 }
 
 

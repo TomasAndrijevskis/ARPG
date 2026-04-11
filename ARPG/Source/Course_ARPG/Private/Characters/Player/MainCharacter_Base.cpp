@@ -481,12 +481,6 @@ void AMainCharacter_Base::CreateInventory()
 }
 
 
-void AMainCharacter_Base::RemoveInventory()
-{
-	InventoryComp->RemoveInventoryWidget();
-}
-
-
 void AMainCharacter_Base::PickUpItem(int ItemID, APickableItem_Base* ItemRef)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Pick up item"));

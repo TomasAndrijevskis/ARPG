@@ -1,13 +1,14 @@
 
 #include "UI/InventoryWidget.h"
+#include "Components/Button.h"
 #include "Components/GridPanel.h"
-#include "Components/WrapBox.h"
 #include "UI/InventorySlot.h"
 
 
 void UInventoryWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
+	Button_Close->OnClicked.AddUniqueDynamic(this, &UInventoryWidget::RemoveInventory);
 	HandleSlotsCreation();
 }
 
@@ -47,6 +48,12 @@ UInventorySlot* UInventoryWidget::CreateInventorySlot(UTexture2D* Icon)
 	if (!InventorySlot) return nullptr;
 	InventorySlot->SetIcon(Icon);
 	return InventorySlot;
+}
+
+
+void UInventoryWidget::RemoveInventory()
+{
+	this->RemoveFromParent();
 }
 
 

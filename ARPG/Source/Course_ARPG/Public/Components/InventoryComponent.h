@@ -20,8 +20,6 @@ class COURSE_ARPG_API UInventoryComponent : public UActorComponent
 public:
 
 	void CreateInventoryWidget();
-	
-	void RemoveInventoryWidget();
 
 	void AddItemToInventory(int ItemID, APickableItem_Base* ItemRef);
 
@@ -34,18 +32,18 @@ protected:
 private:
 
 	const FPickableItems* FindItemByID(int ItemID) const;
+
+	UFUNCTION()
+	void OnInventoryRemoved();
 	
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UInventoryWidget> InventoryWidgetClass;
 
 	UPROPERTY(VisibleAnywhere)
 	TArray<FItemsData> Items;
-	
-	UPROPERTY()
-	UInventoryWidget* InventoryWidgetRef;
 
 	UPROPERTY()
-	AARPG_PlayerController* PC;
+	AARPG_PlayerController* PlayerController;
 
 	UPROPERTY(EditDefaultsOnly)
 	UDataTable* ItemsDataTable;
