@@ -7,6 +7,7 @@
 #include "InventoryWidget.generated.h"
 
 
+class UGridPanel;
 class APickableItem_Base;
 class UWrapBox;
 class UInventorySlot;
@@ -31,18 +32,25 @@ private:
 	TSubclassOf<UInventorySlot> InventorySlotClass;
 
 	UPROPERTY(meta=(BindWidget))
-	UWrapBox* WrapBox_Inventory;
-
+	UGridPanel* GridPanel_Inventory;
+	
 	void HandleSlotsCreation();
 	
 	UInventorySlot* CreateInventorySlot(UTexture2D* Icon);
-	
-	void CreateEmptySlots();
 
-	void CreateTakenSlot(UTexture2D* Icon);
+	void CreateSlot(UTexture2D* Icon);
 	
 	UPROPERTY()
 	TArray<FItemsData> Items;
+
+	UPROPERTY(EditDefaultsOnly)
+	int ColumnAmount = 5;
 	
 	int SlotsAmount;
+
+	int Size = 0;
+
+	int CurrentRow = 0;
+
+	int CurrentColumn = 0;
 };

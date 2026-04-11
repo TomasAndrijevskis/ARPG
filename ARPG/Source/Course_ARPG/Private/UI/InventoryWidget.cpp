@@ -1,5 +1,6 @@
 
 #include "UI/InventoryWidget.h"
+#include "Components/GridPanel.h"
 #include "Components/WrapBox.h"
 #include "UI/InventorySlot.h"
 
@@ -13,33 +14,29 @@ void UInventoryWidget::NativeConstruct()
 
 void UInventoryWidget::HandleSlotsCreation()
 {
-	if (Items.Num() != 0)
+	Size = SlotsAmount;
+	for (const auto& Item : Items)
 	{
-		for (const auto& Item : Items)
-		{
-			CreateTakenSlot(Item.Image);
-		}
-		int AmountOfItems = Items.Num();
-		SlotsAmount -= AmountOfItems;
+		CreateSlot(Item.Image);
+		Size--;
 	}
-	CreateEmptySlots();
-}
-
-
-void UInventoryWidget::CreateEmptySlots()
-{
-	if (!InventorySlotClass) return;
-	for (int i = 0; i < SlotsAmount; i++)
+	for (int i = 1; i <= Size; i++)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Slot: %i"), i);
-		WrapBox_Inventory->AddChild(CreateInventorySlot(nullptr));
+		CreateSlot(nullptr);
 	}
 }
 
-void UInventoryWidget::CreateTakenSlot(UTexture2D* Icon)
+
+void UInventoryWidget::CreateSlot(UTexture2D* Icon)
 {
 	if (!InventorySlotClass) return;
-	WrapBox_Inventory->AddChild(CreateInventorySlot(Icon));
+	GridPanel_Inventory->AddChildToGrid(CreateInventorySlot(Icon), CurrentRow, CurrentColumn);
+	CurrentColumn++;
+	if (CurrentColumn == ColumnAmount)
+	{
+		CurrentRow++;
+		CurrentColumn = 0;
+	}
 }
 
 
