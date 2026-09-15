@@ -19,6 +19,12 @@ I had two main goals when I started enhancing this project:
 ## Demonstration
 [Link](https://youtu.be/fEuL-m66lR0)  
 
+## Additional Features (Not Shown in Demo)
+After taking a break from the project, I came back and added/reworked a few more things that aren't shown in the linked demo video:
+- **New Character - Archer** - a third playable character with her own set of 4 abilities.
+- **Attributes** - reworked the stat system into attributes: leveling up an attribute now grants a bonus to one or more stats at once. Also added elemental weaknesses and resistances to damage types.
+- **Weapon Enchanting** - players can enchant their base weapon with one of 3 elements, adding bonus damage against enemies with a weakness to that element (and reduced damage against enemies with resistance to it).
+
 ## Used Assets 
 Since my focus was primarily on coding, I used free, ready-to-use assets from Epic Games and other sources.
 ### Epic Games Paragon Packs:
@@ -26,14 +32,17 @@ Since my focus was primarily on coding, I used free, ready-to-use assets from Ep
 [Rampage](https://www.fab.com/listings/0807cf74-08fd-4a33-8c8d-f33c9439fb1f),
 [Phase](https://www.fab.com/listings/b2c95d5c-a805-460b-a01b-db6da3a778f0),
 [Grux](https://www.fab.com/listings/8c4bac2c-f7f7-4632-a644-47f4e104f5d8),
-[Greystone](https://www.fab.com/listings/122fd7bf-6f12-4304-a930-cccbbacdaebc)
+[Greystone](https://www.fab.com/listings/122fd7bf-6f12-4304-a930-cccbbacdaebc),
+[Sparrow](https://www.fab.com/listings/7d76ddf0-d9ce-4d00-939e-d72793534d01)
 ### Environment Assets: 
 [Flying Fantasy Town](https://www.fab.com/listings/40316b39-cf17-48c8-814b-059dbe6e7cee),
 [Environments Bundle 6 Maps](https://www.fab.com/listings/ab189c8c-d208-47e0-b9d2-196639815f33)
 ### Visual Effects:
 [FX Variety Pack](https://www.fab.com/listings/53531e17-369f-4bba-b493-8588f0dec07b),
 [Mega Magic VFX Bundle](https://www.fab.com/listings/d0b1351a-acbf-4da6-ab4e-32fc934a255f),
-[Realistic Starter VFX Pack Vol 2](https://www.fab.com/listings/ac2818b3-7d35-4cf5-a1af-cbf8ff5c61c1)
+[Realistic Starter VFX Pack Vol 2](https://www.fab.com/listings/ac2818b3-7d35-4cf5-a1af-cbf8ff5c61c1),
+[Stylized Barrier Shader](https://www.fab.com/listings/701cdbe7-1ee1-4d75-89a7-ddf75fe89a92),
+[Melee Weapon Aura VFX](https://www.fab.com/listings/a326acec-4180-4bb8-a383-4d83d3bc42dd)
 
 ## Known Issues
  - Sometimes when player character falls of the map, it dies but reloading the save is not triggered.
