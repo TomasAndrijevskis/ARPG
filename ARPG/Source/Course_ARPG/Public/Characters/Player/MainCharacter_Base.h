@@ -133,7 +133,7 @@ public:
 	
 	FPlayerLevelData SaveLevelData() const;
 	
-	void SaveAllExceptPosition();
+	void SaveAll();
 	
 	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute);
 	
@@ -197,11 +197,6 @@ public:
 	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 
 	void SetCanMove(bool CanMove);
-
-	UFUNCTION(BlueprintCallable)
-	void CreateInventory();
-
-	void PickUpItem(int ItemID, APickableItem_Base* ItemRef);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -217,9 +212,6 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UCombatComponent_Base* CombatComp;
-
-	UPROPERTY(blueprintReadWrite, EditAnywhere)
-	UInventoryComponent* InventoryComp;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	ULevelingComponent* LevelComp;

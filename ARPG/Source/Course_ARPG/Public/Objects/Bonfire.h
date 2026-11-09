@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "InteractableObject_Base.h"
+#include "Data/SpawnPoint.h"
 #include "Bonfire.generated.h"
 
 
@@ -13,13 +14,15 @@ class COURSE_ARPG_API ABonfire : public AInteractableObject_Base
 	
 public:	
 	
-	FString GetBonfireName() const;
+	const FString& GetBonfireName() const;
 
-	FString GetMapName() const;
-
+	const FName& GetMapName() const;
+	
 	bool IsFirstTimeUsed() const;
 
 	void SetIsFirstTimeUsed(const bool NewIsFirstTimeUsed);
+
+	virtual void OnInteract() override;
 	
 protected:
 	
@@ -28,14 +31,13 @@ protected:
 	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
 	
 	virtual void SetupWidget() const override;
+
+	virtual void BeginPlay() override;
 	
 private:
-
-	UPROPERTY(EditAnywhere)
-	FString BonfireName;
-
-	UPROPERTY(EditAnywhere)
-	FString MapName;
+	
+	UPROPERTY(EditInstanceOnly)
+	FSpawnPoint SpawnPoint;
 	
 	bool bIsFirstTimeUsed = true;
 };

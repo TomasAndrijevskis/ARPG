@@ -1,8 +1,17 @@
 
 #include "Objects/Bonfire.h"
 #include "Characters/Player/ARPG_PlayerController.h"
+#include "Characters/Player/ARPG_PlayerState.h"
 #include "Components/WidgetComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "UI/ObjectInteractionText.h"
+
+
+void ABonfire::BeginPlay()
+{
+	Super::BeginPlay();
+	SpawnPoint.MapName = FName(UGameplayStatics::GetCurrentLevelName(GetWorld()));
+}
 
 
 void ABonfire::SetupWidget() const
@@ -14,28 +23,37 @@ void ABonfire::SetupWidget() const
 
 void ABonfire::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor != PlayerController->GetPawn()) return;
+	if (!PlayerController || OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
-	if (!PlayerController) return;
-	PlayerController->SetIsInBonfireRange(true, this);
 	UE_LOG(LogTemp, Error, TEXT("Bonfire, Start Overlap"));
 }
 
 
 void ABonfire::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (OtherActor != PlayerController->GetPawn()) return;
+	if (!PlayerController || OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
-	if (!PlayerController) return;
-	PlayerController->SetIsInBonfireRange(false, nullptr);
 	UE_LOG(LogTemp, Error, TEXT("Bonfire, End Overlap"));
+}
+
+
+void ABonfire::OnInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Bonfire, Interact"));
+	if (!PlayerController) return;
+	if (AARPG_PlayerState* PlayerState = PlayerController->GetPlayerState<AARPG_PlayerState>())
+	{
+		UE_LOG(LogTemp, Error, TEXT("Player state exists"));
+		PlayerState->HandleBonfireInteraction(this);
+		PlayerController->HandleBonfireInteraction(SpawnPoint);
+	}
 }
 
 
 void ABonfire::SetIsFirstTimeUsed(const bool NewIsFirstTimeUsed){bIsFirstTimeUsed = NewIsFirstTimeUsed;}
 
-FString ABonfire::GetBonfireName() const{return BonfireName;}
+const FString& ABonfire::GetBonfireName() const {return SpawnPoint.LocationTag;}
 
-FString ABonfire::GetMapName() const{return MapName;}
+const FName& ABonfire::GetMapName() const{return SpawnPoint.MapName;}
 
 bool ABonfire::IsFirstTimeUsed() const{return bIsFirstTimeUsed;}

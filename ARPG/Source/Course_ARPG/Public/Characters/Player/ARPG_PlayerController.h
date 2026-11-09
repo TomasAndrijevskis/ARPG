@@ -2,27 +2,25 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Data/SpawnPoint.h"
 #include "GameFramework/PlayerController.h"
-#include "Data/BonfireData.h"
-#include "Data/EAnimTypes.h"
+#include "Interfaces/Interactable.h"
 #include "ARPG_PlayerController.generated.h"
 
 
-class APickableItem_Base;
 class UTransitionAnim;
 class ABoss;
-class ABonfire;
 class UARPG_GameInstance;
 class AMainCharacter_Base;
 
-DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleportRequest);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnGamePauseRequest, bool);
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
+
+	void HandleBonfireInteraction(const FSpawnPoint& LastSpawnPoint);
 	
 	void HandleBonfireMenuQuit();
 	
@@ -30,17 +28,9 @@ public:
 	
 	void HandleEnchantmentMenuQuit();
 	
-	void SetIsInBonfireRange(const bool bNewIsInBonfireRange, ABonfire* BonfireInRange);
-	
-	void SetIsInDoorRange(const bool bNewIsInDoorRange);
-	
 	void SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange);
 
 	void SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange);
-	
-	void SetMapName(const FString& NewMapName);
-
-	void SetItemData(int NewItemId, bool bNewIsItemOverlapped, APickableItem_Base* NewItemRef);
 	
 	UFUNCTION()
 	void LoadToMainMenu();
@@ -59,45 +49,31 @@ public:
 	void SetDefeatedBosses(const TArray<FName>& Bosses);
 
 	void AddDefeatedBoss(const FName& Boss);
-
-	TMap<FString, FBonfireData>& GetUnlockedBonfires();
-
-	void SetUnlockedBonfires(const TMap<FString, FBonfireData>& NewUnlockedBonfires);
 	
-	void HandlePlayerTeleport(const FVector& TravelLocation, const FString& TravelMapName);
+	void SetInteractable(IInteractable* InteractableRef);
 	
-	ABonfire*& GetCurrentBonfire();
-	
-	FOnPlayerTeleportRequest OnPlayerTeleportRequestDelegate;
+	void HandleGamePause(const bool bIsGamePaused);
 
-	FOnGamePauseRequest OnGamePauseRequestDelegate;
+	void SetPlayerInputEnabled(const bool IsEnabled);
+
+	TSubclassOf<UTransitionAnim> GetTransitionAnimClass() {return TransitionAnimClass;}
 	
 protected:
 	
 	virtual void BeginPlay() override;
-	
-	void TeleportToMap(FVector TravelLocation, FString TravelMapName);
 
 private:
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	void HandleBonfireInteraction();
+	void Interact();
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void HandleMagicalCubeInteraction();
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void HandleEnchantmentSphereInteraction();
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	void CallTeleportRequest();
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	void HandleItemPickup();
 	
 	void QuitGame() const;
-	
-	void HandleGamePause(const bool bIsGamePaused);
 	
 	UFUNCTION()
 	void SetPlayerControllerSettings();
@@ -105,22 +81,10 @@ private:
 	UFUNCTION()
 	void HandleGameLoad() const;
 
-	void SetPlayerInputEnabled(const bool IsEnabled);
-
-	void TeleportToLocation(const FVector& Location);
-
-	void StartTransitionAnim(EAnimTypes AnimType, float& AnimDuration);
-
-	void HandleTeleportDestination(FVector TravelLocation, FString TravelMapName);
-
-	void HandleTeleportTimers(float AnimDuration, const FTimerDelegate& Delegate);
-
-	void PlayFadeAnim(EAnimTypes AnimType);
-
-	void OpenRequiredLevel(FName NextMapName);
-
 	UFUNCTION(BlueprintCallable)
 	void CreatePauseMenu();
+	
+	IInteractable* CurrentInteractable = nullptr;
 	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
@@ -128,29 +92,15 @@ private:
 	UPROPERTY()
 	UARPG_GameInstance* GameInstanceRef;
 	
-	UPROPERTY()
-	ABonfire* BonfireRef;
-
-	UPROPERTY()
-	APickableItem_Base* ItemRef;
-	
 	UPROPERTY(VisibleAnywhere)
 	TArray<FName> DefeatedBosses;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UTransitionAnim> TransitionAnimClass;
 	
-	TMap<FString, FBonfireData> UnlockedBonfires;
-
-	int ItemID;
-	
 	bool bIsAbilityScreenOpened = false;
 	
 	bool bIsStatsScreenOpened = false;
-
-	bool bIsInBonfireRange = false;
-
-	bool bIsInDoorRange = false;
 
 	bool bIsInMagicalCubeRange = false;
 
@@ -158,5 +108,4 @@ private:
 
 	bool bIsItemOverlapped = false;
 	
-	FString MapName;
 };

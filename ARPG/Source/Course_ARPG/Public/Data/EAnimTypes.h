@@ -5,7 +5,7 @@
 
 
 UENUM(BlueprintType)
-enum EAnimTypes
+enum class EAnimTypes : uint8
 {
 	FadeIn UMETA(DisplayName = "Fade In"),
 	FadeOut UMETA(DisplayName = "Fade Out"),

@@ -1,14 +1,17 @@
 
 #include "SaveGame/ARPG_GameInstance.h"
 #include "Characters/Player/ARPG_PlayerController.h"
+#include "Characters/Player/ARPG_PlayerState.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Helpers/TeleportSubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
 
 void UARPG_GameInstance::Init()
 {
+	Super::Init();
 	LoadPlayerClass();
 }
 
@@ -37,8 +40,6 @@ void UARPG_GameInstance::HandleGameLoad()
 	//LoadDefeatedBosses();
 	LoadPlayerLocation();
 	LoadUsedPoints();
-	SetTeleportByDoor(false);
-	SavePlayerLocation();
 }
 
 
@@ -62,37 +63,28 @@ void UARPG_GameInstance::SaveAll()
 	SaveUsedPoints();
 	SaveCurrentEffect();
 	bIsFirstLoad = false;
-	SavePlayerLocation();
-}
-
-void UARPG_GameInstance::SaveAllExceptPosition()
-{
-	SaveAttributeData();
-	SaveLevelData();
-	SaveAbilities();
-	SaveBonfires();
-	SaveDefeatedBosses();
-	SaveUsedPoints();
-	SaveCurrentEffect();
 }
 
 
 void UARPG_GameInstance::SaveBonfires()
 {
 	if (!SaveGameInstance) return;
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
-	if (!PlayerController) return;
-	SaveGameInstance->UnlockedBonfires = PlayerController->GetUnlockedBonfires();
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+	if (AARPG_PlayerState* PlayerState = PlayerRef->GetPlayerState<AARPG_PlayerState>())
+	{
+		SaveGameInstance->UnlockedBonfires = PlayerState->GetUnlockedBonfires();
+		UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
+	}
 }
 
 
 void UARPG_GameInstance::LoadBonfires()
 {
 	if (!SaveGameInstance) return;
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
-	if (!PlayerController) return;
-	PlayerController->SetUnlockedBonfires(SaveGameInstance->UnlockedBonfires);
+	if (AARPG_PlayerState* PlayerState = PlayerRef->GetPlayerState<AARPG_PlayerState>())
+	{
+		PlayerState->SetUnlockedBonfires(SaveGameInstance->UnlockedBonfires);
+		SaveGameInstance->UnlockedBonfires = PlayerState->GetUnlockedBonfires();
+	}
 }
 
 
@@ -180,29 +172,28 @@ void UARPG_GameInstance::LoadDefeatedBosses()
 }
 
 
-void UARPG_GameInstance::SavePlayerLocation()
+void UARPG_GameInstance::SavePlayerLocation(const FSpawnPoint& LastSpawnPoint)
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->PlayerLocation = PlayerRef->GetActorLocation();
-	SaveGameInstance->CurrentMap = UGameplayStatics::GetCurrentLevelName(this);
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
-}
-
-
-//To save future location on map where player will be teleported
-void UARPG_GameInstance::SavePlayerLocation(const FVector& NewLocation)
-{
-	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->PlayerLocation = NewLocation;
-	SaveGameInstance->CurrentMap = UGameplayStatics::GetCurrentLevelName(this);
+	SaveGameInstance->SavedSpawnPointData = LastSpawnPoint;
+	UE_LOG(LogTemp, Error, TEXT("Saved player location: %s, %s"), *LastSpawnPoint.MapName.ToString(), *LastSpawnPoint.LocationTag)
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
 void UARPG_GameInstance::LoadPlayerLocation()
 {
-	if (!PlayerRef || bTeleportByDoor || !SaveGameInstance) return;
-	PlayerRef->SetActorLocation(SaveGameInstance->PlayerLocation);
+	if (!PlayerRef || !SaveGameInstance) return;
+	if (UTeleportSubsystem* Subsystem = this->GetSubsystem<UTeleportSubsystem>())
+	{
+		/*FVector SavedLocation = Subsystem->GetNextPlayerLocation();
+		if (SavedLocation != FVector::ZeroVector) Subsystem->TeleportToLocation(SavedLocation);
+		else
+		{
+			//SavedLocation = SaveGameInstance->PlayerLocation;
+			//Subsystem->TeleportToLocation(SavedLocation);
+		}*/
+	}
 }
 
 
@@ -226,7 +217,7 @@ void UARPG_GameInstance::LoadUsedPoints()
 void UARPG_GameInstance::SaveCurrentEffect()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->Effect = PlayerRef->GetCurrentEnchantmentEffect();
+	SaveGameInstance->WeaponEnchantmentEffect = PlayerRef->GetCurrentEnchantmentEffect();
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
@@ -234,19 +225,27 @@ void UARPG_GameInstance::SaveCurrentEffect()
 void UARPG_GameInstance::LoadCurrentEffect()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->HandleEffectChange(SaveGameInstance->Effect);
+	PlayerRef->HandleEffectChange(SaveGameInstance->WeaponEnchantmentEffect);
 }
 
 
-FString UARPG_GameInstance::GetCurrentMap() const
+FSpawnPoint UARPG_GameInstance::GetSpawnPoint() const
+{
+	if (!SaveGameInstance) return FSpawnPoint();
+	return SaveGameInstance->SavedSpawnPointData;
+}
+
+
+FName UARPG_GameInstance::GetCurrentMap() const
 {
 	if (!SaveGameInstance) return TEXT("Flying_Island");
-	if (SaveGameInstance->CurrentMap == "")
+	if (SaveGameInstance->SavedSpawnPointData.MapName.IsNone())
 	{
-		FString Map = "Flying_Island";
+		UE_LOG(LogTemp, Error, TEXT("Current map is null"));
+		FName Map = "Flying_Island";
 		return Map;
 	}
-	return SaveGameInstance->CurrentMap;
+	return SaveGameInstance->SavedSpawnPointData.MapName;
 }
 
 

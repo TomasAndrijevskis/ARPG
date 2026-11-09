@@ -51,12 +51,14 @@ void AInteractableObject_Base::Tick(float DeltaTime)
 
 void AInteractableObject_Base::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	PlayerController->SetInteractable(Cast<IInteractable>(this));
 	ChangeWidgetVisibility(true);
 }
 
 
 void AInteractableObject_Base::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
+	PlayerController->SetInteractable(nullptr);
 	ChangeWidgetVisibility(false);
 }
 

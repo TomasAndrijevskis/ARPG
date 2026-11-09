@@ -16,10 +16,12 @@ class COURSE_ARPG_API AARPG_GameMode : public AGameModeBase
 
 public:
 
-	virtual UClass* GetDefaultPawnClassForController_Implementation(AController* InController);
-
 	void SpawnEnemies();
+	
+	virtual UClass* GetDefaultPawnClassForController_Implementation(AController* InController) override;
 
+	virtual AActor* ChoosePlayerStart_Implementation(AController* Player) override;
+	
 private:
 	
 	UPROPERTY(VisibleAnywhere)

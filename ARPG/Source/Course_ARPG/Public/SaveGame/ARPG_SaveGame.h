@@ -3,10 +3,10 @@
 
 #include "CoreMinimal.h"
 #include "Data/Abilities/AbilitySaveData.h"
-#include "Data/BonfireData.h"
 #include "GameFramework/SaveGame.h"
 #include "Data/EEffects.h"
 #include "Data/EAttributes.h"
+#include "Data/SpawnPoint.h"
 #include "Data/PersistentData/PlayerLevelData.h"
 #include "ARPG_SaveGame.generated.h"
 
@@ -32,18 +32,15 @@ public:
 
 	UPROPERTY()
 	int UsedAbilityPoints;
-	
-	UPROPERTY()
-	FVector PlayerLocation;
 
 	UPROPERTY()
-	FString CurrentMap;
+	FSpawnPoint SavedSpawnPointData;
 	
 	UPROPERTY()
 	TMap<FString, FAbilitySaveData> UnlockedAbilities;
 
 	UPROPERTY()
-	TMap<FString, FBonfireData> UnlockedBonfires;
+	TArray<FSpawnPoint> UnlockedBonfires;
 
 	UPROPERTY()
 	TSubclassOf<AMainCharacter_Base> PlayerCharacter;
@@ -52,5 +49,5 @@ public:
 	TArray<FName> DefeatedBosses;
 
 	UPROPERTY()
-	EEffects Effect;
+	EEffects WeaponEnchantmentEffect;
 };

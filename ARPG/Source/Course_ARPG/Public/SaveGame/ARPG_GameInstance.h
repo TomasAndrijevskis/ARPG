@@ -2,6 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Data/SpawnPoint.h"
 #include "Engine/GameInstance.h"
 #include "ARPG_GameInstance.generated.h"
 
@@ -29,9 +30,6 @@ public:
 	
 	UFUNCTION()
 	void SaveAll();
-	
-	UFUNCTION()
-	void SaveAllExceptPosition();
 
 	UFUNCTION()
 	void SaveBonfires();
@@ -43,26 +41,22 @@ public:
 	void SetPlayerClass(const TSubclassOf<AMainCharacter_Base>& PlayerClass, const bool bFirstLoad);
 
 	UFUNCTION()
-	void SavePlayerLocation();
+	void SavePlayerLocation(const FSpawnPoint& LastSpawnPoint);
 	
-	void SavePlayerLocation(const FVector& NewLocation);
-
 	UFUNCTION()
 	void LoadPlayerLocation();
 
 	UFUNCTION()
-	FString GetCurrentMap() const;
+	FName GetCurrentMap() const;
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AMainCharacter_Base> PlayerCharacterClass;
 
-	void SetTeleportByDoor(const bool bNewTeleportByDoor) {bTeleportByDoor = bNewTeleportByDoor;};
-
-	bool GetTeleportByDoor() const {return bTeleportByDoor;}
-
 	void HandleGameLoad();
 
 	void LoadCurrentEffect();
+
+	FSpawnPoint GetSpawnPoint() const;
 	
 	bool bIsFirstLoad;
 	
@@ -106,7 +100,4 @@ private:
 	AGameModeBase* ARPGGameMode;
 	
 	FString SlotName = FString("Slot1");
-	
-	//game will not load previous saved position on next map
-	bool bTeleportByDoor = false;
 };

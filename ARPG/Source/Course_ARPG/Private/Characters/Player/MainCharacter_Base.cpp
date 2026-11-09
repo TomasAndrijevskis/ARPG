@@ -6,7 +6,6 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/AttributesComponent.h"
 #include "Components/CombatComponent_Base.h"
-#include "Components/InventoryComponent.h"
 #include "Components/LevelingComponent.h"
 #include "Components/LockonComponent.h"
 #include "Components/PlayerActionsComponent.h"
@@ -29,7 +28,6 @@ AMainCharacter_Base::AMainCharacter_Base()
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 	AttributesComp = CreateDefaultSubobject<UAttributesComponent>(TEXT("Attributes Component"));
-	InventoryComp = CreateDefaultSubobject<UInventoryComponent>(TEXT("Inventory Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));
@@ -372,9 +370,9 @@ FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 }
 
 
-void AMainCharacter_Base::SaveAllExceptPosition()
+void AMainCharacter_Base::SaveAll()
 {
-	GameInstance->SaveAllExceptPosition();
+	GameInstance->SaveAll();
 }
 
 
@@ -472,19 +470,6 @@ void AMainCharacter_Base::AddExperience(float NewExperience)
 void AMainCharacter_Base::EndPlayerLockOnEnemy()
 {
 	LockonComp->EndLockon();
-}
-
-
-void AMainCharacter_Base::CreateInventory()
-{
-	InventoryComp->CreateInventoryWidget();
-}
-
-
-void AMainCharacter_Base::PickUpItem(int ItemID, APickableItem_Base* ItemRef)
-{
-	UE_LOG(LogTemp, Warning, TEXT("Pick up item"));
-	InventoryComp->AddItemToInventory(ItemID, ItemRef);
 }
 
 

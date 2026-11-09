@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Interfaces/Interactable.h"
 #include "InteractableObject_Base.generated.h"
 
 
@@ -13,7 +14,7 @@ class USphereComponent;
 class UBoxComponent;
 
 UCLASS()
-class COURSE_ARPG_API AInteractableObject_Base : public AActor
+class COURSE_ARPG_API AInteractableObject_Base : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -22,7 +23,9 @@ public:
 	AInteractableObject_Base();
 
 	virtual void Tick(float DeltaTime) override;
-	
+
+	virtual void OnInteract() override {}
+
 protected:
 	
 	virtual void BeginPlay() override;

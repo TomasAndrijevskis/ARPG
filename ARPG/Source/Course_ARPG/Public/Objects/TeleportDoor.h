@@ -3,6 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "InteractableObject_Base.h"
+#include "Data/SpawnPoint.h"
 #include "TeleportDoor.generated.h"
 
 
@@ -23,11 +24,13 @@ protected:
 	
 	virtual void SetupWidget() const override;
 
+	virtual void OnInteract() override;
+	
 private:
 
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* DoorEffect;
-	
-	UPROPERTY(EditAnywhere)
-	FString DoorName;
+	TWeakObjectPtr<UStaticMeshComponent> DoorEffect;
+
+	UPROPERTY(EditInstanceOnly)
+	FSpawnPoint SpawnPoint;
 };

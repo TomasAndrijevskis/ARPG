@@ -2,6 +2,7 @@
 #include "Objects/TeleportDoor.h"
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/WidgetComponent.h"
+#include "Helpers/TeleportSubsystem.h"
 #include "UI/ObjectInteractionText.h"
 
 
@@ -15,27 +16,37 @@ ATeleportDoor::ATeleportDoor()
 void ATeleportDoor::SetupWidget() const
 {
 	Super::SetupWidget();
+	FString DoorName = SpawnPoint.MapName.ToString();
 	const FString ChangedDoorName = DoorName.Replace(TEXT("_"), TEXT(" "));
 	Cast<UObjectInteractionText>(InteractionWidgetComponent->GetUserWidgetObject())->InitializeText("Door", ChangedDoorName, InteractionKey);
 }
 
 
+void ATeleportDoor::OnInteract()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Door, Interact"));
+	if (!PlayerController)return;
+	if (UTeleportSubsystem* Subsystem = GetGameInstance()->GetSubsystem<UTeleportSubsystem>())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Subsystem exists"));
+		PlayerController->SaveAll();
+		Subsystem->HandleTeleportDestination(SpawnPoint);
+	}
+	else UE_LOG(LogTemp, Warning, TEXT("Subsystem does not exist"));
+}
+
+
 void ATeleportDoor::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor != PlayerController->GetPawn()) return;
+	if (!PlayerController || OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
-	if (!PlayerController) return;
-	PlayerController->SetIsInDoorRange(true);
-	PlayerController->SetMapName(DoorName);
 	UE_LOG(LogTemp, Error, TEXT("Door, Start Overlap"));
 }
 
 
 void ATeleportDoor::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (OtherActor != PlayerController->GetPawn()) return;
+	if (!PlayerController || OtherActor != PlayerController->GetPawn()) return;
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
-	if (!PlayerController) return;
-	PlayerController->SetIsInDoorRange(false);
 	UE_LOG(LogTemp, Error, TEXT("Door, End Overlap"));
 }

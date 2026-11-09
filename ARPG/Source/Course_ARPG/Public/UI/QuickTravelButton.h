@@ -3,12 +3,11 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Data/BonfireData.h"
+#include "Data/SpawnPoint.h"
 #include "QuickTravelButton.generated.h"
 
 
 class UMenuButtonBase;
-class UTransitionAnim;
 class AARPG_PlayerController;
 class UTextBlock;
 class AMainCharacter_Base;
@@ -22,7 +21,7 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	void InitializeButton(const FString& NewTravelLocationName, const FBonfireData& BonfireData, const FString& CurrentBonfireName);
+	void InitializeButton(const FSpawnPoint& Data, const FString& CurrentBonfireName);
 	
 private:
 
@@ -32,7 +31,7 @@ private:
 	UFUNCTION()
 	void TeleportPlayer();
 
-	FVector TravelLocation;
-
-	FString TravelMapName;
+	UPROPERTY()
+	FSpawnPoint SpawnPointData;
+	
 };
