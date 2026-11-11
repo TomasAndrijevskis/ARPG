@@ -71,8 +71,9 @@ void UResetWidget::HandleResetAttributes()
 
 void UResetWidget::RemoveWidget()
 {
-	AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
-	if (!PC) return;
-	PC->HandleResetMenuQuit();
+	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
+	{
+		PC->OnMenuClosed();
+	}
 	this->RemoveFromParent();
 }

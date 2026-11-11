@@ -9,19 +9,30 @@ void USaveSlotWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 	Button_ManageSaveSlot->OnButtonClickedDelegate.AddDynamic(this, &USaveSlotWidget::OnButtonClicked);
-	PlayerController = GetWorld()->GetFirstPlayerController();
 }
 
 
 void USaveSlotWidget::OnButtonClicked()
 {
-	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	if (!GameInstance) return;
-	GameInstance->SetSlotName(SlotName);
-	PlayerController->SetShowMouseCursor(false);
-	FInputModeGameOnly InputMode;
-	PlayerController->SetInputMode(InputMode);
-	UGameplayStatics::OpenLevel(GetWorld(),MapName);
+	if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
+	{
+		GameInstance->SetSlotName(SlotName);
+		MapName = GameInstance->GetCurrentMap();
+		SetPlayerControllerProperties();
+		UE_LOG(LogTemp, Error, TEXT("Button clicked %s"), *MapName.ToString());
+		UGameplayStatics::OpenLevel(GetWorld(),MapName);
+	}
+}
+
+
+void USaveSlotWidget::SetPlayerControllerProperties()
+{
+	if (APlayerController* PlayerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController()))
+	{
+		PlayerController->SetShowMouseCursor(false);
+		FInputModeGameAndUI InputMode;
+		PlayerController->SetInputMode(InputMode);
+	}
 }
 
 
@@ -31,8 +42,5 @@ void USaveSlotWidget::SetSlotName(const FString& NewSlotName)
 	Text_SaveSlotName->SetText(FText::FromString(SlotName));
 }
 
-void USaveSlotWidget::SetSlotStatus(const FText& NewText){Button_ManageSaveSlot->ChangeText(NewText);}
 
-void USaveSlotWidget::SetMapName(const FName& NewMapName){MapName = NewMapName;}
-
-FString USaveSlotWidget::GetSlotName() const{return SlotName;}
+void USaveSlotWidget::UpdateSlotText(const FText& NewText){Button_ManageSaveSlot->ChangeText(NewText);}

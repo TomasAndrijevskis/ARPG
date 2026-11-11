@@ -75,8 +75,9 @@ void UEnchantmentMenuWidget::RemoveEnchantment()
 
 void UEnchantmentMenuWidget::RemoveWidget()
 {
-	AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
-	if (!PC) return;
-	PC->HandleEnchantmentMenuQuit();
+	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
+	{
+		PC->OnMenuClosed();
+	}
 	this->RemoveFromParent();
 }

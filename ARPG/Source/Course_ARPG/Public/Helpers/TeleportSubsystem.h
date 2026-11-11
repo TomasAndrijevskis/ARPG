@@ -12,7 +12,7 @@ class UTransitionAnim;
 class UTeleportSettings;
 
 DECLARE_MULTICAST_DELEGATE(FOnPlayerTeleportRequest);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerTeleportComplete, const FSpawnPoint&);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnTeleportPreparationCompleted, const FSpawnPoint&);
 UCLASS()
 class COURSE_ARPG_API UTeleportSubsystem : public UGameInstanceSubsystem
 {
@@ -30,7 +30,7 @@ public:
 	
 	FOnPlayerTeleportRequest OnPlayerTeleportRequestDelegate;
 
-	FOnPlayerTeleportComplete OnPlayerTeleportCompleteDelegate;
+	FOnTeleportPreparationCompleted OnTeleportPreparationCompletedDelegate;
 	
 private:
 	
@@ -44,11 +44,11 @@ private:
 	
 	void OpenRequiredLevel(FName NextMapName);
 	
-	void PlayTransitionAnim(EAnimTypes AnimType, float& OutAnimDuration, const TSubclassOf<UTransitionAnim>& TransitionAnimClass);
+	float PlayTransitionAnim(EAnimTypes AnimType, const TSubclassOf<UTransitionAnim>& TransitionAnimClass);
 	
 	void PlayFadeAnimOnLevelLoaded(EAnimTypes AnimType);
 
 	void OnLevelLoaded(UWorld* LoadedWorld);
 
-	void OnTeleportComplete(const FSpawnPoint& LastSpawnPoint);
+	void OnTeleportPreparationCompleted(const FSpawnPoint& LastSpawnPoint);
 };

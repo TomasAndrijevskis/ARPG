@@ -22,11 +22,11 @@ public:
 	void SetSlotName(const FString& NewSlotName);
 	
 	UFUNCTION()
-	void SetSlotStatus(const FText& NewText);
+	void UpdateSlotText(const FText& NewText);
 
-	FString GetSlotName() const;
+	FString GetSlotName() const {return SlotName;};
 
-	void SetMapName(const FName& NewMapName);
+	void SetMapName(const FName& NewMapName){MapName = NewMapName;}
 	
 private:
 	
@@ -39,10 +39,9 @@ private:
 	UFUNCTION()
 	void OnButtonClicked();
 
-	UPROPERTY()
-	APlayerController* PlayerController;
+	void SetPlayerControllerProperties();
 	
 	FString SlotName;
 
-	FName MapName;
+	FName MapName = FName("CharacterSelectionMap");
 };

@@ -3,6 +3,7 @@
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/WidgetComponent.h"
 #include "Helpers/TeleportSubsystem.h"
+#include "SaveGame/ARPG_GameInstance.h"
 #include "UI/ObjectInteractionText.h"
 
 
@@ -25,11 +26,13 @@ void ATeleportDoor::SetupWidget() const
 void ATeleportDoor::OnInteract()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Door, Interact"));
-	if (!PlayerController)return;
 	if (UTeleportSubsystem* Subsystem = GetGameInstance()->GetSubsystem<UTeleportSubsystem>())
 	{
+		if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
+		{
+			GameInstance->SaveAll();
+		}
 		UE_LOG(LogTemp, Warning, TEXT("Subsystem exists"));
-		PlayerController->SaveAll();
 		Subsystem->HandleTeleportDestination(SpawnPoint);
 	}
 	else UE_LOG(LogTemp, Warning, TEXT("Subsystem does not exist"));

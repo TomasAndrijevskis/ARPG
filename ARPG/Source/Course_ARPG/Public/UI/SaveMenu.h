@@ -22,27 +22,22 @@ protected:
 
 private:
 
-	void CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass);
-
-	void SetPlayerControllerProperties();
-
-	UFUNCTION()
-	void BackToMainMenu();
-	
 	UPROPERTY(meta = (BindWidget))
 	UVerticalBox* VerticalBox_SaveSlots;
 
 	UPROPERTY(meta = (BindWidget))
 	UMenuButtonBase* Button_ExitToMainMenu;
+	
+	void CreateSlots();
 
-	UPROPERTY()
-	APlayerController* PlayerController;
+	void SetPlayerControllerProperties();
 
-	UPROPERTY()
-	UARPG_GameInstance* GameInstance;
+	UFUNCTION()
+	void BackToMainMenu();
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<USaveSlotWidget> SaveSlotWidgetClass;
-	
+
+	UPROPERTY(EditDefaultsOnly)
 	TArray<FString> SlotNames;
 };

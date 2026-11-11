@@ -36,7 +36,7 @@ AActor* AARPG_GameMode::ChoosePlayerStart_Implementation(AController* Player)
 	if (!GameInstance) return nullptr;
 
 	FName DesiredTag = FName(GameInstance->GetSpawnPoint().LocationTag);
-	UE_LOG(LogTemp, Warning, TEXT("default DesiredTag: %s"), *DesiredTag.ToString());
+	UE_LOG(LogTemp, Error, TEXT("default DesiredTag: %s"), *DesiredTag.ToString());
 	if (DesiredTag.IsNone()) DesiredTag = FName("Default");
 	for (TActorIterator<APlayerStart> It(GetWorld()); It; ++It)
 	{

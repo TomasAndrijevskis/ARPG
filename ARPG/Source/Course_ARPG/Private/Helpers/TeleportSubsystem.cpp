@@ -14,7 +14,7 @@ void UTeleportSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 	FCoreUObjectDelegates::PostLoadMapWithWorld.AddUObject(this, &UTeleportSubsystem::OnLevelLoaded);
-	OnPlayerTeleportCompleteDelegate.AddUObject(this, &UTeleportSubsystem::OnTeleportComplete);
+	OnTeleportPreparationCompletedDelegate.AddUObject(this, &UTeleportSubsystem::OnTeleportPreparationCompleted);
 }
 
 
@@ -25,7 +25,7 @@ void UTeleportSubsystem::OnLevelLoaded(UWorld* LoadedWorld)
 }
 
 
-void UTeleportSubsystem::OnTeleportComplete(const FSpawnPoint& LastSpawnPoint)
+void UTeleportSubsystem::OnTeleportPreparationCompleted(const FSpawnPoint& LastSpawnPoint)
 {
 	if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
 	{
@@ -39,8 +39,7 @@ void UTeleportSubsystem::PlayFadeAnimOnLevelLoaded(EAnimTypes AnimType)
 	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
 	{
 		PC->SetPlayerInputEnabled(false);
-		float AnimDuration;
-		PlayTransitionAnim(AnimType, AnimDuration, PC->GetTransitionAnimClass());
+		float AnimDuration = PlayTransitionAnim(AnimType, PC->GetTransitionAnimClass());
 		FTimerDelegate InputDelegate;
 		InputDelegate.BindUObject(PC, &AARPG_PlayerController::SetPlayerInputEnabled, true);
 		HandleTimers(AnimDuration, InputDelegate);
@@ -48,21 +47,8 @@ void UTeleportSubsystem::PlayFadeAnimOnLevelLoaded(EAnimTypes AnimType)
 }
 
 
-void UTeleportSubsystem::PlayTransitionAnim(EAnimTypes AnimType, float& OutAnimDuration, const TSubclassOf<UTransitionAnim>& TransitionAnimClass)
-{
-	if (!TransitionAnimClass) return;
-	if (UTransitionAnim* TransitionAnimRef = Cast<UTransitionAnim>(CreateWidget(GetGameInstance(), TransitionAnimClass)))
-	{
-		TransitionAnimRef->AddToViewport(6);
-		TransitionAnimRef->PlayAnim(AnimType);
-		OutAnimDuration = TransitionAnimRef->GetAnimDuration(AnimType);
-	}
-}
-
-
 void UTeleportSubsystem::HandleTeleportDestination(const FSpawnPoint& SpawnPointData)
 {
-	UE_LOG(LogTemp, Error, TEXT("Map %s, Location %s"), *SpawnPointData.MapName.ToString(), *SpawnPointData.LocationTag);
 	if (UGameplayStatics::GetCurrentLevelName(GetWorld()) == SpawnPointData.MapName) HandleTeleportToLocation(SpawnPointData.LocationTag);
 	else HandleTeleportToMap(SpawnPointData);
 }
@@ -70,24 +56,27 @@ void UTeleportSubsystem::HandleTeleportDestination(const FSpawnPoint& SpawnPoint
 
 void UTeleportSubsystem::HandleTeleportToMap(const FSpawnPoint& SpawnPointData)
 {
-	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
+	UE_LOG(LogTemp, Error, TEXT("Map %s, Location %s"), *SpawnPointData.MapName.ToString(), *SpawnPointData.LocationTag);
+	FString MapPath = "/Game/Maps/" + SpawnPointData.MapName.ToString();
+	if (FPackageName::DoesPackageExist(MapPath))
 	{
-		PC->SetPlayerInputEnabled(false);
-		PC->HandleGamePause(false);
-		float AnimDuration;
-		PlayTransitionAnim(EAnimTypes::FullFade, AnimDuration, PC->GetTransitionAnimClass());
-	
-		OnPlayerTeleportRequestDelegate.Broadcast();
-		FTimerDelegate TeleportDelegate;
-		FTimerDelegate InputDelegate;
-		TeleportDelegate.BindWeakLambda(this, [this, SpawnPointData]()
+		if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
 		{
-			TeleportToMap(SpawnPointData);
-		});
-		InputDelegate.BindUObject(PC, &AARPG_PlayerController::SetPlayerInputEnabled, true);
-		HandleTimers(AnimDuration/2, TeleportDelegate);
-		HandleTimers(AnimDuration, InputDelegate);
+			OnPlayerTeleportRequestDelegate.Broadcast();
+			float AnimDuration = PlayTransitionAnim(EAnimTypes::FullFade, PC->GetTransitionAnimClass());
+			
+			FTimerDelegate TeleportDelegate;
+			FTimerDelegate InputDelegate;
+			TeleportDelegate.BindWeakLambda(this, [this, SpawnPointData]()
+			{
+				TeleportToMap(SpawnPointData);
+			});
+			InputDelegate.BindUObject(PC, &AARPG_PlayerController::SetPlayerInputEnabled, true);
+			HandleTimers(AnimDuration/2, TeleportDelegate);
+			HandleTimers(AnimDuration, InputDelegate);
+		}
 	}
+	else UE_LOG(LogTemp, Error,TEXT("Teleport failed: Map %s does not exist"),*MapPath);
 }
 
 
@@ -95,12 +84,9 @@ void UTeleportSubsystem::HandleTeleportToLocation(const FString& TravelLocationT
 {
 	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
 	{
-		PC->SetPlayerInputEnabled(false);
-		PC->HandleGamePause(false);
-		float AnimDuration;
-		PlayTransitionAnim(EAnimTypes::FullFade, AnimDuration, PC->GetTransitionAnimClass());
-	
 		OnPlayerTeleportRequestDelegate.Broadcast();
+		float AnimDuration = PlayTransitionAnim(EAnimTypes::FullFade, PC->GetTransitionAnimClass());
+		
 		FTimerDelegate TeleportDelegate;
 		FTimerDelegate InputDelegate;
 		TeleportDelegate.BindWeakLambda(this, [this, TravelLocationTag]()
@@ -117,13 +103,9 @@ void UTeleportSubsystem::HandleTeleportToLocation(const FString& TravelLocationT
 void UTeleportSubsystem::TeleportToMap(const FSpawnPoint& SpawnPointData)
 {
 	UE_LOG(LogTemp, Warning, TEXT("TeleportToMap"));
-	FString MapPath = "/Game/Maps/" + SpawnPointData.MapName.ToString();
-	if (FPackageName::DoesPackageExist(MapPath))
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Next location %s"), *SpawnPointData.LocationTag);
-		OnPlayerTeleportCompleteDelegate.Broadcast(SpawnPointData);
-		OpenRequiredLevel(SpawnPointData.MapName);
-	}
+	UE_LOG(LogTemp, Warning, TEXT("Next location %s"), *SpawnPointData.LocationTag);
+	OnTeleportPreparationCompletedDelegate.Broadcast(SpawnPointData);
+	OpenRequiredLevel(SpawnPointData.MapName);
 }
 
 
@@ -144,13 +126,26 @@ void UTeleportSubsystem::TeleportToLocation(const FString& DesiredTag)
 					FSpawnPoint Data;
 					Data.LocationTag = DesiredTag;
 					Data.MapName = FName(UGameplayStatics::GetCurrentLevelName(GetWorld()));
-					OnPlayerTeleportCompleteDelegate.Broadcast(Data);
+					OnTeleportPreparationCompletedDelegate.Broadcast(Data);
 				}
 				if (!bSuccess) UE_LOG(LogTemp, Warning, TEXT("TeleportTo failed"));
 				return;
 			}
 		}
 	}
+}
+
+
+float UTeleportSubsystem::PlayTransitionAnim(EAnimTypes AnimType, const TSubclassOf<UTransitionAnim>& TransitionAnimClass)
+{
+	if (!TransitionAnimClass) return 0.f;
+	if (UTransitionAnim* TransitionAnimRef = Cast<UTransitionAnim>(CreateWidget(GetGameInstance(), TransitionAnimClass)))
+	{
+		TransitionAnimRef->AddToViewport(6);
+		TransitionAnimRef->PlayAnim(AnimType);
+		return TransitionAnimRef->GetAnimDuration(AnimType);
+	}
+	return 0.f;
 }
 
 

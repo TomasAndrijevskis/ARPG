@@ -42,9 +42,6 @@ public:
 
 	UFUNCTION()
 	void SavePlayerLocation(const FSpawnPoint& LastSpawnPoint);
-	
-	UFUNCTION()
-	void LoadPlayerLocation();
 
 	UFUNCTION()
 	FName GetCurrentMap() const;

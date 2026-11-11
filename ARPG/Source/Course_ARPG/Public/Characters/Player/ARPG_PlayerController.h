@@ -24,38 +24,27 @@ public:
 	
 	void HandleBonfireMenuQuit();
 	
-	void HandleResetMenuQuit();
-	
-	void HandleEnchantmentMenuQuit();
-	
 	void SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange);
 
 	void SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange);
 	
 	UFUNCTION()
 	void LoadToMainMenu();
-
-	UFUNCTION()
-	void SaveAll() const;
-
+	
 	UFUNCTION()
 	void RemovePauseMenu();
 
 	UFUNCTION()
 	void SaveBeforeQuit();
 	
-	TArray<FName> GetDefeatedBosses() const;
-
-	void SetDefeatedBosses(const TArray<FName>& Bosses);
-
-	void AddDefeatedBoss(const FName& Boss);
-	
 	void SetInteractable(IInteractable* InteractableRef);
 	
 	void HandleGamePause(const bool bIsGamePaused);
 
 	void SetPlayerInputEnabled(const bool IsEnabled);
-
+	
+	void OnMenuClosed();
+	
 	TSubclassOf<UTransitionAnim> GetTransitionAnimClass() {return TransitionAnimClass;}
 	
 protected:
@@ -84,16 +73,15 @@ private:
 	UFUNCTION(BlueprintCallable)
 	void CreatePauseMenu();
 	
-	IInteractable* CurrentInteractable = nullptr;
+	void OnPlayerRequestedTeleport();
+	
+	TWeakInterfacePtr<IInteractable> CurrentInteractable = nullptr;
 	
 	UPROPERTY()
 	AMainCharacter_Base* PlayerRef;
 	
 	UPROPERTY()
 	UARPG_GameInstance* GameInstanceRef;
-	
-	UPROPERTY(VisibleAnywhere)
-	TArray<FName> DefeatedBosses;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UTransitionAnim> TransitionAnimClass;

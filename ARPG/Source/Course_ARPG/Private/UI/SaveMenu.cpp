@@ -2,8 +2,6 @@
 #include "UI/SaveMenu.h"
 #include "Components/Button.h"
 #include "Kismet/GameplayStatics.h"
-#include "SaveGame/ARPG_GameInstance.h"
-#include "SaveGame/ARPG_SaveGame.h"
 #include "UI/SaveSlotWidget.h"
 #include "UI/Buttons/MenuButtonBase.h"
 
@@ -12,37 +10,27 @@ void USaveMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 	SetPlayerControllerProperties();
-
-	SlotNames.Add(FString("Slot1"));
-	SlotNames.Add(FString("Slot2"));
-	SlotNames.Add(FString("Slot3"));
-	SlotNames.Add(FString("Slot4"));
-	SlotNames.Add(FString("Slot5"));
 	
-	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	if (!GameInstance) return;
-	CreateSlots(SaveSlotWidgetClass);
+	CreateSlots();
 	Button_ExitToMainMenu->OnButtonClickedDelegate.AddDynamic(this, &USaveMenu::BackToMainMenu);
 }
 
 
-void USaveMenu::CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass)
+void USaveMenu::CreateSlots()
 {
-	if (!WidgetClass) return;
-	for (auto SlotName : SlotNames)
+	if (!SaveSlotWidgetClass) return;
+	for (const auto& SlotName : SlotNames)
 	{
-		USaveSlotWidget* SaveSlotWidget = CreateWidget<USaveSlotWidget>(GetWorld(), WidgetClass);
+		USaveSlotWidget* SaveSlotWidget = CreateWidget<USaveSlotWidget>(GetWorld(), SaveSlotWidgetClass);
 		VerticalBox_SaveSlots->AddChild(SaveSlotWidget);
 		SaveSlotWidget->SetSlotName(SlotName);
 		if (UGameplayStatics::DoesSaveGameExist(SlotName, 0))
 		{
-			SaveSlotWidget->SetSlotStatus(FText::FromString("Load"));
-			UARPG_SaveGame* SaveGameInstance = Cast<UARPG_SaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
-			if (SaveGameInstance) SaveSlotWidget->SetMapName(FName(SaveGameInstance->CurrentMap));
+			SaveSlotWidget->UpdateSlotText(FText::FromString("Load"));
 		}
 		else
 		{
-			SaveSlotWidget->SetSlotStatus(FText::FromString("Create"));
+			SaveSlotWidget->UpdateSlotText(FText::FromString("Create"));
 			SaveSlotWidget->SetMapName(FName("CharacterSelectionMap"));
 		}
 	}
@@ -51,11 +39,12 @@ void USaveMenu::CreateSlots(const TSubclassOf<USaveSlotWidget>& WidgetClass)
 
 void USaveMenu::SetPlayerControllerProperties()
 {
-	PlayerController = GetWorld()->GetFirstPlayerController();
-	if (!PlayerController) return;
-	PlayerController->SetShowMouseCursor(true);
-	FInputModeGameAndUI InputMode;
-	PlayerController->SetInputMode(InputMode);
+	if (APlayerController* PlayerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController()))
+	{
+		PlayerController->SetShowMouseCursor(true);
+		FInputModeGameAndUI InputMode;
+		PlayerController->SetInputMode(InputMode);
+	}
 }
 
 

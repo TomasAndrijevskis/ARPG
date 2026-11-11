@@ -4,7 +4,6 @@
 #include "Characters/Player/ARPG_PlayerState.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Helpers/TeleportSubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -38,7 +37,6 @@ void UARPG_GameInstance::HandleGameLoad()
 	LoadAbilities();
 	LoadBonfires();
 	//LoadDefeatedBosses();
-	LoadPlayerLocation();
 	LoadUsedPoints();
 }
 
@@ -157,18 +155,22 @@ void UARPG_GameInstance::LoadAbilities()
 
 void UARPG_GameInstance::SaveDefeatedBosses()
 {
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
-	if (!PlayerRef || !SaveGameInstance || !PlayerController) return;
-	SaveGameInstance->DefeatedBosses = PlayerController->GetDefeatedBosses();
+	if (!PlayerRef || !SaveGameInstance) return;
+	if (AARPG_PlayerState* PS = PlayerRef->GetPlayerState<AARPG_PlayerState>())
+	{
+		SaveGameInstance->DefeatedBosses = PS->GetDefeatedBosses();
+	}
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
 void UARPG_GameInstance::LoadDefeatedBosses()
 {
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(PlayerRef->GetController());
-	if (!PlayerRef || !SaveGameInstance || !PlayerController) return;
-	PlayerController->SetDefeatedBosses(SaveGameInstance->DefeatedBosses);
+	if (!PlayerRef || !SaveGameInstance) return;
+	if (AARPG_PlayerState* PS = PlayerRef->GetPlayerState<AARPG_PlayerState>())
+	{
+		PS->SetDefeatedBosses(SaveGameInstance->DefeatedBosses);
+	}
 }
 
 
@@ -178,22 +180,6 @@ void UARPG_GameInstance::SavePlayerLocation(const FSpawnPoint& LastSpawnPoint)
 	SaveGameInstance->SavedSpawnPointData = LastSpawnPoint;
 	UE_LOG(LogTemp, Error, TEXT("Saved player location: %s, %s"), *LastSpawnPoint.MapName.ToString(), *LastSpawnPoint.LocationTag)
 	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
-}
-
-
-void UARPG_GameInstance::LoadPlayerLocation()
-{
-	if (!PlayerRef || !SaveGameInstance) return;
-	if (UTeleportSubsystem* Subsystem = this->GetSubsystem<UTeleportSubsystem>())
-	{
-		/*FVector SavedLocation = Subsystem->GetNextPlayerLocation();
-		if (SavedLocation != FVector::ZeroVector) Subsystem->TeleportToLocation(SavedLocation);
-		else
-		{
-			//SavedLocation = SaveGameInstance->PlayerLocation;
-			//Subsystem->TeleportToLocation(SavedLocation);
-		}*/
-	}
 }
 
 
@@ -238,13 +224,18 @@ FSpawnPoint UARPG_GameInstance::GetSpawnPoint() const
 
 FName UARPG_GameInstance::GetCurrentMap() const
 {
-	if (!SaveGameInstance) return TEXT("Flying_Island");
+	if (!SaveGameInstance)
+	{
+		UE_LOG(LogTemp, Error, TEXT("SaveGameInstance does not exists - default map"));
+		return TEXT("Flying_Island");
+	}
 	if (SaveGameInstance->SavedSpawnPointData.MapName.IsNone())
 	{
 		UE_LOG(LogTemp, Error, TEXT("Current map is null"));
 		FName Map = "Flying_Island";
 		return Map;
 	}
+	UE_LOG(LogTemp, Error, TEXT("SaveGameInstance exists - %s"), *SaveGameInstance->SavedSpawnPointData.MapName.ToString());
 	return SaveGameInstance->SavedSpawnPointData.MapName;
 }
 
