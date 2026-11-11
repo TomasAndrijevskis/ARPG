@@ -42,6 +42,12 @@ public:
 	void HandleGamePause(const bool bIsGamePaused);
 
 	void SetPlayerInputEnabled(const bool IsEnabled);
+
+	UFUNCTION()
+	void HandleMagicalCubeInteraction();
+
+	UFUNCTION()
+	void HandleEnchantmentSphereInteraction();
 	
 	void OnMenuClosed();
 	
@@ -55,12 +61,6 @@ private:
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void Interact();
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	void HandleMagicalCubeInteraction();
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	void HandleEnchantmentSphereInteraction();
 	
 	void QuitGame() const;
 	

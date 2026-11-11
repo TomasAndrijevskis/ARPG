@@ -12,20 +12,9 @@ void AMagicalCube::SetupWidget() const
 }
 
 
-void AMagicalCube::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AMagicalCube::OnInteract()
 {
-	if (OtherActor != PlayerController->GetPawn()) return;
-	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+	UE_LOG(LogTemp, Warning, TEXT("cube, Interact"));
 	if (!PlayerController) return;
-	PlayerController->SetIsInMagicalCubeRange(true);
-	UE_LOG(LogTemp, Error, TEXT("Cube, Start Overlap"));
-}
-
-
-void AMagicalCube::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	if (OtherActor != PlayerController->GetPawn()) return;
-	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
-	PlayerController->SetIsInMagicalCubeRange(false);
-	UE_LOG(LogTemp, Error, TEXT("Cube, End Overlap"));
+	PlayerController->HandleMagicalCubeInteraction();
 }

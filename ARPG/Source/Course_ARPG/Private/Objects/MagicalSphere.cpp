@@ -12,20 +12,9 @@ void AMagicalSphere::SetupWidget() const
 }
 
 
-void AMagicalSphere::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AMagicalSphere::OnInteract()
 {
-	if (OtherActor != PlayerController->GetPawn()) return;
-	Super::OnSphereBeginOverlap(OverlappedComp, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
+	UE_LOG(LogTemp, Warning, TEXT("sphere, Interact"));
 	if (!PlayerController) return;
-	PlayerController->SetIsInMagicalSphereRange(true);
-	UE_LOG(LogTemp, Error, TEXT("Sphere, Start Overlap"));
-}
-
-
-void AMagicalSphere::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	if (!PlayerController) return;
-	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
-	PlayerController->SetIsInMagicalSphereRange(false);
-	UE_LOG(LogTemp, Error, TEXT("Sphere, End Overlap"));
+	PlayerController->HandleEnchantmentSphereInteraction();
 }

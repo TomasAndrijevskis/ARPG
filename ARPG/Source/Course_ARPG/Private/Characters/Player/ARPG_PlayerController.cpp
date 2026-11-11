@@ -48,9 +48,7 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 
 void AARPG_PlayerController::HandleMagicalCubeInteraction()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact with Cube"));
-	if (!bIsInMagicalCubeRange) return;
-	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Cube"));
+	if (!PlayerRef || !GameInstanceRef) return;
 	PlayerRef->CreateResetMenu();
 	GameInstanceRef->SaveAll();
 	HandleGamePause(true);
@@ -59,9 +57,7 @@ void AARPG_PlayerController::HandleMagicalCubeInteraction()
 
 void AARPG_PlayerController::HandleEnchantmentSphereInteraction()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Interact with Sphere"));
-	if (!bIsInMagicalSphereRange) return;
-	UE_LOG(LogTemp, Warning, TEXT("Actually interacted with Sphere"));
+	if (!PlayerRef || !GameInstanceRef) return;
 	PlayerRef->CreateEnchantmentMenu();
 	GameInstanceRef->SaveAll();
 	HandleGamePause(true);

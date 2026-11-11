@@ -29,7 +29,6 @@ void AARPG_PlayerState::SetUnlockedBonfires(const TArray<FSpawnPoint>& NewUnlock
 const ABonfire*& AARPG_PlayerState::GetCurrentBonfire() {return CurrentBonfire;}
 const FString& AARPG_PlayerState::GetCurrentBonfireName() const{return CurrentBonfire->GetBonfireName();}
 const TArray<FSpawnPoint>& AARPG_PlayerState::GetUnlockedBonfires(){return UnlockedBonfires;}
-
 void AARPG_PlayerState::SetDefeatedBosses(const TArray<FName>& Bosses){DefeatedBosses = Bosses;}
 void AARPG_PlayerState::AddDefeatedBoss(const FName& Boss){DefeatedBosses.AddUnique(Boss);}
 TArray<FName> AARPG_PlayerState::GetDefeatedBosses() const{return DefeatedBosses;}
