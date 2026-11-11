@@ -12,5 +12,5 @@ struct FStatScaling
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly)
-	TMap<TEnumAsByte<EStats>, float> StatsCoefficients;
+	TMap<EStats, float> StatsCoefficients;
 };

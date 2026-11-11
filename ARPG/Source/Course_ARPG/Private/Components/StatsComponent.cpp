@@ -81,7 +81,7 @@ float UStatsComponent::CalculateFinalReceivedDamage(const float Damage, const fl
 {
 	if (ReductionPercent == 1) return 0;
 	float FinalDamage = GetReducedDamage(Damage, ReductionPercent);
-	if (!Stats.Contains(Armor) || Stats[EStats::Armor] <= 0) return FinalDamage;
+	if (!Stats.Contains(EStats::Armor) || Stats[EStats::Armor] <= 0) return FinalDamage;
 	// гарантирует что блокированый урон не будет больше чем есть брони у игрока
 	float ArmorBlock = FMath::Min(Damage, Stats[EStats::Armor]);
 	FinalDamage = Damage - ArmorBlock;
@@ -107,7 +107,7 @@ void UStatsComponent::SetStatValue(const EStats Stat, const float NewValue)
 
 
 
-void UStatsComponent::UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value){Stats[Stat] += Value;}
+void UStatsComponent::UpgradeStat(const EStats Stat, const float Value){Stats[Stat] += Value;}
 
 float UStatsComponent::GetStatIncreasePreview(const EStats Stat, const float Delta){return Stats[Stat] + Delta;}
 
@@ -119,4 +119,4 @@ float UStatsComponent::GetStatValue(const EStats Stat) const{return Stats[Stat];
 
 FString UStatsComponent::GetStatName(const EStats Stat) const{return UEnum::GetValueAsString(Stat);}
 
-FString UStatsComponent::GetStatUpgradeDescription(EStats Stat){return (StaticEnum<EStats>()->GetDisplayNameTextByValue(Stat)).ToString();}
+FString UStatsComponent::GetStatUpgradeDescription(EStats Stat){return StaticEnum<EStats>()->GetDisplayNameTextByValue(static_cast<int64>(Stat)).ToString();}

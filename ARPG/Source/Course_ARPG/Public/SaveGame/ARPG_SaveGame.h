@@ -22,7 +22,7 @@ class COURSE_ARPG_API UARPG_SaveGame : public USaveGame
 public:
 
 	UPROPERTY()
-	TMap<TEnumAsByte<EAttributes>, int32> Attributes;
+	TMap<EAttributes, int32> Attributes;
 
 	UPROPERTY(SaveGame)
 	FPlayerLevelData LevelData;

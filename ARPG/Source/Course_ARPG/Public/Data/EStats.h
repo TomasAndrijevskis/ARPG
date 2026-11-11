@@ -5,7 +5,7 @@
 
 
 UENUM(BlueprintType)
-enum EStats
+enum class EStats : uint8
 {
 	None UMETA(DisplayName = "None Selected"),
 	Health UMETA(DisplayName = "Health"),

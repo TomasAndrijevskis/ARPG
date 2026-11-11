@@ -21,6 +21,6 @@ void ABoss_Rampage::StartAbility()
 void ABoss_Rampage::ActivateSecondPhase()
 {
 	Super::ActivateSecondPhase();
-	StatsComp->SetStatValue(EStats::MagDmgResistance, StatsComp->GetStatValue(MagDmgResistance) * 2);
-	StatsComp->SetStatValue(EStats::PhysDmgResistance, StatsComp->GetStatValue(PhysDmgResistance) * 2);
+	StatsComp->SetStatValue(EStats::MagDmgResistance, StatsComp->GetStatValue(EStats::MagDmgResistance) * 2);
+	StatsComp->SetStatValue(EStats::PhysDmgResistance, StatsComp->GetStatValue(EStats::PhysDmgResistance) * 2);
 }

@@ -49,9 +49,6 @@ private:
 
 	FVector GetWeaponHitBox(const FVector& Start, const FVector& End) const;
 	
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalComp;
-
 	UPROPERTY(EditAnywhere)
 	TArray<FTraceSockets> Sockets;
 	

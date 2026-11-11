@@ -58,7 +58,7 @@ public:
 	UFUNCTION(BlueprintCallable)//testing
 	void ReduceHealth(const float Damage);
 
-	void UpgradeStat(const TEnumAsByte<EStats> Stat, const float Value);
+	void UpgradeStat(const EStats Stat, const float Value);
 
 	float GetStatIncreasePreview(const EStats Stat, const float Delta);
 
@@ -108,10 +108,10 @@ private:
 	void SetStatHelpers();
 	
 	UPROPERTY(EditAnywhere)
-	TMap<TEnumAsByte<EStats>, float> Stats;
+	TMap<EStats, float> Stats;
 
 	UPROPERTY(EditDefaultsOnly)
-	TArray<TEnumAsByte<EStats>> PercentageStats;
+	TArray<EStats> PercentageStats;
 	
 	UPROPERTY(EditDefaultsOnly)
 	double ManaRegenRate = 2.0;

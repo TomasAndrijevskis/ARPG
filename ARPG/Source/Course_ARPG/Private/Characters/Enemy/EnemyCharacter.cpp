@@ -126,9 +126,9 @@ void AEnemyCharacter::ResetAttack()
 
 void AEnemyCharacter::SetResistances()
 {
-	FireStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(FireDmgResistance));
-	IceStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(IceDmgResistance));
-	PoisonStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(PoisonDmgResistance));
+	FireStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(EStats::FireDmgResistance));
+	IceStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(EStats::IceDmgResistance));
+	PoisonStatusEffectManager->OnResistanceChangedDelegate.Broadcast(StatsComp->GetStatValue(EStats::PoisonDmgResistance));
 }
 
 
@@ -171,6 +171,6 @@ float AEnemyCharacter::GetMeleeRange() const{return StatsComp->GetStatValue(ESta
 
 float AEnemyCharacter::GetRangeDistance() const{return StatsComp->GetStatValue(EStats::RangeDistance);}
 
-float AEnemyCharacter::GetElementalDamageModificator() const{return StatsComp->GetStatValue(ElementalDamageModificator);}
+float AEnemyCharacter::GetElementalDamageModificator() const{return StatsComp->GetStatValue(EStats::ElementalDamageModificator);}
 
 AAIController* AEnemyCharacter::GetAIController() const{return ControllerRef;}

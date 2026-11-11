@@ -5,7 +5,7 @@
 
 
 UENUM(BlueprintType)
-enum EAttributes
+enum class EAttributes : uint8
 {
 	Nothing UMETA(DisplayName = "Nothing Selected"),
 	Vigor UMETA(DisplayName = "Vigor"),

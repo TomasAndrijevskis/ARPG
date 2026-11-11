@@ -207,7 +207,7 @@ void AMainCharacter_Base::ResetAbilities()
 }
 
 
-void AMainCharacter_Base::LoadAttributeData(TMap<TEnumAsByte<EAttributes>, int32> Data)
+void AMainCharacter_Base::LoadAttributeData(TMap<EAttributes, int32> Data)
 {
 	for (const auto& Element : Data)
 	{
@@ -217,9 +217,9 @@ void AMainCharacter_Base::LoadAttributeData(TMap<TEnumAsByte<EAttributes>, int32
 }
 
 
-TMap<TEnumAsByte<EAttributes>, int32>AMainCharacter_Base::SaveAttributeData() const
+TMap<EAttributes, int32>AMainCharacter_Base::SaveAttributeData() const
 {
-	TMap<TEnumAsByte<EAttributes>, int32> Data;
+	TMap<EAttributes, int32> Data;
 	for (auto Element : GetAttributesArray())
 	{
 		Data.Add(Element, AttributesComp->GetAttributeValue(Element));
@@ -257,7 +257,7 @@ void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& 
 }
 
 
-void AMainCharacter_Base::UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute)
+void AMainCharacter_Base::UpgradeAttribute(const EAttributes Attribute)
 {
 	int Points = LevelComp->GetCurrentAttributePointsAmount();
 	if (Points <= 0) return;
@@ -521,7 +521,7 @@ UPlayerWidget* AMainCharacter_Base::GetPlayerWidget() const{return PlayerWidgetR
 
 USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent() const{return SkeletalMeshComp;}
 
-TArray<TEnumAsByte<EAttributes>>& AMainCharacter_Base::GetAttributesArray() const{return AttributesComp->GetAttributes();}
+TArray<EAttributes>& AMainCharacter_Base::GetAttributesArray() const{return AttributesComp->GetAttributes();}
 
 TArray<UAbilityComponent_Player*>& AMainCharacter_Base::GetAbilitiesArray(){return ArrAbilities;}
 

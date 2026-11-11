@@ -15,8 +15,7 @@ UTraceComponent::UTraceComponent()
 
 void UTraceComponent::BeginPlay()
 {
-	Super::BeginPlay();
-	SkeletalComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>();
+	Super::BeginPlay(); 
 	FighterRef = Cast<IFighter>(GetOwner());
 }
 
@@ -44,21 +43,23 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 
 void UTraceComponent::DetectHitTargets(TArray<FHitResult>& OutHits)
 {
-	if (!ensure(SkeletalComp)) return;
-	for (const FTraceSockets& Socket : Sockets)
+	if (USkeletalMeshComponent* SkeletalComp = GetOwner()->FindComponentByClass<USkeletalMeshComponent>())
 	{
-		FVector StartSocketLocation = SkeletalComp->GetSocketLocation(Socket.StartSocket);
-		FVector EndSocketLocation = SkeletalComp->GetSocketLocation(Socket.EndSocket);
-		FQuat ShapeRotation = SkeletalComp->GetSocketQuaternion(Socket.SocketRotation);
-		FCollisionShape Box = FCollisionShape::MakeBox(GetWeaponHitBox(StartSocketLocation, EndSocketLocation));
-		FCollisionQueryParams IgnoreParams { FName{TEXT("Ignore Params")}, false, GetOwner()};
-		TArray<FHitResult> OutResults;
-		bool bHasFoundTargets = GetWorld()->SweepMultiByChannel(OutResults, StartSocketLocation, EndSocketLocation,ShapeRotation,ECollisionChannel::ECC_GameTraceChannel1, Box, IgnoreParams);
-		for (FHitResult Hit: OutResults)
+		for (const FTraceSockets& Socket : Sockets)
 		{
-			OutHits.Add(Hit);
+			FVector StartSocketLocation = SkeletalComp->GetSocketLocation(Socket.StartSocket);
+			FVector EndSocketLocation = SkeletalComp->GetSocketLocation(Socket.EndSocket);
+			FQuat ShapeRotation = SkeletalComp->GetSocketQuaternion(Socket.SocketRotation);
+			FCollisionShape Box = FCollisionShape::MakeBox(GetWeaponHitBox(StartSocketLocation, EndSocketLocation));
+			FCollisionQueryParams IgnoreParams { FName{TEXT("Ignore Params")}, false, GetOwner()};
+			TArray<FHitResult> OutResults;
+			bool bHasFoundTargets = GetWorld()->SweepMultiByChannel(OutResults, StartSocketLocation, EndSocketLocation,ShapeRotation,ECollisionChannel::ECC_GameTraceChannel1, Box, IgnoreParams);
+			for (FHitResult Hit: OutResults)
+			{
+				OutHits.Add(Hit);
+			}
+			if (bDebugMode) DrawDebugBox(bHasFoundTargets, StartSocketLocation, EndSocketLocation, ShapeRotation, Box);
 		}
-		if (bDebugMode) DrawDebugBox(bHasFoundTargets, StartSocketLocation, EndSocketLocation, ShapeRotation, Box);
 	}
 }
 

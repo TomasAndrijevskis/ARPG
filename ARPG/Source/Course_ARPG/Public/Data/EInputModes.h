@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 
 UENUM(BlueprintType)
-enum EInputModes
+enum class EInputModes : uint8
 {
 	UIOnly UMETA(DisplayName = "UIOnly"),
 	GameOnly UMETA(DisplayName = "Game Only"),

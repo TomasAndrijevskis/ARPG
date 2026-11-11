@@ -29,7 +29,7 @@ public:
 	
 	FString GetAttributeName(EAttributes Attribute) const;
 	
-	TArray<TEnumAsByte<EAttributes>>& GetAttributes();
+	TArray<EAttributes>& GetAttributes();
 	
 	FOnAttributeUpgraded OnAttributeUpgradedDelegate;
 
@@ -46,7 +46,7 @@ protected:
 private:
 	
 	UPROPERTY(EditDefaultsOnly)
-	TMap<TEnumAsByte<EAttributes>, int> Attributes;
+	TMap<EAttributes, int> Attributes;
 	
 	UPROPERTY(EditDefaultsOnly)
 	UDefaultAttributesData* DefaultAttributesDataAsset;
@@ -54,5 +54,5 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	UAttributesData* AttributesDataAsset;
 	
-	TArray<TEnumAsByte<EAttributes>> ArrAttributes;
+	TArray<EAttributes> ArrAttributes;
 };

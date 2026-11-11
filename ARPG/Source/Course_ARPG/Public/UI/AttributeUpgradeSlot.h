@@ -67,7 +67,7 @@ private:
 	class AMainCharacter_Base* PlayerRef;
 
 	UPROPERTY()
-	TEnumAsByte<EAttributes> Attribute;
+	EAttributes Attribute;
 
 	UPROPERTY()
 	FString AttributeName;

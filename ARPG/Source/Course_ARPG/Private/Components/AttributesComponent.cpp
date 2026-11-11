@@ -68,6 +68,6 @@ void UAttributesComponent::SetAttributeValue(EAttributes Attribute, const int Va
 
 FString UAttributesComponent::GetAttributeName(EAttributes Attribute) const{return UEnum::GetValueAsString(Attribute); }
 
-TArray<TEnumAsByte<EAttributes>>& UAttributesComponent::GetAttributes(){return ArrAttributes;}
+TArray<EAttributes>& UAttributesComponent::GetAttributes(){return ArrAttributes;}
 
 int UAttributesComponent::GetAttributeValue(EAttributes Attribute) const{return Attributes[Attribute];}

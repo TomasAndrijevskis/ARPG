@@ -125,9 +125,9 @@ public:
 
 	void SetUsedAttributePoints(int UsedStatPoints) const;
 
-	void LoadAttributeData(TMap<TEnumAsByte<EAttributes>, int32> Data);
+	void LoadAttributeData(TMap<EAttributes, int32> Data);
 	
-	TMap<TEnumAsByte<EAttributes>, int32> SaveAttributeData() const;
+	TMap<EAttributes, int32> SaveAttributeData() const;
 
 	void LoadLevelData(FPlayerLevelData Data);
 	
@@ -135,13 +135,13 @@ public:
 	
 	void SaveAll();
 	
-	void UpgradeAttribute(const TEnumAsByte<EAttributes> Attribute);
+	void UpgradeAttribute(const EAttributes Attribute);
 	
 	void FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const;
 
 	float GetPlayerMaxHealth() const;
 	
-	TArray<TEnumAsByte<EAttributes>>& GetAttributesArray() const;
+	TArray<EAttributes>& GetAttributesArray() const;
 
 	void CreatePauseMenu();
 

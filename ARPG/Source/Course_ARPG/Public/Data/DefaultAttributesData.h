@@ -15,5 +15,5 @@ class COURSE_ARPG_API UDefaultAttributesData : public UDataAsset
 public:
 	
 	UPROPERTY(EditDefaultsOnly)
-	TMap<TEnumAsByte<EAttributes>, float> DefaultAttributes;
+	TMap<EAttributes, float> DefaultAttributes;
 };

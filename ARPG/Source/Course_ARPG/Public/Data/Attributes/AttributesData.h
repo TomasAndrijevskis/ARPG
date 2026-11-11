@@ -16,6 +16,6 @@ class COURSE_ARPG_API UAttributesData: public UDataAsset
 public:
 	
 	UPROPERTY(EditDefaultsOnly)
-	TMap<TEnumAsByte<EAttributes>, FStatScaling> Attribute;
+	TMap<EAttributes, FStatScaling> Attribute;
 	
 };
