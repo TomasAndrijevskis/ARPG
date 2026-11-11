@@ -22,8 +22,6 @@ protected:
 
 private:
 	
-	AARPG_PlayerController* PlayerController;
-	
 	ABoss* SpawnedBoss;
 
 	bool bShouldSpawn;

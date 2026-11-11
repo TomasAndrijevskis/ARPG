@@ -2,12 +2,13 @@
 #include "Characters/Enemy/Boss.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Blueprint/UserWidget.h"
+#include "Characters/Player/ARPG_PlayerState.h"
 #include "Data/EStats.h"
-#include "Characters/Player/ARPG_PlayerController.h"
 #include "Components/CombatComponent_Enemy.h"
 #include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Course_ARPG/Public/Objects/BossLocationDoor.h"
+#include "SaveGame/ARPG_GameInstance.h"
 #include "UI/BossHealthBar.h"
 
 
@@ -45,12 +46,21 @@ void ABoss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates Ne
 
 void ABoss::HandleDeath()
 {
-	AARPG_PlayerController* PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
-	if (!PlayerController) return;
-	AActor* BossDoor = UGameplayStatics::GetActorOfClass(GetWorld(), ABossLocationDoor::StaticClass());
-	if (BossDoor) Cast<ABossLocationDoor>(BossDoor)->OnBossDiedDelegate.Broadcast();
-	PlayerController->AddDefeatedBoss(FName(*GetClass()->GetName()));
-	PlayerController->SaveAll();
+	if (AActor* BossDoor = UGameplayStatics::GetActorOfClass(GetWorld(), ABossLocationDoor::StaticClass()))
+	{
+		Cast<ABossLocationDoor>(BossDoor)->OnBossDiedDelegate.Broadcast();
+	}
+	if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
+	{
+		GameInstance->SaveAll();
+	}
+	if (APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), 0))
+	{
+		if (AARPG_PlayerState* PS = PC->GetPlayerState<AARPG_PlayerState>())
+		{
+			PS->AddDefeatedBoss(FName(*GetClass()->GetName()));
+		}
+	}
 	Super::HandleDeath();
 	HealthBarWidgetRef->RemoveFromParent();
 }

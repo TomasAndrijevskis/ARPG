@@ -2,6 +2,7 @@
 #include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Gamemode/ARPG_GameMode.h"
+#include "Helpers/TeleportSubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
 
@@ -15,6 +16,11 @@ void AARPG_PlayerController::BeginPlay()
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
 	if (!GameInstanceRef) return;
 	HandleGameLoad();
+
+	if (UTeleportSubsystem* SubSystem = GameInstanceRef->GetSubsystem<UTeleportSubsystem>())
+	{
+		SubSystem->OnPlayerTeleportRequestDelegate.AddUObject(this, &AARPG_PlayerController::OnPlayerRequestedTeleport);
+	}
 }
 
 
@@ -33,8 +39,7 @@ void AARPG_PlayerController::HandleBonfireInteraction(const FSpawnPoint& LastSpa
 void AARPG_PlayerController::HandleBonfireMenuQuit()
 {
 	PlayerRef->FOnBonfireInteractionFinishedDelegate.Broadcast();
-	HandleGamePause(false);
-	GameInstanceRef->SaveAll();
+	OnMenuClosed();
 	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
 	if (!GameMode) return;
 	GameMode->SpawnEnemies();
@@ -52,13 +57,6 @@ void AARPG_PlayerController::HandleMagicalCubeInteraction()
 }
 
 
-void AARPG_PlayerController::HandleResetMenuQuit()
-{
-	HandleGamePause(false);
-	GameInstanceRef->SaveAll();
-}
-
-
 void AARPG_PlayerController::HandleEnchantmentSphereInteraction()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Interact with Sphere"));
@@ -70,18 +68,10 @@ void AARPG_PlayerController::HandleEnchantmentSphereInteraction()
 }
 
 
-void AARPG_PlayerController::HandleEnchantmentMenuQuit()
-{
-	HandleGamePause(false);
-	GameInstanceRef->SaveAll();
-}
-
-
 void AARPG_PlayerController::Interact()
 {
-	if (!CurrentInteractable) return;
-	UE_LOG(LogTemp, Warning, TEXT("Can Interact"));
-	CurrentInteractable->OnInteract();
+	if (!CurrentInteractable.IsValid()) return;
+	CurrentInteractable.Get()->OnInteract();
 }
 
 
@@ -124,15 +114,16 @@ void AARPG_PlayerController::HandleGameLoad() const
 }
 
 
-void AARPG_PlayerController::SetPlayerInputEnabled(const bool IsEnabled)
+void AARPG_PlayerController::OnPlayerRequestedTeleport()
 {
-	IsEnabled ? PlayerRef->EnableInput(this) : PlayerRef->DisableInput(this);
+	SetPlayerInputEnabled(false);
+	HandleGamePause(false);
 }
 
 
-void AARPG_PlayerController::SaveAll() const// нахуя?
+void AARPG_PlayerController::SetPlayerInputEnabled(const bool IsEnabled)
 {
-	GameInstanceRef->SaveAll();
+	IsEnabled ? PlayerRef->EnableInput(this) : PlayerRef->DisableInput(this);
 }
 
 
@@ -140,6 +131,13 @@ void AARPG_PlayerController::CreatePauseMenu()
 {
 	HandleGamePause(true);
 	PlayerRef->CreatePauseMenu();
+}
+
+
+void AARPG_PlayerController::OnMenuClosed()
+{
+	HandleGamePause(false);
+	GameInstanceRef->SaveAll();
 }
 
 
@@ -165,14 +163,7 @@ void AARPG_PlayerController::SetIsInMagicalCubeRange(const bool bNewIsInMagicalC
 
 void AARPG_PlayerController::SetIsInMagicalSphereRange(const bool bNewIsInMagicalSphereRange){bIsInMagicalSphereRange = bNewIsInMagicalSphereRange;}
 
-void AARPG_PlayerController::SetDefeatedBosses(const TArray<FName>& Bosses){DefeatedBosses = Bosses;}
-
-void AARPG_PlayerController::AddDefeatedBoss(const FName& Boss){DefeatedBosses.AddUnique(Boss);}
-
 void AARPG_PlayerController::SetInteractable(IInteractable* InteractableRef)
 {
 	CurrentInteractable = InteractableRef;
 }
-
-
-TArray<FName> AARPG_PlayerController::GetDefeatedBosses() const{return DefeatedBosses;}

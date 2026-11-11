@@ -2,25 +2,30 @@
 #include "Objects/Spawner/BossSpawner.h"
 #include "Characters/Enemy/Boss.h"
 #include "Characters/Enemy/EnemyCharacter.h"
-#include "Characters/Player/ARPG_PlayerController.h"
+#include "Characters/Player/ARPG_PlayerState.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void ABossSpawner::CheckEnemies()
 {
-	PlayerController = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
-	if (!PlayerController) return;
-	if (SpawnedBoss) return;
-	if (PlayerController->GetDefeatedBosses().IsEmpty())
+	if (APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), 0))
 	{
-		SpawnEnemies();
-		return;
+		if (AARPG_PlayerState* PS = PC->GetPlayerState<AARPG_PlayerState>())
+		{
+			if (SpawnedBoss) return;
+			if (PS->GetDefeatedBosses().IsEmpty())
+			{
+				SpawnEnemies();
+				return;
+			}
+			bShouldSpawn = true;
+			for (auto Boss : PS->GetDefeatedBosses())
+			{
+				if (EnemyClass->GetName() == Boss) bShouldSpawn = false;
+			}
+			if (bShouldSpawn) SpawnEnemies();
+		}
 	}
-	bShouldSpawn = true;
-	for (auto Boss : PlayerController->GetDefeatedBosses())
-	{
-		if (EnemyClass->GetName() == Boss) bShouldSpawn = false;
-	}
-	if (bShouldSpawn) SpawnEnemies();
 }
 
 
