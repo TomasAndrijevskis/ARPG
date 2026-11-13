@@ -1,8 +1,8 @@
 
 #include "Characters/AI/BTT_GroundSmashAttack.h"
 #include "AIController.h"
-#include "Animations/AnimInstance_Enemy.h"
-#include "Animations/AnimInstance_Rampage.h"
+#include "Animations/Enemy/AnimInstance_Enemy.h"
+#include "Animations/Enemy/AnimInstance_Rampage.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/Character.h"
 

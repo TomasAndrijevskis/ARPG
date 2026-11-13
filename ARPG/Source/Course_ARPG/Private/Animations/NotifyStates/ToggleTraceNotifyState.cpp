@@ -1,5 +1,5 @@
 
-#include "Animations/ToggleTraceNotifyState.h"
+#include "Animations/NotifyStates/ToggleTraceNotifyState.h"
 #include "Components/TraceComponent.h"
 
 

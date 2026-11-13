@@ -2,14 +2,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Animation/AnimInstance.h"
+#include "Animations/AnimInstance_Base.h"
 #include "AnimInstance_Player.generated.h"
 
 
 class AMainCharacter_Base;
 
 UCLASS()
-class COURSE_ARPG_API UAnimInstance_Player : public UAnimInstance
+class COURSE_ARPG_API UAnimInstance_Player : public UAnimInstance_Base
 {
 	GENERATED_BODY()
 
@@ -22,14 +22,8 @@ public:
 	bool bIsBlocking = false;
 	
 protected:
-	
-	virtual void NativeBeginPlay() override;
 
-	UFUNCTION(BlueprintCallable)
-	virtual void HandleLongRangeAttack(){};
-	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	float CurrentSpeed = 0.0f ;
+	virtual void UpdateSpeed() override;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsInCombat = false;
@@ -40,17 +34,8 @@ protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	bool bIsMoving = false;
 
-	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
-	
 private:
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	void UpdateSpeed();
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
-	void HandleResetAttack() const;
-
+	
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))
 	void UpdateDirection();
 };

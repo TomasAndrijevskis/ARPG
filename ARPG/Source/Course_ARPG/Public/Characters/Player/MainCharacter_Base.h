@@ -2,13 +2,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Characters/ARPG_Character_Base.h"
 #include "Data/EAttributes.h"
 #include "Data/EStats.h"
 #include "Components/StatusEffectsComponent.h"
 #include "Data/PersistentData/PlayerAdditionalStatsData.h"
 #include "Data/PersistentData/PlayerLevelData.h"
 #include "Data/PersistentData/PlayerMainStatsData.h"
-#include "GameFramework/Character.h"
 #include "Interfaces/MainPlayer.h"
 #include "Interfaces/Fighter.h"
 #include "MainCharacter_Base.generated.h"
@@ -40,7 +40,7 @@ DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsAmountChanged, const int);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsAmountChange, const int);
 
 UCLASS(Blueprintable)
-class COURSE_ARPG_API AMainCharacter_Base : public ACharacter, public IMainPlayer, public IFighter
+class COURSE_ARPG_API AMainCharacter_Base : public AARPG_Character_Base, public IMainPlayer, public IFighter
 {
 	GENERATED_BODY()
 
@@ -132,8 +132,6 @@ public:
 	void LoadLevelData(FPlayerLevelData Data);
 	
 	FPlayerLevelData SaveLevelData() const;
-	
-	void SaveAll();
 	
 	void UpgradeAttribute(const EAttributes Attribute);
 	

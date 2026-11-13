@@ -1,15 +1,16 @@
 
-#include "Animations/AnimInstance_Fey.h"
+#include "Animations/Enemy/AnimInstance_Fey.h"
 #include "Characters/Enemy/Boss_Fey.h"
-#include "Characters/Enemy/EnemyCharacter.h"
 #include "Components/EnemyProjectileComponent.h"
 
 
-void UAnimInstance_Fey::HandleProjectileSpawn() const
+void UAnimInstance_Fey::HandleLongRangeAttack()
 {
 	if (!PawnRef) return;
-	if (PawnRef->FindComponentByClass<UEnemyProjectileComponent>())
-		PawnRef->FindComponentByClass<UEnemyProjectileComponent>()->SpawnProjectile();
+	if (UEnemyProjectileComponent* ProjectileComp = PawnRef->FindComponentByClass<UEnemyProjectileComponent>())
+	{
+		ProjectileComp->SpawnProjectile();
+	}
 }
 
 

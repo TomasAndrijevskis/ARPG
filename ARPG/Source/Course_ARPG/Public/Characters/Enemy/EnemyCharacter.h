@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "Characters/ARPG_Character_Base.h"
 #include "Interfaces/Enemy.h"
 #include "Data/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
@@ -27,7 +27,7 @@ class UBlackboardComponent;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnEnemyDied, AEnemyCharacter*);
 UCLASS()
-class COURSE_ARPG_API AEnemyCharacter : public ACharacter, public IEnemy, public IFighter
+class COURSE_ARPG_API AEnemyCharacter : public AARPG_Character_Base, public IEnemy, public IFighter
 {
 	GENERATED_BODY()
 
@@ -76,6 +76,12 @@ public:
 	
 	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 	
+	bool CanApplyDamage() const;
+
+	void SetCanApplyDamage(bool NewCanApplyDamage);
+
+	float GetResistanceStatValue(const UDamageType* DamageType);
+	
 	UPROPERTY(EditAnywhere)
 	UStatsComponent* StatsComp;
 	
@@ -95,12 +101,6 @@ public:
 	UPoisonEffectManager* PoisonStatusEffectManager;
 	
 	FOnEnemyDied OnEnemyDiedDelegate;
-
-	bool CanApplyDamage() const;
-
-	void SetCanApplyDamage(bool NewCanApplyDamage);
-
-	float GetResistanceStatValue(const UDamageType* DamageType);
 	
 protected:
 

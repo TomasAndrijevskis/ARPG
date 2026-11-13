@@ -1,7 +1,8 @@
 
 #include "Components/LevelingComponent.h"
 #include "Data/XPLevels.h"
-#include "Characters/Player/MainCharacter_Base.h"
+#include "Kismet/GameplayStatics.h"
+#include "SaveGame/ARPG_GameInstance.h"
 
 
 void ULevelingComponent::BeginPlay()
@@ -21,9 +22,10 @@ void ULevelingComponent::AddExperience(const float Experience)
 	}
 	CurrentExperience += Experience;
 	TryLevelUp();
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
-	if (!PlayerRef) return;
-	PlayerRef->SaveAll();
+	if (UARPG_GameInstance* GI = Cast<UARPG_GameInstance>(UGameplayStatics::GetGameInstance(GetWorld())))
+	{
+		GI->SaveAll();
+	}
 }
 
 

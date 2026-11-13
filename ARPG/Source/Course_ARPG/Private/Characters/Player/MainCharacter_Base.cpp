@@ -370,12 +370,6 @@ FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 }
 
 
-void AMainCharacter_Base::SaveAll()
-{
-	GameInstance->SaveAll();
-}
-
-
 void AMainCharacter_Base::HandleResetAttack()
 {
 	CombatComp->HandleResetAttack();

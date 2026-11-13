@@ -1,8 +1,8 @@
 
 #include "Characters/AI/BTT_ChargeAttack.h"
 #include "AIController.h"
-#include "Animations/AnimInstance_Enemy.h"
-#include "Animations/AnimInstance_Grux.h"
+#include "Animations/Enemy/AnimInstance_Enemy.h"
+#include "Animations/Enemy/AnimInstance_Grux.h"
 #include "GameFramework/Character.h"
 #include "BehaviorTree/BlackboardComponent.h"
 #include "Data/EEnemyStates.h"

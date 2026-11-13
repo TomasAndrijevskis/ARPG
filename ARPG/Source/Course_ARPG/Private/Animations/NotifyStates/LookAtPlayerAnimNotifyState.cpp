@@ -1,5 +1,5 @@
 
-#include "Animations/LookAtPlayerAnimNotifyState.h"
+#include "Animations/NotifyStates/LookAtPlayerAnimNotifyState.h"
 #include "Components/LookAtPlayerComponent.h"
 
 

@@ -1,5 +1,17 @@
 
 #include "Animations/Player/AnimInstance_Warrior.h"
+#include "Characters/ARPG_Character_Base.h"
+#include "Components/TraceComponent.h"
+
+
+void UAnimInstance_Warrior::HandleResetAttack()
+{
+	if (!IsValid(PawnRef)) return;
+	if (UTraceComponent* TraceComp = PawnRef->FindComponentByClass<UTraceComponent>())
+	{
+		TraceComp->HandleResetAttack();
+	}
+}
 
 
 void UAnimInstance_Warrior::BecomeInvincible()

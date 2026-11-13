@@ -104,14 +104,6 @@ void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
 }
 
 
-void AMainCharacter_Warrior::HandleResetAttack()
-{
-	Super::HandleResetAttack();
-	TraceComp->HandleResetAttack();
-}
-
-
-
 void AMainCharacter_Warrior::SetArmor(const float Armor){StatsComp->SetStatValue(EStats::Armor, Armor);StatsComp->SetStatValue(EStats::MaxArmor, Armor);}
 
 bool AMainCharacter_Warrior::IsWeaponEnchanted() const

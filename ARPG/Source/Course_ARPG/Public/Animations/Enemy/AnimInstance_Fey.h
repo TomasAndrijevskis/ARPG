@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Animations/AnimInstance_Enemy.h"
+#include "AnimInstance_Enemy.h"
 #include "AnimInstance_Fey.generated.h"
 
 
@@ -12,9 +12,8 @@ class COURSE_ARPG_API UAnimInstance_Fey : public UAnimInstance_Enemy
 	GENERATED_BODY()
 
 protected:
-
-	UFUNCTION(BlueprintCallable)
-	void HandleProjectileSpawn() const;
+	
+	virtual void HandleLongRangeAttack() override;
 
 	UFUNCTION(BlueprintCallable)
 	void SpawnPoisonArea() const;

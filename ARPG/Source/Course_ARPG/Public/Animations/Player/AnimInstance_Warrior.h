@@ -24,6 +24,10 @@ public:
 
 	FOnInvincibilityRequestedDelegate OnInvincibilityRequested;
 
+protected:
+	
+	virtual void HandleResetAttack() override;
+	
 private:
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = true))

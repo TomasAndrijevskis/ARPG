@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Animations/AnimInstance_Enemy.h"
+#include "AnimInstance_Enemy.h"
 #include "AnimInstance_Grux.generated.h"
 
 
@@ -19,10 +19,9 @@ public:
 	void SetIsCharging(const bool IsCharging);
 	
 protected:
-
-	UFUNCTION(BlueprintCallable)
-	void HandleProjectileSpawn() const;
-
+	
+	virtual void HandleLongRangeAttack() override;
+	
 	UFUNCTION(BlueprintCallable)
 	void HandleChargeStart(const bool bIsReadyToCharge) const;
 
