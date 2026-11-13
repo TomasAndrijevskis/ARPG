@@ -6,6 +6,7 @@
 
 void UAnimInstance_Warrior::HandleResetAttack()
 {
+	Super::HandleResetAttack();
 	if (!IsValid(PawnRef)) return;
 	if (UTraceComponent* TraceComp = PawnRef->FindComponentByClass<UTraceComponent>())
 	{
