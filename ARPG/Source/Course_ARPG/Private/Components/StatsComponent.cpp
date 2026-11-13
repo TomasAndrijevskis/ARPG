@@ -113,9 +113,29 @@ float UStatsComponent::GetStatIncreasePreview(const EStats Stat, const float Del
 
 float UStatsComponent::GetReducedDamage(const float Damage, const float ReductionPercent){return Damage - (ReductionPercent * Damage);}
 
-float UStatsComponent::GetStatPercentage(const EStats Current, const EStats Max) const{return Stats[Current] / Stats[Max];}
+float UStatsComponent::GetStatPercentage(const EStats Current, const EStats Max) const
+{
+	const float* CurrentValue = Stats.Find(Current);
+	const float* MaxValue = Stats.Find(Max);
+	if (!CurrentValue || !MaxValue)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Missing stat %s"), *UEnum::GetValueAsString(Current));
+		UE_LOG(LogTemp, Warning, TEXT("Missing stat %s"), *UEnum::GetValueAsString(Max));
+		return 0.0f;
+	}
+	return *CurrentValue / *MaxValue;
+}
 
-float UStatsComponent::GetStatValue(const EStats Stat) const{return Stats[Stat];}
+float UStatsComponent::GetStatValue(const EStats Stat) const
+{
+	const float* Value = Stats.Find(Stat);
+	if (!Value)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Missing stat %s"), *UEnum::GetValueAsString(Stat));
+		return 0.0f;
+	}
+	return *Value;
+}
 
 FString UStatsComponent::GetStatName(const EStats Stat) const{return UEnum::GetValueAsString(Stat);}
 

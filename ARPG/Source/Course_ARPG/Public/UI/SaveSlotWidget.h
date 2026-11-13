@@ -7,6 +7,7 @@
 #include "SaveSlotWidget.generated.h"
 
 
+class UCharacterSelection;
 class UMenuButtonBase;
 
 UCLASS()
@@ -26,7 +27,7 @@ public:
 
 	FString GetSlotName() const {return SlotName;};
 
-	void SetMapName(const FName& NewMapName){MapName = NewMapName;}
+	void OnSlotExists() {bSlotExists = true;}
 	
 private:
 	
@@ -40,8 +41,13 @@ private:
 	void OnButtonClicked();
 
 	void SetPlayerControllerProperties();
+
+	void CreateCharacterSelectionWidget();
+	
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UCharacterSelection> CharacterSelectionWidgetClass;
 	
 	FString SlotName;
-
-	FName MapName = FName("CharacterSelectionMap");
+	
+	bool bSlotExists = false;
 };

@@ -9,8 +9,6 @@
 void USaveMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	SetPlayerControllerProperties();
-	
 	CreateSlots();
 	Button_ExitToMainMenu->OnButtonClickedDelegate.AddDynamic(this, &USaveMenu::BackToMainMenu);
 }
@@ -26,29 +24,15 @@ void USaveMenu::CreateSlots()
 		SaveSlotWidget->SetSlotName(SlotName);
 		if (UGameplayStatics::DoesSaveGameExist(SlotName, 0))
 		{
+			SaveSlotWidget->OnSlotExists();
 			SaveSlotWidget->UpdateSlotText(FText::FromString("Load"));
 		}
-		else
-		{
-			SaveSlotWidget->UpdateSlotText(FText::FromString("Create"));
-			SaveSlotWidget->SetMapName(FName("CharacterSelectionMap"));
-		}
-	}
-}
-
-
-void USaveMenu::SetPlayerControllerProperties()
-{
-	if (APlayerController* PlayerController = Cast<APlayerController>(GetWorld()->GetFirstPlayerController()))
-	{
-		PlayerController->SetShowMouseCursor(true);
-		FInputModeGameAndUI InputMode;
-		PlayerController->SetInputMode(InputMode);
+		else SaveSlotWidget->UpdateSlotText(FText::FromString("Create"));
 	}
 }
 
 
 void USaveMenu::BackToMainMenu()
 {
-	UGameplayStatics::OpenLevel(GetWorld(), FName("MainMenu"));
+	this->RemoveFromParent();
 }

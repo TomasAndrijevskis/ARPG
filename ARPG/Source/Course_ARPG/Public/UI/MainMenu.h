@@ -6,6 +6,7 @@
 #include "MainMenu.generated.h"
 
 
+class USaveMenu;
 class UMenuButtonBase;
 
 UCLASS()
@@ -24,12 +25,15 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UMenuButtonBase* Button_QuitGame;
-	
-	UFUNCTION()
-	void OpenSaveSelectionMenu();
 
 	UFUNCTION()
 	void QuitGame();
 
 	void SetPlayerControllerProperties();
+
+	UFUNCTION()
+	void CreateSaveMenuWidget();
+	
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<USaveMenu> SaveMenuWidgetClass;
 };

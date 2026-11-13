@@ -87,8 +87,8 @@ void AMainCharacter_Base::HandleForwardMovementInput(float ScaleValue)
 void AMainCharacter_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	StatsComp->OnRegenStaminaRequestDelegate.Broadcast();
-	StatsComp->OnRegenManaRequestDelegate.Broadcast();
+	//StatsComp->OnRegenStaminaRequestDelegate.Broadcast();
+	//StatsComp->OnRegenManaRequestDelegate.Broadcast();
 }
 
 
@@ -367,12 +367,6 @@ FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 	const FVector PlayerLocation = GetActorLocation();
 	const FVector ForwardDirection = GetActorForwardVector();
 	return PlayerLocation + ForwardDirection * DefaultSpawnDistance;
-}
-
-
-void AMainCharacter_Base::HandleResetAttack()
-{
-	CombatComp->HandleResetAttack();
 }
 
 

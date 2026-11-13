@@ -30,8 +30,6 @@ private:
 	
 	void CreateSlots();
 
-	void SetPlayerControllerProperties();
-
 	UFUNCTION()
 	void BackToMainMenu();
 

@@ -187,8 +187,6 @@ public:
 	virtual float GetElementalDamageModificator() const override;
 
 	FVector GetTargetLocation(float DefaultSpawnDistance);
-	
-	virtual void HandleResetAttack();
 
 	virtual void SpawnProjectile(){};
 

@@ -1,21 +1,16 @@
 
 #include "UI/MainMenu.h"
 #include "Kismet/GameplayStatics.h"
+#include "UI/SaveMenu.h"
 #include "UI/Buttons/MenuButtonBase.h"
 
 
 void UMainMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	Button_StartGame->OnButtonClickedDelegate.AddDynamic(this, &UMainMenu::OpenSaveSelectionMenu);
+	Button_StartGame->OnButtonClickedDelegate.AddDynamic(this, &UMainMenu::CreateSaveMenuWidget);
 	Button_QuitGame->OnButtonClickedDelegate.AddDynamic(this, &UMainMenu::QuitGame);
 	SetPlayerControllerProperties();
-}
-
-
-void UMainMenu::OpenSaveSelectionMenu()
-{
-	UGameplayStatics::OpenLevel(GetWorld(), "SaveSelectionMenu");
 }
 
 
@@ -27,9 +22,20 @@ void UMainMenu::QuitGame()
 
 void UMainMenu::SetPlayerControllerProperties()
 {
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	if (!PlayerController) return;
-	PlayerController->SetShowMouseCursor(true);
-	FInputModeGameAndUI InputMode;
-	PlayerController->SetInputMode(InputMode);
+	if (APlayerController* PlayerController = GetWorld()->GetFirstPlayerController())
+	{
+		PlayerController->SetShowMouseCursor(true);
+		FInputModeGameAndUI InputMode;
+		PlayerController->SetInputMode(InputMode);
+	}
+}
+
+
+void UMainMenu::CreateSaveMenuWidget()
+{
+	if (!SaveMenuWidgetClass) return;
+	if (USaveMenu* SaveMenuWidget = CreateWidget<USaveMenu>(this, SaveMenuWidgetClass))
+	{
+		SaveMenuWidget->AddToViewport(1);
+	}
 }

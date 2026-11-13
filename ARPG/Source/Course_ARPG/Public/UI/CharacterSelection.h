@@ -42,8 +42,6 @@ private:
 
 	UFUNCTION()
 	void IncreaseIndex();
-	
-	void SetPlayerControllerProperties();
 
 	void CreateCharacterSelectWidget();
 

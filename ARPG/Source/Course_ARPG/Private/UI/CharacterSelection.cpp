@@ -1,6 +1,5 @@
 
 #include "UI/CharacterSelection.h"
-#include "Kismet/GameplayStatics.h"
 #include "UI/CharacterSelect.h"
 #include "UI/Buttons/MenuButtonBase.h"
 
@@ -8,24 +7,12 @@
 void UCharacterSelection::NativeConstruct()
 {
 	Super::NativeConstruct();
-	SetPlayerControllerProperties();
 	AmountOfCharacters = GetAmountOfCharacters();
 	Button_Left->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::DecreaseIndex);
 	Button_Right->OnClicked.AddUniqueDynamic(this, &UCharacterSelection::IncreaseIndex);
 	Button_ExitToSaveSelectionMenu->OnButtonClickedDelegate.AddUniqueDynamic(this, &UCharacterSelection::ExitToSaveSelectionMenu);
 	OnIndexChangedDelegate.AddUObject(this, &UCharacterSelection::OnIndexChanged);
 	CreateCharacterSelectWidget();
-}
-
-
-
-void UCharacterSelection::SetPlayerControllerProperties()
-{
-	APlayerController* PlayerController = GetWorld()->GetFirstPlayerController();
-	if (!PlayerController) return;
-	PlayerController->SetShowMouseCursor(true);
-	FInputModeGameAndUI InputMode;
-	PlayerController->SetInputMode(InputMode);
 }
 
 
@@ -79,5 +66,10 @@ void UCharacterSelection::IncreaseIndex()
 
 void UCharacterSelection::ExitToSaveSelectionMenu()
 {
-	UGameplayStatics::OpenLevel(this, "SaveSelectionMenu");
+	if (CharacterWidgetRef)
+	{
+		CharacterWidgetRef->RemoveFromParent();
+		CharacterWidgetRef = nullptr;
+	}
+	this->RemoveFromParent();
 }

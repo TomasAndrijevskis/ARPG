@@ -22,11 +22,6 @@ public:
 
 	void SetCharacterData(const FCharacterSelectionData* Data);
 	
-protected:
-
-	UPROPERTY(EditAnywhere)
-	UDataTable* CharactersDataTable;
-	
 private:
 
 	UPROPERTY(meta = (BindWidget))
