@@ -1,7 +1,7 @@
 
 #include "Characters/AI/BTT_MeleeAttack_Grux.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
 
 
@@ -17,7 +17,7 @@ void UBTT_MeleeAttack_Grux::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* N
 void UBTT_MeleeAttack_Grux::HandleRangeAttack(UBehaviorTreeComponent& OwnerComp) const
 {
 	if (bHasRangeAttack)
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Range));
 	else
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::GoingBack));
 }

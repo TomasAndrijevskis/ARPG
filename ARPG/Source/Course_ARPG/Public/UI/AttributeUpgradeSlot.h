@@ -9,6 +9,7 @@
 #include "AttributeUpgradeSlot.generated.h"
 
 
+class AMainCharacter_Base;
 class UMenuButtonBase;
 class UDescriptionWidget;
 
@@ -64,7 +65,7 @@ private:
 	UDescriptionWidget* DescriptionWidgetRef;
 	
 	UPROPERTY()
-	class AMainCharacter_Base* PlayerRef;
+	AMainCharacter_Base* PlayerRef;
 
 	UPROPERTY()
 	EAttributes Attribute;

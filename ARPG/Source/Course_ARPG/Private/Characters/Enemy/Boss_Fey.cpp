@@ -36,7 +36,7 @@ void ABoss_Fey::HandleBehaviour()
 void ABoss_Fey::SwitchToMeleeAttack()
 {
 	MeleeAttacksCounter++;
-	GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Melee);
+	GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Melee));
 }
 
 
@@ -44,7 +44,7 @@ void ABoss_Fey::HandleSummonMinions()
 {
 	GetBlackboardComp()->SetValueAsInt(TEXT("SummonTimes"), SummonCounter);
 	SummonCounter++;
-	GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Summon);
+	GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Summon));
 }
 
 

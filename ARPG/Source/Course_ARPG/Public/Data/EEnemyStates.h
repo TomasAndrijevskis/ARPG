@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 
 UENUM(BlueprintType)
-enum EEnemyStates
+enum class EEnemyStates : uint8
 {
 	Idle UMETA(DisplayName = "Idle"),
 	Range UMETA(DisplayName = "Range"),

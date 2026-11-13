@@ -60,7 +60,8 @@ void UARPG_GameInstance::SaveAll()
 	SaveDefeatedBosses();
 	SaveUsedPoints();
 	SaveCurrentEffect();
-	bIsFirstLoad = false;
+	WriteSaveToDisk();
+	if (bIsFirstLoad) bIsFirstLoad = false;
 }
 
 
@@ -70,7 +71,6 @@ void UARPG_GameInstance::SaveBonfires()
 	if (AARPG_PlayerState* PlayerState = PlayerRef->GetPlayerState<AARPG_PlayerState>())
 	{
 		SaveGameInstance->UnlockedBonfires = PlayerState->GetUnlockedBonfires();
-		UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 	}
 }
 
@@ -97,7 +97,6 @@ void UARPG_GameInstance::SaveAttributeData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	SaveGameInstance->Attributes = PlayerRef->SaveAttributeData();
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -112,7 +111,6 @@ void UARPG_GameInstance::SaveLevelData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	SaveGameInstance->LevelData = PlayerRef->SaveLevelData();
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -133,7 +131,6 @@ void UARPG_GameInstance::SaveAbilities()
 		Ability->SaveAbilityProperties(Data);
 		SaveGameInstance->UnlockedAbilities.Add(Ability->GetName(), Data);
 	}
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -160,7 +157,6 @@ void UARPG_GameInstance::SaveDefeatedBosses()
 	{
 		SaveGameInstance->DefeatedBosses = PS->GetDefeatedBosses();
 	}
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -179,7 +175,6 @@ void UARPG_GameInstance::SavePlayerLocation(const FSpawnPoint& LastSpawnPoint)
 	if (!PlayerRef || !SaveGameInstance) return;
 	SaveGameInstance->SavedSpawnPointData = LastSpawnPoint;
 	UE_LOG(LogTemp, Error, TEXT("Saved player location: %s, %s"), *LastSpawnPoint.MapName.ToString(), *LastSpawnPoint.LocationTag)
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -188,7 +183,6 @@ void UARPG_GameInstance::SaveUsedPoints()
 	if (!PlayerRef || !SaveGameInstance) return;
 	SaveGameInstance->UsedAbilityPoints = PlayerRef->GetUsedAbilityPoints();
 	SaveGameInstance->UsedAttributePoints = PlayerRef->GetUsedAttributePoints();
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -204,7 +198,6 @@ void UARPG_GameInstance::SaveCurrentEffect()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
 	SaveGameInstance->WeaponEnchantmentEffect = PlayerRef->GetCurrentEnchantmentEffect();
-	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 
@@ -243,6 +236,13 @@ FName UARPG_GameInstance::GetCurrentMap() const
 bool UARPG_GameInstance::CheckSlot(const FString& SlotNameToCheck) const
 {
 	return UGameplayStatics::DoesSaveGameExist(SlotNameToCheck,0);
+}
+
+
+void UARPG_GameInstance::WriteSaveToDisk()
+{
+	if (!SaveGameInstance) return;
+	UGameplayStatics::SaveGameToSlot(SaveGameInstance, SlotName, 0);
 }
 
 

@@ -19,7 +19,7 @@ void AARPG_PlayerState::HandleBonfireInteraction(const ABonfire* BonfireRef)
 		UnlockedBonfires.AddUnique(Data);
 		if (UARPG_GameInstance* GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance()))
 		{
-			GameInstanceRef->SaveBonfires();
+			GameInstanceRef->SaveAll();
 		}
 	}
 }

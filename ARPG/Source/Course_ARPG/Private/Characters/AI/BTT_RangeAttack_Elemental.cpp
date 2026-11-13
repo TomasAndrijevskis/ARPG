@@ -47,7 +47,7 @@ void UBTT_RangeAttack_Elemental::CheckDistance()
 	const float SightRadius = EnemyCharacterRef->GetSightRadius();
 	const float CurrentDistance = ControllerRef->GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 	if (CurrentDistance >= SightRadius)
-		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
+		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::GoingBack));
 	else
 	{
 		if (CurrentDistance > FighterRef->GetRangeDistance()) MoveToPlayer(FighterRef->GetRangeDistance(), PlayerLocation);

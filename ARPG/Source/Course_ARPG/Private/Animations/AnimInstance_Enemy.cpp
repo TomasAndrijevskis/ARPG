@@ -20,7 +20,7 @@ void UAnimInstance_Enemy::NativeUpdateAnimation(const float DeltaSeconds)
 void UAnimInstance_Enemy::UpdateSpeed()
 {
 	if (!IsValid(PawnRef)) return;
-	FVector Velocity = TryGetPawnOwner()->GetVelocity();
+	FVector Velocity = PawnRef->GetVelocity();
 	CurrentSpeed = static_cast<float>(Velocity.Length()); // double->float
 }
 

@@ -17,6 +17,6 @@ void UAnimInstance_Rampage::HandleSmashingGround() const
 void UAnimInstance_Rampage::SetIsSmashingGround(const bool bIsSmashing)
 {
 	if (!bIsSmashing)
-		PawnRef->GetAIController()->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Melee);
+		PawnRef->GetAIController()->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Melee));
 	bIsSmashingGround = bIsSmashing;
 }

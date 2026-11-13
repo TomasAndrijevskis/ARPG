@@ -4,7 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Interfaces/Enemy.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
 #include "EnemyCharacter.generated.h"
 
@@ -62,9 +62,9 @@ public:
 	UBlackboardComponent* GetBlackboardComp() const;
 
 	UFUNCTION()
-	TEnumAsByte<EEnemyStates> GetInitialState() const;
+	EEnemyStates GetInitialState() const;
 
-	void SetInitialState(const TEnumAsByte<EEnemyStates> NewState);
+	void SetInitialState(const EEnemyStates NewState);
 
 	void ResetAttack();
 
@@ -96,7 +96,7 @@ public:
 	
 	FOnEnemyDied OnEnemyDiedDelegate;
 
-	bool CanApplyDamage();
+	bool CanApplyDamage() const;
 
 	void SetCanApplyDamage(bool NewCanApplyDamage);
 
@@ -128,7 +128,7 @@ private:
 	void SetResistances();
 	
 	UPROPERTY(EditAnywhere)
-	TEnumAsByte<EEnemyStates> InitialState;
+	EEnemyStates InitialState;
 
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* DeathAnim;

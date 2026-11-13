@@ -64,9 +64,9 @@ TArray<EStats> UAttributesComponent::GetRelatedStats(EAttributes Attribute)
 }
 
 
-void UAttributesComponent::SetAttributeValue(EAttributes Attribute, const int Value){	Attributes[Attribute] = Value;}
+void UAttributesComponent::SetAttributeValue(EAttributes Attribute, const int Value){Attributes[Attribute] = Value;}
 
-FString UAttributesComponent::GetAttributeName(EAttributes Attribute) const{return UEnum::GetValueAsString(Attribute); }
+FString UAttributesComponent::GetAttributeName(EAttributes Attribute) const{return UEnum::GetDisplayValueAsText(Attribute).ToString(); }
 
 TArray<EAttributes>& UAttributesComponent::GetAttributes(){return ArrAttributes;}
 

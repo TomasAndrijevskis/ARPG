@@ -2,7 +2,7 @@
 #include "Characters/AI/BTTask_SummonMinions.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "Characters/Enemy/Boss_Fey.h"
 #include "GameFramework/Character.h"
 
@@ -44,6 +44,6 @@ void UBTTask_SummonMinions::FinishTask() const
 		return;
 	}
 	Cast<ABoss_Fey>(CharacterRef)->SetCanTakeDamage(true);
-	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Range));
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }

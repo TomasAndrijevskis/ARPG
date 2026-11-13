@@ -3,7 +3,7 @@
 
 #include "CoreMinimal.h"
 #include "Spawner.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "EnemySpawner.generated.h"
 
 
@@ -38,6 +38,6 @@ private:
 	int MaxSpawnRange;
 
 	UPROPERTY(EditAnywhere)
-	TEnumAsByte<EEnemyStates> InitialState;
+	EEnemyStates InitialState;
 	
 };

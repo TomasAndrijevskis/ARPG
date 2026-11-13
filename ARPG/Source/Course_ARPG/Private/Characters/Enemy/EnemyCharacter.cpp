@@ -58,7 +58,7 @@ void AEnemyCharacter::SetupAI()
 		BlackboardComp = ControllerRef->GetBlackboardComponent();
 		BlackboardComp->SetValueAsVector(TEXT("StartLocation"), GetActorLocation());
 		BlackboardComp->SetValueAsRotator(TEXT("StartRotation"), GetActorRotation());
-		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), InitialState);
+		BlackboardComp->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(InitialState));
 		if (InitialState == EEnemyStates::Patrol)
 			BlackboardComp->SetValueAsBool(TEXT("IsPatrolling"), true);
 	}
@@ -68,7 +68,7 @@ void AEnemyCharacter::SetupAI()
 void AEnemyCharacter::HandlePlayerDeath()
 {
 	if (ControllerRef)
-		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GameOver);
+		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::GameOver));
 }
 
 
@@ -149,15 +149,15 @@ float AEnemyCharacter::GetResistanceStatValue(const UDamageType* DamageType)
 }
 
 
-void AEnemyCharacter::SetInitialState(const TEnumAsByte<EEnemyStates> NewState){InitialState = NewState;}
+void AEnemyCharacter::SetInitialState(const EEnemyStates NewState){InitialState = NewState;}
 
 void AEnemyCharacter::SetCanApplyDamage(bool NewCanApplyDamage){bCanApplyDamage = NewCanApplyDamage;}
 
 UBlackboardComponent* AEnemyCharacter::GetBlackboardComp() const{return BlackboardComp;}
 
-TEnumAsByte<EEnemyStates> AEnemyCharacter::GetInitialState() const{return InitialState;}
+EEnemyStates AEnemyCharacter::GetInitialState() const{return InitialState;}
 
-bool AEnemyCharacter::CanApplyDamage(){return bCanApplyDamage;}
+bool AEnemyCharacter::CanApplyDamage() const{return bCanApplyDamage;}
 
 TSubclassOf<UDamageTypeBase> AEnemyCharacter::GetDamageType() const{return BaseAttackDamageType;}
 

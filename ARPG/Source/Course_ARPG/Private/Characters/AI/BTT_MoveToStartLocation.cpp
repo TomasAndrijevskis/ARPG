@@ -2,7 +2,7 @@
 #include "Characters/AI/BTT_MoveToStartLocation.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "GameFramework/Character.h"
 #include "Navigation/PathFollowingComponent.h"
 
@@ -56,7 +56,7 @@ void UBTT_MoveToStartLocation::ChangeState() const
 {
 	if (ControllerRef)
 	{
-		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Patrol);
+		ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Patrol));
 		ControllerRef->GetBlackboardComponent()->SetValueAsBool(TEXT("IsPatrolling"), true);
 	}
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);

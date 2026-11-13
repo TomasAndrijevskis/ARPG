@@ -2,7 +2,7 @@
 #include "Characters/AI/BTT_MeleeAttack_Rampage.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -19,7 +19,7 @@ EBTNodeResult::Type UBTT_MeleeAttack_Rampage::ExecuteTask(UBehaviorTreeComponent
 		if (RandomValue > Threshold)
 		{
 			//UE_LOG(LogTemp, Warning, TEXT("Random Value : %f"), RandomValue);
-			OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::SpecialAttack);
+			OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::SpecialAttack));
 			OwnerComp.GetBlackboardComponent()->SetValueAsFloat(TEXT("Threshold"), OriginalThreshold);
 		}
 		else
@@ -35,5 +35,5 @@ void UBTT_MeleeAttack_Rampage::TickTask(UBehaviorTreeComponent& OwnerComp, uint8
 
 	if (!FighterRef) return;
 	if (OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance")) >= FighterRef->GetMeleeRange())
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::GoingBack);
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::GoingBack));
 }

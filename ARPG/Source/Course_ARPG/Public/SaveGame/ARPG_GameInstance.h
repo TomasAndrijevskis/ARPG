@@ -30,9 +30,6 @@ public:
 	
 	UFUNCTION()
 	void SaveAll();
-
-	UFUNCTION()
-	void SaveBonfires();
 	
 	UFUNCTION()
 	bool CheckSlot(const FString& SlotNameToCheck) const;
@@ -54,6 +51,8 @@ public:
 	void LoadCurrentEffect();
 
 	FSpawnPoint GetSpawnPoint() const;
+
+	void WriteSaveToDisk();
 	
 	bool bIsFirstLoad;
 	
@@ -74,6 +73,8 @@ private:
 	void SaveAbilities();
 
 	void LoadAbilities();
+	
+	void SaveBonfires();
 	
 	void LoadBonfires();
 	

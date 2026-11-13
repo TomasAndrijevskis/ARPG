@@ -4,7 +4,7 @@
 #include "GameFramework/Character.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "Interfaces/Fighter.h"
 
 
@@ -23,7 +23,7 @@ EBTNodeResult::Type UBTT_RangeAttack_Grux::ExecuteTask(UBehaviorTreeComponent& O
 	const float Distance = OwnerComp.GetBlackboardComponent()->GetValueAsFloat(TEXT("Distance"));
 	if (Distance < FighterRef->GetMeleeRange())
 	{
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Melee);
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Melee));
 		AbortTask(OwnerComp, NodeMemory);
 		return EBTNodeResult::Aborted;
 	}
@@ -34,7 +34,7 @@ EBTNodeResult::Type UBTT_RangeAttack_Grux::ExecuteTask(UBehaviorTreeComponent& O
 	if (RandomValue > Threshold)
 	{
 		Threshold = OriginalThreshold;
-		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Charge);
+		OwnerComp.GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Charge));
 	}
 	else Threshold -= 0.1;
 	return EBTNodeResult::Succeeded;

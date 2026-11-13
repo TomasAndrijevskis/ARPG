@@ -39,7 +39,7 @@ void ABoss::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates Ne
 	{
 		EEnemyStates CurrentState = static_cast<EEnemyStates>(GetBlackboardComp()->GetValueAsEnum(TEXT("CurrentState")));
 		if (DetectedPawn != PawnToDetect || CurrentState != EEnemyStates::Idle) return;
-		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), NewEnemyState);
+		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(NewEnemyState));
 	}
 }
 
@@ -50,16 +50,16 @@ void ABoss::HandleDeath()
 	{
 		Cast<ABossLocationDoor>(BossDoor)->OnBossDiedDelegate.Broadcast();
 	}
-	if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
-	{
-		GameInstance->SaveAll();
-	}
 	if (APlayerController* PC = UGameplayStatics::GetPlayerController(GetWorld(), 0))
 	{
 		if (AARPG_PlayerState* PS = PC->GetPlayerState<AARPG_PlayerState>())
 		{
 			PS->AddDefeatedBoss(FName(*GetClass()->GetName()));
 		}
+	}
+	if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
+	{
+		GameInstance->SaveAll();
 	}
 	Super::HandleDeath();
 	HealthBarWidgetRef->RemoveFromParent();
@@ -78,7 +78,7 @@ void ABoss::CheckSecondPhase(const float CurrentHealthPercent)
 	if (CurrentHealthPercent <= SecondPhaseHealthPercent && !IsSecondPhaseActive())
 	{
 		SetCanTakeDamage(false);
-		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::PhaseTransition);
+		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::PhaseTransition));
 	}
 }
 

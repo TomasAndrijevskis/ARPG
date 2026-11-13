@@ -47,7 +47,7 @@ void AMinion::DetectPawn(APawn* DetectedPawn, APawn* PawnToDetect, EEnemyStates 
 		EEnemyStates CurrentState = static_cast<EEnemyStates>(GetBlackboardComp()->GetValueAsEnum(TEXT("CurrentState")));
 		if (DetectedPawn != PawnToDetect || (CurrentState != EEnemyStates::Patrol && CurrentState != EEnemyStates::GoingBack && CurrentState != EEnemyStates::Idle)) return;
 		GetBlackboardComp()->SetValueAsBool(TEXT("IsPatrolling"), false);
-		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), NewEnemyState);
+		GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(NewEnemyState));
 	}
 }
 

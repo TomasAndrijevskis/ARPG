@@ -2,7 +2,7 @@
 #include "Characters/AI/BTT_PoisonExplosion.h"
 #include "AIController.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "Characters/AI/EEnemyStates.h"
+#include "Data/EEnemyStates.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Interfaces/Fighter.h"
@@ -67,7 +67,7 @@ void UBTT_PoisonExplosion::FinishTask() const
 		return;
 	}
 	CharacterRef->FindComponentByClass<UCharacterMovementComponent>()->MaxWalkSpeed /= SpeedMultiplier;
-	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), EEnemyStates::Range);
+	ControllerRef->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Range));
 	FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Succeeded);
 }
 

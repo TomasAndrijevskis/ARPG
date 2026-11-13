@@ -29,7 +29,7 @@ void UBTT_PhaseTransition::ActivateSecondPhase() const
 		FinishLatentTask(*CachedOwnerComp, EBTNodeResult::Failed);
 		return;
 	}
-	CachedOwnerComp->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), NextState);
+	CachedOwnerComp->GetBlackboardComponent()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(NextState));
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsBool(TEXT("IsSecondPhase"), true);
 	CachedOwnerComp->GetBlackboardComponent()->SetValueAsInt(TEXT("HitCount"), 0);
 	Cast<ABoss>(CharacterRef)->ActivateSecondPhase();
