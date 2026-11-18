@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "PauseMenu.generated.h"
 
 
@@ -11,15 +11,13 @@ class UVerticalBox;
 class UMenuButtonBase;
 
 UCLASS()
-class COURSE_ARPG_API UPauseMenu : public UUserWidget
+class COURSE_ARPG_API UPauseMenu : public UUserWidget_Base
 {
 	GENERATED_BODY()
 	
 public:
 	
 	virtual void NativeConstruct() override;
-
-	void RemoveControlsWindow();
 	
 private:
 
@@ -39,12 +37,11 @@ private:
 
 	void CreateControlSlot(UTexture2D* Icon, const FText& Description);
 
-	UFUNCTION()
-	void RemoveWidget();
+	void BindButtons();
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	UDataTable* ControlsDataTable;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UControlSlot> ControlSlotWidgetClass;
 };
