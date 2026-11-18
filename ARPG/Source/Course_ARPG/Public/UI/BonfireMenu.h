@@ -48,7 +48,7 @@ private:
 	UAdditionalStatsDisplayWidget* WBP_AdditionalStatsDisplayWidget;
 	
 	UFUNCTION()
-	void ReopenBonfireWidget();
+	void QuitBonfire();
 
 	virtual void HandleVisibilityChanged(ESlateVisibility Vis) override;
 };

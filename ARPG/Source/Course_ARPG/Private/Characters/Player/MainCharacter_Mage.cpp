@@ -33,17 +33,18 @@ void AMainCharacter_Mage::BeginPlay()
 {
 	Super::BeginPlay();
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
+	StatsComp->OnZeroHealthDelegate.AddUObject(this, &AMainCharacter_Mage::RemoveParticle);
 	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
 }
 
 
 void AMainCharacter_Mage::BindAbilityDelegates()
 {
-	AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	/*AbilityComp_MagicShield->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_FrostBlast->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_FireStorm->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_HealingAura->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-
+*/
 	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFrostBlastSummoned.AddUObject(AbilityComp_FrostBlast, &UAbComp_FrostBlast::SpawnFrostBlast);
 	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnFireStormSummoned.AddUObject(AbilityComp_FireStorm, &UAbComp_FireStorm::SpawnFireStorm);
 	Cast<UAnimInstance_Mage>(PlayerAnimInstance)->OnHealingAuraSummoned.AddUObject(AbilityComp_HealingAura, &UAbComp_HealingAura::SpawnHealingAura);
@@ -61,19 +62,6 @@ void AMainCharacter_Mage::SpawnParticles(UParticleSystem* ParticleEffect)
 	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
 	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
 	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
-}
-
-
-void AMainCharacter_Mage::HandleDeath()
-{
-	Super::HandleDeath();
-	RemoveParticle();
-}
-
-
-void AMainCharacter_Mage::SpawnProjectile()
-{
-	CombatComp->SpawnProjectile();
 }
 
 

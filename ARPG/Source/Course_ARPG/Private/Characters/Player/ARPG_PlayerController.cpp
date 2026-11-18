@@ -16,10 +16,6 @@ void AARPG_PlayerController::BeginPlay()
 	FInputModeGameOnly InputMode;
 	this->SetInputMode(InputMode);
 	
-	if (UTeleportSubsystem* SubSystem = GameInstanceRef->GetSubsystem<UTeleportSubsystem>())
-	{
-		SubSystem->OnPlayerTeleportRequestDelegate.AddUObject(this, &AARPG_PlayerController::OnPlayerRequestedTeleport);
-	}
 }
 
 
@@ -29,6 +25,7 @@ void AARPG_PlayerController::OnPossess(APawn* aPawn)
 	PlayerRef = Cast<AMainCharacter_Base>(aPawn);
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
 	if (!GameInstanceRef || !PlayerRef) return;
+	
 	HandleGameLoad();
 	HUD = Cast<AHUD_Base>(GetHUD());
 	if (HUD)
@@ -36,6 +33,10 @@ void AARPG_PlayerController::OnPossess(APawn* aPawn)
 		HUD->AssignPlayerRef();
 		HUD->CreatePlayerWidget();
 		HUD->CreateGameMenuWidgets();
+	}
+	if (UTeleportSubsystem* SubSystem = GameInstanceRef->GetSubsystem<UTeleportSubsystem>())
+	{
+		SubSystem->OnPlayerTeleportRequestDelegate.AddUObject(this, &AARPG_PlayerController::OnPlayerRequestedTeleport);
 	}
 }
 
@@ -79,7 +80,6 @@ void AARPG_PlayerController::HandleMagicalCubeInteraction()
 {
 	if (!PlayerRef || !GameInstanceRef) return;
 	HUD->ToggleResetWidget();
-	OnWidgetOpened();
 }
 
 
@@ -87,7 +87,6 @@ void AARPG_PlayerController::HandleEnchantmentSphereInteraction()
 {
 	if (!PlayerRef || !GameInstanceRef) return;
 	HUD->ToggleEnchantmentWidget();
-	OnWidgetOpened();
 }
 
 

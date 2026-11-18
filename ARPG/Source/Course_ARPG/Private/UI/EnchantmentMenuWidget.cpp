@@ -64,7 +64,7 @@ void UEnchantmentMenuWidget::CreateConfirmationWindow()
 
 void UEnchantmentMenuWidget::RemoveEnchantment()
 {
-	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwningPlayer()))
+	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwningPlayerPawn()))
 	{
 		PlayerRef->HandleEffectChange(EEffects::Empty);
 		RemoveWidget();
@@ -74,5 +74,5 @@ void UEnchantmentMenuWidget::RemoveEnchantment()
 
 void UEnchantmentMenuWidget::RemoveWidget()
 {
-	if (AHUD_Base* HUD = GetHUD()) HUD->ToggleResetWidget();
+	if (AHUD_Base* HUD = GetHUD()) HUD->ToggleEnchantmentWidget();
 }

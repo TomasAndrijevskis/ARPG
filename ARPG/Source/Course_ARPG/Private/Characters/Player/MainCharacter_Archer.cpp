@@ -37,11 +37,11 @@ void AMainCharacter_Archer::BeginPlay()
 
 void AMainCharacter_Archer::BindAbilityDelegates()
 {
-	AbilityComp_HealArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+/*	AbilityComp_HealArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_ArrowBarrage->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_AllElementsArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_ExplosiveArrow->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-	
+	*/
 	Cast<UAnimInstance_Archer>(PlayerAnimInstance)->OnHealingArrowFireRequest.AddUObject(AbilityComp_HealArrow, &UAbComp_HealArrow::SpawnArrow);
 	Cast<UAnimInstance_Archer>(PlayerAnimInstance)->OnArrowBarrageSpawnRequest.AddUObject(AbilityComp_ArrowBarrage, &UAbComp_ArrowBarrage::SpawnArrowBarrage);
 	Cast<UAnimInstance_Archer>(PlayerAnimInstance)->OnAllElementsArrowSpawnRequest.AddUObject(AbilityComp_AllElementsArrow, &UAbComp_AllElementsArrow::SpawnArrow);

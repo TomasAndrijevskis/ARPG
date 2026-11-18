@@ -44,11 +44,11 @@ void AMainCharacter_Warrior::BeginPlay()
 
 void AMainCharacter_Warrior::BindAbilityDelegates()
 {
-	AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
+	/*AbilityComp_DamageIncrease->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_RangeAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_LifeStealAttack->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
 	AbilityComp_Invincibility->OnAbilityUnlockedDelegate.AddUObject(this, &AMainCharacter_Base::CreateAbilitiesFooterPanel);
-
+*/
 	Cast<UAnimInstance_Warrior>(PlayerAnimInstance)->OnDamageIncreaseRequested.AddUObject(AbilityComp_DamageIncrease, &UAbComp_DamageIncrease::SpawnParticle);
 	Cast<UAnimInstance_Warrior>(PlayerAnimInstance)->OnStealLifeRequested.AddUObject(AbilityComp_LifeStealAttack, &UAbComp_LifeStealAttack::SpawnParticle);
 	Cast<UAnimInstance_Warrior>(PlayerAnimInstance)->OnLightningBallSummoned.AddUObject(AbilityComp_RangeAttack, &UAbComp_RangeAttack::SpawnProjectile);
@@ -108,8 +108,7 @@ void AMainCharacter_Warrior::SetArmor(const float Armor){StatsComp->SetStatValue
 
 bool AMainCharacter_Warrior::IsWeaponEnchanted() const
 {
-	if (CurrentEffect == EEffects::Empty) return false;
-	return true;
+	return CurrentEffect != EEffects::Empty;
 }
 
 

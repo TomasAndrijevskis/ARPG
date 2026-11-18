@@ -50,7 +50,6 @@ void AMainCharacter_Base::BindDelegates()
 	LockonComp->OnUpdatedTargetDelegate.AddUObject(PlayerAnimInstance, &UAnimInstance_Player::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &ThisClass::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddUObject(this, &ThisClass::ReduceStamina);
-	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::PlayDeathAnimation);
 
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
