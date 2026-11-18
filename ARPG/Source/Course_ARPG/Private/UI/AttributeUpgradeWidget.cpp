@@ -6,7 +6,6 @@
 #include "UI/InfoFooter.h"
 #include "UI/InfoHeader.h"
 #include "UI/AttributeUpgradeSlot.h"
-#include "UI/Buttons/MenuButtonBase.h"
 
 
 void UAttributeUpgradeWidget::NativeConstruct()
@@ -18,12 +17,15 @@ void UAttributeUpgradeWidget::NativeConstruct()
 
 void UAttributeUpgradeWidget::Init()
 {
+	UE_LOG(LogTemp, Error, TEXT("UAttributeUpgradeWidget::Init"))
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
 	if (!PlayerRef) return;
+	UE_LOG(LogTemp, Warning, TEXT("UAttributeUpgradeWidget::Init"))
 	const int AvailablePoints = PlayerRef->GetCurrentAttributePointsAmount();
 	CreateUpgradeInfoHeader(AvailablePoints);
 	for (const auto Attribute : PlayerRef->GetAttributesArray())
 	{
+		
 		CreateAttributesUpgradeScreen(Attribute);
 	}
 	CreateUpgradeInfoFooter();
@@ -56,11 +58,4 @@ void UAttributeUpgradeWidget::CreateUpgradeInfoFooter()
 	UInfoFooter* InfoFooterWidgetRef = Cast<UInfoFooter>(CreateWidget(this, InfoFooterWidgetClass));
 	if (!InfoFooterWidgetRef) return;
 	VerticalBox_Slots->AddChild(InfoFooterWidgetRef);
-	InfoFooterWidgetRef->Button_Close->OnButtonClickedDelegate.AddUniqueDynamic(this, &UAttributeUpgradeWidget::RemoveWidget);
-}
-
-
-void UAttributeUpgradeWidget::RemoveWidget()
-{
-	this->RemoveFromParent();
 }

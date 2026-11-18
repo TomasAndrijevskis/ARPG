@@ -28,9 +28,6 @@ private:
 
 	void Init();
 
-	UFUNCTION()
-	void RemoveWidget();
-
 	void CreateAbilityUpgradeScreen(UAbilityComponent_Player* AbilityCompRef);
 
 	UFUNCTION()

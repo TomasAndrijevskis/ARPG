@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "Data/EAttributes.h"
 #include "AttributeUpgradeWidget.generated.h"
 
@@ -13,7 +13,7 @@ class UInfoFooter;
 class UAttributeUpgradeSlot;
 
 UCLASS()
-class COURSE_ARPG_API UAttributeUpgradeWidget : public UUserWidget
+class COURSE_ARPG_API UAttributeUpgradeWidget : public UUserWidget_Base
 {
 	GENERATED_BODY()
 
@@ -27,9 +27,6 @@ private:
 	UVerticalBox* VerticalBox_Slots;
 
 	void Init();
-
-	UFUNCTION()
-	void RemoveWidget();
 
 	void CreateAttributesUpgradeScreen(const EAttributes& Attribute);
 	
@@ -47,7 +44,4 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UAttributeUpgradeSlot> StatUpgradeSlotClass;
-
-	UPROPERTY()
-	UAttributeUpgradeSlot* StatsScreenRef;
 };
