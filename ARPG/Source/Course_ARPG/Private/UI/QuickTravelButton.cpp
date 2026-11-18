@@ -2,6 +2,7 @@
 #include "UI/QuickTravelButton.h"
 #include "Components/TextBlock.h"
 #include "Helpers/TeleportSubsystem.h"
+#include "UI/HUD_Base.h"
 #include "UI/Buttons/MenuButtonBase.h"
 
 
@@ -27,4 +28,5 @@ void UQuickTravelButton::TeleportPlayer()
 	{
 		Subsystem->HandleTeleportDestination(SpawnPointData);
 	}
+	GetHUD()->ToggleQuickTravelWidget();
 }

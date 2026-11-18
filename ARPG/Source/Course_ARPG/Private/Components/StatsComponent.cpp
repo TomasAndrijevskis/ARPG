@@ -29,7 +29,7 @@ void UStatsComponent::SetStatHelpers()
 
 void UStatsComponent::BindDelegates()
 {
-	OnStatUpdateDelegate.AddUObject(this, &ThisClass::OnStatsUpdated);
+	//OnStatUpdateDelegate.AddUObject(this, &ThisClass::OnStatsUpdated);
 	OnRegenStaminaRequestDelegate.AddUObject(StaminaManager, &UStaminaManager::RegenStamina);
 	OnReduceStaminaRequestDelegate.AddUObject(StaminaManager, &UStaminaManager::ReduceStamina);
 	OnRegenManaRequestDelegate.AddUObject(ManaManager, &UManaManager::RegenMana);

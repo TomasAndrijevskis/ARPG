@@ -1,6 +1,5 @@
 
 #include "UI/BonfireMenu.h"
-
 #include "UI/AdditionalStatsDisplayWidget.h"
 #include "UI/HUD_Base.h"
 #include "UI/LevelWidget.h"

@@ -2,12 +2,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "PlayerDeath.generated.h"
 
 
 UCLASS()
-class COURSE_ARPG_API UPlayerDeath : public UUserWidget
+class COURSE_ARPG_API UPlayerDeath : public UUserWidget_Base
 {
 	GENERATED_BODY()
 

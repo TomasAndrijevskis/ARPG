@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "EnchantmentMenuWidget.generated.h"
 
@@ -12,7 +12,7 @@ class UHorizontalBox;
 class UMenuButtonBase;
 
 UCLASS()
-class COURSE_ARPG_API UEnchantmentMenuWidget : public UUserWidget
+class COURSE_ARPG_API UEnchantmentMenuWidget : public UUserWidget_Base
 {
 	GENERATED_BODY()
 

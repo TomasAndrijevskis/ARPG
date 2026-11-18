@@ -1,6 +1,6 @@
 
 #include "UI/PlayerDeath.h"
-#include "Kismet/GameplayStatics.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 
 
 void UPlayerDeath::NativeConstruct()
@@ -13,6 +13,11 @@ void UPlayerDeath::NativeConstruct()
 void UPlayerDeath::OnAnimationFinished_Implementation(const UWidgetAnimation* Animation)
 {
 	Super::OnAnimationFinished_Implementation(Animation);
-	const FString LevelName = UGameplayStatics::GetCurrentLevelName(this, true);
-	UGameplayStatics::OpenLevel(this, FName(*LevelName));
+	if (Animation == FadeIn)
+	{
+		if (AARPG_PlayerController* PC = GetPlayerController())
+		{
+			PC->OnDeathAnimationFinished();
+		}
+	}
 }

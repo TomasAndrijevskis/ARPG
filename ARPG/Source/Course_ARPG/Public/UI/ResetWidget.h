@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "ResetWidget.generated.h"
 
 
@@ -10,7 +10,7 @@ class UConfirmationWindow;
 class UMenuButtonBase;
 
 UENUM(BlueprintType)
-enum EResetType
+enum class EResetType : uint8
 {
 	ResetAttributes,
 	ResetAbilities,
@@ -18,7 +18,7 @@ enum EResetType
 
 DECLARE_MULTICAST_DELEGATE(FOnResetWidgetClosedSignature);
 UCLASS()
-class COURSE_ARPG_API UResetWidget : public UUserWidget
+class COURSE_ARPG_API UResetWidget : public UUserWidget_Base
 {
 	GENERATED_BODY()
 
@@ -38,9 +38,6 @@ private:
 
 	UPROPERTY(meta=(BindWidget))
 	UMenuButtonBase* Button_Close;
-
-	UFUNCTION()
-	void RemoveWidget();
 	
 	void CreateConfirmationWindow();
 
@@ -55,6 +52,9 @@ private:
 	void HandleResetAbilities();
 
 	void HandleResetAttributes();
+
+	UFUNCTION()
+	void RemoveWidget();
 	
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UConfirmationWindow> ConfirmationWindowClass;

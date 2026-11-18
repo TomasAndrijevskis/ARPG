@@ -1,13 +1,11 @@
 
 #include "UI/EnchantmentMenuWidget.h"
-#include "Blueprint/WidgetTree.h"
-#include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
-#include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
 #include "UI/EnchantmentButton.h"
+#include "UI/HUD_Base.h"
 #include "UI/Buttons/MenuButtonBase.h"
 
 
@@ -66,18 +64,15 @@ void UEnchantmentMenuWidget::CreateConfirmationWindow()
 
 void UEnchantmentMenuWidget::RemoveEnchantment()
 {
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-	if (!PlayerRef) return;
-	PlayerRef->HandleEffectChange(EEffects::Empty);
-	RemoveWidget();
+	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwningPlayer()))
+	{
+		PlayerRef->HandleEffectChange(EEffects::Empty);
+		RemoveWidget();
+	}
 }
 
 
 void UEnchantmentMenuWidget::RemoveWidget()
 {
-	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
-	{
-		PC->OnMenuClosed();
-	}
-	this->RemoveFromParent();
+	if (AHUD_Base* HUD = GetHUD()) HUD->ToggleResetWidget();
 }

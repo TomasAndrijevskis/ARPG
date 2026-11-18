@@ -1,6 +1,7 @@
 
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Animations/Player/AnimInstance_Player.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 #include "Combat/DamageTypes.h"
 #include "Data/EStats.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
@@ -13,10 +14,8 @@
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
-#include "Data/PersistentData/PlayerMainStatsData.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "SaveGame/ARPG_GameInstance.h"
-#include "UI/PlayerWidget.h"
 
 
 AMainCharacter_Base::AMainCharacter_Base()
@@ -41,7 +40,6 @@ void AMainCharacter_Base::BeginPlay()
 	PlayerAnimInstance = Cast<UAnimInstance_Player>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	if (GameInstance) GameInstance->LoadCurrentEffect();
-	CreatePlayerWidget();
 	BindDelegates();
 	BindAbilityDelegates();
 }
@@ -52,16 +50,18 @@ void AMainCharacter_Base::BindDelegates()
 	LockonComp->OnUpdatedTargetDelegate.AddUObject(PlayerAnimInstance, &UAnimInstance_Player::HandleUpdatedTarget);
 	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &ThisClass::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddUObject(this, &ThisClass::ReduceStamina);
-	StatsComp->OnHealthPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetHealth);
-	StatsComp->OnManaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetMana);
-	StatsComp->OnStaminaPercentUpdateDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetStamina);
-	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::HandleDeath);
-	LevelComp->OnExperienceUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetExperience);
-	LevelComp->OnLevelUpdatedDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::SetLevel);
-	LevelComp->OnNewLevelDelegate.AddUObject(PlayerWidgetRef, &UPlayerWidget::ShowLevelUpAnimation);
+	StatsComp->OnZeroHealthDelegate.AddUObject(this, &ThisClass::PlayDeathAnimation);
+
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
-	FOnBonfireInteractionFinishedDelegate.AddUObject(StatsComp, &UStatsComponent::RestoreStats);
+
+
+	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetController()))
+	{
+		StatsComp->OnZeroHealthDelegate.AddUObject(PC, &AARPG_PlayerController::HandleDeath);
+		PC->FOnBonfireInteractionFinishedDelegate.AddUObject(StatsComp, &UStatsComponent::RestoreStats);
+	}
+	
 	OnTakeAnyDamage.AddDynamic(this, &ThisClass::ReceiveDamage);
 }
 
@@ -87,29 +87,8 @@ void AMainCharacter_Base::HandleForwardMovementInput(float ScaleValue)
 void AMainCharacter_Base::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//StatsComp->OnRegenStaminaRequestDelegate.Broadcast();
-	//StatsComp->OnRegenManaRequestDelegate.Broadcast();
-}
-
-
-void AMainCharacter_Base::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-}
-
-
-void AMainCharacter_Base::CreatePlayerWidget()
-{
-	if (!PlayerWidgetClass) return;
-	PlayerWidgetRef = Cast<UPlayerWidget>(CreateWidget(GetWorld()->GetFirstPlayerController(), PlayerWidgetClass));
-	if (!PlayerWidgetRef) return;
-	PlayerWidgetRef->AddToViewport();
-	PlayerWidgetRef->SetHealth(StatsComp->GetStatPercentage(EStats::Health, EStats::MaxHealth));
-	PlayerWidgetRef->SetStamina(StatsComp->GetStatPercentage(EStats::Stamina, EStats::MaxStamina));
-	PlayerWidgetRef->SetMana(StatsComp->GetStatPercentage(EStats::Mana, EStats::MaxMana));
-	PlayerWidgetRef->SetLevel(LevelComp->GetCurrentLevel());
-	PlayerWidgetRef->SetExperience(LevelComp->GetExperiencePercentage());
-	CreateAbilitiesFooterPanel();
+	StatsComp->OnRegenStaminaRequestDelegate.Broadcast();
+	StatsComp->OnRegenManaRequestDelegate.Broadcast();
 }
 
 
@@ -132,23 +111,10 @@ float AMainCharacter_Base::GetResistanceStatValue(const UDamageType* DamageType)
 }
 
 
-void AMainCharacter_Base::CreateAbilitiesFooterPanel()
-{
-	PlayerWidgetRef->ClearAbilityFooterPanel();
-	for (UAbilityComponent_Player* Ability: ArrAbilities)
-	{
-		if (IsValid(Ability) && Ability->IsAbilityAvailable())
-			PlayerWidgetRef->CreateAbilityFooterPanel(Ability->GetIcon(), Ability->GetActionKey(), Ability);
-	}
-}
-
-
-void AMainCharacter_Base::HandleDeath()
+void AMainCharacter_Base::PlayDeathAnimation()
 {
 	if (!DeathAnimMontage) return;
-	PlayerWidgetRef->CreateDeathWidget();
 	PlayAnimMontage(DeathAnimMontage);
-	DisableInput(GetController<APlayerController>());
 }
 
 
@@ -201,7 +167,7 @@ void AMainCharacter_Base::ResetAbilities()
 		if (!IsValid(Ability)) continue;
 		Ability->ClearAbilityData();
 	}
-	PlayerWidgetRef->ClearAbilityFooterPanel();
+	//PlayerWidgetRef->ClearAbilityFooterPanel();
 	LevelComp->SetAbilityPoints(LevelComp->GetCurrentAbilityPointsAmount() + GetUsedAbilityPoints());
 	SetUsedAbilityPoints(0);
 }
@@ -330,37 +296,6 @@ void AMainCharacter_Base::BuildAttributeDescription(EAttributes AttributeToImpro
 }
 
 
-void AMainCharacter_Base::FillLevelDisplayData(FPlayerLevelData& Data)
-{
-	Data.CurrentLevel = LevelComp->GetCurrentLevel();
-	Data.CurrentExperience = LevelComp->GetCurrentExperience();
-	Data.RequiredExperience = LevelComp->GetRequiredExperience();
-}
-
-
-void AMainCharacter_Base::FillMainStatsDisplayData(FPlayerMainStatsData& Data) const
-{
-	Data.Health = StatsComp->GetStatValue(EStats::Health);
-	Data.MaxHealth = StatsComp->GetStatValue(EStats::MaxHealth);
-	Data.Mana = StatsComp->GetStatValue(EStats::Mana);
-	Data.MaxMana = StatsComp->GetStatValue(EStats::MaxMana);
-	Data.Stamina = StatsComp->GetStatValue(EStats::Stamina);
-	Data.MaxStamina = StatsComp->GetStatValue(EStats::MaxStamina);
-}
-
-
-void AMainCharacter_Base::FillAdditionalStatsDisplayData(FPlayerAdditionalStatsData& Data) const
-{
-	Data.PhysicalStrength = StatsComp->GetStatValue(EStats::PhysicalStrength);
-	Data.MagicalStrength = StatsComp->GetStatValue(EStats::MagicalStrength);
-	Data.MagDamageResistance = StatsComp->GetStatValue(EStats::MagDmgResistance) * 100;
-	Data.PhysDamageResistance = StatsComp->GetStatValue(EStats::PhysDmgResistance) * 100;
-	Data.AbilityPower = StatsComp->GetStatValue(EStats::AbilityPower) * 100;
-	Data.ElementalResistance = StatsComp->GetStatValue(EStats::FireDmgResistance) * 100;// all same
-	Data.ElementalDamageModificator = StatsComp->GetStatValue(EStats::ElementalDamageModificator) * 100;
-}
-
-
 FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 {
 	if (IsPlayerLockedOnEnemy() && GetCurrentTargetActor()) return GetCurrentTargetActor()->GetActorLocation();
@@ -370,30 +305,8 @@ FVector AMainCharacter_Base::GetTargetLocation(float DefaultSpawnDistance)
 }
 
 
-void AMainCharacter_Base::CreatePauseMenu()
-{
-	PlayerWidgetRef->CreatePauseMenu();
-}
 
-
-void AMainCharacter_Base::CreateBonfireMenu()
-{
-	PlayerWidgetRef->CreateBonfireMenuWidget();
-}
-
-
-void AMainCharacter_Base::CreateEnchantmentMenu()
-{
-	PlayerWidgetRef->CreateEnchantmentMenuWidget();
-}
-
-
-void AMainCharacter_Base::CreateResetMenu()
-{
-	PlayerWidgetRef->CreateResetWidget();
-}
-
-
+/*
 void AMainCharacter_Base::CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef)
 {
 	PlayerWidgetRef->CreateStatusEffectIcon(Icon, StatusEffectsCompRef);
@@ -410,7 +323,7 @@ void AMainCharacter_Base::CreateAbilityIconWithAmount(float Amount, UTexture2D* 
 {
 	PlayerWidgetRef->CreateAbilityIconWithAmount(Amount, Icon, StatsCompRef, Keyword);
 }
-
+*/
 
 
 void AMainCharacter_Base::HandleStatPointsAmountChange(const int NewPoints)
@@ -504,8 +417,6 @@ bool AMainCharacter_Base::HasEnoughMana(const float Mana) const{return StatsComp
 bool AMainCharacter_Base::IsPlayerLockedOnEnemy() const{return LockonComp->IsLocked();}
 
 AActor* AMainCharacter_Base::GetCurrentTargetActor() const{return LockonComp->CurrentTargetActor;}
-
-UPlayerWidget* AMainCharacter_Base::GetPlayerWidget() const{return PlayerWidgetRef;}
 
 USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent() const{return SkeletalMeshComp;}
 

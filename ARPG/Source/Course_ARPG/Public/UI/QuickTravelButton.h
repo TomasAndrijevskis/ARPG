@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "Data/SpawnPoint.h"
 #include "QuickTravelButton.generated.h"
 
@@ -13,7 +13,7 @@ class UTextBlock;
 class AMainCharacter_Base;
 
 UCLASS()
-class COURSE_ARPG_API UQuickTravelButton : public UUserWidget
+class COURSE_ARPG_API UQuickTravelButton : public UUserWidget_Base
 {
 	GENERATED_BODY()
 	

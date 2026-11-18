@@ -5,18 +5,17 @@
 #include "Helpers/TeleportSubsystem.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_GameInstance.h"
+#include "UI/HUD_Base.h"
 
 
 void AARPG_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	SetPlayerControllerSettings();
-	PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0));
-	if (!PlayerRef) return;
-	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
-	if (!GameInstanceRef) return;
-	HandleGameLoad();
-
+	
+	this->SetShowMouseCursor(false);
+	FInputModeGameOnly InputMode;
+	this->SetInputMode(InputMode);
+	
 	if (UTeleportSubsystem* SubSystem = GameInstanceRef->GetSubsystem<UTeleportSubsystem>())
 	{
 		SubSystem->OnPlayerTeleportRequestDelegate.AddUObject(this, &AARPG_PlayerController::OnPlayerRequestedTeleport);
@@ -24,22 +23,52 @@ void AARPG_PlayerController::BeginPlay()
 }
 
 
+void AARPG_PlayerController::OnPossess(APawn* aPawn)
+{
+	Super::OnPossess(aPawn);
+	PlayerRef = Cast<AMainCharacter_Base>(aPawn);
+	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
+	if (!GameInstanceRef || !PlayerRef) return;
+	HandleGameLoad();
+	HUD = Cast<AHUD_Base>(GetHUD());
+	if (HUD)
+	{
+		HUD->AssignPlayerRef();
+		HUD->CreatePlayerWidget();
+		HUD->CreateGameMenuWidgets();
+	}
+}
+
+void AARPG_PlayerController::HandleDeath()
+{
+	if (!HUD || !PlayerRef) return;
+	HUD->CreateDeathWidget();
+	PlayerRef->PlayDeathAnimation();
+	DisableInput(this);
+}
+
+
+void AARPG_PlayerController::OnDeathAnimationFinished()
+{
+	const FString LevelName = UGameplayStatics::GetCurrentLevelName(this, true);
+	UGameplayStatics::OpenLevel(this, FName(*LevelName));
+}
+
 
 void AARPG_PlayerController::HandleBonfireInteraction(const FSpawnPoint& LastSpawnPoint)
 {
 	if (!PlayerRef || !GameInstanceRef) return;
-	PlayerRef->CreateBonfireMenu();
 	GameInstanceRef->SavePlayerLocation(LastSpawnPoint);
-	GameInstanceRef->SaveAll();
+	HUD->ToggleBonfireWidget();
 	if (PlayerRef->IsPlayerLockedOnEnemy()) PlayerRef->EndPlayerLockOnEnemy();
-	HandleGamePause(true);
+	
 }
 
 
-void AARPG_PlayerController::HandleBonfireMenuQuit()
+void AARPG_PlayerController::HandleBonfireWidgetQuit()
 {
-	PlayerRef->FOnBonfireInteractionFinishedDelegate.Broadcast();
-	OnMenuClosed();
+	FOnBonfireInteractionFinishedDelegate.Broadcast();
+	HUD->ToggleBonfireWidget();
 	AARPG_GameMode* GameMode = Cast<AARPG_GameMode>(GetWorld()->GetAuthGameMode());
 	if (!GameMode) return;
 	GameMode->SpawnEnemies();
@@ -49,18 +78,16 @@ void AARPG_PlayerController::HandleBonfireMenuQuit()
 void AARPG_PlayerController::HandleMagicalCubeInteraction()
 {
 	if (!PlayerRef || !GameInstanceRef) return;
-	PlayerRef->CreateResetMenu();
-	GameInstanceRef->SaveAll();
-	HandleGamePause(true);
+	HUD->ToggleResetWidget();
+	OnWidgetOpened();
 }
 
 
 void AARPG_PlayerController::HandleEnchantmentSphereInteraction()
 {
 	if (!PlayerRef || !GameInstanceRef) return;
-	PlayerRef->CreateEnchantmentMenu();
-	GameInstanceRef->SaveAll();
-	HandleGamePause(true);
+	HUD->ToggleEnchantmentWidget();
+	OnWidgetOpened();
 }
 
 
@@ -75,14 +102,6 @@ void AARPG_PlayerController::LoadToMainMenu()
 {
 	GameInstanceRef->SaveAll();
 	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu"));
-}
-
-
-void AARPG_PlayerController::SetPlayerControllerSettings()
-{
-	this->SetShowMouseCursor(false);
-	FInputModeGameOnly InputMode;
-	this->SetInputMode(InputMode);
 }
 
 
@@ -123,17 +142,25 @@ void AARPG_PlayerController::SetPlayerInputEnabled(const bool IsEnabled)
 }
 
 
-void AARPG_PlayerController::CreatePauseMenu()
+void AARPG_PlayerController::OnWidgetClosed()
 {
-	HandleGamePause(true);
-	PlayerRef->CreatePauseMenu();
+	UE_LOG(LogTemp, Warning, TEXT("OnWidgetClosed"));
+	HandleGamePause(false);
+	GameInstanceRef->SaveAll();
 }
 
 
-void AARPG_PlayerController::OnMenuClosed()
+void AARPG_PlayerController::OnWidgetOpened()
 {
-	HandleGamePause(false);
+	UE_LOG(LogTemp, Warning, TEXT("OnWidgetOpened"));
+	HandleGamePause(true);
 	GameInstanceRef->SaveAll();
+}
+
+
+void AARPG_PlayerController::TogglePauseWidget()
+{
+	if (HUD) HUD->TogglePauseWidget();
 }
 
 

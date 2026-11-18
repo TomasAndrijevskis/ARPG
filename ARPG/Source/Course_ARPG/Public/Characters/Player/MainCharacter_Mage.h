@@ -29,8 +29,6 @@ public:
 
 	virtual void HandleEffectChange(EEffects NewEffect) override;
 	
-	virtual void SpawnProjectile() override;
-	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_MagicShield* AbilityComp_MagicShield;
 	
@@ -48,8 +46,6 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
-
-	virtual void HandleDeath() override;
 
 	virtual void BindAbilityDelegates() override;
 	

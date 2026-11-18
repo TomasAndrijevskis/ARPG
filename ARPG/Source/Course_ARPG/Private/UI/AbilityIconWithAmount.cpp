@@ -22,7 +22,7 @@ void UAbilityIconWithAmount::RemoveWidget()
 {
 	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(this, 0));
 	if (!PlayerRef) return;
-	PlayerRef->GetPlayerWidget()->ActiveStatusWidget.Remove(Keyword);
+	//PlayerRef->GetPlayerWidget()->ActiveStatusWidget.Remove(Keyword);
 	StatsCompRef->OnArmorUpdateDelegate.Clear();
 	Super::RemoveWidget();
 }

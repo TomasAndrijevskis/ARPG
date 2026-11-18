@@ -33,7 +33,7 @@ void UStatusEffectsComponent::SetVisualData()
 void UStatusEffectsComponent::HandleOwner()
 {
 	if (Cast<AMainCharacter_Base>(CharacterRef))
-		OnStatusIconCreateRequestDelegate.AddUObject(Cast<AMainCharacter_Base>(CharacterRef), &AMainCharacter_Base::CreateStatusEffectIcon);
+		//OnStatusIconCreateRequestDelegate.AddUObject(Cast<AMainCharacter_Base>(CharacterRef), &AMainCharacter_Base::CreateStatusEffectIcon);
 	if (Cast<AEnemyCharacter>(CharacterRef))
 		OnStatusIconCreateRequestDelegate.AddUObject(Cast<AEnemyCharacter>(CharacterRef), &AEnemyCharacter::CreateStatusEffectIcon);
 }

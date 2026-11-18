@@ -17,7 +17,7 @@ void UCombatComponent_Base::ComboAttack()
 	bCanAttack = false;
 	ComboCounter++;
 	int MaxCombo = AttackAnimations.Num();
-	ComboCounter = UKismetMathLibrary::Wrap(ComboCounter, -1, (MaxCombo-1));
+	ComboCounter = UKismetMathLibrary::Wrap(ComboCounter, -1, MaxCombo-1);
 }
 
 

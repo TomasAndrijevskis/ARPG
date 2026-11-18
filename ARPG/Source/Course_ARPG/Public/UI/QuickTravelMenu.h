@@ -2,7 +2,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "QuickTravelMenu.generated.h"
 
 
@@ -12,13 +12,18 @@ class AMainCharacter_Base;
 class UMenuButtonBase;
 
 UCLASS()
-class COURSE_ARPG_API UQuickTravelMenu : public UUserWidget
+class COURSE_ARPG_API UQuickTravelMenu : public UUserWidget_Base
 {
 	GENERATED_BODY()
 
 public:
 	
 	virtual void NativeConstruct() override;
+
+protected:
+
+	virtual void HandleVisibilityChanged(ESlateVisibility Vis) override;
+	
 private:
 
 	UPROPERTY(meta = (BindWidget))
@@ -27,10 +32,7 @@ private:
 	UPROPERTY(meta = (BindWidget))
 	UMenuButtonBase* Button_Close;
 	
-	void CreateTravelMenu();
-
-	UFUNCTION()
-	void RemoveWidget();
+	void CreateButtons();
 
 	void BindButton();
 	

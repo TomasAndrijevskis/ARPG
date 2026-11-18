@@ -31,6 +31,7 @@ public:
 	
 	void AssignPlayerRef();
 
+	UFUNCTION()
 	void ToggleBonfireWidget();
 
 	UFUNCTION()
@@ -41,12 +42,15 @@ public:
 
 	UFUNCTION()
 	void ToggleAttributesUpgradeWidget();
-	
+
+	UFUNCTION()
 	void TogglePauseWidget();
 
 	void ToggleEnchantmentWidget();
 	
 	void ToggleResetWidget();
+
+	void CreateDeathWidget();
 	
 protected:
 
@@ -69,8 +73,6 @@ private:
 	void CreateEnchantmentMenu();
 	
 	void CreateResetMenu();
-	
-	void CreateDeathWidget();
 
 	void ToggleWidget(UUserWidget* widgetToFocus);
 
@@ -79,7 +81,7 @@ private:
 	void FocusOnWidget();
 	
 	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
+	APawn* OwnerRef;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UPlayerDeath> PlayerDeathWidgetClass;

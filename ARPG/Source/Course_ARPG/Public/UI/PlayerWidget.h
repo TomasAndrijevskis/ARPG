@@ -50,12 +50,6 @@ public:
 	void SetExperience(const float CurrentExperience);
 	
 	UFUNCTION()
-	void CreateAbilityUpgradeScreen();
-
-	UFUNCTION()
-	void CreateAttributesUpgradeScreen();
-	
-	UFUNCTION()
 	void CreateAbilityFooterPanel(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef);
 	
 	UFUNCTION()
@@ -66,29 +60,12 @@ public:
 
 	UFUNCTION()
 	void CreateAbilityIconWithAmount(const float Amount, UTexture2D* Image, UStatsComponent* StatsCompRef, const FString& Keyword);
-
-	UFUNCTION()
-	void CreateDeathWidget();
-
-	UFUNCTION()
-	void CreateBonfireMenuWidget();
-
-	UFUNCTION()
-	void CreateQuickTravelMenuWidget();
-	
-	UFUNCTION()
-	void CreatePauseMenu();
 	
 	UFUNCTION()
 	void ShowLevelUpAnimation(int32 AbilityPoints, int32 AttributePoints);
 
 	UFUNCTION()
-	void CreateResetWidget();
-
-	UFUNCTION()
 	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
-
-	void CreateEnchantmentMenuWidget();
 	
 	UPROPERTY()
 	TMap<FString, UAbilityIconWithAmount*> ActiveStatusWidget;
@@ -129,31 +106,7 @@ private:
 	TSubclassOf<UStatusEffectIcon> StatusEffectIconWidgetClass;
 	
 	UPROPERTY(EditAnywhere)
-	TSubclassOf<UPlayerDeath> PlayerDeathWidgetClass;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UBonfireMenu> BonfireMenuWidgetClass;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UQuickTravelMenu> QuickTravelMenuWidgetClass;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UPauseMenu> PauseMenuWidgetClass;
-	
-	UPROPERTY(EditAnywhere)
 	TSubclassOf<ULevelUpNotification> LevelUpNotificationClass;
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAbilityUpgradeWidget> AbilityUpgradeWidgetClass;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UAttributeUpgradeWidget> AttributesUpgradeWidgetClass;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UResetWidget> ResetWidgetClass;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UEnchantmentMenuWidget> EnchantmentMenuClass;
 	
 	UPROPERTY(EditAnywhere)
 	FVector2D IconSize;

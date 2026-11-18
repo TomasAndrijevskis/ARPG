@@ -8,11 +8,14 @@
 #include "ARPG_PlayerController.generated.h"
 
 
+class AHUD_Base;
 class UTransitionAnim;
 class ABoss;
 class UARPG_GameInstance;
 class AMainCharacter_Base;
 
+
+DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinished);
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
@@ -22,7 +25,7 @@ public:
 
 	void HandleBonfireInteraction(const FSpawnPoint& LastSpawnPoint);
 	
-	void HandleBonfireMenuQuit();
+	void HandleBonfireWidgetQuit();
 	
 	void SetIsInMagicalCubeRange(const bool bNewIsInMagicalCubeRange);
 
@@ -38,8 +41,6 @@ public:
 	void SaveBeforeQuit();
 	
 	void SetInteractable(IInteractable* InteractableRef);
-	
-	void HandleGamePause(const bool bIsGamePaused);
 
 	void SetPlayerInputEnabled(const bool IsEnabled);
 
@@ -49,9 +50,20 @@ public:
 	UFUNCTION()
 	void HandleEnchantmentSphereInteraction();
 	
-	void OnMenuClosed();
+	void OnWidgetClosed();
+
+	void OnWidgetOpened();
+
+	virtual void OnPossess(APawn* aPawn) override;
+
+	UFUNCTION()
+	void HandleDeath();
+
+	void OnDeathAnimationFinished();
 	
 	TSubclassOf<UTransitionAnim> GetTransitionAnimClass() {return TransitionAnimClass;}
+
+	FOnBonfireInteractionFinished FOnBonfireInteractionFinishedDelegate;
 	
 protected:
 	
@@ -63,17 +75,19 @@ private:
 	void Interact();
 	
 	void QuitGame() const;
-	
-	UFUNCTION()
-	void SetPlayerControllerSettings();
 
 	UFUNCTION()
 	void HandleGameLoad() const;
 
-	UFUNCTION(BlueprintCallable)
-	void CreatePauseMenu();
-	
 	void OnPlayerRequestedTeleport();
+
+	void HandleGamePause(const bool bIsGamePaused);
+
+	UFUNCTION(BlueprintCallable)
+	void TogglePauseWidget();
+	
+	UPROPERTY()
+	AHUD_Base* HUD;
 	
 	TWeakInterfacePtr<IInteractable> CurrentInteractable = nullptr;
 	

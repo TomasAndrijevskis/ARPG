@@ -6,9 +6,7 @@
 #include "Data/EAttributes.h"
 #include "Data/EStats.h"
 #include "Components/StatusEffectsComponent.h"
-#include "Data/PersistentData/PlayerAdditionalStatsData.h"
 #include "Data/PersistentData/PlayerLevelData.h"
-#include "Data/PersistentData/PlayerMainStatsData.h"
 #include "Interfaces/MainPlayer.h"
 #include "Interfaces/Fighter.h"
 #include "MainCharacter_Base.generated.h"
@@ -35,7 +33,6 @@ class ULevelingComponent;
 class UStatusEffectsComponent;
 class UAnimInstance_Player;
 
-DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinished);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAttributePointsAmountChanged, const int);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityPointsAmountChange, const int);
 
@@ -50,8 +47,6 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 	
-	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
-
 	virtual float GetPhysicalDamage() override;
 
 	virtual float GetMagicalDamage() const override;
@@ -65,18 +60,12 @@ public:
 
 	UFUNCTION()
 	virtual bool HasEnoughMana(float Mana) const override;
-	
-	UFUNCTION()
-	UPlayerWidget* GetPlayerWidget() const;
 
 	UFUNCTION()
 	TArray<UAbilityComponent_Player*>& GetAbilitiesArray();
 
 	UFUNCTION()
 	void AddToAbilitiesArray(UAbilityComponent_Player* NewAbility);
-	
-	UFUNCTION()
-	void CreateAbilitiesFooterPanel();
 
 	UFUNCTION()
 	USkeletalMeshComponent* GetSkeletalMeshComponent() const;
@@ -140,22 +129,13 @@ public:
 	float GetPlayerMaxHealth() const;
 	
 	TArray<EAttributes>& GetAttributesArray() const;
-
-	void CreatePauseMenu();
-
-	UFUNCTION()
-	void CreateBonfireMenu();
-
-	void CreateEnchantmentMenu();
 	
-	void CreateResetMenu();
-	
-	void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
+	/*void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef);
 
 	void CreateAbilityIconWithTimer(float Duration, UTexture2D* Image, UAbilityComponent_Base* AbilityCompRef);
 
 	void CreateAbilityIconWithAmount(float Amount, UTexture2D* Icon, UStatsComponent* StatsCompRef, const FString& Keyword);
-	
+	*/
 	AActor* GetCurrentTargetActor() const;
 	
 	void CalculateStat(EAttributes Attribute, EStats Stat) const;
@@ -168,18 +148,10 @@ public:
 
 	void BuildAttributeDescription(EAttributes AttributeToImprove, FString& AttributeDescription);
 	
-	void FillLevelDisplayData(FPlayerLevelData& Data);
-
-	void FillMainStatsDisplayData(FPlayerMainStatsData& Data) const;
-
-	void FillAdditionalStatsDisplayData(FPlayerAdditionalStatsData& Data) const;
-
 	float GetAbilityPowerPercent() const;
 
 	virtual void HandleEffectChange(EEffects NewEffect){};
-
-	virtual void HandleEffectChange(TSubclassOf<UDamageTypeBase> NewEnchantmentType){};
-
+	
 	EEffects GetCurrentEnchantmentEffect() const;
 	
 	TSubclassOf<UDamageTypeBase> GetEnchantmentDamageType() const;
@@ -193,6 +165,8 @@ public:
 	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 
 	void SetCanMove(bool CanMove);
+	
+	void PlayDeathAnimation();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UStatsComponent* StatsComp;
@@ -227,8 +201,6 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	UAnimInstance_Player* PlayerAnimInstance;
 
-	FOnBonfireInteractionFinished FOnBonfireInteractionFinishedDelegate;
-
 	FOnAttributePointsAmountChanged OnStatPointsAmountChangedDelegate;
 	
 	FOnAbilityPointsAmountChange OnAbilityPointsAmountChangeDelegate;
@@ -236,9 +208,6 @@ public:
 protected:
 
 	virtual void BeginPlay() override;
-
-	UFUNCTION()
-	virtual void HandleDeath();
 
 	UFUNCTION()
 	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
@@ -259,9 +228,6 @@ private:
 
 	UFUNCTION()
 	void PlayHurtAnimation();
-	
-	UFUNCTION()
-	void CreatePlayerWidget();
 
 	UFUNCTION()
 	void HandleStatPointsAmountChange(const int NewPoints);
@@ -277,21 +243,16 @@ private:
 	UFUNCTION(BlueprintCallable)
 	void HandleForwardMovementInput(float ScaleValue);
 	
-	UPROPERTY()
-	UPlayerWidget* PlayerWidgetRef;
-	
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* DeathAnimMontage;
 
 	UPROPERTY(EditAnywhere)
 	UAnimMontage* HurtAnimMontage;
 	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UPlayerWidget> PlayerWidgetClass;
-	
 	UPROPERTY()
 	UARPG_GameInstance* GameInstance;
-	
+
+	UPROPERTY()
 	TArray<UAbilityComponent_Player*> ArrAbilities;
 
 	UPROPERTY()

@@ -1,9 +1,9 @@
 
 #include "UI/ResetWidget.h"
-#include "Characters/Player/ARPG_PlayerController.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
+#include "UI/HUD_Base.h"
 #include "UI/Buttons/MenuButtonBase.h"
 
 
@@ -14,7 +14,6 @@ void UResetWidget::NativeConstruct()
 	Button_ResetAbilities->OnButtonClickedDelegate.AddUniqueDynamic(this, &UResetWidget::OnResetAbilitiesClicked);
 	Button_ResetAttributes->OnButtonClickedDelegate.AddUniqueDynamic(this, &UResetWidget::OnResetAttributesClicked);
 }
-
 
 
 void UResetWidget::OnResetAbilitiesClicked()
@@ -59,6 +58,7 @@ void UResetWidget::HandleResetAbilities()
 {
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
 		PlayerRef->ResetAbilities();
+	RemoveWidget();
 }
 
 
@@ -66,14 +66,11 @@ void UResetWidget::HandleResetAttributes()
 {
 	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(),0)))
 		PlayerRef->ResetAttributes();
+	RemoveWidget();
 }
 
 
 void UResetWidget::RemoveWidget()
 {
-	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController()))
-	{
-		PC->OnMenuClosed();
-	}
-	this->RemoveFromParent();
+	if (AHUD_Base* HUD = GetHUD()) HUD->ToggleResetWidget();
 }

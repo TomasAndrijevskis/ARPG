@@ -11,11 +11,11 @@ class UManaManager;
 class UStaminaManager;
 class UHealthManager;
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthPercentUpdate, float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnStaminaPercentUpdate,float);
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnManaPercentUpdate,float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnHealthPercentUpdate, const float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnStaminaPercentUpdate, const float);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnManaPercentUpdate, const float);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnArmorUpdate, float);
-DECLARE_MULTICAST_DELEGATE(FOnStatUpdate);
+//DECLARE_MULTICAST_DELEGATE(FOnStatUpdate);
 DECLARE_MULTICAST_DELEGATE(FOnZeroArmor);
 DECLARE_MULTICAST_DELEGATE(FOnZeroHealth);
 DECLARE_MULTICAST_DELEGATE(FOnRegenStaminaRequest);
@@ -83,7 +83,7 @@ public:
 	
 	FOnArmorUpdate OnArmorUpdateDelegate;
 	
-	FOnStatUpdate OnStatUpdateDelegate;
+	//FOnStatUpdate OnStatUpdateDelegate;
 
 	FOnHealthPercentUpdate OnHealthPercentUpdateDelegate;
 	
