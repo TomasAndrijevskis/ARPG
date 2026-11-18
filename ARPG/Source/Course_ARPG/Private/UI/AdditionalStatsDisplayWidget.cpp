@@ -1,29 +1,25 @@
 
 #include "UI/AdditionalStatsDisplayWidget.h"
-#include "Characters/Player/MainCharacter_Base.h"
+#include "Components/StatsComponent.h"
 #include "Components/TextBlock.h"
-#include "Kismet/GameplayStatics.h"
 
 
-void UAdditionalStatsDisplayWidget::NativeConstruct()
+void UAdditionalStatsDisplayWidget::UpdateText()
 {
-	Super::NativeConstruct();
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(this, 0));
-	if (!PlayerRef) return;
-	PlayerRef->FillAdditionalStatsDisplayData(Data);
-	SetText();
-}
-
-
-void UAdditionalStatsDisplayWidget::SetText()
-{
-	Text_MagicalStrength->SetText(GetAsText(Data.MagicalStrength));
-	Text_PhysicalStrength->SetText(GetAsText(Data.PhysicalStrength));
-	Text_MagDmgResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.MagDamageResistance)));
-	Text_PhysDmgResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.PhysDamageResistance)));
-	Text_ElementalResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.ElementalResistance)));
-	Text_ElementalDamageModificator->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.ElementalDamageModificator)));
-	Text_AbilityPower->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(Data.AbilityPower)));
+	if (APawn* Owner = GetOwningPlayerPawn())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Owner %s"), *Owner->GetName());
+		if (UStatsComponent* StatsComp = Owner->FindComponentByClass<UStatsComponent>())
+		{
+			Text_MagicalStrength->SetText(GetAsText(StatsComp->GetStatValue(EStats::MagicalStrength)));
+			Text_PhysicalStrength->SetText(GetAsText(StatsComp->GetStatValue(EStats::PhysicalStrength)));
+			Text_MagDmgResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(StatsComp->GetStatValue(EStats::MagDmgResistance))));
+			Text_PhysDmgResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(StatsComp->GetStatValue(EStats::PhysDmgResistance))));
+			Text_ElementalResistance->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(StatsComp->GetStatValue(EStats::FireDmgResistance))));
+			Text_ElementalDamageModificator->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(StatsComp->GetStatValue(EStats::ElementalDamageModificator))));
+			Text_AbilityPower->SetText(FText::Format(FText::FromString("{0}%"), GetAsText(StatsComp->GetStatValue(EStats::AbilityPower))));
+		}
+	}
 }
 
 

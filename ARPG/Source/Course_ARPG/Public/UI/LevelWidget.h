@@ -15,8 +15,8 @@ class COURSE_ARPG_API ULevelWidget : public UUserWidget
 
 public:
 
-	virtual void NativeConstruct() override;
-
+	void UpdateText();
+	
 private:
 
 	UPROPERTY(meta = (BindWidget))
@@ -24,13 +24,8 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_Experience;
-
-	void SetText();
-
+	
 	FText GetAsText(float Value, float MaxValue);
 
 	FText GetAsText(float Value);
-	
-	UPROPERTY()
-	FPlayerLevelData Data;
 };

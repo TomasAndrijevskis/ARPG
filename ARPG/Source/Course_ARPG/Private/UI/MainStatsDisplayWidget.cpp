@@ -1,26 +1,21 @@
 
 #include "UI/MainStatsDisplayWidget.h"
-#include "Characters/Player/MainCharacter_Base.h"
+#include "Components/StatsComponent.h"
 #include "Components/TextBlock.h"
-#include "Data/PersistentData/PlayerMainStatsData.h"
-#include "Kismet/GameplayStatics.h"
 
 
-void UMainStatsDisplayWidget::NativeConstruct()
+void UMainStatsDisplayWidget::UpdateText()
 {
-	Super::NativeConstruct();
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(this, 0));
-	if (!PlayerRef) return;
-	PlayerRef->FillMainStatsDisplayData(Data);
-	SetText();
-}
-
-
-void UMainStatsDisplayWidget::SetText()
-{
-	Text_Health->SetText(GetAsText(Data.Health, Data.MaxHealth));
-	Text_Mana->SetText(GetAsText(Data.Mana, Data.MaxMana));
-	Text_Stamina->SetText(GetAsText(Data.Stamina, Data.MaxStamina));
+	if (APawn* Owner = GetOwningPlayerPawn())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Owner %s"), *Owner->GetName());
+		if (UStatsComponent* StatsComp = Owner->FindComponentByClass<UStatsComponent>())
+		{
+			Text_Health->SetText(GetAsText(StatsComp->GetStatValue(EStats::Health), StatsComp->GetStatValue(EStats::MaxHealth)));
+			Text_Mana->SetText(GetAsText(StatsComp->GetStatValue(EStats::Mana), StatsComp->GetStatValue(EStats::MaxMana)));
+			Text_Stamina->SetText(GetAsText(StatsComp->GetStatValue(EStats::Stamina), StatsComp->GetStatValue(EStats::MaxStamina)));
+		}
+	}
 }
 
 

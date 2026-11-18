@@ -29,4 +29,5 @@ void ULevelUpNotification::SetPoints(int32 AbilityPoints, int32 AttributePoints)
 	Text_NewAttributePoints->SetText(FText::Format(FText::FromString("+{0} Attribute points"), GetAsText(AttributePoints)));
 }
 
+
 FText ULevelUpNotification::GetAsText(int32 Value){return FText::FromString(FString::FromInt(Value));}

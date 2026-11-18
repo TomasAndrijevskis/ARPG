@@ -2,21 +2,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
-#include "Data/PersistentData/PlayerMainStatsData.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "MainStatsDisplayWidget.generated.h"
 
 
 class UTextBlock;
 
 UCLASS()
-class COURSE_ARPG_API UMainStatsDisplayWidget : public UUserWidget
+class COURSE_ARPG_API UMainStatsDisplayWidget : public UUserWidget_Base
 {
 	GENERATED_BODY()
 
 public:
 
-	virtual void NativeConstruct() override;
+	void UpdateText();
 
 private:
 
@@ -28,11 +27,6 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_Mana;
-
-	void SetText();
-
+	
 	FText GetAsText(float Value, float MaxValue);
-
-	UPROPERTY()
-	FPlayerMainStatsData Data;
 };

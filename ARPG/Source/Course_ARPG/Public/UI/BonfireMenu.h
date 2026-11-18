@@ -2,18 +2,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Blueprint/UserWidget.h"
-#include "Components/Button.h"
+#include "BaseClass/UserWidget_Base.h"
 #include "BonfireMenu.generated.h"
 
 
+class UAdditionalStatsDisplayWidget;
+class UMainStatsDisplayWidget;
+class ULevelWidget;
+class AHUD_Base;
 class UMenuButtonBase;
 class UPlayerWidget;
 class ABonfire;
 class AARPG_PlayerController;
 
 UCLASS()
-class COURSE_ARPG_API UBonfireMenu : public UUserWidget
+class COURSE_ARPG_API UBonfireMenu : public UUserWidget_Base
 {
 	GENERATED_BODY()
 
@@ -21,8 +24,6 @@ public:
 
 	virtual void NativeConstruct() override;
 
-	void Init(UPlayerWidget* PlayerWidget);
-	
 private:
 
 	UPROPERTY(meta = (BindWidget))
@@ -36,13 +37,18 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UMenuButtonBase* Button_QuitBonfire;
-	
-	UFUNCTION()
-	void RemoveWidget();
 
-	UFUNCTION()
-	void RequestToRemoveWidget();
+	UPROPERTY(meta = (BindWidget))
+	ULevelWidget* WBP_LevelWidget;
+
+	UPROPERTY(meta = (BindWidget))
+	UMainStatsDisplayWidget* WBP_StatsWidget;
+
+	UPROPERTY(meta = (BindWidget))
+	UAdditionalStatsDisplayWidget* WBP_AdditionalStatsDisplayWidget;
 	
-	UPROPERTY()
-	UPlayerWidget* PlayerWidgetRef;
+	UFUNCTION()
+	void ReopenBonfireWidget();
+
+	virtual void HandleVisibilityChanged(ESlateVisibility Vis) override;
 };

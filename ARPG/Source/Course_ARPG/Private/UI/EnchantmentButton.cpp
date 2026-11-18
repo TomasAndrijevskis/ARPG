@@ -38,10 +38,12 @@ void UEnchantmentButton::CreateConfirmationWindow()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Effect: %s"), *UEnum::GetValueAsString(Effect));
 	if (!ConfirmationWindowWidgetClass) return;
-	UConfirmationWindow* ConfirmationWindowRef = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowWidgetClass));
-	if (!ConfirmationWindowRef) return;
-	ConfirmationWindowRef->AddToViewport(10);
-	ConfirmationWindowRef->OnConfirmedDelegate.AddUObject(this, &UEnchantmentButton::OnEnchantmentConfirmed);
+
+	if (UConfirmationWindow* ConfirmationWindowRef = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowWidgetClass)))
+	{
+		ConfirmationWindowRef->AddToViewport(10);
+		ConfirmationWindowRef->OnConfirmedDelegate.AddUObject(this, &UEnchantmentButton::OnEnchantmentConfirmed);
+	}
 }
 
 

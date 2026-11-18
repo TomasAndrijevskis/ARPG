@@ -22,10 +22,11 @@ void UCharacterSelect::SetCharacterData(const FCharacterSelectionData* Data)
 
 void UCharacterSelect::SetCharacterClass()
 {
-	UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
-	if (!GameInstance) return;
-	GameInstance->SetPlayerClass(CharacterClass, true);
-	UGameplayStatics::OpenLevel(GetWorld(),FName(GameInstance->GetCurrentMap()));
+	if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
+	{
+		GameInstance->SetPlayerClass(CharacterClass, true);
+		UGameplayStatics::OpenLevel(GetWorld(),FName(GameInstance->GetCurrentMap()));
+	}
 }
 
 

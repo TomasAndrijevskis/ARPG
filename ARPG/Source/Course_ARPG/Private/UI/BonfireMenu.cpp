@@ -1,41 +1,39 @@
 
 #include "UI/BonfireMenu.h"
-#include "Characters/Player/ARPG_PlayerController.h"
-#include "UI/PlayerWidget.h"
+
+#include "UI/AdditionalStatsDisplayWidget.h"
+#include "UI/HUD_Base.h"
+#include "UI/LevelWidget.h"
+#include "UI/MainStatsDisplayWidget.h"
 #include "UI/Buttons/MenuButtonBase.h"
-
-
-void UBonfireMenu::Init(UPlayerWidget* PlayerWidget)
-{
-	PlayerWidgetRef = PlayerWidget;
-}
 
 
 void UBonfireMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
-	if (!PlayerWidgetRef) return;
-	Button_QuitBonfire->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RequestToRemoveWidget);
-	Button_AbilitiesScreen->OnButtonClickedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAbilityUpgradeScreen);
-	Button_AttributesScreen->OnButtonClickedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateAttributesUpgradeScreen);
-	Button_QuickTravelMenu->OnButtonClickedDelegate.AddUniqueDynamic(PlayerWidgetRef, &UPlayerWidget::CreateQuickTravelMenuWidget);
-	
-	Button_QuitBonfire->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_QuickTravelMenu->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_AbilitiesScreen->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
-	Button_AttributesScreen->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::RemoveWidget);
+	if (const AHUD_Base* HUD = GetHUD())
+	{
+		Button_QuitBonfire->OnButtonClickedDelegate.AddUniqueDynamic(this, &UBonfireMenu::ReopenBonfireWidget);
+		Button_AbilitiesScreen->OnButtonClickedDelegate.AddUniqueDynamic(HUD, &AHUD_Base::ToggleAbilityUpgradeWidget);
+		Button_AttributesScreen->OnButtonClickedDelegate.AddUniqueDynamic(HUD, &AHUD_Base::ToggleAttributesUpgradeWidget);
+		Button_QuickTravelMenu->OnButtonClickedDelegate.AddUniqueDynamic(HUD, &AHUD_Base::ToggleQuickTravelWidget);
+	}
 }
 
 
-void UBonfireMenu::RemoveWidget()
+void UBonfireMenu::ReopenBonfireWidget()
 {
-	this->RemoveFromParent();
+	if (AHUD_Base* HUD = GetHUD()) HUD->ToggleBonfireWidget();
 }
 
 
-void UBonfireMenu::RequestToRemoveWidget()
+void UBonfireMenu::HandleVisibilityChanged(ESlateVisibility Vis)
 {
-	AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetWorld()->GetFirstPlayerController());
-	if (!PC) return;
-	PC->HandleBonfireMenuQuit();
+	Super::HandleVisibilityChanged(Vis);
+	if (Vis == ESlateVisibility::Visible)
+	{
+		WBP_LevelWidget->UpdateText();
+		WBP_StatsWidget->UpdateText();
+		WBP_AdditionalStatsDisplayWidget->UpdateText();
+	}
 }

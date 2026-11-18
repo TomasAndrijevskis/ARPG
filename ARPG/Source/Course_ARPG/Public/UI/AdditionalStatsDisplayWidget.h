@@ -15,8 +15,8 @@ class COURSE_ARPG_API UAdditionalStatsDisplayWidget : public UUserWidget
 	GENERATED_BODY()
 
 public:
-
-	virtual void NativeConstruct() override;
+	
+	void UpdateText();
 	
 private:
 
@@ -40,11 +40,7 @@ private:
 
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Text_ElementalDamageModificator;
+
+	static FText GetAsText(float Value);
 	
-	void SetText();
-
-	FText GetAsText(float Value);
-
-	UPROPERTY()
-	FPlayerAdditionalStatsData Data;
 };

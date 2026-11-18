@@ -25,7 +25,6 @@ void UAttributeUpgradeWidget::Init()
 	CreateUpgradeInfoHeader(AvailablePoints);
 	for (const auto Attribute : PlayerRef->GetAttributesArray())
 	{
-		
 		CreateAttributesUpgradeScreen(Attribute);
 	}
 	CreateUpgradeInfoFooter();
