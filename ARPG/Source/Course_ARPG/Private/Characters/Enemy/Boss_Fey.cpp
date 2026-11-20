@@ -45,27 +45,3 @@ void ABoss_Fey::HandleSummonMinions()
 	SummonCounter++;
 	GetBlackboardComp()->SetValueAsEnum(TEXT("CurrentState"), static_cast<uint8>(EEnemyStates::Summon));
 }
-
-
-void ABoss_Fey::StartPoisonAbility()
-{
-	PoisonExplosionComp->StartAbility();
-}
-
-
-void ABoss_Fey::FinishPoisonAbility()
-{
-	PoisonExplosionComp->FinishAbilityCast();
-}
-
-
-void ABoss_Fey::StartSummonAbility()
-{
-	SummonMinionsComp->StartAbility();
-}
-
-
-void ABoss_Fey::SpawnProjectile()
-{
-	ProjectileComp->SpawnProjectile();
-}

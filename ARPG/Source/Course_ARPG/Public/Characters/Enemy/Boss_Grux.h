@@ -14,8 +14,6 @@ class COURSE_ARPG_API ABoss_Grux : public ABoss
 public:
 	
 	ABoss_Grux();
-
-	void SpawnProjectile();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UEnemyProjectileComponent* ProjectileComp;

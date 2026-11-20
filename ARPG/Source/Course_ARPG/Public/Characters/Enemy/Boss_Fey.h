@@ -17,14 +17,6 @@ class COURSE_ARPG_API ABoss_Fey : public ABoss
 public:
 	
 	ABoss_Fey();
-
-	void StartPoisonAbility();
-
-	void FinishPoisonAbility();
-
-	void StartSummonAbility();
-
-	void SpawnProjectile();
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UEnemyProjectileComponent* ProjectileComp;

@@ -12,12 +12,6 @@ ABoss_Rampage::ABoss_Rampage()
 }
 
 
-void ABoss_Rampage::StartAbility()
-{
-	GroundSmashComp->StartAbility();
-}
-
-
 void ABoss_Rampage::ActivateSecondPhase()
 {
 	Super::ActivateSecondPhase();
