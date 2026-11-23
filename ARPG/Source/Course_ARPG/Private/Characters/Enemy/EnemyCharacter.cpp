@@ -39,7 +39,7 @@ void AEnemyCharacter::BeginPlay()
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter::SetupAI, .1f, false);
 
-	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerCharacter(this, 0)))
+	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerController(this, 0)))
 	{
 		PC->OnPlayerDiedDelegate.AddUObject(this, &AEnemyCharacter::HandlePlayerDeath);
 	}
