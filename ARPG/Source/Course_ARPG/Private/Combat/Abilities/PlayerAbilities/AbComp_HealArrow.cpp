@@ -130,7 +130,7 @@ void UAbComp_HealArrow::OnEnemyDied(AEnemyCharacter* Enemy)
 
 void UAbComp_HealArrow::CreateIcon()
 {
-	PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
+	//PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
 }
 
 

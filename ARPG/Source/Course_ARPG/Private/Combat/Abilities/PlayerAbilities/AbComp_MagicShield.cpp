@@ -85,7 +85,7 @@ void UAbComp_MagicShield::UpdateUpgradeDescription()
 
 void UAbComp_MagicShield::CreateIcon()
 {
-	PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
+	//PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
 }
 
 

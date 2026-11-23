@@ -67,7 +67,7 @@ void UARPG_GameInstance::SaveAll()
 
 void UARPG_GameInstance::SaveBonfires()
 {
-	if (!SaveGameInstance) return;
+	if (!SaveGameInstance || !PlayerRef) return;
 	if (AARPG_PlayerState* PlayerState = PlayerRef->GetPlayerState<AARPG_PlayerState>())
 	{
 		SaveGameInstance->UnlockedBonfires = PlayerState->GetUnlockedBonfires();
@@ -77,7 +77,7 @@ void UARPG_GameInstance::SaveBonfires()
 
 void UARPG_GameInstance::LoadBonfires()
 {
-	if (!SaveGameInstance) return;
+	if (!SaveGameInstance || !PlayerRef) return;
 	if (AARPG_PlayerState* PlayerState = PlayerRef->GetPlayerState<AARPG_PlayerState>())
 	{
 		PlayerState->SetUnlockedBonfires(SaveGameInstance->UnlockedBonfires);

@@ -12,6 +12,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UPlayerCharacterConfiguration;
 class APickableItem_Base;
 class UInventoryComponent;
 class UAttributesComponent;
@@ -88,15 +89,13 @@ public:
 
 	UFUNCTION()
 	void ReduceStamina(float Stamina);
-
+	
 	UFUNCTION()
 	void ReduceMana(float Mana);
 	
 	void ReduceHealth(float Damage, AActor* Opponent);
 
 	void HealPlayer(float Health);
-	
-	void AddExperience(float NewExperience);
 
 	bool IsPlayerLockedOnEnemy() const;
 
@@ -165,11 +164,6 @@ public:
 	virtual TSubclassOf<UDamageTypeBase> GetDamageType() const override;
 
 	void SetCanMove(bool CanMove);
-	
-	void PlayDeathAnimation();
-	
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	UStatsComponent* StatsComp;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	ULockonComponent* LockonComp;
@@ -209,20 +203,25 @@ protected:
 
 	virtual void BeginPlay() override;
 
+	virtual void LoadConfigData() override;
+	
 	UFUNCTION()
 	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser);
 
 	virtual void BindAbilityDelegates(){};
-	
-	EEffects CurrentEffect;
 
 	float GetResistanceStatValue(const UDamageType* DamageType) const;
 	
 	UPROPERTY()
 	TSubclassOf<UDamageTypeBase> CurrentEnchantmentDamageType;
 
-	UPROPERTY(EditDefaultsOnly)
-	UStatusEffectsVisualData* StatusEffectsVisualDataAsset;
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UStatusEffectsVisualData> StatusEffectsVisualDataAsset;
+
+	UPROPERTY(VisibleAnywhere)
+	TArray<FName> SocketNames;
+
+	EEffects CurrentEffect;
 	
 private:
 
@@ -242,12 +241,9 @@ private:
 
 	UFUNCTION(BlueprintCallable)
 	void HandleForwardMovementInput(float ScaleValue);
-	
-	UPROPERTY(EditAnywhere)
-	UAnimMontage* DeathAnimMontage;
 
-	UPROPERTY(EditAnywhere)
-	UAnimMontage* HurtAnimMontage;
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UAnimMontage> HurtAnimMontage;
 	
 	UPROPERTY()
 	UARPG_GameInstance* GameInstance;
@@ -259,7 +255,7 @@ private:
 	USkeletalMeshComponent* SkeletalMeshComp;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UDamageTypeBase> BaseAttackDamageType;
+	UPlayerCharacterConfiguration* CharacterData;
 	
 	bool bCanPlayHurtAnim = true;
 

@@ -3,25 +3,27 @@
 #include "AIController.h"
 #include "BrainComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Characters/Player/ARPG_PlayerController.h"
 #include "Data/EStats.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/DamageTypes.h"
 #include "Components/CapsuleComponent.h"
 #include "Interfaces/MainPlayer.h"
 #include "Components/CombatComponent_Enemy.h"
+#include "Components/LevelingComponent.h"
 #include "Components/SphereComponent.h"
 #include "Components/StatsComponent.h"
-#include "Components/TraceComponent.h"
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
+#include "Data/Characters/EnemyCharacterConfiguration.h"
+#include "Kismet/GameplayStatics.h"
 #include "Perception/PawnSensingComponent.h"
+#include "UI/EnemyHealthBar.h"
 
 
 AEnemyCharacter::AEnemyCharacter()
 {
-	PrimaryActorTick.bCanEverTick = true;
-	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));
@@ -36,8 +38,11 @@ void AEnemyCharacter::BeginPlay()
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle, this, &AEnemyCharacter::SetupAI, .1f, false);
-	PlayerRef = GetWorld()->GetFirstPlayerController()->GetPawn<AMainCharacter_Base>();
-	if (PlayerRef) PlayerRef->StatsComp->OnZeroHealthDelegate.AddUObject(this, &AEnemyCharacter::HandlePlayerDeath);
+
+	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(UGameplayStatics::GetPlayerCharacter(this, 0)))
+	{
+		PC->OnPlayerDiedDelegate.AddUObject(this, &AEnemyCharacter::HandlePlayerDeath);
+	}
 	StatsComp->OnZeroHealthDelegate.AddUObject(this, &AEnemyCharacter::HandleDeath);
 	OnTakeAnyDamage.AddDynamic(this, &AEnemyCharacter::ReceiveDamage);
 	SetResistances();
@@ -46,6 +51,20 @@ void AEnemyCharacter::BeginPlay()
 		BlockingSphere->SetCollisionResponseToAllChannels(ECR_Ignore);
 		BlockingSphere->SetCollisionResponseToChannel(CollisionChannel, ECR_Block);
 	}
+}
+
+void AEnemyCharacter::LoadConfigData()
+{
+	Super::LoadConfigData();
+	if (!CharacterData) return;
+	if (!CharacterData->DeathAnim.IsNull()) DeathAnimMontage = CharacterData->DeathAnim.LoadSynchronous();
+	if (CharacterData->DamageType) BaseAttackDamageType = CharacterData->DamageType;
+	if (CharacterData->CollisionChannel) CollisionChannel = CharacterData->CollisionChannel;
+	if (CharacterData->BehaviorTree) BehaviorTree = CharacterData->BehaviorTree;
+	if (CharacterData->HealthBarWidgetClass) HealthBarWidgetClass = CharacterData->HealthBarWidgetClass;
+	InitialState = CharacterData->InitialState;
+	RewardXP = CharacterData->RewardXP;
+	bRandomAttacks = CharacterData->bRandomAttacks;
 }
 
 
@@ -74,8 +93,8 @@ void AEnemyCharacter::HandlePlayerDeath()
 
 void AEnemyCharacter::HandleDeath()
 {
-	if (DeathAnim == nullptr) return;
-	float DeathAnimDuration = PlayAnimMontage(DeathAnim);
+	if (!DeathAnimMontage) return;
+	float DeathAnimDuration = PlayAnimMontage(DeathAnimMontage);
 	if (ControllerRef) ControllerRef->GetBrainComponent()->StopLogic("Defeated");
 	FindComponentByClass<UCapsuleComponent>()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	IMainPlayer* MainPlayerInterfaceRef = GetWorld()->GetFirstPlayerController()->GetPawn<IMainPlayer>();
@@ -96,8 +115,13 @@ void AEnemyCharacter::FinishedDeathAnim()
 
 void AEnemyCharacter::GiveRewardXP()
 {
-	if (!PlayerRef) return;
-	PlayerRef->AddExperience(RewardXP);
+	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerCharacter(this,0)))
+	{
+		if (ULevelingComponent* LevelComp = PlayerRef->GetComponentByClass<ULevelingComponent>())
+		{
+			LevelComp->AddExperience(RewardXP);
+		}
+	}
 }
 
 
@@ -115,12 +139,6 @@ void AEnemyCharacter::Attack()
 {
 	if (bRandomAttacks) CombatComp->RandomAttack();
 	else CombatComp->ComboAttack();
-}
-
-
-void AEnemyCharacter::ResetAttack()
-{
-	TraceComp->HandleResetAttack();
 }
 
 

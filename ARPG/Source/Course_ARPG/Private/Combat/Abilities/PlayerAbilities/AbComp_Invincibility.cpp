@@ -42,7 +42,7 @@ void UAbComp_Invincibility::FinishAbilityCast()
 
 void UAbComp_Invincibility::CreateIcon()
 {
-	PlayerRef->CreateAbilityIconWithAmount(GetEnhancedArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
+	//PlayerRef->CreateAbilityIconWithAmount(GetEnhancedArmor(), GetIcon(), PlayerRef->StatsComp, Keyword);
 }
 
 

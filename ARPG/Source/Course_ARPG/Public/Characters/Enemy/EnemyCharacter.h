@@ -9,6 +9,8 @@
 #include "EnemyCharacter.generated.h"
 
 
+class UEnemyHealthBar;
+class UEnemyCharacterConfiguration;
 class UPoisonEffectManager;
 class UIceEffectManager;
 class UFireEffectManager;
@@ -66,8 +68,6 @@ public:
 
 	void SetInitialState(const EEnemyStates NewState);
 
-	void ResetAttack();
-
 	virtual void CreateStatusEffectIcon(UTexture2D* Icon, UStatusEffectsComponent* StatusEffectsCompRef){};
 
 	virtual void RemoveStatusEffectIcon(){}
@@ -81,9 +81,6 @@ public:
 	void SetCanApplyDamage(bool NewCanApplyDamage);
 
 	float GetResistanceStatValue(const UDamageType* DamageType);
-	
-	UPROPERTY(EditAnywhere)
-	UStatsComponent* StatsComp;
 	
 	UPROPERTY(EditAnywhere)
 	UCombatComponent_Enemy* CombatComp;
@@ -106,6 +103,8 @@ protected:
 
 	virtual void BeginPlay() override;
 
+	virtual void LoadConfigData() override;
+	
 	UFUNCTION()
 	virtual void HandleDeath();
 
@@ -113,6 +112,12 @@ protected:
 
 	UFUNCTION()
 	virtual void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UEnemyHealthBar> HealthBarWidgetClass;
+
+	UPROPERTY(EditDefaultsOnly)
+	UEnemyCharacterConfiguration* CharacterData;
 	
 private:
 
@@ -127,39 +132,30 @@ private:
 
 	void SetResistances();
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	EEnemyStates InitialState;
-
-	UPROPERTY(EditAnywhere)
-	UAnimMontage* DeathAnim;
-
-	UPROPERTY(EditAnywhere)
+	
+	UPROPERTY(VisibleAnywhere)
 	float RewardXP;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	bool bRandomAttacks;
 
-	UPROPERTY(EditDefaultsOnly)
-	USphereComponent* BlockingSphere;
-
-	UPROPERTY(EditDefaultsOnly)
+	UPROPERTY(VisibleAnywhere)
 	TEnumAsByte<ECollisionChannel> CollisionChannel;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	UBehaviorTree* BehaviorTree;
+	
+	UPROPERTY(VisibleAnywhere)
+	USphereComponent* BlockingSphere;
 	
 	UPROPERTY()
 	AAIController* ControllerRef;
 	
 	UPROPERTY()
 	UBlackboardComponent* BlackboardComp;
-
-	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
-
+	
 	UPROPERTY(VisibleAnywhere)
 	bool bCanApplyDamage = true;
-
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UDamageTypeBase> BaseAttackDamageType;
 };

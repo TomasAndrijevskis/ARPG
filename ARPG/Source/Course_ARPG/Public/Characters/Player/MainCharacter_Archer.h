@@ -50,9 +50,6 @@ protected:
 	void SpawnParticle(UParticleSystem* ParticleEffect);
 
 	void RemoveParticle();
-	
-	UPROPERTY(EditDefaultsOnly)
-	FName EffectSocketName;
 
 	UPROPERTY()
 	UParticleSystemComponent* ParticleRef;

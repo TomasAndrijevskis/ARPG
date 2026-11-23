@@ -55,12 +55,12 @@ void AMainCharacter_Mage::BindAbilityDelegates()
 void AMainCharacter_Mage::SpawnParticles(UParticleSystem* ParticleEffect)
 {
 	if (!ParticleEffect) return;
-	const FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(RightHandSocketName);
-	const FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(LeftHandSocketName);
+	const FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[0]);
+	const FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[1]);
 	
-	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), RightHandSocketName, RightHandSocketLocation, FRotator::ZeroRotator,
+	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), SocketNames[0], RightHandSocketLocation, FRotator::ZeroRotator,
 	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
-	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), LeftHandSocketName, LeftHandSocketLocation, FRotator::ZeroRotator,
+	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), SocketNames[1], LeftHandSocketLocation, FRotator::ZeroRotator,
 	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
 }
 

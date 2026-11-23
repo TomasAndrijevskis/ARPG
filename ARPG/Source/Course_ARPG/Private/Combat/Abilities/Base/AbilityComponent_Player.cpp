@@ -95,7 +95,7 @@ void UAbilityComponent_Player::FinishAbilityCast()
 
 void UAbilityComponent_Player::CreateIcon()
 {
-	PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
+	//PlayerRef->CreateAbilityIconWithTimer(GetAbilityDuration(), GetIcon(), this);
 }
 
 

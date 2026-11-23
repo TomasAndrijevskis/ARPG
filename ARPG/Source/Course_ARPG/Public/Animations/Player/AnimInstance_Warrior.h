@@ -23,10 +23,6 @@ public:
 	FOnLightningBallSummonedDelegate OnLightningBallSummoned;
 
 	FOnInvincibilityRequestedDelegate OnInvincibilityRequested;
-
-protected:
-	
-	virtual void HandleResetAttack() override;
 	
 private:
 

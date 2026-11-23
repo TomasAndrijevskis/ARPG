@@ -8,6 +8,7 @@
 #include "Components/StatsComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Course_ARPG/Public/Objects/BossLocationDoor.h"
+#include "Data/Characters/EnemyCharacterConfiguration.h"
 #include "SaveGame/ARPG_GameInstance.h"
 #include "UI/BossHealthBar.h"
 
@@ -20,8 +21,8 @@ ABoss::ABoss()
 
 void ABoss::CreateHealthWidget()
 {
-	if (!HealthBarWidget) return;
-	HealthBarWidgetRef = Cast<UBossHealthBar>(CreateWidget(GetWorld(), HealthBarWidget));
+	if (!HealthBarWidgetClass) return;
+	HealthBarWidgetRef = Cast<UBossHealthBar>(CreateWidget(GetWorld(), HealthBarWidgetClass));
 	if (HealthBarWidgetRef)
 	{
 		HealthBarWidgetRef->AddToViewport();
@@ -57,12 +58,20 @@ void ABoss::HandleDeath()
 			PS->AddDefeatedBoss(FName(*GetClass()->GetName()));
 		}
 	}
+	Super::HandleDeath();
 	if (UARPG_GameInstance* GameInstance = Cast<UARPG_GameInstance>(GetGameInstance()))
 	{
 		GameInstance->SaveAll();
 	}
-	Super::HandleDeath();
 	HealthBarWidgetRef->RemoveFromParent();
+}
+
+
+void ABoss::LoadConfigData()
+{
+	Super::LoadConfigData();
+	if (!CharacterData) return;
+	BossName = CharacterData->BossName;
 }
 
 

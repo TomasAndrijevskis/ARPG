@@ -2,6 +2,7 @@
 #include "Animations/AnimInstance_Base.h"
 #include "Characters/ARPG_Character_Base.h"
 #include "Components/CombatComponent_Base.h"
+#include "Components/TraceComponent.h"
 
 
 void UAnimInstance_Base::NativeBeginPlay()
@@ -25,5 +26,9 @@ void UAnimInstance_Base::HandleResetAttack()
 	if (UCombatComponent_Base* CombatComp = PawnRef->FindComponentByClass<UCombatComponent_Base>())
 	{
 		CombatComp->HandleResetAttack();
+	}
+	if (UTraceComponent* TraceComp = PawnRef->FindComponentByClass<UTraceComponent>())
+	{
+		TraceComp->HandleResetAttack();
 	}
 }

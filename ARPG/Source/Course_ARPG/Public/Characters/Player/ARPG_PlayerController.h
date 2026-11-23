@@ -16,13 +16,14 @@ class AMainCharacter_Base;
 
 
 DECLARE_MULTICAST_DELEGATE(FOnBonfireInteractionFinished);
+DECLARE_MULTICAST_DELEGATE(FOnPlayerDied);
 UCLASS()
 class COURSE_ARPG_API AARPG_PlayerController : public APlayerController
 {
 	GENERATED_BODY()
 
 public:
-
+	
 	void HandleBonfireInteraction(const FSpawnPoint& LastSpawnPoint);
 	
 	void HandleBonfireWidgetQuit();
@@ -64,6 +65,8 @@ public:
 	TSubclassOf<UTransitionAnim> GetTransitionAnimClass() {return TransitionAnimClass;}
 
 	FOnBonfireInteractionFinished FOnBonfireInteractionFinishedDelegate;
+
+	FOnPlayerDied OnPlayerDiedDelegate;
 	
 protected:
 	

@@ -40,9 +40,4 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UWidgetComponent* HealthBarWidgetComponent;
 	
-private:
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UMinionHealthBar> HealthBarWidgetClass;
-
 };

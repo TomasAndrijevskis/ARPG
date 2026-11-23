@@ -47,25 +47,24 @@ protected:
 
 	virtual void HandleDeath() override;
 
+	virtual void LoadConfigData() override;
+	
 	virtual void ReceiveDamage(AActor* DamagedActor, const float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser) override;
 
 private:
 
 	UFUNCTION()
 	void CheckSecondPhase(const float CurrentHealth);
-	
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UBossHealthBar> HealthBarWidget;
 
+	UPROPERTY(EditAnywhere)
+	FText BossName;
+	
 	UPROPERTY(EditAnywhere)
 	float SecondPhaseHealthPercent;
 
 	UPROPERTY(EditAnywhere)
 	float AttackAnimReductionTime;
-
-	UPROPERTY(EditAnywhere)
-	FText BossName;
-
+	
 	UPROPERTY(EditAnywhere)
 	float DamageMultiplier;
 	

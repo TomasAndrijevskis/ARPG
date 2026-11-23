@@ -11,11 +11,9 @@
 void AARPG_PlayerController::BeginPlay()
 {
 	Super::BeginPlay();
-	
 	this->SetShowMouseCursor(false);
 	FInputModeGameOnly InputMode;
 	this->SetInputMode(InputMode);
-	
 }
 
 
@@ -25,6 +23,10 @@ void AARPG_PlayerController::OnPossess(APawn* aPawn)
 	PlayerRef = Cast<AMainCharacter_Base>(aPawn);
 	GameInstanceRef = Cast<UARPG_GameInstance>(GetWorld()->GetGameInstance());
 	if (!GameInstanceRef || !PlayerRef) return;
+	if (UTeleportSubsystem* SubSystem = GameInstanceRef->GetSubsystem<UTeleportSubsystem>())
+	{
+		SubSystem->OnPlayerTeleportRequestDelegate.AddUObject(this, &AARPG_PlayerController::OnPlayerRequestedTeleport);
+	}
 	
 	HandleGameLoad();
 	HUD = Cast<AHUD_Base>(GetHUD());
@@ -34,15 +36,29 @@ void AARPG_PlayerController::OnPossess(APawn* aPawn)
 		HUD->CreatePlayerWidget();
 		HUD->CreateGameMenuWidgets();
 	}
-	if (UTeleportSubsystem* SubSystem = GameInstanceRef->GetSubsystem<UTeleportSubsystem>())
+}
+
+
+void AARPG_PlayerController::HandleGameLoad() const
+{
+	UE_LOG(LogTemp, Error, TEXT("handle game load"));
+	if (!GameInstanceRef) return;
+	UE_LOG(LogTemp, Error, TEXT("game instance exissts"));
+	GameInstanceRef->InitializeGameInstance();
+	const FString SlotName = GameInstanceRef->GetSlotName();
+	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad) GameInstanceRef->HandleGameLoad();
+	else
 	{
-		SubSystem->OnPlayerTeleportRequestDelegate.AddUObject(this, &AARPG_PlayerController::OnPlayerRequestedTeleport);
+		PlayerRef->HandleDefaultAttributes();
+		GameInstanceRef->SaveAll();
 	}
 }
+
 
 void AARPG_PlayerController::HandleDeath()
 {
 	if (!HUD || !PlayerRef) return;
+	OnPlayerDiedDelegate.Broadcast();
 	HUD->CreateDeathWidget();
 	PlayerRef->PlayDeathAnimation();
 	DisableInput(this);
@@ -111,20 +127,6 @@ void AARPG_PlayerController::HandleGamePause(const bool bIsGamePaused)
 	bEnableMouseOverEvents = bIsGamePaused;
 	bIsGamePaused ? SetInputMode(FInputModeGameAndUI()) : SetInputMode(FInputModeGameOnly());
 	UGameplayStatics::SetGamePaused(GetWorld(), bIsGamePaused);
-}
-
-
-void AARPG_PlayerController::HandleGameLoad() const
-{
-	if (!GameInstanceRef) return;
-	GameInstanceRef->InitializeGameInstance();
-	const FString SlotName = GameInstanceRef->GetSlotName();
-	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad) GameInstanceRef->HandleGameLoad();
-	else
-	{
-		PlayerRef->HandleDefaultAttributes();
-		GameInstanceRef->SaveAll();
-	}
 }
 
 

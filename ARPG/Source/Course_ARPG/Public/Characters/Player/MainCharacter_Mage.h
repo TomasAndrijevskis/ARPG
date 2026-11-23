@@ -55,12 +55,6 @@ private:
 	void SpawnParticles(UParticleSystem* ParticleEffect);
 
 	void RemoveParticle();
-	
-	UPROPERTY(EditAnywhere)
-	FName RightHandSocketName;
-
-	UPROPERTY(EditAnywhere)
-	FName LeftHandSocketName;
 
 	UPROPERTY()
 	TArray<UParticleSystemComponent*> ParticleComponents;

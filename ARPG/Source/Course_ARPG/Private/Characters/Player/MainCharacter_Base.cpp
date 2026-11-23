@@ -14,15 +14,13 @@
 #include "Components/StatusEffectHelpers/FireEffectManager.h"
 #include "Components/StatusEffectHelpers/IceEffectManager.h"
 #include "Components/StatusEffectHelpers/PoisonEffectManager.h"
+#include "Data/Characters/PlayerCharacterConfiguration.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "SaveGame/ARPG_GameInstance.h"
 
 
 AMainCharacter_Base::AMainCharacter_Base()
 {
- 	PrimaryActorTick.bCanEverTick = true;
-	
-	StatsComp = CreateDefaultSubobject<UStatsComponent>(TEXT("Stats Component"));
 	LockonComp = CreateDefaultSubobject<ULockonComponent>(TEXT("Lockon Component"));
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
@@ -44,6 +42,16 @@ void AMainCharacter_Base::BeginPlay()
 	BindAbilityDelegates();
 }
 
+void AMainCharacter_Base::LoadConfigData()
+{
+	if (!CharacterData) return;
+	if (!CharacterData->DeathAnim.IsNull()) DeathAnimMontage = CharacterData->DeathAnim.LoadSynchronous();
+	if (!CharacterData->HurtAnim.IsNull()) HurtAnimMontage = CharacterData->HurtAnim.LoadSynchronous();
+	if (CharacterData->DamageType) BaseAttackDamageType = CharacterData->DamageType;
+	if (CharacterData->StatusEffectsData) StatusEffectsVisualDataAsset = CharacterData->StatusEffectsData;
+	if (!CharacterData->SocketNames.IsEmpty()) SocketNames = CharacterData->SocketNames;
+}
+
 
 void AMainCharacter_Base::BindDelegates()
 {
@@ -53,8 +61,7 @@ void AMainCharacter_Base::BindDelegates()
 
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
-
-
+	
 	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetController()))
 	{
 		StatsComp->OnZeroHealthDelegate.AddUObject(PC, &AARPG_PlayerController::HandleDeath);
@@ -107,13 +114,6 @@ float AMainCharacter_Base::GetResistanceStatValue(const UDamageType* DamageType)
 	const UDamageTypeBase* DT = Cast<UDamageTypeBase>(DamageType);
 	if (!DT) return 0;
 	return StatsComp->GetStatValue(DT->GetResistanceStat());
-}
-
-
-void AMainCharacter_Base::PlayDeathAnimation()
-{
-	if (!DeathAnimMontage) return;
-	PlayAnimMontage(DeathAnimMontage);
 }
 
 
@@ -358,12 +358,6 @@ void AMainCharacter_Base::ReduceHealth(float Damage, AActor* Opponent)
 void AMainCharacter_Base::HealPlayer(float Health)
 {
 	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
-}
-
-
-void AMainCharacter_Base::AddExperience(float NewExperience)
-{
-	LevelComp->AddExperience(NewExperience);
 }
 
 

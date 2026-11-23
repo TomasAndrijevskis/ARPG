@@ -25,7 +25,7 @@ protected:
 private:
 
 	UPROPERTY(EditAnywhere)
-	TWeakObjectPtr<UStaticMeshComponent> DoorEffect;
+	UStaticMeshComponent* DoorEffect;
 
 	UPROPERTY(EditInstanceOnly)
 	FSpawnPoint SpawnPoint;
