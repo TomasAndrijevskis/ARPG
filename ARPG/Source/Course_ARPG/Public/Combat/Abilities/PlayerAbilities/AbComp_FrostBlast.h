@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/FrostBlastPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_FrostBlast.generated.h"
 
@@ -20,16 +19,16 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
+	
+	void SetDamage(float NewDamage) {Damage = NewDamage;}
 
-	void SetDamage(float NewDamage);
-
-	float GetDefaultDamage() const;
+	float GetDefaultDamage() const {return Damage;}
 
 	float GetEnhancedDamage() const;
 	
-	void SetSlowDuration(float NewSlowDuration);
+	void SetSlowDuration(float NewSlowDuration) {SlowDuration = NewSlowDuration;}
 
-	float GetSlowDuration() const;
+	float GetSlowDuration() const {return SlowDuration;}
 
 	virtual void StartAbility() override;
 	
@@ -39,19 +38,17 @@ public:
 	
 protected:
 
-	FFrostBlastPropertiesData* GetAbilityData(const int32 Level);
-
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 
-	void SpawnEffect(UParticleSystem* VisualEffect);
+	void SpawnEffect(const TObjectPtr<UParticleSystem>& VisualEffect);
 	
 	UPROPERTY(EditAnywhere)
-	UParticleSystem* InitialBlast;
+	TObjectPtr<UParticleSystem> InitialBlast;
 
 	UPROPERTY(EditAnywhere)
-	UParticleSystem* Warmup;
+	TObjectPtr<UParticleSystem> Warmup;
 
 	UPROPERTY(EditAnywhere)
 	FName SocketName; //ik_foot_root

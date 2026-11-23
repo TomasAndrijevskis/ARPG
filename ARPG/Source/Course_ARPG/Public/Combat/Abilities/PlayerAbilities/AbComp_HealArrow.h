@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/HealArrowPropertiesData.h"
 #include "AbComp_HealArrow.generated.h"
 
 
@@ -30,13 +29,13 @@ public:
 
 	void OnEnemyDied(AEnemyCharacter* Enemy);
 	
-	void SetHealCap(float NewHealCap);
+	void SetHealCap(float NewHealCap) {MaxHealCap = NewHealCap; HealCap = MaxHealCap;}
 
-	float GetHealCap() const;
+	float GetHealCap() const {return MaxHealCap;}
 
-	void SetHealPercent(float NewHealPercent);
+	void SetHealPercent(float NewHealPercent) {HealPercent = NewHealPercent;}
 	
-	float GetDefaultHealPercent() const;
+	float GetDefaultHealPercent() const {return HealPercent;}
 
 	float GetEnhancedHealPercent() const;
 
@@ -48,8 +47,6 @@ protected:
 	void OnHitEnemy(AEnemyCharacter* NewEnemyRef);
 
 	void OnHitNothing();
-
-	FHealArrowPropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 
@@ -65,7 +62,7 @@ private:
 	void InterruptAbilityTimer();
 	
 	UPROPERTY(EditDefaultsOnly)
-	UAnimMontage* ShootMontage;
+	TObjectPtr<UAnimMontage> ShootMontage;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AActor> ArrowClass;

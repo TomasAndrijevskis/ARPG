@@ -2,7 +2,7 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_ExplosiveArrow.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Projectiles/Arrow/Projectile_ExplosiveArrow.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
+#include "Data/Abilities/ExplosiveArrowPropertiesData.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -65,36 +65,27 @@ void UAbComp_ExplosiveArrow::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Shoot explosive arrow"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nNumbers of shots: %i\nExplosion damage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetNumberOfShots(),
-	GetEnhancedDamage(), GetDefaultDamage(),
-	GetEnhancedDamage() - GetDefaultDamage()));
+	CurrentAbilityLevel, ManaCost, CooldownDuration, NumberOfShots,
+	GetEnhancedDamage(), ExplosionDamage,
+	GetEnhancedDamage() - ExplosionDamage));
 }
 
 
 void UAbComp_ExplosiveArrow::UpdateUpgradeDescription()
 {
-	const FExplosiveArrowPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FExplosiveArrowPropertiesData* NextLevelData = GetAbilityData<FExplosiveArrowPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nNumber of shots: %i -> %i\nExplosion damage: %.2f -> %.2f"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetNumberOfShots(), NextLevelData->NumberOfShots,
-		GetDefaultDamage(), NextLevelData->ExplosionDamage));
-}
-
-
-FExplosiveArrowPropertiesData* UAbComp_ExplosiveArrow::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->ExplosiveArrowLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->ExplosiveArrowLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		NumberOfShots, NextLevelData->NumberOfShots,
+		ExplosionDamage, NextLevelData->ExplosionDamage));
 }
 
 
 void UAbComp_ExplosiveArrow::SetAbilityData(const int32 Level)
 {
-	if (!AbilitiesUpgradeDataAsset) return;
-	FExplosiveArrowPropertiesData* Data = GetAbilityData(Level);
+	const FExplosiveArrowPropertiesData* Data = GetAbilityData<FExplosiveArrowPropertiesData>(Level);
 	if (!Data) return;
 	SetNumberOfShots(Data->NumberOfShots);
 	SetDamage(Data->ExplosionDamage);
@@ -102,12 +93,4 @@ void UAbComp_ExplosiveArrow::SetAbilityData(const int32 Level)
 }
 
 
-void UAbComp_ExplosiveArrow::SetNumberOfShots(int NewNumberOfShots){NumberOfShots = NewNumberOfShots;}
-
-void UAbComp_ExplosiveArrow::SetDamage(float NewDamage){ExplosionDamage = NewDamage;}
-
-float UAbComp_ExplosiveArrow::GetDefaultDamage() const{return ExplosionDamage;}
-
 float UAbComp_ExplosiveArrow::GetEnhancedDamage() const{return ExplosionDamage + ExplosionDamage * PlayerRef->GetAbilityPowerPercent();}
-
-int UAbComp_ExplosiveArrow::GetNumberOfShots() const{return NumberOfShots;}

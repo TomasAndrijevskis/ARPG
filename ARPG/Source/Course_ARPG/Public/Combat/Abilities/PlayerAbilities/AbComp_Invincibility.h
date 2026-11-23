@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/InvincibilityPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_Invincibility.generated.h"
 
@@ -18,12 +17,12 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	float GetDefaultArmor() const;
+	
+	float GetDefaultArmor() const {return Armor;}
 
 	float GetEnhancedArmor() const;
 	
-	void SetArmor(const float NewArmor);
+	void SetArmor(const float NewArmor) {Armor = NewArmor;}
 
 	virtual void StartAbility() override;
 
@@ -36,8 +35,6 @@ protected:
 	virtual void BeginPlay() override;
 	
 	virtual void CreateIcon() override;
-
-	FInvincibilityPropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 	

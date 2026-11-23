@@ -5,10 +5,10 @@
 #include "Combat/Abilities/Base/AbilityComponent_Base.h"
 #include "Data/Abilities/AbilityPropertiesBaseData.h"
 #include "Data/Abilities/AbilitySaveData.h"
+#include "Engine/DataTable.h"
 #include "AbilityComponent_Player.generated.h"
 
 
-class UAbilitiesUpgradeData;
 DECLARE_MULTICAST_DELEGATE(FOnAbilityUnlocked);
 DECLARE_MULTICAST_DELEGATE(FOnAbilityCooldownFinished);
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnAbilityCooldownChanged, float);
@@ -20,59 +20,53 @@ class COURSE_ARPG_API UAbilityComponent_Player : public UAbilityComponent_Base
 
 public:
 	
-	FOnAbilityUnlocked OnAbilityUnlockedDelegate;
-	
-	FOnAbilityCooldownChanged OnAbilityCooldownChangedDelegate;
-	
-	FOnAbilityCooldownFinished OnAbilityCooldownFinishedDelegate;
-	
 	UFUNCTION()
 	void UpgradeAbility(int AvailablePoints);
 
 	UFUNCTION()
-	int GetCurrentAbilityLevel() const;
+	int GetCurrentAbilityLevel() const{return CurrentAbilityLevel;}
 	
-	void SetCurrentAbilityLevel(const int32 NewLevel);
+	void SetCurrentAbilityLevel(const int32 NewLevel) {CurrentAbilityLevel = NewLevel;}
 
 	bool IsAbilityMaxLevel();
 	
 	FString GetAbilityDescription();
 
-	void SetAbilityDescription(const FString& NewDescription);
+	void SetAbilityDescription(const FString& NewDescription) {AbilityDescription = NewDescription;}
 
 	virtual void UpdateAbilityDescription() {};
 
 	FString GetUpgradeDescription();
 
-	void SetUpgradeDescription(const FString& NewDescription);
+	void SetUpgradeDescription(const FString& NewDescription) 	{UpgradeDescription = NewDescription;}
 
 	virtual void UpdateUpgradeDescription() {};
+
+	UFUNCTION()
+	bool IsAbilityAvailable() const{return bIsAbilityAvailable;}
+
+	UFUNCTION()
+	void SetAbilityAvailability(const bool NewAvailability) {bIsAbilityAvailable = NewAvailability;}
+
+	float GetManaCost() const{return ManaCost;}
+
+	void SetManaCost(const float NewManaCost) {ManaCost = NewManaCost;}
+
+	float GetCooldownDuration() const{return CooldownDuration;}
+
+	void SetCooldownDuration(const float NewCooldownDuration) {CooldownDuration = NewCooldownDuration;}
+
+	UFUNCTION()
+	FString GetActionKey() const{return ActionKey;}
+
+	bool IsOnCooldown() const{return bIsOnCooldown;}
+
+	UFUNCTION()
+	bool IsAbilityActive() const{return bIsAbilityActive;}
+
+	void SetAbilityActive(const bool NewIsActive) {bIsAbilityActive = NewIsActive;}
 	
-	UFUNCTION()
-	bool IsAbilityAvailable() const;
-
-	UFUNCTION()
-	void SetAbilityAvailability(const bool NewAvailability);
-
-	float GetManaCost() const;
-
-	void SetManaCost(const float NewManaCost);
-
-	float GetCooldownDuration() const;
-
-	void SetCooldownDuration(const float NewCooldownDuration);
-
 	int GetRequiredUpgradePoints();
-
-	UFUNCTION()
-	FString GetActionKey() const;
-
-	bool IsOnCooldown() const;
-
-	UFUNCTION()
-	bool IsAbilityActive() const;
-
-	void SetAbilityActive(const bool NewIsActive);
 
 	void SaveAbilityProperties(FAbilitySaveData& Data);
 
@@ -86,6 +80,12 @@ public:
 	UTexture2D* GetIcon() const;
 
 	FTransform GetSpawnTransform(float DefaultSpawnDistance) const;
+
+	FOnAbilityUnlocked OnAbilityUnlockedDelegate;
+	
+	FOnAbilityCooldownChanged OnAbilityCooldownChangedDelegate;
+	
+	FOnAbilityCooldownFinished OnAbilityCooldownFinishedDelegate;
 	
 protected:
 
@@ -112,26 +112,30 @@ protected:
 	virtual void StartAbility() override;
 
 	bool CanUseAbility() const;
+
+	template <typename T>
+	const T* GetAbilityData(int32 Level) const
+	{
+		if (!PropertiesDataTable) return nullptr;
+		const FName RowName = FName(*FString::FromInt(Level));
+		return PropertiesDataTable->FindRow<T>(RowName, TEXT("GetAbilityData"));
+	}
 	
 	UPROPERTY(EditAnywhere)
-	UAnimMontage* AnimMontage;
+	TObjectPtr<UAnimMontage> AnimMontage;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsAbilityAvailable = false;
 	
 	UPROPERTY(EditDefaultsOnly)
-	UDataTable* RequirementsDataTable;
+	TObjectPtr<UDataTable> RequirementsDataTable;
 
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<UDataTable> PropertiesDataTable;
+	
 	UPROPERTY()
-	AMainCharacter_Base* PlayerRef;
+	TObjectPtr<AMainCharacter_Base> PlayerRef;
 
-	UPROPERTY(EditAnywhere)
-	UAbilitiesUpgradeData* AbilitiesUpgradeDataAsset;
-	
-private:
-
-	void StartCooldownTimer();
-	
 	UPROPERTY(VisibleAnywhere)
 	float ManaCost = 0.f;
 
@@ -139,11 +143,18 @@ private:
 	float CooldownDuration = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	int CurrentAbilityLevel = 0;
+	int CurrentAbilityLevel = 1;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsOnCooldown = false;
 
+	UPROPERTY(VisibleAnywhere)
+	bool bIsAbilityActive = false;
+	
+private:
+
+	void StartCooldownTimer();
+	
 	UPROPERTY(EditDefaultsOnly)
 	FString ActionKey;
 	
@@ -153,6 +164,5 @@ private:
 	FString AbilityDescription;
 
 	FString UpgradeDescription;
-	
-	bool bIsAbilityActive = false;
 };
+

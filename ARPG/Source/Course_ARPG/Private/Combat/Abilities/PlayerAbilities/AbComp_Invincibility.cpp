@@ -2,7 +2,7 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_Invincibility.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Characters/Player/MainCharacter_Warrior.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
+#include "Data/Abilities/InvincibilityPropertiesData.h"
 
 
 void UAbComp_Invincibility::BeginPlay()
@@ -50,42 +50,30 @@ void UAbComp_Invincibility::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Make yourself invincible"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f\nArmor: %.2f\n\nDefault armor: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(),
-	GetEnhancedArmor(), GetDefaultArmor(),
-	GetEnhancedArmor() - GetDefaultArmor()));
+	CurrentAbilityLevel, ManaCost, CooldownDuration,
+	GetEnhancedArmor(), Armor,
+	GetEnhancedArmor() - Armor));
 }
 
 
 void UAbComp_Invincibility::UpdateUpgradeDescription()
 {
-	const FInvincibilityPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FInvincibilityPropertiesData* NextLevelData = GetAbilityData<FInvincibilityPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetDefaultArmor(), NextLevelData->Armor,
-		GetCooldownDuration(), NextLevelData->CooldownDuration));
-}
-
-
-FInvincibilityPropertiesData* UAbComp_Invincibility::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->InvincibilityLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->InvincibilityLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		Armor, NextLevelData->Armor,
+		CooldownDuration, NextLevelData->CooldownDuration));
 }
 
 
 void UAbComp_Invincibility::SetAbilityData(const int32 Level)
 {
-	const FInvincibilityPropertiesData* Data = GetAbilityData(Level);
+	const FInvincibilityPropertiesData* Data = GetAbilityData<FInvincibilityPropertiesData>(Level);
 	if (!Data) return;
 	SetArmor(Data->Armor);
 	SetCommonAbilityProperties(Data);
 }
 
-
-void UAbComp_Invincibility::SetArmor(const float NewArmor){Armor = NewArmor;}
-
-float UAbComp_Invincibility::GetDefaultArmor() const{return Armor;}
 
 float UAbComp_Invincibility::GetEnhancedArmor() const{return Armor + (Armor * PlayerRef->GetAbilityPowerPercent());}

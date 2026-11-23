@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/AllElementsArrowPropertiesData.h"
 #include "AbComp_AllElementsArrow.generated.h"
 
 class AEnemyCharacter;
@@ -22,17 +21,15 @@ public:
 	virtual void StartAbility() override;
 
 	void SpawnArrow();
+	
+	void SetEffectDamage(float NewEffectDamage) {EffectDamage = NewEffectDamage;}
 
-	void SetEffectDamage(float NewEffectDamage);
-
-	float GetDefaultEffectDamage() const;
+	float GetDefaultEffectDamage() const {return EffectDamage;}
 
 	float GetEnhancedEffectDamage() const;
 	
 protected:
 	
-	FAllElementsArrowPropertiesData* GetAbilityData(const int32 Level);
-
 	virtual void SetAbilityData(const int32 Level) override;
 
 	virtual void FinishAbilityCast() override;
@@ -62,4 +59,5 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly)
 	float AliveTime;
+	
 };

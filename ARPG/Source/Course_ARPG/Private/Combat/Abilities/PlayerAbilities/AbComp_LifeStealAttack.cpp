@@ -1,7 +1,6 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Data/Abilities/LifeStealAttackPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -68,44 +67,32 @@ void UAbComp_LifeStealAttack::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal\nhealth from your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f \nCooldown: %.2f s\nDuration: %.2f s\nStolen health: %.2f%%\n\nDefault stolen health: %.2f%%\nAP modifier: +%.2f%%"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(),
-	GetEnhancedStolenHealthPercent() * 100, GetDefaultStolenHealthPercent() * 100,
-	(GetEnhancedStolenHealthPercent() - GetDefaultStolenHealthPercent()) * 100));
+	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+	GetEnhancedStolenHealthPercent() * 100, StolenHealthPercent * 100,
+	(GetEnhancedStolenHealthPercent() - StolenHealthPercent) * 100));
 }
 
 
 void UAbComp_LifeStealAttack::UpdateUpgradeDescription()
 {
-	const FLifeStealAttackPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FLifeStealAttackPropertiesData* NextLevelData = GetAbilityData<FLifeStealAttackPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nStolen health: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetDefaultStolenHealthPercent() * 100, NextLevelData->StolenHealthPercent * 100,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetAbilityDuration(), NextLevelData->AbilityDuration));
-}
-
-
-FLifeStealAttackPropertiesData* UAbComp_LifeStealAttack::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->LifeStealAttackLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->LifeStealAttackLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		StolenHealthPercent * 100, NextLevelData->StolenHealthPercent * 100,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		AbilityDuration, NextLevelData->AbilityDuration));
 }
 
 
 void UAbComp_LifeStealAttack::SetAbilityData(const int32 Level)
 {
-	const FLifeStealAttackPropertiesData* Data = GetAbilityData(Level);
+	const FLifeStealAttackPropertiesData* Data = GetAbilityData<FLifeStealAttackPropertiesData>(Level);
 	if (!Data) return;
 	SetStolenHealthPercent(Data->StolenHealthPercent);
 	SetCommonAbilityProperties(Data);
 }
 
-
-void UAbComp_LifeStealAttack::SetStolenHealthPercent(const float NewStolenHealthPercent){StolenHealthPercent = NewStolenHealthPercent;}
-
-float UAbComp_LifeStealAttack::GetDefaultStolenHealthPercent() const{return StolenHealthPercent;}
 
 float UAbComp_LifeStealAttack::GetEnhancedStolenHealthPercent() const{return StolenHealthPercent + (StolenHealthPercent * PlayerRef->GetAbilityPowerPercent());}
 

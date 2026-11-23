@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/HealingAuraPropertiesData.h"
 #include "AbComp_HealingAura.generated.h"
 
 
@@ -17,12 +16,12 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	float GetDefaultHealthRegenAmount() const;
+	
+	float GetDefaultHealthRegenAmount() const {return HealthRegenAmount;}
 
 	float GetEnhancedHealthRegenAmount() const;
 	
-	void SetHealthRegenAmount(const float NewAmount);
+	void SetHealthRegenAmount(const float NewAmount) {HealthRegenAmount = NewAmount;}
 
 	virtual void StartAbility() override;
 
@@ -38,8 +37,6 @@ protected:
 
 	virtual void OnAbilityTimerFinished() override;
 	
-	FHealingAuraPropertiesData* GetAbilityData(const int32 Level);
-
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
@@ -48,10 +45,10 @@ private:
 	float HealthRegenAmount = 0.f;
 	
 	UPROPERTY(EditAnywhere)
-	UParticleSystem* Particle;
+	TObjectPtr<UParticleSystem> Particle;
 
 	UPROPERTY()
-	UParticleSystemComponent* ParticleComp;
+	TObjectPtr<UParticleSystemComponent> ParticleComp;
 
 	UPROPERTY(EditAnywhere)
 	FName SocketName; //ik_foot_root

@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/MagicShieldPropertiesData.h"
 #include "AbComp_MagicShield.generated.h"
 
 
@@ -26,7 +25,11 @@ public:
 
 	void ReflectAttack(AActor* Opponent, float Damage, const UDamageType* DamageType);
 
-	void SetReflectionPercent(float NewReflectionPercent);
+	float GetDefaultDamageReflectionPercent() const {return DamageReflectionPercent;}
+
+	float GetEnhancedDamageReflectionPercent() const;
+	
+	void SetReflectionPercent(float NewReflectionPercent) {DamageReflectionPercent = NewReflectionPercent;}
 
 	void SpawnShield();
 	
@@ -40,15 +43,9 @@ protected:
 
 	virtual void FinishAbilityCast() override;
 	
-	FMagicShieldPropertiesData* GetAbilityData(const int32 Level);
-
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
-
-	float GetDefaultDamageReflectionPercent() const;
-
-	float GetEnhancedDamageReflectionPercent() const;
 	
 	UPROPERTY()
 	AMagicShield* ShieldActor;

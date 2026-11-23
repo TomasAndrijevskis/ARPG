@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/FireStormPropertiesData.h"
 #include "AbComp_FireStorm.generated.h"
 
 
@@ -19,16 +18,16 @@ public:
 	virtual void UpdateAbilityDescription() override;
 
 	virtual void UpdateUpgradeDescription() override;
-
-	float GetDefaultBurnDamage() const;
+	
+	float GetDefaultBurnDamage() const {return BurnDamage;}
 	
 	float GetEnhancedBurnDamage() const;
 	
-	void SetBurnDamage(float NewDamage);
+	void SetBurnDamage(float NewDamage) {BurnDamage = NewDamage;}
 
-	float GetBurnDuration() const;
+	float GetBurnDuration() const {return BurnDuration;}
 	
-	void SetBurnDuration(float NewDuration);
+	void SetBurnDuration(float NewDuration) {BurnDuration = NewDuration;}
 
 	virtual void StartAbility() override;
 	
@@ -40,8 +39,6 @@ protected:
 	
 	virtual void OnAbilityTimerFinished() override;
 
-	FFireStormPropertiesData* GetAbilityData(const int32 Level);
-
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
@@ -50,7 +47,7 @@ private:
 	TSubclassOf<AFireStorm> FireStormClass;
 
 	UPROPERTY()
-	AFireStorm* FireStormRef;
+	TObjectPtr<AFireStorm> FireStormRef;
 
 	UPROPERTY(VisibleAnywhere)
 	float BurnDuration = 0.f;

@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealingAura.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
+#include "Data/Abilities/HealingAuraPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -67,44 +67,31 @@ void UAbComp_HealingAura::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon healing aura\nwhich will restore\nyour health"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per second: %.2f\n\nDefault restored health: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetAbilityDuration(), GetCooldownDuration(),
-	GetEnhancedHealthRegenAmount(), GetDefaultHealthRegenAmount(),
-	GetEnhancedHealthRegenAmount() - GetDefaultHealthRegenAmount()));
+	CurrentAbilityLevel, ManaCost, AbilityDuration, CooldownDuration,
+	GetEnhancedHealthRegenAmount(), HealthRegenAmount,
+	GetEnhancedHealthRegenAmount() - HealthRegenAmount));
 }
 
 
 void UAbComp_HealingAura::UpdateUpgradeDescription()
 {
-	const FHealingAuraPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FHealingAuraPropertiesData* NextLevelData = GetAbilityData<FHealingAuraPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nAbility duration: %.2f -> %.2f s\nCooldown: %.2f -> %.2f s\nRestored health: %.2f -> %.2f"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetAbilityDuration(), NextLevelData->AbilityDuration,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetDefaultHealthRegenAmount(), NextLevelData->HealthRegenAmount));
-
-}
-
-
-FHealingAuraPropertiesData* UAbComp_HealingAura::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->HealingAuraLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->HealingAuraLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		AbilityDuration, NextLevelData->AbilityDuration,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		HealthRegenAmount, NextLevelData->HealthRegenAmount));
 }
 
 
 void UAbComp_HealingAura::SetAbilityData(const int32 Level)
 {
-	const FHealingAuraPropertiesData* Data = GetAbilityData(Level);
+	const FHealingAuraPropertiesData* Data = GetAbilityData<FHealingAuraPropertiesData>(Level);
 	if (!Data) return;
 	SetHealthRegenAmount(Data->HealthRegenAmount);
 	SetCommonAbilityProperties(Data);
 }
 
-
-void UAbComp_HealingAura::SetHealthRegenAmount(const float NewAmount){HealthRegenAmount = NewAmount;}
-
-float UAbComp_HealingAura::GetDefaultHealthRegenAmount() const{return HealthRegenAmount;}
 
 float UAbComp_HealingAura::GetEnhancedHealthRegenAmount() const{return HealthRegenAmount + HealthRegenAmount * PlayerRef->GetAbilityPowerPercent();}

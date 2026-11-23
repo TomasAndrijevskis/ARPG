@@ -1,8 +1,8 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_MagicShield.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/MagicShield.h"
+#include "Data/Abilities/MagicShieldPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -64,22 +64,22 @@ void UAbComp_MagicShield::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Get yourself fully covered\nwith magic shield"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage reflection: %.2f%%\n\nDefault damage reflection: %.2f%%\nAP modifier: +%.2f%%"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(),
+	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
 	GetEnhancedDamageReflectionPercent() * 100,
-	GetDefaultDamageReflectionPercent() * 100,
-	(GetEnhancedDamageReflectionPercent() - GetDefaultDamageReflectionPercent()) *100));
+	DamageReflectionPercent * 100,
+	(GetEnhancedDamageReflectionPercent() - DamageReflectionPercent) *100));
 }
 
 
 void UAbComp_MagicShield::UpdateUpgradeDescription()
 {
-	const FMagicShieldPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FMagicShieldPropertiesData* NextLevelData = GetAbilityData<FMagicShieldPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s\nDamage reflection: %.2f%% -> %.2f%%"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetAbilityDuration(), NextLevelData->AbilityDuration,
-		GetDefaultDamageReflectionPercent() * 100, NextLevelData->DamageReflectionPercent * 100));
+		ManaCost, NextLevelData->ManaCost,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		AbilityDuration, NextLevelData->AbilityDuration,
+		DamageReflectionPercent * 100, NextLevelData->DamageReflectionPercent * 100));
 }
 
 
@@ -96,25 +96,13 @@ void UAbComp_MagicShield::ReflectAttack(AActor* Opponent, float Damage, const UD
 }
 
 
-FMagicShieldPropertiesData* UAbComp_MagicShield::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->MagicShieldLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->MagicShieldLevels[Level];
-}
-
-
 void UAbComp_MagicShield::SetAbilityData(const int32 Level)
 {
-	const FMagicShieldPropertiesData* Data = GetAbilityData(Level);
+	const FMagicShieldPropertiesData* Data = GetAbilityData<FMagicShieldPropertiesData>(Level);
 	if (!Data) return;
 	SetCommonAbilityProperties(Data);
 	SetReflectionPercent(Data->DamageReflectionPercent);
 }
 
-
-void UAbComp_MagicShield::SetReflectionPercent(float NewReflectionPercent){DamageReflectionPercent = NewReflectionPercent;}
-
-float UAbComp_MagicShield::GetDefaultDamageReflectionPercent() const{return DamageReflectionPercent;}
 
 float UAbComp_MagicShield::GetEnhancedDamageReflectionPercent() const{return DamageReflectionPercent + (DamageReflectionPercent * PlayerRef->GetAbilityPowerPercent());}

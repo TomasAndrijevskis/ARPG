@@ -1,8 +1,8 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_FrostBlast.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Combat/Abilities/PlayerAbilities/FrostBlastRange.h"
+#include "Data/Abilities/FrostBlastPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 
 
@@ -46,7 +46,7 @@ void UAbComp_FrostBlast::FinishAbilityCast()
 }
 
 
-void UAbComp_FrostBlast::SpawnEffect(UParticleSystem* VisualEffect)
+void UAbComp_FrostBlast::SpawnEffect(const TObjectPtr<UParticleSystem>& VisualEffect)
 {
 	SocketLocation = SkeletalMeshComp->GetSocketLocation(SocketName);
 	UGameplayStatics::SpawnEmitterAttached(VisualEffect, SkeletalMeshComp, SocketName, SocketLocation, FRotator::ZeroRotator,
@@ -58,36 +58,27 @@ void UAbComp_FrostBlast::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Summon blizzard which\nwill slow your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nSlow duration: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetSlowDuration(),
-	GetEnhancedDamage(), GetDefaultDamage(),
-	GetEnhancedDamage() - GetDefaultDamage()));
+	CurrentAbilityLevel, ManaCost, CooldownDuration, SlowDuration,
+	GetEnhancedDamage(), Damage,
+	GetEnhancedDamage() - Damage));
 }
 
 
 void UAbComp_FrostBlast::UpdateUpgradeDescription()
 {
-	const FFrostBlastPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FFrostBlastPropertiesData* NextLevelData = GetAbilityData<FFrostBlastPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nDamage: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nSlow duration: %.2f -> %.2f s"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetDefaultDamage(), NextLevelData->Damage,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetSlowDuration(), NextLevelData->SlowDuration));
-}
-
-
-
-FFrostBlastPropertiesData* UAbComp_FrostBlast::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->FrostBlastLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->FrostBlastLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		Damage, NextLevelData->Damage,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		SlowDuration, NextLevelData->SlowDuration));
 }
 
 
 void UAbComp_FrostBlast::SetAbilityData(const int32 Level)
 {
-	const FFrostBlastPropertiesData* Data = GetAbilityData(Level);
+	const FFrostBlastPropertiesData* Data = GetAbilityData<FFrostBlastPropertiesData>(Level);
 	if (!Data) return;
 	SetDamage(Data->Damage);
 	SetSlowDuration(Data->SlowDuration);
@@ -95,12 +86,4 @@ void UAbComp_FrostBlast::SetAbilityData(const int32 Level)
 }
 
 
-void UAbComp_FrostBlast::SetDamage(float NewDamage){Damage = NewDamage;}
-
-void UAbComp_FrostBlast::SetSlowDuration(float NewSlowDuration){SlowDuration = NewSlowDuration;}
-
-float UAbComp_FrostBlast::GetDefaultDamage() const{return Damage;}
-
 float UAbComp_FrostBlast::GetEnhancedDamage() const{return Damage + Damage * PlayerRef->GetAbilityPowerPercent();}
-
-float UAbComp_FrostBlast::GetSlowDuration() const{return SlowDuration;}

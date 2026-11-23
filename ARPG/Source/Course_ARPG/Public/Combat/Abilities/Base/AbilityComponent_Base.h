@@ -22,22 +22,22 @@ public:
 
 	UAbilityComponent_Base();
 	
-	FOnAbilityTimerChanged OnAbilityTimerChangedDelegate;
-	
-	FOnAbilityStarted OnAbilityStartedDelegate;
-	
-	FOnAbilityFinished OnAbilityFinishedDelegate;
-	
 	UFUNCTION()
-	float GetAbilityDuration() const;
+	float GetAbilityDuration() const {return AbilityDuration;}
 
-	void SetAbilityDuration(const float NewAbilityDuration);
+	void SetAbilityDuration(const float NewAbilityDuration) {AbilityDuration = NewAbilityDuration;}
 
 	UFUNCTION(BlueprintCallable)
 	virtual void StartAbility(){};
 
 	UFUNCTION()
 	virtual void FinishAbilityCast(){};
+
+	FOnAbilityTimerChanged OnAbilityTimerChangedDelegate;
+	
+	FOnAbilityStarted OnAbilityStartedDelegate;
+	
+	FOnAbilityFinished OnAbilityFinishedDelegate;
 	
 protected:
 
@@ -51,10 +51,9 @@ protected:
 	UPROPERTY()
 	FTimerHandle TimerHandle;
 
-	float TimerDuration;
-
-private:
-	
 	UPROPERTY(VisibleAnywhere)
 	float AbilityDuration = 0.f;
+	
+	float TimerDuration;
+	
 };

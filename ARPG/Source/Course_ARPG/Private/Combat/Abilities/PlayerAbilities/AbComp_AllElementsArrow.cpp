@@ -2,7 +2,7 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_AllElementsArrow.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Projectiles/Arrow/Projectile_AllElementsArrow.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
+#include  "Data/Abilities/AllElementsArrowPropertiesData.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -72,43 +72,32 @@ void UAbComp_AllElementsArrow::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Shoot an overenchanted arrow"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage per tick: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(),
-	GetEnhancedEffectDamage(), GetDefaultEffectDamage(),
-	GetEnhancedEffectDamage() - GetDefaultEffectDamage()));
+	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+	GetEnhancedEffectDamage(), EffectDamage,
+	GetEnhancedEffectDamage() - EffectDamage));
 }
 
 
 void UAbComp_AllElementsArrow::UpdateUpgradeDescription()
 {
-	const FAllElementsArrowPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FAllElementsArrowPropertiesData* NextLevelData = GetAbilityData<FAllElementsArrowPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
+	UE_LOG(LogTemp, Warning, TEXT("level exists "));
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s\nDamage: %.2f -> %.2f"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetAbilityDuration(), NextLevelData->AbilityDuration,
-		GetDefaultEffectDamage(), NextLevelData->EffectDamage));
-}
-
-
-FAllElementsArrowPropertiesData* UAbComp_AllElementsArrow::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->AllElementsArrowLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->AllElementsArrowLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		AbilityDuration, NextLevelData->AbilityDuration,
+		EffectDamage, NextLevelData->EffectDamage));
 }
 
 
 void UAbComp_AllElementsArrow::SetAbilityData(const int32 Level)
 {
-	const FAllElementsArrowPropertiesData* Data = GetAbilityData(Level);
+	const FAllElementsArrowPropertiesData* Data = GetAbilityData<FAllElementsArrowPropertiesData>(Level);
 	if (!Data) return;
 	SetEffectDamage(Data->EffectDamage);
 	SetCommonAbilityProperties(Data);
 }
 
-
-void UAbComp_AllElementsArrow::SetEffectDamage(float NewEffectDamage){EffectDamage = NewEffectDamage;}
-
-float UAbComp_AllElementsArrow::GetDefaultEffectDamage() const{return EffectDamage;}
 
 float UAbComp_AllElementsArrow::GetEnhancedEffectDamage() const{return EffectDamage + EffectDamage * PlayerRef->GetAbilityPowerPercent();}

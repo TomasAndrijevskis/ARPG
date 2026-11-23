@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/ExplosiveArrowPropertiesData.h"
 #include "AbComp_ExplosiveArrow.generated.h"
 
 
@@ -21,20 +20,18 @@ public:
 	virtual void StartAbility() override;
 
 	void SpawnArrow();
-
-	float GetDefaultDamage() const;
+	
+	float GetDefaultDamage() const {return ExplosionDamage;}
 
 	float GetEnhancedDamage() const;
 
-	void SetDamage(float NewDamage);
+	void SetDamage(float NewDamage) {ExplosionDamage = NewDamage;}
 
-	int GetNumberOfShots() const;
+	int GetNumberOfShots() const {return NumberOfShots;}
 
-	void SetNumberOfShots(int NewNumberOfShots);
+	void SetNumberOfShots(int NewNumberOfShots) {NumberOfShots = NewNumberOfShots;}
 	
 protected:
-	
-	FExplosiveArrowPropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 

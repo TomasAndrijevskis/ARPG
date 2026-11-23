@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/DamageIncreasePropertiesData.h"
 #include "AbComp_DamageIncrease.generated.h"
 
 
@@ -18,11 +17,11 @@ public:
 
 	virtual void UpdateUpgradeDescription() override;
 	
-	float GetDefaultDamageMultiplier() const;
+	float GetDefaultDamageMultiplier() const {return DamageMultiplier;}
 
 	float GetEnhancedDamageMultiplier() const;
 	
-	void SetDamageMultiplier(float NewDamageMultiplier);
+	void SetDamageMultiplier(float NewDamageMultiplier) {DamageMultiplier = NewDamageMultiplier;}
 
 	virtual void StartAbility() override;
 
@@ -35,8 +34,6 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void OnAbilityTimerFinished() override;
-
-	FDamageIncreasePropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 	

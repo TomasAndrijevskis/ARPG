@@ -2,7 +2,6 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Data/AbilityUpgradeRequirements.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Data/Abilities//AbilitiesUpgradeData.h"
 #include "Components/LevelingComponent.h"
 #include "Data/Abilities/AbilitySaveData.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -11,7 +10,8 @@
 void UAbilityComponent_Player::BeginPlay()
 {
 	Super::BeginPlay();
-	if (CurrentAbilityLevel == 0) SetAbilityData(0);
+	//if (CurrentAbilityLevel == 0)
+	SetAbilityData(CurrentAbilityLevel);
 	PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
 }
 
@@ -110,9 +110,11 @@ void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 		PlayerRef->IncreaseUsedAbilityPoints(PointsRequired);
 		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
 		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
-		if (IsAbilityAvailable()) SetAbilityData(CurrentAbilityLevel - 1);
+		if (IsAbilityAvailable()) SetAbilityData(CurrentAbilityLevel);
 		else
 		{
+			//CurrentAbilityLevel = 1;
+			//SetAbilityData(CurrentAbilityLevel);
 			SetAbilityAvailability(true);
 			OnAbilityUnlockedDelegate.Broadcast();
 		}
@@ -125,7 +127,7 @@ void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 int UAbilityComponent_Player::GetRequiredUpgradePoints()
 {
 	if (!RequirementsDataTable) return -1;
-	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
+	FName RowName = FName(*FString::FromInt(CurrentAbilityLevel + 1));
 	FAbilityUpgradeRequirements* RequirementsRow = RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"));
 	if (!RequirementsRow) return -1;
 	return RequirementsRow->RequiredPoints;
@@ -134,7 +136,7 @@ int UAbilityComponent_Player::GetRequiredUpgradePoints()
 
 bool UAbilityComponent_Player::IsAbilityMaxLevel()
 {
-	FName RowName = FName(*FString::FromInt(GetCurrentAbilityLevel() + 1));
+	FName RowName = FName(*FString::FromInt(CurrentAbilityLevel + 1));
 	if (RequirementsDataTable->FindRow<FAbilityUpgradeRequirements>(RowName, TEXT("Level to look for"))) return false;
 	return true;
 }
@@ -143,7 +145,7 @@ bool UAbilityComponent_Player::IsAbilityMaxLevel()
 void UAbilityComponent_Player::SaveAbilityProperties(FAbilitySaveData& Data)
 {
 	Data.bIsUnlocked = IsAbilityAvailable();
-	Data.CurrentLevel = GetCurrentAbilityLevel();
+	Data.CurrentLevel = CurrentAbilityLevel;
 }
 
 
@@ -204,34 +206,6 @@ FTransform UAbilityComponent_Player::GetSpawnTransform(float DefaultSpawnDistanc
 }
 
 
-void UAbilityComponent_Player::SetAbilityActive(const bool NewIsActive){bIsAbilityActive = NewIsActive;}
-
-void UAbilityComponent_Player::SetCurrentAbilityLevel(const int NewLevel){CurrentAbilityLevel = NewLevel;}
-
-void UAbilityComponent_Player::SetUpgradeDescription(const FString& NewDescription){UpgradeDescription = NewDescription;}
-
-void UAbilityComponent_Player::SetAbilityDescription(const FString& NewDescription){AbilityDescription = NewDescription;}
-
-void UAbilityComponent_Player::SetAbilityAvailability(const bool NewAvailability){bIsAbilityAvailable = NewAvailability;}
-
-void UAbilityComponent_Player::SetManaCost(const float NewManaCost){ManaCost = NewManaCost;}
-
-void UAbilityComponent_Player::SetCooldownDuration(const float NewCooldownDuration){CooldownDuration = NewCooldownDuration;}
-
 bool UAbilityComponent_Player::CanPlayMontage() const{return AnimMontage && PlayerRef && !PlayerRef->GetCurrentMontage();}
 
-bool UAbilityComponent_Player::IsAbilityAvailable() const{return bIsAbilityAvailable;}
-
-bool UAbilityComponent_Player::IsOnCooldown() const{return bIsOnCooldown;}
-
-bool UAbilityComponent_Player::IsAbilityActive() const{return bIsAbilityActive;}
-
 bool UAbilityComponent_Player::CanUseAbility() const{return CanPlayMontage() && IsAbilityAvailable() && !IsAbilityActive() && !IsOnCooldown() && HasEnoughMana() && PlayerRef;}
-
-int UAbilityComponent_Player::GetCurrentAbilityLevel() const{return CurrentAbilityLevel;}
-
-float UAbilityComponent_Player::GetManaCost() const{return ManaCost;}
-
-float UAbilityComponent_Player::GetCooldownDuration() const{return CooldownDuration;}
-
-FString UAbilityComponent_Player::GetActionKey() const{return ActionKey;}

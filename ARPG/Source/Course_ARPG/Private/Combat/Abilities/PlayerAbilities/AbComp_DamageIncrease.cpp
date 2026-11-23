@@ -1,7 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
+#include "Data/Abilities/DamageIncreasePropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 
@@ -59,43 +59,31 @@ void UAbComp_DamageIncrease::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\nfor a certain period of time"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage multiplier: x%.2f\n\nDefault multiplier: x%.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(),
-	GetEnhancedDamageMultiplier(), GetDefaultDamageMultiplier(),
-	GetEnhancedDamageMultiplier() - GetDefaultDamageMultiplier()));
+	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+	GetEnhancedDamageMultiplier(), DamageMultiplier,
+	GetEnhancedDamageMultiplier() - DamageMultiplier));
 }
 
 
 void UAbComp_DamageIncrease::UpdateUpgradeDescription()
 {
-	const FDamageIncreasePropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FDamageIncreasePropertiesData* NextLevelData = GetAbilityData<FDamageIncreasePropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage multiplier: x %.2f -> x %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetDefaultDamageMultiplier(), NextLevelData->DamageMultiplier,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetAbilityDuration(), NextLevelData->AbilityDuration));
-}
-
-
-FDamageIncreasePropertiesData* UAbComp_DamageIncrease::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->DamageIncreaseLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->DamageIncreaseLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		DamageMultiplier, NextLevelData->DamageMultiplier,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		AbilityDuration, NextLevelData->AbilityDuration));
 }
 
 
 void UAbComp_DamageIncrease::SetAbilityData(const int32 Level)
 {
-	const FDamageIncreasePropertiesData* Data = GetAbilityData(Level);
+	const FDamageIncreasePropertiesData* Data = GetAbilityData<FDamageIncreasePropertiesData>(Level);
 	if (!Data) return;
 	SetDamageMultiplier(Data->DamageMultiplier);
 	SetCommonAbilityProperties(Data);
 }
 
-
-void UAbComp_DamageIncrease::SetDamageMultiplier(float NewDamageMultiplier){DamageMultiplier = NewDamageMultiplier;}
-
-float UAbComp_DamageIncrease::GetDefaultDamageMultiplier() const{return DamageMultiplier;}
 
 float UAbComp_DamageIncrease::GetEnhancedDamageMultiplier() const{return DamageMultiplier + DamageMultiplier * PlayerRef->GetAbilityPowerPercent();;}

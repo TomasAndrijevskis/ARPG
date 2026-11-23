@@ -5,8 +5,6 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "AbComp_ArrowBarrage.generated.h"
 
-
-struct FArrowBarragePropertiesData;
 class AArrowBarrage;
 
 UCLASS()
@@ -23,18 +21,16 @@ public:
 	virtual void StartAbility() override;
 
 	void SpawnArrowBarrage();
+	
+	void SetDamage(float NewDamage) {Damage = NewDamage;}
 
-	void SetDamage(float NewDamage);
-
-	float GetDefaultDamage() const;
+	float GetDefaultDamage() const {return Damage;}
 
 	float GetEnhancedDamage() const;
 	
 protected:
 
 	virtual void OnAbilityTimerFinished() override;
-
-	FArrowBarragePropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 

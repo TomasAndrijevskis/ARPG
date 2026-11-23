@@ -6,7 +6,7 @@
 
 
 USTRUCT(BlueprintType)
-struct COURSE_ARPG_API FAbilityPropertiesBaseData
+struct COURSE_ARPG_API FAbilityPropertiesBaseData: public FTableRowBase
 {
 	GENERATED_BODY()
 	

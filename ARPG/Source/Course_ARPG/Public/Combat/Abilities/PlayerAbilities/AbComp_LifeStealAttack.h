@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/LifeStealAttackPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_LifeStealAttack.generated.h"
 
@@ -23,12 +22,12 @@ public:
 
 	UFUNCTION()
 	float GetStolenHealthAmount() const;
-
-	float GetDefaultStolenHealthPercent() const;
+	
+	float GetDefaultStolenHealthPercent() const {return StolenHealthPercent;}
 	
 	float GetEnhancedStolenHealthPercent() const;
 	
-	void SetStolenHealthPercent(const float NewStolenHealthPercent);
+	void SetStolenHealthPercent(const float NewStolenHealthPercent) {StolenHealthPercent = NewStolenHealthPercent;}
 
 	UFUNCTION()
 	void HandleLifeStealOnHit();
@@ -44,8 +43,6 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void OnAbilityTimerFinished() override;
-
-	FLifeStealAttackPropertiesData* GetAbilityData(const int32 Level);
 
 	virtual void SetAbilityData(const int32 Level) override;
 	

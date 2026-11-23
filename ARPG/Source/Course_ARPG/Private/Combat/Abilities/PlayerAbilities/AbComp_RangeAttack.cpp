@@ -1,8 +1,8 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_RangeAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
 #include "Combat/Projectiles/Elemental/Projectile_Lightning.h"
+#include "Data/Abilities/RangeAttackPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -66,42 +66,30 @@ void UAbComp_RangeAttack::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball\nin your enemies"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(),
-	GetEnhancedProjectileDamage(), GetDefaultProjectileDamage(),
-	GetEnhancedProjectileDamage() - GetDefaultProjectileDamage()));
+	CurrentAbilityLevel, ManaCost, CooldownDuration,
+	GetEnhancedProjectileDamage(), ProjectileDamage,
+	GetEnhancedProjectileDamage() - ProjectileDamage));
 }
 
 
 void UAbComp_RangeAttack::UpdateUpgradeDescription()
 {
-	const FRangeAttackPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FRangeAttackPropertiesData* NextLevelData = GetAbilityData<FRangeAttackPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetDefaultProjectileDamage(), NextLevelData->ProjectileDamage,
-		GetCooldownDuration(), NextLevelData->CooldownDuration));
-}
-
-
-FRangeAttackPropertiesData* UAbComp_RangeAttack::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->RangeAttackLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->RangeAttackLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		ProjectileDamage, NextLevelData->ProjectileDamage,
+		CooldownDuration, NextLevelData->CooldownDuration));
 }
 
 
 void UAbComp_RangeAttack::SetAbilityData(const int32 Level)
 {
-	const FRangeAttackPropertiesData* Data = GetAbilityData(Level);
+	const FRangeAttackPropertiesData* Data = GetAbilityData<FRangeAttackPropertiesData>(Level);
 	if (!Data) return;
 	SetProjectileDamage(Data->ProjectileDamage);
 	SetCommonAbilityProperties(Data);
 }
 
-
-void UAbComp_RangeAttack::SetProjectileDamage(const float NewProjectileDamage){ProjectileDamage = NewProjectileDamage;}
-
-float UAbComp_RangeAttack::GetDefaultProjectileDamage() const{return ProjectileDamage;}
 
 float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const{return ProjectileDamage + (ProjectileDamage * PlayerRef->GetAbilityPowerPercent());}

@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
-#include "Data/Abilities/RangeAttackPropertiesData.h"
 #include "Components/ActorComponent.h"
 #include "AbComp_RangeAttack.generated.h"
 
@@ -24,22 +23,20 @@ public:
 	virtual void FinishAbilityCast() override;
 	
 	void SpawnProjectile();
+
+	void SetProjectileDamage(const float NewProjectileDamage) {ProjectileDamage = NewProjectileDamage;}
+
+	float GetDefaultProjectileDamage() const {return ProjectileDamage;}
+
+	float GetEnhancedProjectileDamage() const;
 	
 protected:
 	
-	void SetProjectileDamage(const float NewProjectileDamage);
-
-	FRangeAttackPropertiesData* GetAbilityData(const int32 Level);
-
 	virtual void SetAbilityData(const int32 Level) override;
 	
 private:
 	
 	void SpawnParticle();
-
-	float GetDefaultProjectileDamage() const;
-
-	float GetEnhancedProjectileDamage() const;
 	
 	UPROPERTY(EditAnywhere)
 	UParticleSystem* Particle;

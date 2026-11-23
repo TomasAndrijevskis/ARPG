@@ -4,7 +4,7 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Projectiles/Projectile_Base.h"
 #include "Combat/Projectiles/Arrow/Projectile_HealingArrow.h"
-#include "Data/Abilities/AbilitiesUpgradeData.h"
+#include "Data/Abilities/HealArrowPropertiesData.h"
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -138,49 +138,32 @@ void UAbComp_HealArrow::UpdateAbilityDescription()
 {
 	SetAbilityDescription(FString::Printf(TEXT("Mark an enemy to\nheal from their attacks"
 	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nMax heal amount: %.2f\nHeal percent: %.2f\n\nDefault heal percent: %.2f%%\nAP modifier: +%.2f%%"),
-	GetCurrentAbilityLevel(), GetManaCost(), GetCooldownDuration(), GetAbilityDuration(), GetHealCap(),
-	GetEnhancedHealPercent(), GetDefaultHealPercent(),
-	GetEnhancedHealPercent() - GetDefaultHealPercent()));
+	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration, HealCap,
+	GetEnhancedHealPercent(), HealPercent,
+	GetEnhancedHealPercent() - HealPercent));
 }
 
 
 void UAbComp_HealArrow::UpdateUpgradeDescription()
 {
-	const FHealArrowPropertiesData* NextLevelData = GetAbilityData(GetCurrentAbilityLevel());
+	const FHealArrowPropertiesData* NextLevelData = GetAbilityData<FHealArrowPropertiesData>(CurrentAbilityLevel);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nAbility duration: %.2f -> %.2f s\nMax heal amount: %.2f -> %.2f\nHeal percent: %.2f%% -> %.2f%%"),
-		GetManaCost(), NextLevelData->ManaCost,
-		GetCooldownDuration(), NextLevelData->CooldownDuration,
-		GetAbilityDuration(), NextLevelData->AbilityDuration,
-		GetHealCap(), NextLevelData->HealCap,
-		GetDefaultHealPercent(), NextLevelData->HealPercent));
-}
-
-
-FHealArrowPropertiesData* UAbComp_HealArrow::GetAbilityData(const int32 Level)
-{
-	if (!AbilitiesUpgradeDataAsset) return nullptr;
-	if (!AbilitiesUpgradeDataAsset->HealArrowLevels.IsValidIndex(Level)) return nullptr;
-	return &AbilitiesUpgradeDataAsset->HealArrowLevels[Level];
+		ManaCost, NextLevelData->ManaCost,
+		CooldownDuration, NextLevelData->CooldownDuration,
+		AbilityDuration, NextLevelData->AbilityDuration,
+		HealCap, NextLevelData->HealCap,
+		HealPercent, NextLevelData->HealPercent));
 }
 
 
 void UAbComp_HealArrow::SetAbilityData(const int32 Level)
 {
-	const FHealArrowPropertiesData* Data = GetAbilityData(Level);
+	const FHealArrowPropertiesData* Data = GetAbilityData<FHealArrowPropertiesData>(Level);
 	if (!Data) return;
 	SetHealCap(Data->HealCap);
 	SetHealPercent(Data->HealPercent);
 	SetCommonAbilityProperties(Data);
 }
-
-
-void UAbComp_HealArrow::SetHealCap(float NewHealCap){MaxHealCap = NewHealCap; HealCap = MaxHealCap;}
-
-void UAbComp_HealArrow::SetHealPercent(float NewHealPercent){HealPercent = NewHealPercent;}
-
-float UAbComp_HealArrow::GetHealCap() const{return MaxHealCap;}
-
-float UAbComp_HealArrow::GetDefaultHealPercent() const{return HealPercent;}
 
 float UAbComp_HealArrow::GetEnhancedHealPercent() const{ return HealPercent + HealPercent * PlayerRef->GetAbilityPowerPercent(); }
