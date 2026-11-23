@@ -48,17 +48,21 @@ void UAbComp_Invincibility::CreateIcon()
 
 void UAbComp_Invincibility::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Make yourself invincible"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f\nArmor: %.2f\n\nDefault armor: %.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration,
-	GetEnhancedArmor(), Armor,
-	GetEnhancedArmor() - Armor));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Make yourself invincible")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Make yourself invincible"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f\nArmor: %.2f\n\nDefault armor: %.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration,
+		GetEnhancedArmor(), Armor,
+		GetEnhancedArmor() - Armor));
+	}
 }
 
 
 void UAbComp_Invincibility::UpdateUpgradeDescription()
 {
-	const FInvincibilityPropertiesData* NextLevelData = GetAbilityData<FInvincibilityPropertiesData>(CurrentAbilityLevel);
+	const FInvincibilityPropertiesData* NextLevelData = GetAbilityData<FInvincibilityPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nArmor: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
 		ManaCost, NextLevelData->ManaCost,

@@ -62,18 +62,22 @@ void UAbComp_MagicShield::OnAbilityTimerFinished()
 
 void UAbComp_MagicShield::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Get yourself fully covered\nwith magic shield"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage reflection: %.2f%%\n\nDefault damage reflection: %.2f%%\nAP modifier: +%.2f%%"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
-	GetEnhancedDamageReflectionPercent() * 100,
-	DamageReflectionPercent * 100,
-	(GetEnhancedDamageReflectionPercent() - DamageReflectionPercent) *100));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Get yourself fully covered\nwith magic shield")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Get yourself fully covered\nwith magic shield"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage reflection: %.2f%%\n\nDefault damage reflection: %.2f%%\nAP modifier: +%.2f%%"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+		GetEnhancedDamageReflectionPercent() * 100,
+		DamageReflectionPercent * 100,
+		(GetEnhancedDamageReflectionPercent() - DamageReflectionPercent) *100));
+	}
 }
 
 
 void UAbComp_MagicShield::UpdateUpgradeDescription()
 {
-	const FMagicShieldPropertiesData* NextLevelData = GetAbilityData<FMagicShieldPropertiesData>(CurrentAbilityLevel);
+	const FMagicShieldPropertiesData* NextLevelData = GetAbilityData<FMagicShieldPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s\nDamage reflection: %.2f%% -> %.2f%%"),
 		ManaCost, NextLevelData->ManaCost,

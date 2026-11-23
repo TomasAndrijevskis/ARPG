@@ -56,17 +56,21 @@ void UAbComp_FrostBlast::SpawnEffect(const TObjectPtr<UParticleSystem>& VisualEf
 
 void UAbComp_FrostBlast::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Summon blizzard which\nwill slow your enemies"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nSlow duration: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, SlowDuration,
-	GetEnhancedDamage(), Damage,
-	GetEnhancedDamage() - Damage));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Summon blizzard which\nwill slow your enemies")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Summon blizzard which\nwill slow your enemies"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nSlow duration: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, SlowDuration,
+		GetEnhancedDamage(), Damage,
+		GetEnhancedDamage() - Damage));
+	}
 }
 
 
 void UAbComp_FrostBlast::UpdateUpgradeDescription()
 {
-	const FFrostBlastPropertiesData* NextLevelData = GetAbilityData<FFrostBlastPropertiesData>(CurrentAbilityLevel);
+	const FFrostBlastPropertiesData* NextLevelData = GetAbilityData<FFrostBlastPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nDamage: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nSlow duration: %.2f -> %.2f s"),
 		ManaCost, NextLevelData->ManaCost,

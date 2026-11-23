@@ -70,11 +70,15 @@ void UAbComp_AllElementsArrow::FinishAbilityCast()
 
 void UAbComp_AllElementsArrow::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Shoot an overenchanted arrow"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage per tick: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
-	GetEnhancedEffectDamage(), EffectDamage,
-	GetEnhancedEffectDamage() - EffectDamage));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Shoot an overenchanted arrow")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Shoot an overenchanted arrow"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage per tick: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+		GetEnhancedEffectDamage(), EffectDamage,
+		GetEnhancedEffectDamage() - EffectDamage));
+	}
 }
 
 
@@ -82,7 +86,6 @@ void UAbComp_AllElementsArrow::UpdateUpgradeDescription()
 {
 	const FAllElementsArrowPropertiesData* NextLevelData = GetAbilityData<FAllElementsArrowPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
-	UE_LOG(LogTemp, Warning, TEXT("level exists "));
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s\nDamage: %.2f -> %.2f"),
 		ManaCost, NextLevelData->ManaCost,
 		CooldownDuration, NextLevelData->CooldownDuration,

@@ -143,7 +143,7 @@ protected:
 	float CooldownDuration = 0.f;
 
 	UPROPERTY(VisibleAnywhere)
-	int CurrentAbilityLevel = 1;
+	int CurrentAbilityLevel = 0;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsOnCooldown = false;

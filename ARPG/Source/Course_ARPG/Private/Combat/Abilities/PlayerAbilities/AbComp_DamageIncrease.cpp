@@ -57,17 +57,21 @@ void UAbComp_DamageIncrease::OnAbilityTimerFinished()
 
 void UAbComp_DamageIncrease::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\nfor a certain period of time"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage multiplier: x%.2f\n\nDefault multiplier: x%.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
-	GetEnhancedDamageMultiplier(), DamageMultiplier,
-	GetEnhancedDamageMultiplier() - DamageMultiplier));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\nfor a certain period of time")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Increase your current damage\nfor a certain period of time"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage multiplier: x%.2f\n\nDefault multiplier: x%.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+		GetEnhancedDamageMultiplier(), DamageMultiplier,
+		GetEnhancedDamageMultiplier() - DamageMultiplier));
+	}
 }
 
 
 void UAbComp_DamageIncrease::UpdateUpgradeDescription()
 {
-	const FDamageIncreasePropertiesData* NextLevelData = GetAbilityData<FDamageIncreasePropertiesData>(CurrentAbilityLevel);
+	const FDamageIncreasePropertiesData* NextLevelData = GetAbilityData<FDamageIncreasePropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage multiplier: x %.2f -> x %.2f\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
 		ManaCost, NextLevelData->ManaCost,

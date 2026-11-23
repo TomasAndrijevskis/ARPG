@@ -41,17 +41,21 @@ void UAbComp_ArrowBarrage::OnAbilityTimerFinished()
 
 void UAbComp_ArrowBarrage::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Summon arrow barrage"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
-	GetEnhancedDamage(), Damage,
-	GetEnhancedDamage() - Damage));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Summon arrow barrage")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Summon arrow barrage"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDuration: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+		GetEnhancedDamage(), Damage,
+		GetEnhancedDamage() - Damage));
+	}
 }
 
 
 void UAbComp_ArrowBarrage::UpdateUpgradeDescription()
 {
-	const FArrowBarragePropertiesData* NextLevelData = GetAbilityData<FArrowBarragePropertiesData>(CurrentAbilityLevel);
+	const FArrowBarragePropertiesData* NextLevelData = GetAbilityData<FArrowBarragePropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nDuration: %.2f -> %.2f s\nDamage: %.2f -> %.2f"),
 		ManaCost, NextLevelData->ManaCost,

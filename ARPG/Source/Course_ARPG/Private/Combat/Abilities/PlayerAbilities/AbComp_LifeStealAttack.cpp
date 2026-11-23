@@ -65,17 +65,21 @@ void UAbComp_LifeStealAttack::HandleLifeStealOnHit()
 
 void UAbComp_LifeStealAttack::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal\nhealth from your enemies"
-	"\nCurrent level: %i\n\nMana cost: %.2f \nCooldown: %.2f s\nDuration: %.2f s\nStolen health: %.2f%%\n\nDefault stolen health: %.2f%%\nAP modifier: +%.2f%%"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
-	GetEnhancedStolenHealthPercent() * 100, StolenHealthPercent * 100,
-	(GetEnhancedStolenHealthPercent() - StolenHealthPercent) * 100));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal\nhealth from your enemies")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Gives you an ability to steal\nhealth from your enemies"
+		"\nCurrent level: %i\n\nMana cost: %.2f \nCooldown: %.2f s\nDuration: %.2f s\nStolen health: %.2f%%\n\nDefault stolen health: %.2f%%\nAP modifier: +%.2f%%"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration,
+		GetEnhancedStolenHealthPercent() * 100, StolenHealthPercent * 100,
+		(GetEnhancedStolenHealthPercent() - StolenHealthPercent) * 100));
+	}
 }
 
 
 void UAbComp_LifeStealAttack::UpdateUpgradeDescription()
 {
-	const FLifeStealAttackPropertiesData* NextLevelData = GetAbilityData<FLifeStealAttackPropertiesData>(CurrentAbilityLevel);
+	const FLifeStealAttackPropertiesData* NextLevelData = GetAbilityData<FLifeStealAttackPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nStolen health: %.2f%% -> %.2f%%\nCooldown: %.2f s -> %.2f s\nDuration: %.2f s -> %.2f s"),
 		ManaCost, NextLevelData->ManaCost,

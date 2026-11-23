@@ -10,7 +10,6 @@
 void UAbilityComponent_Player::BeginPlay()
 {
 	Super::BeginPlay();
-	//if (CurrentAbilityLevel == 0)
 	SetAbilityData(CurrentAbilityLevel);
 	PlayerRef = Cast<AMainCharacter_Base>(GetOwner());
 }
@@ -105,16 +104,14 @@ void UAbilityComponent_Player::UpgradeAbility(int AvailablePoints)
 	const int PointsRequired = GetRequiredUpgradePoints();
 	if (AvailablePoints >= PointsRequired && PointsRequired > 0)
 	{
-		CurrentAbilityLevel++;
 		AvailablePoints -= PointsRequired;
 		PlayerRef->IncreaseUsedAbilityPoints(PointsRequired);
 		PlayerRef->LevelComp->SetAbilityPoints(AvailablePoints);
 		PlayerRef->LevelComp->OnAbilityPointsUpdateDelegate.Broadcast(AvailablePoints);
-		if (IsAbilityAvailable()) SetAbilityData(CurrentAbilityLevel);
-		else
+		CurrentAbilityLevel++;
+		SetAbilityData(CurrentAbilityLevel);
+		if (!IsAbilityAvailable())
 		{
-			//CurrentAbilityLevel = 1;
-			//SetAbilityData(CurrentAbilityLevel);
 			SetAbilityAvailability(true);
 			OnAbilityUnlockedDelegate.Broadcast();
 		}
@@ -153,7 +150,7 @@ void UAbilityComponent_Player::LoadAbilityProperties(const FAbilitySaveData& Sav
 {
 	SetCurrentAbilityLevel(SavedData.CurrentLevel);
 	SetAbilityAvailability(SavedData.bIsUnlocked);
-	SetAbilityData(CurrentAbilityLevel - 1);
+	SetAbilityData(CurrentAbilityLevel);
 }
 
 

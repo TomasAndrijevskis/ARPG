@@ -64,17 +64,21 @@ void UAbComp_RangeAttack::FinishAbilityCast()
 
 void UAbComp_RangeAttack::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball\nin your enemies"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration,
-	GetEnhancedProjectileDamage(), ProjectileDamage,
-	GetEnhancedProjectileDamage() - ProjectileDamage));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball\nin your enemies")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Throw an electric ball\nin your enemies"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nDamage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration,
+		GetEnhancedProjectileDamage(), ProjectileDamage,
+		GetEnhancedProjectileDamage() - ProjectileDamage));
+	}
 }
 
 
 void UAbComp_RangeAttack::UpdateUpgradeDescription()
 {
-	const FRangeAttackPropertiesData* NextLevelData = GetAbilityData<FRangeAttackPropertiesData>(CurrentAbilityLevel);
+	const FRangeAttackPropertiesData* NextLevelData = GetAbilityData<FRangeAttackPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f \nDamage: %.2f -> %.2f\nCooldown: %.2f s -> %.2f s"),
 		ManaCost, NextLevelData->ManaCost,

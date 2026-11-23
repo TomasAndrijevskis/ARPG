@@ -136,17 +136,21 @@ void UAbComp_HealArrow::CreateIcon()
 
 void UAbComp_HealArrow::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Mark an enemy to\nheal from their attacks"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nMax heal amount: %.2f\nHeal percent: %.2f\n\nDefault heal percent: %.2f%%\nAP modifier: +%.2f%%"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration, HealCap,
-	GetEnhancedHealPercent(), HealPercent,
-	GetEnhancedHealPercent() - HealPercent));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Mark an enemy to\nheal from their attacks")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Mark an enemy to\nheal from their attacks"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nAbility duration: %.2f s\nMax heal amount: %.2f\nHeal percent: %.2f\n\nDefault heal percent: %.2f%%\nAP modifier: +%.2f%%"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, AbilityDuration, HealCap,
+		GetEnhancedHealPercent(), HealPercent,
+		GetEnhancedHealPercent() - HealPercent));
+	}
 }
 
 
 void UAbComp_HealArrow::UpdateUpgradeDescription()
 {
-	const FHealArrowPropertiesData* NextLevelData = GetAbilityData<FHealArrowPropertiesData>(CurrentAbilityLevel);
+	const FHealArrowPropertiesData* NextLevelData = GetAbilityData<FHealArrowPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nAbility duration: %.2f -> %.2f s\nMax heal amount: %.2f -> %.2f\nHeal percent: %.2f%% -> %.2f%%"),
 		ManaCost, NextLevelData->ManaCost,

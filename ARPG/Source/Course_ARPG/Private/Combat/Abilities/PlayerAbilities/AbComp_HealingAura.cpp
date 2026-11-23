@@ -65,17 +65,21 @@ void UAbComp_HealingAura::OnAbilityTimerFinished()
 
 void UAbComp_HealingAura::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Summon healing aura\nwhich will restore\nyour health"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per second: %.2f\n\nDefault restored health: %.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, AbilityDuration, CooldownDuration,
-	GetEnhancedHealthRegenAmount(), HealthRegenAmount,
-	GetEnhancedHealthRegenAmount() - HealthRegenAmount));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Summon healing aura\nwhich will restore\nyour health")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Summon healing aura\nwhich will restore\nyour health"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nDuration: %.2f s\nCooldown: %.2f s\nRestored health per second: %.2f\n\nDefault restored health: %.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, AbilityDuration, CooldownDuration,
+		GetEnhancedHealthRegenAmount(), HealthRegenAmount,
+		GetEnhancedHealthRegenAmount() - HealthRegenAmount));
+	}
 }
 
 
 void UAbComp_HealingAura::UpdateUpgradeDescription()
 {
-	const FHealingAuraPropertiesData* NextLevelData = GetAbilityData<FHealingAuraPropertiesData>(CurrentAbilityLevel);
+	const FHealingAuraPropertiesData* NextLevelData = GetAbilityData<FHealingAuraPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nAbility duration: %.2f -> %.2f s\nCooldown: %.2f -> %.2f s\nRestored health: %.2f -> %.2f"),
 		ManaCost, NextLevelData->ManaCost,

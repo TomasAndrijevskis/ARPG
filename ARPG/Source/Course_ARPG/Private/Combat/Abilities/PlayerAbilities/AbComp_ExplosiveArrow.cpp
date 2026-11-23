@@ -63,17 +63,21 @@ void UAbComp_ExplosiveArrow::FinishAbilityCast()
 
 void UAbComp_ExplosiveArrow::UpdateAbilityDescription()
 {
-	SetAbilityDescription(FString::Printf(TEXT("Shoot explosive arrow"
-	"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nNumbers of shots: %i\nExplosion damage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
-	CurrentAbilityLevel, ManaCost, CooldownDuration, NumberOfShots,
-	GetEnhancedDamage(), ExplosionDamage,
-	GetEnhancedDamage() - ExplosionDamage));
+	if (CurrentAbilityLevel == 0) SetAbilityDescription(FString::Printf(TEXT("Shoot explosive arrow")));
+	else
+	{
+		SetAbilityDescription(FString::Printf(TEXT("Shoot explosive arrow"
+		"\nCurrent level: %i\n\nMana cost: %.2f\nCooldown: %.2f s\nNumbers of shots: %i\nExplosion damage: %.2f\n\nDefault damage: %.2f\nAP modifier: +%.2f"),
+		CurrentAbilityLevel, ManaCost, CooldownDuration, NumberOfShots,
+		GetEnhancedDamage(), ExplosionDamage,
+		GetEnhancedDamage() - ExplosionDamage));
+	}
 }
 
 
 void UAbComp_ExplosiveArrow::UpdateUpgradeDescription()
 {
-	const FExplosiveArrowPropertiesData* NextLevelData = GetAbilityData<FExplosiveArrowPropertiesData>(CurrentAbilityLevel);
+	const FExplosiveArrowPropertiesData* NextLevelData = GetAbilityData<FExplosiveArrowPropertiesData>(CurrentAbilityLevel + 1);
 	if (!NextLevelData) return;
 	SetUpgradeDescription(FString::Printf(TEXT("Mana cost: %.2f -> %.2f\nCooldown: %.2f -> %.2f s\nNumber of shots: %i -> %i\nExplosion damage: %.2f -> %.2f"),
 		ManaCost, NextLevelData->ManaCost,
