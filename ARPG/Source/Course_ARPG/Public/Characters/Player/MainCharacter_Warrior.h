@@ -64,7 +64,4 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	UNiagaraSystem* WeaponEffect;
-
-	UPROPERTY(EditDefaultsOnly)
-	FName SocketName; //FX_Sword_Bottom
 };

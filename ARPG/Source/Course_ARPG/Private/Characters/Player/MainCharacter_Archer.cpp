@@ -52,6 +52,7 @@ void AMainCharacter_Archer::BindAbilityDelegates()
 void AMainCharacter_Archer::SpawnParticle(UParticleSystem* ParticleEffect)
 {
 	if (!ParticleEffect) return;
+	if (SocketNames.IsEmpty() || SocketNames[0].IsNone()) return;
 	const FVector SpawnLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[0]);
 	ParticleRef = UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), SocketNames[0], SpawnLocation, FRotator::ZeroRotator,
 	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true);

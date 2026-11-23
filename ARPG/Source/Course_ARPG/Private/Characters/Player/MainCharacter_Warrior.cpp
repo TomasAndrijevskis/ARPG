@@ -80,17 +80,18 @@ void AMainCharacter_Warrior::RemoveParticle()
 
 void AMainCharacter_Warrior::SpawnParticle()
 {
-	const FVector SocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketName);
-	const FRotator SocketRotation = GetSkeletalMeshComponent()->GetSocketRotation(SocketName);
+	if (SocketNames.IsEmpty() || SocketNames[0].IsNone()) return;
+	const FVector SocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[0]);
+	const FRotator SocketRotation = GetSkeletalMeshComponent()->GetSocketRotation(SocketNames[0]);
 	WeaponEffectComp = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				WeaponEffect, GetSkeletalMeshComponent(), SocketName,SocketLocation, SocketRotation, FVector(1, 1,1),
+				WeaponEffect, GetSkeletalMeshComponent(), SocketNames[0],SocketLocation, SocketRotation, FVector(1, 1,1),
 				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
 }
 
 
 void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
 {
-	if (CurrentEffect == NewEffect) return;
+	if (CurrentEffect == NewEffect && NewEffect != EEffects::Empty) return;
 	RemoveParticle();
 	CurrentEffect = NewEffect;
 	if (NewEffect == EEffects::Empty) return;

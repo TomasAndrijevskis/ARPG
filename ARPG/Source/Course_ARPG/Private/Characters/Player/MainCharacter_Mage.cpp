@@ -55,6 +55,7 @@ void AMainCharacter_Mage::BindAbilityDelegates()
 void AMainCharacter_Mage::SpawnParticles(UParticleSystem* ParticleEffect)
 {
 	if (!ParticleEffect) return;
+	if (SocketNames.IsEmpty() || SocketNames[0].IsNone() || SocketNames[1].IsNone()) return;
 	const FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[0]);
 	const FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[1]);
 	

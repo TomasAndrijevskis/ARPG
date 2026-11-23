@@ -36,9 +36,7 @@ void UEnchantmentButton::ApplyImageStyle(UTexture2D* Image, FSlateBrush& BrushSt
 
 void UEnchantmentButton::CreateConfirmationWindow()
 {
-	UE_LOG(LogTemp, Warning, TEXT("Effect: %s"), *UEnum::GetValueAsString(Effect));
 	if (!ConfirmationWindowWidgetClass) return;
-
 	if (UConfirmationWindow* ConfirmationWindowRef = Cast<UConfirmationWindow>(CreateWidget(this, ConfirmationWindowWidgetClass)))
 	{
 		ConfirmationWindowRef->AddToViewport(10);
