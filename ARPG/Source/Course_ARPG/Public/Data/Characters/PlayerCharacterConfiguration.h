@@ -22,6 +22,4 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TSoftObjectPtr<UAnimMontage> HurtAnim;
 
-	UPROPERTY(EditDefaultsOnly)
-	TArray<FName> SocketNames;
 };

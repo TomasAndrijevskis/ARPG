@@ -1,6 +1,7 @@
 
 #include "UI/HUD_Base.h"
 #include "Characters/Player/ARPG_PlayerController.h"
+#include "Components/EnchantmentComponent.h"
 #include "Components/LevelingComponent.h"
 #include "Components/StatsComponent.h"
 #include "Data/EStats.h"
@@ -107,6 +108,10 @@ void AHUD_Base::CreateEnchantmentMenu()
 	EnchantmentMenu = Cast<UEnchantmentMenuWidget>(CreateWidget(GetOwningPlayerController(), EnchantmentMenuClass));
 	if (!EnchantmentMenu) return;
 	EnchantmentMenu->AddToViewport(5);
+	if (UEnchantmentComponent* EnchantmentComp =  OwnerRef->FindComponentByClass<UEnchantmentComponent>())
+	{
+		EnchantmentMenu->SetEnchantmentComponent(EnchantmentComp);
+	}
 }
 
 

@@ -1,6 +1,6 @@
 
 #include "UI/EnchantmentMenuWidget.h"
-#include "Characters/Player/MainCharacter_Base.h"
+#include "Components/EnchantmentComponent.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
 #include "UI/ConfirmationWindow.h"
@@ -35,7 +35,7 @@ UEnchantmentButton* UEnchantmentMenuWidget::CreateButton(UTexture2D* Image, EEff
 	if (!NewButton) return nullptr;
 	NewButton->SetImage(Image);
 	NewButton->SetEffect(Effect);
-	NewButton->OnEnchantmentConfirmedDelegate.AddUObject(this, &UEnchantmentMenuWidget::RemoveWidget);
+	NewButton->OnEnchantmentConfirmedDelegate.AddUObject(this, &UEnchantmentMenuWidget::ChangeEnchantment);
 	return NewButton;
 }
 
@@ -64,11 +64,17 @@ void UEnchantmentMenuWidget::CreateConfirmationWindow()
 
 void UEnchantmentMenuWidget::RemoveEnchantment()
 {
-	if (AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(GetOwningPlayerPawn()))
+	ChangeEnchantment(EEffects::Empty);
+}
+
+
+void UEnchantmentMenuWidget::ChangeEnchantment(EEffects NewEffect)
+{
+	if (EnchantmentComp)
 	{
-		PlayerRef->HandleEffectChange(EEffects::Empty);
-		RemoveWidget();
+		EnchantmentComp->HandleEffectChange(NewEffect);
 	}
+	RemoveWidget();
 }
 
 

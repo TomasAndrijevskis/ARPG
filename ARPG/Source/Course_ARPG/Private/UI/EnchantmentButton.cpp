@@ -1,8 +1,6 @@
 
 #include "UI/EnchantmentButton.h"
-#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/Button.h"
-#include "Kismet/GameplayStatics.h"
 #include "UI/ConfirmationWindow.h"
 
 
@@ -47,8 +45,5 @@ void UEnchantmentButton::CreateConfirmationWindow()
 
 void UEnchantmentButton::OnEnchantmentConfirmed()
 {
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-	if (!PlayerRef) return;
-	PlayerRef->HandleEffectChange(Effect);
-	OnEnchantmentConfirmedDelegate.Broadcast();
+	OnEnchantmentConfirmedDelegate.Broadcast(Effect);
 }

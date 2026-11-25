@@ -77,7 +77,7 @@ void UAbilityComponent_Player::StartAbilityTimer()
 void UAbilityComponent_Player::StartAbility()
 {
 	if (!PlayerRef) return;
-	SkeletalMeshComp = PlayerRef->GetSkeletalMeshComponent();
+	SkeletalMeshComp = PlayerRef->GetMesh();
 	PlayerRef->SetCanPlayHurtAnimation(false);
 	PlayerRef->InterruptHurtAnimation();
 	OnAbilityStartedDelegate.Broadcast();

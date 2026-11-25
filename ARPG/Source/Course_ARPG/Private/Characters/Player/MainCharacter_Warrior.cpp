@@ -1,7 +1,5 @@
 
 #include "Characters/Player/MainCharacter_Warrior.h"
-#include "NiagaraComponent.h"
-#include "NiagaraFunctionLibrary.h"
 #include "Animations/Player/AnimInstance_Player.h"
 #include "Animations/Player/AnimInstance_Warrior.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_DamageIncrease.h"
@@ -12,7 +10,6 @@
 #include "Components/CombatComponent_CloseRange.h"
 #include "Components/StatsComponent.h"
 #include "Components/TraceComponent.h"
-#include "Data/StatusEffects/StatusEffectsVisualData.h"
 
 
 AMainCharacter_Warrior::AMainCharacter_Warrior()
@@ -70,47 +67,7 @@ float AMainCharacter_Warrior::GetDamageMultiplier()
 }
 
 
-void AMainCharacter_Warrior::RemoveParticle()
-{
-	if (!WeaponEffectComp) return;
-	WeaponEffectComp -> DestroyComponent();
-	WeaponEffectComp = nullptr;
-}
-
-
-void AMainCharacter_Warrior::SpawnParticle()
-{
-	if (SocketNames.IsEmpty() || SocketNames[0].IsNone()) return;
-	const FVector SocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[0]);
-	const FRotator SocketRotation = GetSkeletalMeshComponent()->GetSocketRotation(SocketNames[0]);
-	WeaponEffectComp = UNiagaraFunctionLibrary::SpawnSystemAttached(
-				WeaponEffect, GetSkeletalMeshComponent(), SocketNames[0],SocketLocation, SocketRotation, FVector(1, 1,1),
-				EAttachLocation::KeepWorldPosition,false, ENCPoolMethod::None,true,true);
-}
-
-
-void AMainCharacter_Warrior::HandleEffectChange(EEffects NewEffect)
-{
-	if (CurrentEffect == NewEffect && NewEffect != EEffects::Empty) return;
-	RemoveParticle();
-	CurrentEffect = NewEffect;
-	if (NewEffect == EEffects::Empty) return;
-	if (!StatusEffectsVisualDataAsset) return;
-	if (const FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
-	{
-		WeaponEffect = Data->WarriorEnchantmentData.WeaponEffect;
-		CurrentEnchantmentDamageType = Data->DamageType;
-	}
-	SpawnParticle();
-}
-
-
 void AMainCharacter_Warrior::SetArmor(const float Armor){StatsComp->SetStatValue(EStats::Armor, Armor);StatsComp->SetStatValue(EStats::MaxArmor, Armor);}
-
-bool AMainCharacter_Warrior::IsWeaponEnchanted() const
-{
-	return CurrentEffect != EEffects::Empty;
-}
 
 
 float AMainCharacter_Warrior::GetPhysicalDamage(){return StatsComp->GetStatValue(EStats::PhysicalStrength) * GetDamageMultiplier();}

@@ -10,7 +10,7 @@
 class UConfirmationWindow;
 class UButton;
 
-DECLARE_MULTICAST_DELEGATE(FOnEnchantmentConfirmed);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnEnchantmentConfirmed, EEffects);
 UCLASS()
 class COURSE_ARPG_API UEnchantmentButton : public UUserWidget
 {
@@ -23,7 +23,7 @@ public:
 	void SetImage(UTexture2D* Image);
 
 	void SetEffect(EEffects NewEffect) {Effect = NewEffect;}
-
+	
 	FOnEnchantmentConfirmed OnEnchantmentConfirmedDelegate;
 	
 private:
@@ -44,6 +44,6 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly)
 	FVector2D ImageSize;
-
+	
 	EEffects Effect;
 };

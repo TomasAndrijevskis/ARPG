@@ -6,6 +6,7 @@
 #include "Data/StatusEffects/StatusEffectsVisualData.h"
 #include "EnchantmentMenuWidget.generated.h"
 
+class UEnchantmentComponent;
 class UConfirmationWindow;
 class UEnchantmentButton;
 class UHorizontalBox;
@@ -18,7 +19,9 @@ class COURSE_ARPG_API UEnchantmentMenuWidget : public UUserWidget_Base
 
 public:
 
-	void NativeConstruct() override;
+	virtual void NativeConstruct() override;
+
+	void SetEnchantmentComponent(UEnchantmentComponent* EnchantmentComponent) {EnchantmentComp = EnchantmentComponent;};
 	
 private:
 
@@ -44,6 +47,9 @@ private:
 	void RemoveEnchantment();
 
 	UFUNCTION()
+	void ChangeEnchantment(EEffects NewEffect);
+	
+	UFUNCTION()
 	void CreateConfirmationWindow();
 	
 	UPROPERTY(EditDefaultsOnly)
@@ -54,4 +60,7 @@ private:
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UConfirmationWindow> ConfirmationWindowWidgetClass;
+
+	UPROPERTY()
+	UEnchantmentComponent* EnchantmentComp;
 };

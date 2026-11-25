@@ -26,8 +26,6 @@ public:
 	virtual bool CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const override;
 
 	virtual float GetMagicalDamage() const override;
-
-	virtual void HandleEffectChange(EEffects NewEffect) override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_MagicShield* AbilityComp_MagicShield;
@@ -51,14 +49,4 @@ protected:
 	
 private:
 
-	UFUNCTION()
-	void SpawnParticles(UParticleSystem* ParticleEffect);
-
-	void RemoveParticle();
-
-	UPROPERTY()
-	TArray<UParticleSystemComponent*> ParticleComponents;
-
-	UPROPERTY(EditAnywhere)
-	UParticleSystem* BaseParticle;
 };

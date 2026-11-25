@@ -1,16 +1,14 @@
 
 #include "Characters/Player/MainCharacter_Mage.h"
 #include "Animations/Player/AnimInstance_Mage.h"
-#include "Kismet/GameplayStatics.h"
-#include "Particles/ParticleSystemComponent.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_FireStorm.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_FrostBlast.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealingAura.h"
 #include "Combat/Abilities/PlayerAbilities/AbComp_MagicShield.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_LongRange.h"
+#include "Components/EnchantmentComponent.h"
 #include "Components/StatsComponent.h"
-#include "Data/StatusEffects/StatusEffectsVisualData.h"
 
 
 AMainCharacter_Mage::AMainCharacter_Mage()
@@ -33,7 +31,6 @@ void AMainCharacter_Mage::BeginPlay()
 {
 	Super::BeginPlay();
 	CombatComp->OnAttackPerformedDelegate.AddUObject(this, &AMainCharacter_Base::ReduceMana);
-	StatsComp->OnZeroHealthDelegate.AddUObject(this, &AMainCharacter_Mage::RemoveParticle);
 	OnAttackReflectRequestDelegate.AddUObject(AbilityComp_MagicShield, &UAbComp_MagicShield::ReflectAttack);
 }
 
@@ -52,31 +49,6 @@ void AMainCharacter_Mage::BindAbilityDelegates()
 }
 
 
-void AMainCharacter_Mage::SpawnParticles(UParticleSystem* ParticleEffect)
-{
-	if (!ParticleEffect) return;
-	if (SocketNames.IsEmpty() || SocketNames[0].IsNone() || SocketNames[1].IsNone()) return;
-	const FVector RightHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[0]);
-	const FVector LeftHandSocketLocation = GetSkeletalMeshComponent()->GetSocketLocation(SocketNames[1]);
-	
-	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), SocketNames[0], RightHandSocketLocation, FRotator::ZeroRotator,
-	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
-	ParticleComponents.Add(UGameplayStatics::SpawnEmitterAttached(ParticleEffect, GetSkeletalMeshComponent(), SocketNames[1], LeftHandSocketLocation, FRotator::ZeroRotator,
-	FVector3d(.3f, .3f, .3f),EAttachLocation::KeepWorldPosition,false, EPSCPoolMethod::None, true));
-}
-
-
-void AMainCharacter_Mage::RemoveParticle()
-{
-	if (ParticleComponents.IsEmpty()) return;
-	for (auto& particle : ParticleComponents)
-	{
-		particle->DestroyComponent();
-	}
-	ParticleComponents.Empty();
-}
-
-
 bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent, float Damage, const UDamageType* DamageType) const
 {
 	if (AbilityComp_MagicShield->IsAbilityActive())
@@ -91,25 +63,4 @@ bool AMainCharacter_Mage::CanTakeDamage(AActor* Opponent, float Damage, const UD
 float AMainCharacter_Mage::GetMagicalDamage() const
 {
 	return StatsComp->GetStatValue(EStats::MagicalStrength) / 2; //half damage for each hand
-}
-
-
-void AMainCharacter_Mage::HandleEffectChange(EEffects NewEffect)
-{
-	if (CurrentEffect == NewEffect && NewEffect != EEffects::Empty) return;
-	RemoveParticle();
-	CurrentEffect = NewEffect;
-	if (NewEffect == EEffects::Empty)
-	{
-		SpawnParticles(BaseParticle);
-		Cast<UCombatComponent_LongRange>(CombatComp)->RevertBaseProjectileClass();
-		return;
-	}
-	if (!StatusEffectsVisualDataAsset) return;
-	if (FStatusEffectData* Data = StatusEffectsVisualDataAsset->StatusEffects.Find(CurrentEffect))
-	{
-		SpawnParticles(Data->MageEnchantmentData.WeaponEffect);
-		Cast<UCombatComponent_LongRange>(CombatComp)->ChangeProjectileClass(Data->MageEnchantmentData.Projectile);
-		CurrentEnchantmentDamageType = Data->DamageType;
-	}
 }

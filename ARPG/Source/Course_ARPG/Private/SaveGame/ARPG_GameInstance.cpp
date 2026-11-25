@@ -4,6 +4,7 @@
 #include "Characters/Player/ARPG_PlayerState.h"
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
+#include "Components/EnchantmentComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -197,14 +198,20 @@ void UARPG_GameInstance::LoadUsedPoints()
 void UARPG_GameInstance::SaveCurrentEffect()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->WeaponEnchantmentEffect = PlayerRef->GetCurrentEnchantmentEffect();
+	if (const UEnchantmentComponent* EnchantmentComp = PlayerRef->FindComponentByClass<UEnchantmentComponent>())
+	{
+		SaveGameInstance->WeaponEnchantmentEffect = EnchantmentComp->GetCurrentEnchantmentEffect();
+	}
 }
 
 
 void UARPG_GameInstance::LoadCurrentEffect()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->HandleEffectChange(SaveGameInstance->WeaponEnchantmentEffect);
+	if (UEnchantmentComponent* EnchantmentComp = PlayerRef->FindComponentByClass<UEnchantmentComponent>())
+	{
+		EnchantmentComp->HandleEffectChange(SaveGameInstance->WeaponEnchantmentEffect);
+	}
 }
 
 

@@ -23,10 +23,6 @@ public:
 	float GetDamageMultiplier();
 
 	void SetArmor(const float Armor);
-	
-	virtual void HandleEffectChange(EEffects NewEffect) override;
-	
-	bool IsWeaponEnchanted() const;
 
 	virtual float GetPhysicalDamage() override;
 	
@@ -53,15 +49,5 @@ protected:
 
 	virtual void BindAbilityDelegates() override;
 	
-private:
 
-	void RemoveParticle();
-
-	void SpawnParticle();
-	
-	UPROPERTY()
-	UNiagaraComponent* WeaponEffectComp;
-
-	UPROPERTY(EditDefaultsOnly)
-	UNiagaraSystem* WeaponEffect;
 };

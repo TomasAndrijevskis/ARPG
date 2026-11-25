@@ -7,6 +7,7 @@
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/AttributesComponent.h"
 #include "Components/CombatComponent_Base.h"
+#include "Components/EnchantmentComponent.h"
 #include "Components/LevelingComponent.h"
 #include "Components/LockonComponent.h"
 #include "Components/PlayerActionsComponent.h"
@@ -25,6 +26,7 @@ AMainCharacter_Base::AMainCharacter_Base()
 	PlayerActionsComp = CreateDefaultSubobject<UPlayerActionsComponent>(TEXT("Player Actions Component"));
 	LevelComp = CreateDefaultSubobject<ULevelingComponent>(TEXT("Leveling Component"));
 	AttributesComp = CreateDefaultSubobject<UAttributesComponent>(TEXT("Attributes Component"));
+	EnchantmentComp = CreateDefaultSubobject<UEnchantmentComponent>(TEXT("Enchantment Component"));
 	FireStatusEffectManager = CreateDefaultSubobject<UFireEffectManager>(TEXT("Fire Effects Manager"));
 	IceStatusEffectManager = CreateDefaultSubobject<UIceEffectManager>(TEXT("Ice Effects Manager"));
 	PoisonStatusEffectManager = CreateDefaultSubobject<UPoisonEffectManager>(TEXT("Poison Effects Manager"));
@@ -34,7 +36,6 @@ AMainCharacter_Base::AMainCharacter_Base()
 void AMainCharacter_Base::BeginPlay()
 {
 	Super::BeginPlay();
-	SkeletalMeshComp = GetMesh();
 	PlayerAnimInstance = Cast<UAnimInstance_Player>(GetMesh()->GetAnimInstance());
 	GameInstance = Cast<UARPG_GameInstance>(GetGameInstance());
 	if (GameInstance) GameInstance->LoadCurrentEffect();
@@ -49,16 +50,18 @@ void AMainCharacter_Base::LoadConfigData()
 	if (!CharacterData->HurtAnim.IsNull()) HurtAnimMontage = CharacterData->HurtAnim.LoadSynchronous();
 	if (CharacterData->DamageType) BaseAttackDamageType = CharacterData->DamageType;
 	if (CharacterData->StatusEffectsData) StatusEffectsVisualDataAsset = CharacterData->StatusEffectsData;
-	if (!CharacterData->SocketNames.IsEmpty()) SocketNames = CharacterData->SocketNames;
 }
 
 
 void AMainCharacter_Base::BindDelegates()
 {
 	LockonComp->OnUpdatedTargetDelegate.AddUObject(PlayerAnimInstance, &UAnimInstance_Player::HandleUpdatedTarget);
+	
 	PlayerActionsComp->OnSprintDelegate.AddUObject(this, &ThisClass::ReduceStamina);
 	PlayerActionsComp->OnRollDelegate.AddUObject(this, &ThisClass::ReduceStamina);
-
+	
+	StatsComp->OnZeroHealthDelegate.AddUObject(EnchantmentComp, &UEnchantmentComponent::DeactivateEffect);
+	
 	LevelComp->OnAttributePointsUpdateDelegate.AddUObject(this, &ThisClass::HandleStatPointsAmountChange);
 	LevelComp->OnAbilityPointsUpdateDelegate.AddUObject(this, &ThisClass::HandleAbilityPointsAmountChange);
 	
@@ -411,14 +414,9 @@ bool AMainCharacter_Base::IsPlayerLockedOnEnemy() const{return LockonComp->IsLoc
 
 AActor* AMainCharacter_Base::GetCurrentTargetActor() const{return LockonComp->CurrentTargetActor;}
 
-USkeletalMeshComponent* AMainCharacter_Base::GetSkeletalMeshComponent() const{return SkeletalMeshComp;}
-
 TArray<EAttributes>& AMainCharacter_Base::GetAttributesArray() const{return AttributesComp->GetAttributes();}
 
 TArray<UAbilityComponent_Player*>& AMainCharacter_Base::GetAbilitiesArray(){return ArrAbilities;}
 
 TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetDamageType() const{return BaseAttackDamageType;}
 
-TSubclassOf<UDamageTypeBase> AMainCharacter_Base::GetEnchantmentDamageType() const{return CurrentEnchantmentDamageType;}
-
-EEffects AMainCharacter_Base::GetCurrentEnchantmentEffect() const{return CurrentEffect;}

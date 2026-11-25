@@ -12,6 +12,7 @@
 #include "MainCharacter_Base.generated.h"
 
 
+class UEnchantmentComponent;
 class UPlayerCharacterConfiguration;
 class APickableItem_Base;
 class UInventoryComponent;
@@ -67,10 +68,7 @@ public:
 
 	UFUNCTION()
 	void AddToAbilitiesArray(UAbilityComponent_Player* NewAbility);
-
-	UFUNCTION()
-	USkeletalMeshComponent* GetSkeletalMeshComponent() const;
-
+	
 	void SetCanPlayHurtAnimation(bool bCanPlayAnim);
 
 	bool CanPlayHurtAnimation() const;
@@ -148,12 +146,6 @@ public:
 	void BuildAttributeDescription(EAttributes AttributeToImprove, FString& AttributeDescription);
 	
 	float GetAbilityPowerPercent() const;
-
-	virtual void HandleEffectChange(EEffects NewEffect){};
-	
-	EEffects GetCurrentEnchantmentEffect() const;
-	
-	TSubclassOf<UDamageTypeBase> GetEnchantmentDamageType() const;
 	
 	virtual float GetElementalDamageModificator() const override;
 
@@ -182,6 +174,9 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UAttributesComponent* AttributesComp;
+	
+	UPROPERTY(EditAnywhere)
+	UEnchantmentComponent* EnchantmentComp;
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	UFireEffectManager* FireStatusEffectManager;
@@ -212,17 +207,9 @@ protected:
 
 	float GetResistanceStatValue(const UDamageType* DamageType) const;
 	
-	UPROPERTY()
-	TSubclassOf<UDamageTypeBase> CurrentEnchantmentDamageType;
-
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UStatusEffectsVisualData> StatusEffectsVisualDataAsset;
 
-	UPROPERTY(VisibleAnywhere)
-	TArray<FName> SocketNames;
-
-	EEffects CurrentEffect;
-	
 private:
 
 	UFUNCTION()
@@ -250,9 +237,6 @@ private:
 
 	UPROPERTY()
 	TArray<UAbilityComponent_Player*> ArrAbilities;
-
-	UPROPERTY()
-	USkeletalMeshComponent* SkeletalMeshComp;
 
 	UPROPERTY(EditDefaultsOnly)
 	UPlayerCharacterConfiguration* CharacterData;

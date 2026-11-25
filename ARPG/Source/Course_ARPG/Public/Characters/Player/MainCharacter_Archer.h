@@ -20,14 +20,10 @@ class COURSE_ARPG_API AMainCharacter_Archer : public AMainCharacter_Base
 public:
 
 	AMainCharacter_Archer();
-	
-	virtual void HandleEffectChange(EEffects NewEffect) override;
 
 	virtual float GetPhysicalDamage() override;
 
 	virtual void ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* DamageInstigator, AActor* DamageCauser) override;
-
-	virtual void SpawnProjectile() override;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAbComp_HealArrow* AbilityComp_HealArrow;
@@ -46,11 +42,4 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void BindAbilityDelegates() override;
-
-	void SpawnParticle(UParticleSystem* ParticleEffect);
-
-	void RemoveParticle();
-
-	UPROPERTY()
-	UParticleSystemComponent* ParticleRef;
 };
