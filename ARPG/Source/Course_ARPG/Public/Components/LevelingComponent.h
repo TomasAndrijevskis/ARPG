@@ -38,6 +38,8 @@ public:
 
 	UFUNCTION()
 	void SetLevel(const int32 NewLevel) {CurrentLevel = NewLevel;}
+
+	bool IsLevelMaxed() const {return bIsLevelMaxed;}
 	
 	void SetAttributePoints(const int32 NewStatPointsAmount) {AvailableAttributePoints = NewStatPointsAmount;}
 	
@@ -68,10 +70,6 @@ public:
 	
 	FOnNewLevel OnNewLevelDelegate;
 	
-protected:
-
-	virtual void BeginPlay() override;
-	
 private:
 	
 	void TryLevelUp();
@@ -99,7 +97,7 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	int32 AvailableAbilityPoints = 0;
 
-	int32 RequiredExperience;
-
 	int32 UsedAttributePoints = 0;
+
+	bool bIsLevelMaxed = false;
 };

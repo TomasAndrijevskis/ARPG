@@ -89,14 +89,17 @@ void UTraceComponent::ApplyDamage(AActor* TargetActor)
 		TSubclassOf<UDamageTypeBase> DamageType;
 		if (UEnchantmentComponent* EnchantmentComp = CompOwner->FindComponentByClass<UEnchantmentComponent>())
 		{
-			finalDamage =  EnchantmentComp->GetEnchantedDamage(GetDamage());
-			DamageType = EnchantmentComp->GetEnchantmentDamageType();
+			if (EnchantmentComp->IsWeaponEnchanted())
+			{
+				finalDamage =  EnchantmentComp->GetEnchantedDamage(GetDamage());
+				DamageType = EnchantmentComp->GetEnchantmentDamageType();
+				AController* Instigator = Cast<ACharacter>(GetOwner())->GetController();
+				UGameplayStatics::ApplyDamage(TargetActor, finalDamage, Instigator, GetOwner(), DamageType);
+				return;
+			}
 		}
-		else
-		{
-			finalDamage = GetDamage();
-			DamageType = FighterRef->GetDamageType();
-		}
+		finalDamage = GetDamage();
+		DamageType = FighterRef->GetDamageType();
 		AController* Instigator = Cast<ACharacter>(GetOwner())->GetController();
 		UGameplayStatics::ApplyDamage(TargetActor, finalDamage, Instigator, GetOwner(), DamageType);
 	}

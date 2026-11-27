@@ -109,15 +109,11 @@ void UEnchantmentComponent::DeactivateEffect()
 
 float UEnchantmentComponent::GetEnchantedDamage(float DefaultDamage)
 {
-	if (IsWeaponEnchanted())
+	if (ACharacter* Owner = Cast<ACharacter>(GetOwner()))
 	{
-		if (ACharacter* Owner = Cast<ACharacter>(GetOwner()))
+		if (UStatsComponent* StatsComp = Owner->FindComponentByClass<UStatsComponent>())
 		{
-			if (UStatsComponent* StatsComp = Owner->FindComponentByClass<UStatsComponent>())
-			{
-				return DefaultDamage + DefaultDamage * StatsComp->GetStatValue(EStats::ElementalDamageModificator);
-			}
-			return DefaultDamage;
+			return DefaultDamage + DefaultDamage * StatsComp->GetStatValue(EStats::ElementalDamageModificator);
 		}
 		return DefaultDamage;
 	}

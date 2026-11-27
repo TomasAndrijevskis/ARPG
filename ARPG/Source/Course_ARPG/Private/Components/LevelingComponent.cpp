@@ -5,15 +5,6 @@
 #include "SaveGame/ARPG_GameInstance.h"
 
 
-void ULevelingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-	UE_LOG(LogTemp, Error, TEXT("ULevelingComponent::BeginPlay"));
-	if (!LevelDataTable) return;
-	RequiredExperience = GetRequiredExperience();
-}
-
-
 void ULevelingComponent::LoadLevelData(FPlayerLevelData Data)
 {
 	SetLevel(Data.CurrentLevel);
@@ -54,14 +45,14 @@ void ULevelingComponent::AddExperience(const int Experience)
 
 void ULevelingComponent::TryLevelUp()
 {
-	RequiredExperience = GetRequiredExperience();
+	const int32 RequiredXP = GetRequiredExperience();
 	OnExperienceUpdatedDelegate.Broadcast(GetExperiencePercentage());
-	if (CurrentExperience >= RequiredExperience && RequiredExperience != -1)
+	if (CurrentExperience >= RequiredXP && RequiredXP != -1)
 	{
 		int32 AttributePointsAmountForLevel = GetAttributePointsForLevel();
 		int32 AbilityUpgradePointsAmountForLevel = GetAbilityPointsForLevel();
 		CurrentLevel++;
-		CurrentExperience -= RequiredExperience;
+		CurrentExperience -= RequiredXP;
 		OnNewLevelDelegate.Broadcast(AbilityUpgradePointsAmountForLevel, AttributePointsAmountForLevel);
 		OnLevelUpdatedDelegate.Broadcast(CurrentLevel);
 		OnExperienceUpdatedDelegate.Broadcast(GetExperiencePercentage());
@@ -102,7 +93,7 @@ FXPLevels* ULevelingComponent::GetNextLevelRow() const
 
 float ULevelingComponent::GetExperiencePercentage() const
 {
-	UE_LOG(LogTemp, Display, TEXT("current %i"), CurrentExperience)
-	UE_LOG(LogTemp, Display, TEXT("Required %i"), RequiredExperience)
-	return static_cast<float>(CurrentExperience) / RequiredExperience;;
+	const int32 RequiredXP = GetRequiredExperience();
+	if (RequiredXP <= 0) return 0.f;
+	return FMath::Clamp(static_cast<float>(CurrentExperience) / RequiredXP, 0.f, 1.f);
 }
