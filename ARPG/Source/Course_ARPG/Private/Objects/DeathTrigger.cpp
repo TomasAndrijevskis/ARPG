@@ -1,7 +1,7 @@
 
 #include "Objects/DeathTrigger.h"
-#include "Characters/Player/MainCharacter_Base.h"
 #include "Components/BoxComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 
 ADeathTrigger::ADeathTrigger()
@@ -20,7 +20,5 @@ void ADeathTrigger::BeginPlay()
 
 void ADeathTrigger::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	AMainCharacter_Base* PlayerRef = Cast<AMainCharacter_Base>(OtherActor);
-	if (!PlayerRef) return;
-	PlayerRef->ReduceHealth(PlayerRef->GetPlayerMaxHealth(), this);
+	UGameplayStatics::ApplyDamage(OtherActor, 99999, nullptr, this, nullptr);
 }

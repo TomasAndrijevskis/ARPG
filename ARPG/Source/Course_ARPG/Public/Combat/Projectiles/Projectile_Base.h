@@ -23,6 +23,8 @@ public:
 
 	void SetParams(const float NewDamage, const float NewAliveTime, const float NewElementalDamageModificator);
 
+	void SetParams(const float NewDamage, const float NewAliveTime);
+	
 	void StartAliveTimer();
 	
 	void SetProjectileOwner(AActor* NewProjectileOwner);

@@ -76,4 +76,6 @@ void AProjectile_Base::SetProjectileOwner(AActor* NewProjectileOwner){Projectile
 
 void AProjectile_Base::SetParams(const float NewDamage, const float NewAliveTime, const float NewElementalDamageModificator){Damage = NewDamage;AliveTime = NewAliveTime;ElementalDamageModificator = NewElementalDamageModificator;}
 
+void AProjectile_Base::SetParams(const float NewDamage, const float NewAliveTime) {Damage = NewDamage;AliveTime = NewAliveTime;}
+
 AActor* AProjectile_Base::GetProjectileOwner() const{return ProjectileOwner;}

@@ -3,6 +3,7 @@
 #include "NiagaraComponent.h"
 #include "NiagaraFunctionLibrary.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Components/StatsComponent.h"
 #include "Data/Enchantment/EnchantmentDataAsset.h"
 
 
@@ -97,19 +98,28 @@ void UEnchantmentComponent::ChangeParticle(const TObjectPtr<UFXSystemAsset>& New
 }
 
 
-float UEnchantmentComponent::GetEnchantedDamage()
-{
-	if (ACharacter* Owner = Cast<ACharacter>(GetOwner()))
-	{
-		//if (UStatsComponent* StatsComp = Owner->get)
-	}
-	return 0.f;
-}
-
 void UEnchantmentComponent::DeactivateEffect()
 {
 	for (auto& Effect: ActiveEnchantmentEffects)
 	{
 		if (IsValid(Effect)) Effect->Deactivate();
 	}
+}
+
+
+float UEnchantmentComponent::GetEnchantedDamage(float DefaultDamage)
+{
+	if (IsWeaponEnchanted())
+	{
+		if (ACharacter* Owner = Cast<ACharacter>(GetOwner()))
+		{
+			if (UStatsComponent* StatsComp = Owner->FindComponentByClass<UStatsComponent>())
+			{
+				return DefaultDamage + DefaultDamage * StatsComp->GetStatValue(EStats::ElementalDamageModificator);
+			}
+			return DefaultDamage;
+		}
+		return DefaultDamage;
+	}
+	return DefaultDamage;
 }

@@ -29,7 +29,8 @@ public:
 	
 	TSubclassOf<UDamageTypeBase> GetEnchantmentDamageType() const {return CurrentEnchantmentDamageType;}
 
-	float GetEnchantedDamage();
+	float GetEnchantedDamage(float DefaultDamage);
+
 	
 	UFUNCTION()
 	void DeactivateEffect();

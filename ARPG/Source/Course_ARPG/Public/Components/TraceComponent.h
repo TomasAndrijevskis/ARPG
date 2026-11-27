@@ -43,7 +43,7 @@ private:
 
 	bool CanHit(AActor* TargetActor);
 
-	void ApplyDamage(AActor* TargetActor, TSubclassOf<UDamageType> DamageType);
+	void ApplyDamage(AActor* TargetActor);
 
 	void DetectHitTargets(TArray<FHitResult>& Results);
 

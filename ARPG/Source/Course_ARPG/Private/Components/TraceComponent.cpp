@@ -1,6 +1,7 @@
 
 #include "Components/TraceComponent.h"
-#include "Characters/Player/MainCharacter_Warrior.h"
+#include "Components/EnchantmentComponent.h"
+#include "GameFramework/Character.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Interfaces/Fighter.h"
@@ -33,7 +34,7 @@ void UTraceComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActor
 		AActor* TargetActor = Hit.GetActor();
 		if (CanHit(TargetActor))
 		{
-			ApplyDamage(TargetActor, FighterRef->GetDamageType());
+			ApplyDamage(TargetActor);
 			OnHitDelegate.Broadcast();
 			if (HitParticleTemplate) UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), HitParticleTemplate, Hit.ImpactPoint);
 		}
@@ -80,14 +81,25 @@ bool UTraceComponent::CanHit(AActor* TargetActor)
 }
 
 
-void UTraceComponent::ApplyDamage(AActor* TargetActor, TSubclassOf<UDamageType> DamageType)
+void UTraceComponent::ApplyDamage(AActor* TargetActor)
 {
-	
-	AMainCharacter_Warrior* WarriorRef = Cast<AMainCharacter_Warrior>(GetOwner());
-	if (WarriorRef && WarriorRef->IsWeaponEnchanted())
-		UGameplayStatics::ApplyDamage(TargetActor, GetDamage() + GetDamage() * WarriorRef->GetElementalDamageModificator(),
-			Cast<ACharacter>(GetOwner())->GetController(), GetOwner(), WarriorRef->GetEnchantmentDamageType());
-	else UGameplayStatics::ApplyDamage(TargetActor, GetDamage(), Cast<ACharacter>(GetOwner())->GetController(), GetOwner(), DamageType);
+	if (AActor* CompOwner = GetOwner())
+	{
+		float finalDamage = 0.f;
+		TSubclassOf<UDamageTypeBase> DamageType;
+		if (UEnchantmentComponent* EnchantmentComp = CompOwner->FindComponentByClass<UEnchantmentComponent>())
+		{
+			finalDamage =  EnchantmentComp->GetEnchantedDamage(GetDamage());
+			DamageType = EnchantmentComp->GetEnchantmentDamageType();
+		}
+		else
+		{
+			finalDamage = GetDamage();
+			DamageType = FighterRef->GetDamageType();
+		}
+		AController* Instigator = Cast<ACharacter>(GetOwner())->GetController();
+		UGameplayStatics::ApplyDamage(TargetActor, finalDamage, Instigator, GetOwner(), DamageType);
+	}
 }
 
 
@@ -106,4 +118,8 @@ void UTraceComponent::DrawDebugBox(bool bHasFoundTargets, const FVector& StartSo
 }
 
 
-float UTraceComponent::GetDamage() const{return FighterRef->GetPhysicalDamage();}
+float UTraceComponent::GetDamage() const
+{
+	if (FighterRef) return FighterRef->GetPhysicalDamage();
+	return 0.f;
+}
