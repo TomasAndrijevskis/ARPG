@@ -4,6 +4,7 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Projectiles/Projectile_Base.h"
 #include "Combat/Projectiles/Arrow/Projectile_HealingArrow.h"
+#include "Components/StatsComponent.h"
 #include "Data/Abilities/HealArrowPropertiesData.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -45,11 +46,10 @@ void UAbComp_HealArrow::SpawnArrow()
 	FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
 	FVector TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
-	AProjectile_HealingArrow* Projectile = GetWorld()->SpawnActor<AProjectile_HealingArrow>(ArrowClass, SpawnLocation, SpawnRotation);
-	if (Projectile)
+	if (AProjectile_HealingArrow* Projectile = GetWorld()->SpawnActor<AProjectile_HealingArrow>(ArrowClass, SpawnLocation, SpawnRotation))
 	{
 		Projectile->SetProjectileOwner(GetOwner());
-		Projectile->SetParams(0, AliveTime, 0);
+		Projectile->SetParams(0, AliveTime);
 		Projectile->StartAliveTimer();
 		Projectile->OnHitEnemy.AddUObject(this, &UAbComp_HealArrow::OnHitEnemy);
 		Projectile->OnHitNothing.AddUObject(this, &UAbComp_HealArrow::OnHitNothing);
@@ -85,20 +85,26 @@ void UAbComp_HealArrow::StartAbilityTimer()
 
 void UAbComp_HealArrow::HandleEnemyHit(float Damage)
 {
-	float HealthToAdd = Damage * HealPercent;
-	if (HealthToAdd <= HealCap)
+	if (UStatsComponent* StatsComp = PlayerRef->GetComponentByClass<UStatsComponent>())
 	{
-		PlayerRef->HealPlayer(HealthToAdd);
-		HealCap -= HealthToAdd;
-	}
-	else
-	{
-		float RemainingHealAmount = HealCap;
-		float RemainingDamage = HealthToAdd - HealCap;
-		PlayerRef->HealPlayer(RemainingHealAmount);
-		PlayerRef->ReduceHealth(RemainingDamage, EnemyRef);
-		OnAbilityFinishedDelegate.Broadcast();
-		InterruptAbilityTimer();
+		float HealthToAdd = Damage * HealPercent;
+		if (HealthToAdd <= HealCap)
+		{
+			StatsComp->OnAddHealthRequestDelegate.Broadcast(HealthToAdd);
+			HealCap -= HealthToAdd;
+		}
+		else
+		{
+			float RemainingHealAmount = HealCap;
+			float RemainingDamage = HealthToAdd - HealCap;
+			
+			StatsComp->OnAddHealthRequestDelegate.Broadcast(RemainingHealAmount);
+
+			StatsComp->OnReduceHealthRequestDelegate.Broadcast(RemainingDamage, nullptr, EnemyRef);
+
+			OnAbilityFinishedDelegate.Broadcast();
+			InterruptAbilityTimer();
+		}
 	}
 }
 

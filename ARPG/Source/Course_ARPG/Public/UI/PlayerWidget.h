@@ -6,26 +6,14 @@
 #include "PlayerWidget.generated.h"
 
 
-class UEnchantmentMenuWidget;
-class UStatusEffectsComponent;
-class UStatusEffectIcon;
-class UResetWidget;
-class UAttributeUpgradeWidget;
-class UAbilityUpgradeWidget;
 class ULevelUpNotification;
-class UPauseMenu;
-class UQuickTravelMenu;
-class UBonfireMenu;
-class UPlayerDeath;
+class UStatusEffectIcon;
+class UAbilityIconWithAmount;
+class UAbilityIconWithTimer;
+class UAbilityFooter;
 class UTextBlock;
 class UProgressBar;
 class UHorizontalBox;
-class UAbilityIconWithTimer;
-class UAbilityFooter;
-class UAbilityIconWithAmount;
-class UStatsComponent;
-class UAbilityComponent_Base;
-class UAbilityComponent_Player;
 
 UCLASS()
 class COURSE_ARPG_API UPlayerWidget : public UUserWidget
@@ -44,10 +32,10 @@ public:
 	void SetMana(const float NewManaPercent);
 
 	UFUNCTION()
-	void SetLevel(const int CurrentLevel);
+	void SetLevel(const int32 CurrentLevel);
 
 	UFUNCTION()
-	void SetExperience(const float CurrentExperience);
+	void SetExperience(const float CurrentExperiencePercent);
 	
 	UFUNCTION()
 	void CreateAbilityFooterPanel(UTexture2D* Image, const FString& ActionKey, UAbilityComponent_Player* AbilityCompRef);

@@ -57,6 +57,8 @@ public:
 
 	virtual void OnPossess(APawn* aPawn) override;
 
+	void CreateHUD();
+	
 	UFUNCTION()
 	void HandleDeath();
 
@@ -78,9 +80,8 @@ private:
 	void Interact();
 	
 	void QuitGame() const;
-
-	UFUNCTION()
-	void HandleGameLoad() const;
+	
+	void HandleGameLoad();
 
 	void OnPlayerRequestedTeleport();
 

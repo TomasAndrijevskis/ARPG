@@ -8,11 +8,34 @@
 void ULevelingComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Error, TEXT("ULevelingComponent::BeginPlay"));
+	if (!LevelDataTable) return;
 	RequiredExperience = GetRequiredExperience();
 }
 
 
-void ULevelingComponent::AddExperience(const float Experience)
+void ULevelingComponent::LoadLevelData(FPlayerLevelData Data)
+{
+	SetLevel(Data.CurrentLevel);
+	SetExperience(Data.CurrentExperience);
+	SetAbilityPoints(Data.CurrentAbilityPoints);
+	SetAttributePoints(Data.CurrentAttributePoints);
+}
+
+
+FPlayerLevelData ULevelingComponent::SaveLevelData() const
+{
+	FPlayerLevelData Data;
+	Data.CurrentLevel = CurrentLevel;
+	Data.CurrentExperience = CurrentExperience;
+	Data.CurrentAttributePoints = AvailableAttributePoints;
+	Data.CurrentAbilityPoints = AvailableAbilityPoints;
+	Data.RequiredExperience = 0;
+	return Data;
+}
+
+
+void ULevelingComponent::AddExperience(const int Experience)
 {
 	if (!CanAddExperience())
 	{
@@ -51,6 +74,8 @@ void ULevelingComponent::TryLevelUp()
 
 int ULevelingComponent::GetRequiredExperience() const
 {
+	UE_LOG(LogTemp, Warning, TEXT("current %i"), CurrentExperience)
+	UE_LOG(LogTemp, Warning, TEXT("Level %i"), CurrentLevel);
 	if (!LevelDataTable) return -1;
 	if (GetNextLevelRow()) return GetNextLevelRow()->Experience;
 	return  -1;
@@ -75,30 +100,9 @@ FXPLevels* ULevelingComponent::GetNextLevelRow() const
 }
 
 
-void ULevelingComponent::SetExperience(const float NewExperience){CurrentExperience = NewExperience;}
-
-void ULevelingComponent::SetLevel(const int NewLevel){CurrentLevel = NewLevel;}
-
-void ULevelingComponent::SetAttributePoints(const int NewStatPointsAmount){AvailableAttributePoints = NewStatPointsAmount;}
-
-void ULevelingComponent::SetAbilityPoints(const int NewAbilityPointsAmount){AvailableAbilityPoints = NewAbilityPointsAmount;}
-
-void ULevelingComponent::SetUsedAttributePoints(const int NewUsedStatPoints){UsedAttributePoints = NewUsedStatPoints;}
-
-void ULevelingComponent::IncreaseUsedStatPoints(){UsedAttributePoints++;}
-
-int ULevelingComponent::GetAttributePointsForLevel() const{return GetNextLevelRow()->AttributePointsPerLevel;}
-
-int ULevelingComponent::GetAbilityPointsForLevel() const{return GetNextLevelRow()->AbilityPointsPerLevel;}
-
-int ULevelingComponent::GetUsedAttributePoints() const{return UsedAttributePoints;}
-
-int ULevelingComponent::GetCurrentLevel() const{return  CurrentLevel;}
-
-int ULevelingComponent::GetCurrentAttributePointsAmount() const{return AvailableAttributePoints;}
-
-int ULevelingComponent::GetCurrentAbilityPointsAmount() const{return AvailableAbilityPoints;}
-
-float ULevelingComponent::GetExperiencePercentage() const{return CurrentExperience / RequiredExperience;}
-
-float ULevelingComponent::GetCurrentExperience() const{return CurrentExperience;}
+float ULevelingComponent::GetExperiencePercentage() const
+{
+	UE_LOG(LogTemp, Display, TEXT("current %i"), CurrentExperience)
+	UE_LOG(LogTemp, Display, TEXT("Required %i"), RequiredExperience)
+	return static_cast<float>(CurrentExperience) / RequiredExperience;;
+}

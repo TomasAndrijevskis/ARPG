@@ -28,10 +28,10 @@ public:
 	FPlayerLevelData LevelData;
 
 	UPROPERTY()
-	int UsedAttributePoints;
+	int32 UsedAttributePoints;
 
 	UPROPERTY()
-	int UsedAbilityPoints;
+	int32 UsedAbilityPoints;
 
 	UPROPERTY()
 	FSpawnPoint SavedSpawnPointData;

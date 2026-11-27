@@ -3,7 +3,6 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Data/PersistentData/PlayerLevelData.h"
 #include "LevelWidget.generated.h"
 
 class UTextBlock;

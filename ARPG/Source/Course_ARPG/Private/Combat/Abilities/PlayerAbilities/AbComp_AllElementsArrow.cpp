@@ -35,12 +35,11 @@ void UAbComp_AllElementsArrow::SpawnArrow()
 	FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
 	FVector TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
-	AProjectile_AllElementsArrow* Projectile = GetWorld()->SpawnActor<AProjectile_AllElementsArrow>(ArrowClass, SpawnLocation, SpawnRotation);
-	if (Projectile)
+	if (AProjectile_AllElementsArrow* Projectile = GetWorld()->SpawnActor<AProjectile_AllElementsArrow>(ArrowClass, SpawnLocation, SpawnRotation))
 	{
 		Projectile->SetProjectileOwner(GetOwner());
 		Projectile->SetEffectsParams(GetAbilityDuration(), DamageRate);
-		Projectile->SetParams(EffectDamage, AliveTime, 0);
+		Projectile->SetParams(EffectDamage, AliveTime);
 		Projectile->StartAliveTimer();
 		Projectile->OnHitEnemy.AddUObject(this, &UAbComp_AllElementsArrow::OnHitEnemy);
 		Projectile->OnHitNothing.AddUObject(this, &UAbComp_AllElementsArrow::OnHitNothing);

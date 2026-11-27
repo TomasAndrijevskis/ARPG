@@ -45,11 +45,12 @@ void UAbComp_ExplosiveArrow::SpawnArrow()
 	FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
 	FVector TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
-	AProjectile_ExplosiveArrow* Projectile = GetWorld()->SpawnActor<AProjectile_ExplosiveArrow>(ArrowClass, SpawnLocation, SpawnRotation);
-	if (!Projectile) return;
-	Projectile->SetProjectileOwner(GetOwner());
-	Projectile->SetParams(ExplosionDamage, AliveTime, 0);
-	Projectile->StartAliveTimer();
+	if (AProjectile_ExplosiveArrow* Projectile = GetWorld()->SpawnActor<AProjectile_ExplosiveArrow>(ArrowClass, SpawnLocation, SpawnRotation))
+	{
+		Projectile->SetProjectileOwner(GetOwner());
+		Projectile->SetParams(ExplosionDamage, AliveTime);
+		Projectile->StartAliveTimer();
+	}
 }
 
 

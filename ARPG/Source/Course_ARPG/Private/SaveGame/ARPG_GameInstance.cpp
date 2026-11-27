@@ -5,6 +5,7 @@
 #include "Characters/Player/MainCharacter_Base.h"
 #include "Combat/Abilities/Base/AbilityComponent_Player.h"
 #include "Components/EnchantmentComponent.h"
+#include "Components/LevelingComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "SaveGame/ARPG_SaveGame.h"
 
@@ -111,14 +112,20 @@ void UARPG_GameInstance::LoadAttributeData()
 void UARPG_GameInstance::SaveLevelData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	SaveGameInstance->LevelData = PlayerRef->SaveLevelData();
+	if (ULevelingComponent* LevelComp = PlayerRef->FindComponentByClass<ULevelingComponent>())
+	{
+		SaveGameInstance->LevelData = LevelComp->SaveLevelData();
+	}
 }
 
 
 void UARPG_GameInstance::LoadLevelData()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->LoadLevelData(SaveGameInstance->LevelData);
+	if (ULevelingComponent* LevelComp = PlayerRef->FindComponentByClass<ULevelingComponent>())
+	{
+		LevelComp->LoadLevelData(SaveGameInstance->LevelData);
+	}
 }
 
 
@@ -182,15 +189,22 @@ void UARPG_GameInstance::SavePlayerLocation(const FSpawnPoint& LastSpawnPoint)
 void UARPG_GameInstance::SaveUsedPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
+	if (ULevelingComponent* LevelComp = PlayerRef->FindComponentByClass<ULevelingComponent>())
+	{
+		SaveGameInstance->UsedAttributePoints = LevelComp->GetUsedAttributePoints();
+	}
 	SaveGameInstance->UsedAbilityPoints = PlayerRef->GetUsedAbilityPoints();
-	SaveGameInstance->UsedAttributePoints = PlayerRef->GetUsedAttributePoints();
+	
 }
 
 
 void UARPG_GameInstance::LoadUsedPoints()
 {
 	if (!PlayerRef || !SaveGameInstance) return;
-	PlayerRef->SetUsedAttributePoints(SaveGameInstance->UsedAttributePoints);
+	if (ULevelingComponent* LevelComp = PlayerRef->FindComponentByClass<ULevelingComponent>())
+	{
+		LevelComp->SetUsedAttributePoints(SaveGameInstance->UsedAttributePoints);
+	}
 	PlayerRef->SetUsedAbilityPoints(SaveGameInstance->UsedAbilityPoints);
 }
 

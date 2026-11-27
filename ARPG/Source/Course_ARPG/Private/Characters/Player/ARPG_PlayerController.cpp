@@ -27,23 +27,15 @@ void AARPG_PlayerController::OnPossess(APawn* aPawn)
 	{
 		SubSystem->OnPlayerTeleportRequestDelegate.AddUObject(this, &AARPG_PlayerController::OnPlayerRequestedTeleport);
 	}
-	
 	HandleGameLoad();
-	HUD = Cast<AHUD_Base>(GetHUD());
-	if (HUD)
-	{
-		HUD->AssignPlayerRef();
-		HUD->CreatePlayerWidget();
-		HUD->CreateGameMenuWidgets();
-	}
 }
 
 
-void AARPG_PlayerController::HandleGameLoad() const
+void AARPG_PlayerController::HandleGameLoad()
 {
 	UE_LOG(LogTemp, Error, TEXT("handle game load"));
 	if (!GameInstanceRef) return;
-	UE_LOG(LogTemp, Error, TEXT("game instance exissts"));
+	UE_LOG(LogTemp, Error, TEXT("game instance exists"));
 	GameInstanceRef->InitializeGameInstance();
 	const FString SlotName = GameInstanceRef->GetSlotName();
 	if (GameInstanceRef->CheckSlot(SlotName) && !GameInstanceRef->bIsFirstLoad) GameInstanceRef->HandleGameLoad();
@@ -51,6 +43,18 @@ void AARPG_PlayerController::HandleGameLoad() const
 	{
 		PlayerRef->HandleDefaultAttributes();
 		GameInstanceRef->SaveAll();
+	}
+}
+
+
+void AARPG_PlayerController::CreateHUD()
+{
+	HUD = Cast<AHUD_Base>(GetHUD());
+	if (HUD)
+	{
+		HUD->AssignPlayerRef();
+		HUD->CreatePlayerWidget();
+		HUD->CreateGameMenuWidgets();
 	}
 }
 

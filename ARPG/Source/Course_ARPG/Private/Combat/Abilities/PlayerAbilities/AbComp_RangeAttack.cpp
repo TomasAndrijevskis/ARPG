@@ -38,11 +38,10 @@ void UAbComp_RangeAttack::SpawnProjectile()
 	const FVector SpawnLocation = SpawnPointComp->GetComponentLocation();
 	FVector TargetLocation = PlayerRef->GetTargetLocation(1000.f);
 	const FRotator SpawnRotation = UKismetMathLibrary::FindLookAtRotation(SpawnLocation, TargetLocation);
-	AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation);
-	if (Projectile)
+	if (AProjectile_Base* Projectile = GetWorld()->SpawnActor<AProjectile_Base>(ProjectileClass, SpawnLocation, SpawnRotation))
 	{
 		Projectile->SetProjectileOwner(GetOwner());
-		Projectile->SetParams(GetEnhancedProjectileDamage(), AliveTime, PlayerRef->GetElementalDamageModificator());
+		Projectile->SetParams(GetEnhancedProjectileDamage(), AliveTime);
 		Projectile->StartAliveTimer();
 	}
 	FinishAbilityCast();
@@ -96,4 +95,4 @@ void UAbComp_RangeAttack::SetAbilityData(const int32 Level)
 }
 
 
-float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const{return ProjectileDamage + (ProjectileDamage * PlayerRef->GetAbilityPowerPercent());}
+float UAbComp_RangeAttack::GetEnhancedProjectileDamage() const{return ProjectileDamage + ProjectileDamage * PlayerRef->GetAbilityPowerPercent();}

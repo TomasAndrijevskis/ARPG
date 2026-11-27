@@ -1,6 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_HealingAura.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Components/StatsComponent.h"
 #include "Data/Abilities/HealingAuraPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -47,7 +48,13 @@ void UAbComp_HealingAura::FinishAbilityCast()
 void UAbComp_HealingAura::StartAbilityTimer()
 {
 	Super::StartAbilityTimer();
-	if (TimerDuration > 0) PlayerRef->HealPlayer(GetEnhancedHealthRegenAmount());
+	if (TimerDuration > 0)
+	{
+		if (UStatsComponent* StatsComp = PlayerRef->GetComponentByClass<UStatsComponent>())
+		{
+			StatsComp->OnAddHealthRequestDelegate.Broadcast(GetEnhancedHealthRegenAmount());
+		}
+	}
 }
 
 

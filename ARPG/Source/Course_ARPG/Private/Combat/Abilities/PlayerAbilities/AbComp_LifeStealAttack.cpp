@@ -1,6 +1,7 @@
 
 #include "Combat/Abilities/PlayerAbilities/AbComp_LifeStealAttack.h"
 #include "Characters/Player/MainCharacter_Base.h"
+#include "Components/StatsComponent.h"
 #include "Data/Abilities/LifeStealAttackPropertiesData.h"
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
@@ -59,7 +60,10 @@ void UAbComp_LifeStealAttack::OnAbilityTimerFinished()
 void UAbComp_LifeStealAttack::HandleLifeStealOnHit()
 {
 	if (!IsAbilityActive()) return;
-	PlayerRef->HealPlayer(GetStolenHealthAmount());
+	if (UStatsComponent* StatsComp = PlayerRef->GetComponentByClass<UStatsComponent>())
+	{
+		StatsComp->OnAddHealthRequestDelegate.Broadcast(GetStolenHealthAmount());
+	}
 }
 
 

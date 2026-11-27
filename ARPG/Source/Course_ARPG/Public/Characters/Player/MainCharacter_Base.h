@@ -90,10 +90,6 @@ public:
 	
 	UFUNCTION()
 	void ReduceMana(float Mana);
-	
-	void ReduceHealth(float Damage, AActor* Opponent);
-
-	void HealPlayer(float Health);
 
 	bool IsPlayerLockedOnEnemy() const;
 
@@ -107,23 +103,13 @@ public:
 	
 	int GetCurrentAbilityPointsAmount() const;
 
-	int GetUsedAttributePoints() const;
-
-	void SetUsedAttributePoints(int UsedStatPoints) const;
-
 	void LoadAttributeData(TMap<EAttributes, int32> Data);
 	
 	TMap<EAttributes, int32> SaveAttributeData() const;
-
-	void LoadLevelData(FPlayerLevelData Data);
-	
-	FPlayerLevelData SaveLevelData() const;
 	
 	void UpgradeAttribute(const EAttributes Attribute);
 	
 	void FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const;
-
-	float GetPlayerMaxHealth() const;
 	
 	TArray<EAttributes>& GetAttributesArray() const;
 	

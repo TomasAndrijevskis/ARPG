@@ -41,6 +41,10 @@ void AMainCharacter_Base::BeginPlay()
 	if (GameInstance) GameInstance->LoadCurrentEffect();
 	BindDelegates();
 	BindAbilityDelegates();
+	if (AARPG_PlayerController* PC = Cast<AARPG_PlayerController>(GetController()))
+	{
+		PC->CreateHUD();
+	}
 }
 
 void AMainCharacter_Base::LoadConfigData()
@@ -196,28 +200,6 @@ TMap<EAttributes, int32>AMainCharacter_Base::SaveAttributeData() const
 }
 
 
-void AMainCharacter_Base::LoadLevelData(FPlayerLevelData Data)
-{
-	LevelComp->SetLevel(Data.CurrentLevel);
-	LevelComp->SetExperience(Data.CurrentExperience);
-	LevelComp->SetAbilityPoints(Data.CurrentAbilityPoints);
-	LevelComp->SetAttributePoints(Data.CurrentAttributePoints);
-}
-
-
-FPlayerLevelData AMainCharacter_Base::SaveLevelData() const
-{
-	FPlayerLevelData Data;
-	Data.CurrentLevel = LevelComp->GetCurrentLevel();
-	Data.CurrentExperience = LevelComp->GetCurrentExperience();
-	Data.CurrentAttributePoints = LevelComp->GetCurrentAttributePointsAmount();
-	Data.CurrentAbilityPoints = LevelComp->GetCurrentAbilityPointsAmount();
-	Data.RequiredExperience = 0;
-	return Data;
-}
-
-
-
 void AMainCharacter_Base::FillAttributeDisplayData(FString& AttributeName, int& AttributeValue, EAttributes AttributeToImprove) const
 {
 	AttributeName = AttributesComp->GetAttributeName(AttributeToImprove);
@@ -352,18 +334,6 @@ void AMainCharacter_Base::ReduceMana(float Mana)
 }
 
 
-void AMainCharacter_Base::ReduceHealth(float Damage, AActor* Opponent)
-{
-	StatsComp->OnReduceHealthRequestDelegate.Broadcast(Damage, this, Opponent);
-}
-
-
-void AMainCharacter_Base::HealPlayer(float Health)
-{
-	StatsComp->OnAddHealthRequestDelegate.Broadcast(Health);
-}
-
-
 void AMainCharacter_Base::EndPlayerLockOnEnemy()
 {
 	LockonComp->EndLockon();
@@ -376,15 +346,17 @@ void AMainCharacter_Base::SetCanPlayHurtAnimation(const bool bCanPlayAnim){bCanP
 
 void AMainCharacter_Base::IncreaseUsedAbilityPoints(const int UsedPoints){UsedAbilityPoints += UsedPoints;}
 
+
+
 void AMainCharacter_Base::SetUsedAbilityPoints(const int NewUsedPoints){UsedAbilityPoints = NewUsedPoints;}
+
+
 
 void AMainCharacter_Base::SetCanAttack(bool bCanAttack){CombatComp->SetCanAttack(bCanAttack);}
 
 void AMainCharacter_Base::SetCanRoll(bool bCanRoll){PlayerActionsComp->SetCanRoll(bCanRoll);}
 
 void AMainCharacter_Base::SetCanMove(bool CanMove){ bCanMove = CanMove;}
-
-void AMainCharacter_Base::SetUsedAttributePoints(int UsedStatPoints) const{LevelComp->SetUsedAttributePoints(UsedStatPoints);}
 
 float AMainCharacter_Base::GetPhysicalDamage(){return StatsComp->GetStatValue(EStats::PhysicalStrength);}
 
@@ -394,13 +366,9 @@ float AMainCharacter_Base::GetAbilityPowerPercent() const{return StatsComp->GetS
 
 float AMainCharacter_Base::GetElementalDamageModificator() const{return StatsComp->GetStatValue(EStats::ElementalDamageModificator);}
 
-float AMainCharacter_Base::GetPlayerMaxHealth() const{return StatsComp->GetStatValue(EStats::MaxHealth);}
-
 int AMainCharacter_Base::GetCurrentAttributePointsAmount() const{return LevelComp->GetCurrentAttributePointsAmount();}
 
 int AMainCharacter_Base::GetCurrentAbilityPointsAmount() const{return LevelComp->GetCurrentAbilityPointsAmount();}
-
-int AMainCharacter_Base::GetUsedAttributePoints() const{return LevelComp->GetUsedAttributePoints();}
 
 int AMainCharacter_Base::GetUsedAbilityPoints() const{return UsedAbilityPoints;}
 

@@ -7,7 +7,6 @@
 #include "Combat/Abilities/PlayerAbilities/AbComp_MagicShield.h"
 #include "Components/CombatComponent_Base.h"
 #include "Components/CombatComponent_LongRange.h"
-#include "Components/EnchantmentComponent.h"
 #include "Components/StatsComponent.h"
 
 

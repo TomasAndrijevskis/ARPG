@@ -84,4 +84,4 @@ void UPlayerWidget::SetMana(const float NewManaPercent){ProgressBar_Mana->SetPer
 
 void UPlayerWidget::SetLevel(const int CurrentLevel){TextBlock_Level->SetText(FText::AsNumber(CurrentLevel));}
 
-void UPlayerWidget::SetExperience(const float CurrentExperience){ProgressBar_Experience->SetPercent(CurrentExperience);}
+void UPlayerWidget::SetExperience(const float CurrentExperiencePercent){ProgressBar_Experience->SetPercent(CurrentExperiencePercent);}

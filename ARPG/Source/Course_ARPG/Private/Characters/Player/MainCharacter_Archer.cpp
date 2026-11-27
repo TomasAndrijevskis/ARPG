@@ -53,13 +53,19 @@ float AMainCharacter_Archer::GetPhysicalDamage()
 
 void AMainCharacter_Archer::ReceiveDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* DamageInstigator, AActor* DamageCauser)
 {
-	AEnemyCharacter* EnemyRef = nullptr;
-	if (DamageInstigator) EnemyRef = Cast<AEnemyCharacter>(DamageInstigator->GetPawn());
-	if (!EnemyRef) return;
-	if (EnemyRef->CanApplyDamage()) Super::ReceiveDamage(DamagedActor, Damage, DamageType, DamageInstigator, DamageCauser);
+	if (AEnemyCharacter* EnemyRef = Cast<AEnemyCharacter>(DamageCauser))
+	{
+		if (DamageInstigator) EnemyRef = Cast<AEnemyCharacter>(DamageInstigator->GetPawn());
+		if (!EnemyRef) return;
+		if (EnemyRef->CanApplyDamage()) Super::ReceiveDamage(DamagedActor, Damage, DamageType, DamageInstigator, DamageCauser);
+		else
+		{
+			float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,GetResistanceStatValue(DamageType));
+			AbilityComp_HealArrow->HandleEnemyHit(FinalDamage);
+		}
+	}
 	else
 	{
-		float FinalDamage = StatsComp->CalculateFinalReceivedDamage(Damage,GetResistanceStatValue(DamageType));
-		AbilityComp_HealArrow->HandleEnemyHit(FinalDamage);
+		Super::ReceiveDamage(DamagedActor, Damage, DamageType, DamageInstigator, DamageCauser);
 	}
 }
