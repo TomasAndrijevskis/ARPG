@@ -45,20 +45,22 @@ void ULevelingComponent::AddExperience(const int Experience)
 
 void ULevelingComponent::TryLevelUp()
 {
-	const int32 RequiredXP = GetRequiredExperience();
+	int32 RequiredXP = GetRequiredExperience();
 	OnExperienceUpdatedDelegate.Broadcast(GetExperiencePercentage());
-	if (CurrentExperience >= RequiredXP && RequiredXP != -1)
+	while (CurrentExperience >= RequiredXP && RequiredXP != -1)
 	{
 		int32 AttributePointsAmountForLevel = GetAttributePointsForLevel();
 		int32 AbilityUpgradePointsAmountForLevel = GetAbilityPointsForLevel();
-		CurrentLevel++;
 		CurrentExperience -= RequiredXP;
-		OnNewLevelDelegate.Broadcast(AbilityUpgradePointsAmountForLevel, AttributePointsAmountForLevel);
+		CurrentLevel++;
+		
 		OnLevelUpdatedDelegate.Broadcast(CurrentLevel);
 		OnExperienceUpdatedDelegate.Broadcast(GetExperiencePercentage());
 
+		OnNewLevelDelegate.Broadcast(AbilityUpgradePointsAmountForLevel, AttributePointsAmountForLevel);
 		SetAttributePoints(AvailableAttributePoints + AttributePointsAmountForLevel);
 		SetAbilityPoints(AvailableAbilityPoints + AbilityUpgradePointsAmountForLevel);
+		RequiredXP = GetRequiredExperience();
 	}
 }
 

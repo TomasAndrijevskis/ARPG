@@ -39,7 +39,7 @@ public:
 	UFUNCTION()
 	void SetLevel(const int32 NewLevel) {CurrentLevel = NewLevel;}
 
-	bool IsLevelMaxed() const {return bIsLevelMaxed;}
+	bool IsLevelMaxed() const {return LevelDataTable && GetNextLevelRow() == nullptr;}
 	
 	void SetAttributePoints(const int32 NewStatPointsAmount) {AvailableAttributePoints = NewStatPointsAmount;}
 	
@@ -98,6 +98,4 @@ private:
 	int32 AvailableAbilityPoints = 0;
 
 	int32 UsedAttributePoints = 0;
-
-	bool bIsLevelMaxed = false;
 };
